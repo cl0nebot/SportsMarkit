@@ -1,0 +1,28 @@
+
+        <%= form_tag sessions_path, id: 'sign-in-form' do %>
+
+          <!-- facebook signup  -->
+
+          <!-- <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+            <div class="col-md-12 col-sm-12">
+              <%#=link_to "/auth/facebook" do %>
+                <button class="btn btn-block btn-success col-md-8" type="button">
+                  <span class="pull-left"><i class="fa fa-facebook"></i></span>
+                  <span class="bold">Login with Facebook</span>
+                </button>
+              <%# end %>
+            </div>
+          </div> -->
+
+
+              <%= text_field_tag(:email, nil, {placeholder: "Email", class: "form-control", type: "text"}) %>
+
+              <%= text_field_tag(:password, nil, {placeholder: "Password", type: "password", class: "form-control"}) %>
+  
+				  <%= link_to new_password_reset_path, class:"text-muted pull-right" do %>
+				  <u> Forgot Password?</u>
+				  <% end %>
+
+              <%= submit_tag "LOGIN", :class => "btn btn-primary btn-cons btn-block", type: "submit" %>
+
+        <% end %>
