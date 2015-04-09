@@ -1,0 +1,15 @@
+Need to reset your password?<br>
+( Enter your e-mail address for instructions )
+
+        <!-- Beg Login Form  -->
+
+        <%= form_tag password_resets_path, :method => :post, :class => "animated fadeIn" do %>
+          <!-- email recover form  -->
+
+              <%= text_field_tag :email, params[:email], placeholder: "Enter you email ...", class: "form-control", type: "text" %><br>
+
+              <%= submit_tag "Send Reset Instructions", :class => "btn btn-primary btn-cons btn-block", type: "submit" %>
+
+        <% end %>
+
+
