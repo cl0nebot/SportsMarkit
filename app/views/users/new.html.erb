@@ -1,0 +1,14 @@
+
+CREATE USER
+<br><br>
+<%= form_for @user do |f| %>
+
+First Name: <%= f.text_field :first_name %><br>
+Last Name: <%= f.text_field :last_name %><br>
+Email: <%= f.email_field :email %><br>
+Password: <%= f.password_field :password %><br>
+
+<%= f.submit %>
+
+
+<% end %>

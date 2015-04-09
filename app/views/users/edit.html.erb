@@ -1,0 +1,46 @@
+Logged In As: <%= current_user.full_name %></span>
+                        
+<%= form_for @user, html: {id: "user-form", data: {remote: true }} do |f| %>
+
+<%= f.fields_for :user_profile_pictures, :html => {:multipart => true} do |pic| %>
+  <%= pic.file_field :photo %><br>
+<% end %>
+
+<%= image_tag @user.avatar %><br>
+                
+<%= f.text_field :first_name, class: "form-control", placeholder: "First Name"  %><br>
+                          
+<%= f.text_field :middle_name, class: "form-control", placeholder: "Middle" %><br>
+                          
+<%= f.text_field :last_name, class: "form-control", placeholder: "Last Name" %><br>
+     
+<%= f.text_field :email, class: "form-control", placeholder: "Email" %><br>
+
+<%= f.fields_for :profile, @profile do |builder| %>
+  <%= builder.select(:city, User.cities_list.sort, {prompt: "Select Location"}, {:class => "form-control"})%><br>
+
+
+<%= builder.text_field :linkedin, class: "form-control", placeholder: "LinkedIn" %><br>
+
+<%= builder.text_field :facebook, class: "form-control", placeholder: "Facebook" %><br>
+
+<%= builder.text_field :twitter, class: "form-control", placeholder: "Twitter" %><br>
+
+<%= builder.text_field :instagram, class: "form-control", placeholder: "Instagram" %><br>
+    
+                            <%#= render 'athlete', f: builder %>
+
+                          
+<% end %>  
+
+                            
+Current password
+<%= f.password_field :current_password, label:false, placeholder:"", :class => "form-control" %><br>
+New password
+<%= f.password_field :password, label:false, placeholder:"", :class => "form-control" %>   <br>
+Verify password
+<%= f.password_field :password_confirmation, label:false, placeholder:"", :class => "form-control" %><br>
+
+
+<%= f.submit %>
+<% end %>
