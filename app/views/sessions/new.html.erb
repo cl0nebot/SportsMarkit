@@ -1,28 +1,43 @@
+<body class="bg-login">
+  <div class="login-screen">
+    <div class="panel-login blur-content">
 
-        <%= form_tag sessions_path, id: 'sign-in-form' do %>
+      <div class="panel-heading">
+        <%= image_tag("teamfox.png", height: "100", alt: "") %>
+      </div><!--.panel-heading-->
 
-          <!-- facebook signup  -->
+      <div id="pane-login" class="panel-body active">
+        <%= render "users/login_signup/login" %>
+      </div><!--#login.panel-body-->
 
-          <!-- <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
-            <div class="col-md-12 col-sm-12">
-              <%#=link_to "/auth/facebook" do %>
-                <button class="btn btn-block btn-success col-md-8" type="button">
-                  <span class="pull-left"><i class="fa fa-facebook"></i></span>
-                  <span class="bold">Login with Facebook</span>
-                </button>
-              <%# end %>
-            </div>
-          </div> -->
+      <div id="pane-forgot-password" class="panel-body">
+        <%= render "users/login_signup/forgot_password" %>
+      </div><!--#pane-forgot-password.panel-body-->
 
+      <div id="pane-create-account" class="panel-body">
+        <%#= render "users/login_signup/create_account" %>
+      </div><!--#login.panel-body-->
 
-              <%= text_field_tag(:email, nil, {placeholder: "Email", class: "form-control", type: "text"}) %>
+    </div><!--.blur-content-->
+  </div><!--.login-screen-->
 
-              <%= text_field_tag(:password, nil, {placeholder: "Password", type: "password", class: "form-control"}) %>
-  
-				  <%= link_to new_password_reset_path, class:"text-muted pull-right" do %>
-				  <u> Forgot Password?</u>
-				  <% end %>
+  <div class="bg-blur dark">
+    <div class="overlay"></div><!--.overlay-->
+  </div><!--.bg-blur-->
 
-              <%= submit_tag "LOGIN", :class => "btn btn-primary btn-cons btn-block", type: "submit" %>
+  <svg version="1.1" xmlns='http://www.w3.org/2000/svg'>
+    <filter id='blur'>
+      <feGaussianBlur stdDeviation='7' />
+    </filter>
+  </svg>
 
-        <% end %>
+  <!-- BEGIN INITIALIZATION-->
+  <script>
+  $(document).ready(function () {
+    Pleasure.init();
+    Layout.init();
+    UserPages.login();
+  });
+  </script>
+  <!-- END INITIALIZATION-->
+</body>
