@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407214116) do
+ActiveRecord::Schema.define(version: 20150413123509) do
 
   create_table "profiles", force: true do |t|
     t.integer  "user_id"
@@ -60,6 +60,30 @@ ActiveRecord::Schema.define(version: 20150407214116) do
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "schools", force: true do |t|
+    t.string   "name"
+    t.string   "classification"
+    t.string   "abbreviation"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "zip_ext"
+    t.float    "latitude",           limit: 24
+    t.float    "longitude",          limit: 24
+    t.boolean  "gmaps"
+    t.string   "phone_number"
+    t.string   "email"
+    t.string   "website"
+    t.string   "slug"
+    t.string   "stripe_customer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "schools", ["slug"], name: "index_schools_on_slug", unique: true, using: :btree
 
   create_table "user_profile_pictures", force: true do |t|
     t.integer  "user_id",    null: false

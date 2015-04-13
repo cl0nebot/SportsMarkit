@@ -1,0 +1,12 @@
+// $('#modal_new').remove();
+// $('#modal_new').show();
+$('#schools').append('<%= j render(@school) %>');
+$('#myModal').modal('hide');
+$('#school-form')[0].reset()
+$('#edit_school_<%= @school.id %>').submitOnCheck();
+
+// <%if @result %>
+	
+//<%end%>
+
+
