@@ -22,6 +22,18 @@ class User < ActiveRecord::Base
   has_many :user_profile_pictures #TODO dependent destroy?
   accepts_nested_attributes_for :user_profile_pictures, :reject_if => :all_blank, :allow_destroy => true
   
+  has_many :user_profile_pictures #TODO dependent destroy?
+  
+  has_many :fans, as: :fannable
+  
+  has_many :relationships
+  has_many :teams, through: :relationships
+  
+  
+  def follows
+    Fan.where(user_id: id)
+  end
+  
   attr_accessor :stripe_token, :current_password
 
   def password_changed?
