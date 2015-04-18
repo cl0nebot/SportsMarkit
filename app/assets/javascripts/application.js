@@ -19,11 +19,11 @@
 //= require ../template/globals/scripts/user-pages
 //= require ../template/globals/js/pleasure
 //= require ../template/admin/js/layout
+	
 
 $(document).ready(function () {
 	Pleasure.init();
 	Layout.init();
 	UserPages.login();
 });
-
 
