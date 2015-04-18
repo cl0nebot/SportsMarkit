@@ -23,30 +23,76 @@
 	
 	<br><br><br>
 	
-	Coaches<br><br>
-	
-<% @heads.each do |m| %>
+	Coaches
+	<table id="tag-list" class="table table-hover table-condensed" id="example">
+        <thead>
+          <tr>
+            <th style="width:40%" class="gf_muli">Image</th>
+            <th style="width:15%" class="gf_muli">Name</th>
+            <th style="width:20%" class="gf_muli"></th>
+            <th style="width:22%" class="gf_muli">Title</th>
+			<th style="width:22%" class="gf_muli">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+			<% @heads.each do |m| %>
 
-<%= link_to m.user.full_name, user_path(m.user) %><br>
-<%= m.head_title if m.head?%><br>
+			 <%= render 'head', m: m %>
 
-<br><br>
-<% end %>
+			<% end %>
+            
+        </tbody>
+      </table>		
 	
-	
-	Members
-	
-	<br><br>
-	
-	<% @members.each do |m| %>
+   
+Team
+<table id="tag-list" class="table table-hover table-condensed" id="example">
+       <thead>
+         <tr>
+           <th style="width:10%" class="gf_muli">Image</th>
+           <th style="width:15%" class="gf_muli">Name</th>
+           <th style="width:20%" class="gf_muli">Level</th>
+           <th style="width:22%" class="gf_muli">Position</th>
+		   <th style="width:22%" class="gf_muli">Quote</th>
+		<th style="width:22%" class="gf_muli">Actions</th>
+         </tr>
+       </thead>
+       <tbody>
+	 	<% @members.each do |m| %>
 
- <%= link_to m.user.full_name, user_path(m.user) %><br>
- <%= m.position %><br>
- <%= m.participant_classification %><br>
- <%= m.quote%>
-
-
-<br><br>
-<% end %>	
+	       <%= render 'member', m: m%>
+	  
+	    <% end %>
+           
+       </tbody>
+     </table>	
 	
 	
+	Pending Members
+	
+	<table id="tag-list" class="table table-hover table-condensed" id="example">
+	       <thead>
+	         <tr>
+	           <th style="width:10%" class="gf_muli">Image</th>
+	           <th style="width:15%" class="gf_muli">Name</th>
+	           <th style="width:20%" class="gf_muli"></th>
+	           <th style="width:22%" class="gf_muli"></th>
+			   <th style="width:22%" class="gf_muli"></th>
+			<th style="width:22%" class="gf_muli">Actions</th>
+	         </tr>
+	       </thead>
+	       <tbody>
+		 	<% @pending_members.each do |m| %>
+
+		     <%= render 'pending', m: m%>	 
+
+		    <% end %>
+           
+	       </tbody>
+	     </table>
+	
+	
+	
+
+
+      			

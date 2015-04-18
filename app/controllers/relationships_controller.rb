@@ -1,5 +1,5 @@
 class RelationshipsController < ApplicationController
-  before_action :find_relationship, only: [:edit, :show, :update, :destroy]
+  before_action :find_relationship, only: [:edit, :show, :update, :destroy, :accept_user]
   
   
   def create
@@ -28,6 +28,20 @@ class RelationshipsController < ApplicationController
   def destroy
     
     
+  end
+  
+  def users
+    
+  end
+  
+  def accept_user
+    @relationship.update_attributes(accepted: true)
+    @pending_relationships = Relationship.where(team_id: @relationship.team_id, accepted: nil, rejected: nil)
+    @relationships = Relationship.where(team_id: @relationship.team_id, accepted: true)
+    respond_to do |format|
+      format.js 
+      format.html { redirect_to :back }
+    end
   end
   
   protected

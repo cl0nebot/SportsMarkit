@@ -8,7 +8,11 @@ Rails.application.routes.draw do
       resources :teams
     end
     
-    resources :teams
+    resources :teams do
+      member do
+        patch :accept_user
+      end
+    end
     resources :facilities
     resources :leagues
     resources :fans
