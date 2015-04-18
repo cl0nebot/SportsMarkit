@@ -17,16 +17,18 @@ class SchoolsController < ApplicationController
   def create
     @school = School.new(school_params)
     if @school.save
-      respond_to do |format|
-        format.js
-        format.html { redirect_to :back }
-      end
+      redirect_to schools_path
     else
       render :new
     end
   end
   
-  def show;end
+  def show
+    @json = @school.to_gmaps4rails
+    @class = @school.class
+    @object = @school
+    @teams = @school.teams
+  end
   
   def edit;end
   
@@ -52,7 +54,7 @@ class SchoolsController < ApplicationController
   protected
   
   def school_params
-    params.require(:school).permit(:name, :classification, :abbreviation, :city, :state, :zip, :zip_ext, :latitude, :longitude, :gmaps, :phone_number, :email, :website, :slug)
+    params.require(:school).permit(:name, :classification, :abbreviation, :address_1, :address_2, :city, :state, :zip, :zip_ext, :latitude, :longitude, :gmaps, :phone_number, :email, :website, :slug)
   end
   
   def find_school
