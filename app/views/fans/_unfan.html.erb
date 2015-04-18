@@ -1,0 +1,1 @@
+<%= link_to "Unfan", current_user.follows.where(fannable_id: @object.id, fannable_type: @class).last, method: :delete, remote: true, class: "btn" %>
