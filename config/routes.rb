@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :leagues
     resources :fans
     resources :relationships
+    resources :sitemap
     
     get "login" => "sessions#new", as: :login
     get "signup" => "users#new", as: :signup
