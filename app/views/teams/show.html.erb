@@ -1,0 +1,52 @@
+<%= render 'shared/fan' %><br>
+
+<% if @team.school.present? %>
+  <%= @team.school.name %><br>
+<% end %>
+
+<%= @team.name %><br>
+<%= @team.sport %>
+
+	<div id="team-button">
+<% if current_user.relationships.where(team_id: @team.id).empty? %>
+  <%= render 'relationships/relationship'%>
+<% elsif current_user.relationships.where(team_id: @team.id, accepted: nil, rejected: nil).present? %>
+  <%= render 'relationships/pending'%>
+<% elsif current_user.relationships.where(team_id: @team.id, accepted: true).present? %>
+   <%= render 'relationships/member'%>
+   <%= link_to "Edit Profile", "/relationships/#{current_user.relationships.where(team_id: @team.id, accepted: true).last.slug}/edit"%>
+<% end %>
+	</div>
+	
+	<br><br>
+	<%= "Next Game: RHS vs. WHS"  %> <!-- # to come when we add events and calendar -->
+	
+	<br><br><br>
+	
+	Coaches<br><br>
+	
+<% @heads.each do |m| %>
+
+<%= link_to m.user.full_name, user_path(m.user) %><br>
+<%= m.head_title if m.head?%><br>
+
+<br><br>
+<% end %>
+	
+	
+	Members
+	
+	<br><br>
+	
+	<% @members.each do |m| %>
+
+ <%= link_to m.user.full_name, user_path(m.user) %><br>
+ <%= m.position %><br>
+ <%= m.participant_classification %><br>
+ <%= m.quote%>
+
+
+<br><br>
+<% end %>	
+	
+	
