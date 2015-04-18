@@ -4,7 +4,15 @@ Rails.application.routes.draw do
     resources :users
     resources :sessions
     resources :password_resets
-    resources :schools
+    resources :schools do
+      resources :teams
+    end
+    
+    resources :teams
+    resources :facilities
+    resources :leagues
+    resources :fans
+    resources :relationships
     
     get "login" => "sessions#new", as: :login
     get "signup" => "users#new", as: :signup
