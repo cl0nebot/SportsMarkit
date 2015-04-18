@@ -25,6 +25,12 @@ class UsersController < ApplicationController
   
   def show
     @user = User.friendly.find(params[:id])
+    @class = @user.class
+    @object = @user
+    @team_ids = @user.relationships.pluck(:team_id)
+    @teammate_ids = Relationship.where(team_id: @team_ids).pluck(:user_id)
+    @teammates = User.where(id: @teammate_ids).uniq - [@user]
+    @teams = Team.where(id: @team_ids)
   end
   
   def edit
