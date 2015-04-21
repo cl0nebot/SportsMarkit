@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include Location
   extend FriendlyId
-  friendly_id :use_for_slug, use: :slugged
+  friendly_id :use_for_slug, use: [:slugged, :finders]
   has_secure_password
   
   validates_presence_of :password, :on => :create
