@@ -1,0 +1,37 @@
+<%= @id %><br>
+<%= @class %>
+
+<%= form_for [@object, @event] do |f| %>
+
+Title: <%= f.text_field :title %><br>
+
+Event Type: <%= f.text_field :event_type %><br>
+
+  <div class="field">
+    <%= f.label :starts_at %><br />
+    <%= f.datetime_select :starts_at %>
+  </div>
+  <div class="field">
+    <%= f.label :ends_at %><br />
+    <%= f.datetime_select :ends_at %>
+  </div>
+  <div class="field">
+    <%= f.label :all_day %><br />
+    <%= f.check_box :all_day %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :private %><br />
+    <%= f.check_box :private %>
+  </div>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :eventable_type, value: @class %>
+
+<%= f.submit %>
+
+
+
+<% end %>
