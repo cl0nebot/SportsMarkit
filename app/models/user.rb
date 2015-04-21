@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
     #if (provider.nil? || provider.try(:empty?))
       if password_digest_changed?
         # self.update_attributes(old_password: "example")
-         Emails.password_changed(self).deliver
+         #Emails.password_changed(self).deliver
       end
       #end
   end
@@ -154,6 +154,24 @@ class User < ActiveRecord::Base
     self.reset_password_sent_at = Time.zone.now
     save!
     SendEmail.password_reset(self).deliver
+  end
+  
+  def self.from_omniauth(auth)
+    #return nil if auth.nil?
+    where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
+      user.email = "#{auth.info.nickname}@facebook.com"
+      user.password = SecureRandom.urlsafe_base64
+      # user.nearest_city = "New York, NY" # Default
+      #user.oauth_token = auth.credentials.token
+      #user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      if user.save
+        #UserProfilePicture.create!(user_id: user.id, remote_photo_url: auth.info.image )
+      end
+    end
   end
   
   

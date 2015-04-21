@@ -24,6 +24,12 @@ gem 'gmaps4rails', "~> 1.5.6" # For google maps view, geocoding, etc
 # Add google font library
 gem 'google-webfonts'
 
+#user authentication and management
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem "omniauth-google-oauth2"
+gem "omniauth-twitter"
+
 #for file uploads
 gem 'carrierwave' # For uploading photos
 gem "fog"

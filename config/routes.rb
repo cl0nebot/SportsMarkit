@@ -26,6 +26,9 @@ Rails.application.routes.draw do
     resources :relationships
     resources :sitemap
     
+    get 'auth/:provider/callback', to: "omniauth_callbacks#facebook"
+    get 'auth/failure', to: redirect('/')
+    
     get "login" => "sessions#new", as: :login
     get "signup" => "users#new", as: :signup
   
