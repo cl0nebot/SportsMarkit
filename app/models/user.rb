@@ -25,13 +25,61 @@ class User < ActiveRecord::Base
   has_many :user_profile_pictures #TODO dependent destroy?
   
   has_many :fans, as: :fannable
+  has_many :events, as: :eventable
   
   has_many :relationships
   has_many :teams, through: :relationships
   
+  has_many :attendees
+  
   
   def follows
     Fan.where(user_id: id)
+  end
+  
+  def attendances
+    Attendee.where(user_id: id)
+  end
+  
+  def attending_events
+    attendances.pluck(:event_id)
+  end
+  
+  def all_events
+    (events + Event.where(id: attending_events)).uniq
+  end
+  
+  def event_type_filters
+    type_to_count = Hash.new(0)
+    all_events.each do |event|
+      if ##
+        type_to_count[event.event_type] += 1
+      end
+    end
+    type_filters = type_to_count.map do |type, count|
+      current = current_filters.any? { |f| f[:type]=="event_type" and f[:value]== type}
+      {type: "event_type", value: type, count: count, current: current}
+    end
+    type_filters.sort{|a,b| b[:count] <=> a[:count]}
+  end
+  
+  def created_by_filters
+    person_to_count = Hash.new(0)
+    all_events.each do |event|
+      if ##
+        if event.user_id == id
+          person_name = "Me"
+        else
+          person_name = User.find(event.user_id).full_name
+        end
+        person_to_count[person_name] += 1
+      end
+    end
+    person_filters = person_to_count.map do |person, count|
+      current = current_filters.any? { |f| f[:type] == "created_by" and f[:valye] == person}
+      {type: "created_by", value: type, count: count, current: current}
+    end
+    person_filters.sort{|a,b| b[:count] <=> a[:count]}
   end
   
   attr_accessor :stripe_token, :current_password
