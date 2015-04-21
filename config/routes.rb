@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
     root 'main#index'
     
-    resources :users
+    resources :users do
+      resources :events
+    end
+    resources :events
     resources :sessions
     resources :password_resets
     resources :schools do
@@ -16,6 +19,7 @@ Rails.application.routes.draw do
     resources :facilities
     resources :leagues
     resources :fans
+    resources :attendees
     resources :relationships
     resources :sitemap
     
