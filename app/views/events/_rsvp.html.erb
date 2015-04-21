@@ -1,59 +1,23 @@
+<div id="attendee-buttons">
 <%= current_user.attendances.where(event_id: @event.id, yes: true).last.present? %>
 
-<% if current_user.attendances.where(event_id: @event.id).empty? %>
+   <% if current_user.attendances.where(event_id: @event.id).empty? %>
+      
+	  <%= render 'attendees/attendee' %>	  
+   
+   <% elsif current_user.attendances.where(event_id: @event.id, yes: true).last.present? %>
+      
+	  <%= render 'attendees/yes'%>	  
+   
+   <% elsif current_user.attendances.where(event_id: @event.id, maybe: true).last.present? %>
 
-		  <%= form_for current_user.attendees.build, html: {method: :post, remote: true } do |f| %>
-			  <%= f.hidden_field :user_id, value: current_user.id %>
-			  <%= f.hidden_field :event_id, value: @event.id %>
-			  <%= f.hidden_field :yes, value: true %>
-			  <%= f.submit "I'M GOING!", class: "btn" %>
-		  <% end %>
-		  
-		  <%= form_for current_user.attendees.build, html: {method: :post, remote: true } do |f| %>
-			  <%= f.hidden_field :user_id, value: current_user.id %>
-			  <%= f.hidden_field :event_id, value: @event.id %>
-			  <%= f.hidden_field :maybe, value: true %>
-			  <%= f.submit "MAYBE", class: "btn" %>
-		  <% end %>
-		  
-		  <%= form_for current_user.attendees.build, html: {method: :post, remote: true } do |f| %>
-			  <%= f.hidden_field :user_id, value: current_user.id %>
-			  <%= f.hidden_field :event_id, value: @event.id %>
-			  <%= f.hidden_field :no, value: true %>
-			  <%= f.submit "NOT GOING", class: "btn" %>
-		  <% end %>
-		  
-<% elsif current_user.attendances.where(event_id: @event.id, yes: true).last.present? %>
+      <%= render 'attendees/maybe'%>
 
-		  <%= form_for current_user.attendees.build, html: {method: :post, remote: true } do |f| %>
-			  <%= f.submit "I'M GOING!", class: "btn", deactivated: true %>
-		  <% end %>
+   <% elsif current_user.attendances.where(event_id: @event.id, no: true).last.present? %>
 		  
-		  <%= form_for current_user.attendances.where(event_id: @event.id, yes: true).last, html: {method: :patch, remote: true } do |f| %>
-			  <%= f.hidden_field :user_id, value: current_user.id %>
-			  <%= f.hidden_field :event_id, value: @event.id %>
-			  <%= f.hidden_field :yes, value: false %>
-			  <%= f.hidden_field :maybe, value: true %>
-			  <%= f.hidden_field :no, value: false %>
-			  <%= f.submit "MAYBE", class: "btn" %>
-		  <% end %>
+	   <%= render 'attendees/no'%>
 		  
-		  <%= form_for current_user.attendances.where(event_id: @event.id, yes: true).last, html: {method: :patch, remote: true } do |f| %>
-			  <%= f.hidden_field :user_id, value: current_user.id %>
-			  <%= f.hidden_field :event_id, value: @event.id %>
-			  <%= f.hidden_field :yes, value: false %>
-			  <%= f.hidden_field :maybe, value: false %>
-			  <%= f.hidden_field :no, value: true %>
-			  <%= f.submit "NOT GOING", class: "btn" %>
-		  <% end %>
-
-<% elsif current_user.attendances.where(event_id: @event.id, maybe: true).last.present? %>
-
-<% elsif current_user.attendances.where(event_id: @event.id, no: true).last.present? %>
-		  
-		    
-		  
-		  
-		  <% end %>
+<% end %>
+</div>
 		  
 		
