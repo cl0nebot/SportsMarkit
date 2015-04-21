@@ -49,3 +49,11 @@ Created By: <%= link_to @event.user.full_name, user_path(@event.user) %>
 <%= person.user.full_name %><br>
 
 <% end %>
+
+
+
+<br><br><br><br>
+Where Is it?
+
+<%= @event.facility.name %><br><br>
+<%= gmaps4rails(@json) %>

@@ -6,6 +6,9 @@ class Event < ActiveRecord::Base
   friendly_id :use_for_slug, use: :slugged
   has_many :attendees
   
+  has_one :event_facility
+  has_one :facility, through: :event_facility
+  
   def use_for_slug
     existing_event = Event.where('slug = ?', self.slug)
     if existing_event.present?

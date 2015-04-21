@@ -13,6 +13,7 @@ class EventsController < ApplicationController
   def create
     @event = @object.events.build(event_params)
     if @event.save
+      EventFacility.create(event_id: @event.id, facility_id: params[:event][:facility_ids])
       redirect_to @event
     else
       render 'new'
@@ -24,6 +25,7 @@ class EventsController < ApplicationController
     @attendees = @event.attendees.where(yes: true)
     @maybes = @event.attendees.where(maybe: true)
     @nos = @event.attendees.where(no: true)
+    @json = @event.facility.to_gmaps4rails
     
   end
   
@@ -48,7 +50,7 @@ class EventsController < ApplicationController
   protected
   
   def event_params
-    params.require(:event).permit(:user_id, :eventable_id, :eventable_type, :event_type, :title, :starts_at, :ends_at, :all_day, :description, :private, :created_by )
+    params.require(:event).permit(:user_id, :eventable_id, :eventable_type, :event_type, :title, :starts_at, :ends_at, :all_day, :description, :private, :created_by)
   end
   
   def find_object

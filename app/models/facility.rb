@@ -4,6 +4,8 @@ class Facility < ActiveRecord::Base
   acts_as_gmappable
   
   has_many :fans, as: :fannable
+  has_many :event_facilities
+  has_many :events, through: :event_facilities
   
   def gmaps4rails_address
   #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki

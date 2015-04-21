@@ -29,6 +29,9 @@ Event Type: <%= f.text_field :event_type %><br>
   </div>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :eventable_type, value: @class %>
+  
+  
+  <%= f.collection_select :facility_ids, Facility.all, :id, :name, {:selected => ""}, {  :multiple => false, :style => "width:100%", :id => "multi", :class => "select2-offscreen", :placeholder => "Select A Facility"  } %>
 
 <%= f.submit %>
 

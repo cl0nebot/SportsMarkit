@@ -4,6 +4,7 @@ class School < ActiveRecord::Base
   acts_as_gmappable
   
   has_many :fans, as: :fannable
+  #has_many :event_facilities, as: :reservable
   has_many :teams
   
   def gmaps4rails_address
