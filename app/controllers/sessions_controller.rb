@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       cookies.permanent[:authentication_token] = user.authentication_token
       p "----------------"
-      user.error_messages
+      user.errors.full_messages
       redirect_to users_path
     else
       flash[:error] = "Email or password is incorrect."
