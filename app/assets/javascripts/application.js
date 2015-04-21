@@ -12,14 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
-//
-//
+//= require jquery-ui
 //= require ../template/globals/js/global-vendors
 //= require ../template/globals/scripts/user-pages
 //= require ../template/globals/js/pleasure
 //= require ../template/admin/js/layout
-	
+//= require moment
+//= require fullcalendar
+//= require_tree .
 
 $(document).ready(function () {
 	Pleasure.init();

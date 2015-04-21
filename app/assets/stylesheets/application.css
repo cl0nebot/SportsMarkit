@@ -19,5 +19,5 @@
  *= require ../template/globals/plugins/bootstrap-social/bootstrap-social
  *= require ../template/globals/css/plugins
  *= require ../template/custom
-
+ *= require fullcalendar
  */

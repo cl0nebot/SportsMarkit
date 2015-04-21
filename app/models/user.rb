@@ -46,9 +46,9 @@ class User < ActiveRecord::Base
   end
   
   def all_events
-    (events + Event.where(id: attending_events)).uniq
+    Event.where("(`eventable_id` = ? AND `events`.`eventable_type` = 'User') OR (id in (?))", id, attending_events)
   end
-  
+
   def event_type_filters
     type_to_count = Hash.new(0)
     all_events.each do |event|

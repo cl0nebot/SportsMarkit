@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     
     resources :users do
       resources :events
+      resource :calendar do
+        get :events, on: :member
+      end
     end
     resources :events
     resources :sessions
