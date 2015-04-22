@@ -1,0 +1,6 @@
+
+		  <%= form_for current_user.relationships.build, html: {method: :post, remote: true } do |f| %>
+			  <%= f.hidden_field :user_id, value: current_user.id %>
+		      <%= f.hidden_field :team_id, value: @team.id %>
+			  <%= f.submit "Join Team!", class: "btn" %>
+		  <% end %>

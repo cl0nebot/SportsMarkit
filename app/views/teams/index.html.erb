@@ -1,0 +1,9 @@
+<% @teams.each do |team| %>
+
+<%= link_to team.name, "teams/#{team.slug}" %>,
+<%= team.sport %><br>
+
+
+
+
+<% end %>

@@ -11,7 +11,92 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407214116) do
+ActiveRecord::Schema.define(version: 20150421211314) do
+
+  create_table "attendees", force: true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.boolean  "yes"
+    t.boolean  "maybe"
+    t.boolean  "no"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_facilities", force: true do |t|
+    t.integer  "event_id"
+    t.integer  "facility_id"
+    t.string   "facility_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "eventable_id"
+    t.string   "eventable_type"
+    t.string   "event_type"
+    t.string   "title"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.boolean  "all_day"
+    t.text     "description"
+    t.boolean  "private"
+    t.integer  "created_by"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["eventable_id", "eventable_type"], name: "index_events_on_eventable_id_and_eventable_type", using: :btree
+  add_index "events", ["slug"], name: "index_events_on_slug", unique: true, using: :btree
+
+  create_table "facilities", force: true do |t|
+    t.string   "name"
+    t.string   "field_type"
+    t.boolean  "private"
+    t.boolean  "publicly_visible"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "zip_ext"
+    t.float    "latitude",         limit: 24
+    t.float    "longitude",        limit: 24
+    t.boolean  "gmaps"
+    t.string   "phone_number"
+    t.string   "email"
+    t.string   "website"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "facilities", ["slug"], name: "index_facilities_on_slug", unique: true, using: :btree
+
+  create_table "fans", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "fannable_id"
+    t.string   "fannable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "fans", ["fannable_id", "fannable_type"], name: "index_fans_on_fannable_id_and_fannable_type", using: :btree
+
+  create_table "leagues", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "sport"
+    t.string   "state"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "leagues", ["name"], name: "index_leagues_on_name", using: :btree
+  add_index "leagues", ["slug"], name: "index_leagues_on_slug", unique: true, using: :btree
 
   create_table "profiles", force: true do |t|
     t.integer  "user_id"
@@ -61,6 +146,56 @@ ActiveRecord::Schema.define(version: 20150407214116) do
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
+  create_table "relationships", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.boolean  "head"
+    t.string   "head_title"
+    t.boolean  "participant"
+    t.string   "participant_classification"
+    t.string   "position"
+    t.string   "quote"
+    t.boolean  "accepted"
+    t.boolean  "rejected"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schools", force: true do |t|
+    t.string   "name"
+    t.string   "classification"
+    t.string   "abbreviation"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "zip_ext"
+    t.float    "latitude",           limit: 24
+    t.float    "longitude",          limit: 24
+    t.boolean  "gmaps"
+    t.string   "phone_number"
+    t.string   "email"
+    t.string   "website"
+    t.string   "slug"
+    t.string   "stripe_customer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "schools", ["slug"], name: "index_schools_on_slug", unique: true, using: :btree
+
+  create_table "teams", force: true do |t|
+    t.integer  "school_id"
+    t.integer  "league_id"
+    t.string   "name"
+    t.string   "sport"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "user_profile_pictures", force: true do |t|
     t.integer  "user_id",    null: false
     t.string   "photo",      null: false
@@ -93,6 +228,8 @@ ActiveRecord::Schema.define(version: 20150407214116) do
     t.string   "stripe_subscription_ids"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

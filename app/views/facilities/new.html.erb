@@ -1,0 +1,24 @@
+Add a New Facility
+
+<%= form_for @facility do |f| %>
+
+
+Name:<%= f.text_field :name %><br><br>
+
+      <%= f.text_field :field_type %><br><br>
+	  Private? <%= f.check_box :private %><br><br>
+	  Publicly Visible?<%= f.check_box :publicly_visible %><br><br>
+
+		  Address: <%= f.text_field :address_1 %><br><br>
+		  Address Line 2: <%= f.text_field :address_2 %><br><br>
+		  City: <%= f.text_field :city %><br><br>
+		  State: <%= f.text_field :state %><br><br>
+		  Zip: <%= f.text_field :zip %><br><br>
+		  Zip-ext: <%= f.text_field :zip_ext %><br><br>
+		  
+		  Website: <%= f.text_field :website %><br><br>
+		  Email: <%= f.text_field :email %><br><br>
+		  Phone Number: <%= f.text_field :phone_number %><br><br>
+
+<%= f.submit %>
+<% end %>

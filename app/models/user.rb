@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include Location
   extend FriendlyId
-  friendly_id :use_for_slug, use: :slugged
+  friendly_id :use_for_slug, use: [:slugged, :finders]
   has_secure_password
   
   validates_presence_of :password, :on => :create
@@ -22,13 +22,73 @@ class User < ActiveRecord::Base
   has_many :user_profile_pictures #TODO dependent destroy?
   accepts_nested_attributes_for :user_profile_pictures, :reject_if => :all_blank, :allow_destroy => true
   
+  has_many :user_profile_pictures #TODO dependent destroy?
+  
+  has_many :fans, as: :fannable
+  has_many :events, as: :eventable
+  
+  has_many :relationships
+  has_many :teams, through: :relationships
+  
+  has_many :attendees
+  
+  
+  def follows
+    Fan.where(user_id: id)
+  end
+  
+  def attendances
+    Attendee.where(user_id: id)
+  end
+  
+  def attending_events
+    attendances.pluck(:event_id)
+  end
+  
+  def all_events
+    Event.where("(`eventable_id` = ? AND `events`.`eventable_type` = 'User') OR (id in (?))", id, attending_events)
+  end
+
+  def event_type_filters
+    type_to_count = Hash.new(0)
+    all_events.each do |event|
+      if ##
+        type_to_count[event.event_type] += 1
+      end
+    end
+    type_filters = type_to_count.map do |type, count|
+      current = current_filters.any? { |f| f[:type]=="event_type" and f[:value]== type}
+      {type: "event_type", value: type, count: count, current: current}
+    end
+    type_filters.sort{|a,b| b[:count] <=> a[:count]}
+  end
+  
+  def created_by_filters
+    person_to_count = Hash.new(0)
+    all_events.each do |event|
+      if ##
+        if event.user_id == id
+          person_name = "Me"
+        else
+          person_name = User.find(event.user_id).full_name
+        end
+        person_to_count[person_name] += 1
+      end
+    end
+    person_filters = person_to_count.map do |person, count|
+      current = current_filters.any? { |f| f[:type] == "created_by" and f[:valye] == person}
+      {type: "created_by", value: type, count: count, current: current}
+    end
+    person_filters.sort{|a,b| b[:count] <=> a[:count]}
+  end
+  
   attr_accessor :stripe_token, :current_password
 
   def password_changed?
     #if (provider.nil? || provider.try(:empty?))
       if password_digest_changed?
         # self.update_attributes(old_password: "example")
-         Emails.password_changed(self).deliver
+         #Emails.password_changed(self).deliver
       end
       #end
   end
@@ -94,6 +154,24 @@ class User < ActiveRecord::Base
     self.reset_password_sent_at = Time.zone.now
     save!
     SendEmail.password_reset(self).deliver
+  end
+  
+  def self.from_omniauth(auth)
+    #return nil if auth.nil?
+    where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
+      user.email = "#{auth.info.nickname}@facebook.com"
+      user.password = SecureRandom.urlsafe_base64
+      # user.nearest_city = "New York, NY" # Default
+      #user.oauth_token = auth.credentials.token
+      #user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      if user.save
+        #UserProfilePicture.create!(user_id: user.id, remote_photo_url: auth.info.image )
+      end
+    end
   end
   
   

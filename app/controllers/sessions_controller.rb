@@ -13,11 +13,12 @@ class SessionsController < ApplicationController
     user = User.where(email: params[:email]).first
     if user && user.authenticate(params[:password])
       cookies.permanent[:authentication_token] = user.authentication_token
-      flash[:success] = "Signed in."
-      redirect_to request.referrer
+      p "----------------"
+      user.errors.full_messages
+      redirect_to users_path
     else
       flash[:error] = "Email or password is incorrect."
-      redirect_to request.referrer
+      render text: user.errors.full_messages
     end
     # respond_to do |format|
     #   format.json { render(json: flash.to_h); flash.clear }

@@ -19,6 +19,7 @@
 		<meta name="apple-touch-fullscreen" content="yes">
 
 		<%= stylesheet_link_tag 'application', media: 'all' %>
+		<%= stylesheet_link_tag 'gmaps4rails' %>
 
 		<!-- BEGIN SHORTCUT AND TOUCH ICONS -->
 		<link rel="shortcut icon" href="../../assets/globals/img/icons/favicon.ico">
@@ -33,4 +34,5 @@
 
 	<%= javascript_include_tag 'application' %>
 	
+	<%= yield :scripts %>
 </html>

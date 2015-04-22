@@ -1,0 +1,98 @@
+<%= render 'shared/fan' %><br>
+
+<% if @team.school.present? %>
+  <%= @team.school.name %><br>
+<% end %>
+
+<%= @team.name %><br>
+<%= @team.sport %>
+
+	<div id="team-button">
+<% if current_user.relationships.where(team_id: @team.id).empty? %>
+  <%= render 'relationships/relationship'%>
+<% elsif current_user.relationships.where(team_id: @team.id, accepted: nil, rejected: nil).present? %>
+  <%= render 'relationships/pending'%>
+<% elsif current_user.relationships.where(team_id: @team.id, accepted: true).present? %>
+   <%= render 'relationships/member'%>
+   <%= link_to "Edit Profile", "/relationships/#{current_user.relationships.where(team_id: @team.id, accepted: true).last.slug}/edit"%>
+<% end %>
+	</div>
+	
+	<br><br>
+	<%= "Next Game: RHS vs. WHS"  %> <!-- # to come when we add events and calendar -->
+	
+	<br><br><br>
+	
+	Coaches
+	<table id="tag-list" class="table table-hover table-condensed" id="example">
+        <thead>
+          <tr>
+            <th style="width:40%" class="gf_muli">Image</th>
+            <th style="width:15%" class="gf_muli">Name</th>
+            <th style="width:20%" class="gf_muli"></th>
+            <th style="width:22%" class="gf_muli">Title</th>
+			<th style="width:22%" class="gf_muli">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+			<% @heads.each do |m| %>
+
+			 <%= render 'head', m: m %>
+
+			<% end %>
+            
+        </tbody>
+      </table>		
+	
+   
+Team
+<table id="tag-list" class="table table-hover table-condensed" id="example">
+       <thead>
+         <tr>
+           <th style="width:10%" class="gf_muli">Image</th>
+           <th style="width:15%" class="gf_muli">Name</th>
+           <th style="width:20%" class="gf_muli">Level</th>
+           <th style="width:22%" class="gf_muli">Position</th>
+		   <th style="width:22%" class="gf_muli">Quote</th>
+		<th style="width:22%" class="gf_muli">Actions</th>
+         </tr>
+       </thead>
+       <tbody>
+	 	<% @members.each do |m| %>
+
+	       <%= render 'member', m: m%>
+	  
+	    <% end %>
+           
+       </tbody>
+     </table>	
+	
+	
+	Pending Members
+	
+	<table id="tag-list" class="table table-hover table-condensed" id="example">
+	       <thead>
+	         <tr>
+	           <th style="width:10%" class="gf_muli">Image</th>
+	           <th style="width:15%" class="gf_muli">Name</th>
+	           <th style="width:20%" class="gf_muli"></th>
+	           <th style="width:22%" class="gf_muli"></th>
+			   <th style="width:22%" class="gf_muli"></th>
+			<th style="width:22%" class="gf_muli">Actions</th>
+	         </tr>
+	       </thead>
+	       <tbody>
+		 	<% @pending_members.each do |m| %>
+
+		     <%= render 'pending', m: m%>	 
+
+		    <% end %>
+           
+	       </tbody>
+	     </table>
+	
+	
+	
+
+
+      			

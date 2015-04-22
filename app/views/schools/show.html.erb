@@ -1,0 +1,20 @@
+<%= @school.name %><br>
+<%= @school.address_1 %>
+<%= @school.city %>, <%= @school.state %><br><br>
+
+<%= render 'shared/fan' %>
+
+Teams: <br><br>
+
+<% @teams.each do |team| %>
+
+<%= link_to team.name, "/teams/#{team.slug}" %>,
+
+<%= team.sport %><br>
+
+<% end %><br>
+
+<%= gmaps4rails(@json) %>
+
+
+

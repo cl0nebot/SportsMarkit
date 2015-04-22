@@ -1,0 +1,24 @@
+<%= @user.full_name %>
+
+
+
+<%= form_for @relationship do |f| %>
+
+
+
+<% if @relationship.head? %>
+Title: <%= f.text_field :head_title %><br>
+<% end %>
+
+Athlete <%= f.check_box :participant %><br>
+
+Classification: <%= f.text_field :participant_classification %> <br>
+
+Position: <%= f.text_field :position %> <br>
+
+Say Something: <%= f.text_field :quote %><br><br>
+
+<%= f.submit %>
+
+
+<% end %>

@@ -1,0 +1,22 @@
+		Create School
+		
+		<%= form_for @school, html: {id: 'school-form', data: {remote: true}} do |f|   %>
+		  Name: <%= f.text_field  :name  %><br><br>
+		  
+		  Classification: <%= f.select :classification, [ 'College', 'High School', 'Middle School'], :prompt => 'Select One' %><br><br>
+		  Abbreviation: <%= f.text_field :abbreviation %><br><br>
+		  
+		  Address: <%= f.text_field :address_1 %><br><br>
+		  Address Line 2: <%= f.text_field :address_2 %><br><br>
+		  City: <%= f.text_field :city %><br><br>
+		  State: <%= f.text_field :state %><br><br>
+		  Zip: <%= f.text_field :zip %><br><br>
+		  Zip-ext: <%= f.text_field :zip_ext %><br><br>
+		  
+		  Website: <%= f.text_field :website %><br><br>
+		  Email: <%= f.text_field :email %><br><br>
+		  Phone Number: <%= f.text_field :phone_number %><br><br>
+		  
+		  <%= f.submit %>
+		  
+		  <% end %>

@@ -1,0 +1,9 @@
+<% @leagues.each do |league| %>
+
+<%= link_to league.name, league_path(league) %><br><br>
+<%= league.description %>
+<%= league.state %>
+<%= league.sport %>
+
+
+<% end %>

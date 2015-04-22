@@ -1,9 +1,33 @@
 Rails.application.routes.draw do
     root 'main#index'
     
-    resources :users
+    resources :users do
+      resources :events
+      resource :calendar do
+        get :events, on: :member
+      end
+    end
+    resources :events
     resources :sessions
     resources :password_resets
+    resources :schools do
+      resources :teams
+    end
+    
+    resources :teams do
+      member do
+        patch :accept_user
+      end
+    end
+    resources :facilities
+    resources :leagues
+    resources :fans
+    resources :attendees
+    resources :relationships
+    resources :sitemap
+    
+    get 'auth/:provider/callback', to: "omniauth_callbacks#facebook"
+    get 'auth/failure', to: redirect('/')
     
     get "login" => "sessions#new", as: :login
     get "signup" => "users#new", as: :signup
