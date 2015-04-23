@@ -1,13 +1,14 @@
+<tr>
+	<td><%= school.name %></td>
+	<td><%= school.email %></td>
+	<td><%= school.website %></td>
+	<td><%= school.phone_number %></td>
+	<td>2011/04/25</td>
+	<td>
+		<%= link_to "Delete", school, method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
+		<%= link_to "Edit", edit_school_path(school) %>
+	</td>
+</tr>
 
-<%= link_to school.name, school %> |
 
-<%= school.email %> |
-
-<%= school.website %> |
-
-<%= school.phone_number %>
-
-<%= link_to "Delete", school, method: :delete, data: {confirm: "Are you sure?"}, remote: true %> |
-
-<%= link_to "Edit", edit_school_path(school) %>
-<br><br>
+<%#= link_to school.name, school %>
