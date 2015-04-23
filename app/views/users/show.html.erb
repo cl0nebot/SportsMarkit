@@ -111,14 +111,70 @@
 Teams:<br><br>
 
 
-<% @teams.each do |team| %>
-
-<%= link_to team.name, team_path(team) %><br>
-
-
-<br><% end %><br><br>
-
-
+<div class="row">
+			<% @teams.each do |team| %>
+				<div class="col-md-4">
+					<div class="card card-meal card-meal-green card-square card-shadow">
+					<div class="card-heading">
+						<h3 class="card-title">
+							<%= link_to team.name, "teams/#{team.slug}" %>
+						</h3>
+						<div class="card-subhead">
+							By <a href="#"><%= team.sport %></a>
+						</div><!--.card-subhead-->
+					</div><!--.card-heading-->
+					<div class="card-body">
+						<div class="image">
+							<a href="#"><img src="http://themighty1290am.com/files/2015/01/FreeVector-Grunge-Basketball-Background.jpg" alt=""></a>
+						</div><!--.image-->
+						<ul class="users">
+							<li>
+								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+									<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+								</a>
+							</li>
+							<li>
+								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+									<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+								</a>
+							</li>
+							<li>
+								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+									<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+								</a>
+							</li>
+							<li>
+								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+									<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+								</a>
+							</li>
+							<li>
+								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+									<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+								</a>
+							</li>
+							<li>
+								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+									<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+								</a>
+							</li>
+							<li>
+								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+									<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+								</a>
+							</li>
+						</ul>
+					</div><!--.card-body-->
+					<div class="card-footer">
+						<ul>
+							<li>1,378 Students</li>
+							<li><a href="#">Join Them</a></li>
+						</ul>
+					</div><!--.card-footer-->
+					</div><!--.card-->
+				</div><!--.col-md-4-->
+			<% end %>
+		</div><!--.row-->
 
 
 Teammates:<br><br>
