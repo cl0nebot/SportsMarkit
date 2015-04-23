@@ -60,41 +60,83 @@
 	</div><!--.page-header-->
 
 	<div class="row">
-			<div class="col-md-12">
-				<div class="panel">
-					<div class="panel-heading">
-						<div class="panel-title"><h4>ALPHABET SORTING</h4></div>
-					</div><!--.panel-heading-->
-					<div class="panel-body">
+		<div class="col-md-12">
+			<div class="panel">
+				<div class="panel-heading">
+					<div class="panel-title"><h4>ALPHABET SORTING</h4></div>
+				</div><!--.panel-heading-->
+				<div class="panel-body">
 
-						<div class="overflow-table">
-						<table class="display datatables-alphabet-sorting">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Position</th>
-									<th>Office</th>
-									<th>Age</th>
-									<th>Start date</th>
-									<th>Salary</th>
-								</tr>
-							</thead>
+					<p>
+						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-modal2">New Team</button>
+					</p>
 
-							<tbody id="schools">
-								<%= render @schools %>							
-							</tbody>
-						</table>
-						</div><!--.overflow-table-->
 
-					</div><!--.panel-body-->
-				</div><!--.panel-->
-			</div><!--.col-md-12-->
-		</div><!--.row-->
+					<div class="overflow-table">
+					<table class="display datatables-alphabet-sorting">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Position</th>
+								<th>Office</th>
+								<th>Age</th>
+								<th>Start date</th>
+								<th>Salary</th>
+							</tr>
+						</thead>
+
+						<tbody id="schools">
+							<%= render @schools %>							
+						</tbody>
+					</table>
+					</div><!--.overflow-table-->
+
+				</div><!--.panel-body-->
+			</div><!--.panel-->
+		</div><!--.col-md-12-->
+	</div><!--.row-->
 
 	
 </div><!--.content-->
 
 	
 <h1><%#= format(Date.today, 4)%></h1>
+
+<div class="modal fade full-height from-right" id="panel-modal2" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Panel Modal</h4>
+				</div>
+				<div class="modal-body">
+					
+					<%= form_for School.new, html: {id: 'school-form', data: {remote: true}} do |f|   %>
+						  Name: <%= f.text_field  :name  %><br><br>
+						  
+						  Classification: <%= f.select :classification, [ 'College', 'High School', 'Middle School'], :prompt => 'Select One' %><br><br>
+						  Abbreviation: <%= f.text_field :abbreviation %><br><br>
+						  
+						  Address: <%= f.text_field :address_1 %><br><br>
+						  Address Line 2: <%= f.text_field :address_2 %><br><br>
+						  City: <%= f.text_field :city %><br><br>
+						  State: <%= f.text_field :state %><br><br>
+						  Zip: <%= f.text_field :zip %><br><br>
+						  Zip-ext: <%= f.text_field :zip_ext %><br><br>
+						  
+						  Website: <%= f.text_field :website %><br><br>
+						  Email: <%= f.text_field :email %><br><br>
+						  Phone Number: <%= f.text_field :phone_number %><br><br>
+						  
+						  <%= f.submit %>
+						  
+					<% end %>					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-flat-primary" data-dismiss="modal">DISAGREE</button>
+					<button type="button" class="btn btn-flat-primary" data-dismiss="modal">AGREE</button>
+				</div>
+			</div>
+		</div>
+	</div><!--.modal-->
 
 
