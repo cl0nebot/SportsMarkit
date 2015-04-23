@@ -2,24 +2,53 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Add a New Team</h4>
+				<h4 class="modal-title">Add a New School</h4>
 			</div>
 			<div class="modal-body">
-				<%= form_for Team.new, url: teams_path, method: :post do |f| %>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel">
+							<div class="panel-heading">
+								<div class="panel-title"><h4>Complete the form below. </h4></div>
+							</div><!--.panel-heading-->
+							<div class="panel-body">
 
-					<%= f.text_field :name %><br><br>
+								<%= form_for Team.new, url: teams_path, method: :post do |f| %>
+					
 
-					<%= f.text_field :sport %><br><br>
+								<div class="row example-row">
+									<div class="col-md-3">Name </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
 
-					<%= f.submit %>
+								<div class="row example-row">
+									<div class="col-md-3">Sport </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :sport, type: "text", class: "form-control", placeholder: ""%>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
 
-				<% end %>
-				
+							</div><!--.panel-body-->
+						</div><!--.panel-->
+					</div><!--.col-md-12-->
+				</div><!--.row-->
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-flat-primary" data-dismiss="modal">DISAGREE</button>
-				<button type="button" class="btn btn-flat-primary" data-dismiss="modal">AGREE</button>
+				<%= f.submit "Create Team", class: "btn btn-blue" %>
 			</div>
+			<% end %>			
 		</div>
 	</div>
 </div><!--.modal-->
+
+
