@@ -1,9 +1,59 @@
-<% @leagues.each do |league| %>
+<div class="content">
+	<div class="page-header full-content">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1>Leagues <small>(3,050)</small></h1>
+			</div><!--.col-->
+			<div class="col-sm-6">
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="ion-home"></i></a></li>
+					<li><a href="#">Pages</a></li>
+					<li><a href="#" class="active">Search Results</a></li>
+				</ol>
+			</div><!--.col-->
+		</div><!--.row-->
+	</div><!--.page-header-->
 
-<%= link_to league.name, league_path(league) %><br><br>
-<%= league.description %>
-<%= league.state %>
-<%= league.sport %>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel">
+				<div class="panel-heading">
+					<!-- <div class="panel-title"><h4>ALPHABET SORTING</h4></div> -->
+				</div><!--.panel-heading-->
+				<div class="panel-body">
+
+					<p>
+						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-league">New League</button>
+					</p>
 
 
-<% end %>
+					<div class="overflow-table">
+					<table class="display datatables-alphabet-sorting">
+						<thead>
+							<tr class="fs-16">
+								<th>Name</th>
+								<th>Sport</th>
+								<th>State</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+
+						<tbody id="league">
+							<%= render "league" %>							
+						</tbody>
+					</table>
+					</div><!--.overflow-table-->
+
+				</div><!--.panel-body-->
+			</div><!--.panel-->
+		</div><!--.col-md-12-->
+	</div><!--.row-->
+</div><!--.content-->
+
+	
+<h1><%#= format(Date.today, 4)%></h1>
+
+
+
+
+

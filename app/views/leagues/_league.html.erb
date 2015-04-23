@@ -1,0 +1,10 @@
+<% @leagues.each do |league| %>
+	<tr class="fs-16">
+		<td><span class="small"><%= league.name %></span></td>
+		<td><span class="small"><%= league.sport %></span></td>
+		<td><span class="small"><%= league.state %></span></td>
+		<td><span class="small"><%= league.description %></span></td>
+	</tr>
+<% end %>
+
+<%#= link_to league.name, league_path(league) %>

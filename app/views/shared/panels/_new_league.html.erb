@@ -1,0 +1,75 @@
+<div class="modal fade full-height from-right" id="panel-new-league" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Add a New League</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel">
+							<div class="panel-heading">
+								<div class="panel-title"><h4>Complete the form below. </h4></div>
+							</div><!--.panel-heading-->
+							<div class="panel-body">
+
+								<%= form_for League.new, url: leagues_path, method: :post do |f| %>
+					
+
+								<div class="row example-row">
+									<div class="col-md-3">Name </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">Sport </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :sport, type: "text", class: "form-control", placeholder: ""%>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">State </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :state, type: "text", class: "form-control", placeholder: ""%>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">Description </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_area :description, type: "text", class: "form-control", placeholder: "", row: "6" %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+							</div><!--.panel-body-->
+						</div><!--.panel-->
+					</div><!--.col-md-12-->
+				</div><!--.row-->
+			</div>
+			<div class="modal-footer">
+				<%= f.submit "Create League", class: "btn btn-blue" %>
+			</div>
+			<% end %>			
+		</div>
+	</div>
+</div><!--.modal-->
+
