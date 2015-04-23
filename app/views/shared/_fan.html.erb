@@ -1,7 +1,7 @@
-	<div id="fan-button">
-<% if current_user.follows.where(fannable_id: @object.id, fannable_type: @class).empty? %>
-<%= render 'fans/fan', object: @object %>
-<% else %>
-<%= render 'fans/unfan', object: @object %>
-<% end %>
-	</div>
+<div id="fan-button">
+	<% if current_user.follows.where(fannable_id: @object.id, fannable_type: @class).empty? %>
+	<%= render 'fans/fan', object: @object %>
+	<% else %>
+	<%= render 'fans/unfan', object: @object %>
+	<% end %>
+</div>

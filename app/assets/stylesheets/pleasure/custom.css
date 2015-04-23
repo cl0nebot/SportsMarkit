@@ -13,5 +13,14 @@ input:-webkit-autofill {
 }
 
 
+.capitalize {text-transform: capitalize;}
+
+.social-buttons {
+  position: absolute;
+  right: 40px;
+  bottom: 100px;
+  clear: both;
+}
+
 
 

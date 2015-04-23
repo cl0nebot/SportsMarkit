@@ -1,8 +1,6 @@
-     
-
-		  <%= form_for current_user.fans.build, html: {method: :post, remote: true } do |f| %>
-			  <%= f.hidden_field :user_id, value: current_user.id %>
-		      <%= f.hidden_field :fannable_id, value: object.id %>
-			  <%= f.hidden_field :fannable_type, value: @class %>
-			  <%= f.submit "Become Fan!", class: "btn", id: "hey" %>
-		  <% end %>
+<%= form_for current_user.fans.build, html: {method: :post, remote: true } do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :fannable_id, value: object.id %>
+  <%= f.hidden_field :fannable_type, value: @class %>
+  <%= f.submit "Become a Fan!", class: "btn btn-orange", id: "hey" %>
+<% end %>

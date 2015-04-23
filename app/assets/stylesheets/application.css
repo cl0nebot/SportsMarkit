@@ -21,10 +21,9 @@
  *= require pleasure/globals/plugins/blueimp-bootstrap-image-gallery/css/bootstrap-image-gallery.min
  *= require pleasure/globals/plugins/bootstrap-social/bootstrap-social
 
-
  *= require pleasure/globals/css/plugins
  *= require pleasure/custom
-
+ 
  *= require fullcalendar
  */
 
