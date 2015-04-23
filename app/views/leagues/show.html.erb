@@ -1,1 +1,124 @@
-<%= render 'shared/fan' %>
+<div class="content">
+
+	<div class="page-header full-content parallax" style="height: 600px; overflow: hidden">
+		<div class="parallax-bg" style="background: url('http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg') 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
+		</div>
+
+		<div class="profile-info">
+			<div class="profile-photo">
+				<img src="<%= image_path("placeholders/league.jpg") %>" alt="">
+			</div><!--.profile-photo-->
+			<div class="profile-text light capitalize">
+				<%= @league.name %>
+				<span class="caption inline"><%= @league.sport %></span>
+				<br/>
+				<span class="caption"><span class="glyphicon glyphicon-map-marker"></span>
+				<%= @league.state %></span>
+				
+			</div><!--.profile-text-->
+		</div><!--.profile-info-->
+
+		<div class="social-buttons">
+			<%= render 'shared/fan' %>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<h1>
+					<span class="fa fa-calendar m-r-5"></span>
+					Upcoming event 
+					<small>[event]</small>
+				</h1>
+			</div><!--.col-->
+			<div class="col-sm-6">
+				<ol class="breadcrumb">
+					<li><a href="/"><i class="ion-home"></i></a></li>
+					<li><a href="/leagues">Leagues</a></li>
+					<li><a href="#" class="active"><%= @league.name %></a></li>
+				</ol>
+			</div><!--.col-->
+		</div><!--.row-->
+
+		<div class="header-tabs scrollable-tabs sticky">
+			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+				<li class="active"><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li>
+				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
+				<li><a href="#people" data-toggle="tab" class="btn-ripple">People</a></li>
+				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
+				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilties</a></li>
+				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
+			</ul>
+		</div>
+	</div><!--.page-header-->
+
+	<div class="row user-profile">
+			<div class="col-md-12">
+				<div class="tab-content without-border">
+					
+
+					<!-- following -->
+					<div id="following" class="tab-pane active">
+
+						<div class="row masonry">
+
+							
+
+						</div><!--.row-->
+					</div>
+					<!--#following.tab-pane-->
+
+					<!-- teams -->
+					<div id="teams" class="tab-pane">
+
+						<p class="text-right">
+							<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-team">New Team</button>
+						</p>
+
+						<hr/>
+
+
+					</div>
+					<!--#teams.tab-pane-->
+
+					<!-- people -->
+					<div id="people" class="tab-pane">
+						
+					</div>
+					<!--#people.tab-pane-->
+
+					<!-- events -->
+					<div id="events" class="tab-pane">
+
+						
+					</div>
+					<!--#events.tab-pane-->
+
+					<!-- facilities -->
+					<div id="facilities" class="tab-pane">
+						<p class="text-right">
+							<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-team">New Facility</button>
+						</p>
+
+						<hr/>
+					</div>
+					<!--#facilities.tab-pane-->
+
+					<!-- media -->
+					<div id="media" class="tab-pane">
+						
+					</div>
+					<!--#media.tab-pane-->
+					
+					
+
+				</div><!--.tab-content-->
+			</div><!--.col-->
+		</div><!--.row-->
+
+	<%= render "shared/modals/boostrap_image_gallery_lightbox" %>
+
+</div><!--.content-->
+
+<%= render "shared/panels/new_team" %>
+
+

@@ -15,6 +15,8 @@ input:-webkit-autofill {
 
 .capitalize {text-transform: capitalize;}
 
+.inline {display: inline !important;}
+
 .social-buttons {
   position: absolute;
   right: 40px;
