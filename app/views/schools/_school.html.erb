@@ -1,9 +1,9 @@
-<tr>
-	<td><%= school.name %></td>
-	<td><%= school.email %></td>
-	<td><%= school.website %></td>
-	<td><%= school.phone_number %></td>
-	<td>2011/04/25</td>
+<tr class="fs-16">
+	<td><span class="small"><%= school.name %></span></td>
+	<td><span class="small"><%= school.email %></span></td>
+	<td><span class="small"><%= school.website %></span></td>
+	<td><span class="small"><%= school.phone_number %></span></td>
+	<td><span class="small">2011/04/25</span></td>
 	<td>
 		<%= link_to "Delete", school, method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
 		<%= link_to "Edit", edit_school_path(school) %>

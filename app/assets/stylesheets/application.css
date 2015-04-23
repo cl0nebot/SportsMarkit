@@ -24,8 +24,12 @@
  *= require pleasure/globals/plugins/datatables/media/css/jquery.dataTables.min
  *= require pleasure/globals/plugins/datatables/themes/bootstrap/dataTables.bootstrap
 
+ *= require pleasure/globals/plugins/indicator/indicator
+ *= require pleasure/globals/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min
+
  *= require pleasure/globals/css/plugins
  *= require pleasure/custom
  
  *= require fullcalendar
  */
+

@@ -32,7 +32,12 @@
 
 	<%= yield %>
 
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script
+
 	<%= javascript_include_tag 'application' %>
+
+
 	
 	<%= render "shared/sidebar_nav" %>
 
@@ -43,6 +48,7 @@
 		Layout.init();
 		UserPages.profile();
 		TablesDataTables.init();
+		FormsTools.init();
 
 	});
 	</script>

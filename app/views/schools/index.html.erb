@@ -18,7 +18,7 @@
 
 	<div class="nav-user">
 		<div class="user">
-			<img src="../../assets/globals/img/faces/tolga-ergin.jpg" alt="">
+			<img src="<%= image_path("placeholders/user.jpg")%>" alt="">
 			<span class="badge">3</span>
 		</div><!--.user-->
 		<div class="cross">
@@ -63,7 +63,7 @@
 		<div class="col-md-12">
 			<div class="panel">
 				<div class="panel-heading">
-					<div class="panel-title"><h4>ALPHABET SORTING</h4></div>
+					<!-- <div class="panel-title"><h4>ALPHABET SORTING</h4></div> -->
 				</div><!--.panel-heading-->
 				<div class="panel-body">
 
@@ -75,13 +75,13 @@
 					<div class="overflow-table">
 					<table class="display datatables-alphabet-sorting">
 						<thead>
-							<tr>
+							<tr class="fs-16">
 								<th>Name</th>
-								<th>Position</th>
-								<th>Office</th>
-								<th>Age</th>
+								<th>Email</th>
+								<th>Website</th>
+								<th>Phone</th>
 								<th>Start date</th>
-								<th>Salary</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 
@@ -103,15 +103,138 @@
 <h1><%#= format(Date.today, 4)%></h1>
 
 <div class="modal fade full-height from-right" id="panel-modal2" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">Panel Modal</h4>
-				</div>
-				<div class="modal-body">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Add a New School</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel">
+							<div class="panel-heading">
+								<div class="panel-title"><h4>Quick and Easy!</h4></div>
+							</div><!--.panel-heading-->
+							<div class="panel-body">
+
+								<%= form_for School.new, html: {id: 'school-form', data: {remote: true}} do |f|   %>
 					
-					<%= form_for School.new, html: {id: 'school-form', data: {remote: true}} do |f|   %>
-						  Name: <%= f.text_field  :name  %><br><br>
+
+								<div class="row example-row">
+									<div class="col-md-3">Name </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<input type="text" class="form-control" placeholder="Text placeholder">
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">Classification</div><!--.col-md-3-->
+									<div class="col-md-9">
+										<select class="selecter">
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+										</select>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">Abbreviation </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<input type="text" class="form-control" placeholder="Text placeholder">
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">Map</div><!--.col-md-3-->
+									<div class="col-md-9">
+
+										<div class="form-group">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<input class="geocomplete geocomplete-basic-map form-control margin-bottom-10" type="text" placeholder="Type an address">
+												</div>
+											</div>
+											<div class="geocomplete-basic-map-target geocomplete-map margin-bottom-10"></div>
+											<div class="logger well well-sm">Result</div>
+										</div><!--.form-group-->
+
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">Address 1 </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<input type="text" class="form-control" placeholder="Text placeholder">
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+
+								<div class="row example-row">
+									<div class="col-md-3">Address 2 </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<input type="text" class="form-control" placeholder="Text placeholder">
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+
+								<div class="row example-row">
+									<div class="col-md-3">Website </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :website, type: "text", class: "form-control", placeholder: "Text placeholder"  %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">Email</div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<input type="text" class="form-control inputmask inputmask-email">
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">Phone</div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<input type="text" class="form-control inputmask inputmask-phone">
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+							</div><!--.panel-body-->
+						</div><!--.panel-->
+					</div><!--.col-md-12-->
+				</div><!--.row-->
+					
+						  Name: <br><br><%= f.text_field  :name, type: "text", class: "form-control", placeholder: "Text placeholder"  %>
 						  
 						  Classification: <%= f.select :classification, [ 'College', 'High School', 'Middle School'], :prompt => 'Select One' %><br><br>
 						  Abbreviation: <%= f.text_field :abbreviation %><br><br>
@@ -123,7 +246,7 @@
 						  Zip: <%= f.text_field :zip %><br><br>
 						  Zip-ext: <%= f.text_field :zip_ext %><br><br>
 						  
-						  Website: <%= f.text_field :website %><br><br>
+						  Website: <br><br>
 						  Email: <%= f.text_field :email %><br><br>
 						  Phone Number: <%= f.text_field :phone_number %><br><br>
 						  
