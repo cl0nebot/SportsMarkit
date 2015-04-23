@@ -1,0 +1,17 @@
+/* Change the white to any color*/
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px rgba(0,0,0, .8) inset;
+}
+
+
+/* Login page */
+
+.bg-login .bg-blur:before {
+  background: url('http://marketing-cdn.teamsnap.com/iStock_000016157408Medium.jpg') fixed no-repeat;
+  background-size: cover;
+}
+
+
+
+

@@ -13,17 +13,24 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require ../template/globals/js/global-vendors
-//= require ../template/globals/scripts/user-pages
-//= require ../template/globals/js/pleasure
-//= require ../template/admin/js/layout
+
+// <!-- BEGIN GLOBAL AND THEME VENDORS -->
+//= require pleasure/globals/js/global-vendors
+
+// <!-- BEGIN PLUGINS AREA -->
+//= require pleasure/globals/plugins/masonry/dist/masonry.pkgd.min
+//= require pleasure/globals/plugins/blueimp-gallery/js/jquery.blueimp-gallery.min
+//= require pleasure/globals/plugins/blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min
+
+// <!-- PLUGINS INITIALIZATION AND SETTINGS -->
+//= require pleasure/globals/scripts/user-pages
+
+// <!-- PLEASURE -->
+//= require pleasure/globals/js/pleasure
+
+// <!-- ADMIN 1 -->
+//= require pleasure/admin/js/layout
+
 //= require moment
 //= require fullcalendar
-//= require_tree .
-
-$(document).ready(function () {
-	Pleasure.init();
-	Layout.init();
-	UserPages.login();
-});
 

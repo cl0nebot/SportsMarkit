@@ -20,3 +20,4 @@
 /config/database.yml
 database.yml
 .idea/*
+/config/application.yml

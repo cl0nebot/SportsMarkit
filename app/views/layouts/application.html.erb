@@ -18,7 +18,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 		<meta name="apple-touch-fullscreen" content="yes">
 
-		<%= stylesheet_link_tag 'application', media: 'all' %>
+		<%= stylesheet_link_tag "application" %>
 		<%= stylesheet_link_tag 'gmaps4rails' %>
 
 		<!-- BEGIN SHORTCUT AND TOUCH ICONS -->
@@ -33,6 +33,17 @@
 	<%= yield %>
 
 	<%= javascript_include_tag 'application' %>
+	
+	<!-- BEGIN INITIALIZATION-->
+	<script>
+	$(document).ready(function () {
+		Pleasure.init();
+		Layout.init();
+		UserPages.profile();
+
+	});
+	</script>
+	<!-- END INITIALIZATION-->
 	
 	<%= yield :scripts %>
 </html>

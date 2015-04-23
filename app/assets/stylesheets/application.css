@@ -10,14 +10,21 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
  *
- *
- *= require ../template/admin/css/admin
- *= require ../template/globals/css/elements
- *= require ../template/globals/plugins/bootstrap-social/bootstrap-social
- *= require ../template/globals/css/plugins
- *= require ../template/custom
+ * <!-- BEGIN CORE CSS -->
+ *= require pleasure/admin/css/admin
+ *= require pleasure/globals/css/elements
+
+ * <!-- BEGIN PLUGINS CSS -->
+ *= require pleasure/globals/plugins/blueimp-gallery/css/blueimp-gallery.min
+ *= require pleasure/globals/plugins/blueimp-bootstrap-image-gallery/css/bootstrap-image-gallery.min
+ *= require pleasure/globals/plugins/bootstrap-social/bootstrap-social
+
+
+ *= require pleasure/globals/css/plugins
+ *= require pleasure/custom
+
  *= require fullcalendar
  */
+

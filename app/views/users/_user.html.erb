@@ -1,23 +1,22 @@
-		                  	<tr>
-			                    <td class="v-align-middle">
-			                    	<%= link_to user.full_name, user_path(user) %>
-			                    </td>
-			                    <td class="v-align-middle">
-			                    	<%= user.id %>
-			                    </td>
-			                     <td class="v-align-middle">
-			                    	<h5 class="semi-bold muted"><%= user.id %></h4>
-			                    </td>
-			                    <td class="v-align-middle">
-			                    	<div class="row clearfix">
-			                    		<div class="col-md-6">
-				                    		<%= link_to "Delete", user, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-danger" %>
-				                    	</div>
-				                    	<div class="col-md-6">
-				          
-				                    		
-				                    	</div>
-				                    </div>
-			                    </td>
-			                </tr>
-	                	
+<tr>
+    <td class="v-align-middle">
+    	<%= link_to user.full_name, user_path(user) %>
+    </td>
+    <td class="v-align-middle">
+    	<%= user.id %>
+    </td>
+     <td class="v-align-middle">
+    	<h5 class="semi-bold muted"><%= user.id %></h4>
+    </td>
+    <td class="v-align-middle">
+    	<div class="row clearfix">
+    		<div class="col-md-6">
+        		<%= link_to "Delete", user, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-danger" %>
+        	</div>
+        	<div class="col-md-6">
+
+        		
+        	</div>
+        </div>
+    </td>
+</tr>
