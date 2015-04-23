@@ -22,8 +22,13 @@
 //= require pleasure/globals/plugins/blueimp-gallery/js/jquery.blueimp-gallery.min
 //= require pleasure/globals/plugins/blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min
 
+//= require pleasure/globals/plugins/datatables/media/js/jquery.dataTables.min
+//= require pleasure/globals/plugins/datatables/themes/bootstrap/dataTables.bootstrap
+
+
 // <!-- PLUGINS INITIALIZATION AND SETTINGS -->
 //= require pleasure/globals/scripts/user-pages
+//= require pleasure/globals/scripts/tables-datatables
 
 // <!-- PLEASURE -->
 //= require pleasure/globals/js/pleasure

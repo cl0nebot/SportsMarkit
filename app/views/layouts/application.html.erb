@@ -34,12 +34,15 @@
 
 	<%= javascript_include_tag 'application' %>
 	
+	<%= render "shared/sidebar_nav" %>
+
 	<!-- BEGIN INITIALIZATION-->
 	<script>
 	$(document).ready(function () {
 		Pleasure.init();
 		Layout.init();
 		UserPages.profile();
+		TablesDataTables.init();
 
 	});
 	</script>

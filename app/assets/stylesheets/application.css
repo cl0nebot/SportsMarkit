@@ -21,9 +21,11 @@
  *= require pleasure/globals/plugins/blueimp-bootstrap-image-gallery/css/bootstrap-image-gallery.min
  *= require pleasure/globals/plugins/bootstrap-social/bootstrap-social
 
+ *= require pleasure/globals/plugins/datatables/media/css/jquery.dataTables.min
+ *= require pleasure/globals/plugins/datatables/themes/bootstrap/dataTables.bootstrap
+
  *= require pleasure/globals/css/plugins
  *= require pleasure/custom
  
  *= require fullcalendar
  */
-
