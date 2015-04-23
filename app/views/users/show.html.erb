@@ -1,109 +1,871 @@
-	<div class="nav-bar-container">
+<div class="content">
 
-		<!-- BEGIN ICONS -->
-		<div class="nav-menu">
-			<div class="hamburger">
-				<span class="patty"></span>
-				<span class="patty"></span>
-				<span class="patty"></span>
-				<span class="patty"></span>
-				<span class="patty"></span>
-				<span class="patty"></span>
-			</div><!--.hamburger-->
-		</div><!--.nav-menu-->
+	<div class="page-header full-content parallax" style="height: 600px; overflow: hidden">
+		<div class="parallax-bg" style="background: url('http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg') 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
+		</div>
 
-		<div class="nav-search">
-			<span class="search"></span>
-		</div><!--.nav-search-->
+		<div class="profile-info">
+			<div class="profile-photo">
+				<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+			</div><!--.profile-photo-->
+			<div class="profile-text light capitalize">
+				<%= @user.full_name %>
+				<span class="caption">
+					<%= "Baltimore, Maryland" %> 
+				</span>
+			</div><!--.profile-text-->
+		</div><!--.profile-info-->
 
-		<div class="nav-user">
-			<div class="user">
-				<img src="../../assets/globals/img/faces/tolga-ergin.jpg" alt="">
-				<span class="badge">3</span>
-			</div><!--.user-->
-			<div class="cross">
-				<span class="line"></span>
-				<span class="line"></span>
-			</div><!--.cross-->
-		</div><!--.nav-user-->
-		<!-- END OF ICONS -->
+		<div class="social-buttons">
+			<%= render 'shared/fan' %>
+		</div>
 
-		<div class="nav-bar-border"></div><!--.nav-bar-border-->
+		<div class="row">
+			<div class="col-sm-6">
+				<h1>
+					<span class="fa fa-calendar m-r-5"></span>
+					Upcoming event 
+					<small>[event]</small>
+				</h1>
+			</div><!--.col-->
+			<div class="col-sm-6">
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="ion-home"></i></a></li>
+					<li><a href="#">Pages</a></li>
+					<li><a href="#" class="active">User Profile</a></li>
+				</ol>
+			</div><!--.col-->
+		</div><!--.row-->
 
-		<!-- BEGIN OVERLAY HELPERS -->
-		<div class="overlay">
-			<div class="starting-point">
-				<span></span>
-			</div><!--.starting-point-->
-			<div class="logo">PLEASURE</div><!--.logo-->
-		</div><!--.overlay-->
+		<div class="header-tabs scrollable-tabs sticky">
+			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+				<li class="active"><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li>
+				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
+				<li><a href="#people" data-toggle="tab" class="btn-ripple">People</a></li>
+				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
+				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilties</a></li>
+				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
+			</ul>
+		</div>
+	</div><!--.page-header-->
 
-		<div class="overlay-secondary"></div><!--.overlay-secondary-->
-		<!-- END OF OVERLAY HELPERS -->
+	<div class="row user-profile">
+			<div class="col-md-12">
+				<div class="tab-content without-border">
+					
 
-	</div><!--.nav-bar-container-->
+					<!-- following -->
+					<div id="following" class="tab-pane active">
 
+						<div class="row masonry">
 
-	<div class="content">
+							<div class="col-md-4">
+								<div class="card tile card-post">
+									<div class="card-heading">
+										<img src="../../assets/globals/img/faces/14.jpg" class="user-image" alt="">
+										<p class="author"><a href="#">Ryan Perkins</a> shared a post.</p>
+										<p class="time">September 5 at 02:33</p>
+									</div><!--.card-heading-->
+									<div class="card-body">
+										Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.
+										<ul class="post-action">
+											<li><a href="#">Like</a></li>
+											<li><a href="#">Comment</a></li>
+											<li><a href="#">Share</a></li>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<div class="post-likers">
+											<a href="#">Crystal Wells</a> and <a href="#">30 others</a> like this.
+										</div><!--.post-likers-->
+										<ul class="card-comments">
+											<li>
+												<div class="user-photo"><a href="#"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></div>
+												<div class="comment"><a href="#">Jonathan Diaz</a> I love it and i will share in my timeline</div>
+											</li>
+											<li>
+												<div class="user-photo"><a href="#"><img src="../../assets/globals/img/faces/16.jpg" alt=""></a></div>
+												<div class="comment"><a href="#">Douglas Hall</a> One of my favourite quotes from the old days. So glad it's back! :-)</div>
+											</li>
+										</ul>
+										<div class="input-group">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<input type="text" class="form-control">
+												</div>
+											</div>
+											<div class="input-group-btn">
+												<button type="button" class="btn btn-default">Send</button>
+											</div><!--.input-group-btn-->
+										</div><!--.input-group-->
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-4-->
 
-		<div class="page-header full-content parallax" style="height: 600px; overflow: hidden">
-			<div class="parallax-bg" style="background: url('http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg') 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
-			</div>
+							<div class="col-md-4">
+								<div class="card tile card-post">
+									<div class="card-heading">
+										<img src="../../assets/globals/img/faces/15.jpg" class="user-image" alt="">
+										<p class="author"><a href="#">Ryan Perkins</a> added a new photo.</p>
+										<p class="time">September 3 at 18:10</p>
+									</div><!--.card-heading-->
+									<div class="card-body">
+										Efficiently unleash cross-media information without cross-media value.
+										<a href="../../assets/globals/img/picjumbo/14.jpg" title="" data-gallery="feed_id_2"><img src="../../assets/globals/img/picjumbo/14.jpg" class="post-single-image" alt=""></a>
+										<ul class="post-action">
+											<li><a href="#">Like</a></li>
+											<li><a href="#">Comment</a></li>
+											<li><a href="#">Share</a></li>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<div class="post-likers">
+											<a href="#">Beverly Hayes</a> and <a href="#">23 others</a> like this.
+										</div><!--.post-likers-->
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-4-->
 
-			<div class="profile-info">
-				<div class="profile-photo">
-					<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
-				</div><!--.profile-photo-->
-				<div class="profile-text light capitalize">
-					<%= @user.full_name %>
-					<span class="caption">
-						<%= "Baltimore, Maryland" %> 
-					</span>
-				</div><!--.profile-text-->
-			</div><!--.profile-info-->
+							<div class="col-md-4">
+								<div class="card tile card-post">
+									<div class="card-heading">
+										<img src="../../assets/globals/img/faces/16.jpg" class="user-image" alt="">
+										<p class="author"><a href="#">Ryan Perkins</a> shared a video.</p>
+										<p class="time">September 1 at 09:52</p>
+									</div><!--.card-heading-->
+									<div class="card-body">
+										<p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</p>
+										<p>Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
+										<a href="https://www.youtube.com/watch?v=Q8TXgCzxEnw" data-youtube="Q8TXgCzxEnw" class="post-video" data-gallery="feed_id_3">
+											<img src="../../assets/globals/img/picjumbo/11.jpg" class="post-single-image" alt="">
+										</a>
+										<ul class="post-action">
+											<li><a href="#">Like</a></li>
+											<li><a href="#">Comment</a></li>
+											<li><a href="#">Share</a></li>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<div class="post-likers">
+											<a href="#">Beverly Hayes</a> and <a href="#">23 others</a> like this.
+										</div><!--.post-likers-->
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-4-->
 
-			<div class="social-buttons">
-				<%= render 'shared/fan' %>
-			</div>
+							<div class="col-md-4">
+								<div class="card tile card-post">
+									<div class="card-heading">
+										<img src="../../assets/globals/img/faces/17.jpg" class="user-image" alt="">
+										<p class="author"><a href="#">Ryan Perkins</a> added a new photo.</p>
+										<p class="time">August 30 at 19:10</p>
+									</div><!--.card-heading-->
+									<div class="card-body">
+										Quickly maximize timely deliverables for real-time schemas.
+										<a href="../../assets/globals/img/picjumbo/20.jpg" title="" data-gallery="feed_id_5"><img src="../../assets/globals/img/picjumbo/20.jpg" class="post-single-image" alt=""></a>
+										Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+										<ul class="post-action">
+											<li><a href="#">Like</a></li>
+											<li><a href="#">Comment</a></li>
+											<li><a href="#">Share</a></li>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<div class="post-likers">
+											<a href="#">Andrew Martin</a> and <a href="#">15 others</a> like this.
+										</div><!--.post-likers-->
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-4-->
 
-			<div class="row">
-				<div class="col-sm-6">
-					<h1>
-						<span class="fa fa-calendar m-r-5"></span>
-						Upcoming event 
-						<small>[event]</small>
-					</h1>
-				</div><!--.col-->
-				<div class="col-sm-6">
-					<ol class="breadcrumb">
-						<li><a href="#"><i class="ion-home"></i></a></li>
-						<li><a href="#">Pages</a></li>
-						<li><a href="#" class="active">User Profile</a></li>
-					</ol>
-				</div><!--.col-->
-			</div><!--.row-->
+							<div class="col-md-4">
+								<div class="card tile card-post">
+									<div class="card-heading">
+										<img src="../../assets/globals/img/faces/12.jpg" class="user-image" alt="">
+										<p class="author"><a href="#">Ryan Perkins</a> shared a video.</p>
+										<p class="time">September 1 at 09:52</p>
+									</div><!--.card-heading-->
+									<div class="card-body">
+										<p>Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
+										<a href="https://www.youtube.com/watch?v=Q8TXgCzxEnw" data-youtube="Q8TXgCzxEnw" class="post-video" data-gallery="feed_id_4">
+											<img src="../../assets/globals/img/picjumbo/9.jpg" class="post-single-image" alt="">
+										</a>
+										<ul class="post-action">
+											<li><a href="#">Like</a></li>
+											<li><a href="#">Comment</a></li>
+											<li><a href="#">Share</a></li>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<div class="post-likers">
+											<a href="#">Christine Morales</a> and <a href="#">23 others</a> like this.
+										</div><!--.post-likers-->
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-4-->
 
-			<div class="header-tabs scrollable-tabs sticky">
-				<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
-					<li class="active"><a href="#timeline" data-toggle="tab" class="btn-ripple">Teams</a></li>
-					<li><a href="#about" data-toggle="tab" class="btn-ripple">Photos</a></li>
-					<li><a href="#photos" data-toggle="tab" class="btn-ripple">Schedule</a></li>
-					<li><a href="#friends" data-toggle="tab" class="btn-ripple">Friends</a></li>
-				</ul>
-			</div>
-		</div><!--.page-header-->
+							<div class="col-md-4">
+								<div class="card tile card-post">
+									<div class="card-heading">
+										<img src="../../assets/globals/img/faces/19.jpg" class="user-image" alt="">
+										<p class="author"><a href="#">Ryan Perkins</a> shared a post.</p>
+										<p class="time">July 17 at 05:59</p>
+									</div><!--.card-heading-->
+									<div class="card-body">
+										Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.
+										<ul class="post-action">
+											<li><a href="#">Like</a></li>
+											<li><a href="#">Comment</a></li>
+											<li><a href="#">Share</a></li>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<div class="post-likers">
+											<a href="#">William Patel</a> and <a href="#">3 others</a> like this.
+										</div><!--.post-likers-->
+										<ul class="card-comments">
+											<li>
+												<div class="user-photo"><a href="#"><img src="../../assets/globals/img/faces/15.jpg" alt=""></a></div>
+												<div class="comment"><a href="#">Rachel Ryan</a> I love it and i will share in my timeline</div>
+											</li>
+											<li>
+												<div class="user-photo"><a href="#"><img src="../../assets/globals/img/faces/20.jpg" alt=""></a></div>
+												<div class="comment"><a href="#">William Patel</a> One of my favourite quotes from the old days. So glad it's back! :-)</div>
+											</li>
+										</ul>
+										<div class="input-group">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<input type="text" class="form-control">
+												</div>
+											</div>
+											<div class="input-group-btn">
+												<button type="button" class="btn btn-default">Send</button>
+											</div><!--.input-group-btn-->
+										</div><!--.input-group-->
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-4-->
 
-		<br>
-<br>
+						</div><!--.row-->
+					</div>
+					<!--#following.tab-pane-->
 
+					<!-- teams -->
+					<div id="teams" class="tab-pane">
 
-<p>
-	<button class="btn btn-pink" data-toggle="modal" data-target="#panel-modal2">New Team</button>
+						<p class="text-right">
+							<button class="btn btn-pink" data-toggle="modal" data-target="#panel-modal2">New Team</button>
+						</p>
+
+						<hr/>
+
+						<div class="row masonry">
+							<% @teams.each do |team| %>
+								<div class="col-md-4">
+									<div class="card card-meal card-meal-green card-square card-shadow">
+									<div class="card-heading">
+										<h3 class="card-title">
+											<%= link_to team.name, "teams/#{team.slug}" %>
+										</h3>
+										<div class="card-subhead">
+											By <a href="#"><%= team.sport %></a>
+										</div><!--.card-subhead-->
+									</div><!--.card-heading-->
+									<div class="card-body">
+										<div class="image">
+											<a href="#"><img src="http://themighty1290am.com/files/2015/01/FreeVector-Grunge-Basketball-Background.jpg" alt=""></a>
+										</div><!--.image-->
+										<ul class="users">
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+												</a>
+											</li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+												</a>
+											</li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+												</a>
+											</li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+												</a>
+											</li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+												</a>
+											</li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+												</a>
+											</li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+												</a>
+											</li>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<ul>
+											<li>1,378 Students</li>
+											<li><a href="#">Join Them</a></li>
+										</ul>
+									</div><!--.card-footer-->
+									</div><!--.card-->
+								</div><!--.col-md-4-->
+							<% end %>
+						</div><!--.row-->
+
+					</div>
+					<!--#teams.tab-pane-->
+
+					<!-- people -->
+					<div id="people" class="tab-pane">
+
+						<div class="row">
+
+							<div class="col-md-6">
+								<div class="card tile card-friend">
+									<img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt="">
+									<div class="friend-content">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="#">180 friends</a></p>
+										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
+									</div><!--.friend-content-->
+								</div><!--.card-->
+							</div><!--.col-md-6-->
+
+							<div class="col-md-6">
+								<div class="card tile card-friend">
+									<img src="../../assets/globals/img/faces/2.jpg" class="user-photo" alt="">
+									<div class="friend-content">
+										<p class="title">Jason Herrera</p>
+										<p><a href="#">423 friends</a></p>
+										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
+									</div><!--.friend-content-->
+								</div><!--.card-->
+							</div><!--.col-md-6-->
+
+							<div class="col-md-6">
+								<div class="card tile card-friend">
+									<img src="../../assets/globals/img/faces/3.jpg" class="user-photo" alt="">
+									<div class="friend-content">
+										<p class="title">Michael Bell</p>
+										<p><a href="#">490 friends</a></p>
+										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
+									</div><!--.friend-content-->
+								</div><!--.card-->
+							</div><!--.col-md-6-->
+
+							<div class="col-md-6">
+								<div class="card tile card-friend">
+									<img src="../../assets/globals/img/faces/5.jpg" class="user-photo" alt="">
+									<div class="friend-content">
+										<p class="title">Henry Allen</p>
+										<p><a href="#">859 friends</a></p>
+										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
+									</div><!--.friend-content-->
+								</div><!--.card-->
+							</div><!--.col-md-6-->
+
+							<div class="col-md-6">
+								<div class="card tile card-friend">
+									<img src="../../assets/globals/img/faces/7.jpg" class="user-photo" alt="">
+									<div class="friend-content">
+										<p class="title">Nicholas Baker</p>
+										<p><a href="#">103 friends</a></p>
+										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
+									</div><!--.friend-content-->
+								</div><!--.card-->
+							</div><!--.col-md-6-->
+
+							<div class="col-md-6">
+								<div class="card tile card-friend">
+									<img src="../../assets/globals/img/faces/10.jpg" class="user-photo" alt="">
+									<div class="friend-content">
+										<p class="title">Vincent Gardner</p>
+										<p><a href="#">19 friends</a></p>
+										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
+									</div><!--.friend-content-->
+								</div><!--.card-->
+							</div><!--.col-md-6-->
+
+							<div class="col-md-6">
+								<div class="card tile card-friend">
+									<img src="../../assets/globals/img/faces/9.jpg" class="user-photo" alt="">
+									<div class="friend-content">
+										<p class="title">Henry Allen</p>
+										<p><a href="#">85 friends</a></p>
+										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
+									</div><!--.friend-content-->
+								</div><!--.card-->
+							</div><!--.col-md-6-->
+
+							<div class="col-md-6">
+								<div class="card tile card-friend">
+									<img src="../../assets/globals/img/faces/12.jpg" class="user-photo" alt="">
+									<div class="friend-content">
+										<p class="title">Walter George</p>
+										<p><a href="#">13 friends</a></p>
+										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
+									</div><!--.friend-content-->
+								</div><!--.card-->
+							</div><!--.col-md-6-->
+
+							<div class="col-md-6">
+								<div class="card tile card-friend">
+									<img src="../../assets/globals/img/faces/20.jpg" class="user-photo" alt="">
+									<div class="friend-content">
+										<p class="title">Lauren Grant</p>
+										<p><a href="#">1491 friends</a></p>
+										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
+									</div><!--.friend-content-->
+								</div><!--.card-->
+							</div><!--.col-md-6-->
+
+							<div class="col-md-6">
+								<div class="card tile card-friend">
+									<img src="../../assets/globals/img/faces/16.jpg" class="user-photo" alt="">
+									<div class="friend-content">
+										<p class="title">Ronald Ray</p>
+										<p><a href="#">393 friends</a></p>
+										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
+									</div><!--.friend-content-->
+								</div><!--.card-->
+							</div><!--.col-md-6-->
+
+							<div class="col-md-6">
+								<div class="card tile card-friend">
+									<img src="../../assets/globals/img/faces/17.jpg" class="user-photo" alt="">
+									<div class="friend-content">
+										<p class="title">Henry Allen</p>
+										<p><a href="#">85 friends</a></p>
+										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
+									</div><!--.friend-content-->
+								</div><!--.card-->
+							</div><!--.col-md-6-->
+
+							<div class="col-md-6">
+								<div class="card tile card-friend">
+									<img src="../../assets/globals/img/faces/21.jpg" class="user-photo" alt="">
+									<div class="friend-content">
+										<p class="title">Louis Willis</p>
+										<p><a href="#">99 friends</a></p>
+										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
+									</div><!--.friend-content-->
+								</div><!--.card-->
+							</div><!--.col-md-6-->
+
+							<div class="col-md-6">
+								<div class="card tile card-friend">
+									<img src="../../assets/globals/img/faces/22.jpg" class="user-photo" alt="">
+									<div class="friend-content">
+										<p class="title">Thomas Curtis</p>
+										<p><a href="#">466 friends</a></p>
+										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
+									</div><!--.friend-content-->
+								</div><!--.card-->
+							</div><!--.col-md-6-->
+
+							<div class="col-md-6">
+								<div class="card tile card-friend">
+									<img src="../../assets/globals/img/faces/23.jpg" class="user-photo" alt="">
+									<div class="friend-content">
+										<p class="title">Susan Willis</p>
+										<p><a href="#">343 friends</a></p>
+										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
+									</div><!--.friend-content-->
+								</div><!--.card-->
+							</div><!--.col-md-6-->
+
+						</div><!--.row-->
+					</div>
+					<!--#people.tab-pane-->
+
+					<!-- events -->
+					<div id="events" class="tab-pane">
+
+						<div class="row masonry">
+
+							<div class="col-md-4">
+								<div class="card tile card-post">
+									<div class="card-heading">
+										<img src="../../assets/globals/img/faces/14.jpg" class="user-image" alt="">
+										<p class="author"><a href="#">Ryan Perkins</a> shared a post.</p>
+										<p class="time">September 5 at 02:33</p>
+									</div><!--.card-heading-->
+									<div class="card-body">
+										Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.
+										<ul class="post-action">
+											<li><a href="#">Like</a></li>
+											<li><a href="#">Comment</a></li>
+											<li><a href="#">Share</a></li>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<div class="post-likers">
+											<a href="#">Crystal Wells</a> and <a href="#">30 others</a> like this.
+										</div><!--.post-likers-->
+										<ul class="card-comments">
+											<li>
+												<div class="user-photo"><a href="#"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></div>
+												<div class="comment"><a href="#">Jonathan Diaz</a> I love it and i will share in my timeline</div>
+											</li>
+											<li>
+												<div class="user-photo"><a href="#"><img src="../../assets/globals/img/faces/16.jpg" alt=""></a></div>
+												<div class="comment"><a href="#">Douglas Hall</a> One of my favourite quotes from the old days. So glad it's back! :-)</div>
+											</li>
+										</ul>
+										<div class="input-group">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<input type="text" class="form-control">
+												</div>
+											</div>
+											<div class="input-group-btn">
+												<button type="button" class="btn btn-default">Send</button>
+											</div><!--.input-group-btn-->
+										</div><!--.input-group-->
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-4-->
+
+							<div class="col-md-4">
+								<div class="card tile card-post">
+									<div class="card-heading">
+										<img src="../../assets/globals/img/faces/15.jpg" class="user-image" alt="">
+										<p class="author"><a href="#">Ryan Perkins</a> added a new photo.</p>
+										<p class="time">September 3 at 18:10</p>
+									</div><!--.card-heading-->
+									<div class="card-body">
+										Efficiently unleash cross-media information without cross-media value.
+										<a href="../../assets/globals/img/picjumbo/14.jpg" title="" data-gallery="feed_id_2"><img src="../../assets/globals/img/picjumbo/14.jpg" class="post-single-image" alt=""></a>
+										<ul class="post-action">
+											<li><a href="#">Like</a></li>
+											<li><a href="#">Comment</a></li>
+											<li><a href="#">Share</a></li>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<div class="post-likers">
+											<a href="#">Beverly Hayes</a> and <a href="#">23 others</a> like this.
+										</div><!--.post-likers-->
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-4-->
+
+							<div class="col-md-4">
+								<div class="card tile card-post">
+									<div class="card-heading">
+										<img src="../../assets/globals/img/faces/16.jpg" class="user-image" alt="">
+										<p class="author"><a href="#">Ryan Perkins</a> shared a video.</p>
+										<p class="time">September 1 at 09:52</p>
+									</div><!--.card-heading-->
+									<div class="card-body">
+										<p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</p>
+										<p>Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
+										<a href="https://www.youtube.com/watch?v=Q8TXgCzxEnw" data-youtube="Q8TXgCzxEnw" class="post-video" data-gallery="feed_id_3">
+											<img src="../../assets/globals/img/picjumbo/11.jpg" class="post-single-image" alt="">
+										</a>
+										<ul class="post-action">
+											<li><a href="#">Like</a></li>
+											<li><a href="#">Comment</a></li>
+											<li><a href="#">Share</a></li>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<div class="post-likers">
+											<a href="#">Beverly Hayes</a> and <a href="#">23 others</a> like this.
+										</div><!--.post-likers-->
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-4-->
+
+							<div class="col-md-4">
+								<div class="card tile card-post">
+									<div class="card-heading">
+										<img src="../../assets/globals/img/faces/17.jpg" class="user-image" alt="">
+										<p class="author"><a href="#">Ryan Perkins</a> added a new photo.</p>
+										<p class="time">August 30 at 19:10</p>
+									</div><!--.card-heading-->
+									<div class="card-body">
+										Quickly maximize timely deliverables for real-time schemas.
+										<a href="../../assets/globals/img/picjumbo/20.jpg" title="" data-gallery="feed_id_5"><img src="../../assets/globals/img/picjumbo/20.jpg" class="post-single-image" alt=""></a>
+										Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+										<ul class="post-action">
+											<li><a href="#">Like</a></li>
+											<li><a href="#">Comment</a></li>
+											<li><a href="#">Share</a></li>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<div class="post-likers">
+											<a href="#">Andrew Martin</a> and <a href="#">15 others</a> like this.
+										</div><!--.post-likers-->
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-4-->
+
+							<div class="col-md-4">
+								<div class="card tile card-post">
+									<div class="card-heading">
+										<img src="../../assets/globals/img/faces/12.jpg" class="user-image" alt="">
+										<p class="author"><a href="#">Ryan Perkins</a> shared a video.</p>
+										<p class="time">September 1 at 09:52</p>
+									</div><!--.card-heading-->
+									<div class="card-body">
+										<p>Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
+										<a href="https://www.youtube.com/watch?v=Q8TXgCzxEnw" data-youtube="Q8TXgCzxEnw" class="post-video" data-gallery="feed_id_4">
+											<img src="../../assets/globals/img/picjumbo/9.jpg" class="post-single-image" alt="">
+										</a>
+										<ul class="post-action">
+											<li><a href="#">Like</a></li>
+											<li><a href="#">Comment</a></li>
+											<li><a href="#">Share</a></li>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<div class="post-likers">
+											<a href="#">Christine Morales</a> and <a href="#">23 others</a> like this.
+										</div><!--.post-likers-->
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-4-->
+
+							<div class="col-md-4">
+								<div class="card tile card-post">
+									<div class="card-heading">
+										<img src="../../assets/globals/img/faces/19.jpg" class="user-image" alt="">
+										<p class="author"><a href="#">Ryan Perkins</a> shared a post.</p>
+										<p class="time">July 17 at 05:59</p>
+									</div><!--.card-heading-->
+									<div class="card-body">
+										Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.
+										<ul class="post-action">
+											<li><a href="#">Like</a></li>
+											<li><a href="#">Comment</a></li>
+											<li><a href="#">Share</a></li>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<div class="post-likers">
+											<a href="#">William Patel</a> and <a href="#">3 others</a> like this.
+										</div><!--.post-likers-->
+										<ul class="card-comments">
+											<li>
+												<div class="user-photo"><a href="#"><img src="../../assets/globals/img/faces/15.jpg" alt=""></a></div>
+												<div class="comment"><a href="#">Rachel Ryan</a> I love it and i will share in my timeline</div>
+											</li>
+											<li>
+												<div class="user-photo"><a href="#"><img src="../../assets/globals/img/faces/20.jpg" alt=""></a></div>
+												<div class="comment"><a href="#">William Patel</a> One of my favourite quotes from the old days. So glad it's back! :-)</div>
+											</li>
+										</ul>
+										<div class="input-group">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<input type="text" class="form-control">
+												</div>
+											</div>
+											<div class="input-group-btn">
+												<button type="button" class="btn btn-default">Send</button>
+											</div><!--.input-group-btn-->
+										</div><!--.input-group-->
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-4-->
+
+						</div><!--.row-->
+					</div>
+					<!--#events.tab-pane-->
+
+					<!-- facilities -->
+					<div id="facilities" class="tab-pane">
+						<div class="row">
+							<div class="col-md-3">
+								<ul class="nav nav-tabs borderless vertical">
+									<li class="active"><a href="#about_overview" data-toggle="tab">Overview</a></li>
+									<li><a href="#about_timeline" data-toggle="tab">Timeline</a></li>
+								</ul>
+							</div><!--.col-md-3-->
+							<div class="col-md-9">
+								<div class="tab-content">
+
+									<div class="tab-pane active" id="about_overview">
+										<div class="legend">Contact Information</div>
+										<div class="row">
+											<div class="col-md-3">Mobile Phones</div><!--.col-md-3-->
+											<div class="col-md-9">+1-202-555-0173</div><!--.col-md-9-->
+										</div><!--.row-->
+										<div class="row">
+											<div class="col-md-3">Address</div><!--.col-md-3-->
+											<div class="col-md-9">2002 Holcombe Boulevard<br>Houston, TX 77030 </div><!--.col-md-9-->
+										</div><!--.row-->
+										<div class="row">
+											<div class="col-md-3">Website</div><!--.col-md-3-->
+											<div class="col-md-9">http://www.teamfox.co</div><!--.col-md-9-->
+										</div><!--.row-->
+										<div class="row">
+											<div class="col-md-3">Email</div><!--.col-md-3-->
+											<div class="col-md-9">info@teamfox.com</div><!--.col-md-9-->
+										</div><!--.row-->
+										<div class="row">
+											<div class="col-md-3">Facebook</div><!--.col-md-3-->
+											<div class="col-md-9">fb.com/teamfoxco</div><!--.col-md-9-->
+										</div><!--.row-->
+										<div class="row">
+											<div class="col-md-3">Twitter</div><!--.col-md-3-->
+											<div class="col-md-9">twitter.com/teamfox</div><!--.col-md-9-->
+										</div><!--.row-->
+
+										<div class="legend">Basic Information</div>
+										<div class="row">
+											<div class="col-md-3">Birth Date</div><!--.col-md-3-->
+											<div class="col-md-9">July 17</div><!--.col-md-9-->
+										</div><!--.row-->
+										<div class="row">
+											<div class="col-md-3">Birth Year</div><!--.col-md-3-->
+											<div class="col-md-9">2014</div><!--.col-md-9-->
+										</div><!--.row-->
+										<div class="row">
+											<div class="col-md-3">Gender</div><!--.col-md-3-->
+											<div class="col-md-9">Male</div><!--.col-md-9-->
+										</div><!--.row-->
+									</div><!--#about_overview.tab-pane-->
+
+									<div class="tab-pane" id="about_timeline">
+										<div class="timeline single">
+											<div class="frame">
+												<div class="timeline-badge">
+													<i class="fa fa-headphones"></i>
+												</div><!--.timeline-badge-->
+												<span class="timeline-date">17 August 1999</span>
+												<div class="timeline-content">
+													<p>The 1999 Kocaeli earthquake occurred with a moment magnitude of 7.4 that struck northwestern Turkey on 17 August at about 3:02 a.m. local time.</p>
+												</div><!--.timeline-content-->
+											</div><!--.frame-->
+											<div class="frame">
+												<div class="timeline-badge">
+													<i class="fa fa-tree"></i>
+												</div><!--.timeline-badge-->
+												<span class="timeline-date">December 28, 1908</span>
+												<div class="timeline-content">
+													The 1908 Messina earthquake and tsunami took about 123,000 lives on December 28, 1908, in Sicily and Calabria, southern Italy.
+												</div><!--.timeline-content-->
+											</div><!--.frame-->
+
+											<div class="frame">
+												<div class="timeline-badge">
+													<i class="fa fa-tree"></i>
+												</div><!--.timeline-badge-->
+												<span class="timeline-date">18 April 1906</span>
+												<div class="timeline-content">
+													The San Francisco earthquake of 1906 struck San Francisco and the coast of Northern California at 5:12 a.m. on Wednesday, April 18, 1906.
+												</div><!--.timeline-content-->
+											</div><!--.frame-->
+
+											<div class="frame">
+												<div class="timeline-badge">
+													<i class="fa fa-tree"></i>
+												</div><!--.timeline-badge-->
+												<span class="timeline-date">May, 526</span>
+												<div class="timeline-content">
+													The 526 Antioch earthquake hit Syria (region) and Antioch in the Byzantine Empire in 526. It struck during late May, probably between May 20–29, at mid-morning, killing approximately 250,000 people.
+												</div><!--.timeline-content-->
+											</div><!--.frame-->
+										</div><!--.timeline-->
+
+									</div><!--#about_timeline.tab-pane-->
+
+								</div><!--.tab-content-->
+
+							</div><!--.col-md-9-->
+						</div><!--.row-->
+					</div>
+					<!--#facilities.tab-pane-->
+
+					<!-- media -->
+					<div id="media" class="tab-pane">
+						<div class="row image-row">
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/1.jpg" title="Some title goes here" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/1.jpg" alt=""></a>
+							</div><!--.col-->
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/2.jpg" title="Another title goes here" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/2.jpg" alt=""></a>
+							</div><!--.col-->
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/3.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/3.jpg" alt=""></a>
+							</div><!--.col-->
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/4.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/4.jpg" alt=""></a>
+							</div><!--.col-->
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/5.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/5.jpg" alt=""></a>
+							</div><!--.col-->
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/6.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/6.jpg" alt=""></a>
+							</div><!--.col-->
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/7.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/7.jpg" alt=""></a>
+							</div><!--.col-->
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/8.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/8.jpg" alt=""></a>
+							</div><!--.col-->
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/9.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/9.jpg" alt=""></a>
+							</div><!--.col-->
+
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/10.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/10.jpg" alt=""></a>
+							</div><!--.col-->
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/11.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/11.jpg" alt=""></a>
+							</div><!--.col-->
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/12.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/12.jpg" alt=""></a>
+							</div><!--.col-->
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/13.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/13.jpg" alt=""></a>
+							</div><!--.col-->
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/14.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/14.jpg" alt=""></a>
+							</div><!--.col-->
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/15.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/15.jpg" alt=""></a>
+							</div><!--.col-->
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/16.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/16.jpg" alt=""></a>
+							</div><!--.col-->
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/17.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/17.jpg" alt=""></a>
+							</div><!--.col-->
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="../../assets/globals/img/picjumbo/18.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/18.jpg" alt=""></a>
+							</div><!--.col-->
+
+						</div><!--.row-->
+					</div>
+					<!--#media.tab-pane-->
+					
+					
+
+				</div><!--.tab-content-->
+			</div><!--.col-->
+		</div><!--.row-->
 </p>
 
 
 <p>
-	<button class="btn btn-pink" data-toggle="modal" data-target="#panel-modal2">New Facility</button>
+<button class="btn btn-pink" data-toggle="modal" data-target="#panel-modal2">New Facility</button>
 </p>
 
 <br/>
@@ -111,70 +873,6 @@
 Teams:<br><br>
 
 
-<div class="row">
-			<% @teams.each do |team| %>
-				<div class="col-md-4">
-					<div class="card card-meal card-meal-green card-square card-shadow">
-					<div class="card-heading">
-						<h3 class="card-title">
-							<%= link_to team.name, "teams/#{team.slug}" %>
-						</h3>
-						<div class="card-subhead">
-							By <a href="#"><%= team.sport %></a>
-						</div><!--.card-subhead-->
-					</div><!--.card-heading-->
-					<div class="card-body">
-						<div class="image">
-							<a href="#"><img src="http://themighty1290am.com/files/2015/01/FreeVector-Grunge-Basketball-Background.jpg" alt=""></a>
-						</div><!--.image-->
-						<ul class="users">
-							<li>
-								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-									<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
-								</a>
-							</li>
-							<li>
-								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-									<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
-								</a>
-							</li>
-							<li>
-								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-									<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
-								</a>
-							</li>
-							<li>
-								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-									<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
-								</a>
-							</li>
-							<li>
-								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-									<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
-								</a>
-							</li>
-							<li>
-								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-									<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
-								</a>
-							</li>
-							<li>
-								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-									<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
-								</a>
-							</li>
-						</ul>
-					</div><!--.card-body-->
-					<div class="card-footer">
-						<ul>
-							<li>1,378 Students</li>
-							<li><a href="#">Join Them</a></li>
-						</ul>
-					</div><!--.card-footer-->
-					</div><!--.card-->
-				</div><!--.col-md-4-->
-			<% end %>
-		</div><!--.row-->
 
 
 Teammates:<br><br>
@@ -187,83 +885,27 @@ Teammates:<br><br>
 
 <% end %>
 
-		<div class="footer-links margin-top-40">
-			<div class="row no-gutters">
-				<div class="col-xs-6 bg-blue-grey">
-					<a href="table-datatables-extensions.html">
-						<span class="state">Tables</span>
-						<span>Datatable Extensions</span>
-						<span class="icon"><i class="ion-android-arrow-back"></i></span>
-					</a>
-				</div><!--.col-->
-				<div class="col-xs-6 bg-indigo">
-					<a href="user-lock-screen.html" target="_blank">
-						<span class="state">Pages</span>
-						<span>Lock Screen</span>
-						<span class="icon"><i class="ion-android-arrow-forward"></i></span>
-					</a>
-				</div><!--.col-->
-			</div><!--.row-->
-		</div><!--.footer-links-->
+	<div class="footer-links margin-top-40">
+		<div class="row no-gutters">
+			<div class="col-xs-6 bg-blue-grey">
+				<a href="table-datatables-extensions.html">
+					<span class="state">Tables</span>
+					<span>Datatable Extensions</span>
+					<span class="icon"><i class="ion-android-arrow-back"></i></span>
+				</a>
+			</div><!--.col-->
+			<div class="col-xs-6 bg-indigo">
+				<a href="user-lock-screen.html" target="_blank">
+					<span class="state">Pages</span>
+					<span>Lock Screen</span>
+					<span class="icon"><i class="ion-android-arrow-forward"></i></span>
+				</a>
+			</div><!--.col-->
+		</div><!--.row-->
+	</div><!--.footer-links-->
 
-		<!-- Bootstrap Image Gallery lightbox -->
-		<!-- To use original bootstrap modal window erase data-use-boostrap-model attr -->
-		<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-use-bootstrap-modal="false">
-			<div class="slides"></div>
-			<h3 class="title">Gallery</h3>
-			<a class="prev">‹</a>
-			<a class="next">›</a>
-			<a class="close">×</a>
-			<a class="play-pause"></a>
-			<ol class="indicator"></ol>
-			<div class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" aria-hidden="true">&times;</button>
-							<h4 class="modal-title">Gallery</h4>
-						</div>
-						<div class="modal-body next"></div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default pull-left prev">
-								<i class="glyphicon glyphicon-chevron-left"></i>
-								Previous
-							</button>
-							<button type="button" class="btn btn-primary next">
-								Next
-								<i class="glyphicon glyphicon-chevron-right"></i>
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End of Bootstrap Image Gallery lightbox -->
+	<%= render "shared/modals/boostrap_image_gallery_lightbox" %>
 
-	</div><!--.content-->
+</div><!--.content-->
 
-	<div class="modal fade full-height from-right" id="panel-modal2" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title">Panel Modal</h4>
-					</div>
-					<div class="modal-body">
-						<%= form_for Team.new, url: teams_path, method: :post do |f| %>
-
-							<%= f.text_field :name %><br><br>
-
-							<%= f.text_field :sport %><br><br>
-
-							<%= f.submit %>
-
-						<% end %>
-						
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-flat-primary" data-dismiss="modal">DISAGREE</button>
-						<button type="button" class="btn btn-flat-primary" data-dismiss="modal">AGREE</button>
-					</div>
-				</div>
-			</div>
-		</div><!--.modal-->
+<%= render "shared/panels/new_team" %>

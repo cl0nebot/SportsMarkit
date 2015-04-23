@@ -1,7 +1,66 @@
-<% @facilities.each do |facility| %>
+<div class="content">
 
-<%= link_to facility.name, facility_path(facility) %><br><br>
+	<div class="page-header full-content">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1>Facilities <small>(251)</small></h1>
+			</div><!--.col-->
+			<div class="col-sm-6">
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="ion-home"></i></a></li>
+					<li><a href="#">Pages</a></li>
+					<li><a href="#" class="active">Search Results</a></li>
+				</ol>
+			</div><!--.col-->
+		</div><!--.row-->
+	</div><!--.page-header-->
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel">
+				<div class="panel-heading">
+					<!-- <div class="panel-title"><h4>ALPHABET SORTING</h4></div> -->
+				</div><!--.panel-heading-->
+				<div class="panel-body">
+
+					<p>
+						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-modal2">New Facility</button>
+					</p>
+
+
+					<div class="overflow-table">
+					<table class="display datatables-alphabet-sorting">
+						<thead>
+							<tr class="fs-16">
+								<th>Name</th>
+								<th>Email</th>
+								<th>Website</th>
+								<th>Phone</th>
+								<th>Start date</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+
+						<tbody id="schools">
+							<% @facilities.each do |facility| %>
+								<%= render "facility" %>
+							<% end %>							
+						</tbody>
+					</table>
+					</div><!--.overflow-table-->
+
+				</div><!--.panel-body-->
+			</div><!--.panel-->
+		</div><!--.col-md-12-->
+	</div><!--.row-->
+
+	
+</div><!--.content-->
+
+	
+<h1><%#= format(Date.today, 4)%></h1>
 
 
 
-<% end %>
+
+

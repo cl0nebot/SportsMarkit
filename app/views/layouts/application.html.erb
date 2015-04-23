@@ -30,8 +30,17 @@
 		<%= csrf_meta_tags %>
 	</head>
 
+	<%= render 'shared/navbar' %>
+
 	<%= yield %>
-	
+
+	<!-- side panels -->
+	<%= render "shared/panels/new_school" %>
+	<%= render "shared/panels/new_team" %>
+
+
+
+	<!-- javascript -->
 	<%= javascript_include_tag 'application' %>
 
 	<script src='https://www.google.com/recaptcha/api.js'></script>

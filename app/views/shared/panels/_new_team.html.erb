@@ -1,0 +1,25 @@
+<div class="modal fade full-height from-right" id="panel-new-team" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Add a New Team</h4>
+			</div>
+			<div class="modal-body">
+				<%= form_for Team.new, url: teams_path, method: :post do |f| %>
+
+					<%= f.text_field :name %><br><br>
+
+					<%= f.text_field :sport %><br><br>
+
+					<%= f.submit %>
+
+				<% end %>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-flat-primary" data-dismiss="modal">DISAGREE</button>
+				<button type="button" class="btn btn-flat-primary" data-dismiss="modal">AGREE</button>
+			</div>
+		</div>
+	</div>
+</div><!--.modal-->
