@@ -24,7 +24,7 @@
 				<div class="panel-body">
 
 					<p>
-						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-modal2">New Facility</button>
+						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-facility">New Facility</button>
 					</p>
 
 
@@ -42,9 +42,7 @@
 						</thead>
 
 						<tbody id="schools">
-							<% @facilities.each do |facility| %>
-								<%= render "facility" %>
-							<% end %>							
+							<%= render "facility" %>
 						</tbody>
 					</table>
 					</div><!--.overflow-table-->

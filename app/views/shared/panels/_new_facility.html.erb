@@ -27,30 +27,19 @@
 									</div><!--.col-md-9-->
 								</div><!--.row-->
 
-								<div class="row example-row">
-									<div class="col-md-3">Classification</div><!--.col-md-3-->
-									<div class="col-md-9">
-										<%= f.select :classification, [ 'College', 'High School', 'Middle School'], :class => 'selecter', :prompt => 'Select One' %>
+								<div class="clearfix margin-bottom-10">
+									<div class="checkboxer form-inline">
+										<%= f.check_box :private %>
+										<label for="facility_private">Private</label>
+									</div>
+									<div class="checkboxer form-inline">
+										<input type="checkbox" id="inlineCheckbox2" value="option2">
+										<%= f.check_box :publicly_visible %>
+										<label for="facility_publicly_visible">Publicly Visible</label>
+									</div>
+								</div>
 
-										 <select class="selecter">
-											<option>College</option>
-											<option>High School</option>
-											<option>Middle School</option>
-										</select>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
-
-								<div class="row example-row">
-									<div class="col-md-3">Abbreviation </div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :abbreviation, type: "text", class: "form-control", placeholder: "" %>
-											</div>
-										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
-
+								
 								<div class="row example-row">
 									<div class="col-md-3">Address 1 </div><!--.col-md-3-->
 									<div class="col-md-9">
@@ -158,7 +147,7 @@
 				</div><!--.row-->
 			</div>
 			<div class="modal-footer">
-				<%= f.submit "Create Team", class: "btn btn-blue" %>
+				<%= f.submit "Create Facility", class: "btn btn-blue" %>
 			</div>
 			<% end %>			
 		</div>
@@ -170,6 +159,4 @@
 
 
 
-      <%= f.text_field :field_type %><br><br>
-	  Private? <%= f.check_box :private %><br><br>
-	  Publicly Visible?<%= f.check_box :publicly_visible %><br><br>
+      

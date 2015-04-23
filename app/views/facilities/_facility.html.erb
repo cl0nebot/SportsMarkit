@@ -1,13 +1,15 @@
-<tr class="fs-16">
-	<td><span class="small"><%= facility.name %></span></td>
-	<td><span class="small"><%= facility.email %></span></td>
-	<td><span class="small"><%= facility.website %></span></td>
-	<td><span class="small"><%= facility.phone_number %></span></td>
-	<td><span class="small">2011/04/25</span></td>
-	<td>
-		<%= link_to "Delete", facility, method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
-		<%= link_to "Edit", edit_facility_path(facility) %>
-	</td>
-</tr>
+<% @facilities.each do |facility| %>
+	<tr class="fs-16">
+		<td><span class="small"><%= facility.name %></span></td>
+		<td><span class="small"><%= facility.email %></span></td>
+		<td><span class="small"><%= facility.website %></span></td>
+		<td><span class="small"><%= facility.phone_number %></span></td>
+		<td><span class="small">2011/04/25</span></td>
+		<td>
+			<%= link_to "Delete", facility, method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
+			<%= link_to "Edit", edit_facility_path(facility) %>
+		</td>
+	</tr>
+<% end %>							
 
 <%#= link_to facility.name, facility_path(facility) %>
