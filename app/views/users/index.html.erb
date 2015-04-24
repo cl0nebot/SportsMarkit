@@ -3,16 +3,16 @@ Logged In: <%= current_user.full_name %>
 <span class="fa fa-dot-circle-o m-r-10 h5"></span>Log Out
 <% end %><br><br>
       			
-				<table id="user-list" class="table table-hover table-condensed" id="example">
-	                <thead>
-	                  <tr>
-	                    <th style="width:40%" class="gf_muli">User Name</th>
-	                    <th style="width:15%" class="gf_muli">x</th>
-	                    <th style="width:20%" class="gf_muli">x</th>
-	                    <th style="width:22%" class="gf_muli">Actions</th>
-	                  </tr>
-	                </thead>
-	                <tbody>
-		                <%= render @users %>
-	                </tbody>
-	              </table>
+<table id="user-list" class="table table-hover table-condensed" id="example">
+    <thead>
+      <tr>
+        <th style="width:40%" class="gf_muli">User Name</th>
+        <th style="width:15%" class="gf_muli">x</th>
+        <th style="width:20%" class="gf_muli">x</th>
+        <th style="width:22%" class="gf_muli">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <%= render @users %>
+    </tbody>
+  </table>

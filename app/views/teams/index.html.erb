@@ -2,7 +2,7 @@
 
 	<div class="page-header full-content bg-blue">
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-5">
 				<h1>All Teams <small>203</small></h1>
 			</div><!--.col-->
 			<div class="col-sm-6">
@@ -11,6 +11,11 @@
 					<li><a href="#" class="active">all teams</a></li>
 				</ol>
 			</div><!--.col-->
+			<div class="col-sm-1 text-right">
+				<a class="btn btn-floating btn-pink" data-toggle="modal" data-target="#panel-new-team">
+					<i class="ion-android-add"></i>
+				</a>
+			</div>
 		</div><!--.row-->
 	</div><!--.page-header-->
 
@@ -21,25 +26,19 @@
 					<!-- <div class="panel-title"><h4>ALPHABET SORTING</h4></div> -->
 				</div><!--.panel-heading-->
 				<div class="panel-body">
-
-					<p>
-						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-team">New Team</button>
-					</p>
-
-
 					<div class="overflow-table">
-					<table class="display datatables-alphabet-sorting">
-						<thead>
-							<tr class="fs-16">
-								<th>Name</th>
-								<th>Sport</th>
-							</tr>
-						</thead>
+						<table class="display datatables-alphabet-sorting">
+							<thead>
+								<tr class="fs-16">
+									<th>Name</th>
+									<th>Sport</th>
+								</tr>
+							</thead>
 
-						<tbody id="schools">
-							<%= render "team" %>							
-						</tbody>
-					</table>
+							<tbody id="schools">
+								<%= render "team" %>							
+							</tbody>
+						</table>
 					</div><!--.overflow-table-->
 
 				</div><!--.panel-body-->

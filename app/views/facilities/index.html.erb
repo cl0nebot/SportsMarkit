@@ -2,16 +2,20 @@
 
 	<div class="page-header full-content">
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-5">
 				<h1>Facilities <small>(251)</small></h1>
 			</div><!--.col-->
 			<div class="col-sm-6">
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="ion-home"></i></a></li>
-					<li><a href="#">Pages</a></li>
-					<li><a href="#" class="active">Search Results</a></li>
+					<li><a href="/"><i class="ion-home"></i></a></li>
+					<li><a href="#" class="active">All Facilities</a></li>
 				</ol>
 			</div><!--.col-->
+			<div class="col-sm-1 text-right">
+				<a class="btn btn-floating btn-pink" data-toggle="modal" data-target="#panel-new-facility">
+					<i class="ion-android-add"></i>
+				</a>
+			</div>
 		</div><!--.row-->
 	</div><!--.page-header-->
 
@@ -22,29 +26,23 @@
 					<!-- <div class="panel-title"><h4>ALPHABET SORTING</h4></div> -->
 				</div><!--.panel-heading-->
 				<div class="panel-body">
-
-					<p>
-						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-facility">New Facility</button>
-					</p>
-
-
 					<div class="overflow-table">
-					<table class="display datatables-alphabet-sorting">
-						<thead>
-							<tr class="fs-16">
-								<th>Name</th>
-								<th>Email</th>
-								<th>Website</th>
-								<th>Phone</th>
-								<th>Start date</th>
-								<th>Actions</th>
-							</tr>
-						</thead>
+						<table class="display datatables-alphabet-sorting">
+							<thead>
+								<tr class="fs-16">
+									<th>Name</th>
+									<th>Email</th>
+									<th>Website</th>
+									<th>Phone</th>
+									<th>Start date</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
 
-						<tbody id="schools">
-							<%= render "facility" %>
-						</tbody>
-					</table>
+							<tbody id="schools">
+								<%= render "facility" %>
+							</tbody>
+						</table>
 					</div><!--.overflow-table-->
 
 				</div><!--.panel-body-->

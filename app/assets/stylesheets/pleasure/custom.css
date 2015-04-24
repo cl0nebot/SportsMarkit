@@ -24,6 +24,15 @@ input:-webkit-autofill {
   clear: both;
 }
 
-
-
 .fs-16 {font-size: 16px;}
+
+
+.sample-bg-image12:before {
+  background-image: url('http://www.download-hd-wallpapers.com/wp-content/uploads/2014/08/sports-backgrounds-for-pictures.jpg');
+  background-position: center;
+}
+
+.sample-bg-image14:before {
+  background-image: url('http://www.punchbowl.com/gridfs/fs/4d2de56f85216d4a52000074-1294853489');
+  background-position: center;
+}
