@@ -29,7 +29,7 @@ input:-webkit-autofill {
   clear: both;
 }
 
-.team-buttons {
+.team-buttons, .edit-buttons {
   position: absolute;
   right: 40px;
   top: 110px;

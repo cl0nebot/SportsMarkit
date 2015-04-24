@@ -1,46 +1,106 @@
-Logged In As: <%= current_user.full_name %></span>
+<div class="content">
+	<div class="page-header full-content bg-primary" style="min-height: 141px;">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1 class="capitalize">
+					<%= current_user.full_name %> 
+					<small>Edit Profile</small>
+				</h1>
+			</div><!--.col-->
+			<div class="col-sm-6">
+				<ol class="breadcrumb">
+					<li><a href="/"><i class="ion-home"></i></a></li>
+					<li><a href="#"><%= current_user.full_name %> </a></li>
+					<li><a href="#" class="active">Edit Profile</a></li>
+				</ol>
+			</div><!--.col-->
+		</div><!--.row-->
+
+		<div class="header-tabs scrollable-tabs sticky">
+			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+				<li class="active"><a href="#general" data-toggle="tab">General</a></li>
+				<li><a href="#social-media" data-toggle="tab">Social Media</a></li>
+				<li><a href="#password" data-toggle="tab">Password</a></li>
+			</ul>
+		</div>
+	</div><!--.page-header-->
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel">
+					<div class="panel-body">
+
+						<%= form_for @user, html: {id: "user-form", data: {remote: true }} do |f| %>
+
+							<div class="tab-content with-panel">
+								<div class="tab-pane active text-style" id="general">
+
+									<%= f.fields_for :user_profile_pictures, :html => {:multipart => true} do |pic| %>
+									  <%= pic.file_field :photo %><br>
+									<% end %>
+
+									<%= image_tag @user.avatar %><br>
+									                
+									<%= f.text_field :first_name, class: "form-control", placeholder: "First Name"  %><br>
+									                          
+									<%= f.text_field :middle_name, class: "form-control", placeholder: "Middle" %><br>
+									                          
+									<%= f.text_field :last_name, class: "form-control", placeholder: "Last Name" %><br>
+									     
+									<%= f.text_field :email, class: "form-control", placeholder: "Email" %><br>
+									
+								</div><!--tab-pane-->
+
+								<div class="tab-pane text-style" id="social-media">
+									<%= f.fields_for :profile, @profile do |builder| %>
+										 <%= builder.select(:city, User.cities_list.sort, {prompt: "Select Location"}, {:class => "form-control"})%><br>
+
+
+										<%= builder.text_field :linkedin, class: "form-control", placeholder: "LinkedIn" %><br>
+
+										<%= builder.text_field :facebook, class: "form-control", placeholder: "Facebook" %><br>
+
+										<%= builder.text_field :twitter, class: "form-control", placeholder: "Twitter" %><br>
+
+										<%= builder.text_field :instagram, class: "form-control", placeholder: "Instagram" %><br>
+										    
+										<%#= render 'athlete', f: builder %>
+										                          
+									<% end %>  
+
+								</div><!--tab-pane-->
+
+								<div class="tab-pane text-style" id="password">
+
+									Current password
+									<%= f.password_field :current_password, label:false, placeholder:"", :class => "form-control" %><br>
+									New password
+									<%= f.password_field :password, label:false, placeholder:"", :class => "form-control" %>   <br>
+									Verify password
+									<%= f.password_field :password_confirmation, label:false, placeholder:"", :class => "form-control" %><br>
+
+								</div><!--.tab-pane-->
+								<div class="tab-pane text-style" id="weathericons">
+
+									
+								</div><!--.tab-pane-->
+							</div><!--.tab-content-->
+
+							<%= f.submit %>
+
+						<% end %>
+
+					</div><!--.panel-body-->
+				</div><!--.panel-->
+			</div><!--.col-md-12-->
+		</div><!--.row-->
+</div>
+<!--.content-->
                         
-<%= form_for @user, html: {id: "user-form", data: {remote: true }} do |f| %>
-
-<%= f.fields_for :user_profile_pictures, :html => {:multipart => true} do |pic| %>
-  <%= pic.file_field :photo %><br>
-<% end %>
-
-<%= image_tag @user.avatar %><br>
-                
-<%= f.text_field :first_name, class: "form-control", placeholder: "First Name"  %><br>
-                          
-<%= f.text_field :middle_name, class: "form-control", placeholder: "Middle" %><br>
-                          
-<%= f.text_field :last_name, class: "form-control", placeholder: "Last Name" %><br>
-     
-<%= f.text_field :email, class: "form-control", placeholder: "Email" %><br>
-
-<%= f.fields_for :profile, @profile do |builder| %>
-  <%= builder.select(:city, User.cities_list.sort, {prompt: "Select Location"}, {:class => "form-control"})%><br>
 
 
-<%= builder.text_field :linkedin, class: "form-control", placeholder: "LinkedIn" %><br>
-
-<%= builder.text_field :facebook, class: "form-control", placeholder: "Facebook" %><br>
-
-<%= builder.text_field :twitter, class: "form-control", placeholder: "Twitter" %><br>
-
-<%= builder.text_field :instagram, class: "form-control", placeholder: "Instagram" %><br>
-    
-                            <%#= render 'athlete', f: builder %>
-
-                          
-<% end %>  
 
                             
-Current password
-<%= f.password_field :current_password, label:false, placeholder:"", :class => "form-control" %><br>
-New password
-<%= f.password_field :password, label:false, placeholder:"", :class => "form-control" %>   <br>
-Verify password
-<%= f.password_field :password_confirmation, label:false, placeholder:"", :class => "form-control" %><br>
 
 
-<%= f.submit %>
-<% end %>
+

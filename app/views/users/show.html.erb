@@ -21,7 +21,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-5">
 				<h1>
 					<span class="fa fa-calendar m-r-5"></span>
 					Upcoming event 
@@ -35,6 +35,11 @@
 					<li><a href="#" class="active">My Profile</a></li>
 				</ol>
 			</div><!--.col-->
+			<div class="col-sm-1 text-right">
+				<a href="<%= edit_user_path(User.first) %>" class="btn btn-floating btn-light-blue">
+					<i class="ion-android-settings"></i>
+				</a>
+			</div>
 		</div><!--.row-->
 
 		<div class="header-tabs scrollable-tabs sticky">
