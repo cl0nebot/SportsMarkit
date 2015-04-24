@@ -6,9 +6,8 @@
 				<li>
 					<%= link_to "User Profile", user_path(User.first) %>
 				</li>
-				<li><%= link_to "Users Index", users_path %></li>
-				<li><%= link_to "User Profile", user_path(User.first) %></li>
 				<li><%= link_to "User Edit", edit_user_path(User.first) %></li>
+				<li><%= link_to "Users Index", users_path %></li>
 			</ul>
 		</li>
 
@@ -16,14 +15,15 @@
 		<li>
 			<a href="javascript:;">Teams</a>
 			<ul class="child-menu">
+				<li><%= link_to "Team New", new_team_path(Team.first)%></li>
+				<li>
+					<a href="#" data-toggle="modal" data-target="#panel-new-team">
+					New Team Panel Form</a>
+				</li>
 				<% if Team.any? %>
 					<li><%= link_to "Team Edit", edit_team_path(Team.first)%></li>
 					<li><%= link_to "Team Profile/Page", team_path(Team.first)%></li>
 				<% end %>
-				<li>
-					<a href="#" data-toggle="modal" data-target="#panel-new-team">
-					New Team</a>
-				</li>
 			</ul>
 		</li>
 
@@ -32,8 +32,11 @@
 			<a href="javascript:;">School</a>
 			<ul class="child-menu">
 				<li>
+					<%= link_to "School New", new_school_path(School.first)%>
+				</li>
+				<li>
 					<a href="#" data-toggle="modal" data-target="#panel-new-school">
-					New School</a>
+					New School Panel Form</a>
 				</li>
 				<% if School.any? %>
 					<li>
@@ -51,8 +54,11 @@
 			<a href="javascript:;">Facility</a>
 			<ul class="child-menu">
 				<li>
+					<%= link_to "Facility New", new_facility_path(Facility.first)%>
+				</li>
+				<li>
 					<a href="#" data-toggle="modal" data-target="#panel-new-facility">
-					New Facility</a>
+					New Facility Panel Form </a>
 				</li>
 				<% if Facility.any? %>
 					<li>
@@ -70,8 +76,11 @@
 			<a href="javascript:;">League</a>
 			<ul class="child-menu">
 				<li>
+					<%= link_to "Facility New", new_league_path(League.first)%>
+				</li>
+				<li>
 					<a href="#" data-toggle="modal" data-target="#panel-new-league">
-					New League</a>
+					New League Panel Form</a>
 				</li>
 				<% if League.any? %>
 					<li><%= link_to "League Edit", edit_league_path(League.first)%></li>
