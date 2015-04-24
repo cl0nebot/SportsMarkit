@@ -24,6 +24,7 @@
 					<li><%= link_to "Team Edit", edit_team_path(Team.first)%></li>
 					<li><%= link_to "Team Profile/Page", team_path(Team.first)%></li>
 				<% end %>
+				<li><%= link_to "Teams Index", teams_path(Team.first)%></li>
 			</ul>
 		</li>
 
@@ -46,6 +47,9 @@
 						<%= link_to "School Profile/Page", school_path(School.first)%>
 					</li>
 				<% end %>
+				<li>
+					<%= link_to "Schools Index", schools_path(School.first)%>
+				</li>
 			</ul>
 		</li>
 
@@ -68,6 +72,9 @@
 						<%= link_to "Facility Profile/Page", facility_path(Facility.first)%>
 					</li>
 				<% end %>
+				<li>
+					<%= link_to "Facilities Index", facilities_path(Facility.first)%>
+				</li>
 			</ul>
 		</li>
 
@@ -86,6 +93,9 @@
 					<li><%= link_to "League Edit", edit_league_path(League.first)%></li>
 					<li><%= link_to "League Profile/Page", league_path(League.first)%></li>
 				<% end %>
+				<li>
+					<%= link_to "Leagues Index", leagues_path(League.first)%>
+				</li>
 			</ul>
 		</li>
 
