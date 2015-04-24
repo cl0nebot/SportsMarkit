@@ -1,24 +1,170 @@
-Add a New Facility
+<div class="content">
+  <div class="page-header full-content bg-blue">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1>New Facility<small></small></h1>
+      </div><!--.col-->
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="#" class="active">[user name]</a></li>
+          <li><a href="#" class="active">[facilities index]</a></li>
+          <li><a href="#" class="active">[new]</a></li>
+        </ol>
+      </div><!--.col-->
+    </div><!--.row-->
+  </div><!--.page-header-->
 
-<%= form_for @facility do |f| %>
+  <div class="row">
+		<div class="col-md-12">
+			<div class="panel">
+				<div class="panel-heading">
+					<div class="panel-title"><h4>Complete the form below. </h4></div>
+				</div><!--.panel-heading-->
+				<div class="panel-body">
+
+					<%= form_for Facility.new, html: {id: 'facility-form', data: {remote: true}} do |f|   %>
+		
+
+					<div class="row example-row">
+						<div class="col-md-3">Name </div><!--.col-md-3-->
+						<div class="col-md-9">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+					<div class="row example-row">
+						<div class="col-md-3">Name </div><!--.col-md-3-->
+						<div class="col-md-9">
+							<div class="clearfix margin-bottom-10">
+								<div class="checkboxer form-inline">
+									<%= f.check_box :private %>
+									<label for="facility_private">Private</label>
+								</div>
+								<div class="checkboxer form-inline">
+									<input type="checkbox" id="inlineCheckbox2" value="option2">
+									<%= f.check_box :publicly_visible %>
+									<label for="facility_publicly_visible">Publicly Visible</label>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+					
+
+					
+					<div class="row example-row">
+						<div class="col-md-3">Address 1 </div><!--.col-md-3-->
+						<div class="col-md-9">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :address_1, type: "text", class: "form-control", placeholder: "" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
 
 
-Name:<%= f.text_field :name %><br><br>
+					<div class="row example-row">
+						<div class="col-md-3">Address 2 </div><!--.col-md-3-->
+						<div class="col-md-9">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
 
-      <%= f.text_field :field_type %><br><br>
-	  Private? <%= f.check_box :private %><br><br>
-	  Publicly Visible?<%= f.check_box :publicly_visible %><br><br>
+					<div class="row example-row">
+						<div class="col-md-3">City</div><!--.col-md-3-->
+						<div class="col-md-9">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :city, type: "text", class: "form-control", placeholder: "" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
 
-		  Address: <%= f.text_field :address_1 %><br><br>
-		  Address Line 2: <%= f.text_field :address_2 %><br><br>
-		  City: <%= f.text_field :city %><br><br>
-		  State: <%= f.text_field :state %><br><br>
-		  Zip: <%= f.text_field :zip %><br><br>
-		  Zip-ext: <%= f.text_field :zip_ext %><br><br>
-		  
-		  Website: <%= f.text_field :website %><br><br>
-		  Email: <%= f.text_field :email %><br><br>
-		  Phone Number: <%= f.text_field :phone_number %><br><br>
+					<div class="row example-row">
+						<div class="col-md-3">State</div><!--.col-md-3-->
+						<div class="col-md-9">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
 
-<%= f.submit %>
-<% end %>
+					<div class="row example-row">
+						<div class="col-md-3">Zipcode</div><!--.col-md-3-->
+						<div class="col-md-9">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+					<div class="row example-row">
+						<div class="col-md-3">Zip Extention</div><!--.col-md-3-->
+						<div class="col-md-9">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+
+					<div class="row example-row">
+						<div class="col-md-3">Website </div><!--.col-md-3-->
+						<div class="col-md-9">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :website, type: "text", class: "form-control", placeholder: ""  %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+					<div class="row example-row">
+						<div class="col-md-3">Email</div><!--.col-md-3-->
+						<div class="col-md-9">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :email, type: "text", class: "form-control inputmask inputmask-email" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+					<div class="row example-row">
+						<div class="col-md-3">Phone</div><!--.col-md-3-->
+						<div class="col-md-9">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :phone_number, type: "text", class: "form-control inputmask inputmask-phone" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+				</div><!--.panel-body-->
+			</div><!--.panel-->
+		</div><!--.col-md-12-->
+	</div><!--.row-->
+  <%= f.submit "Create Facility", class: "btn btn-blue" %>
+  <% end %>     
+</div>
+<%#= @id %>
+<%#= @class %>
+
