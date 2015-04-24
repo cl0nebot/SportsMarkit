@@ -18,6 +18,9 @@ input:-webkit-autofill {
 .inline {display: inline !important;}
 .no-margin {margin: 0;}
 
+.bold {font-weight: bold;}
+.semi-bold {font-weight: 400;}
+
 .social-buttons {
   position: absolute;
   right: 40px;

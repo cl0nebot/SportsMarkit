@@ -105,36 +105,23 @@
 				<!-- roster -->
 				<div id="roster" class="tab-pane">
 
-					<div class="row">
-						<div class="col-md-12">
-							<div class="panel">
-								<div class="panel-heading">
-									<!-- <div class="panel-title"><h4>ALPHABET SORTING</h4></div> -->
-								</div><!--.panel-heading-->
-								<div class="panel-body">
-									<div class="overflow-table">
-										<table id="tag-list" class="display datatables-alphabet-sorting">
-											<thead>
-												<tr class="fs-16">
-													<th style="width:5%" class="gf_muli"></th>
-										           	<th style="width:15%" class="gf_muli">Name</th>
-										           	<th style="width:8%" class="gf_muli">Level</th>
-										           	<th style="width:8%" class="gf_muli">Position</th>
-												   	<th style="width:22%" class="gf_muli">Quote</th>
-													<th style="width:10%" class="gf_muli">Actions</th>
-												</tr>
-											</thead>
-											<tbody id="members">
-										 		<% @members.each do |m| %>
-										       		<%= render 'member', m: m%>
-										    	<% end %>
-									       </tbody>
-									   </table>
-									</div>
-								</div>
+					<div class="panel">
+						<div class="panel-heading">
+							<div class="panel-title">
+								<h4>
+									<i class="ion-clipboard"></i>
+									TEAM ROSTER
+								</h4>
 							</div>
-						</div>
-					</div>
+						</div><!--.panel-heading-->
+						<div class="panel-body without-padding">
+							<ul class="list-material has-hidden">
+								<% @members.each do |m| %>
+						       		<%= render 'member', m: m%>
+						    	<% end %>
+							</ul>
+						</div><!--.panel-body-->
+					</div><!--.panel-->
 				</div>
 				<!--#roster.tab-pane-->
 
@@ -170,12 +157,11 @@
 
 				<!-- admin -->
 				<div id="admin" class="tab-pane">
-
 					<div class="panel">
 						<div class="panel-heading">
 							<div class="panel-title">
 								<h4>
-									<span class="text-blue">
+									<span class="text-black">
 										PENDING USERS
 									</span>
 								</h4>
@@ -183,168 +169,6 @@
 						</div><!--.panel-heading-->
 						<div class="panel-body without-padding">
 							<ul class="list-material has-hidden">
-								<li class="has-action-left">
-									<a href="#" class="hidden">
-										<i class="ion-checkmark-circled text-success"></i>
-									</a>
-									<a href="#" class="visible">
-										<div class="list-content row">
-											<div class="col-sm-1">
-												<img src="<%= image_path("placeholders/user.jpg") %>" class="face-radius" alt="" style="width: 55px; height: 55px;">
-											</div>
-
-											<div class="col-sm-3">
-												<h4 class="bold no-margin">
-													David Gibson
-												</h4>
-												<p class="small">
-													<small>
-														Name
-													</small>
-												</p>
-											</div>
-											<div class="col-sm-2">
-												<h4 class="bold no-margin">
-													Athlete
-												</h4>
-												<p class="small">
-													<small>
-														Name
-													</small>
-												</p>
-											</div>
-											<div class="col-sm-2">
-												<h4 class="bold no-margin">
-													Forward
-												</h4>
-												<p class="small">
-													<small>
-														Position
-													</small>
-												</p>
-											</div>
-											<div class="col-sm-4">
-												<h4 class="bold no-margin">
-													<i class="text-grey fa fa-quote-left"></i>
-													I was born Ready
-												</h4>
-												<p class="small">
-													<small>
-														Quote
-													</small>
-												</p>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li class="has-action-left">
-									<a href="#" class="hidden">
-										<i class="ion-checkmark-circled text-success"></i>
-									</a>
-									<a href="#" class="visible">
-										<div class="list-content row">
-											<div class="col-sm-1">
-												<img src="<%= image_path("placeholders/user.jpg") %>" class="face-radius" alt="" style="width: 55px; height: 55px;">
-											</div>
-
-											<div class="col-sm-3">
-												<h4 class="bold no-margin">
-													David Gibson
-												</h4>
-												<p class="small">
-													<small>
-														Name
-													</small>
-												</p>
-											</div>
-											<div class="col-sm-2">
-												<h4 class="bold no-margin">
-													Athlete
-												</h4>
-												<p class="small">
-													<small>
-														Name
-													</small>
-												</p>
-											</div>
-											<div class="col-sm-2">
-												<h4 class="bold no-margin">
-													Forward
-												</h4>
-												<p class="small">
-													<small>
-														Position
-													</small>
-												</p>
-											</div>
-											<div class="col-sm-4">
-												<h4 class="bold no-margin">
-													<i class="text-grey fa fa-quote-left"></i>
-													I was born Ready
-												</h4>
-												<p class="small">
-													<small>
-														Quote
-													</small>
-												</p>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li class="has-action-left">
-									<a href="#" class="hidden">
-										<i class="ion-checkmark-circled text-success"></i>
-									</a>
-									<a href="#" class="visible">
-										<div class="list-content row">
-											<div class="col-sm-1">
-												<img src="<%= image_path("placeholders/user.jpg") %>" class="face-radius" alt="" style="width: 55px; height: 55px;">
-											</div>
-
-											<div class="col-sm-3">
-												<h4 class="bold no-margin">
-													David Gibson
-												</h4>
-												<p class="small">
-													<small>
-														Name
-													</small>
-												</p>
-											</div>
-											<div class="col-sm-2">
-												<h4 class="bold no-margin">
-													Athlete
-												</h4>
-												<p class="small">
-													<small>
-														Name
-													</small>
-												</p>
-											</div>
-											<div class="col-sm-2">
-												<h4 class="bold no-margin">
-													Forward
-												</h4>
-												<p class="small">
-													<small>
-														Position
-													</small>
-												</p>
-											</div>
-											<div class="col-sm-4">
-												<h4 class="bold no-margin">
-													<i class="text-grey fa fa-quote-left"></i>
-													I was born Ready
-												</h4>
-												<p class="small">
-													<small>
-														Quote
-													</small>
-												</p>
-											</div>
-										</div>
-									</a>
-								</li>
 								<% @pending_members.each do |m| %>
 							     	<%= render 'pending', m: m%>
 							    <% end %>
