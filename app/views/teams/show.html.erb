@@ -54,9 +54,10 @@
 			<div class="col-sm-6">
 				<ol class="breadcrumb">
 					<li><a href="/"><i class="ion-home"></i></a></li>
-					<li><a href="/leagues">Teams</a></li>
+					<li><a href="<%= teams_path %>">Teams</a></li>
 					<% if @team.school.present? %>
 				  		<li><a href="#"><%= @team.school.name %></a></li>
+				  		<!-- add path for linking -->
 					<% end %>
 					<li><a href="#" class="active"><%= @team.name %></a></li>
 				</ol>
