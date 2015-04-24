@@ -44,10 +44,23 @@
 
 //= require pleasure/globals/plugins/ubilabs-geocomplete/jquery.geocomplete.min
 
+//= require pleasure/globals/plugins/pnikolov-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min
+//= require pleasure/globals/plugins/minicolors/jquery.minicolors.min
+//= require pleasure/globals/plugins/bootstrap-daterangepicker/daterangepicker
+
+
+//= require pleasure/globals/plugins/chosen/chosen.jquery.min
+//= require pleasure/globals/plugins/selectize/dist/js/standalone/selectize.min
+//= require pleasure/globals/plugins/multiselect/js/jquery.multi-select
+//= require pleasure/globals/plugins/quicksearch/dist/jquery.quicksearch.min
+//= require pleasure/globals/plugins/bootstrap-select/dist/js/bootstrap-select.min
+
 // <!-- PLUGINS INITIALIZATION AND SETTINGS -->
 //= require pleasure/globals/scripts/user-pages
 //= require pleasure/globals/scripts/tables-datatables
 //= require pleasure/globals/scripts/forms-tools
+//= require pleasure/globals/scripts/forms-pickers
+//= require pleasure/globals/scripts/forms-select
 
 // <!-- PLEASURE -->
 //= require pleasure/globals/js/pleasure
@@ -58,6 +71,4 @@
 
 //= require moment
 //= require fullcalendar
-
-
 

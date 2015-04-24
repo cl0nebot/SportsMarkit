@@ -27,9 +27,20 @@
  *= require pleasure/globals/plugins/indicator/indicator
  *= require pleasure/globals/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min
 
+ *= require pleasure/globals/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min
+ *= require pleasure/globals/plugins/minicolors/jquery.minicolors
+ *= require pleasure/globals/plugins/bootstrap-daterangepicker/daterangepicker-bs3
+ *= require pleasure/globals/plugins/clockface/css/clockface
+ *= require pleasure/globals/plugins/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min
+ *= require pleasure/globals/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min
+
+ *= require pleasure/globals/plugins/chosen/chosen.min
+ *= require pleasure/globals/plugins/selectize/dist/css/selectize.bootstrap3
+ *= require pleasure/globals/plugins/multiselect/css/multi-select
+ *= require pleasure/globals/plugins/bootstrap-select/dist/css/bootstrap-select.min
+
  *= require pleasure/globals/css/plugins
  *= require pleasure/custom
  
  *= require fullcalendar
  */
-
