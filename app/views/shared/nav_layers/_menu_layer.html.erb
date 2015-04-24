@@ -22,7 +22,7 @@
 				</li>
 				<% if Team.any? %>
 					<li><%= link_to "Team Edit", edit_team_path(Team.first)%></li>
-					<li><%= link_to "Team Profile/Page", team_path(Team.first)%></li>
+					<li><%= link_to "Team Profile", team_path(Team.first)%></li>
 				<% end %>
 				<li><%= link_to "Teams Index", teams_path(Team.first)%></li>
 			</ul>
@@ -44,7 +44,7 @@
 						<%= link_to "School Edit", edit_school_path(School.first)%>
 					</li>
 					<li>
-						<%= link_to "School Profile/Page", school_path(School.first)%>
+						<%= link_to "School Profile", school_path(School.first)%>
 					</li>
 				<% end %>
 				<li>
@@ -69,7 +69,7 @@
 						<%= link_to "Facility Edit", edit_facility_path(Facility.first)%>
 					</li>
 					<li>
-						<%= link_to "Facility Profile/Page", facility_path(Facility.first)%>
+						<%= link_to "Facility Profile", facility_path(Facility.first)%>
 					</li>
 				<% end %>
 				<li>
@@ -83,7 +83,7 @@
 			<a href="javascript:;">League</a>
 			<ul class="child-menu">
 				<li>
-					<%= link_to "Facility New", new_league_path(League.first)%>
+					<%= link_to "League New", new_league_path(League.first)%>
 				</li>
 				<li>
 					<a href="#" data-toggle="modal" data-target="#panel-new-league">
@@ -91,7 +91,7 @@
 				</li>
 				<% if League.any? %>
 					<li><%= link_to "League Edit", edit_league_path(League.first)%></li>
-					<li><%= link_to "League Profile/Page", league_path(League.first)%></li>
+					<li><%= link_to "League Profile", league_path(League.first)%></li>
 				<% end %>
 				<li>
 					<%= link_to "Leagues Index", leagues_path(League.first)%>
@@ -113,7 +113,7 @@
 
 		<li>
 			<%= link_to session_path(current_user.id), method: :delete do %>
-				Logout &#32;&#32;<i class="ion-power"></i>
+				Logout &#32;&#32;<i class="ion-power m-l-5"></i>
 			<% end %>
 		</li>
 		

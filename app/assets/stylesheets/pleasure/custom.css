@@ -50,3 +50,9 @@ input:-webkit-autofill {
   background-image: url('http://www.punchbowl.com/gridfs/fs/4d2de56f85216d4a52000074-1294853489');
   background-position: center;
 }
+
+
+.m-l-5 {margin-left: 5px;}
+.m-r-5 {margin-right: 5px;}
+.m-b-5 {margin-bottom: 5px;}
+.m-t-5 {margin-top: 5px;}
