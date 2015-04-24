@@ -79,26 +79,24 @@
 				
 				<!-- about -->
 				<div id="about" class="tab-pane active">
-					Coaches
-					<table id="tag-list" class="table table-hover table-condensed" id="example">
-				        <thead>
-				          <tr>
-				            <th style="width:40%" class="gf_muli">Image</th>
-				            <th style="width:15%" class="gf_muli">Name</th>
-				            <th style="width:20%" class="gf_muli"></th>
-				            <th style="width:22%" class="gf_muli">Title</th>
-							<th style="width:22%" class="gf_muli">Actions</th>
-				          </tr>
-				        </thead>
-				        <tbody>
-							<% @heads.each do |m| %>
-
-							 <%= render 'head', m: m %>
-
-							<% end %>
-				            
-				        </tbody>
-				      </table>	
+					<div class="panel">
+						<div class="panel-heading">
+							<div class="panel-title">
+								<h4>
+									<span class="text-black">
+										Coaches and Staff
+									</span>
+								</h4>
+							</div>
+						</div><!--.panel-heading-->
+						<div class="panel-body without-padding">
+							<ul class="list-material has-hidden">
+								<% @heads.each do |m| %>
+							 		<%= render 'head', m: m %>
+								<% end %>
+							</ul>
+						</div><!--.panel-body-->
+					</div><!--.panel-->
 				</div>
 				<!--#about.tab-pane-->
 
@@ -134,7 +132,7 @@
 				<!-- facilities -->
 				<div id="facilities" class="tab-pane">
 					<p class="text-right">
-						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-team">New Facility</button>
+						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-facility">New Facility</button>
 					</p>
 
 					<hr/>
