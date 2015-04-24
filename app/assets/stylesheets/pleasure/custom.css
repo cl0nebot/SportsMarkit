@@ -14,7 +14,8 @@ input:-webkit-autofill {
 
 
 .capitalize {text-transform: capitalize;}
-
+.text-off-white {color: #cccccc;}
+.text-white {color: #ffffff;}
 .inline {display: inline !important;}
 .no-margin {margin: 0;}
 
@@ -24,9 +25,18 @@ input:-webkit-autofill {
 .social-buttons {
   position: absolute;
   right: 40px;
-  bottom: 100px;
+  bottom: 120px;
   clear: both;
 }
+
+.team-buttons {
+  position: absolute;
+  right: 40px;
+  top: 110px;
+  clear: both;
+}
+
+
 
 .fs-16 {font-size: 16px;}
 

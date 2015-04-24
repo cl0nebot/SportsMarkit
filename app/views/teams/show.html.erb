@@ -4,6 +4,27 @@
 		<div class="parallax-bg" style="background: url('http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg') 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
 		</div>
 
+		<div class="social-buttons">
+			<%= render 'shared/fan' %>
+		</div>
+
+		<div class="team-buttons" id="team-button">
+			<% if current_user.relationships.where(team_id: @team.id).empty? %>
+			  <%= render 'relationships/relationship'%>
+			<% elsif current_user.relationships.where(team_id: @team.id, accepted: nil, rejected: nil).present? %>
+			  <%= render 'relationships/pending'%>
+			<% elsif current_user.relationships.where(team_id: @team.id, accepted: true).present? %>
+				<%= render 'relationships/member'%>
+				<%= link_to "/relationships/#{current_user.relationships.where(team_id: @team.id, accepted: true).last.slug}/edit" do %>
+				   <button class="btn btn-flat btn-ripple pull-right text-off-white">
+				   		Edit Profile <i class="ion-android-settings"></i>
+				   </button>
+				<% end %>
+			<% end %>
+		</div>
+
+
+
 		<div class="profile-info">
 			<div class="profile-photo">
 				<img src="<%= image_path("placeholders/league.jpg") %>" alt="">
@@ -18,27 +39,9 @@
 				<br/>
 				<span class="caption"><span class="glyphicon glyphicon-map-marker"></span>
 				<%= @team.sport %></span>
-				
 			</div><!--.profile-text-->
 		</div><!--.profile-info-->
 
-		<div class="social-buttons">
-			<%= render 'shared/fan' %>
-			<div id="team-button">
-				<% if current_user.relationships.where(team_id: @team.id).empty? %>
-				  <%= render 'relationships/relationship'%>
-				<% elsif current_user.relationships.where(team_id: @team.id, accepted: nil, rejected: nil).present? %>
-				  <%= render 'relationships/pending'%>
-				<% elsif current_user.relationships.where(team_id: @team.id, accepted: true).present? %>
-				   <%= render 'relationships/member'%>
-				   <%= link_to "/relationships/#{current_user.relationships.where(team_id: @team.id, accepted: true).last.slug}/edit" do %>
-					   <a class="btn btn-floating btn-grey">
-					   	<i class="ion-android-create"></i>
-					   </a>
-					<% end %>
-				<% end %>
-			</div>
-		</div>
 
 		<div class="row">
 			<div class="col-sm-6">
@@ -57,6 +60,7 @@
 					<% end %>
 					<li><a href="#" class="active"><%= @team.name %></a></li>
 				</ol>
+
 			</div><!--.col-->
 		</div><!--.row-->
 
