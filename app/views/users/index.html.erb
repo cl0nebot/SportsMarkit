@@ -1,18 +1,52 @@
-Logged In: <%= current_user.full_name %>
-<%= link_to session_path(current_user.id), method: :delete do %>
-<span class="fa fa-dot-circle-o m-r-10 h5"></span>Log Out
-<% end %><br><br>
-      			
-<table id="user-list" class="table table-hover table-condensed" id="example">
-    <thead>
-      <tr>
-        <th style="width:40%" class="gf_muli">User Name</th>
-        <th style="width:15%" class="gf_muli">x</th>
-        <th style="width:20%" class="gf_muli">x</th>
-        <th style="width:22%" class="gf_muli">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-        <%= render @users %>
-    </tbody>
-  </table>
+<div class="content">
+
+  <div class="page-header full-content bg-blue">
+    <div class="row">
+      <div class="col-sm-5">
+        <h1>All Users <small>203</small></h1>
+      </div><!--.col-->
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="#" class="active">all teams</a></li>
+        </ol>
+      </div><!--.col-->
+      <div class="col-sm-1 text-right">
+        <a class="btn btn-floating btn-pink" data-toggle="modal" data-target="#panel-new-team">
+          <i class="ion-android-add"></i>
+        </a>
+      </div>
+    </div><!--.row-->
+  </div><!--.page-header-->
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-heading">
+          <!-- <div class="panel-title"><h4>ALPHABET SORTING</h4></div> -->
+        </div><!--.panel-heading-->
+        <div class="panel-body">
+          <div class="overflow-table">
+            <table id="user-list" class="display datatables-alphabet-sorting">
+              <thead>
+                <tr class="fs-16">
+                  <th style="width:40%" class="gf_muli">Name</th>
+                  <th style="width:15%" class="gf_muli">x</th>
+                  <th style="width:20%" class="gf_muli">x</th>
+                  <th style="width:22%" class="gf_muli">Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="schools">
+                <%= render @users %>           
+              </tbody>
+            </table>
+          </div><!--.overflow-table-->
+
+        </div><!--.panel-body-->
+      </div><!--.panel-->
+    </div><!--.col-md-12-->
+  </div><!--.row-->
+</div><!--.content-->
+
+

@@ -100,6 +100,12 @@
 				<% end %>
 			</ul>
 		</li>
+
+		<li>
+			<%= link_to session_path(current_user.id), method: :delete do %>
+				Logout &#32;&#32;<i class="ion-power"></i>
+			<% end %>
+		</li>
 		
 	</ul>
 </div><!--.menu-layer-->
