@@ -1,23 +1,56 @@
- <tr>
-	      <td class="">
-	      	<%= image_tag m.user.avatar, size: "50x50" %>
-	      </td>
-	      <td class="">
-	      	<%= link_to m.user.full_name, user_path(m.user) %>
-	      </td>
-	       <td class="">
-	      	<%= m.participant_classification %>
-	      </td>
-	      <td class="">
-	       <%= m.position %>
+<li class="has-action-left">
+	<%= link_to accept_user_team_path(m), method: :patch do %>
+		<a href="#" class="hidden">
+			<i class="ion-checkmark-circled text-success"></i>
+		</a>
+	<% end %>
+	<a href="#" class="visible">
+		<div class="list-content row">
+			<div class="col-sm-1">
+				<%= image_tag m.user.avatar, class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
+			</div>
 
-	      </td>
-	      <td class="">
-	       <%= m.quote %>
-
-	      </td>
-	      <td class="">
-	      <%= link_to "Accept", accept_user_team_path(m), method: :patch, class: "btn" %>
-
-	      </td>
-	  </tr>
+			<div class="col-sm-3">
+				<h4 class="bold no-margin">
+					<%= link_to m.user.full_name, user_path(m.user) %>
+				</h4>
+				<p class="small">
+					<small>
+						Name
+					</small>
+				</p>
+			</div>
+			<div class="col-sm-2">
+				<h4 class="bold no-margin">
+					<%= m.participant_classification %>
+				</h4>
+				<p class="small">
+					<small>
+						Name
+					</small>
+				</p>
+			</div>
+			<div class="col-sm-2">
+				<h4 class="bold no-margin">
+					<%= m.position %>
+				</h4>
+				<p class="small">
+					<small>
+						Position
+					</small>
+				</p>
+			</div>
+			<div class="col-sm-4">
+				<h4 class="bold no-margin">
+					<i class="text-grey fa fa-quote-left"></i>
+					<%= m.quote %>
+				</h4>
+				<p class="small">
+					<small>
+						Quote
+					</small>
+				</p>
+			</div>
+		</div>
+	</a>
+</li>

@@ -1,21 +1,20 @@
-		                  	<tr>
-			                    <td class="v-align-middle">
-			                    	<%= image_tag m.user.avatar, size: "50x50" %>
-			                    </td>
-			                    <td class="v-align-middle">
-			                    	<%= link_to m.user.full_name, user_path(m.user) %><br>
-			                    </td>
-			                     <td class="v-align-middle">
-			                    	<h5 class="semi-bold muted"></h4>
-			                    </td>
-			                    <td class="v-align-middle">
-                                 <%= m.head_title if m.head?%><br>
+<tr>
+    <td class="v-align-middle">
+    	<%= image_tag m.user.avatar, size: "50x50" %>
+    </td>
+    <td class="v-align-middle">
+    	<%= link_to m.user.full_name, user_path(m.user) %><br>
+    </td>
+     <td class="v-align-middle">
+    	<h5 class="semi-bold muted"></h4>
+    </td>
+    <td class="v-align-middle">
+     <%= m.head_title if m.head?%><br>
 
-			                    </td>
-			                    <td class="v-align-middle">
-                                 "Delete"<br>
+    </td>
+    <td class="v-align-middle">
+     "Delete"<br>
 
-			                    </td>
-			                </tr>
-							
-	                	
+    </td>
+</tr>
+

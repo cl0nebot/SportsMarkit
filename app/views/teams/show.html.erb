@@ -1,98 +1,370 @@
-<%= render 'shared/fan' %><br>
+<div class="content">
 
-<% if @team.school.present? %>
-  <%= @team.school.name %><br>
-<% end %>
+	<div class="page-header full-content parallax" style="height: 600px; overflow: hidden">
+		<div class="parallax-bg" style="background: url('http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg') 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
+		</div>
 
-<%= @team.name %><br>
-<%= @team.sport %>
+		<div class="profile-info">
+			<div class="profile-photo">
+				<img src="<%= image_path("placeholders/league.jpg") %>" alt="">
+			</div><!--.profile-photo-->
+			<div class="profile-text light capitalize">
+				<%= @team.name %>
+				<% if @team.school.present? %>
+				  	<span class="caption inline">
+				  		<%= @team.school.name %>
+				  	</span>
+				<% end %>
+				<br/>
+				<span class="caption"><span class="glyphicon glyphicon-map-marker"></span>
+				<%= @team.sport %></span>
+				
+			</div><!--.profile-text-->
+		</div><!--.profile-info-->
 
-	<div id="team-button">
-<% if current_user.relationships.where(team_id: @team.id).empty? %>
-  <%= render 'relationships/relationship'%>
-<% elsif current_user.relationships.where(team_id: @team.id, accepted: nil, rejected: nil).present? %>
-  <%= render 'relationships/pending'%>
-<% elsif current_user.relationships.where(team_id: @team.id, accepted: true).present? %>
-   <%= render 'relationships/member'%>
-   <%= link_to "Edit Profile", "/relationships/#{current_user.relationships.where(team_id: @team.id, accepted: true).last.slug}/edit"%>
-<% end %>
-	</div>
-	
-	<br><br>
-	<%= "Next Game: RHS vs. WHS"  %> <!-- # to come when we add events and calendar -->
-	
-	<br><br><br>
-	
-	Coaches
-	<table id="tag-list" class="table table-hover table-condensed" id="example">
-        <thead>
-          <tr>
-            <th style="width:40%" class="gf_muli">Image</th>
-            <th style="width:15%" class="gf_muli">Name</th>
-            <th style="width:20%" class="gf_muli"></th>
-            <th style="width:22%" class="gf_muli">Title</th>
-			<th style="width:22%" class="gf_muli">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-			<% @heads.each do |m| %>
+		<div class="social-buttons">
+			<%= render 'shared/fan' %>
+			<div id="team-button">
+				<% if current_user.relationships.where(team_id: @team.id).empty? %>
+				  <%= render 'relationships/relationship'%>
+				<% elsif current_user.relationships.where(team_id: @team.id, accepted: nil, rejected: nil).present? %>
+				  <%= render 'relationships/pending'%>
+				<% elsif current_user.relationships.where(team_id: @team.id, accepted: true).present? %>
+				   <%= render 'relationships/member'%>
+				   <%= link_to "/relationships/#{current_user.relationships.where(team_id: @team.id, accepted: true).last.slug}/edit" do %>
+					   <a class="btn btn-floating btn-grey">
+					   	<i class="ion-android-create"></i>
+					   </a>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
 
-			 <%= render 'head', m: m %>
+		<div class="row">
+			<div class="col-sm-6">
+				<h1>
+					<span class="fa fa-calendar m-r-5"></span>
+					Upcoming event 
+					<small>[event]</small>
+				</h1>
+			</div><!--.col-->
+			<div class="col-sm-6">
+				<ol class="breadcrumb">
+					<li><a href="/"><i class="ion-home"></i></a></li>
+					<li><a href="/leagues">Teams</a></li>
+					<% if @team.school.present? %>
+				  		<li><a href="#"><%= @team.school.name %></a></li>
+					<% end %>
+					<li><a href="#" class="active"><%= @team.name %></a></li>
+				</ol>
+			</div><!--.col-->
+		</div><!--.row-->
 
-			<% end %>
-            
-        </tbody>
-      </table>		
-	
-   
-Team
-<table id="tag-list" class="table table-hover table-condensed" id="example">
-       <thead>
-         <tr>
-           <th style="width:10%" class="gf_muli">Image</th>
-           <th style="width:15%" class="gf_muli">Name</th>
-           <th style="width:20%" class="gf_muli">Level</th>
-           <th style="width:22%" class="gf_muli">Position</th>
-		   <th style="width:22%" class="gf_muli">Quote</th>
-		<th style="width:22%" class="gf_muli">Actions</th>
-         </tr>
-       </thead>
-       <tbody>
-	 	<% @members.each do |m| %>
+		<div class="header-tabs scrollable-tabs sticky">
+			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+				<li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">About</a></li>
+				<li><a href="#roster" data-toggle="tab" class="btn-ripple">Roster</a></li>
+				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
+				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li>
+				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
+				<li><a href="#payments" data-toggle="tab" class="btn-ripple">Payments</a></li>
+				<li><a href="#admin" data-toggle="tab" class="btn-ripple">Admin</a></li>
+			</ul>
+		</div>
+	</div><!--.page-header-->
 
-	       <%= render 'member', m: m%>
-	  
-	    <% end %>
-           
-       </tbody>
-     </table>	
-	
-	
-	Pending Members
-	
-	<table id="tag-list" class="table table-hover table-condensed" id="example">
-	       <thead>
-	         <tr>
-	           <th style="width:10%" class="gf_muli">Image</th>
-	           <th style="width:15%" class="gf_muli">Name</th>
-	           <th style="width:20%" class="gf_muli"></th>
-	           <th style="width:22%" class="gf_muli"></th>
-			   <th style="width:22%" class="gf_muli"></th>
-			<th style="width:22%" class="gf_muli">Actions</th>
-	         </tr>
-	       </thead>
-	       <tbody>
-		 	<% @pending_members.each do |m| %>
+	<div class="row user-profile">
+		<div class="col-md-12">
+			<div class="tab-content without-border">
+				
+				<!-- about -->
+				<div id="about" class="tab-pane active">
+					Coaches
+					<table id="tag-list" class="table table-hover table-condensed" id="example">
+				        <thead>
+				          <tr>
+				            <th style="width:40%" class="gf_muli">Image</th>
+				            <th style="width:15%" class="gf_muli">Name</th>
+				            <th style="width:20%" class="gf_muli"></th>
+				            <th style="width:22%" class="gf_muli">Title</th>
+							<th style="width:22%" class="gf_muli">Actions</th>
+				          </tr>
+				        </thead>
+				        <tbody>
+							<% @heads.each do |m| %>
 
-		     <%= render 'pending', m: m%>	 
+							 <%= render 'head', m: m %>
 
-		    <% end %>
-           
-	       </tbody>
-	     </table>
-	
-	
-	
+							<% end %>
+				            
+				        </tbody>
+				      </table>	
+				</div>
+				<!--#about.tab-pane-->
 
+				<!-- roster -->
+				<div id="roster" class="tab-pane">
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel">
+								<div class="panel-heading">
+									<!-- <div class="panel-title"><h4>ALPHABET SORTING</h4></div> -->
+								</div><!--.panel-heading-->
+								<div class="panel-body">
+									<div class="overflow-table">
+										<table id="tag-list" class="display datatables-alphabet-sorting">
+											<thead>
+												<tr class="fs-16">
+													<th style="width:5%" class="gf_muli"></th>
+										           	<th style="width:15%" class="gf_muli">Name</th>
+										           	<th style="width:8%" class="gf_muli">Level</th>
+										           	<th style="width:8%" class="gf_muli">Position</th>
+												   	<th style="width:22%" class="gf_muli">Quote</th>
+													<th style="width:10%" class="gf_muli">Actions</th>
+												</tr>
+											</thead>
+											<tbody id="members">
+										 		<% @members.each do |m| %>
+										       		<%= render 'member', m: m%>
+										    	<% end %>
+									       </tbody>
+									   </table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--#roster.tab-pane-->
+
+				<!-- events -->
+				<div id="events" class="tab-pane">
+					
+				</div>
+				<!--#events.tab-pane-->
+
+				<!-- facilities -->
+				<div id="facilities" class="tab-pane">
+					<p class="text-right">
+						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-team">New Facility</button>
+					</p>
+
+					<hr/>
+					
+				</div>
+				<!--#facilities.tab-pane-->
+
+				<!-- media -->
+				<div id="media" class="tab-pane">
+					
+				</div>
+				<!--#media.tab-pane-->
+
+				<!-- payments -->
+				<div id="payments" class="tab-pane">
+					
+					
+				</div>
+				<!--#payments.tab-pane-->
+
+				<!-- admin -->
+				<div id="admin" class="tab-pane">
+
+					<div class="panel">
+						<div class="panel-heading">
+							<div class="panel-title">
+								<h4>
+									<span class="text-blue">
+										PENDING USERS
+									</span>
+								</h4>
+							</div>
+						</div><!--.panel-heading-->
+						<div class="panel-body without-padding">
+							<ul class="list-material has-hidden">
+								<li class="has-action-left">
+									<a href="#" class="hidden">
+										<i class="ion-checkmark-circled text-success"></i>
+									</a>
+									<a href="#" class="visible">
+										<div class="list-content row">
+											<div class="col-sm-1">
+												<img src="<%= image_path("placeholders/user.jpg") %>" class="face-radius" alt="" style="width: 55px; height: 55px;">
+											</div>
+
+											<div class="col-sm-3">
+												<h4 class="bold no-margin">
+													David Gibson
+												</h4>
+												<p class="small">
+													<small>
+														Name
+													</small>
+												</p>
+											</div>
+											<div class="col-sm-2">
+												<h4 class="bold no-margin">
+													Athlete
+												</h4>
+												<p class="small">
+													<small>
+														Name
+													</small>
+												</p>
+											</div>
+											<div class="col-sm-2">
+												<h4 class="bold no-margin">
+													Forward
+												</h4>
+												<p class="small">
+													<small>
+														Position
+													</small>
+												</p>
+											</div>
+											<div class="col-sm-4">
+												<h4 class="bold no-margin">
+													<i class="text-grey fa fa-quote-left"></i>
+													I was born Ready
+												</h4>
+												<p class="small">
+													<small>
+														Quote
+													</small>
+												</p>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="has-action-left">
+									<a href="#" class="hidden">
+										<i class="ion-checkmark-circled text-success"></i>
+									</a>
+									<a href="#" class="visible">
+										<div class="list-content row">
+											<div class="col-sm-1">
+												<img src="<%= image_path("placeholders/user.jpg") %>" class="face-radius" alt="" style="width: 55px; height: 55px;">
+											</div>
+
+											<div class="col-sm-3">
+												<h4 class="bold no-margin">
+													David Gibson
+												</h4>
+												<p class="small">
+													<small>
+														Name
+													</small>
+												</p>
+											</div>
+											<div class="col-sm-2">
+												<h4 class="bold no-margin">
+													Athlete
+												</h4>
+												<p class="small">
+													<small>
+														Name
+													</small>
+												</p>
+											</div>
+											<div class="col-sm-2">
+												<h4 class="bold no-margin">
+													Forward
+												</h4>
+												<p class="small">
+													<small>
+														Position
+													</small>
+												</p>
+											</div>
+											<div class="col-sm-4">
+												<h4 class="bold no-margin">
+													<i class="text-grey fa fa-quote-left"></i>
+													I was born Ready
+												</h4>
+												<p class="small">
+													<small>
+														Quote
+													</small>
+												</p>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="has-action-left">
+									<a href="#" class="hidden">
+										<i class="ion-checkmark-circled text-success"></i>
+									</a>
+									<a href="#" class="visible">
+										<div class="list-content row">
+											<div class="col-sm-1">
+												<img src="<%= image_path("placeholders/user.jpg") %>" class="face-radius" alt="" style="width: 55px; height: 55px;">
+											</div>
+
+											<div class="col-sm-3">
+												<h4 class="bold no-margin">
+													David Gibson
+												</h4>
+												<p class="small">
+													<small>
+														Name
+													</small>
+												</p>
+											</div>
+											<div class="col-sm-2">
+												<h4 class="bold no-margin">
+													Athlete
+												</h4>
+												<p class="small">
+													<small>
+														Name
+													</small>
+												</p>
+											</div>
+											<div class="col-sm-2">
+												<h4 class="bold no-margin">
+													Forward
+												</h4>
+												<p class="small">
+													<small>
+														Position
+													</small>
+												</p>
+											</div>
+											<div class="col-sm-4">
+												<h4 class="bold no-margin">
+													<i class="text-grey fa fa-quote-left"></i>
+													I was born Ready
+												</h4>
+												<p class="small">
+													<small>
+														Quote
+													</small>
+												</p>
+											</div>
+										</div>
+									</a>
+								</li>
+								<% @pending_members.each do |m| %>
+							     	<%= render 'pending', m: m%>
+							    <% end %>
+							</ul>
+						</div><!--.panel-body-->
+					</div><!--.panel-->
+				</div>
+				<!--#admin.tab-pane-->
+
+			</div><!--.tab-content-->
+		</div><!--.col-->
+	</div><!--.row-->
+
+	<%= render "shared/modals/boostrap_image_gallery_lightbox" %>
+
+</div><!--.content-->
+
+<%= render "shared/panels/new_team" %>
+
+	
+	
 
       			
