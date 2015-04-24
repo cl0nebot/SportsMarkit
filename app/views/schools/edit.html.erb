@@ -4,15 +4,15 @@
 			<div class="col-sm-6">
 				<h1 class="capitalize">
 					<%= @school.name %> 
-					<small>Edit Profile</small>
+					<small></small>
 				</h1>
 			</div><!--.col-->
 			<div class="col-sm-6">
 				<ol class="breadcrumb">
 					<li><a href="/"><i class="ion-home"></i></a></li>
-					<li><a href="/schools">Schools </a></li>
-					<li><a href="#"><%= @school.name %> </a></li>
-					<li><a href="#" class="active">Edit Profile</a></li>
+					<li><a href="<%= schools_path %>">Schools </a></li>
+					<li><a href="<%= school_path %>"><%= @school.name %> </a></li>
+					<li><a href="#" class="active">Edit</a></li>
 				</ol>
 			</div><!--.col-->
 		</div><!--.row-->
@@ -66,7 +66,7 @@
 								</div><!--.tab-pane-->
 							</div><!--.tab-content-->
 
-							<%= f.submit %>
+							<%= f.submit class: "btn btn-primary" %>
 
 						<% end %>
 

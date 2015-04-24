@@ -4,14 +4,15 @@
 			<div class="col-sm-6">
 				<h1 class="capitalize">
 					<%= current_user.full_name %> 
-					<small>Edit Profile</small>
+					<small></small>
 				</h1>
 			</div><!--.col-->
 			<div class="col-sm-6">
 				<ol class="breadcrumb">
 					<li><a href="/"><i class="ion-home"></i></a></li>
-					<li><a href="#"><%= current_user.full_name %> </a></li>
-					<li><a href="#" class="active">Edit Profile</a></li>
+					<li><a href="<%= users_path %>" class="active">all users</a></li>
+					<li><a href="<%= user_path %>"><%= current_user.full_name %> </a></li>
+					<li><a href="<%= edit_user_path %>" class="active">Edit</a></li>
 				</ol>
 			</div><!--.col-->
 		</div><!--.row-->
