@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429174842) do
+ActiveRecord::Schema.define(version: 20150429183304) do
 
   create_table "attendees", force: true do |t|
     t.integer  "event_id"
@@ -185,6 +185,16 @@ ActiveRecord::Schema.define(version: 20150429174842) do
   end
 
   add_index "schools", ["slug"], name: "index_schools_on_slug", unique: true, using: :btree
+
+  create_table "sport_photos", force: true do |t|
+    t.integer  "sport_id",   null: false
+    t.string   "photo"
+    t.string   "icon"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sport_photos", ["sport_id"], name: "index_sport_photos_on_sport_id", using: :btree
 
   create_table "sports", force: true do |t|
     t.string   "sport"
