@@ -6,7 +6,7 @@
 
 		<div class="profile-info">
 			<div class="profile-photo">
-				<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+				<img src="<%= image_path(@user.avatar) %>" alt="">
 			</div><!--.profile-photo-->
 			<div class="profile-text light capitalize">
 				<%= @user.full_name %>
@@ -25,7 +25,12 @@
 				<h1>
 					<i class="ion-calendar m-r-5"></i>
 					Upcoming event 
-					<small>[event]</small>
+					<small><% if @user.all_events.empty? %>
+						[<%= @user.next_event %>]
+						<% else %>
+						[<%= link_to @user.next_event, event_path(@user.all_events.first.friendly_id) %>]
+						<% end %>
+					</small>
 				</h1>
 			</div><!--.col-->
 			<div class="col-sm-6">
@@ -46,9 +51,9 @@
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
 				<li class="active"><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li>
 				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
-				<li><a href="#people" data-toggle="tab" class="btn-ripple">People</a></li>
+				<li><a href="#people" data-toggle="tab" class="btn-ripple">Teammates</a></li>
 				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
-				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilties</a></li>
+				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li>
 				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
 			</ul>
 		</div>
@@ -104,160 +109,24 @@
 					<div id="people" class="tab-pane">
 
 						<div class="row">
-
+    
+	                       <% @teammates.each do |teammate| %>
 							<div class="col-md-6">
 								<div class="card tile card-friend">
-									<%= image_tag("faces/1.jpg", class: "user-photo", alt: "") %>
+									<%= image_tag(teammate.avatar, class: "user-photo", alt: "") %>
 									<div class="friend-content">
-										<p class="title">Nicholas Murray</p>
-										<p><a href="#">180 friends</a></p>
+										<p class="title"><%= link_to teammate.full_name, user_path(teammate) %></p>
+										<p>
+										<% teammate.teams.each_with_index do |team, i| %>
+										<% count = i + 1 %>
+										<%= link_to team.name, team_path(team) %><%= count == teammate.teams.count ? "" : ","%>
+										<% end %>
+									</p>
 										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
 									</div><!--.friend-content-->
 								</div><!--.card-->
 							</div><!--.col-md-6-->
-
-							<div class="col-md-6">
-								<div class="card tile card-friend">
-									<%= image_tag("faces/2.jpg", class: "user-photo", alt: "") %>
-									<div class="friend-content">
-										<p class="title">Jason Herrera</p>
-										<p><a href="#">423 friends</a></p>
-										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
-									</div><!--.friend-content-->
-								</div><!--.card-->
-							</div><!--.col-md-6-->
-
-							<div class="col-md-6">
-								<div class="card tile card-friend">
-									<%= image_tag("faces/3.jpg", class: "user-photo", alt: "") %>
-									<div class="friend-content">
-										<p class="title">Michael Bell</p>
-										<p><a href="#">490 friends</a></p>
-										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
-									</div><!--.friend-content-->
-								</div><!--.card-->
-							</div><!--.col-md-6-->
-
-							<div class="col-md-6">
-								<div class="card tile card-friend">
-									<%= image_tag("faces/4.jpg", class: "user-photo", alt: "") %>
-									<div class="friend-content">
-										<p class="title">Henry Allen</p>
-										<p><a href="#">859 friends</a></p>
-										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
-									</div><!--.friend-content-->
-								</div><!--.card-->
-							</div><!--.col-md-6-->
-
-							<div class="col-md-6">
-								<div class="card tile card-friend">
-									<%= image_tag("faces/5.jpg", class: "user-photo", alt: "") %>
-									<div class="friend-content">
-										<p class="title">Nicholas Baker</p>
-										<p><a href="#">103 friends</a></p>
-										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
-									</div><!--.friend-content-->
-								</div><!--.card-->
-							</div><!--.col-md-6-->
-
-							<div class="col-md-6">
-								<div class="card tile card-friend">
-									<%= image_tag("faces/6.jpg", class: "user-photo", alt: "") %>
-									<div class="friend-content">
-										<p class="title">Vincent Gardner</p>
-										<p><a href="#">19 friends</a></p>
-										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
-									</div><!--.friend-content-->
-								</div><!--.card-->
-							</div><!--.col-md-6-->
-
-							<div class="col-md-6">
-								<div class="card tile card-friend">
-									<%= image_tag("faces/7.jpg", class: "user-photo", alt: "") %>
-									<div class="friend-content">
-										<p class="title">Henry Allen</p>
-										<p><a href="#">85 friends</a></p>
-										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
-									</div><!--.friend-content-->
-								</div><!--.card-->
-							</div><!--.col-md-6-->
-
-							<div class="col-md-6">
-								<div class="card tile card-friend">
-									<%= image_tag("faces/8.jpg", class: "user-photo", alt: "") %>
-									<div class="friend-content">
-										<p class="title">Walter George</p>
-										<p><a href="#">13 friends</a></p>
-										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
-									</div><!--.friend-content-->
-								</div><!--.card-->
-							</div><!--.col-md-6-->
-
-							<div class="col-md-6">
-								<div class="card tile card-friend">
-									<%= image_tag("faces/9.jpg", class: "user-photo", alt: "") %>
-									<div class="friend-content">
-										<p class="title">Lauren Grant</p>
-										<p><a href="#">1491 friends</a></p>
-										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
-									</div><!--.friend-content-->
-								</div><!--.card-->
-							</div><!--.col-md-6-->
-
-							<div class="col-md-6">
-								<div class="card tile card-friend">
-									<%= image_tag("faces/10.jpg", class: "user-photo", alt: "") %>
-									<div class="friend-content">
-										<p class="title">Ronald Ray</p>
-										<p><a href="#">393 friends</a></p>
-										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
-									</div><!--.friend-content-->
-								</div><!--.card-->
-							</div><!--.col-md-6-->
-
-							<div class="col-md-6">
-								<div class="card tile card-friend">
-									<%= image_tag("faces/11.jpg", class: "user-photo", alt: "") %>
-									<div class="friend-content">
-										<p class="title">Henry Allen</p>
-										<p><a href="#">85 friends</a></p>
-										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
-									</div><!--.friend-content-->
-								</div><!--.card-->
-							</div><!--.col-md-6-->
-
-							<div class="col-md-6">
-								<div class="card tile card-friend">
-									<%= image_tag("faces/12.jpg", class: "user-photo", alt: "") %>
-									<div class="friend-content">
-										<p class="title">Louis Willis</p>
-										<p><a href="#">99 friends</a></p>
-										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
-									</div><!--.friend-content-->
-								</div><!--.card-->
-							</div><!--.col-md-6-->
-
-							<div class="col-md-6">
-								<div class="card tile card-friend">
-									<%= image_tag("faces/13.jpg", class: "user-photo", alt: "") %>
-									<div class="friend-content">
-										<p class="title">Thomas Curtis</p>
-										<p><a href="#">466 friends</a></p>
-										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
-									</div><!--.friend-content-->
-								</div><!--.card-->
-							</div><!--.col-md-6-->
-
-							<div class="col-md-6">
-								<div class="card tile card-friend">
-									<%= image_tag("faces/14.jpg", class: "user-photo", alt: "") %>
-									<div class="friend-content">
-										<p class="title">Susan Willis</p>
-										<p><a href="#">343 friends</a></p>
-										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
-									</div><!--.friend-content-->
-								</div><!--.card-->
-							</div><!--.col-md-6-->
+							<% end %>
 
 						</div><!--.row-->
 					</div>
@@ -303,15 +172,15 @@
 										</div><!--.row-->
 										<div class="row">
 											<div class="col-md-3">Email</div><!--.col-md-3-->
-											<div class="col-md-9">info@teamfox.com</div><!--.col-md-9-->
+											<div class="col-md-9"><%= @user.email %></div><!--.col-md-9-->
 										</div><!--.row-->
 										<div class="row">
 											<div class="col-md-3">Facebook</div><!--.col-md-3-->
-											<div class="col-md-9">fb.com/teamfoxco</div><!--.col-md-9-->
+											<div class="col-md-9"><%= @user.profile.facebook %></div><!--.col-md-9-->
 										</div><!--.row-->
 										<div class="row">
 											<div class="col-md-3">Twitter</div><!--.col-md-3-->
-											<div class="col-md-9">twitter.com/teamfox</div><!--.col-md-9-->
+											<div class="col-md-9"><%= @user.profile.twitter %></div><!--.col-md-9-->
 										</div><!--.row-->
 
 										<div class="legend">Basic Information</div>
