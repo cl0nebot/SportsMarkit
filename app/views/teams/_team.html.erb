@@ -1,6 +1,6 @@
 <% @teams.each do |team| %>
 	<tr class="fs-16">
-		<td><%= team.name %></td>
+		<td><%= link_to team.name, team_path(team) %></td>
 		<td><%= team.sport %></td>
 	</tr>
 <% end %>
