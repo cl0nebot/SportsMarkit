@@ -1,0 +1,17 @@
+<%= form_for @sport do |f| %>
+
+<%= f.text_field :sport %><br>
+
+<%= f.submit %>
+
+
+<% end %>
+
+
+<% @sports.each do |sport| %>
+
+<%= sport.sport%>
+
+
+
+<% end %>
