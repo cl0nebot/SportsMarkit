@@ -48,6 +48,10 @@ class User < ActiveRecord::Base
   def all_events
     Event.where("(`eventable_id` = ? AND `events`.`eventable_type` = 'User') OR (id in (?))", id, attending_events)
   end
+  
+  def next_event
+    all_events.first.nil? ? "No upcoming events" : all_events.first.title
+  end
 
   def event_type_filters
     type_to_count = Hash.new(0)
