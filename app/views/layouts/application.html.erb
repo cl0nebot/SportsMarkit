@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 	<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 	<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -29,9 +28,8 @@
 		<script src="../../assets/globals/plugins/modernizr/modernizr.min.js"></script>
 		<%= csrf_meta_tags %>
 	</head>
-    <% if current_user %>
-	<%= render 'shared/navbar' %>
-	<% end %>
+    
+    <%= render 'shared/navbar' %>
 
 	<%= yield %>
 
@@ -41,15 +39,13 @@
 	<%= render "shared/panels/new_facility" %>
 	<%= render "shared/panels/new_league" %>
 
-
-
 	<!-- javascript -->
 	<%= javascript_include_tag 'application' %>
 
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 	
-	<% if current_user %>
+	<% unless params[:controller] = "sessions" %>
 	<%= render "shared/sidebar_nav" %>
 	<% end %>
 	
@@ -64,6 +60,7 @@
 		FormsTools.init();
 		FormsPickers.init();
 		FormsSelect.init();
+		ComingSoon.init();
 	});
 	</script>
 	<!-- END INITIALIZATION-->

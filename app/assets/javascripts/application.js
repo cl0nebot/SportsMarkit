@@ -55,12 +55,18 @@
 //= require pleasure/globals/plugins/quicksearch/dist/jquery.quicksearch.min
 //= require pleasure/globals/plugins/bootstrap-select/dist/js/bootstrap-select.min
 
+
+//= require pleasure/globals/plugins/jquery-backstretch/jquery.backstretch.min
+//= require pleasure/globals/plugins/jquery.countdown/dist/jquery.countdown.min
+
+
 // <!-- PLUGINS INITIALIZATION AND SETTINGS -->
 //= require pleasure/globals/scripts/user-pages
 //= require pleasure/globals/scripts/tables-datatables
 //= require pleasure/globals/scripts/forms-tools
 //= require pleasure/globals/scripts/forms-pickers
 //= require pleasure/globals/scripts/forms-select
+//= require pleasure/globals/scripts/coming-soon
 
 // <!-- PLEASURE -->
 //= require pleasure/globals/js/pleasure
@@ -71,4 +77,3 @@
 
 //= require moment
 //= require fullcalendar
-

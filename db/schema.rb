@@ -169,6 +169,8 @@ ActiveRecord::Schema.define(version: 20150429205543) do
     t.datetime "updated_at"
   end
 
+  add_index "relationships", ["slug"], name: "index_relationships_on_slug", unique: true, using: :btree
+
   create_table "schools", force: true do |t|
     t.string   "name"
     t.string   "classification"
