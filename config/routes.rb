@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :relationships
     resources :sitemap
     resources :sports
+    resources :certifications
     
     get 'auth/:provider/callback', to: "omniauth_callbacks#facebook"
     get 'auth/failure', to: redirect('/')
