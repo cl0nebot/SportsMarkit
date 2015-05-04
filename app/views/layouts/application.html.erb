@@ -29,9 +29,8 @@
 		<script src="../../assets/globals/plugins/modernizr/modernizr.min.js"></script>
 		<%= csrf_meta_tags %>
 	</head>
-    <% unless params[:controller] = "sessions" %>
-	<%= render 'shared/navbar' %>
-	<% end %>
+    
+    <%= render 'shared/navbar' %>
 
 	<%= yield %>
 
@@ -40,8 +39,6 @@
 	<%= render "shared/panels/new_team" %>
 	<%= render "shared/panels/new_facility" %>
 	<%= render "shared/panels/new_league" %>
-
-
 
 	<!-- javascript -->
 	<%= javascript_include_tag 'application' %>
