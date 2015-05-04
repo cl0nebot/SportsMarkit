@@ -29,8 +29,9 @@
 		<script src="../../assets/globals/plugins/modernizr/modernizr.min.js"></script>
 		<%= csrf_meta_tags %>
 	</head>
-
+    <% unless params[:controller] = "sessions" %>
 	<%= render 'shared/navbar' %>
+	<% end %>
 
 	<%= yield %>
 
@@ -48,7 +49,10 @@
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 	
+	<% unless params[:controller] = "sessions" %>
 	<%= render "shared/sidebar_nav" %>
+	<% end %>
+	
 
 	<!-- BEGIN INITIALIZATION-->
 	<script>
