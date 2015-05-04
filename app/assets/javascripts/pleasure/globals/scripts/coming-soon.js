@@ -2,7 +2,7 @@ var ComingSoon = {
 
 	bgImage: function () {
 		$('body').backstretch([
-			'../../assets/globals/img/picjumbo/large/3.jpg'
+			'http://www.download-hd-wallpapers.com/wp-content/uploads/2014/08/sports-backgrounds-for-pictures.jpg'
 		]);
 	},
 

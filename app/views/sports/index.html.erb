@@ -1,25 +1,72 @@
-<%= form_for @sport do |f| %>
+<div class="content">
+  <div class="page-header full-content bg-blue">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1>Add Sports<small></small></h1>
+      </div><!--.col-->
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="<%= schools_path %>" >Schools</a></li>
+          <li><a href="#" class="active">New</a></li>
+        </ol>
+      </div><!--.col-->
+    </div><!--.row-->
+  </div><!--.page-header-->
 
-<%= f.text_field :sport %><br>
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel">
+			<div class="panel-heading">
+				<div class="panel-title"><h4>Complete the form below. </h4></div>
+			</div><!--.panel-heading-->
+			<div class="panel-body">
 
-<%= f.fields_for :sport_photos do |s| %>
-<%= s.file_field :photo %><br>
-<%= s.file_field :icon %><br>
+				<%= form_for @sport do |f| %>
+
+					<div class="row example-row">
+						<div class="col-md-3">Sport </div><!--.col-md-3-->
+						<div class="col-md-9">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :sport, type: "text", class: "form-control", placeholder: ""%>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
 
 
-<% end %><br>
+					<%= f.fields_for :sport_photos do |s| %>
+						<%= s.file_field :photo %><br>
+						<%= s.file_field :icon %><br>
+					<% end %>
 
 
-<%= f.submit %>
+					<%= f.submit "Add Sport", class: "btn btn-blue" %>
+					<% end %>     
 
 
-<% end %>
+					<% @sports.each do |sport| %>
+
+						<%= sport.sport%>
+					<% end %>
+
+				</div><!--.row-->
+
+			</div><!--.panel-body-->
+		</div><!--.panel-->
+	</div><!--.col-md-12-->
+</div><!--.row-->
+
+</div>
+<%#= @id %>
+<%#= @class %>
 
 
-<% @sports.each do |sport| %>
-
-<%= sport.sport%>
 
 
 
-<% end %>
+
+
+
+
