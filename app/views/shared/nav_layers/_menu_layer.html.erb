@@ -112,11 +112,17 @@
 		</li>
 
 		<li>
+<<<<<<< HEAD
+			<%#= link_to session_path(current_user.id), method: :delete do %>
+				<!-- Logout &#32;&#32;<i class="ion-power m-l-5"></i> -->
+			<%# end %>
+=======
 			<% if current_user %>
 			<%= link_to session_path(current_user.id), method: :delete do %>
 				Logout &#32;&#32;<i class="ion-power m-l-5"></i>
 			<% end %>
 			<% end %>
+>>>>>>> origin/master
 		</li>
 		
 	</ul>
