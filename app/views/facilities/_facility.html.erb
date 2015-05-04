@@ -1,6 +1,6 @@
 <% @facilities.each do |facility| %>
 	<tr class="fs-16">
-		<td><span class="small"><%= facility.name %></span></td>
+		<td><span class="small"><%= link_to facility.name, facility_path(facility) %></span></td>
 		<td><span class="small"><%= facility.email %></span></td>
 		<td><span class="small"><%= facility.website %></span></td>
 		<td><span class="small"><%= facility.phone_number %></span></td>

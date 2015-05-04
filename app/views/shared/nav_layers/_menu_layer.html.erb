@@ -4,9 +4,9 @@
 			<a href="javascript:;">User</a>
 			<ul class="child-menu">
 				<li>
-					<%= link_to "User Profile", user_path(User.first) %>
+					<%= link_to "User Profile", user_path(current_user) %>
 				</li>
-				<li><%= link_to "User Edit", edit_user_path(User.first) %></li>
+				<li><%= link_to "User Edit", edit_user_path(current_user) %></li>
 				<li><%= link_to "Users Index", users_path %></li>
 			</ul>
 		</li>
@@ -15,7 +15,7 @@
 		<li>
 			<a href="javascript:;">Teams</a>
 			<ul class="child-menu">
-				<li><%= link_to "Team New", new_team_path(Team.first)%></li>
+				<li><%= link_to "Team New", new_team_path%></li>
 				<li>
 					<a href="#" data-toggle="modal" data-target="#panel-new-team">
 					New Team Panel Form</a>
@@ -33,7 +33,7 @@
 			<a href="javascript:;">School</a>
 			<ul class="child-menu">
 				<li>
-					<%= link_to "School New", new_school_path(School.first)%>
+					<%= link_to "School New", new_school_path %>
 				</li>
 				<li>
 					<a href="#" data-toggle="modal" data-target="#panel-new-school">
@@ -48,7 +48,7 @@
 					</li>
 				<% end %>
 				<li>
-					<%= link_to "Schools Index", schools_path(School.first)%>
+					<%= link_to "Schools Index", schools_path %>
 				</li>
 			</ul>
 		</li>
@@ -58,7 +58,7 @@
 			<a href="javascript:;">Facility</a>
 			<ul class="child-menu">
 				<li>
-					<%= link_to "Facility New", new_facility_path(Facility.first)%>
+					<%= link_to "Facility New", new_facility_path %>
 				</li>
 				<li>
 					<a href="#" data-toggle="modal" data-target="#panel-new-facility">
@@ -73,7 +73,7 @@
 					</li>
 				<% end %>
 				<li>
-					<%= link_to "Facilities Index", facilities_path(Facility.first)%>
+					<%= link_to "Facilities Index", facilities_path %>
 				</li>
 			</ul>
 		</li>
@@ -83,7 +83,7 @@
 			<a href="javascript:;">League</a>
 			<ul class="child-menu">
 				<li>
-					<%= link_to "League New", new_league_path(League.first)%>
+					<%= link_to "League New", new_league_path %>
 				</li>
 				<li>
 					<a href="#" data-toggle="modal" data-target="#panel-new-league">
@@ -94,7 +94,7 @@
 					<li><%= link_to "League Profile", league_path(League.first)%></li>
 				<% end %>
 				<li>
-					<%= link_to "Leagues Index", leagues_path(League.first)%>
+					<%= link_to "Leagues Index", leagues_path %>
 				</li>
 			</ul>
 		</li>
@@ -112,9 +112,17 @@
 		</li>
 
 		<li>
+<<<<<<< HEAD
 			<%#= link_to session_path(current_user.id), method: :delete do %>
 				<!-- Logout &#32;&#32;<i class="ion-power m-l-5"></i> -->
 			<%# end %>
+=======
+			<% if current_user %>
+			<%= link_to session_path(current_user.id), method: :delete do %>
+				Logout &#32;&#32;<i class="ion-power m-l-5"></i>
+			<% end %>
+			<% end %>
+>>>>>>> origin/master
 		</li>
 		
 	</ul>

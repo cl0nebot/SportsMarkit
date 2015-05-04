@@ -33,7 +33,7 @@
 				<%= @team.name %>
 				<% if @team.school.present? %>
 				  	<span class="caption inline">
-				  		<%= @team.school.name %>
+				  		<%= link_to @team.school.name, school_path(@team.school) %>
 				  	</span>
 				<% end %>
 				<br/>

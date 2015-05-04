@@ -1,0 +1,25 @@
+<%= form_for @sport do |f| %>
+
+<%= f.text_field :sport %><br>
+
+<%= f.fields_for :sport_photos do |s| %>
+<%= s.file_field :photo %><br>
+<%= s.file_field :icon %><br>
+
+
+<% end %><br>
+
+
+<%= f.submit %>
+
+
+<% end %>
+
+
+<% @sports.each do |sport| %>
+
+<%= sport.sport%>
+
+
+
+<% end %>
