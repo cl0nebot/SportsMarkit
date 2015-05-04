@@ -4,6 +4,7 @@ class SportsController < ApplicationController
   def index
     @sports = Sport.all
     @sport = Sport.new
+    @sport_photo = @sport.sport_photos.build
   end
   
   def create

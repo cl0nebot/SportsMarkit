@@ -2,7 +2,7 @@
 
 <%= f.text_field :sport %><br>
 
-<%= f.fields_for :sport_photos do |s| %>
+<%= f.fields_for :sport_photos, @sport_photo do |s| %>
 <%= s.file_field :photo %><br>
 <%= s.file_field :icon %><br>
 
