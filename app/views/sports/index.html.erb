@@ -17,7 +17,7 @@
 <div class="row">
 	
 	<div class="col-md-4">
-		<div class="panel">
+		<div class="edxpanel">
 			<div class="panel-heading">
 				<div class="panel-title"><h4>Complete the form below. </h4></div>
 			</div><!--.panel-heading-->
@@ -46,12 +46,29 @@
 </div>
 <%#= @id %>
 <%#= @class %>
+</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
 
 
+					<%= f.fields_for :sport_photos, @sport_photo do |s| %>
+						<%= s.file_field :photo %><br>
+						<%= s.file_field :icon %><br>
+					<% end %>
 
 
+					<%= f.submit "Add Sport", class: "btn btn-blue" %>
+					<% end %>     
 
 
+					<% @sports.each do |sport| %>
 
+						<%= sport.sport%>
+					<% end %>
 
+				</div><!--.row-->
 
+			</div><!--.panel-body-->
+		</div><!--.panel-->
+	</div><!--.col-md-12-->
+</div><!--.row-->
