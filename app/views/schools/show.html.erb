@@ -383,6 +383,27 @@
 				<!-- people -->
 				<div id="people" class="tab-pane">
 					
+						<div class="panel">
+							<div class="panel-heading">
+								<div class="panel-title">
+									<h4>
+										<i class="ion-clipboard"></i>
+										People
+									</h4>
+								</div>
+							</div><!--.panel-heading-->
+							<div class="panel-body without-padding">
+								<ul class="list-material has-hidden">
+									<% @people.each do |person| %>
+							       		<%= render 'person', person: person %>
+							    	<% end %>
+								</ul>
+							</div><!--.panel-body-->
+						</div><!--.panel-->
+					</div>
+					<!--#roster.tab-pane-->
+					
+					
 				</div>
 				<!--#people.tab-pane-->
 

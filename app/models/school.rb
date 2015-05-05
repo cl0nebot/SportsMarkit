@@ -32,4 +32,11 @@ class School < ActiveRecord::Base
     user_ids = rels.pluck(:user_id)
     users = User.where(id: user_ids)
   end
+  
+  def people
+    team_ids = teams.pluck(:id)
+    rels = Relationship.where(team_id: team_ids, accepted: true)
+    user_ids = rels.pluck(:user_id)
+    users = User.where(id: user_ids)
+  end
 end
