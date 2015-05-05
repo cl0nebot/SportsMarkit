@@ -30,7 +30,6 @@
 //= require pleasure/globals/plugins/strength/strength.min
 //= require pleasure/globals/plugins/indicator/indicator
 //= require pleasure/globals/plugins/pwstrength-bootstrap/dist/pwstrength-bootstrap-1.2.2.min
-//= require pleasure/globals/plugins/bootstrap-maxlength/bootstrap-maxlength.min
 //= require pleasure/globals/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min
 //= require pleasure/globals/plugins/jquery.inputmask/dist/jquery.inputmask.bundle
 //= require pleasure/globals/plugins/ipmask/jquery.input-ip-address-control.min
