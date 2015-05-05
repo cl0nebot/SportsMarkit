@@ -24,4 +24,8 @@ module ApplicationHelper
       end
     end
   end
+
+  def creator_name(user)
+    user == current_user ? "Me" : user.full_name
+  end
 end

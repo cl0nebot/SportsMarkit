@@ -26,6 +26,9 @@
 //= require pleasure/globals/plugins/datatables/themes/bootstrap/dataTables.bootstrap
 
 //= require pleasure/globals/plugins/handlebars/handlebars.min
+//= require pleasure/globals/plugins/bootstrap-maxlength/bootstrap-maxlength.js
+//= require pleasure/globals/plugins/clockface/js/clockface
+//= require pleasure/globals/plugins/selectize/dist/js/standalone/selectize.js
 
 //= require pleasure/globals/plugins/strength/strength.min
 //= require pleasure/globals/plugins/indicator/indicator
@@ -49,7 +52,6 @@
 
 
 //= require pleasure/globals/plugins/chosen/chosen.jquery.min
-//= require pleasure/globals/plugins/selectize/dist/js/standalone/selectize.min
 //= require pleasure/globals/plugins/multiselect/js/jquery.multi-select
 //= require pleasure/globals/plugins/quicksearch/dist/jquery.quicksearch.min
 
@@ -74,9 +76,8 @@
 // <!-- ADMIN 1 -->
 //= require pleasure/admin/js/layout
 
-
 //= require moment
 //= require fullcalendar
+//= require ./full_calendar
 //= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.googlemaps
-

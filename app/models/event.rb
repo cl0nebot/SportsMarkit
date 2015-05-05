@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   belongs_to :eventable, polymorphic: true
   belongs_to :user
   extend FriendlyId
-  friendly_id :use_for_slug, use: :slugged
+  friendly_id :use_for_slug, use: [:slugged, :finders]
   has_many :attendees
   
   has_one :event_facility

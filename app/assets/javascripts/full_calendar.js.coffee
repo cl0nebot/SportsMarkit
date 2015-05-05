@@ -1,4 +1,5 @@
 $(document).ready ->
+  currentSource = "calendar/events"
   $('#calendar').fullCalendar
     editable: true,
     header:
@@ -10,7 +11,7 @@ $(document).ready ->
     slotMinutes: 30,
 
     eventSources: [{
-      url: "calendar/events",
+      url: currentSource,
     }],
 
     timeFormat: 'h:mm t{ - h:mm t} ',
@@ -22,6 +23,20 @@ $(document).ready ->
     eventResize: (event, dayDelta, minuteDelta, revertFunc) ->
       updateEvent(event);
 
+  refetchCalendar = ->
+    source = "calendar/events?" + $('#calendar_filter').serialize()
+    $('#calendar').fullCalendar('removeEventSource', currentSource)
+    $('#calendar').fullCalendar('addEventSource', source)
+    $('#calendar').fullCalendar('refetchEvents')
+    currentSource = source
+
+  $('#calendar_filter').find('input').change ->
+    refetchCalendar()
+
+  $('#reset_filters').click ->
+    $('#calendar_filter').find('input').attr('checked', false)
+    refetchCalendar()
+    false
 
 updateEvent = (the_event) ->
   $.update "/events/" + the_event.id,

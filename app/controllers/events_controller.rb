@@ -26,7 +26,6 @@ class EventsController < ApplicationController
     @maybes = @event.attendees.where(maybe: true)
     @nos = @event.attendees.where(no: true)
     @json = @event.facility.to_gmaps4rails
-    
   end
   
   def edit
@@ -59,12 +58,7 @@ class EventsController < ApplicationController
     else
       @class = eval(params.keys[2].to_s.capitalize.split("_").first)
     end
-      
-    
     @id = params[params.keys.last]
-    
-    
-    
     @object = @class.friendly.find(@id)
   end
   

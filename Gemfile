@@ -40,6 +40,9 @@ group :development do
   gem "quiet_assets"
   gem 'pry-rails'
 end
+
+gem 'ransack'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
