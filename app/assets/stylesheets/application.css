@@ -39,8 +39,11 @@
  *= require pleasure/globals/plugins/multiselect/css/multi-select
  *= require pleasure/globals/plugins/bootstrap-select/dist/css/bootstrap-select.min
 
+ *= require pleasure/globals/plugins/jasny-bootstrap/dist/css/jasny-bootstrap.min
+
  *= require pleasure/globals/css/plugins
  *= require pleasure/custom
  
  *= require fullcalendar
  */
+\

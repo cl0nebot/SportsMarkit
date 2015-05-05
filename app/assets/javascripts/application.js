@@ -59,6 +59,8 @@
 //= require pleasure/globals/plugins/jquery-backstretch/jquery.backstretch.min
 //= require pleasure/globals/plugins/jquery.countdown/dist/jquery.countdown.min
 
+//= require pleasure/globals/plugins/jasny-bootstrap/dist/js/jasny-bootstrap.min
+
 
 // <!-- PLUGINS INITIALIZATION AND SETTINGS -->
 //= require pleasure/globals/scripts/user-pages

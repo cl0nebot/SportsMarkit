@@ -2,73 +2,131 @@
   <div class="page-header full-content bg-blue">
     <div class="row">
       <div class="col-sm-6">
-        <h1>Add Sports<small></small></h1>
+        <h1>Add a Sport<small></small></h1>
       </div><!--.col-->
       <div class="col-sm-6">
         <ol class="breadcrumb">
           <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="<%= schools_path %>" >Schools</a></li>
-          <li><a href="#" class="active">New</a></li>
+          <li><a href="#">Sports</a></li>
         </ol>
       </div><!--.col-->
     </div><!--.row-->
   </div><!--.page-header-->
 
 <div class="row">
+	<%= form_for @sport do |f| %>
 	
-	<div class="col-md-4">
-		<div class="edxpanel">
-			<div class="panel-heading">
-				<div class="panel-title"><h4>Complete the form below. </h4></div>
-			</div><!--.panel-heading-->
-			<div class="panel-body">
-				<%= form_for @sport do |f| %>
+		<div class="col-md-4">
+			<div class="edxpanel">
+				<div class="panel-heading">
+					<div class="panel-title"><h4>Add a Sport</h4></div>
+				</div><!--.panel-heading-->
+				<div class="panel-body">
 					<div class="row example-row">
-							<div class="col-md-3">Sport </div><!--.col-md-3-->
+						<div class="col-md-3">Sport </div><!--.col-md-3-->
+						<div class="col-md-9">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :sport, type: "text", class: "form-control", placeholder: ""%>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+						<div class="row example-row">
+							<div class="col-md-3">Photo</div><!--.col-md-3-->
 							<div class="col-md-9">
-								<div class="inputer">
-									<div class="input-wrapper">
-										<%= f.text_field :sport, type: "text", class: "form-control", placeholder: ""%>
+
+								<div class="fileinput fileinput-new" data-provides="fileinput">
+									<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+										<img data-src="<%= image_path("placeholders/sport.jpg") %>" src="<%= image_path("placeholders/sport.jpg") %>" alt="..." style="height: 100%; width: 100%;">
+									</div>
+									<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+									<div>
+										<span class="btn btn-default btn-file">
+											<span class="fileinput-new">Select image</span>
+											<span class="fileinput-exists">Change</span>
+											<input type="file" name="...">
+										</span>
+										<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
 									</div>
 								</div>
+
 							</div><!--.col-md-9-->
 						</div><!--.row-->
-					</div>
 
-					<%= f.submit "Add Sport", class: "btn btn-blue" %>
-				<% end %> 
+							<div class="row example-row">
+							<div class="col-md-3">Icon</div><!--.col-md-3-->
+							<div class="col-md-9">
+
+								<div class="fileinput fileinput-new" data-provides="fileinput">
+									<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+										<img data-src="<%= image_path("placeholders/sport.jpg") %>" src="<%= image_path("placeholders/sport.jpg") %>" alt="..." style="height: 100%; width: 100%;">
+									</div>
+									<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+									<div>
+										<span class="btn btn-default btn-file">
+											<span class="fileinput-new">Select image</span>
+											<span class="fileinput-exists">Change</span>
+											
+
+											<%= f.fields_for :sport_photos, @sport_photo do |s| %>
+												<%= s.file_field :photo, type: "file", name: "..." %>
+											<% end %>
+
+										</span>
+										<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+									</div>
+								</div>
+
+							</div><!--.col-md-9-->
+						</div><!--.row-->
+
+					<%= f.submit "Add Sport", class: "btn btn-block btn-blue" %>
+				</div>
 			</div>
 		</div>  
-	</div> 
-	
-</div><!--.row-->
 
+		<div class="col-md-8">
+			<div class="panel">
+				<div class="panel-heading">
+					<!-- <div class="panel-title"><h4>ALPHABET SORTING</h4></div> -->
+				</div><!--.panel-heading-->
+				<div class="panel-body">
+					<div class="overflow-table">
+						<table class="display datatables-alphabet-sorting">
+							<thead>
+								<tr class="fs-16">
+									<th>Sport</th>
+									<th width="30%">Photo</th>
+									<th width="30%">Icon</th>
+								</tr>
+							</thead>
+							<tbody id="schools">
+								<% @sports.each do |sport| %>
+									<tr>
+										<td>
+											<h1>
+												<%= sport.sport%>
+											</h1>
+										</td>
+										<td>
+											<%= image_tag("placeholders/sport.jpg", class: "img-responsive") %>
+										</td>
+										<td>
+											<%= image_tag("placeholders/sport.jpg", class: "img-responsive") %>
+										</td>
+									</tr>
+								<% end %>			
+							</tbody>
+						</table>
+					</div><!--.overflow-table-->
+
+				</div><!--.panel-body-->
+			</div><!--.panel-->
+		</div><!--.row-->
+	<% end %>			
 </div>
 <%#= @id %>
 <%#= @class %>
 </div>
-						</div><!--.col-md-9-->
-					</div><!--.row-->
-
-
-					<%= f.fields_for :sport_photos, @sport_photo do |s| %>
-						<%= s.file_field :photo %><br>
-						<%= s.file_field :icon %><br>
-					<% end %>
-
-
-					<%= f.submit "Add Sport", class: "btn btn-blue" %>
-					<% end %>     
-
-
-					<% @sports.each do |sport| %>
-
-						<%= sport.sport%>
-					<% end %>
-
-				</div><!--.row-->
-
-			</div><!--.panel-body-->
-		</div><!--.panel-->
-	</div><!--.col-md-12-->
-</div><!--.row-->
