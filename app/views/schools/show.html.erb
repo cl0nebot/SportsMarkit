@@ -26,7 +26,12 @@
 				<h1>
 					<i class="ion-calendar m-r-5"></i>
 					Upcoming event 
-					<small>[event]</small>
+					<small><% if @school.upcoming_events.empty? %>
+						[<%= @school.next_event %>]
+						<% else %>
+						[<%= link_to @school.next_event, event_path(@school.upcoming_events.first.friendly_id) %>]
+						<% end %>
+					</small>
 				</h1>
 			</div><!--.col-->
 			<div class="col-sm-6">
