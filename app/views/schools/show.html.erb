@@ -26,7 +26,12 @@
 				<h1>
 					<i class="ion-calendar m-r-5"></i>
 					Upcoming event 
-					<small>[event]</small>
+					<small><% if @school.upcoming_events.empty? %>
+						[<%= @school.next_event %>]
+						<% else %>
+						[<%= link_to @school.next_event, event_path(@school.upcoming_events.first.friendly_id) %>]
+						<% end %>
+					</small>
 				</h1>
 			</div><!--.col-->
 			<div class="col-sm-6">
@@ -401,35 +406,41 @@
 					</div><!--.panel-->
 				</div>
 				<!--#roster.tab-pane-->
-
+				
 				<!-- events -->
 				<div id="events" class="tab-pane">
-
+					
 					<% @events.each do |event| %>
 					
-					<%= link_to event.title,  "/events/#{event.slug}" %><br>
-					<%= event.event_type %>
-					<%= event.starts_at %><br>
-					<%= event.ends_at %><br>
-					
-					
+						<%= link_to event.title,  "/events/#{event.slug}" %><br>
+						<%= event.event_type %>
+						<%= event.starts_at %><br>
+						<%= event.ends_at %><br>
+
 					<% end %>
+					
 				</div>
 				<!--#events.tab-pane-->
 
 				<!-- facilities -->
 				<div id="facilities" class="tab-pane">
 					<p class="text-right">
-						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-team">New Facility</button>
+						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-facility">New Facility</button>
 					</p>
 
 					<hr/>
+					
+					<% @facilities.each do |facility| %>
+					
+					<%= link_to facility.name, "/facilities/#{facility.slug}" %>
+					
+					<% end %>
 				</div>
 				<!--#facilities.tab-pane-->
 
 				<!-- media -->
 				<div id="media" class="tab-pane">
-					
+
 				</div>
 				<!--#media.tab-pane-->
 				
