@@ -424,6 +424,12 @@
 					</p>
 
 					<hr/>
+					
+					<% @facilities.each do |facility| %>
+					
+					<%= link_to facility.name, "/facilities/#{facility.slug}" %>
+					
+					<% end %>
 				</div>
 				<!--#facilities.tab-pane-->
 
