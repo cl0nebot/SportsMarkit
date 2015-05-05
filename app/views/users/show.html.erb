@@ -107,25 +107,62 @@
 
 					<!-- people -->
 					<div id="people" class="tab-pane">
-
 						<div class="row">
-    
 	                       <% @teammates.each do |teammate| %>
-							<div class="col-md-6">
-								<div class="card tile card-friend">
-									<%= image_tag(teammate.avatar, class: "user-photo", alt: "") %>
-									<div class="friend-content">
-										<p class="title"><%= link_to teammate.full_name, user_path(teammate) %></p>
-										<p>
-										<% teammate.teams.each_with_index do |team, i| %>
-										<% count = i + 1 %>
-										<%= link_to team.name, team_path(team) %><%= count == teammate.teams.count ? "" : ","%>
-										<% end %>
-									</p>
-										<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
-									</div><!--.friend-content-->
+
+	                       <div class="col-md-4">
+								<div class="card card-user card-clickable card-clickable-over-content">
+									<div class="card-heading heading-full">
+										<div class="user-image sample-member9"></div>
+
+										<div class="clickable-button">
+											<div class="layer bg-green"></div>
+											<a class="btn btn-floating btn-green initial-position floating-open"><i class="ion-android-share-alt"></i></a>
+										</div>
+
+										<div class="layered-content bg-green">
+											<div class="overflow-content">
+												<h4>Follow Aleksio</h4>
+												<ul class="inline-list social-list borderless">
+													<li><a class="btn btn-facebook btn-ripple"><i class="ion-social-facebook"></i></a></li>
+													<li><a class="btn btn-twitter btn-ripple"><i class="ion-social-twitter"></i></a></li>
+													<li><a class="btn btn-googleplus btn-ripple"><i class="ion-social-googleplus"></i></a></li>
+												</ul>
+											</div><!--.overflow-content-->
+											<div class="clickable-close-button">
+												<a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
+											</div>
+										</div>
+
+									</div><!--.card-heading-->
+
+									<div class="card-body">
+										<h3 class="card-title">
+											<a href="#" class="capitalize">
+											<%= link_to teammate.full_name, user_path(teammate) %>
+											</a>
+										</h3>
+										<div class="subhead mb0">
+											Shared Teams:
+											<% teammate.teams.each_with_index do |team, i| %>
+												<% count = i + 1 %>
+												<%= link_to team.name, team_path(team) %><%= count == teammate.teams.count ? "" : ","%>
+											<% end %>
+										</div>
+									</div><!--.card-body-->
+
+									<div class="card-footer">
+										<a href="#" class="pull-left">
+											<small>
+										 		8 friends in common
+										 	</small>
+										 </a>
+										<button class="btn btn-xs btn-flat pull-right">Add as a Friend</button>
+									</div><!--.card-footer-->
+
 								</div><!--.card-->
-							</div><!--.col-md-6-->
+							</div><!--.col-md-4-->
+
 							<% end %>
 
 						</div><!--.row-->
@@ -140,6 +177,84 @@
 						</p>
 
 						<hr/>
+
+						<div class="row">
+
+							<div class="col-md-4">
+								<div class="card card-event card-clickable">
+
+									<div class="card-heading bg-image sample-bg-image13">
+									</div><!--.card-heading-->
+
+									<div class="card-body">
+										<div class="calendar">
+											<div class="month">November</div>
+											<div class="date">27</div>
+										</div><!--.calendar-->
+										<h4>Click Floating Button</h4>
+										<p>
+											A Social Networking group with an International mix of Young Professionals interested in meeting other like minded people for friendship / networking / partying at exclusive Members Clubs, Lounges &amp; Bars. Recommended age range is 21+.
+										</p>
+									</div><!--.card-body-->
+
+									<div class="clickable-button">
+										<div class="layer bg-red"></div>
+										<a class="btn btn-floating btn-red initial-position floating-open"><i class="ion-android-more-horizontal"></i></a>
+									</div>
+
+									<div class="layered-content bg-red">
+										<div class="overflow-content">
+											<h4>Young Professionals London</h4>
+											<p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
+											<p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</p>
+											<p>Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
+										</div><!--.overflow-content-->
+										<div class="clickable-close-button">
+											<a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
+										</div>
+									</div>
+
+								</div><!--.card-->
+							</div><!--.col-md-6-->
+
+							<div class="col-md-4">
+								<div class="card card-event card-clickable">
+
+									<div class="card-heading bg-image sample-bg-image13">
+									</div><!--.card-heading-->
+
+									<div class="card-body">
+										<div class="calendar">
+											<div class="month">November</div>
+											<div class="date">27</div>
+										</div><!--.calendar-->
+										<h4>Click Floating Button</h4>
+										<p>
+											A Social Networking group with an International mix of Young Professionals interested in meeting other like minded people for friendship / networking / partying at exclusive Members Clubs, Lounges &amp; Bars. Recommended age range is 21+.
+										</p>
+									</div><!--.card-body-->
+
+									<div class="clickable-button">
+										<div class="layer bg-red"></div>
+										<a class="btn btn-floating btn-red initial-position floating-open"><i class="ion-android-more-horizontal"></i></a>
+									</div>
+
+									<div class="layered-content bg-red">
+										<div class="overflow-content">
+											<h4>Young Professionals London</h4>
+											<p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
+											<p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</p>
+											<p>Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
+										</div><!--.overflow-content-->
+										<div class="clickable-close-button">
+											<a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
+										</div>
+									</div>
+
+								</div><!--.card-->
+							</div><!--.col-md-6-->
+
+						</div>
 
 					</div>
 					<!--#events.tab-pane-->
@@ -251,6 +366,110 @@
 
 					<!-- media -->
 					<div id="media" class="tab-pane">
+
+						<div class="row">
+						<div class="col-md-4">
+						<div class="card card-video card-video-modal card-player-teal">
+							<div class="bg-image sample-bg-image5"></div>
+
+							<div class="card-body">
+								<a href="#" class="play-button-container" data-toggle="modal" data-target="#videojs-modal-3">
+									<div class="play-button"></div>
+								</a>
+							</div><!--.card-body-->
+
+							<!-- In order to use different colors, write modal codes in card window -->
+							<!-- If you want the video starts automatically after modal window shown, use data-modal-autoplay="true" in video markup -->
+							<div class="modal fade video-js-modal" id="videojs-modal-3" tabindex="-1" role="dialog" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-body">
+											<video id="videojs5" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" poster="../../assets/globals/img/picjumbo/5.jpg">
+												<source src="http://video-js.zencoder.com/oceans-clip.mp4" type="video/mp4">
+												<source src="http://video-js.zencoder.com/oceans-clip.webm" type="video/webm">
+												<source src="http://video-js.zencoder.com/oceans-clip.ogv" type="video/ogg">
+												<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+											</video>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										</div>
+									</div>
+								</div>
+							</div><!--.modal-->
+							<!-- End of Modal -->
+
+						</div><!--.card-->
+						</div><!--.col-md-4-->
+
+						<div class="col-md-4">
+							<div class="card card-video card-video-modal card-player-teal">
+								<div class="bg-image sample-bg-image5"></div>
+
+								<div class="card-body">
+									<a href="#" class="play-button-container" data-toggle="modal" data-target="#videojs-modal-3">
+										<div class="play-button"></div>
+									</a>
+								</div><!--.card-body-->
+
+								<!-- In order to use different colors, write modal codes in card window -->
+								<!-- If you want the video starts automatically after modal window shown, use data-modal-autoplay="true" in video markup -->
+								<div class="modal fade video-js-modal" id="videojs-modal-3" tabindex="-1" role="dialog" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-body">
+												<video id="videojs5" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" poster="../../assets/globals/img/picjumbo/5.jpg">
+													<source src="http://video-js.zencoder.com/oceans-clip.mp4" type="video/mp4">
+													<source src="http://video-js.zencoder.com/oceans-clip.webm" type="video/webm">
+													<source src="http://video-js.zencoder.com/oceans-clip.ogv" type="video/ogg">
+													<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+												</video>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											</div>
+										</div>
+									</div>
+								</div><!--.modal-->
+								<!-- End of Modal -->
+
+							</div><!--.card-->
+						</div><!--.col-md-4-->
+
+						<div class="col-md-4">
+							<div class="card card-video card-video-modal card-player-teal">
+								<div class="bg-image sample-bg-image5"></div>
+
+								<div class="card-body">
+									<a href="#" class="play-button-container" data-toggle="modal" data-target="#videojs-modal-3">
+										<div class="play-button"></div>
+									</a>
+								</div><!--.card-body-->
+
+								<!-- In order to use different colors, write modal codes in card window -->
+								<!-- If you want the video starts automatically after modal window shown, use data-modal-autoplay="true" in video markup -->
+								<div class="modal fade video-js-modal" id="videojs-modal-3" tabindex="-1" role="dialog" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-body">
+												<video id="videojs5" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" poster="../../assets/globals/img/picjumbo/5.jpg">
+													<source src="http://video-js.zencoder.com/oceans-clip.mp4" type="video/mp4">
+													<source src="http://video-js.zencoder.com/oceans-clip.webm" type="video/webm">
+													<source src="http://video-js.zencoder.com/oceans-clip.ogv" type="video/ogg">
+													<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+												</video>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											</div>
+										</div>
+									</div>
+								</div><!--.modal-->
+								<!-- End of Modal -->
+
+							</div><!--.card-->
+						</div><!--.col-md-4-->
+					</div>
 
 					</div>
 					<!--#media.tab-pane-->
