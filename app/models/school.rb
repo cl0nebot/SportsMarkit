@@ -33,10 +33,20 @@ class School < ActiveRecord::Base
     users = User.where(id: user_ids)
   end
   
-  def people
-    team_ids = teams.pluck(:id)
+  def team_ids
+     teams.pluck(:id)
+  end
+  
+  def user_ids
     rels = Relationship.where(team_id: team_ids, accepted: true)
-    user_ids = rels.pluck(:user_id)
+    rels.pluck(:user_id)
+  end
+  
+  def people
     users = User.where(id: user_ids)
+  end
+  
+  def upcoming_events
+    Event.where(eventable_type: "Team", eventable_id: team_ids)
   end
 end
