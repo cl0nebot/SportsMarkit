@@ -406,19 +406,19 @@
 					</div><!--.panel-->
 				</div>
 				<!--#roster.tab-pane-->
-
+				
 				<!-- events -->
 				<div id="events" class="tab-pane">
-
+					
 					<% @events.each do |event| %>
 					
-					<%= link_to event.title,  "/events/#{event.slug}" %><br>
-					<%= event.event_type %>
-					<%= event.starts_at %><br>
-					<%= event.ends_at %><br>
-					
-					
+						<%= link_to event.title,  "/events/#{event.slug}" %><br>
+						<%= event.event_type %>
+						<%= event.starts_at %><br>
+						<%= event.ends_at %><br>
+
 					<% end %>
+					
 				</div>
 				<!--#events.tab-pane-->
 
@@ -440,7 +440,7 @@
 
 				<!-- media -->
 				<div id="media" class="tab-pane">
-					
+
 				</div>
 				<!--#media.tab-pane-->
 				
