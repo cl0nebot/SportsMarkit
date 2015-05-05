@@ -41,7 +41,7 @@ class SportsController < ApplicationController
   protected
   
   def sport_params
-    params.require(:sport).permit(:sport, sport_photos_attributes: [:icon, :photo])
+    params.require(:sport).permit(:sport,  sport_photos_attributes: [:id, :photo, :icon, :_destroy])
   end
   
   def find_sport

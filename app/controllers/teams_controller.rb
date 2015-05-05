@@ -40,6 +40,7 @@ class TeamsController < ApplicationController
   
   def show
     @members = @team.relationships.where(accepted: true)
+    @athletes = @team.relationships.where(accepted: true, head: false)
     @pending_members = @team.relationships.where(accepted: nil, rejected: nil)
     @heads = @team.relationships.where(accepted: true, head: true)
     @class = @team.class

@@ -6,6 +6,7 @@ class School < ActiveRecord::Base
   has_many :fans, as: :fannable
   #has_many :event_facilities, as: :reservable
   has_many :teams
+  has_many :facilities
   
   def gmaps4rails_address
   #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
@@ -24,5 +25,29 @@ class School < ActiveRecord::Base
   
   def city_and_state
     "#{city}-#{state}"
+  end
+  
+  def athletes
+    team_ids = teams.pluck(:id)
+    rels = Relationship.where(team_id: team_ids, accepted: true, participant: true)
+    user_ids = rels.pluck(:user_id)
+    users = User.where(id: user_ids)
+  end
+  
+  def team_ids
+     teams.pluck(:id)
+  end
+  
+  def user_ids
+    rels = Relationship.where(team_id: team_ids, accepted: true)
+    rels.pluck(:user_id)
+  end
+  
+  def people
+    users = User.where(id: user_ids)
+  end
+  
+  def upcoming_events
+    Event.where(eventable_type: "Team", eventable_id: team_ids)
   end
 end
