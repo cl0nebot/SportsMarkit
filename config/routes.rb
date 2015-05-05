@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     end
     
     resources :teams do
+      resources :events
       member do
         patch :accept_user
       end

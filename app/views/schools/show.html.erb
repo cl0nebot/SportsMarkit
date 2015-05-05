@@ -44,7 +44,7 @@
 				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
 				<li><a href="#people" data-toggle="tab" class="btn-ripple">People</a></li>
 				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
-				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilties</a></li>
+				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li>
 				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
 			</ul>
 		</div>
@@ -346,7 +346,7 @@
 								<div class="card card-meal card-meal-green card-square card-shadow">
 								<div class="card-heading">
 									<h3 class="card-title">
-										<%= link_to team.name, "teams/#{team.slug}" %>
+										<%= link_to team.name, "/teams/#{team.slug}" %>
 									</h3>
 									<div class="card-subhead">
 										By <a href="#"><%= team.sport %></a>
@@ -405,7 +405,15 @@
 				<!-- events -->
 				<div id="events" class="tab-pane">
 
-					dfgdfgd
+					<% @events.each do |event| %>
+					
+					<%= link_to event.title,  "/events/#{event.slug}" %><br>
+					<%= event.event_type %>
+					<%= event.starts_at %><br>
+					<%= event.ends_at %><br>
+					
+					
+					<% end %>
 				</div>
 				<!--#events.tab-pane-->
 
