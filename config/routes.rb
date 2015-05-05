@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :sessions
     resources :password_resets
     resources :schools do
+      resources :facilities
       resources :teams
     end
     
