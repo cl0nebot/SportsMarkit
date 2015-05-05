@@ -25,4 +25,11 @@ class School < ActiveRecord::Base
   def city_and_state
     "#{city}-#{state}"
   end
+  
+  def athletes
+    team_ids = teams.pluck(:id)
+    rels = Relationship.where(team_id: team_ids, accepted: true, participant: true)
+    user_ids = rels.pluck(:user_id)
+    users = User.where(id: user_ids)
+  end
 end
