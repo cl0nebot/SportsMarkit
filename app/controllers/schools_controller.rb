@@ -28,6 +28,7 @@ class SchoolsController < ApplicationController
     @class = @school.class
     @object = @school
     @teams = @school.teams
+    @athletes = @school.athletes
   end
   
   def edit;end
