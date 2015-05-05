@@ -275,7 +275,7 @@
 
 									<div class="row contact-us">
 										<div class="col-md-12">
-                      <%= gmaps4rails(@json) %>
+                      						<%= gmaps4rails(@json) %>
 										</div><!--.col-->
 
 										<br/>
@@ -382,30 +382,25 @@
 
 				<!-- people -->
 				<div id="people" class="tab-pane">
-					
-						<div class="panel">
-							<div class="panel-heading">
-								<div class="panel-title">
-									<h4>
-										<i class="ion-clipboard"></i>
-										People
-									</h4>
-								</div>
-							</div><!--.panel-heading-->
-							<div class="panel-body without-padding">
-								<ul class="list-material has-hidden">
-									<% @people.each do |person| %>
-							       		<%= render 'person', person: person %>
-							    	<% end %>
-								</ul>
-							</div><!--.panel-body-->
-						</div><!--.panel-->
-					</div>
-					<!--#roster.tab-pane-->
-					
-					
+					<div class="panel">
+						<div class="panel-heading">
+							<div class="panel-title">
+								<h4>
+									<i class="ion-clipboard"></i>
+									People
+								</h4>
+							</div>
+						</div><!--.panel-heading-->
+						<div class="panel-body without-padding">
+							<ul class="list-material has-hidden">
+								<% @people.each do |person| %>
+						       		<%= render 'person', person: person %>
+						    	<% end %>
+							</ul>
+						</div><!--.panel-body-->
+					</div><!--.panel-->
 				</div>
-				<!--#people.tab-pane-->
+				<!--#roster.tab-pane-->
 
 				<!-- events -->
 				<div id="events" class="tab-pane">
