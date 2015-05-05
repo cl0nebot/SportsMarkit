@@ -354,49 +354,21 @@
 								</div><!--.card-heading-->
 								<div class="card-body">
 									<div class="image">
-										<a href="#"><img src="http://themighty1290am.com/files/2015/01/FreeVector-Grunge-Basketball-Background.jpg" alt=""></a>
+										<a href="#"><%#= Sport.find_by_sport(team.sport).default_photo %></a>
 									</div><!--.image-->
 									<ul class="users">
+										<% @athletes.each do |athlete| %>
 										<li>
 											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-												<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
+												<%= image_tag athlete.avatar %>
 											</a>
 										</li>
-										<li>
-											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-												<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
-											</a>
-										</li>
-										<li>
-											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-												<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
-											</a>
-										</li>
-										<li>
-											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-												<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
-											</a>
-										</li>
-										<li>
-											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-												<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
-											</a>
-										</li>
-										<li>
-											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-												<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
-											</a>
-										</li>
-										<li>
-											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-												<img src="<%= image_path("placeholders/user.jpg") %>" alt="">
-											</a>
-										</li>
+										<% end %>
 									</ul>
 								</div><!--.card-body-->
 								<div class="card-footer">
 									<ul>
-										<li>1,378 Students</li>
+										<li><%= pluralize @athletes.count, "Athlete"%></li>
 										<li><a href="#">Join Them</a></li>
 									</ul>
 								</div><!--.card-footer-->
