@@ -6,6 +6,7 @@ class School < ActiveRecord::Base
   has_many :fans, as: :fannable
   #has_many :event_facilities, as: :reservable
   has_many :teams
+  has_many :facilities
   
   def gmaps4rails_address
   #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki

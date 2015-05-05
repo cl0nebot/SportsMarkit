@@ -31,6 +31,7 @@ class SchoolsController < ApplicationController
     @athletes = @school.athletes
     @people = @school.people
     @events = @school.upcoming_events
+    @facilities = @school.facilities
   end
   
   def edit;end

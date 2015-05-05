@@ -11,10 +11,12 @@ Rails.application.routes.draw do
     resources :sessions
     resources :password_resets
     resources :schools do
+      resources :facilities
       resources :teams
     end
     
     resources :teams do
+      resources :events
       member do
         patch :accept_user
       end
