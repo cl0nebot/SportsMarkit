@@ -1,14 +1,14 @@
 <div class="filters">
   <%= form_tag user_calendar_path(user_id: @user.id), method: :get, id: "calendar_filter", remote: true do %>
     <p>Event Type:</p>
-    <% @all_events.each do |e| %>
-      <label><%= e.event_type %>
-        <%= check_box_tag "q[event_type_in][]", e.event_type %>
+    <% @all_events.pluck(:event_type).uniq.each do |e_type| %>
+      <label><%= e_type %>
+        <%= check_box_tag "q[event_type_in][]", e_type %>
       </label>
     <% end %>
 
     <p>Created by:</p>
-    <% @all_events.map(&:user).uniq.each do |user| %>
+    <% @all_events.includes(:user).map(&:user).uniq.each do |user| %>
       <label><%= creator_name(user) %>
         <%= check_box_tag "q[user_id_in][]", user.id %>
       </label>

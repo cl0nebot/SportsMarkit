@@ -2,7 +2,7 @@ class CalendarsController < ApplicationController
   before_action :set_user
 
   def show
-    @all_events = @user.all_events.includes(:user)
+    @all_events = @user.all_events
   end
 
   def events
