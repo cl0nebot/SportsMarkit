@@ -36,4 +36,10 @@ class Event < ActiveRecord::Base
     Time.parse(date_time).to_formatted_s(:db)
   end
 
+  def reservation=(val)
+    starts, ends = val.split('-')
+    self.starts_at = Time.strptime(starts.strip, '%m/%d/%Y %H:%M %P')
+    self.ends_at = Time.strptime(ends.strip, '%m/%d/%Y %H:%M %P')
+  end
+
 end
