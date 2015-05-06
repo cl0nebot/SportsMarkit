@@ -94,7 +94,7 @@
 									</div><!--.card-heading-->
 									<div class="card-body">
 										<div class="image">
-											<a href="#"><img src="http://themighty1290am.com/files/2015/01/FreeVector-Grunge-Basketball-Background.jpg" alt=""></a>
+											<a href="#"><%= image_tag Sport.find_by_sport(team.sport).try(:default_photo)%></a>
 										</div><!--.image-->
 									</div><!--.card-body-->
 									</div><!--.card-->
