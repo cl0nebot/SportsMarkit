@@ -41,5 +41,9 @@ class Event < ActiveRecord::Base
     self.starts_at = Time.strptime(starts.strip, '%m/%d/%Y %H:%M %P')
     self.ends_at = Time.strptime(ends.strip, '%m/%d/%Y %H:%M %P')
   end
+  
+  def people_that_are_going
+    attendees.where(yes: true)
+  end
 
 end

@@ -5,6 +5,7 @@ class SportsController < ApplicationController
     @sports = Sport.all
     @sport = Sport.new
     @sport_photo = @sport.sport_photos.build
+    @sport_icon = @sport.sport_icons.build
   end
   
   def create
@@ -41,7 +42,7 @@ class SportsController < ApplicationController
   protected
   
   def sport_params
-    params.require(:sport).permit(:sport,  sport_photos_attributes: [:id, :photo, :icon, :_destroy])
+    params.require(:sport).permit(:sport,  sport_photos_attributes: [:id, :photo, :_destroy], sport_icons_attributes: [:id, :icon, :_destroy])
   end
   
   def find_sport

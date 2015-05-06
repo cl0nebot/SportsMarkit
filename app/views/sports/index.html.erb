@@ -33,10 +33,10 @@
 						</div><!--.col-md-9-->
 					</div><!--.row-->
 
-          <%= f.fields_for :sport_photos, @sport_photo do |s| %>
+          <%= f.fields_for :sport_icons, @sport_icon do |s| %>
 
 						<div class="row example-row">
-							<div class="col-md-3">Photo</div><!--.col-md-3-->
+							<div class="col-md-3">Icon</div><!--.col-md-3-->
 							<div class="col-md-9">
 
 								<div class="fileinput fileinput-new" data-provides="fileinput">
@@ -56,9 +56,13 @@
 
 							</div><!--.col-md-9-->
 						</div><!--.row-->
+						
+						<% end %>
+						
+			<%= f.fields_for :sport_photos, @sport_photo do |s| %>
 
             <div class="row example-row">
-              <div class="col-md-3">Icon</div><!--.col-md-3-->
+              <div class="col-md-3">Photo</div><!--.col-md-3-->
               <div class="col-md-9">
 
                 <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -108,10 +112,10 @@
 											</h1>
 										</td>
 										<td>
-											<%= image_tag(sport.sport_photos.first.photo, class: "img-responsive") %>
+											<%= image_tag(sport.sport_photos.first.try(:photo), class: "img-responsive") %>
 										</td>
 										<td>
-											<%= image_tag(sport.sport_photos.first.icon, class: "img-responsive") %>
+											<%= image_tag(sport.sport_icons.first.try(:icon), class: "img-responsive") %>
 										</td>
 									</tr>
 								<% end %>			
