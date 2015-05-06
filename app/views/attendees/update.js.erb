@@ -1,8 +1,23 @@
-$('#attendee-buttons').empty();
-<% if @attendee.yes? %>
-	$('#attendee-buttons').append("<%= j render 'attendees/yes' %>");	
-<% elsif @attendee.maybe?  %>
-    $('#attendee-buttons').append("<%= j render 'attendees/maybe' %>");
-<% elsif @attendee.no?  %>
-    $('#attendee-buttons').append("<%= j render 'attendees/no' %>");
+<% if params[:action] == "show" %>
+	
+	$('#attendee-buttons').empty();
+	<% if @attendee.yes? %>
+		$('#attendee-buttons').append("<%= j render 'attendees/yes' %>");	
+	<% elsif @attendee.maybe?  %>
+	    $('#attendee-buttons').append("<%= j render 'attendees/maybe' %>");
+	<% elsif @attendee.no?  %>
+	    $('#attendee-buttons').append("<%= j render 'attendees/no' %>");
+	<% end %>
+
+<% else %>
+
+	$('#attendee-buttons-<%= @event.id %>').empty();
+	<% if @attendee.yes? %>
+		$('#attendee-buttons-<%= @event.id %>').append("<%= j render 'attendees/yes_index', event: @event %>");	
+	<% elsif @attendee.maybe?  %>
+	    $('#attendee-buttons-<%= @event.id %>').append("<%= j render 'attendees/maybe_index', event: @event %>");
+	<% elsif @attendee.no?  %>
+	    $('#attendee-buttons-<%= @event.id %>').append("<%= j render 'attendees/no_index', event: @event %>");
+	<% end %>
+
 <% end %>
