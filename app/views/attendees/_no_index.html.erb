@@ -4,7 +4,7 @@
 			  <%= f.hidden_field :yes, value: true %>
 			  <%= f.hidden_field :maybe, value: false %>
 			  <%= f.hidden_field :no, value: false %>
-			  <%= f.submit "Attend", type: "button", class: "btn btn-green btn-flat" %>
+			  <%= f.submit "Attend", class: "btn btn-green btn-flat" %>
 		  <% end %>
 		  
 		  <%= form_for @user.attendances.where(event_id: event.id).last, html: {method: :patch, remote: true } do |f| %>
@@ -13,7 +13,7 @@
 			  <%= f.hidden_field :yes, value: false %>
 			  <%= f.hidden_field :maybe, value: true %>
 			  <%= f.hidden_field :no, value: false %>
-			  <%= f.submit "Maybe", type: "button", class: "btn btn-orange btn-flat" %>
+			  <%= f.submit "Maybe", class: "btn btn-orange btn-flat" %>
 		  <% end %>
 		  
 		  <%= form_for @user.attendances.where(event_id: event.id).last, html: {method: :patch, remote: true } do |f| %>

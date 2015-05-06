@@ -403,30 +403,30 @@ var FormsSelect = {
 	},
 
 	init: function () {
-		this.chosenSelect();
-		this.chosenSelectNoSingle();
-
-		this.selectize();
-		this.selectizeRemove();
-		this.selectizeSortable();
-		this.selectizeHeader();
-		this.selectizeProgrammatic();
-		this.selectizeColumns();
-		this.selectizeContacts();
-		this.selectizeCustomization();
-		this.selectizeState();
-		this.selectizeRemote();
-		this.selectizeDisabled();
-		this.selectizeRtl();
-
-		this.multiSelect();
-		this.multiSelectCallbacks();
-		this.multiSelectOptionGroups();
-		this.multiSelectHeaders();
-		this.multiSelectSearchable();
-		this.multiSelectMethods();
-
-		this.bootstrapSelect();
+//		this.chosenSelect();
+//		this.chosenSelectNoSingle();
+//
+//		this.selectize();
+//		this.selectizeRemove();
+//		this.selectizeSortable();
+//		this.selectizeHeader();
+//		this.selectizeProgrammatic();
+//		this.selectizeColumns();
+//		this.selectizeContacts();
+//		this.selectizeCustomization();
+//		this.selectizeState();
+//		this.selectizeRemote();
+//		this.selectizeDisabled();
+//		this.selectizeRtl();
+//
+//		this.multiSelect();
+//		this.multiSelectCallbacks();
+//		this.multiSelectOptionGroups();
+//		this.multiSelectHeaders();
+//		this.multiSelectSearchable();
+//		this.multiSelectMethods();
+//
+//		this.bootstrapSelect();
 	}
 }
 

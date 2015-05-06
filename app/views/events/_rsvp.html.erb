@@ -1,8 +1,10 @@
 <div id="attendee-buttons">
-<%= current_user.attendances.where(event_id: @event.id, yes: true).last.present? %>
+  <div id="attendee-buttons-<%=@event.id %>">
+
+   <%= current_user.attendances.where(event_id: @event.id, yes: true).last.present? %>
 
    <% if current_user.attendances.where(event_id: @event.id).empty? %>
-      
+
 	  <%= render 'attendees/attendee' %>	  
    
    <% elsif current_user.attendances.where(event_id: @event.id, yes: true).last.present? %>
@@ -17,7 +19,8 @@
 		  
 	   <%= render 'attendees/no'%>
 		  
-<% end %>
+  <% end %>
+  </div>
 </div>
 		  
 		

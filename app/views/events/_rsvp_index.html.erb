@@ -20,11 +20,11 @@
 		  <%= f.hidden_field :event_id, value: event.id %>
 		  <%= f.hidden_field :no, value: true %>
 		  <%= f.submit "Decline", class: "btn btn-red btn-flat" %>
-	  <% end %>	  
+	  <% end %>
 
    <% elsif @user.attendances.where(event_id: event.id, yes: true).last.present? %>
 
-	  <%= render 'attendees/yes_index', event: event %>	  
+	  <%= render 'attendees/yes_index', event: event %>
 
    <% elsif @user.attendances.where(event_id: event.id, maybe: true).last.present? %>
 
@@ -36,5 +36,4 @@
 
 <% end %>
 
-		  
-						
+
