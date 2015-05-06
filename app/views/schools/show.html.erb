@@ -293,7 +293,9 @@
 											<h2 class="text-center">Contact</h2>
 										</div><!--.col-->
 										<div class="col-md-9 col-sm-12">
-											<p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
+											<p>
+												Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.
+											</p>
 										</div><!--col-->
 									</div><!--.row-->
 
@@ -359,7 +361,7 @@
 								</div><!--.card-heading-->
 								<div class="card-body">
 									<div class="image">
-										<a href="#"><%= image_tag Sport.find_by_sport(team.sport).try(:default_photo) %></a>
+										<a href="#"><%#= Sport.find_by_sport(team.sport).default_photo %></a>
 									</div><!--.image-->
 									<ul class="users">
 										<% @athletes.each do |athlete| %>
