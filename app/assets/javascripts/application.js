@@ -27,7 +27,7 @@
 
 
 //= require pleasure/globals/plugins/bootstrap-maxlength/bootstrap-maxlength.js
-//= require pleasure/globals/plugins/clockface/js/clockface
+
 //= require pleasure/globals/plugins/selectize/dist/js/standalone/selectize.js
 
 //= require pleasure/globals/plugins/strength/strength.min
