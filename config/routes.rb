@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       end
     end
     resources :facilities
-    resources :leagues
+    resources :leagues 
     resources :fans
     resources :attendees
     resources :relationships

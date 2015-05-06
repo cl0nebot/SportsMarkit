@@ -19,7 +19,11 @@ class Team < ActiveRecord::Base
       "#{name} #{self.school.name if self.school} #{sport}"
     end
   end
-  
+
+  def all_events
+    events
+  end
+
   def upcoming_events
     Event.where(eventable_type: "Team", eventable_id: id)
   end
@@ -33,6 +37,5 @@ class Team < ActiveRecord::Base
     facility_ids = team_facilities.pluck(:facility_id)
     Facility.where(id: facility_ids)
   end
-  
   
 end

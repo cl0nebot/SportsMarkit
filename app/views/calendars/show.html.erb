@@ -1,5 +1,5 @@
 <div class="filters">
-  <%= form_tag user_calendar_path(user_id: @user.id), method: :get, id: "calendar_filter", remote: true do %>
+  <%= form_tag "", method: :get, id: "calendar_filter", remote: true do %>
     <p>Event Type:</p>
     <% @all_events.pluck(:event_type).uniq.each do |e_type| %>
       <label><%= e_type %>
