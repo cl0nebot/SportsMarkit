@@ -23,8 +23,6 @@
 			<% end %>
 		</div>
 
-
-
 		<div class="profile-info">
 			<div class="profile-photo">
 				<img src="<%= image_path(Sport.find_by_sport(@team.sport).try(:default_photo)) %>" alt="">
@@ -66,7 +64,6 @@
 					<% end %>
 					<li><a href="#" class="active"><%= @team.name %></a></li>
 				</ol>
-
 			</div><!--.col-->
 		</div><!--.row-->
 

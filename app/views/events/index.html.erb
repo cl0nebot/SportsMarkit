@@ -33,20 +33,31 @@
 						<div class="month">May</div>
 						<div class="date">13</div>
 					</div><!--.calendar-->
-					<br/>
-					<h4><%= event.title %></h4>
-					<p class="small text-grey">
+					<h4 style="margin-bottom: 0;"><%= event.title %></h4>
+					<h5 class="text-grey">
+						<%= event.event_type %>
+					</h5>
+					<h5 class="h6 text-orange bold">
+						<%= format(event.starts_at, 4) %>
+						<%= format(event.starts_at, 8) %>
+						- 
+						<%= format(event.ends_at, 4) %>
+						<%= format(event.ends_at, 8) %>
+					</h5>
+					<p class="small caption">
 						<small>
-							<%= event.description %>
+							Created By: 
+							<%= link_to event.user.full_name, user_path(event.user) %>
 						</small>
 					</p>
+					
 				</div><!--.card-body-->
 
 				<div class="card-footer">
 					<div class="btn-group btn-merged btn-group-sm pull-right">
 						
-						<div id="attendee-buttons-<%= event.id %>">
-						<%= render 'events/rsvp_index', event: event %>
+						<div class="attendee_buttons" id="attendee-buttons-<%= event.id %>">
+							<%= render 'events/rsvp_index', event: event %>
 					    </div>
 					
 					</div>

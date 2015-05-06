@@ -3,23 +3,35 @@
 
    <%= current_user.attendances.where(event_id: @event.id, yes: true).last.present? %>
 
-   <% if current_user.attendances.where(event_id: @event.id).empty? %>
+      <div class="btn-group">
 
-	  <%= render 'attendees/attendee' %>	  
-   
-   <% elsif current_user.attendances.where(event_id: @event.id, yes: true).last.present? %>
-      
-	  <%= render 'attendees/yes'%>	  
-   
-   <% elsif current_user.attendances.where(event_id: @event.id, maybe: true).last.present? %>
+        <% if current_user.attendances.where(event_id: @event.id).empty? %>
 
-      <%= render 'attendees/maybe'%>
+    	    <div class="inline">
+            <%= render 'attendees/attendee' %>	  
+          </div>
+       
+        <% elsif current_user.attendances.where(event_id: @event.id, yes: true).last.present? %>
+          
+    	   <div class="inline">
+            <%= render 'attendees/yes'%>	  
+          </div>
+       
+        <% elsif current_user.attendances.where(event_id: @event.id, maybe: true).last.present? %>
 
-   <% elsif current_user.attendances.where(event_id: @event.id, no: true).last.present? %>
-		  
-	   <%= render 'attendees/no'%>
-		  
-  <% end %>
+          <div class="inline">
+            <%= render 'attendees/maybe'%>
+          </div>
+
+        <% elsif current_user.attendances.where(event_id: @event.id, no: true).last.present? %>
+    		  
+    	     <div class="inline">
+            <%= render 'attendees/no'%>
+          </div>
+
+       </div>
+  		  
+    <% end %>
   </div>
 </div>
 		  
