@@ -9,6 +9,7 @@ class Facility < ActiveRecord::Base
   has_many :fans, as: :fannable
   has_many :event_facilities
   has_many :events, through: :event_facilities
+  has_many :team_facilities
   
   def gmaps4rails_address
   #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
@@ -45,6 +46,11 @@ class Facility < ActiveRecord::Base
   
   def full_address
     
+  end
+  
+  def all_teams
+    team_ids = TeamFacility.where(facility_id: id).pluck(:team_id)
+    teams = Team.where(id: team_ids)
   end
   
 end

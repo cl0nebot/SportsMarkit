@@ -27,8 +27,9 @@
 
 		<%= csrf_meta_tags %>
 	</head>
-    
+    <% if current_user %>
     <%= render 'shared/navbar' %>
+	<% end %>
 
 	<%= yield %>
 
@@ -44,7 +45,7 @@
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 	
-	<% unless params[:controller] = "sessions" %>
+	<% if current_user %>
 	<%= render "shared/sidebar_nav" %>
 	<% end %>
 	

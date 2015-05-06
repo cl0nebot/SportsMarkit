@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       end
       member do
         patch :accept_user
+        post :add_facility
       end
     end
     resources :facilities
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
     resources :sitemap
     resources :sports
     resources :certifications
+    resources :team_facilities
     
     get 'auth/:provider/callback', to: "omniauth_callbacks#facebook"
     get 'auth/failure', to: redirect('/')

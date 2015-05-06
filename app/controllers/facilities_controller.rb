@@ -43,6 +43,7 @@ class FacilitiesController < ApplicationController
     @json = @facility.to_gmaps4rails
     @class = @facility.class
     @object = @facility
+    @teams = @facility.all_teams
   end
   
   def edit

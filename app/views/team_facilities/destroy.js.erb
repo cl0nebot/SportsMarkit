@@ -1,0 +1,4 @@
+$('#team-facility-<%= @facility.id %>').empty();
+$('#team-facility-<%= @facility.id %>').append("<%= j render 'team_facilities/add', facility: @facility, team: @team %>");
+$('#team-facility-list').empty();
+$('#team-facility-list').append("<%= j render 'teams/facilities', facilities: @facilities %>");

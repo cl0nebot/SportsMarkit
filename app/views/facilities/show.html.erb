@@ -14,8 +14,17 @@
 			<div class="profile-text light capitalize">
 				<%= @facility.name %>
 				<span class="caption">
-					<%= @facility.address_1 %><br>
-					<%= @facility.city %>, <%= @facility.state %>
+					<% if @facility.school.present? %>
+					  <%= @facility.school.name %><br>
+					  <%= @facility.school.address_1 %><br>
+					  <%= @facility.school.city %>, <%= @facility.school.state %>
+					
+					<% else %>
+					
+					  <%= @facility.address_1 %><br>
+					  <%= @facility.city %>, <%= @facility.state %>
+					
+					<% end %>
 				</span>
 			</div><!--.profile-text-->
 		</div><!--.profile-info-->
@@ -48,7 +57,7 @@
 				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
 				<li><a href="#people" data-toggle="tab" class="btn-ripple">People</a></li>
 				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
-				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilties</a></li>
+				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li>
 				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
 			</ul>
 		</div>
@@ -141,7 +150,12 @@
 
 				<!-- teams -->
 				<div id="teams" class="tab-pane">
-
+                  
+				  <% @teams.each do |team| %>
+				  
+				  <%= team.name %>
+				  
+				  <% end %>
 					
 				</div>
 				<!--#teams.tab-pane-->

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505175615) do
+ActiveRecord::Schema.define(version: 20150506012234) do
 
   create_table "attendees", force: true do |t|
     t.integer  "event_id"
@@ -79,7 +79,6 @@ ActiveRecord::Schema.define(version: 20150505175615) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "school_id"
-    t.integer  "team_id"
   end
 
   add_index "facilities", ["slug"], name: "index_facilities_on_slug", unique: true, using: :btree
@@ -171,6 +170,8 @@ ActiveRecord::Schema.define(version: 20150505175615) do
     t.datetime "updated_at"
   end
 
+  add_index "relationships", ["slug"], name: "index_relationships_on_slug", unique: true, using: :btree
+
   create_table "schools", force: true do |t|
     t.string   "name"
     t.string   "classification"
@@ -207,6 +208,13 @@ ActiveRecord::Schema.define(version: 20150505175615) do
 
   create_table "sports", force: true do |t|
     t.string   "sport"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "team_facilities", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "facility_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

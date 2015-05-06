@@ -9,9 +9,16 @@
 					<div class="col-md-12">
 						<div class="panel">
 							<div class="panel-heading">
-								<div class="panel-title"><h4>Complete the form below. </h4></div>
+								<% unless params[:controller] == "teams" %>
+								  <div class="panel-title"><h4>Complete the form below. </h4></div>
+								<% else %>
+								  <div class="panel-title"><h4>Select Your Facility Below </h4></div>
+								<% end %>
+								
 							</div><!--.panel-heading-->
 							<div class="panel-body">
+								
+								<% unless params[:controller] == "teams" %>
 
 								<%= form_for Facility.new, html: {id: 'facility-form', data: {remote: true}} do |f|   %>
 					
@@ -151,7 +158,37 @@
 			<div class="modal-footer">
 				<%= f.submit "Create Facility", class: "btn btn-blue" %>
 			</div>
-			<% end %>			
+			<% end %>
+			
+			<% else %>
+			
+			<% if params[:controller] == "show" %>
+					<% @team.school.facilities.each do |facility| %>
+					<%= facility.name %>
+					<div id="team-facility-<%= facility.id %>">
+				
+						<% unless @team.team_facilities.where(facility_id: facility.id).present? %>
+			 
+						   <%= render 'team_facilities/add', facility: facility, team: @team %>
+			  
+						<% else %>
+				
+						<% @team.team_facilities.where(facility_id: facility.id).each do |tf| %>
+						  <%= render 'team_facilities/remove', tf: tf %>
+						<% end %>
+  			  
+		            <% end %>
+		  <% end %>
+				
+			
+			
+			
+		    </div>
+			  <% end %>
+			
+			
+			<% end %>
+						
 		</div>
 	</div>
 </div><!--.modal-->
