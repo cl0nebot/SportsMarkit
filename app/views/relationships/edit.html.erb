@@ -1,24 +1,104 @@
-<%= @user.full_name %>
+<div class="content">
+  <div class="page-header full-content bg-blue">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1>Team Managment<small></small></h1>
+      </div><!--.col-->
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="#" class="active">[user name]</a></li>
+          <li><a href="#" class="active">[events index]</a></li>
+          <li><a href="#" class="active">[new]</a></li>
+        </ol>
+      </div><!--.col-->
+    </div><!--.row-->
+  </div><!--.page-header-->
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel">
+        
+        <div class="panel-body">
+
+        	<br/>
+
+          	<%= form_for @relationship do |f| %>
+    
+
+          	<% if @relationship.head? %>
+	          	<div class="row example-row">
+		            <div class="col-md-3">Title</div><!--.col-md-3-->
+		            <div class="col-md-9">
+		              <div class="inputer">
+		                <div class="input-wrapper">
+
+		                  <%= f.text_field :head_title, type: "text", class: "form-control", placeholder: ""%>
+		                </div>
+		              </div>
+		            </div><!--.col-md-9-->
+		        </div><!--.row-->
+			<% end %>
 
 
+			<!-- event title -->
+	        <div class="row example-row">
+	            <div class="col-md-3">Athlete</div><!--.col-md-3-->
+	            <div class="col-md-9">
+	              <div class="inputer">
+	                <div class="input-wrapper">
 
-<%= form_for @relationship do |f| %>
-
-
-
-<% if @relationship.head? %>
-Title: <%= f.text_field :head_title %><br>
-<% end %>
-
-Athlete <%= f.check_box :participant %><br>
-
-Classification: <%= f.text_field :participant_classification %> <br>
-
-Position: <%= f.text_field :position %> <br>
-
-Say Something: <%= f.text_field :quote %><br><br>
-
-<%= f.submit %>
+	                  <%= f.text_field :participant_classification, type: "text", class: "form-control", placeholder: ""%>
+	                </div>
+	              </div>
+	            </div><!--.col-md-9-->
+	        </div><!--.row-->
 
 
-<% end %>
+          <!-- event type -->
+          <div class="row example-row">
+            <div class="col-md-3">Favorite Quote</div><!--.col-md-3-->
+            <div class="col-md-9">
+              <div class="inputer">
+                <div class="input-wrapper">
+                  <%= f.text_field :quote, type: "text", class: "form-control", placeholder: "" %>
+                </div>
+              </div>
+            </div><!--.col-md-9-->
+          </div><!--.row-->
+          
+
+          <!-- event type -->
+          <div class="row example-row">
+            <div class="col-md-3">Team Position</div><!--.col-md-3-->
+            <div class="col-md-9">
+            	<div class="input-wrapper">
+                  <%= f.text_field :position, type: "text", class: "form-control", placeholder: "" %>
+                </div>
+            </div><!--.col-md-9-->
+          </div><!--.row-->
+          <!-- event checkbox options -->
+
+           <!-- event type -->
+          <div class="row example-row">
+            <div class="col-md-3">Active Status</div><!--.col-md-3-->
+              <div class="col-md-9">
+                <div class="clearfix margin-bottom-10">
+                  <div class="checkboxer form-inline">
+                    <%= f.check_box :participant %>
+                    <label for="relationship_participant"></label>
+                  </div>
+                </div>
+            </div><!--.col-md-9-->
+          </div><!--.row-->
+
+
+        </div><!--.panel-body-->
+      </div><!--.panel-->
+    </div><!--.col-md-12-->
+  </div><!--.row-->
+  <%= f.submit "Update Relationships", class: "btn btn-blue pull-right" %>
+  <% end %>     
+</div>
+<%#= @id %>
+<%#= @class %>

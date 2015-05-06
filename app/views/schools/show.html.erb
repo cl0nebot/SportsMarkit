@@ -122,63 +122,41 @@
 				<!-- teams -->
 				<div id="teams" class="tab-pane">
 
-					<p class="text-right">
-						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-team">New Team</button>
-					</p>
+					<div class="panel">
+						<div class="panel-body without-padding">
+							<ul class="list-material">
+								
+								<% @teams.each do |team| %>
 
-					<hr/>
+									<li class="has-action-left has-action-right">
+										<a href="#" class="visible">
+											<div class="list-action-left">
+												<i class="ion-university icon-circle"></i>
+											</div>
+											<div class="list-content">
+												<span class="title">
+													<%= link_to team.name, "/teams/#{team.slug}" %>
+												</span>
+												<span class="caption">Basketball</span>
+											</div>
+											<div class="list-action-right">
+												<span class="top">15 min</span>
+												<i class="ion-android-done bottom"></i>
+											</div>
+										</a>
+									</li>
 
-					<div class="row masonry">
-						<% @teams.each do |team| %>
-							<div class="col-md-4">
-								<div class="card card-meal card-meal-green card-square card-shadow">
-								<div class="card-heading">
-									<h3 class="card-title">
-										<%= link_to team.name, "/teams/#{team.slug}" %>
-									</h3>
-									<div class="card-subhead">
-										By <a href="#"><%= team.sport %></a>
-									</div><!--.card-subhead-->
-								</div><!--.card-heading-->
-								<div class="card-body">
-									<div class="image">
-										<a href="#"><%= image_tag Sport.find_by_sport(team.sport).try(:default_photo) %></a>
-									</div><!--.image-->
-									<ul class="users">
-										<% @athletes.each do |athlete| %>
-										<li>
-											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-												<%= image_tag athlete.avatar %>
-											</a>
-										</li>
-										<% end %>
-									</ul>
-								</div><!--.card-body-->
-								<div class="card-footer">
-									<ul>
-										<li><%= pluralize @athletes.count, "Athlete"%></li>
-										<li><a href="#">Join Them</a></li>
-									</ul>
-								</div><!--.card-footer-->
-								</div><!--.card-->
-							</div><!--.col-md-4-->
-						<% end %>
-					</div><!--.row-->
+								<% end %>
 
+							</ul>
+						</div><!--.panel-body-->
+					</div><!--.panel-->
 				</div>
 				<!--#teams.tab-pane-->
 
 				<!-- people -->
 				<div id="people" class="tab-pane">
 					<div class="panel">
-						<div class="panel-heading">
-							<div class="panel-title">
-								<h4>
-									<i class="ion-clipboard"></i>
-									People
-								</h4>
-							</div>
-						</div><!--.panel-heading-->
 						<div class="panel-body without-padding">
 							<ul class="list-material has-hidden">
 								<% @people.each do |person| %>
@@ -194,12 +172,52 @@
 				<div id="events" class="tab-pane">
 					
 					<% @events.each do |event| %>
-					
-						<%= link_to event.title,  "/events/#{event.slug}" %><br>
-						<%= event.event_type %>
-						<%= event.starts_at %><br>
-						<%= event.ends_at %><br>
 
+						<div class="col-md-4">
+						<div class="card card-event">
+							<div class="card-heading bg-image sample-bg-image12">
+							</div><!--.card-heading-->
+
+							<div class="card-body">
+								<div class="calendar">
+									<div class="month">May</div>
+									<div class="date">13</div>
+								</div><!--.calendar-->
+								
+								<%= link_to event.title,  "/events/#{event.slug}" do %>
+									<h4 style="margin-bottom: 0;"><%= event.title %></h4>
+								<% end %>
+								
+								<h5 class="text-grey">
+									<%= event.event_type %>
+								</h5>
+								<h5 class="h6 text-orange bold">
+									<%= format(event.starts_at, 4) %>
+									<%= format(event.starts_at, 8) %>
+									- 
+									<%= format(event.ends_at, 4) %>
+									<%= format(event.ends_at, 8) %>
+								</h5>  	
+								<p class="small caption">
+									<small>
+										Created By: 
+										<%= link_to event.user.full_name, user_path(event.user) %>
+									</small>
+								</p>
+								
+							</div><!--.card-body-->
+
+							<div class="card-footer">
+								<div class="btn-group btn-merged btn-group-sm pull-right">
+									
+									<div class="attendee_buttons" id="attendee-buttons-<%= event.id %>">
+										<%= render 'events/rsvp_index', event: event %>
+								    </div>
+								
+								</div>
+							</div><!--.card-footer-->
+						</div><!--.card-->
+						</div><!--.col-md-6-->
 					<% end %>
 					
 				</div>
@@ -207,12 +225,6 @@
 
 				<!-- facilities -->
 				<div id="facilities" class="tab-pane">
-					<p class="text-right">
-						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-facility">New Facility</button>
-					</p>
-
-					<hr/>
-					
 					<% @facilities.each do |facility| %>
 					
 					<%= link_to facility.name, "/facilities/#{facility.slug}" %>
