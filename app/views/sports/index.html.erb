@@ -32,12 +32,8 @@
 							</div>
 						</div><!--.col-md-9-->
 					</div><!--.row-->
-
-<<<<<<< HEAD
-			          <%= f.fields_for :sport_photos, @sport_photo do |s| %>
-=======
-          <%= f.fields_for :sport_icons, @sport_icon do |s| %>
->>>>>>> origin/master
+			        <%= f.fields_for :sport_photos, @sport_photo do |s| %>
+          			<%= f.fields_for :sport_icons, @sport_icon do |s| %>
 
 						<div class="row example-row">
 							<div class="col-md-3">Icon</div><!--.col-md-3-->
@@ -63,9 +59,7 @@
 						
 						<% end %>
 						
-			<%= f.fields_for :sport_photos, @sport_photo do |s| %>
-
-<<<<<<< HEAD
+						<%= f.fields_for :sport_photos, @sport_photo do |s| %>
 			            <div class="row example-row">
 			                <div class="col-md-3">Icon</div><!--.col-md-3-->
 			                <div class="col-md-9">
@@ -86,7 +80,6 @@
 		            <% end %>
 		              </div><!--.col-md-9-->
 		          </div><!--.row-->
-=======
             <div class="row example-row">
               <div class="col-md-3">Photo</div><!--.col-md-3-->
               <div class="col-md-9">

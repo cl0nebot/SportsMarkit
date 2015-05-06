@@ -27,7 +27,7 @@
 
 		<div class="profile-info">
 			<div class="profile-photo">
-				<img src="<%= image_path(Sport.find_by_sport(@team.sport).default_photo) %>" alt="">
+				<img src="<%= image_path(Sport.find_by_sport(@team.sport).try(:default_photo)) %>" alt="">
 			</div><!--.profile-photo-->
 			<div class="profile-text light capitalize">
 				<%= @team.name %>
