@@ -17,17 +17,15 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
   
   # user profile
-  has_one :profile
+  has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile, :reject_if => :all_blank, :allow_destroy => true
-  has_many :user_profile_pictures #TODO dependent destroy?
+  has_many :user_profile_pictures, dependent: :destroy
   accepts_nested_attributes_for :user_profile_pictures, :reject_if => :all_blank, :allow_destroy => true
-  
-  has_many :user_profile_pictures #TODO dependent destroy?
-  
+
   has_many :fans, as: :fannable
   has_many :events, as: :eventable
   
-  has_many :relationships
+  has_many :relationships, dependent: :destroy
   has_many :teams, through: :relationships
   
   has_many :attendees
