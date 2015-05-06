@@ -27,7 +27,7 @@
 
 		<div class="profile-info">
 			<div class="profile-photo">
-				<img src="<%= image_path("placeholders/league.jpg") %>" alt="">
+				<img src="<%= image_path(Sport.find_by_sport(@team.sport).default_photo) %>" alt="">
 			</div><!--.profile-photo-->
 			<div class="profile-text light capitalize">
 				<%= @team.name %>
@@ -48,7 +48,12 @@
 				<h1>
 					<i class="ion-calendar m-r-5"></i>
 					Upcoming event 
-					<small>[event]</small>
+					<small><% if @team.upcoming_events.empty? %>
+						[<%= @team.next_event %>]
+						<% else %>
+						[<%= link_to @team.next_event, event_path(@team.upcoming_events.first.friendly_id) %>]
+						<% end %>
+					</small>
 				</h1>
 			</div><!--.col-->
 			<div class="col-sm-6">
@@ -130,6 +135,16 @@
 
 				<!-- events -->
 				<div id="events" class="tab-pane">
+					
+					<% @events.each do |event| %>
+					
+					<%= link_to event.title,  "/events/#{event.slug}" %><br>
+					<%= event.event_type %>
+					<%= event.starts_at %><br>
+					<%= event.ends_at %><br>
+					
+					
+					<% end %>
 					
 				</div>
 				<!--#events.tab-pane-->
