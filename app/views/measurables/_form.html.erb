@@ -1,0 +1,49 @@
+<div id='measure-<%= m.fake_id %>' style='margin-bottom: 20px; display: block; float: left; width: 100%;'>
+  <%= form_for [u, m], remote: true do |f| %>
+    <div class="col-md-12">
+      <div class="row example-row">
+        <div class="col-md-12">Sport </div><!--.col-md-3-->
+        <div class="col-md-12">
+          <div class="inputer">
+            <div class="input-wrapper">
+              <%= f.text_field :sport, class: "form-control", placeholder: ""   %>
+            </div>
+          </div>
+        </div><!--.col-md-9-->
+      </div>
+      <div class="row example-row">
+        <div class="col-md-12">Measurable </div><!--.col-md-3-->
+        <div class="col-md-12">
+          <div class="inputer">
+            <div class="input-wrapper">
+              <%= f.text_field :measurable, class: "form-control", placeholder: ""   %>
+            </div>
+          </div>
+        </div><!--.col-md-9-->
+      </div>
+      <div class="row example-row">
+        <div class="col-md-12">Result </div><!--.col-md-3-->
+        <div class="col-md-12">
+          <div class="inputer">
+            <div class="input-wrapper">
+              <%= f.text_field :result, class: "form-control", placeholder: ""   %>
+            </div>
+          </div>
+        </div><!--.col-md-9-->
+      </div><!--.row-->
+    </div>
+    <div class="col-md-12">
+      <%= f.hidden_field :user_id %>
+      <% if m.persisted? %>
+        <%= f.submit "Update", class: "btn btn-large btn-blue" %>
+        <button class="btn btn-large btn-blue">
+          <%= link_to "Remove", measurable_path(m), method: :delete, remote: :true %>
+        </button>
+      <% else %>
+        <%= f.submit "Create", class: "btn btn-large btn-blue" %>
+        <%= f.hidden_field :fake_id %>
+        <button class="btn btn-large btn-blue remove-form">Remove</button>
+      <% end %>
+    </div>
+  <% end %>
+</div>

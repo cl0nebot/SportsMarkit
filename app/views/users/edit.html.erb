@@ -483,7 +483,35 @@ input.form-control {font-size: 26px; line-height: 30px;}
 		<%= f.submit "Update", class: "btn btn-large btn-blue pull-right" %>
 
 	<% end %>
+    </br>
+    </br>
+    <div class="col-md-12">
+      <div class='col-md-3'></div>
+      <div class="col-md-9">
+        <div class='row'>
+          <div class="panel">
+            <div class="panel-body">
+              <div class="tab-content with-panel transparent">
+                <div class="tab-pane active text-style" id="general">
+                  <div class="panel-body">
+                    <h4 class="pull-right">Measurables</h4>
+                    </br>
+                    </br>
+                    <%= button_to "Add Measure", new_user_measurable_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue pull-right' %>
 
+                    <div id="measures">
+                      <% @user.measurables.each do |m| %>
+                        <%= render 'measurables/form', m: m, u: @user %>
+                    <% end %>
+                    </div>
+                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
 </div>
 <!--.content-->
                         

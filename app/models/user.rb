@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   
   has_many :attendees
   has_many :classifications
-  
+  has_many :measurables
   
   def self.user_types
     ["Athlete", "Parent", "Coach", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]  

@@ -7,7 +7,10 @@ Rails.application.routes.draw do
       resource :calendar do
         get :events, on: :member
       end
+      resources :measurables
     end
+
+    resources :measurables
     resources :events
     resources :sessions
     resources :password_resets
