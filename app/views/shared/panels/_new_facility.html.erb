@@ -159,25 +159,26 @@
 				<%= f.submit "Create Facility", class: "btn btn-blue" %>
 			</div>
 			<% end %>
+			
 			<% else %>
 			
-			<% @team.school.facilities.each do |facility| %>
-			<%= facility.name %>
-			<div id="team-facility-<%= facility.id %>">
+			<% if params[:controller] == "show" %>
+					<% @team.school.facilities.each do |facility| %>
+					<%= facility.name %>
+					<div id="team-facility-<%= facility.id %>">
 				
-				<% unless @team.team_facilities.where(facility_id: facility.id).present? %>
+						<% unless @team.team_facilities.where(facility_id: facility.id).present? %>
 			 
-				   <%= render 'team_facilities/add', facility: facility, team: @team %>
+						   <%= render 'team_facilities/add', facility: facility, team: @team %>
 			  
-				<% else %>
+						<% else %>
 				
-				<% @team.team_facilities.where(facility_id: facility.id).each do |tf| %>
-				  <%= render 'team_facilities/remove', tf: tf %>
-				<% end %>
+						<% @team.team_facilities.where(facility_id: facility.id).each do |tf| %>
+						  <%= render 'team_facilities/remove', tf: tf %>
+						<% end %>
   			  
-				   
-  			
-				<% end %>
+		            <% end %>
+		  <% end %>
 				
 			
 			
