@@ -29,9 +29,12 @@ class User < ActiveRecord::Base
   has_many :teams, through: :relationships
   
   has_many :attendees
+  has_many :classifications
   
-  USER_TYPES = ["Athlete", "Parent", "Coach", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]
   
+  def self.user_types
+    ["Athlete", "Parent", "Coach", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]  
+  end
   
   def follows
     Fan.where(user_id: id)

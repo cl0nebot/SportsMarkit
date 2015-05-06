@@ -98,6 +98,10 @@ class UsersController < ApplicationController
     @purchases = @user.purchase
   end
   
+  def setup
+    @user = User.friendly.find(params[:user_id])
+  end
+  
   protected
   
   def user_params

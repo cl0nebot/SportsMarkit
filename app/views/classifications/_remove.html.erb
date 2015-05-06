@@ -1,0 +1,2 @@
+<%= type %>
+<%= link_to "Remove", user.classifications.where(classification: type).last, method: :delete, remote: true, class: "btn" %><br>
