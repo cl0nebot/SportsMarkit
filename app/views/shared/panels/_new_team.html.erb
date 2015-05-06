@@ -13,6 +13,7 @@
 							</div><!--.panel-heading-->
 							<div class="panel-body">
 
+
 								<%= form_for Team.new, url: teams_path, method: :post do |f| %>
 
 									<div class="row example-row">
@@ -21,6 +22,9 @@
 										<div class="inputer">
 											<div class="input-wrapper">
 												<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
+												<% if params[:controller]== "schools" %>
+												  <%= f.hidden_field :school_id, value: @school.id %>									
+												<% end %>
 											</div>
 										</div>
 									</div><!--.col-md-9-->
@@ -31,7 +35,7 @@
 									<div class="col-md-9">
 										<div class="inputer">
 											<div class="input-wrapper">
-												<%= f.text_field :sport, type: "text", class: "form-control", placeholder: ""%>
+												<%= f.select :sport, Sport.pluck(:sport), :class => 'selecter', :prompt => 'Select One' %>
 											</div>
 										</div>
 									</div><!--.col-md-9-->
