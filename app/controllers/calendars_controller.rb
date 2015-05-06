@@ -1,12 +1,12 @@
 class CalendarsController < ApplicationController
-  before_action :set_user
+  before_filter :set_eventable
 
   def show
-    @all_events = @user.all_events
+    @all_events = @eventable.all_events
   end
 
   def events
-    @events = @user.all_events
+    @events = @eventable.all_events
     @events = @events.between(params['start'], params['end']) if (params['start'] && params['end'])
     @events = @events.ransack(params[:q]).result
     render json: @events
@@ -14,7 +14,8 @@ class CalendarsController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find(params[:user_id])
+  def set_eventable
+    param = params.keys.find{|key| key =~ /(\w+)_id/}
+    @eventable = $1.capitalize.constantize.find(params[param])
   end
 end

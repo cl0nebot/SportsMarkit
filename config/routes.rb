@@ -17,12 +17,15 @@ Rails.application.routes.draw do
     
     resources :teams do
       resources :events
+      resource :calendar do
+        get :events, on: :member
+      end
       member do
         patch :accept_user
       end
     end
     resources :facilities
-    resources :leagues
+    resources :leagues 
     resources :fans
     resources :attendees
     resources :relationships

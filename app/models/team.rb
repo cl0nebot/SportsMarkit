@@ -19,6 +19,8 @@ class Team < ActiveRecord::Base
       "#{name} #{self.school.name if self.school} #{sport}"
     end
   end
-  
-  
+
+  def all_events
+    events
+  end
 end
