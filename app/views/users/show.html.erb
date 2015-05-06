@@ -51,7 +51,7 @@
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
 				<li class="active"><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li>
 				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
-				<li><a href="#people" data-toggle="tab" class="btn-ripple">Teammates</a></li>
+				<li><a href="#teammates" data-toggle="tab" class="btn-ripple">Teammates</a></li>
 				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
 				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li>
 				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
@@ -106,14 +106,15 @@
 					<!--#teams.tab-pane-->
 
 					<!-- people -->
-					<div id="people" class="tab-pane">
+					<div id="teammates" class="tab-pane">
 						<div class="row">
+	                       
 	                       <% @teammates.each do |teammate| %>
 
 	                       <div class="col-md-4">
 								<div class="card card-user card-clickable card-clickable-over-content">
 									<div class="card-heading heading-full">
-										<div class="user-image sample-member9"></div>
+										<div class="user-image sample-member9" style="background: url(<%= image_tag teammate.avatar %>);"></div>
 
 										<div class="clickable-button">
 											<div class="layer bg-green"></div>
@@ -179,7 +180,7 @@
 						<hr/>
 
 						<div class="row">
-<% @user.attendances.each do |att| %>
+							<% @user.attendances.each do |att| %>
 
 							<div class="col-md-4">
 								<div class="card card-event card-clickable">
@@ -443,10 +444,11 @@
 
 	<%= render "shared/modals/boostrap_image_gallery_lightbox" %>
 
+	<%#= render "shared/panels/new_event" %>
+
 </div><!--.content-->
 
 <%#= render "shared/panels/new_event"%>
-
 
 <%= @user.username %>
 

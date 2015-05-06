@@ -17,5 +17,5 @@
 <% end %>
 
 <%= form_for current_user.attendances.where(event_id: @event.id).last, html: {method: :patch, remote: true } do |f| %>
-  <%= f.submit "NOT GOING", class: "btn-red", disabled: true %>
+  <%= f.submit "NOT GOING", class: "btn", disabled: true %>
 <% end %>

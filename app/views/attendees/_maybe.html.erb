@@ -4,11 +4,11 @@
   <%= f.hidden_field :yes, value: true %>
   <%= f.hidden_field :maybe, value: false %>
   <%= f.hidden_field :no, value: false %>
-  <%= f.submit "IM GOING!", class: "btn" %>
+  <%= f.submit "IM GOING!", class: "btn btn-success" %>
 <% end %>
 
 <%= form_for current_user.attendances.where(event_id: @event.id).last, html: {method: :patch, remote: true } do |f| %>
-  <%= f.submit "MAYBE", class: "btn-red", disabled: true %>
+  <%= f.submit "MAYBE", class: "btn btn-warning", disabled: true %>
 <% end %>
 
 <%= form_for current_user.attendances.where(event_id: @event.id).last, html: {method: :patch, remote: true } do |f| %>
@@ -17,5 +17,5 @@
   <%= f.hidden_field :yes, value: false %>
   <%= f.hidden_field :maybe, value: false %>
   <%= f.hidden_field :no, value: true %>
-  <%= f.submit "NOT GOING", class: "btn" %>
+  <%= f.submit "NOT GOING", class: "btn btn-warning" %>
 <% end %>
