@@ -21,6 +21,7 @@
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
 				<li class="active"><a href="#general" data-toggle="tab">General</a></li>
 				<li><a href="#social-media" data-toggle="tab">Social Media</a></li>
+				<li><a href="#stats" data-toggle="tab">Stats & Vitals</a></li>
 				<li><a href="#password" data-toggle="tab">Password</a></li>
 			</ul>
 		</div>
@@ -50,6 +51,19 @@
 									     
 									<%= f.text_field :email, class: "form-control", placeholder: "Email" %><br>
 									
+									<%= f.text_field :username, class: "form-control", placeholder: "Username" %><br>
+									
+									<%= f.fields_for :profile, @profile do |builder| %>
+
+										<%= builder.date_field :date_of_birth, class: "form-control" %><br>
+										<%= builder.text_field :mobile_phone_number, class: "form-control", placeholder: "Mobile Phone Number" %><br>
+										Sex: <%= builder.select :sex, [ 'Male', 'Female'], :class => 'selecter', :prompt => 'Select One' %>
+										<%= builder.text_field :favorite_pro_team, class: "form-control", placeholder: "Favorite Pro Team" %><br>
+										<%= builder.text_field :favorite_college_team, class: "form-control", placeholder: "Favorite College Team" %><br>
+										<%= builder.text_field :favorite_pro_athlete, class: "form-control", placeholder: "Favorite Pro Athlete" %><br>
+										                          
+									<% end %>
+									
 								</div><!--tab-pane-->
 
 								<div class="tab-pane text-style" id="social-media">
@@ -64,6 +78,33 @@
 										<%= builder.text_field :twitter, class: "form-control", placeholder: "Twitter" %><br>
 
 										<%= builder.text_field :instagram, class: "form-control", placeholder: "Instagram" %><br>
+										
+										<%= builder.text_field :hudl, class: "form-control", placeholder: "Hudl" %><br>
+										
+										<%= builder.text_field :youtube, class: "form-control", placeholder: "Youtube" %><br>
+										
+										<%= builder.text_field :pinterest, class: "form-control", placeholder: "Pinterest" %><br>
+										
+										<%= builder.text_field :foursquare, class: "form-control", placeholder: "Foursquare" %><br>
+										
+										
+										    
+										<%#= render 'athlete', f: builder %>
+										                          
+									<% end %>  
+
+								</div><!--tab-pane-->
+								
+								<div class="tab-pane text-style" id="stats">
+									<%= f.fields_for :profile, @profile do |builder| %>
+										
+
+										<%= builder.text_field :height_ft, class: "form-control", placeholder: "Height(Ft.)" %>
+									    <%= builder.text_field :height_in, class: "form-control", placeholder: "Height(In.)" %><br>
+										
+										<%= builder.text_field :weight, class: "form-control", placeholder: "Weight" %><br>
+										
+										
 										    
 										<%#= render 'athlete', f: builder %>
 										                          
