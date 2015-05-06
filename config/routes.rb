@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resources :certifications
     resources :team_facilities
     resources :classifications
+    resources :parent_children
     
     get 'auth/:provider/callback', to: "omniauth_callbacks#facebook"
     get 'auth/failure', to: redirect('/')

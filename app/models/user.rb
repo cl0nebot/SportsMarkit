@@ -185,6 +185,18 @@ class User < ActiveRecord::Base
     end
   end
   
+  def is_parent?
+    Classification.where(user_id: id, classification: "Parent").present?
+  end
+  
+  def children_events #TODO finish
+    if ParentChild.where(parent_id: id).present? 
+      kid_id = ParentChild.where(parent_id: id).last
+      kid = User.friendly.find(kid_id)
+      kid.attendances
+    end
+  end
+  
   
   
     

@@ -61,8 +61,10 @@
 			</div><!--.col-->
 			<div class="col-md-4">
 				<div class="result result-posts">
-					<h4>Teams <small>(5)</small></h4>
+					<h4>Children's Events <small>(5)</small></h4>
+					<% if current_user.is_parent? %>
 
+                    <% current_user.children_events.each do |att| %>
 					<ul class="list-material">
 						<li class="has-action-left">
 							<a href="#" class="hidden"><i class="ion-android-delete"></i></a>
@@ -71,59 +73,17 @@
 									<img src="<%= image_path("placeholders/team.jpg")%>" class="img-radius" alt="">
 								</div>
 								<div class="list-content">
-									<span class="title">Mobile Trends for 2015</span>
-									<span class="caption">Collaboratively administrate empowered markets via plug-and-play networks.</span>
+									<span class="title"><%= att.event.title %></span>
+									<span class="caption"><%= att.event.description %></span>
 								</div>
 							</a>
 						</li>
-						<li class="has-action-left">
-							<a href="#" class="hidden"><i class="ion-android-delete"></i></a>
-							<a href="#" class="visible">
-								<div class="list-action-left">
-									<img src="<%= image_path("placeholders/team.jpg")%>" class="img-radius" alt="">
-								</div>
-								<div class="list-content">
-									<span class="title">Interview with Phillip Riley</span>
-									<span class="caption">Dynamically procrastinate B2C users after installed base benefits.</span>
-								</div>
-							</a>
-						</li>
-						<li class="has-action-left">
-							<a href="#" class="hidden"><i class="ion-android-delete"></i></a>
-							<a href="#" class="visible">
-								<div class="list-action-left">
-									<img src="<%= image_path("placeholders/team.jpg")%>" class="img-radius" alt="">
-								</div>
-								<div class="list-content">
-									<span class="title">Workspaces</span>
-									<span class="caption">Dramatically visualize customer directed convergence without revolutionary ROI.</span>
-								</div>
-							</a>
-						</li>
-						<li class="has-action-left">
-							<a href="#" class="hidden"><i class="ion-android-delete"></i></a>
-							<a href="#" class="visible">
-								<div class="list-action-left">
-									<img src="<%= image_path("placeholders/team.jpg")%>" class="img-radius" alt="">
-								</div>
-								<div class="list-content">
-									<span class="title">Graphics &amp; Multimedia</span>
-									<span class="caption">Efficiently unleash cross-media information without cross-media value.</span>
-								</div>
-							</a>
-						</li>
-						<li class="has-action-left">
-							<a href="#" class="hidden"><i class="ion-android-delete"></i></a>
-							<a href="#" class="visible">
-								<div class="list-action-left">
-									<img src="<%= image_path("placeholders/team.jpg")%>" class="img-radius" alt="">
-								</div>
-								<div class="list-content">
-									<span class="title">Interactive Storytelling</span>
-									<span class="caption">Quickly maximize timely deliverables for real-time schemas.</span>
-								</div>
-							</a>
-						</li>
+						
+					<% end %>
+					
+					
+					<% end %>
+						
 					</ul>
 
 				</div><!--.results-posts-->

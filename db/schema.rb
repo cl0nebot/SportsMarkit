@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506144835) do
+ActiveRecord::Schema.define(version: 20150506160142) do
 
   create_table "attendees", force: true do |t|
     t.integer  "event_id"
@@ -139,6 +139,13 @@ ActiveRecord::Schema.define(version: 20150506144835) do
     t.date     "start_date"
     t.date     "end_date"
     t.boolean  "current_job"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "parent_children", force: true do |t|
+    t.integer  "parent_id"
+    t.integer  "child_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
