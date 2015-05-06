@@ -46,6 +46,7 @@ class TeamsController < ApplicationController
     @class = @team.class
     @object = @team
     @events = @team.upcoming_events
+    @facilities = @team.facilities
     
   end
   
@@ -69,6 +70,14 @@ class TeamsController < ApplicationController
   end
   
   def destroy
+    
+  end
+  
+  def add_facility
+    
+  end
+  
+  def remove_facility
     
   end
   

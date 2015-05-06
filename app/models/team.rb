@@ -5,7 +5,7 @@ class Team < ActiveRecord::Base
   has_many :fans, as: :fannable
   belongs_to :school
   has_many :events, as: :eventable
-  has_many :facilities
+  has_many :team_facilities
   
   has_many :relationships
   has_many :users, through: :relationships
@@ -26,6 +26,12 @@ class Team < ActiveRecord::Base
   
   def next_event
     upcoming_events.first.nil? ? "No upcoming events" : upcoming_events.first.title
+  end
+  
+  def facilities
+    team_facilities = TeamFacility.where(team_id: id)
+    facility_ids = team_facilities.pluck(:facility_id)
+    Facility.where(id: facility_ids)
   end
   
   

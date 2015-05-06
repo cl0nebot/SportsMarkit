@@ -153,9 +153,11 @@
 				<div id="facilities" class="tab-pane">
 					<p class="text-right">
 						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-facility">New Facility</button>
-					</p>
-
-					<hr/>
+					</p><hr/>
+					
+					<div id='team-facility-list'>
+					  <%= render 'teams/facilities', facilities: @team.facilities %>
+				    </div>
 					
 				</div>
 				<!--#facilities.tab-pane-->
