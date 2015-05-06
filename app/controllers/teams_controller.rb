@@ -45,6 +45,7 @@ class TeamsController < ApplicationController
     @heads = @team.relationships.where(accepted: true, head: true)
     @class = @team.class
     @object = @team
+    @events = @team.upcoming_events
     
   end
   
