@@ -54,13 +54,8 @@ class EventsController < ApplicationController
   end
   
   def find_object
-    if ((params["action"] == "create" || params["action"] == "update"))
-      @class = eval(request.referrer.split("/")[3].to_s.capitalize.singularize.split("_").first)
-    else
-      @class = eval(params.keys[2].to_s.capitalize.split("_").first)
-    end
-    @id = params[params.keys.last]
-    @object = @class.friendly.find(@id)
+    param = params.keys.find{|key| key =~ /(\w+)_id/}
+    @object = $1.capitalize.constantize.find(params[param])
   end
   
   def find_event

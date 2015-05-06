@@ -1,0 +1,13 @@
+ <% User.user_types.each do |type| %>
+ 
+	 <% if user.classifications.where(classification: type).present? %>
+
+	   <%= render 'classifications/remove', user: user, type: type %>
+
+	 <% else %>
+
+	   <%= render 'classifications/add', user: user, type: type  %>
+
+	 <% end %>
+ 
+ <% end %>

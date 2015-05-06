@@ -271,19 +271,19 @@ var FormsTools = {
 		// custom templates
 		// ----------------
 
-		$('.typeahead-custom').typeahead(null, {
-			name: 'best-pictures',
-			displayKey: 'value',
-			source: bestPictures.ttAdapter(),
-			templates: {
-				empty: [
-					'<div class="empty-message">',
-					'unable to find any oscar winners that match the current query',
-					'</div>'
-				].join('\n'),
-				suggestion: Handlebars.compile('<p><strong>{{value}}</strong> – {{year}}</p>')
-			}
-		});
+//		$('.typeahead-custom').typeahead(null, {
+//			name: 'best-pictures',
+//			displayKey: 'value',
+//			source: bestPictures.ttAdapter(),
+//			templates: {
+//				empty: [
+//					'<div class="empty-message">',
+//					'unable to find any oscar winners that match the current query',
+//					'</div>'
+//				].join('\n'),
+//				suggestion: Handlebars.compile('<p><strong>{{value}}</strong> – {{year}}</p>')
+//			}
+//		});
 	},
 
 	typeaheadMultiple: function () {
