@@ -6,6 +6,10 @@
 .card-clickable {
   padding-bottom: 0;
 }
+
+.sample-member9 {
+  background-image: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');
+}
 </style>
 
 
@@ -61,7 +65,6 @@
 
 		<div class="header-tabs scrollable-tabs sticky">
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
-				<li class="active"><a href="#following" data-toggle="tab" class="btn-ripple">About</a></li>
 				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
 				<li><a href="#teammates" data-toggle="tab" class="btn-ripple">Teammates</a></li>
 				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
@@ -75,52 +78,6 @@
 			<div class="col-md-12">
 				<div class="tab-content without-border">
 					
-
-					<!-- following -->
-					<div id="following" class="tab-pane active">
-
-						<%= @user.username %>
-
-						<%= @user.profile.mobile_phone_number %>
-
-						<%= @user.profile.favorite_pro_team %>
-
-						<%= @user.profile.favorite_college_team %>
-
-						<%= @user.profile.favorite_pro_athlete %>
-
-						<%= @user.profile.linkedin %>
-
-						<%= @user.profile.facebook %>
-
-						<%= @user.profile.twitter %>
-
-						<%= @user.profile.instagram %>
-
-						<%= @user.profile.pinterest %>
-
-						<%= @user.profile.foursquare %>
-
-						<%= @user.profile.height_ft %>
-
-						<%= @user.profile.height_in %>
-
-						<%= @user.profile.weight %>
-
-						<%= @user.profile.hudl %>
-
-						<%= @user.profile.youtube %>
-
-						<%= @user.profile.favorite_pro_team %>
-
-						<%= @user.profile.favorite_college_team %>
-
-						<%= @user.profile.favorite_pro_athlete %>
-
-						
-					</div>
-					<!--#following.tab-pane-->
-
 					<!-- teams -->
 					<div id="teams" class="tab-pane">
 
@@ -158,7 +115,7 @@
 	                       <div class="col-md-4">
 								<div class="card card-user card-clickable card-clickable-over-content">
 									<div class="card-heading heading-full">
-										<div class="user-image sample-member9" style="background: url(<%= image_tag teammate.avatar %>);"></div>
+										<div class="user-image sample-member9"></div>
 
 										<div class="clickable-button">
 											<div class="layer bg-green"></div>
@@ -196,15 +153,6 @@
 										</div>
 									</div><!--.card-body-->
 
-									<div class="card-footer">
-										<a href="#" class="pull-left">
-											<small>
-										 		8 friends in common
-										 	</small>
-										 </a>
-										<button class="btn btn-xs btn-flat pull-right">Add as a Friend</button>
-									</div><!--.card-footer-->
-
 								</div><!--.card-->
 							</div><!--.col-md-4-->
 
@@ -220,7 +168,7 @@
 						<div class="row">
 							<% @user.attendances.each do |att| %>
 
-							<div class="col-md-6">
+								<div class="col-md-6">
 								<div class="card card-event card-clickable">
 
 									<div class="card-heading bg-image sample-bg-image13" style="">
@@ -260,7 +208,7 @@
 									</div>
 
 								</div><!--.card-->
-							</div><!--.col-md-6-->
+								</div><!--.col-md-6-->
 
 							<% end %>
 
@@ -377,108 +325,7 @@
 					<!-- media -->
 					<div id="media" class="tab-pane">
 
-						<div class="row">
-						<div class="col-md-4">
-						<div class="card card-video card-video-modal card-player-teal">
-							<div class="bg-image sample-bg-image5"></div>
-
-							<div class="card-body">
-								<a href="#" class="play-button-container" data-toggle="modal" data-target="#videojs-modal-3">
-									<div class="play-button"></div>
-								</a>
-							</div><!--.card-body-->
-
-							<!-- In order to use different colors, write modal codes in card window -->
-							<!-- If you want the video starts automatically after modal window shown, use data-modal-autoplay="true" in video markup -->
-							<div class="modal fade video-js-modal" id="videojs-modal-3" tabindex="-1" role="dialog" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-body">
-											<video id="videojs5" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" poster="../../assets/globals/img/picjumbo/5.jpg">
-												<source src="http://video-js.zencoder.com/oceans-clip.mp4" type="video/mp4">
-												<source src="http://video-js.zencoder.com/oceans-clip.webm" type="video/webm">
-												<source src="http://video-js.zencoder.com/oceans-clip.ogv" type="video/ogg">
-												<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-											</video>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-										</div>
-									</div>
-								</div>
-							</div><!--.modal-->
-							<!-- End of Modal -->
-
-						</div><!--.card-->
-						</div><!--.col-md-4-->
-
-						<div class="col-md-4">
-							<div class="card card-video card-video-modal card-player-teal">
-								<div class="bg-image sample-bg-image5"></div>
-
-								<div class="card-body">
-									<a href="#" class="play-button-container" data-toggle="modal" data-target="#videojs-modal-3">
-										<div class="play-button"></div>
-									</a>
-								</div><!--.card-body-->
-
-								<!-- In order to use different colors, write modal codes in card window -->
-								<!-- If you want the video starts automatically after modal window shown, use data-modal-autoplay="true" in video markup -->
-								<div class="modal fade video-js-modal" id="videojs-modal-3" tabindex="-1" role="dialog" aria-hidden="true">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-body">
-												<video id="videojs5" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" poster="../../assets/globals/img/picjumbo/5.jpg">
-													<source src="http://video-js.zencoder.com/oceans-clip.mp4" type="video/mp4">
-													<source src="http://video-js.zencoder.com/oceans-clip.webm" type="video/webm">
-													<source src="http://video-js.zencoder.com/oceans-clip.ogv" type="video/ogg">
-													<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-												</video>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											</div>
-										</div>
-									</div>
-								</div><!--.modal-->
-								<!-- End of Modal -->
-
-							</div><!--.card-->
-						</div><!--.col-md-4-->
-
-						<div class="col-md-4">
-							<div class="card card-video card-video-modal card-player-teal">
-								<div class="bg-image sample-bg-image5"></div>
-
-								<div class="card-body">
-									<a href="#" class="play-button-container" data-toggle="modal" data-target="#videojs-modal-3">
-										<div class="play-button"></div>
-									</a>
-								</div><!--.card-body-->
-
-								<!-- In order to use different colors, write modal codes in card window -->
-								<!-- If you want the video starts automatically after modal window shown, use data-modal-autoplay="true" in video markup -->
-								<div class="modal fade video-js-modal" id="videojs-modal-3" tabindex="-1" role="dialog" aria-hidden="true">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-body">
-												<video id="videojs5" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" poster="../../assets/globals/img/picjumbo/5.jpg">
-													<source src="http://video-js.zencoder.com/oceans-clip.mp4" type="video/mp4">
-													<source src="http://video-js.zencoder.com/oceans-clip.webm" type="video/webm">
-													<source src="http://video-js.zencoder.com/oceans-clip.ogv" type="video/ogg">
-													<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-												</video>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											</div>
-										</div>
-									</div>
-								</div><!--.modal-->
-								<!-- End of Modal -->
-
-							</div><!--.card-->
-						</div><!--.col-md-4-->
+						
 					</div>
 
 					</div>

@@ -187,7 +187,9 @@
 										<div class="month">November</div>
 										<div class="date">27</div>
 									</div><!--.calendar-->
-									<h4 style="margin-bottom: 0;"><%= event.title %></h4>
+									<h4 style="margin-bottom: 0;">
+										<%= link_to event.title,  "/events/#{event.slug}" %>
+									</h4>
 									<p>
 										<%= event.event_type %>
 									</p>
