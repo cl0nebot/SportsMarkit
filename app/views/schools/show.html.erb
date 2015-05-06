@@ -359,7 +359,7 @@
 								</div><!--.card-heading-->
 								<div class="card-body">
 									<div class="image">
-										<a href="#"><%#= Sport.find_by_sport(team.sport).default_photo %></a>
+										<a href="#"><%= image_tag Sport.find_by_sport(team.sport).try(:default_photo) %></a>
 									</div><!--.image-->
 									<ul class="users">
 										<% @athletes.each do |athlete| %>

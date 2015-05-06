@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   
   def index
     @events = @object.events
+    @user = User.friendly.find(params[:user_id])
   end
   
   def new

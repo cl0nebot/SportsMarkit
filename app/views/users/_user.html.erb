@@ -3,12 +3,13 @@
     	<%= link_to user.full_name, user_path(user) %>
     </td>
     <td class="v-align-middle">
-    	<%= user.id %>
+    	<%= user.email %>
     </td>
      <td class="v-align-middle">
-    	<%= user.id %>
+    	<%= format(user.created_at, 4) %>
     </td>
     <td class="v-align-middle">
+		<%= link_to "Edit", edit_user_path(user), class: "btn btn-sm btn-message" %>
         <%= link_to "Delete", user, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
     </td>
 </tr>

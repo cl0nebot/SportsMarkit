@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506012234) do
+ActiveRecord::Schema.define(version: 20150506105647) do
 
   create_table "attendees", force: true do |t|
     t.integer  "event_id"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20150506012234) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "school_id"
+    t.integer  "team_id"
   end
 
   add_index "facilities", ["slug"], name: "index_facilities_on_slug", unique: true, using: :btree
@@ -105,6 +106,36 @@ ActiveRecord::Schema.define(version: 20150506012234) do
 
   add_index "leagues", ["name"], name: "index_leagues_on_name", using: :btree
   add_index "leagues", ["slug"], name: "index_leagues_on_slug", unique: true, using: :btree
+
+  create_table "measurables", force: true do |t|
+    t.integer  "user_id"
+    t.boolean  "verified"
+    t.string   "measurable"
+    t.string   "result"
+    t.string   "sport"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "media", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "mediable_id"
+    t.string   "mediable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "media", ["mediable_id", "mediable_type"], name: "index_media_on_mediable_id_and_mediable_type", using: :btree
+
+  create_table "occupations", force: true do |t|
+    t.string   "title"
+    t.string   "company"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.boolean  "current_job"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "profiles", force: true do |t|
     t.integer  "user_id"
@@ -150,6 +181,17 @@ ActiveRecord::Schema.define(version: 20150506012234) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sex"
+    t.string   "hudl"
+    t.string   "youtube"
+    t.string   "pinterest"
+    t.string   "foursquare"
+    t.string   "favorite_pro_team"
+    t.string   "favorite_college_team"
+    t.string   "favorite_pro_athlete"
+    t.string   "hobbies"
+    t.string   "gyms"
+    t.string   "song"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
@@ -169,8 +211,6 @@ ActiveRecord::Schema.define(version: 20150506012234) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "relationships", ["slug"], name: "index_relationships_on_slug", unique: true, using: :btree
 
   create_table "schools", force: true do |t|
     t.string   "name"

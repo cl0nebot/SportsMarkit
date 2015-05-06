@@ -4,7 +4,7 @@
 	<div class="page-header full-content bg-blue">
 		<div class="row">
 			<div class="col-sm-5">
-				<h1>All Events <small>(203)</small></h1>
+				<h1>All Events <small>(<%= @object.events.count %>)</small></h1>
 			</div><!--.col-->
 			<div class="col-sm-6">
 				<ol class="breadcrumb">
@@ -21,6 +21,8 @@
 	</div><!--.page-header-->
 
 	<div class="row">
+		
+		<% @object.upcoming_events.each do |event| %>
 		<div class="col-md-4">
 			<div class="card card-event">
 				<div class="card-heading bg-image sample-bg-image12">
@@ -32,52 +34,27 @@
 						<div class="date">13</div>
 					</div><!--.calendar-->
 					<br/>
-					<h4>Young Professionals London</h4>
+					<h4><%= event.title %></h4>
 					<p class="small text-grey">
 						<small>
-							A Social Networking group with an International mix of Young Professionals interested in meeting other like minded people for friendship / networking 
+							<%= event.description %>
 						</small>
 					</p>
 				</div><!--.card-body-->
 
 				<div class="card-footer">
 					<div class="btn-group btn-merged btn-group-sm pull-right">
-						<button type="button" class="btn btn-green btn-flat">Attend</button>
-						<button type="button" class="btn btn-orange btn-flat">Maybe</button>
-						<button type="button" class="btn btn-red btn-flat">Decline</button>
+						
+						<div id="attendee-buttons-<%= event.id %>">
+						<%= render 'events/rsvp_index', event: event %>
+					    </div>
+					
 					</div>
 				</div><!--.card-footer-->
 			</div><!--.card-->
 		</div><!--.col-md-6-->
+		<% end %>
 
-		<div class="col-md-4">
-			<div class="card card-event">
-				<div class="card-heading bg-image sample-bg-image14">
-				</div><!--.card-heading-->
-
-				<div class="card-body">
-					<div class="calendar">
-						<div class="month">December</div>
-						<div class="date">03</div>
-					</div><!--.calendar-->
-					<br/>
-					<h4 class="no-margin">Remote Working Meetup</h4>
-					<p class="small text-grey">
-						<small>
-							We're talking about tools, ideas and best practice to enable a flexible way of work.
-						</small>
-					</p>
-				</div><!--.card-body-->
-
-				<div class="card-footer">
-					<div class="btn-group btn-merged btn-group-sm pull-right">
-						<button type="button" class="btn btn-green btn-flat">Attend</button>
-						<button type="button" class="btn btn-orange btn-flat">Maybe</button>
-						<button type="button" class="btn btn-red btn-flat">Decline</button>
-					</div>
-				</div><!--.card-footer-->
-			</div><!--.card-->
-		</div><!--.col-md-6-->
 	</div><!--.row-->
 
 </div><!--.content-->
