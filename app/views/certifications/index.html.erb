@@ -1,0 +1,43 @@
+
+<div class="page-content condensed">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="grid simple no-border">
+          <div class="grid-body">
+            <div class="clearfix">
+				<h4 class="semi-bold">Create a New Certification</h4>
+				<%= form_for @certification, html: {id: 'certification-form', data: {remote: true}} do |f| %>
+					<div class="row">
+						<div class="col-md-6">
+							<%= f.text_field :name, class: "col-md-12", placeholder: "" %>
+						</div>
+						<div class="col-md-2">
+							<%= f.submit class: "btn btn-white" %>
+						</div>
+					</div>
+				<% end %>
+				<br/>
+				<br/>
+				<br/>
+      			<table id="certification-list" class="table table-hover table-condensed" id="example">
+	                <thead>
+	                  <tr>
+	                    <th style="width:40%" class="gf_muli">Name</th>
+	                    <th style="width:15%" class="gf_muli">Issuer</th>
+	                    <th style="width:20%" class="gf_muli"># Certified </th>
+	                    <th style="width:22%" class="gf_muli">Actions</th>
+	                  </tr>
+	                </thead>
+	                <tbody>
+		                <%= render @certifications %>
+	                </tbody>
+	              </table>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+

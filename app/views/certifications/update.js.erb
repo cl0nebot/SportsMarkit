@@ -1,0 +1,6 @@
+$('#<%= @certification.id %>').modal('hide');
+$('#edit-certification-form')[0].reset()
+$('#certification-list tbody tr:nth-child(<%= @index %>)').replaceWith('<%= j render(@certification) %>');
+$('.modal-backdrop').css({
+     'position': 'relative'
+ });
