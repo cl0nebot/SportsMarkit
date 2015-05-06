@@ -1,13 +1,13 @@
 var FormsPickers = {
 
 	colorPicker: function () {
-		$('.bs-colorpicker').colorpicker();
+//		$('.bs-colorpicker').colorpicker();
 	},
 
 	colorPickerRgba: function () {
-		$('.bs-colorpicker-rgba').colorpicker({
-			format: 'rgba'
-		});
+//		$('.bs-colorpicker-rgba').colorpicker({
+//			format: 'rgba'
+//		});
 	},
 
 	colorPickerWheel: function () {
@@ -87,24 +87,24 @@ var FormsPickers = {
 	},
 
 	clockface: function () {
-		$('#clockface1').clockface();
+//		$('#clockface1').clockface();
 	},
 
 	clockfaceButton: function () {
-		$('#clockface2').clockface({
-			format: 'HH:mm',
-			trigger: 'manual'
-		});
-		$('#clockface-toggle').click(function(e){
-			e.stopPropagation();
-			$('#clockface2').clockface('toggle');
-		});
+//		$('#clockface2').clockface({
+//			format: 'HH:mm',
+//			trigger: 'manual'
+//		});
+//		$('#clockface-toggle').click(function(e){
+//			e.stopPropagation();
+//			$('#clockface2').clockface('toggle');
+//		});
 	},
 
 	clockfaceInline: function () {
-		$('#clockface3').clockface({
-			format: 'H:mm'
-		}).clockface('show', '14:30');
+//		$('#clockface3').clockface({
+//			format: 'H:mm'
+//		}).clockface('show', '14:30');
 	},
 
 
