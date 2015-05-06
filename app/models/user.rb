@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   end
   
   def all_events
-    Event.where("(`eventable_id` = ? AND `events`.`eventable_type` = 'User') OR (id in (?))", id, attending_events)
+    Event.where("(eventable_id = ? AND eventable_type = 'User') OR (id in (?))", id, attending_events)
   end
   
   def next_event
