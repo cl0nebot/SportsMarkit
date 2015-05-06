@@ -41,7 +41,7 @@
 					<div class="col-md-9">
 						<div class="inputer">
 							<div class="input-wrapper">
-								<%= f.select :sport, [ 'Basketball', 'Football', 'Golf'], :class => 'selecter', :prompt => 'Select One' %>
+								<%= f.select :sport, Sport.pluck(:sport), :class => 'selecter', :prompt => 'Select One' %>
 							</div>
 						</div>
 					</div><!--.col-md-9-->
