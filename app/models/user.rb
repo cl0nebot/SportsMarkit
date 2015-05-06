@@ -32,6 +32,8 @@ class User < ActiveRecord::Base
   
   has_many :attendees
   
+  USER_TYPES = ["Athlete", "Parent", "Coach", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]
+  
   
   def follows
     Fan.where(user_id: id)
@@ -47,6 +49,10 @@ class User < ActiveRecord::Base
   
   def all_events
     Event.where("(`eventable_id` = ? AND `events`.`eventable_type` = 'User') OR (id in (?))", id, attending_events)
+  end
+  
+  def upcoming_events
+    all_events
   end
   
   def next_event
