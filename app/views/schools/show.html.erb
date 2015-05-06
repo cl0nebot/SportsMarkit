@@ -176,51 +176,45 @@
 				<div id="events" class="tab-pane">
 					
 					<% @events.each do |event| %>
+						<div class="col-md-6">
+							<div class="card card-event card-clickable">
 
-						<div class="col-md-4">
-						<div class="card card-event">
-							<div class="card-heading bg-image sample-bg-image12">
-							</div><!--.card-heading-->
+								<div class="card-heading bg-image sample-bg-image13" style="">
+								</div><!--.card-heading-->
 
-							<div class="card-body">
-								<div class="calendar">
-									<div class="month">May</div>
-									<div class="date">13</div>
-								</div><!--.calendar-->
-								
-								<%= link_to event.title,  "/events/#{event.slug}" do %>
+								<div class="card-body">
+									<div class="calendar">
+										<div class="month">November</div>
+										<div class="date">27</div>
+									</div><!--.calendar-->
 									<h4 style="margin-bottom: 0;"><%= event.title %></h4>
-								<% end %>
-								
-								<h5 class="text-grey">
-									<%= event.event_type %>
-								</h5>
-								<h5 class="h6 text-orange bold">
-									<%= format(event.starts_at, 4) %>
-									<%= format(event.starts_at, 8) %>
-									- 
-									<%= format(event.ends_at, 4) %>
-									<%= format(event.ends_at, 8) %>
-								</h5>  	
-								<p class="small caption">
-									<small>
-										Created By: 
-										<%= link_to event.user.full_name, user_path(event.user) %>
-									</small>
-								</p>
-								
-							</div><!--.card-body-->
+									<p>
+										<%= event.event_type %>
+									</p>
+									<h5 class="h6 text-primary bold">
+										<%= format(event.starts_at, 4) %>
+										<%= format(event.starts_at, 8) %>
+										- 
+										<%= format(event.ends_at, 4) %>
+										<%= format(event.ends_at, 8) %>
+									</h5>
+								</div><!--.card-body-->
 
-							<div class="card-footer">
-								<div class="btn-group btn-merged btn-group-sm pull-right">
-									
-									<div class="attendee_buttons" id="attendee-buttons-<%= event.id %>">
-										<%= render 'events/rsvp_index', event: event %>
-								    </div>
-								
+								<div class="clickable-button">
+									<div class="layer bg-primary"></div>
+									<a class="btn btn-floating btn-primary initial-position floating-open"><i class="ion-android-more-horizontal"></i></a>
 								</div>
-							</div><!--.card-footer-->
-						</div><!--.card-->
+
+								<div class="layered-content bg-red">
+									<div class="overflow-content">
+										<h4>How Many People Are Attending?</h4>
+										<%= att.event.people_that_are_going.count %>
+									</div><!--.overflow-content-->
+									<div class="clickable-close-button">
+										<a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
+									</div>
+								</div>
+							</div><!--.card-->
 						</div><!--.col-md-6-->
 					<% end %>
 					
