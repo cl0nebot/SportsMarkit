@@ -20,5 +20,13 @@ class Team < ActiveRecord::Base
     end
   end
   
+  def upcoming_events
+    Event.where(eventable_type: "Team", eventable_id: id)
+  end
+  
+  def next_event
+    upcoming_events.first.nil? ? "No upcoming events" : upcoming_events.first.title
+  end
+  
   
 end
