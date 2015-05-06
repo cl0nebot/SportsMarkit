@@ -8,16 +8,17 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="panel">
-							<div class="panel-heading">
-								<% unless params[:controller] == "teams" %>
+							
+							
+							
+							<% unless params[:controller] == "teams" %>
 								  <div class="panel-title"><h4>Complete the form below. </h4></div>
-								<% else %>
+							<% else %>
 								  <div class="panel-title"><h4>Select Your Facility Below </h4></div>
-								<% end %>
+							<% end %>
 								
-							</div><!--.panel-heading-->
+								
 							<div class="panel-body">
-								
 								<% unless params[:controller] == "teams" %>
 
 								<%= form_for Facility.new, html: {id: 'facility-form', data: {remote: true}} do |f|   %>
@@ -46,7 +47,7 @@
 									</div>
 								</div>
 
-	<% unless request.original_url.split("/").include? "schools" %>
+								<% unless request.original_url.split("/").include? "schools" %>
 								<div class="row example-row">
 									<div class="col-md-3">Address 1 </div><!--.col-md-3-->
 									<div class="col-md-9">
@@ -147,13 +148,12 @@
 										</div>
 									</div><!--.col-md-9-->
 								</div><!--.row-->
+								<% end %>
 
 							</div><!--.panel-body-->
 						</div><!--.panel-->
 					</div><!--.col-md-12-->
 				</div><!--.row-->
-				
-				<% end %>
 			</div>
 			<div class="modal-footer">
 				<%= f.submit "Create Facility", class: "btn btn-blue" %>
@@ -162,40 +162,46 @@
 			
 			<% else %>
 			
-			<% if params[:controller] == "show" %>
-					<% @team.school.facilities.each do |facility| %>
-					<%= facility.name %>
-					<div id="team-facility-<%= facility.id %>">
-				
-						<% unless @team.team_facilities.where(facility_id: facility.id).present? %>
-			 
-						   <%= render 'team_facilities/add', facility: facility, team: @team %>
-			  
-						<% else %>
-				
-						<% @team.team_facilities.where(facility_id: facility.id).each do |tf| %>
-						  <%= render 'team_facilities/remove', tf: tf %>
-						<% end %>
-  			  
-		            <% end %>
-		  <% end %>
-				
 			
 			
 			
-		    </div>
-			  <% end %>
+		<% if params[:action] == "show" %>
+		  <% @team.school.facilities.each do |facility| %>
+		    <%= facility.name %>
+		<div id="team-facility-<%= facility.id %>">
 			
+			
+			
+			
+			     <% unless @team.team_facilities.where(facility_id: facility.id).present? %>
+				   <%= render 'team_facilities/add', facility: facility, team: @team %>
+				 <% else %>
+			       <% @team.team_facilities.where(facility_id: facility.id).each do |tf| %>
+				   <%= render 'team_facilities/remove', tf: tf %>
+				   <% end %>
+				<% end %>
+		</div>
+		
+		<% end %>
+		<% end %>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+	
 			
 			<% end %>
+			
 						
 		</div>
 	</div>
 </div><!--.modal-->
-
-
-
-
-
-
-      
