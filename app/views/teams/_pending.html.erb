@@ -1,10 +1,11 @@
 <li class="has-action-left">
-	<%= link_to accept_user_team_path(m), method: :patch do %>
-		<a href="#" class="hidden">
-			<i class="ion-checkmark-circled text-success"></i>
-		</a>
+  <%= link_to reject_user_team_path(m), method: :patch, class: "hidden", style: 'height: 50%; margin-top: 55px;' do %>
+	  <i class="ion-android-cancel text-success"></i>
 	<% end %>
-	<a href="#" class="visible">
+  <%= link_to accept_user_team_path(m), method: :patch, class: "hidden", style: "height: 50%;" do %>
+    <i class="ion-checkmark-circled text-success"></i>
+  <% end %>
+  <a href="#" class="visible">
 		<div class="list-content row">
 			<div class="col-sm-1">
 				<%= image_tag m.user.avatar, class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>

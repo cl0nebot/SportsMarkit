@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       end
       member do
         patch :accept_user
+        patch :reject_user
         post :add_facility
       end
     end

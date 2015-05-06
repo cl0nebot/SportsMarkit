@@ -37,5 +37,8 @@ class Team < ActiveRecord::Base
     facility_ids = team_facilities.pluck(:facility_id)
     Facility.where(id: facility_ids)
   end
-  
+
+  def pending_members
+    relationships.where(accepted: nil, rejected: nil)
+  end
 end

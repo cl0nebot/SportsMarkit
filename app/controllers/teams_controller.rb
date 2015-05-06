@@ -53,14 +53,25 @@ class TeamsController < ApplicationController
   def accept_user
     @relationship = Relationship.find_by_slug(params[:id])
     @relationship.update_attributes(accepted: true)
-    @pending_relationships = Relationship.where(team_id: @relationship.team_id, accepted: nil, rejected: nil)
-    @relationships = Relationship.where(team_id: @relationship.team_id, accepted: true)
+    # @pending_relationships = Relationship.where(team_id: @relationship.team_id, accepted: nil, rejected: nil)
+    # @relationships = Relationship.where(team_id: @relationship.team_id, accepted: true)
     respond_to do |format|
       format.js 
       format.html { redirect_to :back }
     end
   end
-  
+
+  def reject_user
+    @relationship = Relationship.find_by_slug(params[:id])
+    @relationship.update_attribute(:rejected, true)
+    # @pending_relationships = Relationship.where(team_id: @relationship.team_id, accepted: nil, rejected: nil)
+    # @relationships = Relationship.where(team_id: @relationship.team_id, accepted: true)
+    respond_to do |format|
+      format.js
+      format.html { redirect_to :back }
+    end
+  end
+
   def edit
     
   end

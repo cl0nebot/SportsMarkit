@@ -188,10 +188,10 @@
 							</div>
 						</div><!--.panel-heading-->
 						<div class="panel-body without-padding">
-							<ul class="list-material has-hidden">
+							<ul class="list-material has-hidden pending-members">
 								<% @pending_members.each do |m| %>
-							     	<%= render 'pending', m: m%>
-							    <% end %>
+							     <%= render 'pending', m: m%>
+							  <% end %>
 							</ul>
 						</div><!--.panel-body-->
 					</div><!--.panel-->

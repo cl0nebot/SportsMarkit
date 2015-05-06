@@ -4,6 +4,7 @@ class RelationshipsController < ApplicationController
   
   def create
     @relationship = Relationship.create(user_id: params[:relationship][:user_id], team_id: params[:relationship][:team_id] )
+    @team = @relationship.team
     @relationship.save
     respond_to do |format|
       format.js
