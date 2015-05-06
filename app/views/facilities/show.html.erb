@@ -14,8 +14,17 @@
 			<div class="profile-text light capitalize">
 				<%= @facility.name %>
 				<span class="caption">
-					<%= @facility.address_1 %><br>
-					<%= @facility.city %>, <%= @facility.state %>
+					<% if @facility.school.present? %>
+					  <%= @facility.school.name %><br>
+					  <%= @facility.school.address_1 %><br>
+					  <%= @facility.school.city %>, <%= @facility.school.state %>
+					
+					<% else %>
+					
+					  <%= @facility.address_1 %><br>
+					  <%= @facility.city %>, <%= @facility.state %>
+					
+					<% end %>
 				</span>
 			</div><!--.profile-text-->
 		</div><!--.profile-info-->
