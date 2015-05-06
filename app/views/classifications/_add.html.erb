@@ -1,6 +1,13 @@
 <%= form_for Classification.new, html: {method: :post, remote: true } do |f| %>
-<%= type%>
-<%= f.hidden_field :user_id, value: user.id %>
-<%= f.hidden_field :classification, value: type %>
-<%= f.submit %>
+	<div class="row">
+		<div class="col-md-6">
+			<%= type %>
+		</div>
+		<div class="col-md-6">
+			<%= f.hidden_field :user_id, value: user.id %>
+			<%= f.hidden_field :classification, value: type %>
+			<%= f.submit class: "btn btn-primary" %>
+		</div>
+	</div>
+	<br/>
 <% end %>
