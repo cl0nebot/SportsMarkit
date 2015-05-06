@@ -25,7 +25,7 @@
 //= require pleasure/globals/plugins/datatables/media/js/jquery.dataTables.min
 //= require pleasure/globals/plugins/datatables/themes/bootstrap/dataTables.bootstrap
 
-//= require pleasure/globals/plugins/handlebars/handlebars.min
+
 //= require pleasure/globals/plugins/bootstrap-maxlength/bootstrap-maxlength.js
 //= require pleasure/globals/plugins/clockface/js/clockface
 //= require pleasure/globals/plugins/selectize/dist/js/standalone/selectize.js
