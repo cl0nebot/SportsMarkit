@@ -1,35 +1,17 @@
+<style>
+
+.layout-device .profile-info .profile-text,
+.profile-info .profile-text {
+  margin: 0 0 0 0;
+  font-size: 24px;
+}
+
+</style>
+
 <div class="content">
 
 	<div class="page-header full-content parallax" style="height: 600px; overflow: hidden">
 		<div class="parallax-bg" style="background: url('http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg') 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
-		</div>
-
-		<div class="profile-info">
-			<div class="profile-photo">
-				<img src="" alt="">
-			</div><!--.profile-photo-->
-			<div class="profile-text light capitalize">
-				<span class="h6 text-amber bold">
-					<%= format(@event.starts_at, 4) %>
-					<%= format(@event.starts_at, 8) %>
-					- 
-					<%= format(@event.ends_at, 4) %>
-					<%= format(@event.ends_at, 8) %>
-				</span>
-				<br/>
-				<%= @event.title %> 
-				<h5 class="text-grey">
-					<%= @event.event_type %>
-				</h5>
-				<%= @event.description %>
-				<span class="caption">
-					Created By: <%= link_to @event.user.full_name, user_path(@event.user) %>
-				</span>
-			</div><!--.profile-text-->
-		</div><!--.profile-info-->
-
-		<div class="social-buttons">
-			<%= render 'rsvp' %>
 		</div>
 
 		<div class="row">
@@ -56,8 +38,34 @@
 			</div>
 		</div><!--.row-->
 
+
+		<div class="profile-info">
+			<!--.profile-photo-->
+			<div class="profile-text light capitalize">
+				<span class="h6 text-amber bold">
+					<%= format(@event.starts_at, 4) %>
+					<%= format(@event.starts_at, 8) %>
+					- 
+					<%= format(@event.ends_at, 4) %>
+					<%= format(@event.ends_at, 8) %>
+				</span>
+				<br/>
+				<%= @event.title %> 
+				<h4 class="text-grey">
+					<%= @event.event_type %>
+				</h4>
+				<span class="caption">
+					Created By: <%= link_to @event.user.full_name, user_path(@event.user) %>
+				</span>
+			</div><!--.profile-text-->
+		</div><!--.profile-info-->
+
+
 		<div class="header-tabs scrollable-tabs sticky">
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+				<li class="active">
+					<a href="#location" data-toggle="tab" class="btn-ripple">Location</a>
+				</li>
 				<li class="active">
 					<a href="#following" data-toggle="tab" class="btn-ripple">Attending</a>
 				</li>
@@ -68,7 +76,13 @@
 			</ul>
 		</div>
 
-	</div><!--.page-header-->
+
+		<div class="social-buttons">
+			<%= render 'rsvp' %>
+		</div>
+
+	</div>
+</div>
 
 	<div class="row user-profile">
 		<div class="col-md-12">
@@ -76,8 +90,14 @@
 				
 
 				<!-- following -->
-				<div id="map" class="tab-pane active">
-					Map
+				<div id="location" class="tab-pane active">
+					<h3><%= @event.facility.name %></h3>
+					<br>
+					<div class="row contact-us">
+						<div class="col-md-12">
+      						<%= gmaps4rails(@json) %>
+						</div><!--.col-->
+					</div>
 				</div>
 				<!--#following.tab-pane-->
 

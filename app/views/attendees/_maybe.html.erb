@@ -8,7 +8,7 @@
 <% end %>
 
 <%= form_for current_user.attendances.where(event_id: @event.id).last, html: {method: :patch, remote: true } do |f| %>
-  <%= f.submit "MAYBE", class: "btn-red btn-warning", disabled: true %>
+  <%= f.submit "MAYBE", class: "btn btn-warning", disabled: true %>
 <% end %>
 
 <%= form_for current_user.attendances.where(event_id: @event.id).last, html: {method: :patch, remote: true } do |f| %>

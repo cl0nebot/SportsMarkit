@@ -78,4 +78,6 @@ input:-webkit-autofill {
 
 .card.card-user .card-body .subhead {margin-bottom: 0;}
 
-.attendee_buttons form {display: inline-block !important;}
+.attendee_buttons form,
+.social-buttons form {display: inline-block !important;}
+

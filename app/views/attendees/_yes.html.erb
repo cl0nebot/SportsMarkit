@@ -1,7 +1,7 @@
 <div class="btn-group" data-toggle="buttons">
 
   <%= form_for current_user.attendances.where(event_id: @event.id).last, html: {method: :patch, remote: true } do |f| %>
-        <%= f.submit "IM GOING", class: "btn-white", disabled: true %>
+        <%= f.submit "IM GOING", class: "btn btn-white", disabled: true %>
   <% end %>
 
   <%= form_for current_user.attendances.where(event_id: @event.id).last, html: {method: :patch, remote: true } do |f| %>
