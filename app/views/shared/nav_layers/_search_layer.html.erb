@@ -64,7 +64,7 @@
 					<h4>Children's Events <small>(5)</small></h4>
 					<% if current_user.is_parent? %>
 
-                    <% current_user.children_events.each do |att| %>
+                    <% current_user.children_events.try(:each) do |att| %>
 					<ul class="list-material">
 						<li class="has-action-left">
 							<a href="#" class="hidden"><i class="ion-android-delete"></i></a>

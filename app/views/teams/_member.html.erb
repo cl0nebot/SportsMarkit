@@ -5,12 +5,12 @@
 	<a href="#" class="visible">
 		<div class="list-content row">
 			<div class="col-sm-1">
-				<%= image_tag m.user.avatar, class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
+				<%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
 			</div>
 
 			<div class="col-sm-3">
 				<h4 class="semi-bold no-margin capitalize">
-					<%= m.user.full_name %>
+					<%= m.user.try(:full_name) %>
 				</h4>
 				<p class="small">
 					<small>
