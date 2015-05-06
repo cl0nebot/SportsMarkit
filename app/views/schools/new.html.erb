@@ -39,13 +39,13 @@
 				<div class="row example-row">
 					<div class="col-md-3">Classification</div><!--.col-md-3-->
 					<div class="col-md-9">
-						<%= f.select :classification, [ 'College', 'High School', 'Middle School'], :class => 'selecter', :prompt => 'Select One' %>
+						<%= f.select :classification, [ 'College', 'High School', 'Middle School'], :class => 'btn-group bootstrap-select selecter', :prompt => 'Select One' %>
 
-						 <select class="selecter">
+						 <!-- <select class="selecter">
 							<option>College</option>
 							<option>High School</option>
 							<option>Middle School</option>
-						</select>
+						</select> -->
 					</div><!--.col-md-9-->
 				</div><!--.row-->
 
@@ -144,7 +144,7 @@
 					<div class="col-md-9">
 						<div class="inputer">
 							<div class="input-wrapper">
-								<%= f.text_field :email, type: "text", class: "form-control inputmask inputmask-email" %>
+								<%= f.text_field :email, type: "text", class: "form-control" %>
 							</div>
 						</div>
 					</div><!--.col-md-9-->
@@ -155,7 +155,7 @@
 					<div class="col-md-9">
 						<div class="inputer">
 							<div class="input-wrapper">
-								<%= f.text_field :phone_number, type: "text", class: "form-control inputmask inputmask-phone" %>
+								<%= f.text_field :phone_number, type: "text", class: "form-control" %>
 							</div>
 						</div>
 					</div><!--.col-md-9-->
