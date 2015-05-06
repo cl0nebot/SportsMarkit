@@ -42,11 +42,11 @@
 //= require pleasure/globals/plugins/typehead.js/dist/typeahead.bundle.min
 //= require pleasure/globals/plugins/overlay/jquery.overlay
 //= require pleasure/globals/plugins/jquery-textcomplete/dist/jquery.textcomplete.min
-//= require pleasure/globals/plugins/emojify.js/emoji-list
+
 
 //= require pleasure/globals/plugins/ubilabs-geocomplete/jquery.geocomplete.min
 
-//= require pleasure/globals/plugins/pnikolov-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min
+
 //= require pleasure/globals/plugins/minicolors/jquery.minicolors.min
 //= require pleasure/globals/plugins/bootstrap-daterangepicker/daterangepicker
 
