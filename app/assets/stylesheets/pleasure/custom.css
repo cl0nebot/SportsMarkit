@@ -1,4 +1,6 @@
 
+
+
 /* Change the white to any color*/
 
 input:-webkit-autofill {
@@ -72,3 +74,8 @@ input:-webkit-autofill {
 
 .capitalize {text-transform: capitalize !important;}
 .mbo {margin-bottom: 0 !important;}
+
+
+.card.card-user .card-body .subhead {margin-bottom: 0;}
+
+.attendee_buttons form {display: inline-block !important;}
