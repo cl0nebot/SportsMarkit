@@ -1,3 +1,14 @@
+<style>
+
+.sample-bg-image13:before {
+  background-image: url('<%=image_path("thumbs/football-game.jpg")%>');
+	}
+.card-clickable {
+  padding-bottom: 0;
+}
+</style>
+
+
 <div class="content">
 
 	<div class="page-header full-content parallax" style="height: 600px; overflow: hidden">
@@ -50,7 +61,7 @@
 
 		<div class="header-tabs scrollable-tabs sticky">
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
-				<li class="active"><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li>
+				<li class="active"><a href="#following" data-toggle="tab" class="btn-ripple">About</a></li>
 				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
 				<li><a href="#teammates" data-toggle="tab" class="btn-ripple">Teammates</a></li>
 				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
@@ -68,18 +79,50 @@
 					<!-- following -->
 					<div id="following" class="tab-pane active">
 
+						<%= @user.username %>
+
+						<%= @user.profile.mobile_phone_number %>
+
+						<%= @user.profile.favorite_pro_team %>
+
+						<%= @user.profile.favorite_college_team %>
+
+						<%= @user.profile.favorite_pro_athlete %>
+
+						<%= @user.profile.linkedin %>
+
+						<%= @user.profile.facebook %>
+
+						<%= @user.profile.twitter %>
+
+						<%= @user.profile.instagram %>
+
+						<%= @user.profile.pinterest %>
+
+						<%= @user.profile.foursquare %>
+
+						<%= @user.profile.height_ft %>
+
+						<%= @user.profile.height_in %>
+
+						<%= @user.profile.weight %>
+
+						<%= @user.profile.hudl %>
+
+						<%= @user.profile.youtube %>
+
+						<%= @user.profile.favorite_pro_team %>
+
+						<%= @user.profile.favorite_college_team %>
+
+						<%= @user.profile.favorite_pro_athlete %>
+
 						
 					</div>
 					<!--#following.tab-pane-->
 
 					<!-- teams -->
 					<div id="teams" class="tab-pane">
-
-						<p class="text-right">
-							<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-team">New Team</button>
-						</p>
-
-						<hr/>
 
 						<div class="row masonry">
 							<% @teams.each do |team| %>
@@ -174,19 +217,13 @@
 					<!-- events -->
 					<div id="events" class="tab-pane">
 
-						<p class="text-right">
-							<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-event">New Event</button>
-						</p>
-
-						<hr/>
-
 						<div class="row">
 							<% @user.attendances.each do |att| %>
 
-							<div class="col-md-4">
+							<div class="col-md-6">
 								<div class="card card-event card-clickable">
 
-									<div class="card-heading bg-image sample-bg-image13">
+									<div class="card-heading bg-image sample-bg-image13" style="">
 									</div><!--.card-heading-->
 
 									<div class="card-body">
@@ -194,20 +231,27 @@
 											<div class="month">November</div>
 											<div class="date">27</div>
 										</div><!--.calendar-->
-										<h4><%= att.event.title %></h4>
+										<h4 style="margin-bottom: 0;"><%= att.event.title %></h4>
 										<p>
-										<%= att.event.description %>
+											<%= att.event.event_type %>
 										</p>
+										<h5 class="h6 text-primary bold">
+											<%= format(att.event.starts_at, 4) %>
+											<%= format(att.event.starts_at, 8) %>
+											- 
+											<%= format(att.event.ends_at, 4) %>
+											<%= format(att.event.ends_at, 8) %>
+										</h5>
 									</div><!--.card-body-->
 
 									<div class="clickable-button">
-										<div class="layer bg-red"></div>
-										<a class="btn btn-floating btn-red initial-position floating-open"><i class="ion-android-more-horizontal"></i></a>
+										<div class="layer bg-primary"></div>
+										<a class="btn btn-floating btn-primary initial-position floating-open"><i class="ion-android-more-horizontal"></i></a>
 									</div>
 
 									<div class="layered-content bg-red">
 										<div class="overflow-content">
-											<h4>Who's Attending?</h4>
+											<h4>How Many People Are Attending?</h4>
 											<%= att.event.people_that_are_going.count %>
 										</div><!--.overflow-content-->
 										<div class="clickable-close-button">
@@ -450,41 +494,3 @@
 </div><!--.content-->
 
 <%#= render "shared/panels/new_event"%>
-
-<%= @user.username %>
-
-<%= @user.profile.mobile_phone_number %>
-
-<%= @user.profile.favorite_pro_team %>
-
-<%= @user.profile.favorite_college_team %>
-
-<%= @user.profile.favorite_pro_athlete %>
-
-<%= @user.profile.linkedin %>
-
-<%= @user.profile.facebook %>
-
-<%= @user.profile.twitter %>
-
-<%= @user.profile.instagram %>
-
-<%= @user.profile.pinterest %>
-
-<%= @user.profile.foursquare %>
-
-<%= @user.profile.height_ft %>
-
-<%= @user.profile.height_in %>
-
-<%= @user.profile.weight %>
-
-<%= @user.profile.hudl %>
-
-<%= @user.profile.youtube %>
-
-<%= @user.profile.favorite_pro_team %>
-
-<%= @user.profile.favorite_college_team %>
-
-<%= @user.profile.favorite_pro_athlete %>
