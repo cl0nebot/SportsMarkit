@@ -81,3 +81,4 @@ input:-webkit-autofill {
 .attendee_buttons form,
 .social-buttons form {display: inline-block !important;}
 
+.title {text-transform: capitalize;}

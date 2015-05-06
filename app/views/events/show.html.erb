@@ -66,13 +66,13 @@
 				<li class="active">
 					<a href="#location" data-toggle="tab" class="btn-ripple">Location</a>
 				</li>
-				<li class="active">
-					<a href="#following" data-toggle="tab" class="btn-ripple">Attending</a>
+				<li>
+					<a href="#yes" data-toggle="tab" class="btn-ripple">Attending</a>
 				</li>
 				<li>
-					<a href="#teams" data-toggle="tab" class="btn-ripple">Maybe</a>
+					<a href="#maybe" data-toggle="tab" class="btn-ripple">Maybe</a>
 				</li>
-				<li><a href="#teammates" data-toggle="tab" class="btn-ripple">Not Going</a></li>
+				<li><a href="#no" data-toggle="tab" class="btn-ripple">Not Going</a></li>
 			</ul>
 		</div>
 
@@ -102,31 +102,85 @@
 				<!--#following.tab-pane-->
 
 				<!-- following -->
-				<div id="maybes" class="tab-pane active">
+				<div id="yes" class="tab-pane">
 
-					<% @maybes.each do |person| %>
-
-						<%= person.user.full_name %><br>
-
+					<% @attendees.each do |person| %>
+						<div class="panel">
+							<div class="panel-body without-padding">
+								<ul class="list-material">
+									<li class="has-action-left">
+										<a href="#" class="visible">
+											<div class="list-action-left">
+												<img src="<%= image_path("placeholders/user.jpg", class: "face-radius") %>">
+											</div>
+											<div class="list-content">
+												<span class="title">
+													<%= person.user.full_name %>
+												</span>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div><!--.panel-body-->
+						</div><!--.panel-->
 					<% end %>
 
 				</div>
 				<!--#following.tab-pane-->
 
 				<!-- teams -->
-				<div id="teams" class="tab-pane">
+				<div id="maybe" class="tab-pane">
 
-					
+					<% @maybes.each do |person| %>
+
+						<div class="panel">
+							<div class="panel-body without-padding">
+								<ul class="list-material">
+									<li class="has-action-left">
+										<a href="#" class="visible">
+											<div class="list-action-left">
+												<img src="<%= image_path("placeholders/user.jpg", class: "face-radius") %>">
+											</div>
+											<div class="list-content">
+												<span class="title">
+													<%= person.user.full_name %>
+												</span>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div><!--.panel-body-->
+						</div><!--.panel-->
+
+					<% end %>
 
 				</div>
 				<!--#teams.tab-pane-->
 
 				<!-- people -->
 				<div id="no" class="tab-pane">
+					
 					<% @nos.each do |person| %>
 
-						<%= person.user.full_name %><br>
-
+						<div class="panel">
+							<div class="panel-body without-padding">
+								<ul class="list-material">
+									<li class="has-action-left">
+										<a href="#" class="visible">
+											<div class="list-action-left">
+												<img src="<%= image_path("placeholders/user.jpg", class: "face-radius") %>">
+											</div>
+											<div class="list-content">
+												<span class="title">
+													<%= person.user.full_name %>
+												</span>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div><!--.panel-body-->
+						</div><!--.panel-->
+						
 					<% end %>
 				</div>
 
