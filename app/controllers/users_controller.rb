@@ -93,6 +93,11 @@ class UsersController < ApplicationController
     
   end
   
+  def welcome
+    @user = User.find_by_mobile_phone_number(params[:m])
+    
+  end
+  
   def purchases
     @user = User.friendly.find(params[:user_id])
     @purchases = @user.purchase

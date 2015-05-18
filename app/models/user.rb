@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates :first_name, :presence => true, length: {minimum: 2, maximum: 20}
   validates :last_name, :presence => true, length: {minimum: 2, maximum: 20}
-  validates :email, :presence => true, :uniqueness => true
+  #validates :email, :presence => true, :uniqueness => true
 
   before_save { self.email = email.downcase }
 
@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   
   has_many :relationships, dependent: :destroy
   has_many :teams, through: :relationships
+  accepts_nested_attributes_for :relationships, :reject_if => :all_blank, :allow_destroy => true
   
   has_many :attendees
   has_many :classifications
@@ -195,6 +196,13 @@ class User < ActiveRecord::Base
       kid = User.friendly.find(kid_id)
       kid.attendances
     end
+  end
+  
+  def shared_teams(user_id)
+    user = User.find(user_id)
+    user_team_ids = teams.pluck(:id)
+    teammate_team_ids = user.teams.pluck(:id)
+    user_team_ids & teammate_team_ids
   end
   
   
