@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     resources :sitemap
     resources :sports
     resources :certifications
+    resources :amenities
     resources :team_facilities
     resources :team_leagues
     resources :classifications
@@ -54,4 +55,9 @@ Rails.application.routes.draw do
     
     get "login" => "sessions#new", as: :login
     get "signup" => "users#new", as: :signup
+    
+    get "partner/signup", to: "claims#partner_signup", as: :partner_signup
+    post "partner/signup", to: "claims#partner_initial_claim", as: :partner_signup_claim
+    get "claim", to: "claims#claim", as: :claim_school
+    patch "claim", to: "claims#add_claim", as: :add_claim
 end
