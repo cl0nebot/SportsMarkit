@@ -1,0 +1,6 @@
+$('#<%= @amenity.id %>').modal('hide');
+$('#edit-amenity-form')[0].reset()
+$('#amenity-list tbody tr:nth-child(<%= @index %>)').replaceWith('<%= j render(@amenity) %>');
+$('.modal-backdrop').css({
+     'position': 'relative'
+ });
