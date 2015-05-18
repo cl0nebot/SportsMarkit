@@ -87,7 +87,7 @@
 									<div class="card card-meal card-meal-green card-square card-shadow">
 									<div class="card-heading">
 										<h3 class="card-title">
-											<%= link_to team.name, "teams/#{team.slug}" %>
+											<%= link_to team.name, "/teams/#{team.slug}" %>
 										</h3>
 										<div class="card-subhead">
 											<%= team.sport %>
@@ -147,8 +147,10 @@
 										<div class="subhead mb0">
 											Shared Teams:
 											<% teammate.teams.each_with_index do |team, i| %>
+											<% if @user.shared_teams(teammate.id).include? team.id %>
 												<% count = i + 1 %>
 												<%= link_to team.name, team_path(team) %><%= count == teammate.teams.count ? "" : ","%>
+												<% end %>
 											<% end %>
 										</div>
 									</div><!--.card-body-->
