@@ -3,6 +3,7 @@ class CertificationsController < ApplicationController
   def index
     @certifications = Certification.all
     @certification = Certification.new
+    @certification_badge = @certification.certification_badges.build
   end
   
   def create
@@ -55,7 +56,7 @@ class CertificationsController < ApplicationController
   protected
   
   def certification_params
-    params.require(:certification).permit(:name, :issuer)
+    params.require(:certification).permit(:name, :issuer, certification_badges_attributes: [:id, :badge, :_destroy])
   end
 end
   
