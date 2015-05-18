@@ -13,4 +13,9 @@ class League < ActiveRecord::Base
       "#{name} #{state}"
     end
   end
+  
+  def teams
+    team_ids = TeamLeague.where(league_id: id).pluck(:team_id)
+    teams = Team.where(id: team_ids)
+  end
 end
