@@ -8,10 +8,12 @@ Rails.application.routes.draw do
         get :events, on: :member
       end
       resources :measurables
+      resources :certificates
     end
     get "welcome" => "users#welcome", as: :user_welcome
 
     resources :measurables
+    resources :certificates
     resources :events
     resources :sessions
     resources :password_resets
