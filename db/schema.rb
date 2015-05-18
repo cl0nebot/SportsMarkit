@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150517182242) do
+ActiveRecord::Schema.define(version: 20150518122740) do
 
   create_table "attendees", force: true do |t|
     t.integer  "event_id"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 20150517182242) do
     t.boolean  "yes"
     t.boolean  "maybe"
     t.boolean  "no"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "certification_badges", force: true do |t|
+    t.integer  "certification_id"
+    t.string   "badge"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
