@@ -37,6 +37,12 @@ GEM
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.10)
+    better_errors (2.0.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.2.2)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -51,6 +57,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1)
+    debug_inspector (0.0.2)
     erubis (2.7.0)
     excon (0.42.1)
     execjs (2.5.0)
@@ -271,6 +278,8 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
+  better_errors
+  binding_of_caller
   carrierwave
   coffee-rails (~> 4.0.0)
   figaro!

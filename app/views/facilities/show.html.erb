@@ -57,6 +57,7 @@
 				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
 				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
 				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
+				<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
 			</ul>
 		</div>
 	</div><!--.page-header-->
@@ -184,7 +185,13 @@
 					
 				</div>
 				<!--#media.tab-pane-->
-				
+        <div id="calendar-tab" class="tab-pane">
+
+          <div class="row">
+            <%= render 'shared/calendar', eventable: @facility %>
+          </div>
+
+        </div>
 				
 
 			</div><!--.tab-content-->

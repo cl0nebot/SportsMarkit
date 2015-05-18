@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20150518122740) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "school_id"
+    t.integer  "team_id"
   end
 
   add_index "facilities", ["slug"], name: "index_facilities_on_slug", unique: true, using: :btree

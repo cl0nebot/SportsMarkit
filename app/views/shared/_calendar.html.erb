@@ -1,0 +1,21 @@
+<div class="filters">
+  <%= form_tag "", method: :get, id: "calendar_filter", remote: true do %>
+    <p>Event Type:</p>
+    <% eventable.all_events.pluck(:event_type).uniq.each do |e_type| %>
+      <label><%= e_type %>
+        <%= check_box_tag "q[event_type_in][]", e_type %>
+      </label>
+    <% end %>
+
+    <p>Created by:</p>
+    <% eventable.all_events.includes(:user).map(&:user).uniq.compact.each do |user| %>
+      <label><%= creator_name(user) %>
+        <%= check_box_tag "q[user_id_in][]", user.id %>
+      </label>
+    <% end %>
+    <br>
+    <%= button_tag "Reset", id: "reset_filters" %>
+  <% end %>
+</div>
+
+<div id="calendar" data-root="<%= request.url %>"></div>

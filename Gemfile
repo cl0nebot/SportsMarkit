@@ -39,6 +39,8 @@ gem 'momentjs-rails'
 group :development do
   gem "quiet_assets"
   gem 'pry-rails'
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 gem 'twilio-ruby', '~> 4.1.0'

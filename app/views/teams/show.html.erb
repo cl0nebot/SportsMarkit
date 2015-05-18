@@ -77,6 +77,7 @@
 				<li><a href="#payments" data-toggle="tab" class="btn-ripple">Payments</a></li>
 				<li><a href="#admin" data-toggle="tab" class="btn-ripple">Admin</a></li>
 				<li><a href="#leagues" data-toggle="tab" class="btn-ripple">League</a></li>
+				<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
 			</ul>
 		</div>
 	</div><!--.page-header-->
@@ -276,8 +277,16 @@
 					
 				</div>
 				<!--#facilities.tab-pane-->
+        <div id="calendar-tab" class="tab-pane">
 
+          <div class="row">
+            <%= render 'shared/calendar', eventable: @team %>
+          </div>
+
+        </div>
 			</div><!--.tab-content-->
+
+
 		</div><!--.col-->
 	</div><!--.row-->
 

@@ -295,6 +295,7 @@ validateNewTeamForm = function(el){
       "team[sport]": {
         required: true
       }
+    },
     messages: {
       "team[name]": {
         minlength: "Name must be at least 3 characters.",
@@ -312,6 +313,7 @@ validateNewFacilityForm = function(el){
         minlength: 3,
         maxlength: 50
       }
+    },
     messages: {
       "facility[name]": {
         minlength: "Name must be at least 3 characters.",
@@ -353,7 +355,8 @@ validateNewLeagueForm = function(el){
         maxlength: "Name must not exceed 50 characters."
       }
     }
-  });
+  }
+ });
 };
 
 validateCertificationForm = function(el){
@@ -364,12 +367,13 @@ validateCertificationForm = function(el){
         minlength: 3,
         maxlength: 50
       },
-	  
+
       "certification[issuer]": {
         required: true,
         minlength: 3,
         maxlength: 50
       }
+    },
     messages: {
       "certification[name]": {
         minlength: "Name must be at least 3 characters.",
@@ -378,25 +382,6 @@ validateCertificationForm = function(el){
     }
   });
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 validateSpaContactMessage = function(el){
   $(el).validate({
@@ -575,7 +560,7 @@ validateCommentForm = function(el){
 
 validateTreatmentForm = function(el){
   $(el).validate({
-    rules: {},
+    rules: {}
   });
   addTreatmentValidation();
 };
@@ -767,9 +752,7 @@ validateSpaReviewForm = function(el){
       },
       "spa_review[review_title]": {
         required: true
-      },
-
-    },
+      }    },
     errorPlacement: function(error, el){
       if(el.attr("name") == "spa_review[date_of_trip(2i)]" || el.attr("name") == "spa_review[date_of_trip(1i)]"){
         $('#date-of-trip-error-div').empty();

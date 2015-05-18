@@ -52,5 +52,8 @@ class Facility < ActiveRecord::Base
     team_ids = TeamFacility.where(facility_id: id).pluck(:team_id)
     teams = Team.where(id: team_ids)
   end
-  
+
+  def all_events
+    events
+  end
 end
