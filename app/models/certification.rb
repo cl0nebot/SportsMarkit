@@ -1,4 +1,6 @@
 class Certification < ActiveRecord::Base
+  has_many :certification_badges #TODO dependent destroy?
+  accepts_nested_attributes_for :certification_badges, :reject_if => :all_blank, :allow_destroy => true
   
   
   
