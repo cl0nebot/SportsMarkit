@@ -34,7 +34,7 @@ input.form-control {font-size: 26px; line-height: 30px;}
 		</div>
 	</div><!--.page-header-->
 
-	<%= form_for @user, html: {id: "user-form", data: {remote: true }} do |f| %>
+	<%= form_for @user, html: {id: "user-edit-form", data: {remote: true }} do |f| %>
 
 		<div class="row">
 			<div class="col-md-3">
@@ -166,7 +166,7 @@ input.form-control {font-size: 26px; line-height: 30px;}
 											<div class="col-md-12">
 												<div class="inputer">
 													<div class="input-wrapper">
-														<%= builder.text_field :mobile_phone_number, class: "form-control", placeholder: "" %>
+														<%#= builder.text_field :mobile_phone_number, class: "form-control", placeholder: "" %>
 													</div>
 												</div>
 											</div><!--.col-md-9-->
