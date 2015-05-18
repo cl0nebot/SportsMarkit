@@ -41,6 +41,8 @@ group :development do
   gem 'pry-rails'
 end
 
+gem 'twilio-ruby', '~> 4.1.0'
+
 gem 'ransack'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
