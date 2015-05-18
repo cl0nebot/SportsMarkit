@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       end
       resources :measurables
     end
+    get "welcome" => "users#welcome", as: :user_welcome
 
     resources :measurables
     resources :events
@@ -28,6 +29,9 @@ Rails.application.routes.draw do
         patch :accept_user
         patch :reject_user
         post :add_facility
+        post :create_roster_spot
+        get :join_league
+        get :leave_league
       end
     end
     resources :facilities
@@ -39,6 +43,7 @@ Rails.application.routes.draw do
     resources :sports
     resources :certifications
     resources :team_facilities
+    resources :team_leagues
     resources :classifications
     resources :parent_children
     

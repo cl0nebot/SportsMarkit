@@ -1,0 +1,16 @@
+<%= @user.full_name %>
+
+<%= form_for @user do |f| %>
+
+<%= f.text_field :first_name %>
+
+<%= f.text_field :last_name %>
+
+<%= f.password_field :current_password, placeholder: "Current Password" %>
+
+<%= f.password_field :password_confirmation, placeholder: "New Password" %>
+
+<%= f.submit%>
+
+
+<% end %>
