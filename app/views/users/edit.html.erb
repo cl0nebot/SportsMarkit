@@ -28,6 +28,7 @@ input.form-control {font-size: 26px; line-height: 30px;}
 				<li class="active"><a href="#general" data-toggle="tab">General</a></li>
 				<li><a href="#social-media" data-toggle="tab">Social Media</a></li>
 				<li><a href="#stats" data-toggle="tab">Sports Resume</a></li>
+				<li><a href="#certifications" data-toggle="tab">Certifications</a></li>
 				<li><a href="#favorites" data-toggle="tab">Favorites</a></li>
 				<li><a href="#password" data-toggle="tab">Password</a></li>
 			</ul>
@@ -377,6 +378,56 @@ input.form-control {font-size: 26px; line-height: 30px;}
 									</div>
 								</div>
 							</div><!--tab-pane-->
+							
+							<div class="tab-pane text-style" id="certifications">
+								<div class="panel-body">
+
+									<h4 class="pull-right">Certifications</h4>
+
+									<div class="col-md-12">
+
+										<%= f.fields_for :profile, @profile do |builder| %>
+
+
+										<div class="row example-row">
+											<div class="col-md-12">Favorite Pro Team</div><!--.col-md-3-->
+											<div class="col-md-12">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<%= builder.text_field :favorite_pro_team, class: "form-control", placeholder: " " %>
+													</div>
+												</div>
+											</div><!--.col-md-9-->
+										</div><!--.row-->
+
+										<div class="row example-row">
+											<div class="col-md-12">Favorite College Team</div><!--.col-md-3-->
+											<div class="col-md-12">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<%= builder.text_field :favorite_college_team, class: "form-control", placeholder: "" %>
+													</div>
+												</div>
+											</div><!--.col-md-9-->
+										</div><!--.row-->
+
+										<div class="row example-row">
+											<div class="col-md-12">Favorite Pro Athlete</div><!--.col-md-3-->
+											<div class="col-md-12">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<%= builder.text_field :favorite_pro_athlete, class: "form-control", placeholder: "" %>
+													</div>
+												</div>
+											</div><!--.col-md-9-->
+										</div><!--.row-->
+
+										<% end %>
+									</div>
+								</div>
+							</div><!--tab-pane-->
+							
+							
 
 							<div class="tab-pane text-style" id="favorites">
 								<div class="panel-body">

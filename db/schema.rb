@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518122740) do
+ActiveRecord::Schema.define(version: 20150518163112) do
 
   create_table "attendees", force: true do |t|
     t.integer  "event_id"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 20150518122740) do
     t.boolean  "yes"
     t.boolean  "maybe"
     t.boolean  "no"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "certificates", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "certification_id"
+    t.date     "expiration"
+    t.boolean  "expires"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -93,7 +102,6 @@ ActiveRecord::Schema.define(version: 20150518122740) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "school_id"
-    t.integer  "team_id"
   end
 
   add_index "facilities", ["slug"], name: "index_facilities_on_slug", unique: true, using: :btree
@@ -231,6 +239,7 @@ ActiveRecord::Schema.define(version: 20150518122740) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "mobile_phone_number"
+    t.boolean  "admin"
   end
 
   create_table "schools", force: true do |t|
