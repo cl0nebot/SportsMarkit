@@ -22,7 +22,7 @@
 			</div><!--.panel-heading-->
 			<div class="panel-body">
 
-				<%= form_for Team.new, url: teams_path, method: :post do |f| %>
+				<%= form_for Team.new, url: teams_path, html: {id: 'new-team-form', method: :post} do |f| %>
 	
 
 				<div class="row example-row">
