@@ -211,7 +211,8 @@ input.form-control {font-size: 26px; line-height: 30px;}
 										<% end %>
 									</div>
 								</div>
-							</div><!--tab-pane-->
+
+              </div><!--tab-pane-->
 
 							<div class="tab-pane text-style" id="social-media">
 								
@@ -377,6 +378,29 @@ input.form-control {font-size: 26px; line-height: 30px;}
 										<% end %>  
 									</div>
 								</div>
+
+                <div class='row'>
+                  <div class="panel">
+                    <div class="panel-body">
+                      <div class="tab-content with-panel transparent">
+                        <div class="tab-pane active text-style" id="general">
+                          <div class="panel-body">
+                            <h4 class="pull-right">Measurables</h4>
+                            </br>
+                            </br>
+                            <%= link_to "Add Measure", new_user_measurable_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue pull-right' %>
+
+                            <div id="measures">
+                              <% @user.measurables.each do |m| %>
+                                <%= render 'measurables/form', m: m, u: @user %>
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 							</div><!--tab-pane-->
 							
 							<div class="tab-pane text-style" id="certifications">
@@ -385,49 +409,31 @@ input.form-control {font-size: 26px; line-height: 30px;}
 									<h4 class="pull-right">Certifications</h4>
 
 									<div class="col-md-12">
+                    <div class='row'>
+                      <div class="panel">
+                        <div class="panel-body">
+                          <div class="tab-content with-panel transparent">
+                            <div class="tab-pane active text-style" id="general">
+                              <div class="panel-body">
+                                <%= link_to "Add Certificate", new_user_certificate_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue pull-right' %>
 
-										<%= f.fields_for :profile, @profile do |builder| %>
+                                <div id="certificates">
+                                  <% @user.certificates.each do |m| %>
+                                    <%= render 'certificates/form', m: m, u: @user %>
+                                  <% end %>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-
-										<div class="row example-row">
-											<div class="col-md-12">Favorite Pro Team</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= builder.text_field :favorite_pro_team, class: "form-control", placeholder: " " %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<div class="row example-row">
-											<div class="col-md-12">Favorite College Team</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= builder.text_field :favorite_college_team, class: "form-control", placeholder: "" %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<div class="row example-row">
-											<div class="col-md-12">Favorite Pro Athlete</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= builder.text_field :favorite_pro_athlete, class: "form-control", placeholder: "" %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<% end %>
 									</div>
 								</div>
 							</div><!--tab-pane-->
-							
-							
+
+
 
 							<div class="tab-pane text-style" id="favorites">
 								<div class="panel-body">
@@ -537,33 +543,6 @@ input.form-control {font-size: 26px; line-height: 30px;}
     </br>
     <br/>
 
-    <div class="col-md-12">
-      <div class='col-md-3'></div>
-      <div class="col-md-9">
-        <div class='row'>
-          <div class="panel">
-            <div class="panel-body">
-              <div class="tab-content with-panel transparent">
-                <div class="tab-pane active text-style" id="general">
-                  <div class="panel-body">
-                    <h4 class="pull-right">Measurables</h4>
-                    </br>
-                    </br>
-                    <%= button_to "Add Measure", new_user_measurable_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue pull-right' %>
-
-                    <div id="measures">
-                      <% @user.measurables.each do |m| %>
-                        <%= render 'measurables/form', m: m, u: @user %>
-                    <% end %>
-                    </div>
-                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
 </div>
 <!--.content-->
                         

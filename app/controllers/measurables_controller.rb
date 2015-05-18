@@ -22,8 +22,7 @@ class MeasurablesController < ApplicationController
   end
 
   private
-
-  def measurable_params
-    params[:measurable].permit(:sport, :measurable, :result, :user_id)
-  end
+    def measurable_params
+      params[:measurable].permit(:sport, :measurable, :result, :user_id)
+    end
 end
