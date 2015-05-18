@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506160142) do
+ActiveRecord::Schema.define(version: 20150517182242) do
 
   create_table "attendees", force: true do |t|
     t.integer  "event_id"
@@ -86,7 +86,6 @@ ActiveRecord::Schema.define(version: 20150506160142) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "school_id"
-    t.integer  "team_id"
   end
 
   add_index "facilities", ["slug"], name: "index_facilities_on_slug", unique: true, using: :btree
@@ -183,7 +182,6 @@ ActiveRecord::Schema.define(version: 20150506160142) do
     t.string   "offseason_city"
     t.string   "state"
     t.string   "zipcode"
-    t.string   "mobile_phone_number"
     t.string   "focus"
     t.string   "specialties"
     t.string   "skills"
@@ -224,9 +222,8 @@ ActiveRecord::Schema.define(version: 20150506160142) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "mobile_phone_number"
   end
-
-  add_index "relationships", ["slug"], name: "index_relationships_on_slug", unique: true, using: :btree
 
   create_table "schools", force: true do |t|
     t.string   "name"
@@ -281,6 +278,13 @@ ActiveRecord::Schema.define(version: 20150506160142) do
     t.datetime "updated_at"
   end
 
+  create_table "team_leagues", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "league_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "teams", force: true do |t|
     t.integer  "school_id"
     t.integer  "league_id"
@@ -325,6 +329,7 @@ ActiveRecord::Schema.define(version: 20150506160142) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
+    t.string   "mobile_phone_number"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

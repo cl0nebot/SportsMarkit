@@ -6,6 +6,7 @@ class Team < ActiveRecord::Base
   belongs_to :school
   has_many :events, as: :eventable
   has_many :team_facilities
+  has_many :team_leagues
   
   has_many :relationships
   has_many :users, through: :relationships
@@ -36,6 +37,12 @@ class Team < ActiveRecord::Base
     team_facilities = TeamFacility.where(team_id: id)
     facility_ids = team_facilities.pluck(:facility_id)
     Facility.where(id: facility_ids)
+  end
+  
+  def leagues
+    team_leagues = TeamLeague.where(team_id: id)
+    league_ids = team_leagues.pluck(:league_id)
+    League.where(id: league_ids)
   end
 
   def pending_members

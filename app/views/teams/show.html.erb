@@ -76,6 +76,7 @@
 				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
 				<li><a href="#payments" data-toggle="tab" class="btn-ripple">Payments</a></li>
 				<li><a href="#admin" data-toggle="tab" class="btn-ripple">Admin</a></li>
+				<li><a href="#leagues" data-toggle="tab" class="btn-ripple">League</a></li>
 			</ul>
 		</div>
 	</div><!--.page-header-->
@@ -217,7 +218,7 @@
 							<div class="panel-title">
 								<h4>
 									<span class="text-black">
-										PENDING USERS
+										UNACCEPTED PENDING USERS
 									</span>
 								</h4>
 							</div>
@@ -228,10 +229,53 @@
 							     <%= render 'pending', m: m%>
 							  <% end %>
 							</ul>
+							
 						</div><!--.panel-body-->
+						
 					</div><!--.panel-->
+					Invited Pending Users
+					<br>
+					Add Roster
+					
+					<%= form_for @new_user, url: create_roster_spot_team_path do |f| %>
+					
+					<%= f.text_field :first_name, placeholder: "First Name" %><br>
+					<%= f.text_field :last_name, placeholder: "Last Name" %><br>
+					<%= f.text_field :mobile_phone_number, placeholder: "Mobile Phone Number" %><br>
+					<%= f.fields_for :relationships, @relationship do |r| %>
+					<%= text_field_tag :head_title,"" ,placeholder: "Title"%><br>
+					<%= text_field_tag :participant_classification,"", placeholder: "Participant Classification"%><br>
+					<%= text_field_tag :position,"", placeholder: "Position"%><br>
+					<%= hidden_field_tag :team_id,"", value: @team.id %><br>
+					
+					
+					
+					
+					
+					<% end %>
+					
+					<%= f.submit %>
+					
+					<br>
+					
+					<% end %>
 				</div>
 				<!--#admin.tab-pane-->
+				
+				<!-- facilities -->
+				<div id="leagues" class="tab-pane">
+					<p class="text-right">
+						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-team-league">Join League</button>
+					</p>
+
+					<hr/>
+					
+					<div id='team-league-list'>
+					  <%= render 'teams/leagues', leagues: @team.leagues %>
+				    </div>
+					
+				</div>
+				<!--#facilities.tab-pane-->
 
 			</div><!--.tab-content-->
 		</div><!--.col-->
@@ -242,6 +286,7 @@
 </div><!--.content-->
 
 <%= render "shared/panels/new_team" %>
+<%= render "shared/panels/new_team_league" %>
 
 	
 	
