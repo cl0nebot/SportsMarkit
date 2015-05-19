@@ -192,6 +192,26 @@ class User < ActiveRecord::Base
     Classification.where(user_id: id, classification: "Parent").present?
   end
   
+  def is_athlete?
+    if Classification.where(user_id: id, classification: "Athlete").present?
+      true
+    elsif Relationship.where(user_id: id, participant: true).present?
+      true
+    else
+      false
+    end
+  end
+  
+  def is_coach?
+    if Classification.where(user_id: id, classification: "Coach").present?
+      true
+    elsif Relationship.where(user_id: id, head: true).present?
+      true
+    else
+      false
+    end 
+  end
+  
   def children_events #TODO finish
     if ParentChild.where(parent_id: id).present? 
       kid_id = ParentChild.where(parent_id: id).last
