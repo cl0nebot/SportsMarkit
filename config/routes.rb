@@ -2,8 +2,7 @@ Rails.application.routes.draw do
     root 'main#index'
     
     resources :users do
-      get "setup" => "users#setup", as: :user_setup
-      get "overview" => "users#overview", as: :user_overview
+      resources :user_profile_pictures, only: %w[create update destroy]
       resources :events
       resource :calendar do
         get :events, on: :member
@@ -12,6 +11,11 @@ Rails.application.routes.draw do
       resources :certificates
       resources :media
     end
+    
+    get "/users/:id/setup" => "setup#setup", as: :user_setup
+    get "/users/:id/overview" => "setup#overview", as: :user_overview
+    patch "/user/:id/athlete_setup" => "setup#athlete_setup", as: :athlete_setup
+    patch "/user/:id/coach_setup" => "setup#coach_setup", as: :coach_setup
 
     get "welcome" => "users#welcome", as: :user_welcome
 
