@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     
     resources :users do
       get "setup" => "users#setup", as: :user_setup
+      get "overview" => "users#overview", as: :user_overview
       resources :events
       resource :calendar do
         get :events, on: :member
