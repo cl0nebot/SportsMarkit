@@ -81,6 +81,7 @@
 //= require ./full_calendar
 //= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.googlemaps
+//= require best_in_place
 //= require ./ready
 //= require ./validation/jquery.validate.min
 //= require validation

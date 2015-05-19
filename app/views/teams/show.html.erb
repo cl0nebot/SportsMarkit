@@ -45,7 +45,7 @@
 			<div class="col-sm-6">
 				<h1>
 					<i class="ion-calendar m-r-5"></i>
-					Upcoming event 
+					Upcoming event
 					<small><% if @team.upcoming_events.empty? %>
 						[<%= @team.next_event %>]
 						<% else %>
@@ -77,7 +77,6 @@
 				<li><a href="#payments" data-toggle="tab" class="btn-ripple">Payments</a></li>
 				<li><a href="#admin" data-toggle="tab" class="btn-ripple">Admin</a></li>
 				<li><a href="#leagues" data-toggle="tab" class="btn-ripple">League</a></li>
-				<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
 			</ul>
 		</div>
 	</div><!--.page-header-->
@@ -85,7 +84,7 @@
 	<div class="row user-profile">
 		<div class="col-md-12">
 			<div class="tab-content without-border">
-				
+
 				<!-- about -->
 				<div id="about" class="tab-pane active">
 					<div class="panel">
@@ -134,7 +133,7 @@
 
 				<!-- events -->
 				<div id="events" class="tab-pane">
-					
+
 					<% @events.each do |event| %>
 
 					<div class="col-md-6">
@@ -155,7 +154,7 @@
 								<h5 class="h6 text-primary bold">
 									<%= format(event.starts_at, 4) %>
 									<%= format(event.starts_at, 8) %>
-									- 
+									-
 									<%= format(event.ends_at, 4) %>
 									<%= format(event.ends_at, 8) %>
 								</h5>
@@ -178,9 +177,9 @@
 
 						</div><!--.card-->
 					</div><!--.col-md-6-->
-					
+
 					<% end %>
-					
+
 				</div>
 				<!--#events.tab-pane-->
 
@@ -191,24 +190,24 @@
 					</p>
 
 					<hr/>
-					
+
 					<div id='team-facility-list'>
 					  <%= render 'teams/facilities', facilities: @team.facilities %>
 				    </div>
-					
+
 				</div>
 				<!--#facilities.tab-pane-->
 
 				<!-- media -->
 				<div id="media" class="tab-pane">
-					
+
 				</div>
 				<!--#media.tab-pane-->
 
 				<!-- payments -->
 				<div id="payments" class="tab-pane">
-					
-					
+
+
 				</div>
 				<!--#payments.tab-pane-->
 
@@ -230,16 +229,16 @@
 							     <%= render 'pending', m: m%>
 							  <% end %>
 							</ul>
-							
+
 						</div><!--.panel-body-->
-						
+
 					</div><!--.panel-->
 					Invited Pending Users
 					<br>
 					Add Roster
-					
+
 					<%= form_for @new_user, url: create_roster_spot_team_path do |f| %>
-					
+
 					<%= f.text_field :first_name, placeholder: "First Name" %><br>
 					<%= f.text_field :last_name, placeholder: "Last Name" %><br>
 					<%= f.text_field :mobile_phone_number, placeholder: "Mobile Phone Number" %><br>
@@ -248,21 +247,21 @@
 					<%= text_field_tag :participant_classification,"", placeholder: "Participant Classification"%><br>
 					<%= text_field_tag :position,"", placeholder: "Position"%><br>
 					<%= hidden_field_tag :team_id,"", value: @team.id %><br>
-					
-					
-					
-					
-					
+
+
+
+
+
 					<% end %>
-					
+
 					<%= f.submit %>
-					
+
 					<br>
-					
+
 					<% end %>
 				</div>
 				<!--#admin.tab-pane-->
-				
+
 				<!-- facilities -->
 				<div id="leagues" class="tab-pane">
 					<p class="text-right">
@@ -270,20 +269,14 @@
 					</p>
 
 					<hr/>
-					
+
 					<div id='team-league-list'>
 					  <%= render 'teams/leagues', leagues: @team.leagues %>
 				    </div>
-					
+
 				</div>
 				<!--#facilities.tab-pane-->
-        <div id="calendar-tab" class="tab-pane">
 
-          <div class="row">
-            <%= render 'shared/calendar', eventable: @team %>
-          </div>
-
-        </div>
 			</div><!--.tab-content-->
 
 
@@ -297,7 +290,7 @@
 <%= render "shared/panels/new_team" %>
 <%= render "shared/panels/new_team_league" %>
 
-	
+
 	
 
       			

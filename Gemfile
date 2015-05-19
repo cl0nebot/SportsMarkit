@@ -46,6 +46,7 @@ end
 gem 'twilio-ruby', '~> 4.1.0'
 
 gem 'ransack'
+gem 'best_in_place', '~> 3.0.1'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
