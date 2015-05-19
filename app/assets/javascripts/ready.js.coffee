@@ -15,3 +15,6 @@ $(document).on  'click', '.submit-form', ->
     false
 $(document).ready ->
   $(".best_in_place").best_in_place();
+
+$(document).on 'click', '.no-action', ->
+  false
