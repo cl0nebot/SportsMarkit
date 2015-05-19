@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   has_many :measurables
   has_many :certificates
   has_many :certifications, through: :certificates
+  has_many :medias, as: :mediable
 
   def self.user_types
     ["Athlete", "Parent", "Coach", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]  

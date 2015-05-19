@@ -1,0 +1,55 @@
+<div id='media-<%= m.fake_id %>' style='margin-bottom: 20px; display: block; float: left; width: 100%;'>
+  <% url = m.persisted? ? user_medium_path(user_id: u.id, id: m.id) : user_media_path(user_id: u.id) %>
+  <% method = m.persisted? ? :put : :post %>
+  <%= form_for m, remote: true, url: url, method: method do |f| %>
+    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)%>
+    <div class="col-md-12">
+      <div class="row example-row"></div>
+      <div class="row example-row">
+        <div class="col-md-12">Title </div><!--.col-md-3-->
+        <div class="col-md-12">
+          <div class="inputer">
+            <div class="input-wrapper">
+              <%= f.text_field :title, class: "form-control", placeholder: "", required: true %>
+            </div>
+          </div>
+        </div><!--.col-md-9-->
+      </div>
+      <div class="row example-row">
+        <div class="col-md-12">Url</div><!--.col-md-3-->
+        <div class="col-md-12">
+          <div class="inputer">
+            <div class="input-wrapper">
+              <%= f.text_field :url, class: "form-control", placeholder: "", required: true %>
+            </div>
+          </div>
+        </div><!--.col-md-9-->
+      </div>
+      <div class="row example-row">
+        <div class="col-md-12">Publication date</div><!--.col-md-3-->
+        <div class="col-md-12">
+          <div class="inputer">
+            <div class="input-wrapper">
+              <%= f.text_field :publish_date, class: "form-control  bootstrap-daterangepicker-basic active", placeholder: "", required: true  %>
+            </div>
+          </div>
+        </div><!--.col-md-9-->
+      </div>
+      <!--.row-->
+    </div>
+
+    <div class="col-md-12">
+      <%= f.hidden_field :mediable_id, value: u.id %>
+      <% if m.persisted? %>
+        <button class="btn btn-large btn-blue submit-form"> Update </button>
+        <button class="btn btn-large btn-blue">
+          <%= link_to "Remove", medium_path(m), method: :delete, remote: :true %>
+        </button>
+      <% else %>
+        <button class="btn btn-large btn-blue submit-form"> Create </button>
+        <%= f.hidden_field :fake_id %>
+        <button class="btn btn-large btn-blue remove-form">Remove</button>
+      <% end %>
+    </div>
+  <% end %>
+</div>

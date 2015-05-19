@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519115308) do
+ActiveRecord::Schema.define(version: 20150519123124) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -152,6 +152,9 @@ ActiveRecord::Schema.define(version: 20150519115308) do
     t.string   "mediable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
+    t.string   "url"
+    t.date     "publish_date"
   end
 
   add_index "media", ["mediable_id", "mediable_type"], name: "index_media_on_mediable_id_and_mediable_type", using: :btree
