@@ -28,4 +28,11 @@ module ApplicationHelper
   def creator_name(user)
     user == current_user ? "Me" : user.full_name
   end
+
+  def background_url(obj)
+    case obj.class.to_s
+      when "School"
+        obj.main_photo.present? ? obj.main_photo.image.url(:cropped) : 'http://upload.wikimedia.org/wikipedia/commons/b/b5/Aberdeen_High_School_2.jpg'
+    end
+  end
 end

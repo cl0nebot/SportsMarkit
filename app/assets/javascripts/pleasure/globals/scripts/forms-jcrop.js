@@ -8,9 +8,10 @@ var FormsJCrop = {
 		var jcrop_api;
 
 		$('.jcrop-handler').Jcrop({
-			onChange:   showCoords,
+      onChange:   showCoords,
 			onSelect:   showCoords,
 			onRelease:  clearCoords
+
 		},function(){
 			jcrop_api = this;
 		});
@@ -55,8 +56,7 @@ var FormsJCrop = {
 
 		$('.jcrop-preimage').Jcrop({
 			onChange: updatePreview,
-			onSelect: updatePreview,
-			aspectRatio: xsize / ysize
+			onSelect: updatePreview
 		},function(){
 			// Use the API to get the real image size
 			var bounds = this.getBounds();
@@ -451,7 +451,6 @@ var FormsJCrop = {
 
 	serverSide: function () {
 		$('.jcrop-server').Jcrop({
-			aspectRatio: 1,
 			onSelect: FormsJCrop.updateCoords
 		});
 	},
@@ -464,7 +463,7 @@ var FormsJCrop = {
 	},
 
 	updateCoords: function (c) {
-		$('#f_x').val(c.x);
+    $('#f_x').val(c.x);
 		$('#f_y').val(c.y);
 		$('#f_w').val(c.w);
 		$('#f_h').val(c.h);

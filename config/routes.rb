@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :schools do
       resources :facilities
       resources :teams
+      resources :photos
     end
     
     resources :teams do
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
         get :leave_league
       end
     end
+
     resources :facilities
     resources :leagues 
     resources :fans

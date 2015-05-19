@@ -31,6 +31,8 @@
 //= require pleasure/globals/plugins/selectize/dist/js/standalone/selectize.js
 
 //= require pleasure/globals/plugins/strength/strength.min
+//= require pleasure/globals/plugins/Jcrop/js/jquery.Jcrop.js
+//= require pleasure/globals/scripts/forms-jcrop
 //= require pleasure/globals/plugins/indicator/indicator
 //= require pleasure/globals/plugins/pwstrength-bootstrap/dist/pwstrength-bootstrap-1.2.2.min
 //= require pleasure/globals/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min

@@ -2,7 +2,7 @@
 
 	<div class="page-header full-content parallax" style="height: 600px; overflow: hidden">
 		
-		<div class="parallax-bg" style="background: url('http://upload.wikimedia.org/wikipedia/commons/b/b5/Aberdeen_High_School_2.jpg') 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
+		<div class="parallax-bg" style="background: url(<%= background_url(@school) %>) 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
 		</div>
 
 		<div class="bg-overlay"></div><!--.bg-overlay-->
@@ -55,6 +55,7 @@
 				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
 				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li>
 				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
+				<li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li>
 			</ul>
 		</div>
 	</div><!--.page-header-->
@@ -221,6 +222,8 @@
 					<% end %>
 					
 				</div>
+
+
 				<!--#events.tab-pane-->
 
 				<!-- facilities -->
@@ -238,9 +241,35 @@
 
 				</div>
 				<!--#media.tab-pane-->
-				
-				
+        <div id="photo" class="tab-pane">
+          <%= form_for [@school, @school.main_photo], html: { multipart: true } do |f| %>
+            <div class="fileinput fileinput-new" data-provides="fileinput">
 
+              <div id="photo_image" class="jcrop-preimage jcrop-server fileinput-preview" data-trigger="fileinput">
+                <%= image_tag @school.main_photo.image.url(:cropped) %>
+              </div>
+
+              <div id="preview-pane" style="right: -800px; display: none;">
+                <div class="preview-container" style="width: 600px; height: 200px;">
+                  <%= image_tag @school.main_photo.image.url(:cropped), style: 'width: 600px; height: 200px;' %>
+                </div>
+              </div>
+
+              <div>
+                <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="photo[image]"></span>
+                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                <%= f.hidden_field :main, value: true %>
+                <%= f.hidden_field :image_crop_x, id: :f_x %>
+                <%= f.hidden_field :image_crop_y, id: :f_y %>
+                <%= f.hidden_field :image_crop_w, id: :f_w %>
+                <%= f.hidden_field :image_crop_h, id: :f_h %>
+                <%= f.submit class: 'btn btn-primary' %>
+                <%= link_to "Crop", '#', id: 'crop-image', class: 'btn btn-primary' %>
+              </div>
+            </div>
+          <% end %>
+
+        </div>
 			</div><!--.tab-content-->
 		</div><!--.col-->
 	</div><!--.row-->

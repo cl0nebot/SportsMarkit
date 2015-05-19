@@ -44,9 +44,10 @@ group :development do
 end
 
 gem 'twilio-ruby', '~> 4.1.0'
-
+gem 'rmagick'
 gem 'ransack'
 gem 'best_in_place', '~> 3.0.1'
+gem 'carrierwave-crop'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
