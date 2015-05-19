@@ -107,6 +107,10 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:user_id])
   end
   
+  def overview
+    @user = User.friendly.find(params[:user_id])
+  end
+  
   protected
   
   def user_params
