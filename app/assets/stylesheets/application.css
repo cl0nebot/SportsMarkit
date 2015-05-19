@@ -39,6 +39,7 @@
  *= require pleasure/globals/plugins/bootstrap-select/dist/css/bootstrap-select.min
 
  *= require pleasure/globals/plugins/jasny-bootstrap/dist/css/jasny-bootstrap.min
+ *= require pleasure/globals/plugins/Jcrop/css/jquery.Jcrop.css
 
  *= require pleasure/globals/css/plugins
  *= require pleasure/custom
@@ -46,4 +47,10 @@
  *= require fullcalendar
  */
 
-
+.preview-container.fileinput-preview{
+    line-height: normal !important;
+}
+.preview-container.fileinput-preview img{
+    width: 600px;
+    height: 200px;
+}

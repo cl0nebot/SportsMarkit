@@ -21,3 +21,4 @@
 database.yml
 .idea/*
 /config/application.yml
+public/uploads/*
