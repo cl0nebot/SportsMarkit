@@ -1,0 +1,24 @@
+				<%= form_for @user, url: athlete_setup_path(@user) do |f| %>
+                <% if @user.is_athlete? %>	
+					<% if @user.relationships.where(participant: true).present? %>
+				       You are currently a member of <%= pluralize @user.relationships.where(participant: true).count, "team" %>. <br><br>
+					   
+					   <% @user.relationships.where(participant: true).each do |relationship| %>
+					   <%= relationship.team.name %><br>
+					   
+					   <% end %><br>
+					   
+					   Find more of your teams below.<br><br>
+				
+					<% else %>
+					You are currently not a member of any teams. Let's get you started. Find your teams below.
+				
+					<% end %>
+				
+				<%= f.collection_select :team_ids, @athlete_teams, :id, :name, {:selected => nil}, {  :multiple => true, :style => "width:100%", :id => "multi", :class => "select2-offscreen", :placeholder => "Select Your Team"  } %>
+				
+				
+			    <% end %><br><br>
+				
+				<%= f.submit %><br>
+				<% end %>
