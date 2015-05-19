@@ -10,11 +10,14 @@ Rails.application.routes.draw do
       end
       resources :measurables
       resources :certificates
+      resources :media
     end
+
     get "welcome" => "users#welcome", as: :user_welcome
 
     resources :measurables
     resources :certificates
+    resources :media
     resources :events
     resources :sessions
     resources :password_resets

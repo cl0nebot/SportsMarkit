@@ -27,6 +27,7 @@ input.form-control {font-size: 26px; line-height: 30px;}
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
 				<li class="active"><a href="#general" data-toggle="tab">General</a></li>
 				<li><a href="#social-media" data-toggle="tab">Social Media</a></li>
+				<li><a href="#media" data-toggle="tab">Media</a></li>
 				<li><a href="#stats" data-toggle="tab">Sports Resume</a></li>
 				<li><a href="#certifications" data-toggle="tab">Certifications</a></li>
 				<li><a href="#favorites" data-toggle="tab">Favorites</a></li>
@@ -523,6 +524,37 @@ input.form-control {font-size: 26px; line-height: 30px;}
 											</div>
 										</div><!--.col-md-9-->
 									</div><!--.row-->
+								</div>
+							</div>
+
+              <div class="tab-pane text-style" id="media">
+
+								<div class="panel-body">
+
+									<h4 class="pull-right">Media</h4>
+
+                  <div class="col-md-12">
+                    <div class='row'>
+                      <div class="panel">
+                        <div class="panel-body">
+                          <div class="tab-content with-panel transparent">
+                            <div class="tab-pane active text-style" id="general">
+                              <div class="panel-body">
+                                <%= link_to "Add Media", new_user_medium_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue pull-right' %>
+
+                                <div id="medias">
+                                  <% @user.medias.each do |m| %>
+                                    <%= render 'media/form', m: m, u: @user %>
+                                  <% end %>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
 								</div>
 							</div><!--.tab-pane-->
 						</div><!--.tab-content-->
