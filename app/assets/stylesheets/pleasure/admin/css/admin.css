@@ -14848,3 +14848,7 @@ button.toast-close-button {
     display: block;
   }
 }
+
+.best_in_place input{
+  max-width: 100%;
+}

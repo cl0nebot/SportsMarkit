@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518183232) do
+ActiveRecord::Schema.define(version: 20150519115308) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -122,11 +122,6 @@ ActiveRecord::Schema.define(version: 20150518183232) do
   end
 
   add_index "fans", ["fannable_id", "fannable_type"], name: "index_fans_on_fannable_id_and_fannable_type", using: :btree
-
-  create_table "identity_checks", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "leagues", force: true do |t|
     t.string   "name"
@@ -251,8 +246,7 @@ ActiveRecord::Schema.define(version: 20150518183232) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "mobile_phone_number"
-    t.boolean  "admin"
-    t.integer  "school_id"
+    t.boolean  "admin",                      default: false
   end
 
   create_table "schools", force: true do |t|
@@ -360,7 +354,6 @@ ActiveRecord::Schema.define(version: 20150518183232) do
     t.string   "provider"
     t.string   "uid"
     t.string   "mobile_phone_number"
-    t.integer  "temporary_school_ids"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

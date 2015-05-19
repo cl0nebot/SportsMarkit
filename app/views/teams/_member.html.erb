@@ -8,7 +8,7 @@
         <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
       </div>
 
-      <div class="col-sm-3">
+      <div class="col-sm-2">
         <h4 class="semi-bold no-margin capitalize">
           <%= best_in_place m.user, :name, as: :input %>
         </h4>
@@ -18,7 +18,7 @@
           </small>
         </p>
       </div>
-      <div class="col-sm-2">
+      <div class="col-sm-1">
         <h4 class="no-margin">
           <%= best_in_place m, :participant_classification, as: :input  %>
         </h4>
@@ -28,7 +28,7 @@
           </small>
         </p>
       </div>
-      <div class="col-sm-2">
+      <div class="col-sm-1">
         <h4 class="no-margin">
           <%= best_in_place m, :position, as: :input %>
         </h4>
@@ -38,7 +38,7 @@
           </small>
         </p>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-1">
         <h4 class="no-margin">
           <i class="text-grey fa fa-quote-left"></i>
           <%= best_in_place m, :quote, as: :input %>
@@ -46,6 +46,36 @@
         <p class="small">
           <small>
             Quote
+          </small>
+        </p>
+      </div>
+      <div class="col-sm-2">
+        <h4 class="no-margin">
+          <%= best_in_place m, :head, as: :input %>
+        </h4>
+        <p class="small">
+          <small>
+            Head
+          </small>
+        </p>
+      </div>
+      <div class="col-sm-2">
+        <h4 class="no-margin">
+          <%= best_in_place m, :head_title, as: :input %>
+        </h4>
+        <p class="small">
+          <small>
+            Head title
+          </small>
+        </p>
+      </div>
+      <div class="col-sm-1">
+        <h4 class="no-margin">
+          <%= best_in_place m, :admin, as: :checkbox, collection: {false: "No", true: "Yes"} %>
+        </h4>
+        <p class="small">
+          <small>
+            Admin
           </small>
         </p>
       </div>
