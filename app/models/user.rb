@@ -143,6 +143,10 @@ class User < ActiveRecord::Base
   def name
     full_name
   end
+
+  def name=(val)
+    self.first_name, self.middle_name, self.last_name = val.split
+  end
   
   def formatted_mobile_phone_number
     "#{self.profile.mobile_phone_number}"

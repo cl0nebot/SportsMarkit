@@ -13,3 +13,5 @@ $(document).on  'click', '.submit-form', ->
       dataType: "script"
 
     false
+$(document).ready ->
+  $(".best_in_place").best_in_place();
