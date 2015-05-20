@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       cookies.permanent[:authentication_token] = @user.authentication_token
       flash[:success] = "Signed up."
       #Emails.user_signup(@user).deliver
-      redirect_to user_user_setup_path(@user)
+      redirect_to user_overview_path(@user)
     else
       render 'new'
     end
