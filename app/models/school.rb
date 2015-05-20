@@ -8,6 +8,9 @@ class School < ActiveRecord::Base
   has_many :teams
   has_many :facilities
   has_many :photos, as: :photo_owner
+  
+  has_many :athletic_directors, dependent: :destroy
+  has_many :users, through: :athletic_directors
 
   accepts_nested_attributes_for :photos
 
