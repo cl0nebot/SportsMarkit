@@ -1,12 +1,12 @@
 <%= form_for Classification.new, html: {method: :post, remote: true } do |f| %>
 	<div class="row">
 		<div class="col-md-6">
-			<%= type %>
+			<h4><%= type %></h4>
 		</div>
 		<div class="col-md-6">
 			<%= f.hidden_field :user_id, value: user.id %>
 			<%= f.hidden_field :classification, value: type %>
-			<%= f.submit class: "btn btn-primary" %>
+			<%= f.submit "Yes, I'm an [type]", class: "btn btn-primary btn-block pull-right" %>
 		</div>
 	</div>
 	<br/>

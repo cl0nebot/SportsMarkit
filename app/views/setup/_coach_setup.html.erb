@@ -1,26 +1,27 @@
-				<%= form_for @user, url: coach_setup_path(@user) do |f| %>
-                <% if @user.is_coach? %>	
-					<% if @user.relationships.where(head: true).present? %>
-				       You are currently a coach of <%= pluralize @user.relationships.where(head: true).count, "team" %>. <br><br>
-					   
-					   <% @user.relationships.where(head: true).each do |relationship| %>
-					   <%= relationship.team.name %><br>
-					   
-					   <% end %><br>
-					   
-					   Find more of your teams below.<br><br>
-				
-					<% else %>
-					You are currently not a coach of any teams. Let's get you started. 
-					<br><br>
-					Find your teams below.
-				
-					<% end %>
-				
-				<%= f.collection_select :team_ids, @coach_teams, :id, :name, {:selected => nil}, {  :multiple => true, :style => "width:100%", :id => "multi", :class => "select2-offscreen", :placeholder => "Select Your Team"  } %>
-				
-				
-			    <% end %><br><br>
-				
-				<%= f.submit %><br>
-				<% end %>
+<%= form_for @user, url: coach_setup_path(@user) do |f| %>
+	<% if @user.is_coach? %>	
+		<% if @user.relationships.where(head: true).present? %>
+	       You are currently a coach of <%= pluralize @user.relationships.where(head: true).count, "team" %>. <br><br>
+		   
+		   <% @user.relationships.where(head: true).each do |relationship| %>
+		   <%= relationship.team.name %><br>
+		   
+		   <% end %><br>
+		   
+		   Find more of your teams below.<br><br>
+
+		<% else %>
+		
+		You are currently not a coach of any teams. Let's get you started. 
+		<br><br>
+		Find your teams below.
+
+		<% end %>
+
+		<%= f.collection_select :team_ids, @coach_teams, :id, :name, {:selected => nil}, {  :multiple => true, :style => "width:100%", :id => "multi", :class => "select2-offscreen", :placeholder => "Select Your Team"  } %>
+
+		<% end %>
+
+		<%= f.submit class: "btn btn-primary" %>
+
+<% end %>

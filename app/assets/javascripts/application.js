@@ -54,8 +54,10 @@
 
 
 //= require pleasure/globals/plugins/chosen/chosen.jquery.min
+//= require pleasure/globals/plugins/selectize/dist/js/standalone/selectize.min
 //= require pleasure/globals/plugins/multiselect/js/jquery.multi-select
 //= require pleasure/globals/plugins/quicksearch/dist/jquery.quicksearch.min
+//= require pleasure/globals/plugins/bootstrap-select/dist/js/bootstrap-select.min
 
 
 //= require pleasure/globals/plugins/jquery-backstretch/jquery.backstretch.min

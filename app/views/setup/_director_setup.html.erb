@@ -1,25 +1,29 @@
-				<%= form_for @user, url: athletic_director_setup_path(@user) do |f| %>
-                <% if @user.is_athletic_director? %>	
-				
-					<% if @user.athletic_directors.present? %>
-				       You are currently the athletic director of <%= @user.athletic_directors.last.school.name %>.You can only be an athletic director of one school at a time. If you wish to select another school, do so below.<br><br>
-					   
-					   <% @user.athletic_directors.each do |ad| %>
-					   <%= ad.school.name %><br>
-					   
-					   <% end %><br>
-					   
-					   Find your school below.<br><br>
-				
-					<% else %>
-					You are currently not an athletic director. Let's get you started. Find your school below.
-				
-					<% end %>
-				
-				<%= f.collection_select :athletic_director_ids, @schools, :id, :name, {:selected => nil}, {  :multiple => false, :style => "width:100%", :id => "multi", :class => "select2-offscreen", :placeholder => "Select Your Team"  } %>
-				
-				
-			    <% end %><br><br>
-				
-				<%= f.submit %><br>
-				<% end %>
+<%= form_for @user, url: athletic_director_setup_path(@user) do |f| %>
+	
+	<% if @user.is_athletic_director? %>	
+
+	<% if @user.athletic_directors.present? %>
+       You are currently the athletic director of <%= @user.athletic_directors.last.school.name %>.You can only be an athletic director of one school at a time. If you wish to select another school, do so below.<br><br>
+	   
+	   <% @user.athletic_directors.each do |ad| %>
+	   <%= ad.school.name %><br>
+	   
+	   <% end %>
+
+	   <br>
+	   
+	   Find your school below.<br><br>
+
+	<% else %>
+	You are currently not an athletic director. Let's get you started. Find your school below.
+
+	<% end %>
+
+	<%= f.collection_select :athletic_director_ids, @schools, :id, :name, {:selected => nil}, {  :multiple => false, :style => "width:100%", :id => "multi", :class => "select2-offscreen", :placeholder => "Select Your Team"  } %>
+
+
+	<% end %><br><br>
+
+	<%= f.submit class: "btn btn-primary" %>
+	
+<% end %>

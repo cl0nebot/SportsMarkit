@@ -20,28 +20,23 @@
 		<label class="pull-left">
 			<input type="checkbox" name="remember" value="1"> Remember me
 		</label>
-		<%= submit_tag "Login", type: "submit", class: "btn btn-success pull-right" %>
+		<%= submit_tag "Login", type: "submit", class: "btn btn-primary pull-right" %>
 	</div><!--.form-buttons-->
 
 	<div class="social-accounts">
-		<div class="btn-group btn-merged btn-group-justified">
-			
-			<div class="btn-group">
-				<%=link_to "/auth/facebook" do %>
+		<div class="btn-group-justified">
+			<%=link_to "/auth/facebook", class: "btn-block btn btn-primary" do %>
 				<i class="fa fa-facebook"></i> Facebook
-				<% end %>
-			</div>
-			
-			<div class="btn-group">
-				<a class="btn btn-social btn-github"><i class="fa fa-github"></i> Github</a>
-			</div>
+			<% end %>
 		</div>
 	</div><!--.social-accounts-->
 
 	<ul class="extra-links">
 		<li>
 			<%= link_to new_password_reset_path, class:"text-muted pull-right" do %>
-				<a href="#" class="show-pane-forgot-password">Forgot your password</a>
+				<h6>
+					<a href="#" class="show-pane-forgot-password">Forgot your password ?</a>
+				</h6>
 			<% end %>
 		</li>
 		<li><a href="#" class="show-pane-create-account">Create a new account</a></li>
