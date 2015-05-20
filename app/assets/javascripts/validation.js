@@ -251,15 +251,11 @@ validateNewSchoolForm = function(el){
       },
       "school[classification]": {
         required: true,
-        number: true
       },
       "school[abbreviation]": {
         required: true
       },
       "school[address_1]": {
-        required: true
-      },
-      "school[address_2]": {
         required: true
       },
       "school[city]": {

@@ -1,0 +1,41 @@
+<div class="content">
+  <div class="page-header full-content bg-blue">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1>Welcome <small> Let's Get Started</small></h1>
+      </div><!--.col-->
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="<%= teams_path %>">Teams</a></li>
+          <li><a href="#" class="active">New</a></li>
+        </ol>
+      </div><!--.col-->
+    </div><!--.row-->
+  </div><!--.page-header-->
+
+<div class="row">
+	<div class=" col-md-offet-2 col-md-8">
+		<div class="panel">
+			<div class="panel-heading">
+				<div class="panel-title">
+					<br/>
+					<h3>Select all That apply.</h3>
+				</div>
+			</div><!--.panel-heading-->
+			<div class="panel-body">
+
+				<div id="type-list">
+					 <%= render 'classifications/type', user: @user %>
+				</div>
+
+			</div><!--.panel-body-->
+		</div><!--.panel-->
+	</div><!--.col-md-12-->
+</div><!--.row-->
+  
+<%= link_to "Configure Your Setup", user_setup_path(@user), class: "btn btn-primary" %> 
+
+</div>
+<%#= @id %>
+<%#= @class %>

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
     root 'main#index'
     
     resources :users do
-      get "setup" => "users#setup", as: :user_setup
+      resources :user_profile_pictures, only: %w[create update destroy]
       resources :events
       resource :calendar do
         get :events, on: :member
@@ -11,6 +11,12 @@ Rails.application.routes.draw do
       resources :certificates
       resources :media
     end
+    
+    get "/users/:id/setup" => "setup#setup", as: :user_setup
+    get "/users/:id/overview" => "setup#overview", as: :user_overview
+    patch "/user/:id/athlete_setup" => "setup#athlete_setup", as: :athlete_setup
+    patch "/user/:id/coach_setup" => "setup#coach_setup", as: :coach_setup
+    patch "/user/:id/athletic_director_setup" => "setup#athletic_director_setup", as: :athletic_director_setup
 
     get "welcome" => "users#welcome", as: :user_welcome
 
@@ -54,6 +60,13 @@ Rails.application.routes.draw do
     resources :team_leagues
     resources :classifications
     resources :parent_children
+    resources :approval do
+      get "approval" => "approval#approval", as: :approval
+      member do
+        patch :approve_director
+        patch :approve_coach
+      end
+    end
     
     get 'auth/:provider/callback', to: "omniauth_callbacks#facebook"
     get 'auth/failure', to: redirect('/')

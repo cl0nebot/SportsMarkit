@@ -20,19 +20,30 @@
 			<div class="panel-heading">
 				<div class="panel-title">
 					<br/>
-					<h3>Select all That apply.</h3>
+					<h3>Setup.</h3>
 				</div>
 			</div><!--.panel-heading-->
 			<div class="panel-body">
-
-				<div id="type-list">
-					 <%= render 'classifications/type', user: @user %>
-				</div>
+				<%= render 'setup/athlete_setup'%>
+				<br><br><br>
+                <%= render 'setup/coach_setup'%>
+				
+				<br><br><br>
+				<%= render 'setup/parent_setup'%>
+				
+				<br><br><br>
+				<%= render 'setup/director_setup'%>
+				
+				
+				
 
 			</div><!--.panel-body-->
 		</div><!--.panel-->
 	</div><!--.col-md-12-->
 </div><!--.row-->
+
+<%#= f.submit %>
+<%# end %>
   
 <%= link_to "Update your Profile", edit_user_path(@user), class: "btn btn-primary" %> 
 

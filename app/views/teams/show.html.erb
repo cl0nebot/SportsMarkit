@@ -133,6 +133,11 @@
 
 				<!-- events -->
 				<div id="events" class="tab-pane">
+					<p class="text-right">
+						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-event">New Event</button>
+					</p>
+
+					<hr/>
 
 					<% @events.each do |event| %>
 
@@ -289,6 +294,7 @@
 
 <%= render "shared/panels/new_team" %>
 <%= render "shared/panels/new_team_league" %>
+<%= render "shared/panels/new_event" %>
 
 
 	

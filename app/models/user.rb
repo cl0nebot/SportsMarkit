@@ -29,6 +29,9 @@ class User < ActiveRecord::Base
   has_many :teams, through: :relationships
   accepts_nested_attributes_for :relationships, :reject_if => :all_blank, :allow_destroy => true
   
+  has_many :athletic_directors, dependent: :destroy
+  has_many :schools, through: :athletic_directors
+  
   has_many :attendees
   has_many :classifications
   has_many :measurables
@@ -37,7 +40,9 @@ class User < ActiveRecord::Base
   has_many :medias, as: :mediable
 
   def self.user_types
-    ["Athlete", "Parent", "Coach", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]  
+    ["Athlete", "Coach", "Parent", "Athletic Director"]  
+    #["Athlete", "Coach", "Parent", "Athletic Director", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]  
+    
   end
   
   def follows
@@ -195,6 +200,36 @@ class User < ActiveRecord::Base
   
   def is_parent?
     Classification.where(user_id: id, classification: "Parent").present?
+  end
+  
+  def is_athlete?
+    if Classification.where(user_id: id, classification: "Athlete").present?
+      true
+    elsif Relationship.where(user_id: id, participant: true).present?
+      true
+    else
+      false
+    end
+  end
+  
+  def is_coach?
+    if Classification.where(user_id: id, classification: "Coach").present?
+      true
+    elsif Relationship.where(user_id: id, head: true).present?
+      true
+    else
+      false
+    end 
+  end
+  
+  def is_athletic_director?
+    if Classification.where(user_id: id, classification: "Athletic Director").present?
+      true
+    elsif AthleticDirector.where(user_id: id).present?
+      true
+    else
+      false
+    end
   end
   
   def children_events #TODO finish
