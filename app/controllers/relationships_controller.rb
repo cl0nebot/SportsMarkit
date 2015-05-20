@@ -17,11 +17,16 @@ class RelationshipsController < ApplicationController
   end
   
   def update
-    @user = User.find(@relationship.user_id)
     if @relationship.update_attributes(relationship_params)
-      redirect_to team_path(@relationship.team)
+      respond_to do |format|
+        format.html{ redirect_to team_path(@relationship.team) }
+        format.json{ respond_with_bip(@relationship) }
+      end
     else
-      render 'edit'
+      respond_to do |format|
+        format.html{ render 'edit' }
+        format.json{ respond_with_bip(@relationship) }
+      end
     end
   end
   

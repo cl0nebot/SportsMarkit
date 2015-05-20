@@ -3,6 +3,7 @@ class League < ActiveRecord::Base
   friendly_id :use_for_slug, use: :slugged
   
   has_many :fans, as: :fannable
+  has_many :team_leagues
   
   def use_for_slug
     existing_league = League.where('slug = ?', self.slug)
@@ -11,5 +12,10 @@ class League < ActiveRecord::Base
     else
       "#{name} #{state}"
     end
+  end
+  
+  def teams
+    team_ids = TeamLeague.where(league_id: id).pluck(:team_id)
+    teams = Team.where(id: team_ids)
   end
 end

@@ -1,5 +1,6 @@
 <div id='measure-<%= m.fake_id %>' style='margin-bottom: 20px; display: block; float: left; width: 100%;'>
   <%= form_for [u, m], remote: true do |f| %>
+    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)%>
     <div class="col-md-12">
       <div class="row example-row">
         <div class="col-md-12">Sport </div><!--.col-md-3-->
@@ -35,12 +36,12 @@
     <div class="col-md-12">
       <%= f.hidden_field :user_id %>
       <% if m.persisted? %>
-        <%= f.submit "Update", class: "btn btn-large btn-blue" %>
+        <button class="btn btn-large btn-blue submit-form"> Update </button>
         <button class="btn btn-large btn-blue">
           <%= link_to "Remove", measurable_path(m), method: :delete, remote: :true %>
         </button>
       <% else %>
-        <%= f.submit "Create", class: "btn btn-large btn-blue" %>
+        <button class="btn btn-large btn-blue submit-form"> Create </button>
         <%= f.hidden_field :fake_id %>
         <button class="btn btn-large btn-blue remove-form">Remove</button>
       <% end %>

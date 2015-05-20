@@ -1,0 +1,28 @@
+<% athletic_directors.each do |ad| %>
+<tr>
+    <td class="v-align-middle">
+    	<%= ad.school.name   %><br>
+    </td>
+    <td class="v-align-middle">
+    	<%= ad.user.full_name   %>
+    </td>
+    <td class="v-align-middle">
+    	<%= ad.user.mobile_phone_number   %>
+    </td>
+     <td class="v-align-middle">
+    	<h5 class="semi-bold muted"><%= ad.created_at %></h4>
+    </td>
+    <td class="v-align-middle">
+    	<div class="row clearfix">
+        	<div class="col-md-6">
+				<%= link_to "Accept", approve_director_approval_path(ad.id), method: :patch, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-success row" %>
+
+        	</div>
+    		<div class="col-md-6">
+        		<%#= link_to "Delete", ad, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-danger" %>
+        	</div>
+        </div>
+    </td>
+</tr>
+<% end %>
+	                	

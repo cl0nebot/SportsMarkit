@@ -70,11 +70,11 @@
 					<!-- teams -->
 					<div id="teams" class="tab-pane">
 
-						<p class="text-right">
-							<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-team">New Team</button>
-						</p>
-
-						<hr/>
+	  				  <% @teams.each do |team| %>
+				  
+	  				  <%= team.name %>
+				  
+	  				  <% end %>
 
 
 					</div>

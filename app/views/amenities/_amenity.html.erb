@@ -1,0 +1,20 @@
+		                  	<tr>
+			                    <td class="v-align-middle">
+			                    	<%= link_to amenity.amenity, amenity_path(amenity) %>
+			                    </td>
+			                    <td class="v-align-middle">
+			                    	<%#= amenity.issuer %>
+			                    </td>
+			                    <td class="v-align-middle">
+			                    	<div class="row clearfix">
+			                    		<div class="col-md-6">
+				                    		<%= link_to "Delete", amenity, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-danger" %>
+				                    	</div>
+				                    	<div class="col-md-6">
+				                    		<%= render 'edit_amenity', amenity: amenity %>
+				                    		<button class="btn btn-block btn-small btn-success row" data-toggle="modal" data-target="#<%= amenity.id %>"> Edit</button>
+				                    	</div>
+				                    </div>
+			                    </td>
+			                </tr>
+	                	

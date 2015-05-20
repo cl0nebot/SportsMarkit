@@ -1,0 +1,8 @@
+class AthleticDirectorsController < ApplicationController
+  
+  
+  
+  
+  
+  
+end

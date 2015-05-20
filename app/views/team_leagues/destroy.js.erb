@@ -1,0 +1,4 @@
+$('#league-<%= @league.id %>').empty();
+$('#league-<%= @league.id %>').append("<%= j render 'team_leagues/join_league', team: @team, league: @league %>")
+$('#team-league-list').empty();
+$('#team-league-list').append("<%= j render 'teams/leagues', leagues: @leagues %>")

@@ -1,0 +1,1 @@
+<%= link_to "Leave League", TeamLeague.where(team_id: team.id, league_id: league.id ).last , method: :delete, remote: true %>

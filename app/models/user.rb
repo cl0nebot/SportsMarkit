@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates :first_name, :presence => true, length: {minimum: 2, maximum: 20}
   validates :last_name, :presence => true, length: {minimum: 2, maximum: 20}
-  validates :email, :presence => true, :uniqueness => true
+  #validates :email, :presence => true, :uniqueness => true
 
   before_save { self.email = email.downcase }
 
@@ -27,13 +27,22 @@ class User < ActiveRecord::Base
   
   has_many :relationships, dependent: :destroy
   has_many :teams, through: :relationships
+  accepts_nested_attributes_for :relationships, :reject_if => :all_blank, :allow_destroy => true
+  
+  has_many :athletic_directors, dependent: :destroy
+  has_many :schools, through: :athletic_directors
   
   has_many :attendees
   has_many :classifications
   has_many :measurables
-  
+  has_many :certificates
+  has_many :certifications, through: :certificates
+  has_many :medias, as: :mediable
+
   def self.user_types
-    ["Athlete", "Parent", "Coach", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]  
+    ["Athlete", "Coach", "Parent", "Athletic Director"]  
+    #["Athlete", "Coach", "Parent", "Athletic Director", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]  
+    
   end
   
   def follows
@@ -140,6 +149,10 @@ class User < ActiveRecord::Base
   def name
     full_name
   end
+
+  def name=(val)
+    self.first_name, self.middle_name, self.last_name = val.split
+  end
   
   def formatted_mobile_phone_number
     "#{self.profile.mobile_phone_number}"
@@ -189,12 +202,49 @@ class User < ActiveRecord::Base
     Classification.where(user_id: id, classification: "Parent").present?
   end
   
+  def is_athlete?
+    if Classification.where(user_id: id, classification: "Athlete").present?
+      true
+    elsif Relationship.where(user_id: id, participant: true).present?
+      true
+    else
+      false
+    end
+  end
+  
+  def is_coach?
+    if Classification.where(user_id: id, classification: "Coach").present?
+      true
+    elsif Relationship.where(user_id: id, head: true).present?
+      true
+    else
+      false
+    end 
+  end
+  
+  def is_athletic_director?
+    if Classification.where(user_id: id, classification: "Athletic Director").present?
+      true
+    elsif AthleticDirector.where(user_id: id).present?
+      true
+    else
+      false
+    end
+  end
+  
   def children_events #TODO finish
     if ParentChild.where(parent_id: id).present? 
       kid_id = ParentChild.where(parent_id: id).last
       kid = User.friendly.find(kid_id)
       kid.attendances
     end
+  end
+  
+  def shared_teams(user_id)
+    user = User.find(user_id)
+    user_team_ids = teams.pluck(:id)
+    teammate_team_ids = user.teams.pluck(:id)
+    user_team_ids & teammate_team_ids
   end
   
   

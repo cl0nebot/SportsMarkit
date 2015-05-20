@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506160142) do
+ActiveRecord::Schema.define(version: 20150520040053) do
+
+  create_table "amenities", force: true do |t|
+    t.string   "amenity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "athletic_directors", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "school_id"
+    t.boolean  "accepted"
+    t.boolean  "rejected"
+    t.string   "mobile_phone_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "attendees", force: true do |t|
     t.integer  "event_id"
@@ -19,6 +35,22 @@ ActiveRecord::Schema.define(version: 20150506160142) do
     t.boolean  "yes"
     t.boolean  "maybe"
     t.boolean  "no"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "certificates", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "certification_id"
+    t.date     "expiration"
+    t.boolean  "expires"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "certification_badges", force: true do |t|
+    t.integer  "certification_id"
+    t.string   "badge"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -86,7 +118,6 @@ ActiveRecord::Schema.define(version: 20150506160142) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "school_id"
-    t.integer  "team_id"
   end
 
   add_index "facilities", ["slug"], name: "index_facilities_on_slug", unique: true, using: :btree
@@ -100,6 +131,11 @@ ActiveRecord::Schema.define(version: 20150506160142) do
   end
 
   add_index "fans", ["fannable_id", "fannable_type"], name: "index_fans_on_fannable_id_and_fannable_type", using: :btree
+
+  create_table "identity_checks", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "leagues", force: true do |t|
     t.string   "name"
@@ -130,6 +166,9 @@ ActiveRecord::Schema.define(version: 20150506160142) do
     t.string   "mediable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
+    t.string   "url"
+    t.date     "publish_date"
   end
 
   add_index "media", ["mediable_id", "mediable_type"], name: "index_media_on_mediable_id_and_mediable_type", using: :btree
@@ -150,6 +189,16 @@ ActiveRecord::Schema.define(version: 20150506160142) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "photos", force: true do |t|
+    t.integer "photo_owner_id"
+    t.string  "photo_owner_type"
+    t.string  "image"
+    t.boolean "main",             default: false
+  end
+
+  add_index "photos", ["photo_owner_id"], name: "index_photos_on_photo_owner_id", using: :btree
+  add_index "photos", ["photo_owner_type"], name: "index_photos_on_photo_owner_type", using: :btree
 
   create_table "profiles", force: true do |t|
     t.integer  "user_id"
@@ -183,7 +232,6 @@ ActiveRecord::Schema.define(version: 20150506160142) do
     t.string   "offseason_city"
     t.string   "state"
     t.string   "zipcode"
-    t.string   "mobile_phone_number"
     t.string   "focus"
     t.string   "specialties"
     t.string   "skills"
@@ -224,9 +272,9 @@ ActiveRecord::Schema.define(version: 20150506160142) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "mobile_phone_number"
+    t.boolean  "admin",                      default: false
   end
-
-  add_index "relationships", ["slug"], name: "index_relationships_on_slug", unique: true, using: :btree
 
   create_table "schools", force: true do |t|
     t.string   "name"
@@ -281,6 +329,13 @@ ActiveRecord::Schema.define(version: 20150506160142) do
     t.datetime "updated_at"
   end
 
+  create_table "team_leagues", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "league_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "teams", force: true do |t|
     t.integer  "school_id"
     t.integer  "league_id"
@@ -325,6 +380,8 @@ ActiveRecord::Schema.define(version: 20150506160142) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
+    t.string   "mobile_phone_number"
+    t.integer  "temporary_school_ids"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

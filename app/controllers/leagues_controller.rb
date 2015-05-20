@@ -21,6 +21,7 @@ class LeaguesController < ApplicationController
   def show
     @class = @league.class
     @object = @league
+    @teams = @league.teams
   end 
   
   def edit

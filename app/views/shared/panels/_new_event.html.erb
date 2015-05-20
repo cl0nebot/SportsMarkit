@@ -48,7 +48,7 @@
 											<span class="input-group-addon"><i class="ion-android-calendar"></i></span>
 											<div class="inputer">
 												<div class="input-wrapper">
-													<input type="text" style="width: 400px" name="reservation" class="form-control bootstrap-daterangepicker-date-time" value="08/01/2013 1:00 PM - 08/01/2013 1:30 PM">
+													<input type="text" style="width: 400px" name="reservation" class="form-control bootstrap-daterangepicker-date-time" value="<%= "#{Time.now.month}/#{Time.now.day}/#{Time.now.year}" %> 1:00 PM - <%= "#{Time.now.month}/#{Time.now.day}/#{Time.now.year}" %> 1:30 PM">
 												</div>
 											</div>
 										</div>
@@ -102,25 +102,3 @@
 		</div>
 	</div>
 </div><!--.modal-->
-
-
-
-<%#= @id %>
-<%#= @class %>
-
-
-
-
-
-  <div class="field">
-    <%= f.label :starts_at %><br />
-    <%= f.datetime_select :starts_at %>
-  </div>
-  <div class="field">
-    <%= f.label :ends_at %><br />
-    <%= f.datetime_select :ends_at %>
-  </div>
-  
-  
-  
-  <%= f.collection_select :facility_ids, Facility.all, :id, :name, {:selected => ""}, {  :multiple => false, :style => "width:100%", :id => "multi", :class => "select2-offscreen", :placeholder => "Select A Facility"  } %>

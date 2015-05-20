@@ -39,9 +39,15 @@ gem 'momentjs-rails'
 group :development do
   gem "quiet_assets"
   gem 'pry-rails'
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
+gem 'twilio-ruby', '~> 4.1.0'
+gem 'rmagick'
 gem 'ransack'
+gem 'best_in_place', '~> 3.0.1'
+gem 'carrierwave-crop'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby

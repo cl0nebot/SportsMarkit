@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       cookies.permanent[:authentication_token] = @user.authentication_token
       flash[:success] = "Signed up."
       #Emails.user_signup(@user).deliver
-      redirect_to user_user_setup_path(@user)
+      redirect_to user_overview_path(@user)
     else
       render 'new'
     end
@@ -41,18 +41,20 @@ class UsersController < ApplicationController
   end
   
   def update
-    if params[:user][:password].blank?
+    unless params[:user][:password].present?
       @profile = @user.profile
       if @user.update_attributes(user_params)
         flash[:success] = "Updated successfully."
         respond_to do |format|
           format.html {redirect_to :back}
           format.js
+          format.json { respond_with_bip(@user) } 
         end
       else
         respond_to do |format|
           format.html{render :edit}
           format.js
+          format.json { respond_with_bip(@user) }
         end
       end
     else
@@ -63,24 +65,17 @@ class UsersController < ApplicationController
         respond_to do |format|
           format.html {redirect_to :back}
           format.js
+          format.json { respond_with_bip(@user) }
         end
       else
         flash[:error] = "Current Password is not a match."
         respond_to do |format|
           format.html{render :edit}
           format.js
+          format.json { respond_with_bip(@user) }
         end
       end
     end
-  end
-  
-  def privileges
-    @user = User.friendly.find(params[:user_id])
-    @privileges = GrantedPrivilege.where(user_id: @user.id)
-  end
-  
-  def store
-    #@inventory_products = InventoryProduct.where( user_id: @user.id )
   end
   
   def destroy
@@ -93,22 +88,17 @@ class UsersController < ApplicationController
     
   end
   
-  def purchases
-    @user = User.friendly.find(params[:user_id])
-    @purchases = @user.purchase
+  def welcome
+    @user = User.find_by_mobile_phone_number(params[:m])
+    
   end
   
-  def setup
-    @user = User.friendly.find(params[:user_id])
-  end
   
   protected
   
   def user_params
-   params.require(:user).permit(:prefix, :first_name, :middle_name, :last_name, :suffix, :email, :username,  :password, :password_confirmation, :current_password, {profile_attributes: [:id, :user_id, :instagram, :twitter, :facebook, :linkedin, :hudl, :youtube, :pinterest, :foursquare, :date_of_birth, :favorite_pro_team, :favorite_college_team, :favorite_pro_athlete, :mobile_phone_number, :undergraduate_school, :graduate_school, :doctorate_school, :undergraduate_major, :graduate_major, :doctorate_major, :undergraduate_year, :graduate_year, :doctorate_year, :undergraduate_degree, :graduate_degree, :doctorate_degree, :height_ft, :height_in, :weight, :sex, :team, :league, :primary_position, :secondary_position, :level, :guardian, :guardian_phone_number, :company, :title, :website, :agency, :industries, :interests, :skills, :city, :offseason_city, :state, :zipcode, {sports: []}, {skills: []}, {specialties: []}, {injuries: []}, {current_ailments: []}, {focus: []}, :category, :mobile_phone_number ]},  {user_profile_pictures_attributes: [:id, :user_id, :photo]}, {user_addresses_attributes: [:id, :user_id, :street_1, :street_2, :city, :state, :country, :zip, :apt_no]} )
+   params.require(:user).permit({:team_ids => []}, :prefix, :name, :first_name, :middle_name, :last_name, :suffix, :email, :username,  :password, :password_confirmation, :current_password, {profile_attributes: [:id, :user_id, :instagram, :twitter, :facebook, :linkedin, :hudl, :youtube, :pinterest, :foursquare, :date_of_birth, :favorite_pro_team, :favorite_college_team, :favorite_pro_athlete, :mobile_phone_number, :undergraduate_school, :graduate_school, :doctorate_school, :undergraduate_major, :graduate_major, :doctorate_major, :undergraduate_year, :graduate_year, :doctorate_year, :undergraduate_degree, :graduate_degree, :doctorate_degree, :height_ft, :height_in, :weight, :sex, :team, :league, :primary_position, :secondary_position, :level, :guardian, :guardian_phone_number, :company, :title, :website, :agency, :industries, :interests, :skills, :city, :offseason_city, :state, :zipcode, {sports: []}, {skills: []}, {specialties: []}, {injuries: []}, {current_ailments: []}, {focus: []}, :category, :mobile_phone_number ]},  {user_profile_pictures_attributes: [:id, :user_id, :photo]}, {user_addresses_attributes: [:id, :user_id, :street_1, :street_2, :city, :state, :country, :zip, :apt_no]} )
   end
-  
-  
   
   def redirect_to_profile_if_current_user
     if current_user

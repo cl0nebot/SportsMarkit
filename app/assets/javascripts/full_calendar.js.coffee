@@ -1,5 +1,6 @@
 $(document).ready ->
-  currentSource = "calendar/events"
+  root = $('#calendar').data('root')
+  currentSource = root + "/calendar/events"
   $('#calendar').fullCalendar
     editable: true,
     header:
@@ -24,7 +25,7 @@ $(document).ready ->
       updateEvent(event);
 
   refetchCalendar = ->
-    source = "calendar/events?" + $('#calendar_filter').serialize()
+    source = root + "/calendar/events?" + $('#calendar_filter').serialize()
     $('#calendar').fullCalendar('removeEventSource', currentSource)
     $('#calendar').fullCalendar('addEventSource', source)
     $('#calendar').fullCalendar('refetchEvents')
@@ -37,6 +38,9 @@ $(document).ready ->
     $('#calendar_filter').find('input').attr('checked', false)
     refetchCalendar()
     false
+
+$('a[data-toggle="tab"]').on 'shown.bs.tab', (e)->
+  $('#calendar').fullCalendar('render')  if $(e.target).attr('href') == '#calendar-tab'
 
 updateEvent = (the_event) ->
   $.update "/events/" + the_event.id,
