@@ -64,6 +64,7 @@ class TeamsController < ApplicationController
     @facilities = @team.facilities
     @new_user = User.new
     @relationship = @new_user.relationships.build
+    @event = @object.events.build
     
   end
   
