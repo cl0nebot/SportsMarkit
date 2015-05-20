@@ -30,7 +30,7 @@ class FacilitiesController < ApplicationController
         render 'new'
       end
     else
-      @facility = Facility.new(team_params)
+      @facility = Facility.new(facility_params)
       if @facility.save
         redirect_to :back
       else
