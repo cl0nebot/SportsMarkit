@@ -1,0 +1,32 @@
+      			<h2>Athletic Directors</h2>
+				<table id="directors-list" class="table table-hover table-condensed" id="example">
+	                <thead>
+	                  <tr>
+	                    <th style="width:30%" class="gf_muli">School</th>
+	                    <th style="width:15%" class="gf_muli">Requesting User</th>
+						<th style="width:15%" class="gf_muli">Mobile #</th>
+	                    <th style="width:20%" class="gf_muli">Date of Request</th>
+	                    <th style="width:20%" class="gf_muli">Actions</th>
+	                  </tr>
+	                </thead>
+	                <tbody>
+		                 <%= render 'approval/athletic_directors', athletic_directors: @athletic_directors  %>
+	                </tbody>
+	              </table>
+				  
+				  <h2>Coaches</h2>
+        			<table id="coaches-list" class="table table-hover table-condensed" id="example">
+  	                <thead>
+  	                  <tr>
+  	                    <th style="width:30%" class="gf_muli">Team</th>
+  	                    <th style="width:15%" class="gf_muli">Requesting User</th>
+  						<th style="width:15%" class="gf_muli">Mobile #</th>
+  	                    <th style="width:20%" class="gf_muli">Date of Request</th>
+  	                    <th style="width:20%" class="gf_muli">Actions</th>
+  	                  </tr>
+  	                </thead>
+  	                <tbody>
+						 <%= render 'approval/coaches', coaches: @coaches %>
+  	                </tbody>
+  	              </table>
+

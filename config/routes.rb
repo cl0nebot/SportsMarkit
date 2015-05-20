@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get "/users/:id/overview" => "setup#overview", as: :user_overview
     patch "/user/:id/athlete_setup" => "setup#athlete_setup", as: :athlete_setup
     patch "/user/:id/coach_setup" => "setup#coach_setup", as: :coach_setup
+    patch "/user/:id/athletic_director_setup" => "setup#athletic_director_setup", as: :athletic_director_setup
 
     get "welcome" => "users#welcome", as: :user_welcome
 
@@ -59,6 +60,13 @@ Rails.application.routes.draw do
     resources :team_leagues
     resources :classifications
     resources :parent_children
+    resources :approval do
+      get "approval" => "approval#approval", as: :approval
+      member do
+        patch :approve_director
+        patch :approve_coach
+      end
+    end
     
     get 'auth/:provider/callback', to: "omniauth_callbacks#facebook"
     get 'auth/failure', to: redirect('/')

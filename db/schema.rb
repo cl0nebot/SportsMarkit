@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519144056) do
+ActiveRecord::Schema.define(version: 20150520040053) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "athletic_directors", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "school_id"
+    t.boolean  "accepted"
+    t.boolean  "rejected"
+    t.string   "mobile_phone_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -264,7 +274,6 @@ ActiveRecord::Schema.define(version: 20150519144056) do
     t.datetime "updated_at"
     t.string   "mobile_phone_number"
     t.boolean  "admin",                      default: false
-    t.integer  "school_id"
   end
 
   create_table "schools", force: true do |t|
