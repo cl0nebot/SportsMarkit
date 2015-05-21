@@ -3,7 +3,11 @@
 	<% if @user.is_athletic_director? %>	
 
 	<% if @user.athletic_directors.present? %>
-       You are currently the athletic director of <%= @user.athletic_directors.last.school.name %>.You can only be an athletic director of one school at a time. If you wish to select another school, do so below.<br><br>
+       <h3 class="bold">Schools Added</h3>
+       <hr/>
+       <h3><%= @user.athletic_directors.last.school.name %></h3>
+       	
+       <p>You can technically only are currently the athletic director of .You can only be an athletic director of one school at a time. If you wish to select another school, do so below.<br><br>
 	   
 	   <% @user.athletic_directors.each do |ad| %>
 	   <%= ad.school.name %><br>

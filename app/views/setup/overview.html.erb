@@ -25,13 +25,14 @@
 					<div class="panel-title">
 						<br/>
 						<h3>Let's quickly customize your account.</h3>
-						<p>Please tell us a litte about yourself, by identifying your user group</p>
 					</div>
 				</div>
 				<!--.panel-heading-->
 				
 				<!-- panel body -->
 				<div class="panel-body">
+					<p class="text-muted">Select all that should apply to your account.</p>
+					<br/>
 					<div id="type-list">
 						 <%= render 'classifications/type', user: @user %>
 					</div>
@@ -40,7 +41,9 @@
 
 			</div><!--.panel-->
 
-			<%= link_to "Configure Your Setup", user_setup_path(@user), class: "btn btn-block btn-primary" %> 
+			<%= link_to user_setup_path(@user), class: "btn btn-block btn-primary" do %> 
+			 	Let's Customize Your Profiles <i class="margin-left-20 ion ion-chevron-right"></i>
+			<% end %>
 
 		</div><!--.col-md-12-->
 	</div><!--.row-->

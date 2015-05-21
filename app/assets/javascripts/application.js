@@ -65,6 +65,10 @@
 
 //= require pleasure/globals/plugins/jasny-bootstrap/dist/js/jasny-bootstrap.min
 
+//= require pleasure/globals/plugins/jquery-validation/dist/jquery.validate.min
+//= require pleasure/globals/plugins/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min
+
+
 
 // <!-- PLUGINS INITIALIZATION AND SETTINGS -->
 //= require pleasure/globals/scripts/user-pages
@@ -73,6 +77,7 @@
 //= require pleasure/globals/scripts/forms-pickers
 //= require pleasure/globals/scripts/forms-select
 //= require pleasure/globals/scripts/coming-soon
+//= require pleasure/globals/scripts/forms-wizard
 
 // <!-- PLEASURE -->
 //= require pleasure/globals/js/pleasure
@@ -89,3 +94,4 @@
 //= require ./ready
 //= require ./validation/jquery.validate.min
 //= require validation
+

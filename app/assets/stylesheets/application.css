@@ -41,6 +41,8 @@
  *= require pleasure/globals/plugins/jasny-bootstrap/dist/css/jasny-bootstrap.min
  *= require pleasure/globals/plugins/Jcrop/css/jquery.Jcrop.css
 
+ *= require pleasure/globals/plugins/components-summernote/dist/summernote
+ 
  *= require pleasure/globals/css/plugins
  *= require pleasure/custom
  

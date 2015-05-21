@@ -6,22 +6,23 @@
 		   <% @user.relationships.where(head: true).each do |relationship| %>
 		   <%= relationship.team.name %><br>
 		   
-		   <% end %><br>
+		<% end %>
+			<br>
 		   
 		   Find more of your teams below.<br><br>
 
 		<% else %>
 		
-		You are currently not a coach of any teams. Let's get you started. 
-		<br><br>
-		Find your teams below.
+			You are currently not a coach of any teams. Let's get you started. 
+			<br><br>
+			Find your teams below.
 
 		<% end %>
 
-		<%= f.collection_select :team_ids, @coach_teams, :id, :name, {:selected => nil}, {  :multiple => true, :style => "width:100%", :id => "multi", :class => "select2-offscreen", :placeholder => "Select Your Team"  } %>
+			<%= f.collection_select :team_ids, @coach_teams, :id, :name, {:selected => nil}, {  :multiple => true, :style => "width:100%", :id => "multi", :class => "select2-offscreen", :placeholder => "Select Your Team"  } %>
 
 		<% end %>
 
-		<%= f.submit class: "btn btn-primary" %>
+	<%= f.submit class: "btn btn-primary" %>
 
 <% end %>
