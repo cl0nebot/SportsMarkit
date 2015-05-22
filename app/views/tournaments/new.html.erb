@@ -1,0 +1,38 @@
+<%= form_for @tournament do |f| %>
+<%= f.hidden_field :user_id, value: current_user.id %>
+
+Tournament Name:<%= f.text_field :name %><br>
+
+Sport<%= f.text_field :sport %><br> <!-- user sport drop down -->
+
+Level <%= f.text_field :level %><br>
+
+Description <%= f.text_area :description %><br>
+
+Active <%= f.check_box :active %><br>
+
+<%= f.fields_for :events, @events do |event| %>
+
+<%= event.hidden_field :user_id, value: current_user.id %>
+<%= event.hidden_field :created_by, value: current_user.id %>
+
+
+  <div class="field">
+    <%= event.label :starts_at %><br />
+    <%= event.datetime_select :starts_at %>
+  </div>
+  <div class="field">
+    <%= event.label :ends_at %><br />
+    <%= event.datetime_select :ends_at %>
+  </div>
+  
+  <%= event.collection_select :facility_ids, Facility.all, :id, :name, {:selected => ""}, {  :multiple => false, :id => "multi", :class => "selecter", :placeholder => "Select A Facility"  } %>
+
+<% end %>
+
+<br><br>
+
+<%= f.submit %>
+
+
+<% end %>

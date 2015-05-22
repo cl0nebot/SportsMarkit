@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     end
 
     resources :facilities
+    resources :tournaments
     resources :leagues 
     resources :fans
     resources :attendees
