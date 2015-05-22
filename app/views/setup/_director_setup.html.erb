@@ -23,8 +23,7 @@
 
 	<% end %>
 
-	<%= f.collection_select :athletic_director_ids, @schools, :id, :name, {:selected => nil}, {  :multiple => false, :style => "width:100%", :id => "multi", :class => "select2-offscreen", :placeholder => "Select Your Team"  } %>
-
+	<%= f.collection_select :athletic_director_ids, @schools, :id, :name, {:selected => nil}, {:class => 'selecter', data:{live_search: 'true', width: '100%'}} %>
 
 	<% end %><br><br>
 
