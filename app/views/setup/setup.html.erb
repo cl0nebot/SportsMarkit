@@ -1,0 +1,149 @@
+<style>
+.wizard-steps .step .btn {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  padding: 1px 0;
+  font-size: 15px;
+  border-radius: 50%;
+  -webkit-transition: background-color 400ms linear;
+}
+
+.panel .steps-centered .progress {
+  float: none;
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  border-radius: 0;
+  height: 2px;
+}
+
+.panel > .panel-heading {
+  padding: 0;
+  border-radius: 0;
+  border-bottom: none; 
+}
+
+.panel > .panel-heading .panel-title {
+	font-size: 26px;
+}
+
+.panel .steps-centered {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+}
+
+</style>
+
+
+<div class="content">
+  <!-- page header -->
+  <div class="page-header full-content bg-blue">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1>Welcome <small> Let's Get Started</small></h1>
+      </div><!--.col-->
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="<%= teams_path %>">Teams</a></li>
+          <li><a href="#" class="active">New</a></li>
+        </ol>
+      </div><!--.col-->
+    </div><!--.row-->
+  </div><!--.page-header-->
+
+
+
+	<div class="row">
+
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-md-10 col-md-offset-1">
+
+			<div class="row">
+			<div class="col-md-12">
+				<div class="panel bs-wizard bs-wizard-steps">
+						<div class="panel-heading">
+							<div class="panel-title">
+								<h4>STEP BY STEP</h4>
+								<h3> Ok, now let's setup up your profiles</h3>
+								<div class="steps-pull-right">
+									<ul class="wizard-steps">
+										<li class="step">
+											<a href="#form2_tab1" data-toggle="tab" class="btn btn-primary">
+												<%= image_tag("placeholders/team.jpg", class: "img-circle", height: "85", width: "85", ) %>
+											</a>
+										</li>
+										<li class="step">
+											<a href="#form2_tab2" data-toggle="tab" class="btn btn-white">
+												<%= image_tag("placeholders/team.jpg", class: "img-circle", height: "85", width: "85", ) %>
+											</a>
+										</li>
+										<li class="step">
+											<a href="#form2_tab3" data-toggle="tab" class="btn btn-white">
+												<%= image_tag("placeholders/team.jpg", class: "img-circle", height: "85", width: "85", ) %>
+											</a>
+										</li>
+										<li class="step">
+											<a href="#form2_tab4" data-toggle="tab" class="btn btn-white">
+												<%= image_tag("placeholders/team.jpg", class: "img-circle", height: "85", width: "85", ) %>
+											</a>
+										</li>
+									</ul>
+								</div><!--.steps-pull-right-->
+							</div><!--.panel-title-->
+						</div><!--.panel-heading-->
+						<div class="panel-body">
+
+							<form id="form2" method="post" action="#" class="">
+
+								<div class="tab-content">
+									<div class="tab-pane" id="form2_tab1">
+										<%= render 'setup/athlete_setup'%>
+									</div><!--.tab-pane-->
+
+									<div class="tab-pane" id="form2_tab2">
+										<%#= render 'setup/coach_setup' %>
+									</div><!--.tab-pane-->
+
+									<div class="tab-pane" id="form2_tab3">
+										<%= render 'setup/parent_setup'%>
+									</div><!--.tab-pane-->
+
+									<div class="tab-pane" id="form2_tab4">
+										<%= render 'setup/director_setup'%>
+									</div><!--.tab-pane-->
+								</div><!--.tab-content-->
+
+							</form>
+
+						</div><!--.panel-body-->
+						<div class="panel-footer">
+							<ul class="wizard clearfix">
+								<li class="bs-wizard-prev pull-left"><button class="btn btn-flat btn-default">Previous</button></li>
+								<li class="bs-wizard-next pull-right"><button class="btn btn-blue">Next</button></li>
+								<li class="bs-wizard-submit pull-right">
+										<%= link_to edit_user_path(@user), class: "btn btn-blue" do %> 
+											Complete setup
+										<% end %>
+								</li>
+							</ul>
+						</div><!--.panel-footer-->
+				</div><!--.panel-->
+			</div><!--.col-md-6-->
+
+			
+		</div><!--.row-->
+
+		</div>
+	</div><!--.row-->
+	<%#= f.submit %>
+	<%# end %>
+  
+	
+
+
+</div>
+<%#= @id %>
+<%#= @class %>

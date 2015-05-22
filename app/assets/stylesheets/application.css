@@ -42,6 +42,9 @@
  *= require pleasure/globals/plugins/Jcrop/css/jquery.Jcrop.css
 
  *= require pleasure/globals/plugins/components-summernote/dist/summernote
+
+ *= require pleasure/globals/plugins/indicator/indicator
+ *= require pleasure/globals/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min
  
  *= require pleasure/globals/css/plugins
  *= require pleasure/custom
@@ -52,6 +55,7 @@
 .preview-container.fileinput-preview{
     line-height: normal !important;
 }
+
 .preview-container.fileinput-preview img{
     width: 600px;
     height: 200px;

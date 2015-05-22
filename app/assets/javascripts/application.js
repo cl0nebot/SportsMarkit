@@ -68,6 +68,20 @@
 //= require pleasure/globals/plugins/jquery-validation/dist/jquery.validate.min
 //= require pleasure/globals/plugins/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min
 
+//= require pleasure/globals/plugins/strength/strength.min
+//= require pleasure/globals/plugins/indicator/indicator
+//= require pleasure/globals/plugins/pwstrength-bootstrap/dist/pwstrength-bootstrap-1.2.2.min
+//= require pleasure/globals/plugins/bootstrap-maxlength/bootstrap-maxlength.min
+//= require pleasure/globals/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min
+//= require pleasure/globals/plugins/jquery.inputmask/dist/jquery.inputmask.bundle
+//= require pleasure/globals/plugins/ipmask/jquery.input-ip-address-control.min
+
+//= require pleasure/globals/plugins/jquery.payment/lib/jquery.payment
+
+//= require pleasure/globals/plugins/typehead.js/dist/typeahead.bundle.min
+//= require pleasure/globals/plugins/overlay/jquery.overlay
+//= require pleasure/globals/plugins/jquery-textcomplete/dist/jquery.textcomplete.min
+//= require pleasure/globals/plugins/ubilabs-geocomplete/jquery.geocomplete.min
 
 
 // <!-- PLUGINS INITIALIZATION AND SETTINGS -->
@@ -94,4 +108,6 @@
 //= require ./ready
 //= require ./validation/jquery.validate.min
 //= require validation
+
+
 
