@@ -45,7 +45,15 @@ class TeamsController < ApplicationController
     @new_user.password = "testtest"
     if @new_user.save
       Profile.create(user_id: @new_user.id, focus: [], specialties: [], skills: [], injuries: [], current_ailments: [])
-      Relationship.create(user_id: @new_user.id, team_id: @team.id, accepted: true, mobile_phone_number: @new_user.mobile_phone_number, head: params[:head], head_title: params[:head_title], participant_classification: params[:participant_classification], position: params[:position] )
+      @relationship = Relationship.create(user_id: @new_user.id, team_id: @team.id, accepted: true, mobile_phone_number: @new_user.mobile_phone_number, head: params[:head], head_title: params[:head_title], participant_classification: params[:participant_classification], position: params[:position] )
+      if @team.school.present?
+        Classification.create(user_id: @new_user.id, classification: "Student Athlete")
+      else
+        Classification.create(user_id: @new_user.id, classification: "Athlete")
+      end
+      if @relationship.head?
+        Classification.create(user_id: @new_user.id, classification: "Coach")
+      end
       send_mobile_invitation(@new_user)
       redirect_to :back
     else
@@ -71,6 +79,14 @@ class TeamsController < ApplicationController
   def accept_user
     @relationship = Relationship.find_by_slug(params[:id])
     @relationship.update_attributes(accepted: true)
+    if @team.school.present?
+      Classification.create(user_id: @new_user.id, classification: "Student Athlete")
+    else
+      Classification.create(user_id: @new_user.id, classification: "Athlete")
+    end
+    if @relationship.head?
+      Classification.create(user_id: @new_user.id, classification: "Coach")
+    end
     # @pending_relationships = Relationship.where(team_id: @relationship.team_id, accepted: nil, rejected: nil)
     # @relationships = Relationship.where(team_id: @relationship.team_id, accepted: true)
     respond_to do |format|
