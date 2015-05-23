@@ -123,7 +123,11 @@
 						<div class="panel-body without-padding">
 							<ul class="list-material has-hidden">
 								<% @members.each do |m| %>
-						       		<%= render 'member', m: m%>
+								<% if current_user.can_edit_team?(@team) %>
+						       		<%= render 'admin_view_member', m: m%>
+								<% else %>
+									<%= render 'member', m: m%>
+								<% end %>
 						    	<% end %>
 							</ul>
 						</div><!--.panel-body-->
@@ -141,47 +145,7 @@
 
 					<% @events.each do |event| %>
 
-					<div class="col-md-6">
-						<div class="card card-event card-clickable">
-
-							<div class="card-heading bg-image sample-bg-image13" style="">
-							</div><!--.card-heading-->
-
-							<div class="card-body">
-								<div class="calendar">
-									<div class="month">November</div>
-									<div class="date">27</div>
-								</div><!--.calendar-->
-								<h4 style="margin-bottom: 0;"><%= link_to event.title,  "/events/#{event.slug}" %></h4>
-								<p>
-									<%= event.event_type %>
-								</p>
-								<h5 class="h6 text-primary bold">
-									<%= format(event.starts_at, 4) %>
-									<%= format(event.starts_at, 8) %>
-									-
-									<%= format(event.ends_at, 4) %>
-									<%= format(event.ends_at, 8) %>
-								</h5>
-							</div><!--.card-body-->
-
-							<div class="clickable-button">
-								<div class="layer bg-primary"></div>
-								<a class="btn btn-floating btn-primary initial-position floating-open"><i class="ion-android-more-horizontal"></i></a>
-							</div>
-
-							<div class="layered-content bg-red">
-								<div class="overflow-content">
-									<h4>How Many People Are Attending?</h4>
-									<%= event.people_that_are_going.count %>
-								</div><!--.overflow-content-->
-								<div class="clickable-close-button">
-									<a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
-								</div>
-							</div>
-
-						</div><!--.card-->
-					</div><!--.col-md-6-->
+<%= render 'teams/events', event: event %>
 
 					<% end %>
 
