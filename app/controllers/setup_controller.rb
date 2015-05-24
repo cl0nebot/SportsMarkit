@@ -1,13 +1,18 @@
 class SetupController < ApplicationController
-  before_action :find_user
+  before_action :find_user, except: [:test_setup]
   
   def setup
     @athlete_teams = Team.where.not(id: @user.relationships.where(participant: true).pluck(:team_id))
     @coach_teams = Team.where.not(id: @user.relationships.where(head: true).pluck(:team_id))
     @schools = School.all - [@user.schools.last]
+    @athletes = User.athletes
   end
   
   def overview
+  end
+  
+  def test_setup
+    @athletes = User.athletes
   end
   
   
@@ -55,7 +60,7 @@ class SetupController < ApplicationController
   protected
   
   def find_user
-    @user = User.friendly.find(params[:id])
+    #@user = User.friendly.find(params[:id])
   end
   
 end
