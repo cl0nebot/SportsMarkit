@@ -1,281 +1,281 @@
 <%= form_for @user, url: athlete_setup_path(@user) do |f| %>
 	<% if @user.is_athlete? %>	
-		<% if @user.relationships.where(participant: true).present? %>
-	       <h3 class="bold">Team Added 
-	       		<span class="small text-muted">(<%= pluralize @user.relationships.where(participant: true).count, "team" %>)</span>
-	       	</h3>
-	       
-	       <hr class="no-margin"/>
-
-	       <% @user.relationships.where(participant: true).each do |relationship| %>
-		   	<h3 class="margin-top-10"><%= relationship.team.name %></h3>
-		   <% end %>
-
-	       <br/>
-	       <br/>
-	       <div class="row example-row">
-				<div class="col-md-3">
-					<h4 class="bold text-primary ">
-						<i class="ion ion-android-add-circle margin-right-10"></i> Add a School
-					</h4>
-				</div><!--.col-md-3-->
-				<div class="col-md-9">
-					<div class="inputer">
-						<div class="input-wrapper">
-							<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
+		<div class="panel-body margin-top-10">
+	    	<div class="row">
+				<div class="col-lg-10 col-lg-offset-1">
+					<div class="row">
+						<div class="pull-left">
+							<%= image_tag("http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
+						</div>
+						<div class="pull-left">
+							<h4 class="margin-bottom-5">First Name, Last Name</h4>
+							<p class="small">My Athlete Profile</p>
 						</div>
 					</div>
-				</div><!--.col-md-9-->
-			</div><!--.row-->
 
-		<% else %>
+					<div class="note note-warning note-left-striped">
+						<h4>Adding teams to your athlete profile.</h4>
+						<p class="small text-grey">
+							Use the search box below to find your teams. Once added, the team administrator will be notified of your request to join that team. In the meantime, your status will be pending.
+						</p>
+					</div>
+					
+					<hr class="no-margin"/>
+					<br/>
 			
-			You are currently not a member of any teams. Let's get you started. Find your teams below.
+					<!-- <h5 class="semi-bold text-orange ">
+						<span class="bold margin-right-10">
+							1.	
+						</span>
+						Add teams to your athletic profile
+					</h5> -->
 
-		<% end %>
+					<div class="row">
+						<div class="col-lg-3 col-md-4 col-sm-12">
+							<h4 class="bold text-primary margin-top-10">
+								<i class="ion ion-search margin-right-5"></i> Find your teams
+							</h4>
+						</div><!--.col-md-3-->
+						<div class="col-lg-9 col-md-8 col-sm-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<input class="typeahead typeahead-basic form-control" type="text" placeholder="Search schools">
+								</div>
 
-			<%#= f.collection_select :team_ids, @athlete_teams, :id, :name, {:selected => nil}, {  :multiple => true, :style => "width:100%", :id => "multi", :class => "select2-offscreen", :placeholder => "Select Your Team"  } %>
-			<%#= f.submit class: "btn btn-primary" %>
+								<textarea type="text" class="quicksearch form-control text-complete text-complete-basic" rows="4" placeholder="type :a or facebook"></textarea>
+								
+								<%#= f.collection_select :team_ids, @schools, :id, :name, {:selected => nil}, {type: "text", :class => 'selecter quicksearch bg-white margin-top-5', :placeholder => "Select Your Team", data:{live_search: 'true', width: '90%'}} %>
 
-			<div class="margin-top-40 bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
-				<div class="row masonry">
-					<div class="col-md-4">
-					<div class="card card-meal card-meal-green card-square card-shadow">
-						<div class="card-heading">
-							<h3 class="card-title">School Name</h3>
-							<div class="card-subhead">
-								<a href="#">
-									<i class="glyphicon glyphicon-map-marker"></i>
-								 	[City, State]
-								</a>
-							</div><!--.card-subhead-->
-						</div><!--.card-heading-->
-						<div class="card-body">
-							<div class="image">
-								<a href="#">
-									<%= image_tag("placeholders/school-1.jpg") %>
-								</a>
-							</div><!--.image-->
-							<ul class="users">
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-										<%= image_tag("placeholders/user.jpg") %>
-									</a>
-								</li>
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-										<%= image_tag("placeholders/user_1.jpg") %>
-									</a>
-								</li>
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman">
-										<%= image_tag("placeholders/user_2.jpg") %>
-									</a>
-								</li>
-								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman">
-										<%= image_tag("placeholders/user_3.jpg") %>
-									</a>
-								<li>
-							</ul>
-						</div><!--.card-body-->
-						<div class="card-footer">
-							<ul>
-								<li>1,378 Students</li>
-								<li><a href="#">Add School</a></li>
-							</ul>
-						</div><!--.card-footer-->
-					</div><!--.card-->
-					</div><!--.col-md-4-->
-
-					<div class="col-md-4">
-					<div class="card card-meal card-meal-green card-square card-shadow">
-						<div class="card-heading">
-							<h3 class="card-title">School Name</h3>
-							<div class="card-subhead">
-								<a href="#">
-									<i class="glyphicon glyphicon-map-marker"></i>
-								 	[City, State]
-								</a>
-							</div><!--.card-subhead-->
-						</div><!--.card-heading-->
-						<div class="card-body">
-							<div class="image">
-								<a href="#">
-									<%= image_tag("placeholders/school-2.jpg") %>
-								</a>
-							</div><!--.image-->
-							<ul class="users">
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-										<%= image_tag("placeholders/user.jpg") %>
-									</a>
-								</li>
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-										<%= image_tag("placeholders/user_1.jpg") %>
-									</a>
-								</li>
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman">
-										<%= image_tag("placeholders/user_2.jpg") %>
-									</a>
-								</li>
-								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman">
-										<%= image_tag("placeholders/user_3.jpg") %>
-									</a>
-								<li>
-							</ul>
-						</div><!--.card-body-->
-						<div class="card-footer">
-							<ul>
-								<li>1,378 Students</li>
-								<li><a href="#">Add School</a></li>
-							</ul>
-						</div><!--.card-footer-->
-					</div><!--.card-->
-					</div><!--.col-md-4-->
-
-					<div class="col-md-4">
-					<div class="card card-meal card-meal-green card-square card-shadow">
-						<div class="card-heading">
-							<h3 class="card-title">School Name</h3>
-							<div class="card-subhead">
-								<a href="#">
-									<i class="glyphicon glyphicon-map-marker"></i>
-								 	[City, State]
-								</a>
-							</div><!--.card-subhead-->
-						</div><!--.card-heading-->
-						<div class="card-body">
-							<div class="image">
-								<a href="#">
-									<%= image_tag("placeholders/school-3.jpg") %>
-								</a>
-							</div><!--.image-->
-							<ul class="users">
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-										<%= image_tag("placeholders/user.jpg") %>
-									</a>
-								</li>
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-										<%= image_tag("placeholders/user_1.jpg") %>
-									</a>
-								</li>
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman">
-										<%= image_tag("placeholders/user_2.jpg") %>
-									</a>
-								</li>
-								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman">
-										<%= image_tag("placeholders/user_3.jpg") %>
-									</a>
-								<li>
-							</ul>
-						</div><!--.card-body-->
-						<div class="card-footer">
-							<ul>
-								<li>1,378 Students</li>
-								<li><a href="#">Add School</a></li>
-							</ul>
-						</div><!--.card-footer-->
-					</div><!--.card-->
-					</div><!--.col-md-4-->
-
-					<div class="col-md-4">
-					<div class="card card-meal card-meal-green card-square card-shadow">
-						<div class="card-heading">
-							<h3 class="card-title">School Name</h3>
-							<div class="card-subhead">
-								<a href="#">
-									<i class="glyphicon glyphicon-map-marker"></i>
-								 	[City, State]
-								</a>
-							</div><!--.card-subhead-->
-						</div><!--.card-heading-->
-						<div class="card-body">
-							<div class="image">
-								<a href="#">
-									<%= image_tag("placeholders/school-1.jpg") %>
-								</a>
-							</div><!--.image-->
-							<ul class="users">
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-										<%= image_tag("placeholders/user.jpg") %>
-									</a>
-								</li>
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-										<%= image_tag("placeholders/user_1.jpg") %>
-									</a>
-								</li>
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman">
-										<%= image_tag("placeholders/user_2.jpg") %>
-									</a>
-								</li>
-								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman">
-										<%= image_tag("placeholders/user_3.jpg") %>
-									</a>
-								<li>
-							</ul>
-						</div><!--.card-body-->
-						<div class="card-footer">
-							<ul>
-								<li>1,378 Students</li>
-								<li><a href="#">Add School</a></li>
-							</ul>
-						</div><!--.card-footer-->
-					</div><!--.card-->
-					</div><!--.col-md-4-->
-
-					<div class="col-md-4">
-					<div class="card card-meal card-meal-green card-square card-shadow">
-						<div class="card-heading">
-							<h3 class="card-title">French Cooking</h3>
-							<div class="card-subhead">
-								By <a href="#">Richard Sanders</a>
-							</div><!--.card-subhead-->
-						</div><!--.card-heading-->
-						<div class="card-body">
-							<div class="image">
-								<a href="#">
-									<%= image_tag("placeholders/school-5.jpg") %>
-								</a>
-							</div><!--.image-->
-							<ul class="users">
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-										<%= image_tag("placeholders/user.jpg") %>
-									</a>
-								</li>
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-										<%= image_tag("placeholders/user_1.jpg") %>
-									</a>
-								</li>
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman">
-										<%= image_tag("placeholders/user_2.jpg") %>
-									</a>
-								</li>
-								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman">
-										<%= image_tag("placeholders/user_3.jpg") %>
-									</a>
-								<li>
-							</ul>
-						</div><!--.card-body-->
-						<div class="card-footer">
-							<ul>
-								<li>1,378 Students</li>
-								<li><a href="#">Add School</a></li>
-							</ul>
-						</div><!--.card-footer-->
-					</div><!--.card-->
-					</div><!--.col-md-4-->
+								<%#= f.submit class: "pull-right btn btn-floating btn-blue" do %>
+									<!-- <i class="ion-android-add"></i> -->
+								<%# end %>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+					<hr class="margin-top-10"/>
 				</div>
-			</div><!--.row-->
+			</div>
+			<div class="row">
+				<div class="col-lg-10 col-lg-offset-1">
+
+					<h5 class="bold text-black">Your Teams
+		   			<span class="small semi-bold text-orange">(<%=@user.relationships.where(participant: true).count %>)</span>
+		       		</h5>
+
+		       		<% if @user.relationships.where(participant: true).present? %>
+	        
+		       			<% @user.relationships.where(participant: true).each do |relationship| %>
+			   				<div class="panel-body without-padding">
+								<ul class="list-material">
+									<li class="has-action-left has-action-right">
+										<a href="#" class="visible">
+											<div class="list-action-left">
+												<i class="ion-calendar icon-circle"></i>
+											</div>
+											<div class="list-content">
+												<span class="title">
+													<%= relationship.team.name %>
+												</span>
+												<span class="caption">
+													<i class="ion-location"></i>
+													[city, state], 
+													[Schoo/League Name], 
+													[# of team members] 
+												</span>
+											</div>
+											<div class="list-action-right">
+												<span class="top">Pending</span>
+												<i class="ion-android-checkmark-circle bottom"></i>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div><!--.panel-body-->
+
+						<% end %>
+
+					<% else %>
+
+						You are currently not a member of any teams. Let's get you started. Find your teams below.
+
+					<% end %>
+				
+				</div>
+
+		    </div>
+		</div>
+	
+
+		<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
+			<div class="row masonry grid">
+			<div class="col-md-4 element-item transition metal" data-category="transition">
+				<div class="card card-meal card-meal-blue card-square card-shadow">
+				<div class="card-heading">
+					<h3 class="card-title">Stephen Watts Kearny High School</h3>
+					<div class="card-subhead">
+						<a href="#">
+							<i class="glyphicon glyphicon-map-marker"></i>
+						 	Kearny Mesa, CA
+						</a>
+					</div><!--.card-subhead-->
+				</div><!--.card-heading-->
+				<div class="card-body">
+					<div class="image">
+						<a href="#">
+							<%= image_tag("placeholders/school-1.jpg") %>
+						</a>
+					</div><!--.image-->
+				</div><!--.card-body-->
+				<div class="card-footer">
+					<a href="#" class="btn btn-block btn-primary">
+						<span class="text-white">Add School</a>
+					</a>
+				</div><!--.card-footer-->
+				</div><!--.card-->
+			</div><!--.col-md-4-->
+
+			<div class="col-md-4 element-item metalloid" data-category="metalloid">
+				<div class="card card-meal card-meal-blue card-square card-shadow">
+				<div class="card-heading">
+					<h3 class="card-title">Lincoln High School</h3>
+					<div class="card-subhead">
+						<a href="#">
+							<i class="glyphicon glyphicon-map-marker"></i>
+						 	San Diego, CA
+						</a>
+					</div><!--.card-subhead-->
+				</div><!--.card-heading-->
+				<div class="card-body">
+					<div class="image">
+						<a href="#">
+							<%= image_tag("placeholders/school-2.jpg") %>
+						</a>
+					</div><!--.image-->
+				</div><!--.card-body-->
+				<div class="card-footer">
+					<a href="#" class="btn btn-block btn-primary">
+						<span class="text-white">Add School</a>
+					</a>
+				</div><!--.card-footer-->
+				</div><!--.card-->
+			</div><!--.col-md-4-->
+
+			<div class="col-md-4 element-item post-transition metal" data-category="post-transition">
+				<div class="card card-meal card-meal-blue card-square card-shadow">
+				<div class="card-heading">
+					<h3 class="card-title">Helix High School</h3>
+					<div class="card-subhead">
+						<a href="#">
+							<i class="glyphicon glyphicon-map-marker"></i>
+						 	La Mesa, CA
+						</a>
+					</div><!--.card-subhead-->
+				</div><!--.card-heading-->
+				<div class="card-body">
+					<div class="image">
+						<a href="#">
+							<%= image_tag("placeholders/school-3.jpg") %>
+						</a>
+					</div><!--.image-->
+				</div><!--.card-body-->
+				<div class="card-footer">
+					<a href="#" class="btn btn-block btn-primary">
+						<span class="text-white">Add School</a>
+					</a>
+				</div><!--.card-footer-->
+				</div><!--.card-->
+			</div><!--.col-md-4-->
+
+			<div class="col-md-4 element-item post-transition metal" data-category="post-transition">
+				<div class="card card-meal card-meal-blue card-square card-shadow">
+				<div class="card-heading">
+					<h3 class="card-title">Mount Vernon Middle School</h3>
+					<div class="card-subhead">
+						<a href="#">
+							<i class="glyphicon glyphicon-map-marker"></i>
+						 	Lemon Grove, CA
+						</a>
+					</div><!--.card-subhead-->
+				</div><!--.card-heading-->
+				<div class="card-body">
+					<div class="image">
+						<a href="#">
+							<%= image_tag("placeholders/school-1.jpg") %>
+						</a>
+					</div><!--.image-->
+				</div><!--.card-body-->
+				<div class="card-footer">
+					<a href="#" class="btn btn-block btn-primary">
+						<span class="text-white">Add School</a>
+					</a>
+				</div><!--.card-footer-->
+				</div><!--.card-->
+			</div><!--.col-md-4-->
+
+			<div class="col-md-4 element-item transition metal " data-category="transition">
+				<div class="card card-meal card-meal-blue card-square card-shadow">
+				<div class="card-heading">
+					<h3 class="card-title">Palm Middle School</h3>
+					<div class="card-subhead">
+						<i class="glyphicon glyphicon-map-marker"></i>
+						 	Lemon Grove, CA
+					</div><!--.card-subhead-->
+				</div><!--.card-heading-->
+				<div class="card-body">
+					<div class="image">
+						<a href="#">
+							<%= image_tag("placeholders/school-5.jpg") %>
+						</a>
+					</div><!--.image-->
+				</div><!--.card-body-->
+				<div class="card-footer">
+					<a href="#" class="btn btn-block btn-primary">
+						<span class="text-white">Add School</a>
+					</a>
+				</div><!--.card-footer-->
+				</div><!--.card-->
+			</div><!--.col-md-4-->
+			</div>
+		</div><!--.row-->
 	<% end %>
 <% end %>
+
+<script type="text/javascript">
+	typeahead: function () {
+			// instantiate the bloodhound suggestion engine
+			var numbers = new Bloodhound({
+				datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.num); },
+				queryTokenizer: Bloodhound.tokenizers.whitespace,
+				local: [
+					<% @athletes.each do |athlete| %>
+						{ num: '<%= athlete.name %>' }
+					<% end %>
+					{ num: 'khadijah' },
+					{ num: 'cordis' },
+					{ num: 'cordon blue' },
+					{ num: 'cali' },
+					{ num: 'caution' },
+					{ num: 'hello' },
+					{ num: 'one' },
+					{ num: 'two' },
+					{ num: 'three' },
+					{ num: 'four' },
+					{ num: 'five' },
+					{ num: 'six' },
+					{ num: 'seven' },
+					{ num: 'eight' },
+					{ num: 'nine' },
+					{ num: 'ten' }
+				]
+			});
+
+			// initialize the bloodhound suggestion engine
+			numbers.initialize();
+
+			// Typeahead example 1
+			$('.typeahead-basic').typeahead(null, {
+				displayKey: 'num',
+				source: numbers.ttAdapter()
+			});
+		}
+</script>

@@ -83,6 +83,11 @@
 //= require pleasure/globals/plugins/jquery-textcomplete/dist/jquery.textcomplete.min
 //= require pleasure/globals/plugins/ubilabs-geocomplete/jquery.geocomplete.min
 
+//= require pleasure/globals/plugins/isotope.pkgd.min
+//= require pleasure/globals/plugins/isotope-docs.min
+
+//= require pleasure/globals/plugins/jquery.flexselect-0.7.0/jquery.flexselect
+//= require pleasure/globals/plugins/jquery.flexselect-0.7.0/liquidmetal
 
 // <!-- PLUGINS INITIALIZATION AND SETTINGS -->
 //= require pleasure/globals/scripts/user-pages
@@ -108,6 +113,7 @@
 //= require ./ready
 //= require ./validation/jquery.validate.min
 //= require validation
+
 
 
 

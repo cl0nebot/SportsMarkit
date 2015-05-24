@@ -1,32 +1,136 @@
 <%= form_for @user, url: athletic_director_setup_path(@user) do |f| %>
-	
-	<% if @user.is_athletic_director? %>	
+	<div class="panel-body">
+    	<div class="row">
+			<div class="col-lg-10 col-lg-offset-1">
+				<div class="row">
+					<div class="pull-left">
+						<%= image_tag("http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
+					</div>
+					<div class="pull-left">
+						<h4 class="margin-bottom-5">First Name, Last Name</h4>
+						<p class="small">My Athletic Director Profile</p>
+					</div>
+				</div>
 
-	<% if @user.athletic_directors.present? %>
-       <h3 class="bold">Schools Added</h3>
-       <hr/>
-       <h3><%= @user.athletic_directors.last.school.name %></h3>
-       	
-       <p>You can technically only are currently the athletic director of .You can only be an athletic director of one school at a time. If you wish to select another school, do so below.<br><br>
-	   
-	   <% @user.athletic_directors.each do |ad| %>
-	   <%= ad.school.name %><br>
-	   
-	   <% end %>
+				<hr class="no-margin"/>
+				<br/>
+		
+				<% if @user.is_athletic_director? %>
 
-	   <br>
-	   
-	   Find your school below.<br><br>
+					<div class="note note-warning note-left-striped">
+						<h4>You're already assigned to a school</h4>
+						<p class="small text-grey">
+							You can technically only are currently the athletic director of .You can only be an athletic director of one school at a time. If you wish to select another school, do so below.
+						</p>
+					</div>
+					
+					<hr class="no-margin"/>
+					<br/>
+
+					<h5 class="bold text-black">Assigned School</h5>
+
+		       		<div class="panel-body without-padding">
+						<ul class="list-material">
+							<li class="has-action-left has-action-right">
+								<a href="#" class="visible">
+									<div class="list-action-left">
+										<i class="ion-calendar icon-circle"></i>
+									</div>
+									<div class="list-content">
+										<span class="title">
+											<%= @user.athletic_directors.last.school.name %>
+										</span>
+										<span class="caption">
+											[age], 
+											<i class="ion-location"></i>
+											[city, state], 
+											[Schoo/League Name], 
+											[# of team members] 
+										</span>
+									</div>
+									<div class="list-action-right">
+										<span class="top">Confirmed</span>
+										<i class="ion-android-checkmark-circle bottom"></i>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div><!--.panel-body-->
+
+				<% else %>
+
+					<div class="row">
+						<div class="col-lg-3 col-md-4 col-sm-12">
+							<h4 class="bold text-primary margin-top-10">
+								<i class="ion ion-search margin-right-5"></i> Find your school
+							</h4>
+						</div><!--.col-md-3-->
+						<div class="col-lg-9 col-md-8 col-sm-12">
+							<div class="inputer">
+								<%= f.collection_select :athletic_director_ids, @schools, :id, :name, {:selected => nil}, {:class => 'selecter', data:{live_search: 'true', width: '90%'}} %>
+
+								<%= f.submit class: "btn btn-primary" %>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+					<hr class="margin-top-10"/>
+				
+					<% if @user.athletic_directors.present? %>
+						<h5 class="bold text-black">Your School</h5>
+
+		       			<div class="panel-body without-padding">
+						<ul class="list-material">
+							<li class="has-action-left has-action-right">
+								<a href="#" class="visible">
+									<div class="list-action-left">
+										<i class="ion-calendar icon-circle"></i>
+									</div>
+									<div class="list-content">
+										<span class="title">
+											<%= @user.athletic_directors.last.school.name %>
+										</span>
+										<span class="caption">
+											<i class="ion-location"></i>
+											[age], 
+											[city, state], 
+											[Schoo/League Name], 
+											[# of team members] 
+										</span>
+									</div>
+									<div class="list-action-right">
+										<span class="top">Pending</span>
+										<i class="ion-android-checkmark-circle bottom"></i>
+									</div>
+								</a>
+							</li>
+						</ul>
+						</div><!--.panel-body-->
+
+					<% else %>
+						<h3>
+							You are currently not an athletic director. Let's get you started. Find your school below.
+						</h3>
+
+					<% end %>
+				   
+				<% end %>
+			</div>
+    	</div>
+	</div>
+
+	<% if @user.is_athletic_director? %>
 
 	<% else %>
-	You are currently not an athletic director. Let's get you started. Find your school below.
+
+		<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
+		
+			<div class="row masonry">
+			</div>
+			
+		</div><!--.row-->
 
 	<% end %>
-
-	<%= f.collection_select :athletic_director_ids, @schools, :id, :name, {:selected => nil}, {:class => 'selecter', data:{live_search: 'true', width: '100%'}} %>
-
-	<% end %><br><br>
-
-	<%= f.submit class: "btn btn-primary" %>
 	
 <% end %>
+

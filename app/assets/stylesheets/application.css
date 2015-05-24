@@ -50,6 +50,7 @@
  *= require pleasure/custom
  
  *= require fullcalendar
+ *= require pleasure/globals/plugins/jquery.flexselect-0.7.0/flexselect.css
  */
 
 .preview-container.fileinput-preview{

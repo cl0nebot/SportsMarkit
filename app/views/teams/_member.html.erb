@@ -1,84 +1,51 @@
-<li class="has-action-left">
-  <a href="#" class="hidden">
-    <i class="ion-checkmark-circled text-success"></i>
-  </a>
-  <a href="#" class="visible no-action">
-    <div class="list-content row">
-      <div class="col-sm-1">
-        <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
-      </div>
+<li class="">
+	
+		<div class="list-content row">
+			<div class="col-sm-1">
+				<%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
+			</div>
 
-      <div class="col-sm-2">
-        <h4 class="semi-bold no-margin capitalize">
-          <%= best_in_place m.user, :name, as: :input %>
-        </h4>
-        <p class="small">
-          <small>
-            Name
-          </small>
-        </p>
-      </div>
-      <div class="col-sm-1">
-        <h4 class="no-margin">
-          <%= best_in_place m, :participant_classification, as: :input  %>
-        </h4>
-        <p class="small">
-          <small>
-            Classification
-          </small>
-        </p>
-      </div>
-      <div class="col-sm-1">
-        <h4 class="no-margin">
-          <%= best_in_place m, :position, as: :input %>
-        </h4>
-        <p class="small">
-          <small>
-            Position
-          </small>
-        </p>
-      </div>
-      <div class="col-sm-1">
-        <h4 class="no-margin">
-          <i class="text-grey fa fa-quote-left"></i>
-          <%= best_in_place m, :quote, as: :input %>
-        </h4>
-        <p class="small">
-          <small>
-            Quote
-          </small>
-        </p>
-      </div>
-      <div class="col-sm-2">
-        <h4 class="no-margin">
-          <%= best_in_place m, :head, as: :input %>
-        </h4>
-        <p class="small">
-          <small>
-            Head
-          </small>
-        </p>
-      </div>
-      <div class="col-sm-2">
-        <h4 class="no-margin">
-          <%= best_in_place m, :head_title, as: :input %>
-        </h4>
-        <p class="small">
-          <small>
-            Head title
-          </small>
-        </p>
-      </div>
-      <div class="col-sm-1">
-        <h4 class="no-margin">
-          <%= best_in_place m, :admin, as: :checkbox, collection: {false: "No", true: "Yes"} %>
-        </h4>
-        <p class="small">
-          <small>
-            Admin
-          </small>
-        </p>
-      </div>
-    </div>
-  </a>
+			<div class="col-sm-3">
+				<h4 class="semi-bold no-margin capitalize">
+					<%= m.user.try(:full_name) %>
+				</h4>
+				<p class="small">
+					<small>
+						Name
+					</small>
+				</p>
+			</div>
+			<div class="col-sm-2">
+				<h4 class="no-margin">
+					<%= m.participant_classification %>
+				</h4>
+				<p class="small">
+					<small>
+						Name
+					</small>
+				</p>
+			</div>
+			<div class="col-sm-2">
+				<h4 class="no-margin">
+					<%= m.position %>
+				</h4>
+				<p class="small">
+					<small>
+						Position
+					</small>
+				</p>
+			</div>
+			<div class="col-sm-4">
+				<h4 class="no-margin">
+					<i class="text-grey fa fa-quote-left"></i>
+					<%= m.quote %>
+				</h4>
+				<p class="small">
+					<small>
+						Quote
+					</small>
+				</p>
+			</div>
+		</div>
+	
 </li>

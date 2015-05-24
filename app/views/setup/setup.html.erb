@@ -1,10 +1,12 @@
 <style>
 .wizard-steps .step .btn {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
   text-align: center;
   padding: 1px 0;
-  font-size: 15px;
+  font-size: 22px;
+  font-weight: bold;
   border-radius: 50%;
   -webkit-transition: background-color 400ms linear;
 }
@@ -35,7 +37,47 @@
   width: 100%;
 }
 
+li.step {
+	width: 125px;
+}
+
+li.step h6 {
+	background: #ffffff;
+	color: #666;
+	margin-top: 10px;
+	line-height: 18px;
+	text-align: center;
+	font-weight: 400;
+}
+
+.wizard-steps {
+	width: 100%;
+}
+
+.list-material > li .list-content .caption {
+	color: rgba(0, 0, 0, 0.5);
+}
+
 </style>
+
+<script>
+
+$('a[data-toggle=tab]').each(function () {
+  var $this = $(this);
+ 
+  $this.on('shown.bs.tab', function () {
+    $container.imagesLoaded( function () {
+      $container.masonry({
+        columnWidth: '.item',
+        itemSelector: '.item'
+      });   
+    });  
+  });
+});
+
+</script>
+
+
 
 
 <div class="content">
@@ -60,82 +102,110 @@
 	<div class="row">
 
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-md-10 col-md-offset-1">
-
 			<div class="row">
-			<div class="col-md-12">
-				<div class="panel bs-wizard bs-wizard-steps">
-						<div class="panel-heading">
-							<div class="panel-title">
-								<div class="steps-pull-right">
-									<ul class="wizard-steps">
-										<li class="step">
-											<a href="#form2_tab1" data-toggle="tab" class="btn btn-primary">
-												<%= image_tag("placeholders/team.jpg", class: "img-circle", height: "85", width: "85", ) %>
-											</a>
-										</li>
-										<li class="step">
-											<a href="#form2_tab2" data-toggle="tab" class="btn btn-white">
-												<%= image_tag("placeholders/team.jpg", class: "img-circle", height: "85", width: "85", ) %>
-											</a>
-										</li>
-										<li class="step">
-											<a href="#form2_tab3" data-toggle="tab" class="btn btn-white">
-												<%= image_tag("placeholders/team.jpg", class: "img-circle", height: "85", width: "85", ) %>
-											</a>
-										</li>
-										<li class="step">
-											<a href="#form2_tab4" data-toggle="tab" class="btn btn-white">
-												<%= image_tag("placeholders/team.jpg", class: "img-circle", height: "85", width: "85", ) %>
-											</a>
-										</li>
-									</ul>
-								</div><!--.steps-pull-right-->
-								<h4>STEP BY STEP</h4>
-								<h3> Ok, now let's setup up your profiles</h3>
-							</div><!--.panel-title-->
-						</div><!--.panel-heading-->
-						<div class="panel-body">
+				<div class="col-md-12">
+					<h6 class="bold text-orange">STEP BY STEP</h56>
+					<h3> Ok, now let's setup up your profiles</h3>
+					<br/>
+				</div>
+			</div>
 
-							<form id="form2" method="post" action="#" class="">
-
-								<div class="tab-content">
-									<div class="tab-pane" id="form2_tab1">
-										<%= render 'setup/athlete_setup'%>
-									</div><!--.tab-pane-->
-
-									<div class="tab-pane" id="form2_tab2">
-										<%#= render 'setup/coach_setup' %>
-									</div><!--.tab-pane-->
-
-									<div class="tab-pane" id="form2_tab3">
-										<%= render 'setup/parent_setup'%>
-									</div><!--.tab-pane-->
-
-									<div class="tab-pane" id="form2_tab4">
-										<%= render 'setup/director_setup'%>
-									</div><!--.tab-pane-->
-								</div><!--.tab-content-->
-
-							</form>
-
-						</div><!--.panel-body-->
-						<div class="panel-footer">
-							<ul class="wizard clearfix">
-								<li class="bs-wizard-prev pull-left"><button class="btn btn-flat btn-default">Previous</button></li>
-								<li class="bs-wizard-next pull-right"><button class="btn btn-blue">Next</button></li>
-								<li class="bs-wizard-submit pull-right">
-										<%= link_to edit_user_path(@user), class: "btn btn-blue" do %> 
-											Complete setup
-										<% end %>
+			<div class="panel bs-wizard bs-wizard-steps box-shadow-ccc">
+				<div class="panel-heading">
+					<div class="panel-title">
+						<div class="steps margin-top-20">
+							<ul class="wizard-steps">
+								<li class="step">
+									<a href="#form2_tab1" data-toggle="tab" class="btn btn-primary">
+										1
+									</a>
+									<h6>Student Athlete</h6>
+								</li>
+								<li class="step">
+									<a href="#form2_tab2" data-toggle="tab" class="btn btn-white">
+										2
+									</a>
+									<h6>Athlete</h6>
+								</li>
+								<li class="step">
+									<a href="#form2_tab3" data-toggle="tab" class="btn btn-white">
+										3
+									</a>
+									<h6>Coach</h6>
+								</li>
+								<li class="step">
+									<a href="#form2_tab4" data-toggle="tab" class="btn btn-white">
+										4
+									</a>
+									<h6>Parent</h6>
+								</li>
+								<li class="step">
+									<a href="#form2_tab5" data-toggle="tab" class="btn btn-white">
+										5
+									</a>
+									<h6>Athletic Director</h6>
+								</li>
+								<li class="step">
+									<a href="#form2_tab6" data-toggle="tab" class="btn btn-white">
+										6
+									</a>
+									<h6>Tournament Director</h6>
 								</li>
 							</ul>
-						</div><!--.panel-footer-->
-				</div><!--.panel-->
-			</div><!--.col-md-6-->
-
+						</div><!--.steps-pull-right-->
+					</div><!--.panel-title-->
+				</div><!--.panel-heading-->
 			
-		</div><!--.row-->
 
+				<hr class="no-margin"/>
+
+				<div class="panel box-shadow-ccc">
+
+					<div class="">
+
+					<form id="form2" method="post" action="#" class="">
+
+						<div class="tab-content">
+							<div class="tab-pane pane padding-top-20" id="form2_tab1">		
+								<%= render 'setup/athlete_setup'%>
+							</div><!--.tab-pane-->
+
+							<div class="tab-pane pane padding-top-20" id="form2_tab2">
+								<%= render 'setup/athlete_setup'%>
+							</div><!--.tab-pane-->
+
+							<div class="tab-pane pane padding-top-20" id="form2_tab3">
+								<%= render 'setup/coach_setup'%>
+							</div><!--.tab-pane-->
+
+							<div class="tab-pane pane padding-top-20" id="form2_tab4">
+								<%= render 'setup/parent_setup'%>
+							</div><!--.tab-pane-->
+
+							<div class="tab-pane pane padding-top-20" id="form2_tab5">
+								<%= render 'setup/director_setup'%>
+							</div><!--.tab-pane-->
+
+							<div class="tab-pane padding-top-20" id="form2_tab5">
+								<%= render 'setup/director_setup'%>
+							</div><!--.tab-pane-->
+						</div><!--.tab-content-->
+
+					</form>
+					</div><!--.panel-body-->
+					<div class="panel-footer">
+					<ul class="wizard clearfix">
+						<li class="bs-wizard-prev pull-left"><button class="btn btn-flat btn-default">Previous</button></li>
+						<li class="bs-wizard-next pull-right"><button class="btn btn-blue">Next</button></li>
+						<li class="bs-wizard-submit pull-right">
+								<%= link_to edit_user_path(@user), class: "btn btn-blue" do %> 
+									Complete setup
+								<% end %>
+						</li>
+					</ul>
+					</div><!--.panel-footer-->
+				</div>
+			</div>
 		</div>
 	</div><!--.row-->
 	<%#= f.submit %>
@@ -147,3 +217,133 @@
 </div>
 <%#= @id %>
 <%#= @class %>
+<script type="text/javascript">
+$( function() {
+  // quick search regex
+  var qsRegex;
+  
+  // init Isotope
+  var $grid = $('.grid').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows',
+    filter: function() {
+      return qsRegex ? $(this).text().match( qsRegex ) : true;
+    }
+  });
+
+  // use value of search field to filter
+  var $quicksearch = $('.quicksearch').keyup( debounce( function() {
+    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+    $grid.isotope();
+  }, 200 ) );
+  
+});
+
+// debounce so filtering doesn't happen every millisecond
+function debounce( fn, threshold ) {
+  var timeout;
+  return function debounced() {
+    if ( timeout ) {
+      clearTimeout( timeout );
+    }
+    function delayed() {
+      fn();
+      timeout = null;
+    }
+    timeout = setTimeout( delayed, threshold || 100 );
+  }
+}
+</script>
+
+
+<script type="text/javascript">
+
+// modified Isotope methods for gutters in masonry
+$.Isotope.prototype._getMasonryGutterColumns = function() {
+	var gutter = this.options.masonry && this.options.masonry.gutterWidth || 0;
+	containerWidth = this.element.width();
+
+	this.masonry.columnWidth = this.options.masonry && this.options.masonry.columnWidth ||
+	// or use the size of the first item
+	this.$filteredAtoms.outerWidth(true) ||
+	// if there's no items, use size of container
+	containerWidth;
+
+	this.masonry.columnWidth += gutter;
+
+	this.masonry.cols = Math.floor((containerWidth + gutter) / this.masonry.columnWidth);
+	this.masonry.cols = Math.max(this.masonry.cols, 1);
+};
+
+$.Isotope.prototype._masonryReset = function() {
+	// layout-specific props
+	this.masonry = {};
+	// FIXME shouldn't have to call this again
+	this._getMasonryGutterColumns();
+	var i = this.masonry.cols;
+	this.masonry.colYs = [];
+	while (i--) {
+		this.masonry.colYs.push(0);
+	}
+};
+
+$.Isotope.prototype._masonryResizeChanged = function() {
+	var prevSegments = this.masonry.cols;
+	// update cols/rows
+	this._getMasonryGutterColumns();
+	// return if updated cols/rows is not equal to previous
+	return (this.masonry.cols !== prevSegments);
+};
+
+$( function() {
+
+  var $container = $('#form2_tab2');
+
+  $container.isotope({
+    masonry: {
+      columnWidth: 100,
+      gutterWidth: 20
+    }
+  });
+    
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        if(e.target.hash == '#form2_tab1') {
+            $container.isotope('reLayout');
+        }
+    });
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        if(e.target.hash == '#form2_tab2') {
+            $container.isotope('reLayout');
+        }
+    });
+  
+});
+
+</script>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("select.special-flexselect").flexselect({ hideDropdownOnEmptyInput: true });
+    $("select.flexselect").flexselect();
+    $("input:text:enabled:first").focus();
+    $("form").submit(function() {
+      alert($(this).serialize());
+      return false;
+    });
+  });
+</script>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("select.special-flexselect").flexselect({ hideDropdownOnEmptyInput: true });
+    $("select.flexselect").flexselect();
+    $("input:text:enabled:first").focus();
+    $("form").submit(function() {
+      alert($(this).serialize());
+      return false;
+    });
+  });
+</script>

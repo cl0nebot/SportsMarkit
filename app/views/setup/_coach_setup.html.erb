@@ -1,28 +1,147 @@
 <%= form_for @user, url: coach_setup_path(@user) do |f| %>
-	<% if @user.is_coach? %>	
-		<% if @user.relationships.where(head: true).present? %>
-	       You are currently a coach of <%= pluralize @user.relationships.where(head: true).count, "team" %>. <br><br>
-		   
-		   <% @user.relationships.where(head: true).each do |relationship| %>
-		   <%= relationship.team.name %><br>
-		   
-		<% end %>
-			<br>
-		   
-		   Find more of your teams below.<br><br>
+	<% if @user.is_coach? %>
+		<div class="panel-body">
+	    	<div class="row">
+				<div class="col-lg-10 col-lg-offset-1">
+					<div class="row">
+						<div class="pull-left">
+							<%= image_tag("http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
+						</div>
+						<div class="pull-left">
+							<h4 class="margin-bottom-5">First Name, Last Name</h4>
+							<p class="small">My Coach Profile</p>
+						</div>
+					</div>
 
-		<% else %>
+					<div class="note note-warning note-left-striped">
+						<h4>Adding teams to your athlete profile.</h4>
+						<p class="small text-grey">
+							Use the search box below to find your teams. Once added, the team administrator will be notified of your request to join that team. In the meantime, your status will be pending.
+						</p>
+					</div>
+					
+					<hr class="no-margin"/>
+					<br/>
+			
+					<!-- <h5 class="semi-bold text-orange ">
+						<span class="bold margin-right-10">
+							1.	
+						</span>
+						Add teams to your athletic profile
+					</h5> -->
+
+					<div class="row">
+						<div class="col-lg-3 col-md-4 col-sm-12">
+							<h4 class="bold text-primary margin-top-10">
+								<i class="ion ion-search margin-right-5"></i> Find your teams
+							</h4>
+						</div><!--.col-md-3-->
+						<div class="col-lg-9 col-md-8 col-sm-12">
+							<div class="inputer">
+								<%= f.collection_select :team_ids, @coach_teams, :id, :name, {:selected => nil}, {:class => 'selecter bg-white margin-top-5', :placeholder => "Select Your Team", data:{live_search: 'true', width: '90%'}} %>
+
+								<%= f.submit class: "pull-right btn btn-floating btn-blue" do %>
+									<i class="ion-android-add"></i>
+								<% end %>
+
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+					<hr class="margin-top-10"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-10 col-lg-offset-1">
+
+					<h5 class="bold text-black">Your Teams
+		   			<span class="small semi-bold text-orange">(<%= pluralize @user.relationships.where(head: true).count, "team" %>)</span>
+		       		</h5>
+
+		       		<% if @user.relationships.where(head: true).present? %>
+	        
+		       			<% @user.relationships.where(head: true).each do |relationship| %>
+				   			<div class="panel-body without-padding">
+								<ul class="list-material">
+								<li class="has-action-left has-action-right">
+									<a href="#" class="visible">
+										<div class="list-action-left">
+											<i class="ion-calendar icon-circle"></i>
+										</div>
+										<div class="list-content">
+											<span class="title">
+												<%= relationship.team.name %>
+											</span>
+											<span class="caption">
+												<i class="ion-location"></i>
+												[city, state], 
+												[Schoo/League Name], 
+												[# of team members] 
+											</span>
+										</div>
+										<div class="list-action-right">
+											<span class="top">Pending</span>
+											<i class="ion-android-checkmark-circle bottom"></i>
+										</div>
+									</a>
+								</li>
+								</ul>
+							</div><!--.panel-body-->
+
+						<% end %>
+
+					<% else %>
+
+						You are currently not the coach of any teams. Let's get you started. Find your teams below.
+
+					<% end %>
+				
+				</div>
+
+		    </div>
+		</div>
+	
+
+	<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
 		
-			You are currently not a coach of any teams. Let's get you started. 
-			<br><br>
-			Find your teams below.
+		<div class="row">
 
-		<% end %>
 
-			<%= f.collection_select :team_ids, @coach_teams, :id, :name, {:selected => nil}, {  :multiple => true, :style => "width:100%", :id => "multi", :class => "select2-offscreen", :placeholder => "Select Your Team"  } %>
-
-		<% end %>
-
-	<%= f.submit class: "btn btn-primary" %>
-
+       		<% if @user.relationships.where(head: true).present? %>
+    
+       			<% @user.relationships.where(head: true).each do |relationship| %>
+					<div class="col-md-4">
+						<div class="card card-meal card-meal-blue card-square card-shadow">
+							<div class="card-heading">
+								<h3 class="card-title capitalize">
+									<%= relationship.team.name %>
+								</h3>
+								<div class="card-subhead">
+									<a href="#">
+										<i class="glyphicon glyphicon-map-marker"></i>
+									 	[City, State]
+									</a>
+								</div><!--.card-subhead-->
+							</div><!--.card-heading-->
+							<div class="card-body">
+								<div class="image">
+									<a href="#">
+										<%= image_tag("placeholders/school-1.jpg") %>
+									</a>
+								</div><!--.image-->
+							</div><!--.card-body-->
+							<div class="card-footer">
+								<a href="#" class="btn btn-block btn-primary">
+									<span class="text-white">Add School</span>
+								</a>
+							</div><!--.card-footer-->
+						</div><!--.card-->
+					</div><!--.col-md-4-->
+				<% end %>
+			<% end %>
+		</div>
+	</div><!--.row-->
+	<% end %>
 <% end %>
+
+
+
