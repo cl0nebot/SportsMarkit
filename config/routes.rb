@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resources :media
     end
     
+    get "testsetup" => "setup#testsetup", as: :test_setup
     get "/users/:id/setup" => "setup#setup", as: :user_setup
     get "/users/:id/overview" => "setup#overview", as: :user_overview
     patch "/user/:id/athlete_setup" => "setup#athlete_setup", as: :athlete_setup

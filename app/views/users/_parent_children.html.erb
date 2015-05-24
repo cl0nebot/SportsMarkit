@@ -1,0 +1,15 @@
+	<% ParentChild.where(child_id: @user.id).each do |pc| %>
+	
+	<% if pc.accepted?%>
+	parent: <%= User.find(pc.parent_id).full_name %>
+	<% else %>
+	
+	<%= form_for pc do |f| %>
+	<%= User.find(pc.parent_id).full_name %> has indicated that they are a parent.
+	  <%= f.hidden_field :accepted, value: true %>
+	  <%= f.submit "accept" %>
+	<% end %>
+	
+	<% end %>
+	
+	<% end %>
