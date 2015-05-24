@@ -60,7 +60,7 @@ class SetupController < ApplicationController
   protected
   
   def find_user
-    #@user = User.friendly.find(params[:id])
+    @user = User.friendly.find(params[:id])
   end
   
 end
