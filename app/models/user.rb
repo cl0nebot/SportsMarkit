@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   has_many :medias, as: :mediable
 
   def self.user_types
-    ["Athlete", "Coach", "Parent", "Athletic Director"]  
+    ["Student Athlete","Athlete", "Coach", "Parent", "Athletic Director"]  
     #["Athlete", "Coach", "Parent", "Athletic Director", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]  
     
   end
@@ -245,6 +245,26 @@ class User < ActiveRecord::Base
     user_team_ids = teams.pluck(:id)
     teammate_team_ids = user.teams.pluck(:id)
     user_team_ids & teammate_team_ids
+  end
+  
+  def can_edit_team?(team)
+    if Relationship.where(user_id: id, head: true, team_id: team.id).present?
+      true
+    elsif AthleticDirector.where(user_id: id, school_id: team.school_id)
+      true
+    elsif admin?
+      true
+    else
+      false
+    end
+  end
+  
+  def self.athletes
+    relationship_user_ids = Relationship.where(participant: true).pluck(:user_id)
+    student_athlete_user_ids = Classification.where(classification: "Student Athlete").pluck(:user_id) 
+    athlete_user_ids = Classification.where(classification: "Athlete").pluck(:user_id) 
+    unique_user_ids = (relationship_user_ids + student_athlete_user_ids + athlete_user_ids).uniq
+    all_athletes = User.where(id: unique_user_ids)
   end
   
   
