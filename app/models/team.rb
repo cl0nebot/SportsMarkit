@@ -1,6 +1,6 @@
 class Team < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :use_for_slug, use: :slugged
+  friendly_id :use_for_slug, use: [:slugged, :finders]
   
   has_many :fans, as: :fannable
   belongs_to :school

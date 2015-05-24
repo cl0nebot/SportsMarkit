@@ -1,0 +1,23 @@
+
+
+<%= link_to "Event Page", @tournament.events.first %><br>
+
+Tournament Name: <%= @tournament.name %><br>
+
+Tournament Sport: <%= @tournament.sport %><br>
+
+Tournament Level: <%= @tournament.level %><br>
+
+Tournament Description: <%= @tournament.description %><br>
+
+Tournament Start: <%= @tournament.events.first.starts_at %><br>
+
+Tournament End: <%= @tournament.events.first.ends_at %><br>
+
+Facility Name: <%= @event.facility.name %><br>
+
+Tournament Location: <%= @event.facility.address_1 %> <%= @event.facility.city %>  <%= @event.facility.state %> <%= @event.facility.zip %><br>
+
+Facility Phone Number: <%= @event.facility.phone_number %>
+
+<%= gmaps4rails(@json) %>
