@@ -48,4 +48,30 @@ class Team < ActiveRecord::Base
   def pending_members
     relationships.where(accepted: nil, rejected: nil)
   end
+  
+  def self.with_schools
+    Team.where.not(school_id: nil)
+  end
+  
+  def self.school_team_names
+    array = []
+    Team.with_schools.each do |team|
+      array << "#{team.school.name} #{team.name}"
+    end
+    array
+  end
+  
+  def self.without_schools
+    Team.where(school_id: nil)
+  end
+  
+  def self.non_school_team_names
+    array = []
+    Team.without_schools.each do |team|
+      array << "#{team.name}"
+    end
+    array
+  end
+  
+  
 end

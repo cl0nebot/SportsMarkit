@@ -267,6 +267,22 @@ class User < ActiveRecord::Base
     all_athletes = User.where(id: unique_user_ids)
   end
   
+  def self.user_names
+    array = []
+    User.all.each do |user|
+      array << "#{user.full_name}"
+    end
+    array
+  end
+  
+  def self.athlete_names
+    array = []
+    User.athletes.each do |user|
+      array << "#{user.full_name}"
+    end
+    array
+  end
+  
   
   
     
