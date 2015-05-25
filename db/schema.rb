@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520040053) do
+ActiveRecord::Schema.define(version: 20150523182359) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 20150520040053) do
     t.boolean  "yes"
     t.boolean  "maybe"
     t.boolean  "no"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "attending_teams", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "tournament_id"
+    t.boolean  "accepted"
+    t.boolean  "paid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -118,7 +127,6 @@ ActiveRecord::Schema.define(version: 20150520040053) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "school_id"
-    t.integer  "team_id"
   end
 
   add_index "facilities", ["slug"], name: "index_facilities_on_slug", unique: true, using: :btree
@@ -132,6 +140,11 @@ ActiveRecord::Schema.define(version: 20150520040053) do
   end
 
   add_index "fans", ["fannable_id", "fannable_type"], name: "index_fans_on_fannable_id_and_fannable_type", using: :btree
+
+  create_table "identity_checks", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "leagues", force: true do |t|
     t.string   "name"
@@ -184,6 +197,8 @@ ActiveRecord::Schema.define(version: 20150520040053) do
     t.integer  "child_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sender_id"
+    t.boolean  "accepted"
   end
 
   create_table "photos", force: true do |t|
@@ -272,8 +287,6 @@ ActiveRecord::Schema.define(version: 20150520040053) do
     t.boolean  "admin",                      default: false
   end
 
-  add_index "relationships", ["slug"], name: "index_relationships_on_slug", unique: true, using: :btree
-
   create_table "schools", force: true do |t|
     t.string   "name"
     t.string   "classification"
@@ -343,6 +356,21 @@ ActiveRecord::Schema.define(version: 20150520040053) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "tournaments", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "sport"
+    t.string   "level"
+    t.text     "description"
+    t.boolean  "active"
+    t.boolean  "director_paid"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tournaments", ["slug"], name: "index_tournaments_on_slug", unique: true, using: :btree
 
   create_table "user_profile_pictures", force: true do |t|
     t.integer  "user_id",    null: false
