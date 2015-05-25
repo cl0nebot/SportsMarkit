@@ -60,11 +60,11 @@ class Team < ActiveRecord::Base
     end
     array
   end
-  
+
   def self.without_schools
     Team.where(school_id: nil)
   end
-  
+
   def self.non_school_team_names
     array = []
     Team.without_schools.each do |team|
@@ -72,6 +72,10 @@ class Team < ActiveRecord::Base
     end
     array
   end
+
+  def self.team_names
+    self.school_team_names + self.non_school_team_names
+  end
   
-  
+
 end
