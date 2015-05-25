@@ -63,4 +63,18 @@ class School < ActiveRecord::Base
   def next_event
     upcoming_events.first.nil? ? "No upcoming events" : upcoming_events.first.title
   end
+  
+  def coach_ids_for_school
+    team_ids = teams.pluck(:id)
+    relationships = Relationship.where(team_id: team_ids, head: true)
+    coach_ids = relationships.pluck(:user_id)
+  end
+  
+  def coaches_for_school
+    coaches = User.where(id: coach_ids_for_school)
+  end
+  
+  def school_certifications
+    Certificate.where(user_id: coach_ids_for_school)
+  end
 end
