@@ -1,12 +1,15 @@
 <%= form_for Classification.new, html: {method: :post, remote: true } do |f| %>
 	<div class="row">
 		<div class="col-md-6">
-			<%= type %>
+			<%= image_tag("placeholders/team.jpg", class: "img-circle", height: "45", width: "45", ) %> 
+			<span class="h4 semi-bold text-black margin-left-20"><%= type %></span>
 		</div>
 		<div class="col-md-6">
 			<%= f.hidden_field :user_id, value: user.id %>
 			<%= f.hidden_field :classification, value: type %>
-			<%= f.submit class: "btn btn-primary" %>
+			<%= f.submit class: "btn btn-primary btn-block pull-right" do %>
+				Yes, I'm an [type <i class="ion-checkmark-circled pull-right"></i>
+			<% end %>
 		</div>
 	</div>
 	<br/>

@@ -1,38 +1,44 @@
-<div id='certificate-<%= m.fake_id %>' style='margin-bottom: 20px; display: block; float: left; width: 100%;'>
+<div id='certificate-<%= m.fake_id %>' class="row margin-top-20">
   <%= form_for [u, m], remote: true do |f| %>
     <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)%>
+
     <div class="col-md-12">
-      <div class="row example-row">
-        <div class="col-md-12">Expiration Date </div><!--.col-md-3-->
-        <div class="col-md-12">
-          <div class="inputer">
-            <div class="input-wrapper">
-              <%= f.text_field :expiration, class: "form-control  bootstrap-daterangepicker-basic active", placeholder: "", required: true  %>
-            </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row example-row">
+            <div class="col-md-12">Certification </div><!--.col-md-3-->
+            <div class="col-md-12">
+              <div class="inputer">
+                <%= f.select(:certification_id, options_for_select(Certification.pluck(:name, :id)), {}, {:class => 'selecter', :required => 'true', data:{live_search: 'true', width: '100%'}}) %>
+              </div>
+            </div><!--.col-md-9-->
           </div>
-        </div><!--.col-md-9-->
+        </div>
+        <div class="col-md-2">
+          <div class="row example-row">
+            <div class="col-md-12">Expires</div><!--.col-md-3-->
+            <div class="col-md-12">
+              <div class="inputer">
+                  <%= f.check_box :expires%>
+              </div>
+            </div><!--.col-md-9-->
+          </div><!--.row-->
+        </div>
+        <div class="col-md-3">
+          <div class="row example-row">
+            <div class="col-md-12">Expiration Date </div><!--.col-md-3-->
+            <div class="col-md-12">
+              <div class="inputer">
+                <div class="input-wrapper">
+                  <%= f.text_field :expiration, class: "form-control  bootstrap-daterangepicker-basic active", placeholder: "", required: true  %>
+                </div>
+              </div>
+            </div><!--.col-md-9-->
+          </div>
+        </div>
       </div>
-      <div class="row example-row"></div>
-      <div class="row example-row">
-        <div class="col-md-12">Certification </div><!--.col-md-3-->
-        <div class="col-md-12">
-          <div class="inputer">
-            <div class="input-wrapper">
-              <%= f.select :certification_id, options_for_select(Certification.pluck(:name, :id)), class: "form-control", placeholder: "", required: true   %>
-            </div>
-          </div>
-        </div><!--.col-md-9-->
-      </div>
-      <div class="row example-row">
-        <div class="col-md-12">Expires</div><!--.col-md-3-->
-        <div class="col-md-12">
-          <div class="inputer">
-            <div class="input-wrapper">
-              <%= f.check_box :expires%>
-            </div>
-          </div>
-        </div><!--.col-md-9-->
-      </div><!--.row-->
+      <br/> 
+      
     </div>
     <div class="col-md-12">
       <%= f.hidden_field :user_id %>

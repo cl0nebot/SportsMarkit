@@ -7,4 +7,5 @@ class Sport < ActiveRecord::Base
   def default_photo
     sport_photos.last.photo
   end
+
 end

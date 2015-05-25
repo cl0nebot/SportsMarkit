@@ -76,5 +76,8 @@ class School < ActiveRecord::Base
   
   def school_certifications
     Certificate.where(user_id: coach_ids_for_school)
+
+   def self.school_names
+    School.pluck(:name)
   end
 end

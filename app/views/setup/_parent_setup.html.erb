@@ -1,6 +1,146 @@
-				 <% if @user.is_parent?  %>
+<% if @user.is_parent?  %>
+	<div class="panel-body">
+    	<div class="row">
+			<div class="col-lg-10 col-lg-offset-1">
+				<div class="row">
+					<div class="pull-left">
+						<%= image_tag("http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
+					</div>
+					<div class="pull-left">
+						<h4 class="margin-bottom-5">First Name, Last Name</h4>
+						<p class="small">My Parent Profile</p>
+					</div>
+				</div>
+
+				<div class="note note-warning note-left-striped">
+					<h4>Claiming your child online.</h4>
+					<p class="small text-grey">
+						Use the search box below to find your teams. Once added, the team administrator will be notified of your request to join that team. In the meantime, your status will be pending.
+					</p>
+				</div>
+				
+				<hr class="no-margin"/>
+				<br/>
+
+				<div class="row well padding-bottom-0">
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<h3 class="bold text-primary margin-top-10">
+							<i class="ion ion-search margin-right-5"></i> Find your child
+						</h3>
+					</div><!--.col-md-3-->
+					<div class="col-lg-8 col-md-6 col-sm-12">
+						<div class="inputer">
+							
+							<!-- isotope filtering and typeahead-->
+							<textarea type="text" class="fs_30 lh_55 quicksearch typeahead typeahead-users form-control" rows="1" placeholder="start typing..."></textarea>
+
+						</div>
+					</div><!--.col-md-9-->
+				</div><!--.row-->
+				<hr class="margin-top-10"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-10 col-lg-offset-1">
+
+				<h5 class="bold text-black">Your Children
+	   				<span class="small semi-bold text-orange">(3)</span>
+	       		</h5>
+
+	       		<div class="panel-body without-padding">
+					<ul class="list-material">
+						<li class="has-action-left has-action-right">
+							<a href="#" class="visible">
+								<div class="list-action-left">
+									<a class="btn btn-floating btn-orange btn-ripple">
+										<i class="ion-android-close"></i>
+									</a>
+								</div>
+								<div class="list-content padding-left-30">
+									<span class="title">
+										First Name, Last Name
+									</span>
+									<span class="caption">
+										<i class="ion-location"></i>
+										[age], 
+										[city, state], 
+										[Schoo/League Name], 
+										[# of team members] 
+									</span>
+								</div>
+								<div class="list-action-right">
+									<span class="top">Pending</span>
+									<i class="ion-android-checkmark-circle bottom"></i>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div><!--.panel-body-->
+
+			</div>
+
+	    </div>
+	</div>
+	
+
+	<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
+		
+		<div class="row">
+			<div class="col-md-4 item">
+				<div class="card card-user card-clickable card-clickable-over-content">
+
+					<div class="card-heading heading-full">
+						<div class="user-image sample-member4l" style="background: url('/assets/placeholders/student-athlete.jpg');"></div>
+
+						<div class="clickable-button">
+							<div class="layer bg-orange"></div>
+							<a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-person-stalker"></i></a>
+						</div>
+
+						<div class="layered-content bg-orange">
+							<div class="overflow-content">
+								<div class="btn-group btn-group-justified margin-bottom-20">
+									<button type="button" class="btn btn-primary btn-block">View Profile</button>
+								</div>
+							</div><!--.overflow-content-->
+							<div class="clickable-close-button">
+								<a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
+							</div>
+						</div>
+					</div><!--.card-heading-->
+
+					<div class="card-body">
+						<h3 class="card-title">
+							<a href="#">First Name, Last Name</a>
+						</h3>
+						<div class="subhead">
+							[age],
+							<i class="ion-location"></i>
+							[city, state], 
+							[# of team members]
+						</div>
+					</div><!--.card-body-->
+
+					<div class="card-footer">
+						<a href="#" class="btn btn-block btn-primary">
+							<small>Claim Child</small>
+						</a>
+					</div><!--.card-footer-->
+
+				</div><!--.card-->
+			</div><!--.col-md-4-->
+		</div>
+			
+	</div><!--.row-->
+
+
+
+<% end %>
+
+
+
 				 
-				 You're a parent, let's find your kid.
+				 
 
  
 					 <%#= form_for ParentChild.new do |f| %>
@@ -9,4 +149,4 @@
 					 <%#= f.submit "Claim Kid", class: "btn btn-blue" %>
 					 <%# end %>
  
-				 <% end %>
+				 
