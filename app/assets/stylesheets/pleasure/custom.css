@@ -7,10 +7,19 @@
 
 /* Login page */
 
+
+.fs_18 {font-size: 18px !important;}
+.fs_30 {font-size: 30px !important;}
+.lh_55 {line-height: 55px !important;}
+
+.padding-bottom-0 {padding-bottom: 0;}
+
 .bg-login .bg-blur:before {
   background: url('http://marketing-cdn.teamsnap.com/iStock_000016157408Medium.jpg') fixed no-repeat;
   background-size: cover;
 }
+
+.list-content
 
 
 .capitalize {text-transform: capitalize;}

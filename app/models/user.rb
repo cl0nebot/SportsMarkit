@@ -40,11 +40,7 @@ class User < ActiveRecord::Base
   has_many :medias, as: :mediable
 
   def self.user_types
-<<<<<<< HEAD
     ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director", "Tournament Director" ]  
-=======
-    ["Student Athlete","Athlete", "Coach", "Parent", "Athletic Director"]  
->>>>>>> d0e35c82fcd782d26dbd32d14c5cd27bba0db89f
     #["Athlete", "Coach", "Parent", "Athletic Director", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]  
     
   end

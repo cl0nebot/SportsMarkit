@@ -3,6 +3,9 @@
 		<div class="panel-body margin-top-10">
 	    	<div class="row">
 				<div class="col-lg-10 col-lg-offset-1">
+
+
+
 					<div class="row">
 						<div class="pull-left">
 							<%= image_tag("http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
@@ -19,7 +22,7 @@
 							Use the search box below to find your teams. Once added, the team administrator will be notified of your request to join that team. In the meantime, your status will be pending.
 						</p>
 					</div>
-					
+
 					<hr class="no-margin"/>
 					<br/>
 			
@@ -30,25 +33,16 @@
 						Add teams to your athletic profile
 					</h5> -->
 
-					<div class="row">
-						<div class="col-lg-3 col-md-4 col-sm-12">
-							<h4 class="bold text-primary margin-top-10">
+					<div class="row well padding-bottom-0">
+						<div class="col-lg-4 col-md-6 col-sm-12">
+							<h3 class="bold text-primary margin-top-10">
 								<i class="ion ion-search margin-right-5"></i> Find your teams
-							</h4>
+							</h3>
 						</div><!--.col-md-3-->
-						<div class="col-lg-9 col-md-8 col-sm-12">
+						<div class="col-lg-8 col-md-6 col-sm-12">
 							<div class="inputer">
-								<div class="input-wrapper">
-									<input class="typeahead typeahead-basic form-control" type="text" placeholder="Search schools">
-								</div>
-
-								<textarea type="text" class="quicksearch form-control text-complete text-complete-basic" rows="4" placeholder="type :a or facebook"></textarea>
-								
-								<%#= f.collection_select :team_ids, @schools, :id, :name, {:selected => nil}, {type: "text", :class => 'selecter quicksearch bg-white margin-top-5', :placeholder => "Select Your Team", data:{live_search: 'true', width: '90%'}} %>
-
-								<%#= f.submit class: "pull-right btn btn-floating btn-blue" do %>
-									<!-- <i class="ion-android-add"></i> -->
-								<%# end %>
+								<!-- isotope filtering and typeahead-->
+								<textarea type="text" class="fs_30 lh_55 quicksearch typeahead typeahead-teams form-control" rows="1" placeholder="start typing..."></textarea>
 							</div>
 						</div><!--.col-md-9-->
 					</div><!--.row-->
@@ -70,9 +64,11 @@
 									<li class="has-action-left has-action-right">
 										<a href="#" class="visible">
 											<div class="list-action-left">
-												<i class="ion-calendar icon-circle"></i>
+												<a class="btn btn-floating btn-orange btn-ripple">
+													<i class="ion-android-close"></i>
+												</a>
 											</div>
-											<div class="list-content">
+											<div class="list-content padding-left-30">
 												<span class="title">
 													<%= relationship.team.name %>
 												</span>
@@ -106,176 +102,40 @@
 		</div>
 	
 
-		<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
-			<div class="row masonry grid">
-			<div class="col-md-4 element-item transition metal" data-category="transition">
-				<div class="card card-meal card-meal-blue card-square card-shadow">
-				<div class="card-heading">
-					<h3 class="card-title">Stephen Watts Kearny High School</h3>
-					<div class="card-subhead">
-						<a href="#">
-							<i class="glyphicon glyphicon-map-marker"></i>
-						 	Kearny Mesa, CA
-						</a>
-					</div><!--.card-subhead-->
-				</div><!--.card-heading-->
-				<div class="card-body">
-					<div class="image">
-						<a href="#">
-							<%= image_tag("placeholders/school-1.jpg") %>
-						</a>
-					</div><!--.image-->
-				</div><!--.card-body-->
-				<div class="card-footer">
-					<a href="#" class="btn btn-block btn-primary">
-						<span class="text-white">Add School</a>
-					</a>
-				</div><!--.card-footer-->
-				</div><!--.card-->
-			</div><!--.col-md-4-->
+	<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
 
-			<div class="col-md-4 element-item metalloid" data-category="metalloid">
-				<div class="card card-meal card-meal-blue card-square card-shadow">
-				<div class="card-heading">
-					<h3 class="card-title">Lincoln High School</h3>
-					<div class="card-subhead">
-						<a href="#">
-							<i class="glyphicon glyphicon-map-marker"></i>
-						 	San Diego, CA
+		<div class="row">
+			<div class="col-md-4 item" data-category="">
+				<div class="card card-meal card-meal-blue card-square card-shadow" style="min-height: 400px;">
+					<div class="card-heading">
+						<h3 class="card-title">[High School Name]</h3>
+						<div class="card-subhead">
+							<a href="#">
+								<i class="glyphicon glyphicon-map-marker"></i>
+							 	[City, State]
+							</a>
+						</div><!--.card-subhead-->
+					</div><!--.card-heading-->
+					<div class="card-body">
+						<div class="image">
+							<a href="#">
+								<!-- placeholder image for school image -->
+								<%= image_tag("placeholders/classroom.jpg") %>
+							</a>
+						</div><!--.image-->
+					</div><!--.card-body-->
+					<div class="card-footer">
+						<a href="#" class="btn btn-block btn-primary">
+							<span class="text-white">Add School</a>
 						</a>
-					</div><!--.card-subhead-->
-				</div><!--.card-heading-->
-				<div class="card-body">
-					<div class="image">
-						<a href="#">
-							<%= image_tag("placeholders/school-2.jpg") %>
-						</a>
-					</div><!--.image-->
-				</div><!--.card-body-->
-				<div class="card-footer">
-					<a href="#" class="btn btn-block btn-primary">
-						<span class="text-white">Add School</a>
-					</a>
-				</div><!--.card-footer-->
+					</div><!--.card-footer-->
 				</div><!--.card-->
 			</div><!--.col-md-4-->
-
-			<div class="col-md-4 element-item post-transition metal" data-category="post-transition">
-				<div class="card card-meal card-meal-blue card-square card-shadow">
-				<div class="card-heading">
-					<h3 class="card-title">Helix High School</h3>
-					<div class="card-subhead">
-						<a href="#">
-							<i class="glyphicon glyphicon-map-marker"></i>
-						 	La Mesa, CA
-						</a>
-					</div><!--.card-subhead-->
-				</div><!--.card-heading-->
-				<div class="card-body">
-					<div class="image">
-						<a href="#">
-							<%= image_tag("placeholders/school-3.jpg") %>
-						</a>
-					</div><!--.image-->
-				</div><!--.card-body-->
-				<div class="card-footer">
-					<a href="#" class="btn btn-block btn-primary">
-						<span class="text-white">Add School</a>
-					</a>
-				</div><!--.card-footer-->
-				</div><!--.card-->
-			</div><!--.col-md-4-->
-
-			<div class="col-md-4 element-item post-transition metal" data-category="post-transition">
-				<div class="card card-meal card-meal-blue card-square card-shadow">
-				<div class="card-heading">
-					<h3 class="card-title">Mount Vernon Middle School</h3>
-					<div class="card-subhead">
-						<a href="#">
-							<i class="glyphicon glyphicon-map-marker"></i>
-						 	Lemon Grove, CA
-						</a>
-					</div><!--.card-subhead-->
-				</div><!--.card-heading-->
-				<div class="card-body">
-					<div class="image">
-						<a href="#">
-							<%= image_tag("placeholders/school-1.jpg") %>
-						</a>
-					</div><!--.image-->
-				</div><!--.card-body-->
-				<div class="card-footer">
-					<a href="#" class="btn btn-block btn-primary">
-						<span class="text-white">Add School</a>
-					</a>
-				</div><!--.card-footer-->
-				</div><!--.card-->
-			</div><!--.col-md-4-->
-
-			<div class="col-md-4 element-item transition metal " data-category="transition">
-				<div class="card card-meal card-meal-blue card-square card-shadow">
-				<div class="card-heading">
-					<h3 class="card-title">Palm Middle School</h3>
-					<div class="card-subhead">
-						<i class="glyphicon glyphicon-map-marker"></i>
-						 	Lemon Grove, CA
-					</div><!--.card-subhead-->
-				</div><!--.card-heading-->
-				<div class="card-body">
-					<div class="image">
-						<a href="#">
-							<%= image_tag("placeholders/school-5.jpg") %>
-						</a>
-					</div><!--.image-->
-				</div><!--.card-body-->
-				<div class="card-footer">
-					<a href="#" class="btn btn-block btn-primary">
-						<span class="text-white">Add School</a>
-					</a>
-				</div><!--.card-footer-->
-				</div><!--.card-->
-			</div><!--.col-md-4-->
-			</div>
-		</div><!--.row-->
+		</div>
+	</div><!--.row-->
 	<% end %>
 <% end %>
 
 <script type="text/javascript">
-	typeahead: function () {
-			// instantiate the bloodhound suggestion engine
-			var numbers = new Bloodhound({
-				datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.num); },
-				queryTokenizer: Bloodhound.tokenizers.whitespace,
-				local: [
-					<% @athletes.each do |athlete| %>
-						{ num: '<%= athlete.name %>' }
-					<% end %>
-					{ num: 'khadijah' },
-					{ num: 'cordis' },
-					{ num: 'cordon blue' },
-					{ num: 'cali' },
-					{ num: 'caution' },
-					{ num: 'hello' },
-					{ num: 'one' },
-					{ num: 'two' },
-					{ num: 'three' },
-					{ num: 'four' },
-					{ num: 'five' },
-					{ num: 'six' },
-					{ num: 'seven' },
-					{ num: 'eight' },
-					{ num: 'nine' },
-					{ num: 'ten' }
-				]
-			});
-
-			// initialize the bloodhound suggestion engine
-			numbers.initialize();
-
-			// Typeahead example 1
-			$('.typeahead-basic').typeahead(null, {
-				displayKey: 'num',
-				source: numbers.ttAdapter()
-			});
-		}
-</script>
+	// typeahead for athletes
+</script>			

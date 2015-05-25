@@ -68,6 +68,8 @@
 //= require pleasure/globals/plugins/jquery-validation/dist/jquery.validate.min
 //= require pleasure/globals/plugins/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min
 
+//= require pleasure/globals/plugins/handlebars/handlebars.min
+
 //= require pleasure/globals/plugins/strength/strength.min
 //= require pleasure/globals/plugins/indicator/indicator
 //= require pleasure/globals/plugins/pwstrength-bootstrap/dist/pwstrength-bootstrap-1.2.2.min
@@ -88,6 +90,8 @@
 
 //= require pleasure/globals/plugins/jquery.flexselect-0.7.0/jquery.flexselect
 //= require pleasure/globals/plugins/jquery.flexselect-0.7.0/liquidmetal
+
+//= require plugins/imagesloaded.pkgd.min
 
 // <!-- PLUGINS INITIALIZATION AND SETTINGS -->
 //= require pleasure/globals/scripts/user-pages

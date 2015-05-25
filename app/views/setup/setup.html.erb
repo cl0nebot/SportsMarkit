@@ -77,9 +77,6 @@ $('a[data-toggle=tab]').each(function () {
 
 </script>
 
-
-
-
 <div class="content">
   <!-- page header -->
   <div class="page-header full-content bg-blue">
@@ -167,7 +164,7 @@ $('a[data-toggle=tab]').each(function () {
 
 						<div class="tab-content">
 							<div class="tab-pane pane padding-top-20" id="form2_tab1">		
-								<%= render 'setup/athlete_setup'%>
+								<%= render 'setup/student_athlete_setup'%>
 							</div><!--.tab-pane-->
 
 							<div class="tab-pane pane padding-top-20" id="form2_tab2">
@@ -186,8 +183,8 @@ $('a[data-toggle=tab]').each(function () {
 								<%= render 'setup/director_setup'%>
 							</div><!--.tab-pane-->
 
-							<div class="tab-pane padding-top-20" id="form2_tab5">
-								<%= render 'setup/director_setup'%>
+							<div class="tab-pane padding-top-20" id="form2_tab6">
+								<%= render 'setup/tournament_director_setup'%>
 							</div><!--.tab-pane-->
 						</div><!--.tab-content-->
 
@@ -198,9 +195,9 @@ $('a[data-toggle=tab]').each(function () {
 						<li class="bs-wizard-prev pull-left"><button class="btn btn-flat btn-default">Previous</button></li>
 						<li class="bs-wizard-next pull-right"><button class="btn btn-blue">Next</button></li>
 						<li class="bs-wizard-submit pull-right">
-								<%= link_to edit_user_path(@user), class: "btn btn-blue" do %> 
-									Complete setup
-								<% end %>
+							<%= link_to edit_user_path(@user), class: "btn btn-blue" do %> 
+								Complete setup
+							<% end %>
 						</li>
 					</ul>
 					</div><!--.panel-footer-->
@@ -347,3 +344,5 @@ $( function() {
     });
   });
 </script>
+
+
