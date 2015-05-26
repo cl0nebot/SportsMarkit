@@ -19,7 +19,13 @@ module ApplicationHelper
         "#{object.strftime("%-H:%M")}"
       when 8
         "#{object.strftime("%l:%M")}"
-      else
+      when 9
+        "#{object.strftime("%B")}"
+      when 10
+        "#{object.day}"
+      when 11
+        "#{object.year}"
+      when 12
         "There aren't this many options, use a smaller number."
       end
     end
