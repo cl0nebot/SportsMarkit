@@ -4,8 +4,6 @@
 	    	<div class="row">
 				<div class="col-lg-10 col-lg-offset-1">
 
-
-
 					<div class="row">
 						<div class="pull-left">
 							<%= image_tag("http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
@@ -42,7 +40,7 @@
 						<div class="col-lg-8 col-md-6 col-sm-12">
 							<div class="inputer">
 								<!-- isotope filtering and typeahead-->
-								<textarea type="text" class="fs_30 lh_55 quicksearch typeahead typeahead-teams form-control" rows="1" placeholder="start typing..."></textarea>
+								<textarea type="text" class="fs_30 lh_55 quicksearch-teams typeahead typeahead-teams form-control" rows="1" placeholder="start typing..."></textarea>
 							</div>
 						</div><!--.col-md-9-->
 					</div><!--.row-->
@@ -102,40 +100,36 @@
 		</div>
 	
 
-	<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
+		<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
 
-		<div class="row">
-			<div class="col-md-4 item" data-category="">
-				<div class="card card-meal card-meal-blue card-square card-shadow" style="min-height: 400px;">
-					<div class="card-heading">
-						<h3 class="card-title">[High School Name]</h3>
-						<div class="card-subhead">
-							<a href="#">
-								<i class="glyphicon glyphicon-map-marker"></i>
-							 	[City, State]
+			<div class="row teams">
+				<div class="col-md-4 element-item" data-category="">
+					<div class="card card-meal card-meal-blue card-square card-shadow" style="min-height:">
+						<div class="card-heading">
+							<h3 class="card-title">[High School Name]</h3>
+							<div class="card-subhead">
+								<a href="#">
+									<i class="glyphicon glyphicon-map-marker"></i>
+								 	[City, State]
+								</a>
+							</div><!--.card-subhead-->
+						</div><!--.card-heading-->
+						<div class="card-body">
+							<div class="image">
+								<a href="#">
+									<!-- placeholder image for school image -->
+									<%= image_tag("placeholders/classroom.jpg") %>
+								</a>
+							</div><!--.image-->
+						</div><!--.card-body-->
+						<div class="card-footer">
+							<a href="#" class="btn btn-block btn-primary">
+								<span class="text-white">Add School</a>
 							</a>
-						</div><!--.card-subhead-->
-					</div><!--.card-heading-->
-					<div class="card-body">
-						<div class="image">
-							<a href="#">
-								<!-- placeholder image for school image -->
-								<%= image_tag("placeholders/classroom.jpg") %>
-							</a>
-						</div><!--.image-->
-					</div><!--.card-body-->
-					<div class="card-footer">
-						<a href="#" class="btn btn-block btn-primary">
-							<span class="text-white">Add School</a>
-						</a>
-					</div><!--.card-footer-->
-				</div><!--.card-->
-			</div><!--.col-md-4-->
-		</div>
-	</div><!--.row-->
+						</div><!--.card-footer-->
+					</div><!--.card-->
+				</div><!--.col-md-4-->
+			</div>
+		</div><!--.row-->
 	<% end %>
 <% end %>
-
-<script type="text/javascript">
-	// typeahead for athletes
-</script>			

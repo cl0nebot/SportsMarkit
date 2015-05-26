@@ -207,20 +207,21 @@ $('a[data-toggle=tab]').each(function () {
 	</div><!--.row-->
 	<%#= f.submit %>
 	<%# end %>
-  
-	
-
-
 </div>
 <%#= @id %>
 <%#= @class %>
+
 <script type="text/javascript">
+
+
+// QUICKSEARCH SCHOOLS
+
 $( function() {
   // quick search regex
   var qsRegex;
   
   // init Isotope
-  var $grid = $('.grid').isotope({
+  var $grid = $('.schools').isotope({
     itemSelector: '.element-item',
     layoutMode: 'fitRows',
     filter: function() {
@@ -229,7 +230,123 @@ $( function() {
   });
 
   // use value of search field to filter
-  var $quicksearch = $('.quicksearch').keyup( debounce( function() {
+  var $quicksearch = $('.quicksearch-schools').keyup( debounce( function() {
+    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+    $grid.isotope();
+  }, 200 ) );
+  
+});
+
+// debounce so filtering doesn't happen every millisecond
+function debounce( fn, threshold ) {
+  var timeout;
+  return function debounced() {
+    if ( timeout ) {
+      clearTimeout( timeout );
+    }
+    function delayed() {
+      fn();
+      timeout = null;
+    }
+    timeout = setTimeout( delayed, threshold || 100 );
+  }
+}
+
+
+// QUICKSEARCH TEAMS
+
+$( function() {
+  // quick search regex
+  var qsRegex;
+  
+  // init Isotope
+  var $grid = $('.teams').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows',
+    filter: function() {
+      return qsRegex ? $(this).text().match( qsRegex ) : true;
+    }
+  });
+
+  // use value of search field to filter
+  var $quicksearch = $('.quicksearch-teams').keyup( debounce( function() {
+    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+    $grid.isotope();
+  }, 200 ) );
+  
+});
+
+// debounce so filtering doesn't happen every millisecond
+function debounce( fn, threshold ) {
+  var timeout;
+  return function debounced() {
+    if ( timeout ) {
+      clearTimeout( timeout );
+    }
+    function delayed() {
+      fn();
+      timeout = null;
+    }
+    timeout = setTimeout( delayed, threshold || 100 );
+  }
+}
+
+
+// QUICKSEARCH COACHED TEAMS
+
+$( function() {
+  // quick search regex
+  var qsRegex;
+  
+  // init Isotope
+  var $grid = $('.coaches').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows',
+    filter: function() {
+      return qsRegex ? $(this).text().match( qsRegex ) : true;
+    }
+  });
+
+  // use value of search field to filter
+  var $quicksearch = $('.quicksearch-coaches').keyup( debounce( function() {
+    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+    $grid.isotope();
+  }, 200 ) );
+  
+});
+
+// debounce so filtering doesn't happen every millisecond
+function debounce( fn, threshold ) {
+  var timeout;
+  return function debounced() {
+    if ( timeout ) {
+      clearTimeout( timeout );
+    }
+    function delayed() {
+      fn();
+      timeout = null;
+    }
+    timeout = setTimeout( delayed, threshold || 100 );
+  }
+}
+
+// QUICKSEARCH USERS
+
+$( function() {
+  // quick search regex
+  var qsRegex;
+  
+  // init Isotope
+  var $grid = $('.users').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows',
+    filter: function() {
+      return qsRegex ? $(this).text().match( qsRegex ) : true;
+    }
+  });
+
+  // use value of search field to filter
+  var $quicksearch = $('.quicksearch-users').keyup( debounce( function() {
     qsRegex = new RegExp( $quicksearch.val(), 'gi' );
     $grid.isotope();
   }, 200 ) );
@@ -251,98 +368,4 @@ function debounce( fn, threshold ) {
   }
 }
 </script>
-
-
-<script type="text/javascript">
-
-// modified Isotope methods for gutters in masonry
-$.Isotope.prototype._getMasonryGutterColumns = function() {
-	var gutter = this.options.masonry && this.options.masonry.gutterWidth || 0;
-	containerWidth = this.element.width();
-
-	this.masonry.columnWidth = this.options.masonry && this.options.masonry.columnWidth ||
-	// or use the size of the first item
-	this.$filteredAtoms.outerWidth(true) ||
-	// if there's no items, use size of container
-	containerWidth;
-
-	this.masonry.columnWidth += gutter;
-
-	this.masonry.cols = Math.floor((containerWidth + gutter) / this.masonry.columnWidth);
-	this.masonry.cols = Math.max(this.masonry.cols, 1);
-};
-
-$.Isotope.prototype._masonryReset = function() {
-	// layout-specific props
-	this.masonry = {};
-	// FIXME shouldn't have to call this again
-	this._getMasonryGutterColumns();
-	var i = this.masonry.cols;
-	this.masonry.colYs = [];
-	while (i--) {
-		this.masonry.colYs.push(0);
-	}
-};
-
-$.Isotope.prototype._masonryResizeChanged = function() {
-	var prevSegments = this.masonry.cols;
-	// update cols/rows
-	this._getMasonryGutterColumns();
-	// return if updated cols/rows is not equal to previous
-	return (this.masonry.cols !== prevSegments);
-};
-
-$( function() {
-
-  var $container = $('#form2_tab2');
-
-  $container.isotope({
-    masonry: {
-      columnWidth: 100,
-      gutterWidth: 20
-    }
-  });
-    
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        if(e.target.hash == '#form2_tab1') {
-            $container.isotope('reLayout');
-        }
-    });
-
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        if(e.target.hash == '#form2_tab2') {
-            $container.isotope('reLayout');
-        }
-    });
-  
-});
-
-</script>
-
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("select.special-flexselect").flexselect({ hideDropdownOnEmptyInput: true });
-    $("select.flexselect").flexselect();
-    $("input:text:enabled:first").focus();
-    $("form").submit(function() {
-      alert($(this).serialize());
-      return false;
-    });
-  });
-</script>
-
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("select.special-flexselect").flexselect({ hideDropdownOnEmptyInput: true });
-    $("select.flexselect").flexselect();
-    $("input:text:enabled:first").focus();
-    $("form").submit(function() {
-      alert($(this).serialize());
-      return false;
-    });
-  });
-</script>
-
 

@@ -228,11 +228,128 @@ var FormsTools = {
 		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
 		        update_the_source_with(datum.value);
 		});
-	},
 
-	typeahead: function () {
 
-		var athletes = <%= Athlete.pluck(:name) %>;
+		var teams = <%= Team.team_names %>;
+
+		// instantiate the bloodhound suggestion engine
+		var teams = new Bloodhound({
+		    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+		    queryTokenizer: Bloodhound.tokenizers.whitespace,
+		    local: $.map(teams, function(team) { return { value: team }; })
+		});
+
+		// initialize the bloodhound suggestion engine
+		teams.initialize();
+
+		// Typeahead example 1
+		$('.typeahead-teams')
+		    .typeahead({
+		        hint: true,
+		        highlight: true,
+		        minLength: 1
+		    }, {
+		        name: 'teams',
+		        displayKey: 'value',
+		        source: teams.ttAdapter()
+		    })
+		    .on('typeahead:selected', function(object, datum) {
+		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
+		        update_the_source_with(datum.value);
+		});
+
+
+		var users = <%= User.user_names %>;
+
+		// instantiate the bloodhound suggestion engine
+		var users = new Bloodhound({
+		    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+		    queryTokenizer: Bloodhound.tokenizers.whitespace,
+		    local: $.map(users, function(user) { return { value: user }; })
+		});
+
+		// initialize the bloodhound suggestion engine
+		users.initialize();
+
+		// Typeahead example 1
+		$('.typeahead-users')
+		    .typeahead({
+		        hint: true,
+		        highlight: true,
+		        minLength: 1
+		    }, {
+		        name: 'users',
+		        displayKey: 'value',
+		        source: users.ttAdapter()
+		    })
+		    .on('typeahead:selected', function(object, datum) {
+		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
+		        update_the_source_with(datum.value);
+		});
+
+
+		var school_teams = <%= Team.school_team_names %>;
+
+		// instantiate the bloodhound suggestion engine
+		var school_teams = new Bloodhound({
+		    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+		    queryTokenizer: Bloodhound.tokenizers.whitespace,
+		    local: $.map(school_teams, function(school_team) { return { value: school_team }; })
+		});
+
+		// initialize the bloodhound suggestion engine
+		school_teams.initialize();
+
+		// Typeahead example 1
+		$('.typeahead-school-teams')
+		    .typeahead({
+		        hint: true,
+		        highlight: true,
+		        minLength: 1
+		    }, {
+		        name: 'school_teams',
+		        displayKey: 'value',
+		        source: school_teams.ttAdapter()
+		    })
+		    .on('typeahead:selected', function(object, datum) {
+		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
+		        update_the_source_with(datum.value);
+		});
+
+
+
+		var non_school_teams = <%= Team.non_school_team_names %>;
+
+		// instantiate the bloodhound suggestion engine
+		var non_school_teams = new Bloodhound({
+		    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+		    queryTokenizer: Bloodhound.tokenizers.whitespace,
+		    local: $.map(non_school_teams, function(non_school_team) { return { value: non_school_team }; })
+		});
+
+		// initialize the bloodhound suggestion engine
+		non_school_teams.initialize();
+
+		// Typeahead example 1
+		$('.typeahead-non-school-teams')
+		    .typeahead({
+		        hint: true,
+		        highlight: true,
+		        minLength: 1
+		    }, {
+		        name: 'non_school_teams',
+		        displayKey: 'value',
+		        source: non_school_teams.ttAdapter()
+		    })
+		    .on('typeahead:selected', function(object, datum) {
+		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
+		        update_the_source_with(datum.value);
+		});
+
+
+
+
+		var athletes = <%= User.athlete_names %>;
 
 		// instantiate the bloodhound suggestion engine
 		var athletes = new Bloodhound({
@@ -259,71 +376,10 @@ var FormsTools = {
 		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
 		        update_the_source_with(datum.value);
 		});
+
+
 	},
 
-	typeahead: function () {
-
-		var teams = <%= @teams.pluck(:name) %>;
-
-		// instantiate the bloodhound suggestion engine
-		var teams = new Bloodhound({
-		    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-		    queryTokenizer: Bloodhound.tokenizers.whitespace,
-		    local: $.map(teams, function(team) { return { value: team }; })
-		});
-
-		// initialize the bloodhound suggestion engine
-		states.initialize();
-
-		// Typeahead example 1
-		$('.typeahead-teams')
-		    .typeahead({
-		        hint: true,
-		        highlight: true,
-		        minLength: 1
-		    }, {
-		        name: 'teams',
-		        displayKey: 'value',
-		        source: teams.ttAdapter()
-		    })
-		    .on('typeahead:selected', function(object, datum) {
-		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
-		        update_the_source_with(datum.value);
-		});
-	},
-
-
-	typeahead: function () {
-
-		var users = <%= User.pluck(:name) %>;
-
-		// instantiate the bloodhound suggestion engine
-		var users = new Bloodhound({
-		    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-		    queryTokenizer: Bloodhound.tokenizers.whitespace,
-		    local: $.map(users, function(user) { return { value: user }; })
-		});
-
-		// initialize the bloodhound suggestion engine
-		User.initialize();
-
-		// Typeahead example 1
-		$('.typeahead-users')
-		    .typeahead({
-		        hint: true,
-		        highlight: true,
-		        minLength: 1
-		    }, {
-		        name: 'users',
-		        displayKey: 'value',
-		        source: teams.ttAdapter()
-		    })
-		    .on('typeahead:selected', function(object, datum) {
-		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
-		        update_the_source_with(datum.value);
-		});
-	},
-	
 	typeaheadPrefetch: function () {
 		var countries = new Bloodhound({
 			datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
