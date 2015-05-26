@@ -56,4 +56,11 @@ class Facility < ActiveRecord::Base
   def all_events
     events
   end
+  
+  def people_that_use_facility
+    team_ids = all_teams.pluck(:id)
+    relationships = Relationship.where(team_id: team_ids)
+    user_ids = relationships.pluck(:user_id)
+    users = User.where(id: user_ids)
+  end
 end
