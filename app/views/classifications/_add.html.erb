@@ -7,8 +7,9 @@
 		<div class="col-md-6">
 			<%= f.hidden_field :user_id, value: user.id %>
 			<%= f.hidden_field :classification, value: type %>
-			<%= f.submit class: "btn btn-primary btn-block pull-right" do %>
-				Yes, I'm an [type <i class="ion-checkmark-circled pull-right"></i>
+			<%= button_tag class: "btn btn-primary btn-block pull-right" do %>
+			    <% a_or_and = ["a","e","i","o","u"].include?(type.first.downcase) ? "an" : "a" %>
+				Yes, I'm <%= a_or_and %> <%= type %> <i class="ion-checkmark-circled pull-right"></i>
 			<% end %>
 		</div>
 	</div>

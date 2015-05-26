@@ -5,7 +5,7 @@
 	</div>
 	<div class="col-md-6">
 		<%= link_to user.classifications.where(classification: type).last, method: :delete, remote: true, class: "btn btn-danger btn-block pull-right" do %>
-			Remove [type] status <i class="ion-close-circled pull-right"></i> 
+			Remove <%= user.classifications.where(classification: type).last.classification %> status <i class="ion-close-circled pull-right"></i> 
 		<% end %>
 		<br/>
 	</div>
