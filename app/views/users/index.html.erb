@@ -14,34 +14,72 @@
     </div><!--.row-->
   </div><!--.page-header-->
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel">
-        <div class="panel-heading">
-          <!-- <div class="panel-title"><h4>ALPHABET SORTING</h4></div> -->
-        </div><!--.panel-heading-->
-        <div class="panel-body">
-          <div class="overflow-table">
-            <table id="user-list" class="display datatables-alphabet-sorting">
-              <thead>
-                <tr class="fs-16">
-                  <th style="width:40%" class="gf_muli">Name</th>
-                  <th style="width:15%" class="gf_muli">Email</th>
-                  <th style="width:20%" class="gf_muli">Signup Date</th>
-                  <th style="width:22%" class="gf_muli">Actions</th>
-                </tr>
-              </thead>
+  <div clas="panel">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-lg-6 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-12">
+          <div class="padding-bottom-0">
+            <div class="inputer">
+              <!-- isotope filtering and typeahead-->
+              <textarea type="text" class=" fs_30 lh_55 quicksearch-users typeahead typeahead-users form-control" rows="1" placeholder="Start typing user name here...yes, you."></textarea>
+            </div>
+          </div>
+        </div><!--.col-md-9-->
+      </div><!--.row-->
+      <hr class="margin-top-10"/>
+    </div>
+  </div>
+  
 
-              <tbody id="schools">
-                <%= render @users %>           
-              </tbody>
-            </table>
-          </div><!--.overflow-table-->
+  <div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
+    
+    <div class="row users">
+      <%= render @users %>
+    </div>
+  </div>
+      
+</div><!--.row-->
 
-        </div><!--.panel-body-->
-      </div><!--.panel-->
-    </div><!--.col-md-12-->
-  </div><!--.row-->
-</div><!--.content-->
 
+<script type="text/javascript">
+
+
+// QUICKSEARCH USERS
+
+$( function() {
+  // quick search regex
+  var qsRegex;
+  
+  // init Isotope
+  var $grid = $('.users').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows',
+    filter: function() {
+      return qsRegex ? $(this).text().match( qsRegex ) : true;
+    }
+  });
+
+  // use value of search field to filter
+  var $quicksearch = $('.quicksearch-users').keyup( debounce( function() {
+    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+    $grid.isotope();
+  }, 200 ) );
+  
+});
+
+// debounce so filtering doesn't happen every millisecond
+function debounce( fn, threshold ) {
+  var timeout;
+  return function debounced() {
+    if ( timeout ) {
+      clearTimeout( timeout );
+    }
+    function delayed() {
+      fn();
+      timeout = null;
+    }
+    timeout = setTimeout( delayed, threshold || 100 );
+  }
+}
+</script>
 
