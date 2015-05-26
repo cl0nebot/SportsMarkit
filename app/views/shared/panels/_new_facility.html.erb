@@ -11,11 +11,11 @@
 							
 							
 							
-							<% unless params[:controller] == "teams" %>
-								  <div class="panel-title"><h4>Complete the form below. </h4></div>
-							<% else %>
-								  <div class="panel-title"><h4>Select Your Facility Below </h4></div>
-							<% end %>
+						<% unless params[:controller] == "teams" %>
+							  <div class="panel-title"><h4>Complete the form below. </h4></div>
+						<% else %>
+							  <div class="panel-title"><h4>Select Your Facility Below </h4></div>
+						<% end %>
 								
 								
 							<div class="panel-body">
@@ -162,42 +162,31 @@
 			
 			<% else %>
 			
-			
-			
-			
-		<% if params[:action] == "show" %>
-		  <% @team.school.facilities.each do |facility| %>
-		    <%= facility.name %>
-		<div id="team-facility-<%= facility.id %>">
+   		<% if params[:action] == "show" %>
+   		  <% @team.school.facilities.each do |facility| %>
+   		    <%= facility.name %>
+   		<div id="team-facility-<%= facility.id %>">
 			
 			
 			
 			
-			     <% unless @team.team_facilities.where(facility_id: facility.id).present? %>
-				   <%= render 'team_facilities/add', facility: facility, team: @team %>
-				 <% else %>
-			       <% @team.team_facilities.where(facility_id: facility.id).each do |tf| %>
-				   <%= render 'team_facilities/remove', tf: tf %>
-				   <% end %>
-				<% end %>
-		</div>
+   			     <% unless @team.team_facilities.where(facility_id: facility.id).present? %>
+   				   <%= render 'team_facilities/add', facility: facility, team: @team %>
+   				 <% else %>
+   			       <% @team.team_facilities.where(facility_id: facility.id).each do |tf| %>
+   				   <%= render 'team_facilities/remove', tf: tf %>
+   				   <% end %>
+   				<% end %>
+   		</div>
 		
-		<% end %>
-		<% end %>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-	
+   		<% end %>
+   		<% end %>
+		   
+						</div><!--.panel-body-->
+					</div><!--.panel-->
+				</div><!--.col-md-12-->
+			</div><!--.row-->
+		</div>
 			
 			<% end %>
 			
