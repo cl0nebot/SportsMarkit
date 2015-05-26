@@ -80,6 +80,8 @@
 							<div class="panel">
 								<div class="panel-body">
 									<div class="tab-content with-panel transparent">
+										
+
 										<div class="tab-pane active text-style" id="general">
 											<div class="panel-body">
 
@@ -449,11 +451,7 @@
 												<div class="panel-body">
 													<h4 class="text-right">Certifications</h4>
 													<hr/>
-													<h5 class="bold text-primary">Manage Certifications</h4>
-													</br>
-								                  	<p>
-								                  		<%= link_to "Add Certificate", new_user_certificate_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue text-right' %>
-								                  	</p>
+													<h5 class="bold text-primary">My Certifications</h4>
 
 								                  	<div id="certificates">
 								                    	<% @user.certificates.each do |m| %>
@@ -464,7 +462,10 @@
 												<div class="form-buttons">
 													<div class="row">
 														<div class="col-lg-8 col-lg-offset-2">
-															<%= f.submit "Update Profile", class: "btn btn-large btn-blue btn-block" %>
+															<%= link_to new_user_certificate_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue btn-block' do %>
+																Add New Certificate 
+																<i class="ion-plus-circled margin-left-10"></i>
+															<% end %>
 														</div>
 													</div>
 												</div>
