@@ -1,15 +1,49 @@
-<tr>
-    <td class="v-align-middle capitalize">
-    	<%= link_to user.full_name, user_path(user) %>
-    </td>
-    <td class="v-align-middle">
-    	<%= user.email %>
-    </td>
-     <td class="v-align-middle">
-    	<%= format(user.created_at, 4) %>
-    </td>
-    <td class="v-align-middle">
-		<%= link_to "Edit", edit_user_path(user), class: "btn btn-sm btn-message" %>
+<%= link_to user_path(user) do %>
+  <div class="col-md-4 col-lg-2 col-sm-6 element-item">
+    <div class="card card-user card-clickable card-clickable-over-content">
+
+      <div class="card-heading heading-full">
+        <div class="user-image sample-member9" style="background: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');"></div>
+
+        <div class="clickable-button">
+          <div class="layer bg-orange"></div>
+          <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-person-stalker"></i></a>
+        </div>
+
+        <div class="layered-content bg-orange">
+          <div class="overflow-content">
+            <div class="btn-group btn-group-justified margin-bottom-20">
+              <button type="button" class="btn btn-primary btn-block">View Profile</button>
+            </div>
+          </div><!--.overflow-content-->
+          <div class="clickable-close-button">
+            <a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
+          </div>
+        </div>
+      </div><!--.card-heading-->
+
+      <div class="card-body">
+        <h4 class="card-title capitalize">
+          <a href="#"><%= user.first_name %> <%= user.last_name %></a>
+        </h3>
+
+        <div class="subhead">
+          <span class="text-muted">
+            Member since: <%= format(user.created_at, 4) %>
+          </span>
+          <br/>
+          [age] year old<br/>
+          <i class="ion-location text-blue margin-right-5"></i>[city, state]<br/>
+          <i class="ion-email text-blue margin-right-5"></i> <%= user.email %><br/>
+          <i class="ion-phone text-blue"></i> <%= user.mobile_phone_number %>
+        </div>
+      </div><!--.card-body-->
+
+      <div class="card-footer">
+        <%= link_to "Edit", edit_user_path(user), class: "btn btn-sm btn-message" %>
         <%= link_to "Delete", user, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
-    </td>
-</tr>
+      </div><!--.card-footer-->
+
+    </div><!--.card-->
+  </div><!--.col-md-4-->
+<% end %>

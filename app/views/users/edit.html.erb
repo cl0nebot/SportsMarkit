@@ -80,13 +80,12 @@
 							<div class="panel">
 								<div class="panel-body">
 									<div class="tab-content with-panel transparent">
+
 										<div class="tab-pane active text-style" id="general">
 											<div class="panel-body">
 
-												<h4 class="pull-right">General Information</h4>
-
-												<br/>
-												<hr/>
+												<h4 class="text-right">General Information</h4>
+												<hr class="margin-top-0"/>
 												<h5 class="bold text-primary">The Basics</h4>
 												<br/>
 
@@ -217,7 +216,7 @@
 										<div class="tab-pane text-style" id="social-media">
 											<div class="panel-body">
 												<h4 class="text-right">Social Media Profiles</h4>
-												<hr/>
+												<hr class="margin-top-0"/>
 												<h5 class="bold text-primary">Add Social Media Accounts</h5>
 												<br/>
 
@@ -336,7 +335,7 @@
 
 											<div class="panel-body">
 												<h4 class="text-right">Sports Resume</h4>
-												<hr/>
+												<hr class="margin-top-0"/>
 												<h5 class="bold text-primary">Athletic Profile</h4>
 													
 												<div class="col-md-12">
@@ -448,12 +447,9 @@
 											<div class="tab-pane text-style" id="certifications">
 												<div class="panel-body">
 													<h4 class="text-right">Certifications</h4>
-													<hr/>
-													<h5 class="bold text-primary">Manage Certifications</h4>
-													</br>
-								                  	<p>
-								                  		<%= link_to "Add Certificate", new_user_certificate_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue text-right' %>
-								                  	</p>
+													<hr class="margin-top-0"/>
+													<h5 class="bold text-primary">My Certifications</h5>
+													<br/>
 
 								                  	<div id="certificates">
 								                    	<% @user.certificates.each do |m| %>
@@ -464,7 +460,10 @@
 												<div class="form-buttons">
 													<div class="row">
 														<div class="col-lg-8 col-lg-offset-2">
-															<%= f.submit "Update Profile", class: "btn btn-large btn-blue btn-block" %>
+															<%= link_to new_user_certificate_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue btn-block' do %>
+																Add New Certificate 
+																<i class="ion-plus-circled margin-left-10"></i>
+															<% end %>
 														</div>
 													</div>
 												</div>
@@ -530,12 +529,14 @@
 
 										<div class="tab-pane text-style" id="password">
 											<div class="panel-body">
-												<h4 class="pull-right">Change Password</h4>
-
+												<h4 class="text-right">Password</h4>
+												<hr class="margin-top-0"/>
+												<h5 class="bold text-primary">Reset Your Password</h4>
+												<br/>
+												
 												<div class="row example-row">
-													<hr class="no-margin"/>
 													<div class="col-md-12">Current Password </div><!--.col-md-3-->
-													<div class="col-md-8">
+													<div class="col-md-12">
 														<div class="inputer">
 															<div class="input-wrapper">
 																<%= f.password_field :current_password, label:false, placeholder:"", :class => "form-control" %>
@@ -546,7 +547,7 @@
 
 												<div class="row example-row">
 													<div class="col-md-12">New Password </div><!--.col-md-3-->
-													<div class="col-md-8">
+													<div class="col-md-12">
 														<div class="inputer">
 															<div class="input-wrapper">
 																<%= f.password_field :current_password, label:false, placeholder:"", :class => "form-control" %>
@@ -557,7 +558,7 @@
 
 												<div class="row example-row">
 													<div class="col-md-12">Verify Password </div><!--.col-md-3-->
-													<div class="col-md-8">
+													<div class="col-md-12">
 														<div class="inputer">
 															<div class="input-wrapper">
 																<%= f.password_field :password_confirmation, label:false, placeholder:"", :class => "form-control" %>
@@ -569,7 +570,7 @@
 											<div class="form-buttons">
 												<div class="row">
 													<div class="col-lg-8 col-lg-offset-2">
-														<%= f.submit "Update Profile", class: "btn btn-large btn-blue btn-block" %>
+														<%= f.submit "Reset password", class: "btn btn-large btn-blue btn-block" %>
 													</div>
 												</div>
 											</div>
@@ -577,14 +578,10 @@
 
 						              	<div class="tab-pane text-style" id="media">
 						              		<div class="panel-body">
-
 												<h4 class="text-right">Media</h4>
-												<hr/>
+												<hr class="margin-top-0"/>
 												<h5 class="bold text-primary">Media Uploads</h4>
 												<br/>
-
-		                    					<%= link_to "Add Media", new_user_medium_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue pull-right' %>
-
 							                    <div id="medias">
 							                      <% @user.medias.each do |m| %>
 							                        <%= render 'media/form', m: m, u: @user %>
@@ -594,7 +591,9 @@
 							                <div class="form-buttons">
 												<div class="row">
 													<div class="col-lg-8 col-lg-offset-2">
-														<%= f.submit "Update Profile", class: "btn btn-large btn-blue btn-block" %>
+														<%= link_to new_user_medium_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue btn-block' do %>
+															Add New Media <i class="ion-plus-circled margin-left-10"></i>
+														<% end %>
 													</div>
 												</div>
 											</div>
