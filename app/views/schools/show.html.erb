@@ -56,6 +56,9 @@
 				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li>
 				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
 				<li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li>
+				<% if AthleticDirector.where(user_id: current_user.id, school_id: @school.id).present? %>
+				  <li><a href="#certifications" data-toggle="tab" class="btn-ripple">Certifications</a></li>
+				<% end %>
 			</ul>
 		</div>
 	</div><!--.page-header-->
@@ -225,6 +228,26 @@
 
 
 				<!--#events.tab-pane-->
+				<% if AthleticDirector.where(user_id: current_user.id, school_id: @school.id).present? %>
+				<!-- certifications -->
+				<div id="certifications" class="tab-pane">
+					
+				<% @certifications.each do |cert| %>
+				
+				certification: <%= cert.certification.name %><br>
+				issuer: <%= cert.certification.issuer %><br>
+				user: <%= cert.user.full_name %><br>
+				expiration: <%= cert.expiration %><br>
+				send notification: <%=  %><br>
+				
+				
+				<br><br><% end %>
+					
+				</div>
+
+
+				<!--#certfications.tab-pane-->
+				<% end %>
 
 				<!-- facilities -->
 				<div id="facilities" class="tab-pane">
