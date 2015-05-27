@@ -51,78 +51,115 @@
 										<div class="tab-pane active text-style" id="general">
 											<div class="panel-body">
 
-												<h4 class="text-right">General Information</h4>
+												<h4 class="text-right">General</h4>
 												<hr class="margin-top-0"/>
 												<h5 class="bold text-primary">The Basics</h4>
 												<br/>
 
 												<div class="col-md-12">
+			
 													<div class="row example-row">
-														<div class="col-md-12">Name </div><!--.col-md-3-->
-														<div class="col-md-12">
-															<div class="inputer">
-																<div class="input-wrapper">
-																	<%= f.text_field :first_name, type: "text", class: "form-control", placeholder: ""  %>
-																</div>
-															</div>
-														</div><!--.col-md-9-->
-													</div><!--.row-->
-
-													<div class="row example-row">
-														<div class="col-md-12">Middle Name </div><!--.col-md-3-->
-														<div class="col-md-12">
-															<div class="inputer">
-																<div class="input-wrapper">
-																	<%= f.text_field :middle_name, type: "text", class: "form-control", placeholder: ""  %>
-																</div>
-															</div>
-														</div><!--.col-md-9-->
-													</div><!--.row-->
-
-													<div class="row example-row">
-														<div class="col-md-12">Last Name </div><!--.col-md-3-->
-														<div class="col-md-12">
-															<div class="inputer">
-																<div class="input-wrapper">
-																	<%= f.text_field :last_name, type: "text", class: "form-control", placeholder: ""  %>
-																</div>
-															</div>
-														</div><!--.col-md-9-->
-													</div><!--.row-->
-
-													<%= f.fields_for :profile, @profile do |builder| %>
-
-														<div class="row">
-															<div class="col-md-6 row">
-																<div class="row example-row">
-																	<div class="col-md-12">Gender</div><!--.col-md-3-->
-																	<div class="col-md-12">
-																		<div class="inputer">
-																			<%= builder.select(:sex, [ 'Male', 'Female'], {prompt: "Select Gender"}, {:class => "selecter"}) %>
+														<div class="col-md-7">
+															<div class="row example-row">
+																<div class="col-md-12">Name </div><!--.col-md-3-->
+																<div class="col-md-12">
+																	<div class="inputer">
+																		<div class="input-wrapper">
+																			<%= f.text_field :first_name, type: "text", class: "form-control", placeholder: ""  %>
 																		</div>
-																	</div><!--.col-md-9-->
-																</div><!--.row-->
-															</div>
+																	</div>
+																</div><!--.col-md-9-->
+															</div><!--.row-->
 
-															<div class="col-md-6">
-																<div class="row example-row">
-																	<div class="col-md-12">Birthday</div><!--.col-md-3-->
-																	<div class="col-md-12">
-																		<div class="inputer">
-																			<div class="input-wrapper">
-																				<%= builder.date_field :date_of_birth, class: "form-control" %>
-																			</div>
+															<div class="row example-row">
+																<div class="col-md-12">Middle Name </div><!--.col-md-3-->
+																<div class="col-md-12">
+																	<div class="inputer">
+																		<div class="input-wrapper">
+																			<%= f.text_field :middle_name, type: "text", class: "form-control", placeholder: ""  %>
 																		</div>
-																	</div><!--.col-md-9-->
-																</div><!--.row-->
-															</div>
+																	</div>
+																</div><!--.col-md-9-->
+															</div><!--.row-->
+
+															<div class="row example-row">
+																<div class="col-md-12">Last Name </div><!--.col-md-3-->
+																<div class="col-md-12">
+																	<div class="inputer">
+																		<div class="input-wrapper">
+																			<%= f.text_field :last_name, type: "text", class: "form-control", placeholder: ""  %>
+																		</div>
+																	</div>
+																</div><!--.col-md-9-->
+															</div><!--.row-->
+
+															<%= f.fields_for :profile, @profile do |builder| %>
+
+																<div class="row">
+																	<div class="col-md-6 row">
+																		<div class="row example-row">
+																			<div class="col-md-12">Gender</div><!--.col-md-3-->
+																			<div class="col-md-12">
+																				<div class="inputer">
+																					<%= builder.select(:sex, [ 'Male', 'Female'], {prompt: "Select Gender"}, {:class => "selecter"}) %>
+																				</div>
+																			</div><!--.col-md-9-->
+																		</div><!--.row-->
+																	</div>
+
+																	<div class="col-md-6">
+																		<div class="row example-row">
+																			<div class="col-md-12">Birthday</div><!--.col-md-3-->
+																			<div class="col-md-12">
+																				<div class="inputer">
+																					<div class="input-wrapper">
+																						<%= builder.date_field :date_of_birth, class: "form-control" %>
+																					</div>
+																				</div>
+																			</div><!--.col-md-9-->
+																		</div><!--.row-->
+																	</div>
+																</div>
+
+															<% end %>
+
 														</div>
 
-														<br/>	
-														<h5 class="bold text-primary">Contact Information</h5>
-														<br/>
+														<div class="col-md-4 pull-right">
+														<div class="row example-row">
+															<%= form_for [@user, @user_profile_picture] do |f| %>
+															<div class="fileinput fileinput-new" data-provides="fileinput">
+																<div class="fileinput-new thumbnail" style="max-width: 300px; max-height: 300px; overflow: hidden;">
+																	<% if @user_profile_picture.present? %>
+																		<img src="<%= image_path(@user_profile_picture.photo) %>" alt="..." style="height: 100%; width: 100%;">
+																	<% else %>
+																		<img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" alt="..." style="height: 100%; width: 100%;"> 
+																	<% end %>
+																</div>
+																<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 300px; max-height: 300px; overflow: hidden;"></div>
+																<div>
+																	<span class="btn btn-default btn-file">
+																		<span class="fileinput-new">Select image</span>
+																		<span class="fileinput-exists">Change</span>
+																	<%= f.file_field :photo %>
+																	</span>
+																	<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+																	<br/>
+																	<br/>
+																	<%= f.submit "Update Profile Picture", class: "btn btn-primary btn-block" %>
+																</div>
+															</div>
+															<% end %>
+														</div>
+														</div>
+													</div>
 
-													<% end %>
+													
+
+													<br/>	
+													<h5 class="bold text-primary">Contact Information</h5>
+													<br/>
+
 
 													<div class="row example-row">
 														<div class="col-md-12">Email</div><!--.col-md-3-->

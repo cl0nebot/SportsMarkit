@@ -92,25 +92,16 @@ class UsersController < ApplicationController
     @user = User.find_by_mobile_phone_number(params[:m])
     
   end
-  
-  def add_school_team_at_setup
-    @user = User.friendly.find(params[:user_id])
-    @relationship = Relationship.create(team_id: params[:relationship][:team_id], user_id: params[:relationship][:user_id], participant: params[:relationship][:participant])
-    @users_schools_teams_ids = Relationship.where(user_id: @user.id, participant: true).pluck(:team_id)
-    @users_schools_teams = Team.with_schools.where(id: @users_schools_teams_ids)
-    @school_teams = Team.with_schools - @user.teams
-    respond_to do |format|
-      format.js 
-      format.html { redirect_to :back }
-    end
-  end
-  
+
   def add_school_team_at_setup
     @user = User.friendly.find(params[:user_id])
     @relationship = Relationship.create(team_id: params[:relationship][:team_id], user_id: params[:relationship][:user_id], participant: params[:relationship][:participant])
     @users_non_schools_teams_ids = Relationship.where(user_id: @user.id, participant: true).pluck(:team_id)
     @users_non_schools_teams = Team.without_schools.where(id: @users_non_schools_teams_ids)
     @non_school_teams = Team.without_schools - @user.teams
+    @school_teams = Team.with_schools - @user.teams
+    @users_schools_teams_ids = Relationship.where(user_id: @user.id, participant: true).pluck(:team_id)
+    @users_schools_teams = Team.with_schools.where(id: @users_schools_teams_ids)
     respond_to do |format|
       format.js 
       format.html { redirect_to :back }
