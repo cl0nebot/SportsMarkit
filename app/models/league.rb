@@ -18,4 +18,8 @@ class League < ActiveRecord::Base
     team_ids = TeamLeague.where(league_id: id).pluck(:team_id)
     teams = Team.where(id: team_ids)
   end
+  
+  def self.league_names
+    League.pluck(:name)
+  end
 end

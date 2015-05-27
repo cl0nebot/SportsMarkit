@@ -63,4 +63,9 @@ class Facility < ActiveRecord::Base
     user_ids = relationships.pluck(:user_id)
     users = User.where(id: user_ids)
   end
+  
+  def self.facility_names
+    Facility.pluck(:name)
+  end
+  
 end
