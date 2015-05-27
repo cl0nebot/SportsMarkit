@@ -1,58 +1,87 @@
 <div class="content">
 
-	<div class="page-header full-content">
-		<div class="row">
-			<div class="col-sm-5">
-				<h1>Facilities <small>(<%= Facility.count %>)</small></h1>
-			</div><!--.col-->
-			<div class="col-sm-6">
-				<ol class="breadcrumb">
-					<li><a href="/"><i class="ion-home"></i></a></li>
-					<li><a href="#" class="active">Facilities</a></li>
-				</ol>
-			</div><!--.col-->
-			<div class="col-sm-1 text-right">
-				<a class="btn btn-floating btn-pink" data-toggle="modal" data-target="#panel-new-facility">
-					<i class="ion-android-add"></i>
-				</a>
-			</div>
-		</div><!--.row-->
-	</div><!--.page-header-->
+  <div class="page-header full-content bg-blue">
+    <div class="row">
+      <div class="col-sm-6">
+      	<h1>All Facilities <small>(<%= Facility.count %>)</small></h1>
+      </div><!--.col-->
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="<%= users_path %>" class="active">All Facilities</a></li>
+        </ol>
+      </div><!--.col-->
+    </div><!--.row-->
+  </div><!--.page-header-->
 
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel">
-				<div class="panel-heading">
-					<!-- <div class="panel-title"><h4>ALPHABET SORTING</h4></div> -->
-				</div><!--.panel-heading-->
-				<div class="panel-body">
-					<div class="overflow-table">
-						<table class="display datatables-alphabet-sorting">
-							<thead>
-								<tr class="fs-16">
-									<th>Name</th>
-									<th>Email</th>
-									<th>Website</th>
-									<th>Phone</th>
-									<th>Start date</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
+  <div clas="panel">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-lg-6 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-12">
+          <div class="padding-bottom-0">
+            <div class="inputer">
+              <!-- isotope filtering and typeahead-->
+              <textarea type="text" class=" fs_30 lh_55 quicksearch-facilities typeahead typeahead-facilities form-control" rows="1" placeholder="Start typing facility name here..."></textarea>
+            </div>
+          </div>
+        </div><!--.col-md-9-->
+      </div><!--.row-->
+      <hr class="margin-top-10"/>
+    </div>
+  </div>
+  
 
-							<tbody id="schools">
-								<%= render "facility" %>
-							</tbody>
-						</table>
-					</div><!--.overflow-table-->
+  <div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
+    
+    <div class="row facilities">
+    	<%= render "facility" %>	
+    </div>
+  </div>
+      
+</div><!--.row-->
 
-				</div><!--.panel-body-->
-			</div><!--.panel-->
-		</div><!--.col-md-12-->
-	</div><!--.row-->
 
+<script type="text/javascript">
 	
-</div><!--.content-->
+	// QUICKSEARCH USERS
 
+	$( function() {
+	  // quick search regex
+	  var qsRegex;
+	  
+	  // init Isotope
+	  var $grid = $('.facilities').isotope({
+	    itemSelector: '.element-item',
+	    layoutMode: 'fitRows',
+	    filter: function() {
+	      return qsRegex ? $(this).text().match( qsRegex ) : true;
+	    }
+	  });
+
+	  // use value of search field to filter
+	  var $quicksearch = $('.quicksearch-facilities').keyup( debounce( function() {
+	    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+	    $grid.isotope();
+	  }, 200 ) );
+
+	});
+
+	// debounce so filtering doesn't happen every millisecond
+	function debounce( fn, threshold ) {
+	  var timeout;
+	  return function debounced() {
+	    if ( timeout ) {
+	      clearTimeout( timeout );
+	    }
+	    function delayed() {
+	      fn();
+	      timeout = null;
+	    }
+	    timeout = setTimeout( delayed, threshold || 100 );
+	  }
+	}
+
+</script>
 	
 <h1><%#= format(Date.today, 4)%></h1>
 

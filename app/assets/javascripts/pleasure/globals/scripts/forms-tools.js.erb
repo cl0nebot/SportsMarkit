@@ -378,6 +378,67 @@ var FormsTools = {
 		});
 
 
+
+		var facilities = <%=Facility.facility_names %>;
+
+		// instantiate the bloodhound suggestion engine
+		var facilities = new Bloodhound({
+		    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+		    queryTokenizer: Bloodhound.tokenizers.whitespace,
+		    local: $.map(facilities, function(facility) { return { value: facility }; })
+		});
+
+		// initialize the bloodhound suggestion engine
+		facilities.initialize();
+
+		// Typeahead example 1
+		$('.typeahead-facilities')
+		    .typeahead({
+		        hint: true,
+		        highlight: true,
+		        minLength: 1
+		    }, {
+		        name: 'facilities',
+		        displayKey: 'value',
+		        source: facilities.ttAdapter()
+		    })
+		    .on('typeahead:selected', function(object, datum) {
+		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
+		        update_the_source_with(datum.value);
+		});
+
+
+
+
+		var leagues = <%= League.league_names %>;
+
+		// instantiate the bloodhound suggestion engine
+		var leagues = new Bloodhound({
+		    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+		    queryTokenizer: Bloodhound.tokenizers.whitespace,
+		    local: $.map(leagues, function(league) { return { value: league }; })
+		});
+
+		// initialize the bloodhound suggestion engine
+		leagues.initialize();
+
+		// Typeahead example 1
+		$('.typeahead-leagues')
+		    .typeahead({
+		        hint: true,
+		        highlight: true,
+		        minLength: 1
+		    }, {
+		        name: 'leagues',
+		        displayKey: 'value',
+		        source: leagues.ttAdapter()
+		    })
+		    .on('typeahead:selected', function(object, datum) {
+		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
+		        update_the_source_with(datum.value);
+		});
+
+
 	},
 
 	typeaheadPrefetch: function () {
