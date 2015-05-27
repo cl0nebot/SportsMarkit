@@ -1,61 +1,69 @@
 <div class="content">
-  <div class="page-header full-content bg-blue">
-    <div class="row">
-      <div class="col-sm-6">
-        <h1>New Team<small></small></h1>
-      </div><!--.col-->
-      <div class="col-sm-6">
-        <ol class="breadcrumb">
-          <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="<%= teams_path %>">Teams</a></li>
-          <li><a href="#" class="active">New</a></li>
-        </ol>
-      </div><!--.col-->
-    </div><!--.row-->
-  </div><!--.page-header-->
 
-<div class="row">
-	<div class="col-md-12">
-		<div class="panel">
-			<div class="panel-heading">
-				<div class="panel-title"><h4>Complete the form below. </h4></div>
-			</div><!--.panel-heading-->
-			<div class="panel-body">
+	<br/>
+
+	<div class="row">
+		<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+			<div class="panel box-shadow-ccc">
+				<div class="panel-header bg-cyan">
+					<br/>
+					<h5 class="text-right text-white semi-bold">Add or Create a New Team
+						<i class="ion-plus-circled margin-right-10 margin-left-10 text-white"></i>
+					</h5>
+					<hr class="margin-top-0"/>
+				</div>
 
 				<%= form_for Team.new, url: teams_path, html: {id: 'new-team-form', method: :post} do |f| %>
-	
 
-				<div class="row example-row">
-					<div class="col-md-3">Name </div><!--.col-md-3-->
-					<div class="col-md-9">
-						<div class="inputer">
-							<div class="input-wrapper">
-								<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
+				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
+						 	<div class="row text-center">
+								<div class="col-md-12">
+									<h3 class="semi-bold text-primary">Setup a new team</h3>
+									<h4>What sport?</h4>
+								</div>
 							</div>
+							<div class="row example-row">
+								<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 well margin-bottom-0">
+									<%= f.select :sport, Sport.pluck(:sport), {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
 						</div>
-					</div><!--.col-md-9-->
-				</div><!--.row-->
+					</div>
+				</div>
 
-				<div class="row example-row">
-					<div class="col-md-3">Sport </div><!--.col-md-3-->
-					<div class="col-md-9">
-						<div class="inputer">
-							<div class="input-wrapper">
-								<%= f.select :sport, Sport.pluck(:sport), :class => 'selecter', :prompt => 'Select One' %>
+				
+				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+					<div class="panel-body padding-right-40 padding-left-40">
+
+						<h5 class="semi-bold text-muted text-center">Simply fill out all of the information below to create a new team.</h5>
+						<br/>
+							
+						<br/>
+						<h4 class="text-blue semi-bold">
+							<i class="ion-ios-location margin-right-10"></i> General Info
+						</h4>
+						<br/>
+						<div class="row example-row">
+							<div class="col-md-12">
+								<h4>Name</h4>
 							</div>
-						</div>
-					</div><!--.col-md-9-->
-				</div><!--.row-->
-
-			</div><!--.panel-body-->
-		</div><!--.panel-->
-	</div><!--.col-md-12-->
-</div><!--.row-->
-  <%= f.submit "Create Team", class: "btn btn-blue" %>
-  <% end %>     
+							<div class="col-md-12">
+								<div class="inputer">
+									<div class="input-wrapper">
+										<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
+									</div>
+								</div>
+							</div><!--.col-md-9-->
+						</div><!--.row-->
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>  
 </div>
 <%#= @id %>
 <%#= @class %>
-
 
 

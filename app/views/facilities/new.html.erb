@@ -24,24 +24,18 @@
 							</div>
 							<div class="row margin-bottom-0">
 								<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 well">
-									<div class="row clearfix">
-										<div class="col-md-6">
-											<div class="center">
-												<div class="radioer form-inline">
-													<input type="radio" name="radioOption8" id="radioColor14" value="option1" checked="checked">
-													<label for="radioColor14" class="margin-bottom-0" >New</label>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="center">
-												<div class="radioer form-inline">
-													<input type="radio" name="radioOption8" id="radioColor16" value="option1">
-													<label for="radioColor16" class="margin-bottom-0" >Existing</label>
-												</div>
-											</div>
-										</div>
-									</div>
+									<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+										<option>Basketball Gym</option>
+										<option>Recreation Center</option>
+										<option>Tennis Court</option>
+										<option>Volleyball Court</option>
+										<option>Soccer Field</option>
+										<option>Indoor Soccer Field</option>
+										<option>Track</option>
+										<option>Indoor Track</option>
+										<option>Football Field</option>
+										<option>Indoor Football Field</option>
+									</select>
 								</div><!--.col-md-9-->
 							</div><!--.row-->
 						</div>
@@ -63,19 +57,7 @@
 							<i class="ion-ios-location margin-right-10"></i> General Info
 						</h4>
 						<br/>
-						<div class="row example-row">
-							<div class="col-md-12">
-								<h4>Type</h4>
-							</div>
-							<div class="col-md-12">
-								<div class="inputer">
-									<div class="input-wrapper">
-										<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
-									</div>
-								</div>
-							</div><!--.col-md-9-->
-						</div><!--.row-->
-
+						
 						<div class="row example-row">
 							<div class="col-md-12"><h4>Name</h4></div>
 							<div class="col-md-12">
