@@ -1,0 +1,34 @@
+  <script type="text/javascript">
+     $(function () {
+       $('body').popover({
+           selector: '[data-toggle="popover"]'
+       });
+
+       $('body').tooltip({
+           selector: 'a[rel="tooltip"], [data-toggle="tooltip"]'
+       });
+
+       var users = <%= raw(User.all.to_json) %>
+
+       search = function(users){
+         $.each(users, function(index, user){
+
+         })
+       }
+       $('.search-typeahead').typeahead(
+         {
+           hint: true,
+           highlight: true,
+           minLength: 1
+         },
+         {
+           name: 'destinations',
+           source: search(users),
+           header: '<h3 class="typeahead-header"><i class="glyphicon glyphicon-map-marker"></i> Destinations</h3>',
+           template: '{{pretty_name}}',
+           engine: Hogan
+         }
+      );
+
+     });
+   </script>

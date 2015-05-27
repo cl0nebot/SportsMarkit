@@ -1,8 +1,6 @@
 module Location
   extend ActiveSupport::Concern
-  
-  
-  
+
   def residence
     "#{city}, #{state_abbreviation}"
   end 

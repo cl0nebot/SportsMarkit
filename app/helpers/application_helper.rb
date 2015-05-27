@@ -36,9 +36,10 @@ module ApplicationHelper
   end
 
   def background_url(obj)
-    case obj.class.to_s
-      when "School"
-        obj.main_photo.present? ? obj.main_photo.image.url(:cropped) : 'http://upload.wikimedia.org/wikipedia/commons/b/b5/Aberdeen_High_School_2.jpg'
-    end
+    urls = {"School" => 'http://upload.wikimedia.org/wikipedia/commons/b/b5/Aberdeen_High_School_2.jpg',
+     'User' => image_path("thumbs/football-game.jpg"),
+     'Team' => 'http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg',
+     'Facility' => 'http://despacedesigns.com/wp-content/uploads/2013/11/blog_YMCA_AB_2L3V9636.jpg'}
+    obj.main_photo.try(:persisted?) ? obj.main_photo.image.url(:cropped) : urls[obj.class.to_s]
   end
 end

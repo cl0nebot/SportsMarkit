@@ -24,6 +24,10 @@ class SetupController < ApplicationController
   def test_setup
     @athletes = User.athletes
   end
+
+  def setupsetup
+    @athletes = User.all
+  end
   
   
   def athlete_setup
