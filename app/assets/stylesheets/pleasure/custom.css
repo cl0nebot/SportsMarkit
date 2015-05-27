@@ -1,19 +1,36 @@
-
-
-
 /* Change the white to any color*/
 
-input:-webkit-autofill {
+/*input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px rgba(0,0,0, .8) inset;
-}
+}*/
 
 
 /* Login page */
+
+.page-header.full-content.parallax {
+   height: 350px; overflow: hidden
+}
+
+
+.page-header h1.h1-xlarge {
+  font-size: 48px;
+  margin: 0;
+  color: #ffffff;
+}
+
+.fs_18 {font-size: 18px !important;}
+.fs_30 {font-size: 30px !important;}
+.lh_55 {line-height: 55px !important;}
+
+.padding-bottom-0 {padding-bottom: 0;}
+.margin-top-0     {margin-top: 0;}
 
 .bg-login .bg-blur:before {
   background: url('http://marketing-cdn.teamsnap.com/iStock_000016157408Medium.jpg') fixed no-repeat;
   background-size: cover;
 }
+
+.list-content
 
 
 .capitalize {text-transform: capitalize;}
@@ -39,6 +56,7 @@ input:-webkit-autofill {
   clear: both;
 }
 
+.box-shadow-ccc {box-shadow: 1px 1px 1px #ccc; border-left: 1px solid #ddd; border-top: 1px solid #ddd;}
 
 
 .fs-16 {font-size: 16px;}

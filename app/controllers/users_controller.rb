@@ -93,6 +93,52 @@ class UsersController < ApplicationController
     
   end
   
+  def add_school_team_at_setup
+    @user = User.friendly.find(params[:user_id])
+    @relationship = Relationship.create(team_id: params[:relationship][:team_id], user_id: params[:relationship][:user_id], participant: params[:relationship][:participant])
+    @users_schools_teams_ids = Relationship.where(user_id: @user.id, participant: true).pluck(:team_id)
+    @users_schools_teams = Team.with_schools.where(id: @users_schools_teams_ids)
+    @school_teams = Team.with_schools - @user.teams
+    respond_to do |format|
+      format.js 
+      format.html { redirect_to :back }
+    end
+  end
+  
+  def add_school_team_at_setup
+    @user = User.friendly.find(params[:user_id])
+    @relationship = Relationship.create(team_id: params[:relationship][:team_id], user_id: params[:relationship][:user_id], participant: params[:relationship][:participant])
+    @users_non_schools_teams_ids = Relationship.where(user_id: @user.id, participant: true).pluck(:team_id)
+    @users_non_schools_teams = Team.without_schools.where(id: @users_non_schools_teams_ids)
+    @non_school_teams = Team.without_schools - @user.teams
+    respond_to do |format|
+      format.js 
+      format.html { redirect_to :back }
+    end
+  end
+  
+  def add_coach_team_at_setup
+    @user = User.friendly.find(params[:user_id])
+    @relationship = Relationship.create(team_id: params[:relationship][:team_id], user_id: params[:relationship][:user_id], head: params[:relationship][:head])
+    @coached_teams = @user.coached_teams
+    @coachable_teams = Team.all - @coached_teams
+    respond_to do |format|
+      format.js 
+      format.html { redirect_to :back }
+    end
+  end
+  
+  def add_child_at_setup
+    @user = User.friendly.find(params[:user_id])
+    @parent_child = ParentChild.create(child_id: params[:parent_child][:child_id], parent_id: params[:parent_child][:parent_id])
+    @children = @user.children
+    @available_children = User.all - [@user] - @user.children
+    respond_to do |format|
+      format.js 
+      format.html { redirect_to :back }
+    end
+  end
+  
   
   protected
   

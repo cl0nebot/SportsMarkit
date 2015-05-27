@@ -44,6 +44,7 @@ class FacilitiesController < ApplicationController
     @class = @facility.class
     @object = @facility
     @teams = @facility.all_teams
+    @users_of_facility = @facility.people_that_use_facility
   end
   
   def edit

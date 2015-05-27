@@ -163,6 +163,12 @@
 				<!-- people -->
 				<div id="people" class="tab-pane">
 					
+					<% @users_of_facility.each do |user| %>
+					
+					<%= user.full_name %>
+					
+					<% end %>
+					
 				</div>
 				<!--#people.tab-pane-->
 

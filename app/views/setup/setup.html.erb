@@ -1,4 +1,84 @@
+<style>
+.wizard-steps .step .btn {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  padding: 1px 0;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 50%;
+  -webkit-transition: background-color 400ms linear;
+}
+
+.panel .steps-centered .progress {
+  float: none;
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  border-radius: 0;
+  height: 2px;
+}
+
+.panel > .panel-heading {
+  padding: 0;
+  border-radius: 0;
+  border-bottom: none; 
+}
+
+.panel > .panel-heading .panel-title {
+	font-size: 26px;
+}
+
+.panel .steps-centered {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+}
+
+li.step {
+	width: 125px;
+}
+
+li.step h6 {
+	background: #ffffff;
+	color: #666;
+	margin-top: 10px;
+	line-height: 18px;
+	text-align: center;
+	font-weight: 400;
+}
+
+.wizard-steps {
+	width: 100%;
+}
+
+.list-material > li .list-content .caption {
+	color: rgba(0, 0, 0, 0.5);
+}
+
+</style>
+
+<script>
+
+$('a[data-toggle=tab]').each(function () {
+  var $this = $(this);
+ 
+  $this.on('shown.bs.tab', function () {
+    $container.imagesLoaded( function () {
+      $container.masonry({
+        columnWidth: '.item',
+        itemSelector: '.item'
+      });   
+    });  
+  });
+});
+
+</script>
+
 <div class="content">
+  <!-- page header -->
   <div class="page-header full-content bg-blue">
     <div class="row">
       <div class="col-sm-6">
@@ -14,39 +94,278 @@
     </div><!--.row-->
   </div><!--.page-header-->
 
-<div class="row">
-	<div class=" col-md-offet-2 col-md-8">
-		<div class="panel">
-			<div class="panel-heading">
-				<div class="panel-title">
+
+
+	<div class="row">
+
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-md-10 col-md-offset-1">
+			<div class="row">
+				<div class="col-md-12">
+					<h6 class="bold text-orange">STEP BY STEP</h56>
+					<h3> Ok, now let's setup up your profiles</h3>
 					<br/>
-					<h3>Setup.</h3>
 				</div>
-			</div><!--.panel-heading-->
-			<div class="panel-body">
-				<%= render 'setup/athlete_setup'%>
-				<br><br><br>
-                <%= render 'setup/coach_setup'%>
-				
-				<br><br><br>
-				<%= render 'setup/parent_setup'%>
-				
-				<br><br><br>
-				<%= render 'setup/director_setup'%>
-				
-				
-				
+			</div>
 
-			</div><!--.panel-body-->
-		</div><!--.panel-->
-	</div><!--.col-md-12-->
-</div><!--.row-->
+			<div class="panel bs-wizard bs-wizard-steps box-shadow-ccc">
+				<div class="panel-heading">
+					<div class="panel-title">
+						<div class="steps margin-top-20">
+							<ul class="wizard-steps">
+								<li class="step">
+									<a href="#form2_tab1" data-toggle="tab" class="btn btn-primary">
+										1
+									</a>
+									<h6>Student Athlete</h6>
+								</li>
+								<li class="step">
+									<a href="#form2_tab2" data-toggle="tab" class="btn btn-white">
+										2
+									</a>
+									<h6>Athlete</h6>
+								</li>
+								<li class="step">
+									<a href="#form2_tab3" data-toggle="tab" class="btn btn-white">
+										3
+									</a>
+									<h6>Coach</h6>
+								</li>
+								<li class="step">
+									<a href="#form2_tab4" data-toggle="tab" class="btn btn-white">
+										4
+									</a>
+									<h6>Parent</h6>
+								</li>
+								<li class="step">
+									<a href="#form2_tab5" data-toggle="tab" class="btn btn-white">
+										5
+									</a>
+									<h6>Athletic Director</h6>
+								</li>
+								<li class="step">
+									<a href="#form2_tab6" data-toggle="tab" class="btn btn-white">
+										6
+									</a>
+									<h6>Tournament Director</h6>
+								</li>
+							</ul>
+						</div><!--.steps-pull-right-->
+					</div><!--.panel-title-->
+				</div><!--.panel-heading-->
+			
 
-<%#= f.submit %>
-<%# end %>
-  
-<%= link_to "Update your Profile", edit_user_path(@user), class: "btn btn-primary" %> 
+				<hr class="no-margin"/>
 
+				<div class="panel box-shadow-ccc">
+
+					<div class="">
+
+					<form id="form2" method="post" action="#" class="">
+
+						<div class="tab-content">
+							<div class="tab-pane pane padding-top-20" id="form2_tab1">		
+								<%= render 'setup/student_athlete_setup/student_athlete_setup'%>
+							</div><!--.tab-pane-->
+
+							<div class="tab-pane pane padding-top-20" id="form2_tab2">
+								<%= render 'setup/athlete_setup/athlete_setup'%>
+							</div><!--.tab-pane-->
+
+							<div class="tab-pane pane padding-top-20" id="form2_tab3">
+								<%= render 'setup/coach_setup/coach_setup'%>
+							</div><!--.tab-pane-->
+
+							<div class="tab-pane pane padding-top-20" id="form2_tab4">
+								<%= render 'setup/parent_setup/parent_setup'%>
+							</div><!--.tab-pane-->
+
+							<div class="tab-pane pane padding-top-20" id="form2_tab5">
+								<%= render 'setup/director_setup/director_setup'%>
+							</div><!--.tab-pane-->
+
+							<div class="tab-pane padding-top-20" id="form2_tab6">
+								<%= render 'setup/tournament_director_setup/tournament_director_setup'%>
+							</div><!--.tab-pane-->
+						</div><!--.tab-content-->
+
+					</form>
+					</div><!--.panel-body-->
+					<div class="panel-footer">
+					<ul class="wizard clearfix">
+						<li class="bs-wizard-prev pull-left"><button class="btn btn-flat btn-default">Previous</button></li>
+						<li class="bs-wizard-next pull-right"><button class="btn btn-blue">Next</button></li>
+						<li class="bs-wizard-submit pull-right">
+							<%= link_to edit_user_path(@user), class: "btn btn-blue" do %> 
+								Complete setup
+							<% end %>
+						</li>
+					</ul>
+					</div><!--.panel-footer-->
+				</div>
+			</div>
+		</div>
+	</div><!--.row-->
+	<%#= f.submit %>
+	<%# end %>
 </div>
 <%#= @id %>
 <%#= @class %>
+
+<script type="text/javascript">
+
+
+// QUICKSEARCH SCHOOLS
+
+$( function() {
+  // quick search regex
+  var qsRegex;
+  
+  // init Isotope
+  var $grid = $('.schools').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows',
+    filter: function() {
+      return qsRegex ? $(this).text().match( qsRegex ) : true;
+    }
+  });
+
+  // use value of search field to filter
+  var $quicksearch = $('.quicksearch-schools').keyup( debounce( function() {
+    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+    $grid.isotope();
+  }, 200 ) );
+  
+});
+
+// debounce so filtering doesn't happen every millisecond
+function debounce( fn, threshold ) {
+  var timeout;
+  return function debounced() {
+    if ( timeout ) {
+      clearTimeout( timeout );
+    }
+    function delayed() {
+      fn();
+      timeout = null;
+    }
+    timeout = setTimeout( delayed, threshold || 100 );
+  }
+}
+
+
+// QUICKSEARCH TEAMS
+
+$( function() {
+  // quick search regex
+  var qsRegex;
+  
+  // init Isotope
+  var $grid = $('.teams').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows',
+    filter: function() {
+      return qsRegex ? $(this).text().match( qsRegex ) : true;
+    }
+  });
+
+  // use value of search field to filter
+  var $quicksearch = $('.quicksearch-teams').keyup( debounce( function() {
+    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+    $grid.isotope();
+  }, 200 ) );
+  
+});
+
+// debounce so filtering doesn't happen every millisecond
+function debounce( fn, threshold ) {
+  var timeout;
+  return function debounced() {
+    if ( timeout ) {
+      clearTimeout( timeout );
+    }
+    function delayed() {
+      fn();
+      timeout = null;
+    }
+    timeout = setTimeout( delayed, threshold || 100 );
+  }
+}
+
+
+// QUICKSEARCH COACHED TEAMS
+
+$( function() {
+  // quick search regex
+  var qsRegex;
+  
+  // init Isotope
+  var $grid = $('.coaches').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows',
+    filter: function() {
+      return qsRegex ? $(this).text().match( qsRegex ) : true;
+    }
+  });
+
+  // use value of search field to filter
+  var $quicksearch = $('.quicksearch-coaches').keyup( debounce( function() {
+    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+    $grid.isotope();
+  }, 200 ) );
+  
+});
+
+// debounce so filtering doesn't happen every millisecond
+function debounce( fn, threshold ) {
+  var timeout;
+  return function debounced() {
+    if ( timeout ) {
+      clearTimeout( timeout );
+    }
+    function delayed() {
+      fn();
+      timeout = null;
+    }
+    timeout = setTimeout( delayed, threshold || 100 );
+  }
+}
+
+// QUICKSEARCH USERS
+
+$( function() {
+  // quick search regex
+  var qsRegex;
+  
+  // init Isotope
+  var $grid = $('.users').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows',
+    filter: function() {
+      return qsRegex ? $(this).text().match( qsRegex ) : true;
+    }
+  });
+
+  // use value of search field to filter
+  var $quicksearch = $('.quicksearch-users').keyup( debounce( function() {
+    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+    $grid.isotope();
+  }, 200 ) );
+  
+});
+
+// debounce so filtering doesn't happen every millisecond
+function debounce( fn, threshold ) {
+  var timeout;
+  return function debounced() {
+    if ( timeout ) {
+      clearTimeout( timeout );
+    }
+    function delayed() {
+      fn();
+      timeout = null;
+    }
+    timeout = setTimeout( delayed, threshold || 100 );
+  }
+}
+</script>
+

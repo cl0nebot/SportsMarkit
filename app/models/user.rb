@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   has_many :medias, as: :mediable
 
   def self.user_types
-    ["Athlete", "Coach", "Parent", "Athletic Director"]  
+    ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director", "Tournament Director" ]  
     #["Athlete", "Coach", "Parent", "Athletic Director", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]  
     
   end
@@ -233,11 +233,11 @@ class User < ActiveRecord::Base
   end
   
   def children_events #TODO finish
-    if ParentChild.where(parent_id: id).present? 
-      kid_id = ParentChild.where(parent_id: id).last
-      kid = User.friendly.find(kid_id)
-      kid.attendances
-    end
+    # if ParentChild.where(parent_id: id).present?
+    #   kid_id = ParentChild.where(parent_id: id).last
+    #   kid = User.friendly.find(kid_id)
+    #   kid.attendances
+    # end
   end
   
   def shared_teams(user_id)
@@ -247,6 +247,68 @@ class User < ActiveRecord::Base
     user_team_ids & teammate_team_ids
   end
   
+  def can_edit_team?(team)
+    if Relationship.where(user_id: id, head: true, team_id: team.id).present?
+      true
+    elsif AthleticDirector.where(user_id: id, school_id: team.school_id)
+      true
+    elsif admin?
+      true
+    else
+      false
+    end
+  end
+  
+  def self.athletes
+    relationship_user_ids = Relationship.where(participant: true).pluck(:user_id)
+    student_athlete_user_ids = Classification.where(classification: "Student Athlete").pluck(:user_id) 
+    athlete_user_ids = Classification.where(classification: "Athlete").pluck(:user_id) 
+    unique_user_ids = (relationship_user_ids + student_athlete_user_ids + athlete_user_ids).uniq
+    all_athletes = User.where(id: unique_user_ids)
+  end
+  
+  def self.user_names
+    array = []
+    User.all.each do |user|
+      array << "#{user.full_name}"
+    end
+    array
+  end
+  
+  def self.athlete_names
+    array = []
+    User.athletes.each do |user|
+      array << "#{user.full_name}"
+    end
+    array
+  end
+  
+  def pending_team?(team)
+    if Relationship.where(team_id: team.id, user_id: id, accepted: nil).present?
+      true
+    else
+      false
+    end
+  end
+  
+  def coached_teams
+    coached_team_ids = Relationship.where(user_id: id, head: true).pluck(:team_id)
+    coached_teams = Team.where(id: coached_team_ids)
+  end
+  
+  def children
+    children_ids = ParentChild.where(parent_id: id).pluck(:child_id)
+    children = User.where(id: children_ids)
+  end
+  
+  def age
+    if profile.date_of_birth.present?
+      days = (Date.today - profile.date_of_birth).to_i
+      age = days / 365
+    else
+      "N/A"
+    end
+  end
   
   
     

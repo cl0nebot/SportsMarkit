@@ -138,14 +138,15 @@
 				<!-- events -->
 				<div id="events" class="tab-pane">
 					<p class="text-right">
-						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-event">New Event</button>
+						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-event">	New Event
+						</button>
 					</p>
 
 					<hr/>
 
 					<% @events.each do |event| %>
 
-<%= render 'teams/events', event: event %>
+						<%= render 'teams/events', event: event %>
 
 					<% end %>
 

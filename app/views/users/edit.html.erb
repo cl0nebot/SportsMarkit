@@ -1,19 +1,23 @@
 <style>
-
-.example-row > div:first-child {font-size: 16px; color: #aaa;}
-input.form-control {font-size: 26px; line-height: 30px;}
-
+	.example-row > div:first-child {font-size: 16px; color: #aaa;}
+	input.form-control {font-size: 26px; line-height: 30px;}
 </style>
+
+
 <div class="content">
 	<div class="page-header full-content bg-primary" style="min-height: 141px;">
 		<div class="row">
-			<div class="col-sm-6">
-				<h1 class="capitalize">
-					<%= current_user.full_name %> 
-					<small></small>
-				</h1>
+			<div class="col-md-6">
+				<div class="pull-left margin-right-20">
+					<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "img-circle img-responsive", height: "75", width: "75") %>
+				</div>
+				<div class="pull-left">
+					<h1 class="capitalize h1-xlarge">
+						<%= current_user.full_name %> 
+					</h1>
+				</div>
 			</div><!--.col-->
-			<div class="col-sm-6">
+			<div class="col-md-6">
 				<ol class="breadcrumb">
 					<li><a href="/"><i class="ion-home"></i></a></li>
 					<li><a href="<%= users_path %>">users</a></li>
@@ -39,578 +43,543 @@ input.form-control {font-size: 26px; line-height: 30px;}
 	</div><!--.page-header-->
 
 	
-          <%= form_for [@user, @user_profile_picture] do |f| %>
-
-								
-						
-		<div class="row">
-			<div class="col-md-3">
-					<div class="fileinput fileinput-new" data-provides="fileinput">
-						<div class="fileinput-new thumbnail" style="">
-							<% if @user_profile_picture.present? %>
-							<img data-src="<%= image_path(@user_profile_picture.photo) %>" src="<%= image_path(@user_profile_picture.photo) %>" alt="..." style="height: 100%; width: 100%;">
-							<% else %>
-							<img data-src="<%= image_path("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif") %>" src="<%= image_path("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif") %>" alt="..." style="height: 100%; width: 100%;"> <% end %>
-						</div>
-						<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
-						<div>
-							<span class="btn btn-default btn-file">
-								<span class="fileinput-new">Select image</span>
-								<span class="fileinput-exists">Change</span>
-            <%= f.file_field :photo %>
-							</span>
-							<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-							<%= f.submit %>
-						</div>
-					</div>
-				<br/>
-				<h5 class="bold">Cordis M. Stanfield</h5>
-				<h6>
-					<span class="glyphicon glyphicon-map-marker"></span> Baltimore, MD
-				</h6>
-			</div>
-			
-			
-			
-		<% end %>
-			
-			
-			
-			
-			
-			<%= form_for @user, html: {id: "user-edit-form", data: {remote: true }} do |f| %>
-			<div class="col-md-9">
-				<div class="row">
+  	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
+  		<div class="row">
 			<div class="col-md-12">
-				<div class="panel">
-					<div class="panel-body">
-						<div class="tab-content with-panel transparent">
-							<div class="tab-pane active text-style" id="general">
+				<%= form_for @user, html: {id: "user-edit-form", data: {remote: true }} do |f| %>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel">
 								<div class="panel-body">
+									<div class="tab-content with-panel transparent">
 
-									<h4 class="pull-right">General Information</h4>
+										<div class="tab-pane active text-style" id="general">
+											<div class="panel-body">
 
-									<div class="col-md-12">
-										<div class="row example-row">
-											<div class="col-md-12">Name </div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= f.text_field :first_name, type: "text", class: "form-control", placeholder: ""  %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
+												<h4 class="text-right">General Information</h4>
+												<hr class="margin-top-0"/>
+												<h5 class="bold text-primary">The Basics</h4>
+												<br/>
 
-										<div class="row example-row">
-											<div class="col-md-12">Middle Name </div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= f.text_field :middle_name, type: "text", class: "form-control", placeholder: ""  %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<div class="row example-row">
-											<div class="col-md-12">Last Name </div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= f.text_field :last_name, type: "text", class: "form-control", placeholder: ""  %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<br/>
-										<br/>
-
-										<%= f.fields_for :profile, @profile do |builder| %>
-
-											<div class="row example-row">
-												<div class="col-md-12">Gender</div><!--.col-md-3-->
 												<div class="col-md-12">
-													<div class="inputer">
-														<%= builder.select :sex, [ 'Male', 'Female'], :class => 'form-control', :prompt => 'Select One' %>
+													<div class="row example-row">
+														<div class="col-md-12">Name </div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<%= f.text_field :first_name, type: "text", class: "form-control", placeholder: ""  %>
+																</div>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
 
+													<div class="row example-row">
+														<div class="col-md-12">Middle Name </div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<%= f.text_field :middle_name, type: "text", class: "form-control", placeholder: ""  %>
+																</div>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
+
+													<div class="row example-row">
+														<div class="col-md-12">Last Name </div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<%= f.text_field :last_name, type: "text", class: "form-control", placeholder: ""  %>
+																</div>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
+
+													<%= f.fields_for :profile, @profile do |builder| %>
+
+														<div class="row">
+															<div class="col-md-6 row">
+																<div class="row example-row">
+																	<div class="col-md-12">Gender</div><!--.col-md-3-->
+																	<div class="col-md-12">
+																		<div class="inputer">
+																			<%= builder.select(:sex, [ 'Male', 'Female'], {prompt: "Select Gender"}, {:class => "selecter"}) %>
+																		</div>
+																	</div><!--.col-md-9-->
+																</div><!--.row-->
+															</div>
+
+															<div class="col-md-6">
+																<div class="row example-row">
+																	<div class="col-md-12">Birthday</div><!--.col-md-3-->
+																	<div class="col-md-12">
+																		<div class="inputer">
+																			<div class="input-wrapper">
+																				<%= builder.date_field :date_of_birth, class: "form-control" %>
+																			</div>
+																		</div>
+																	</div><!--.col-md-9-->
+																</div><!--.row-->
+															</div>
+														</div>
+
+														<br/>	
+														<h5 class="bold text-primary">Contact Information</h5>
+														<br/>
+
+													<% end %>
+
+													<div class="row example-row">
+														<div class="col-md-12">Email</div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<%= f.text_field :email, class: "form-control", placeholder: "" %>
+																</div>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
+
+
+													<div class="row example-row">
+														<div class="col-md-12">Phone Number</div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<%= f.text_field :mobile_phone_number, class: "form-control", placeholder: "" %>
+																</div>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
+
+													<div class="row example-row">
+														<div class="col-md-12 margin-bottom-10">Location</div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer margin-bottom-10">
+																<%= f.fields_for :profile, @profile do |builder| %>
+																	<%= builder.select(:city, User.cities_list.sort, {}, {:class => 'selecter', data:{live_search: 'true', width: '100%'}}) %>
+																<% end %>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
+
+													<div class="row example-row">
+														<div class="col-md-12">Username</div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<%= f.text_field :username, class: "form-control", placeholder: "" %>
+																</div>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
+												</div>
+											</div>
+
+											<div class="form-buttons">
+												<div class="row">
+													<div class="col-lg-8 col-lg-offset-2">
+														<%= f.submit "Update Profile", class: "btn btn-large btn-blue btn-block" %>
 													</div>
-												</div><!--.col-md-9-->
-											</div><!--.row-->
+												</div>
+											</div>
+										</div><!--tab-pane-->
 
-											<div class="row example-row">
-												<div class="col-md-12">Location</div><!--.col-md-3-->
+										<div class="tab-pane text-style" id="social-media">
+											<div class="panel-body">
+												<h4 class="text-right">Social Media Profiles</h4>
+												<hr class="margin-top-0"/>
+												<h5 class="bold text-primary">Add Social Media Accounts</h5>
+												<br/>
+
+
+												<%= f.fields_for :profile, @profile do |builder| %>
+
+													<div class="row example-row">
+														<div class="col-md-12">
+															<a class="btn btn-social-icon btn-linkedin btn-ripple margin-right-10">
+																<i class="fa fa-linkedin"></i>
+															</a>
+															<span class="h4">Linkedin</span>
+														</div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<%= builder.text_field :linkedin, class: "form-control", placeholder: "" %>
+																</div>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
+
+													<div class="row example-row">
+														<div class="col-md-12">
+															<a class="btn btn-social-icon btn-facebook btn-ripple margin-right-10">
+																<i class="fa fa-facebook"></i>
+															</a>
+															<span class="h4">Facebook</span>
+														</div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<%= builder.text_field :facebook, class: "form-control", placeholder: "" %>
+																</div>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
+
+													<div class="row example-row">
+														<div class="col-md-12">
+															<a class="btn btn-social-icon btn-twitter btn-ripple margin-right-10">
+																<i class="fa fa-linkedin"></i>
+															</a>
+															<span class="h4">Twitter</span>
+														</div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<%= builder.text_field :twitter, class: "form-control", placeholder: "" %>
+																</div>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
+
+													<div class="row example-row">
+														<div class="col-md-12">
+															<a class="btn btn-social-icon btn-instagram btn-ripple margin-right-10">
+																<i class="fa fa-instagram"></i>
+															</a>
+															<span class="h4">Instagram</span>
+														</div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<%= builder.text_field :instagram, class: "form-control", placeholder: "" %>
+																</div>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
+
+													<div class="row example-row">
+														<div class="col-md-12">
+															<a class="btn btn-social-icon btn-pinterest btn-ripple margin-right-10">
+																<i class="fa fa-pinterest"></i>
+															</a>
+															<span class="h4">Pinterest</span>
+														</div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<%= builder.text_field :pinterest, class: "form-control", placeholder: "" %>
+																</div>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
+
+													<div class="row example-row">
+														<div class="col-md-12">
+															<a class="btn btn-social-icon btn-foursquare btn-ripple margin-right-10">
+																<i class="fa fa-foursquare"></i>
+															</a>
+															<span class="h4">Foursquare</span>
+														</div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<%= builder.text_field :foursquare, class: "form-control", placeholder: "" %>
+																</div>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
+													    
+													<%#= render 'athlete', f: builder %>
+												<% end %>  
+											</div>
+											<div class="form-buttons">
+												<div class="row">
+													<div class="col-lg-8 col-lg-offset-2">
+														<%= f.submit "Update Profile", class: "btn btn-large btn-blue btn-block" %>
+													</div>
+												</div>
+											</div>
+										</div><!--tab-pane-->
+										
+										<div class="tab-pane text-style" id="stats">
+
+											<div class="panel-body">
+												<h4 class="text-right">Sports Resume</h4>
+												<hr class="margin-top-0"/>
+												<h5 class="bold text-primary">Athletic Profile</h4>
+													
 												<div class="col-md-12">
-													<div class="inputer">
-														<div class="input-wrapper">
-															<%= f.fields_for :profile, @profile do |builder| %>
-																<%= builder.select(:city, User.cities_list.sort, {prompt: "Select Location"}, {:class => "form-control"})%>
+													<%= f.fields_for :profile, @profile do |builder| %>
+													
+														<br/>
+														<div class="row">
+															<div class="col-md-3">
+																<div class="row example-row">
+																	<div class="col-md-12">Height </div><!--.col-md-3-->
+																	<div class="col-md-12">
+																		<div class="inputer">
+																			<div class="input-wrapper">
+																				<%= builder.text_field :height_ft, class: "form-control", placeholder: "Feet" %>
+																			</div>
+																		</div>
+																	</div><!--.col-md-9-->
+																</div><!--.row-->
+															</div>
+
+															<div class="col-md-3">
+																<div class="row example-row">
+																	<div class="col-md-12">Height </div><!--.col-md-3-->
+																	<div class="col-md-12">
+																		<div class="inputer">
+																			<div class="input-wrapper">
+																				<%= builder.text_field :height_in, class: "form-control", placeholder: "Inches" %>
+																			</div>
+																		</div>
+																	</div><!--.col-md-9-->
+																</div><!--.row-->
+															</div>
+
+															<div class="col-md-3">
+																<div class="row example-row">
+																	<div class="col-md-12">Weight </div><!--.col-md-3-->
+																	<div class="col-md-12">
+																		<div class="inputer">
+																			<div class="input-wrapper">
+																				<%= builder.text_field :weight, class: "form-control", placeholder: "lbs." %>
+																			</div>
+																		</div>
+																	</div><!--.col-md-9-->
+																</div><!--.row-->
+															</div>
+														</div>
+
+														<br/>
+														<h5 class="bold text-primary">Online Athletic Profiles</h4>
+														<br/>
+
+														<%= f.fields_for :profile, @profile do |builder| %>
+
+															<div class="row example-row">
+																<div class="col-md-12">Hudl Profile</div><!--.col-md-3-->
+																<div class="col-md-12">
+																	<div class="inputer">
+																		<div class="input-wrapper">
+																			<%= builder.text_field :hudl, class: "form-control", placeholder: "" %>
+																		</div>
+																	</div>
+																</div><!--.col-md-9-->
+															</div><!--.row-->
+
+
+															<div class="row example-row">
+																<div class="col-md-12">Youtube Channel</div><!--.col-md-3-->
+																<div class="col-md-12">
+																	<div class="inputer">
+																		<div class="input-wrapper">
+																			<%= builder.text_field :youtube, class: "form-control", placeholder: "" %>
+																		</div>
+																	</div>
+																</div><!--.col-md-9-->
+															</div><!--.row-->
+
+														<% end %>
+
+														<br/>
+													  <br/>
+														    
+														<%#= render 'athlete', f: builder %>
+													<% end %>  
+												</div>
+
+												<br/>
+												<h5 class="bold text-primary">Add Athletic Profiles</h4>
+												<h4 class="text-right">Measurables</h4>
+								                <hr/>
+								                
+								                </br>
+								                <%= link_to "Add Measure", new_user_measurable_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue pull-right' %>
+							                	<div id="measures">
+							                  <% @user.measurables.each do |m| %>
+							                    <%= render 'measurables/form', m: m, u: @user %>
+							                  <% end %>
+							                	</div>
+							              	</div>
+							              	<div class="form-buttons">
+												<div class="row">
+													<div class="col-lg-8 col-lg-offset-2">
+														<%= f.submit "Update Profile", class: "btn btn-large btn-blue btn-block" %>
+													</div>
+												</div>
+											</div>
+										</div><!--tab-pane-->
+
+										<% if @user.is_coach? %>
+											<div class="tab-pane text-style" id="certifications">
+												<div class="panel-body">
+													<h4 class="text-right">Certifications</h4>
+													<hr class="margin-top-0"/>
+													<h5 class="bold text-primary">My Certifications</h5>
+													<br/>
+
+								                  	<div id="certificates">
+								                    	<% @user.certificates.each do |m| %>
+								                      		<%= render 'certificates/form', m: m, u: @user %>
+								                    	<% end %>
+								                  	</div>
+												</div>
+												<div class="form-buttons">
+													<div class="row">
+														<div class="col-lg-8 col-lg-offset-2">
+															<%= link_to new_user_certificate_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue btn-block' do %>
+																Add New Certificate 
+																<i class="ion-plus-circled margin-left-10"></i>
 															<% end %>
 														</div>
 													</div>
-												</div><!--.col-md-9-->
-											</div><!--.row-->
+												</div>
+											</div><!--tab-pane-->
+										<% end %>
 
-											<div class="row example-row">
-												<div class="col-md-12">Birthday</div><!--.col-md-3-->
+										<div class="tab-pane text-style" id="favorites">
+											<div class="panel-body">
+												<h4 class="text-right">Sports Favorites</h4>
 												<div class="col-md-12">
-													<div class="inputer">
-														<div class="input-wrapper">
-															<%= builder.date_field :date_of_birth, class: "form-control" %>
-														</div>
-													</div>
-												</div><!--.col-md-9-->
-											</div><!--.row-->
+													<hr class="margin-top-0"/>
+													<h5 class="bold text-primary">
+														Add Fan Sports Profiles
+													</h4>
+						        					<br/>
 
-										<% end %>
+													<%= f.fields_for :profile, @profile do |builder| %>
 
-										<br/>
-										<br/>
+														<div class="row example-row">
+															<div class="col-md-12">Favorite Pro Team</div><!--.col-md-3-->
+															<div class="col-md-12">
+																<div class="inputer">
+																	<div class="input-wrapper">
+																		<%= builder.text_field :favorite_pro_team, class: "form-control", placeholder: " " %>
+																	</div>
+																</div>
+															</div><!--.col-md-9-->
+														</div><!--.row-->
 
-										<div class="row example-row">
-											<div class="col-md-12">Email</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= f.text_field :email, class: "form-control", placeholder: "" %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<div class="row example-row">
-											<div class="col-md-12">Username</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= f.text_field :username, class: "form-control", placeholder: "" %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-
-										<%= f.fields_for :profile, @profile do |builder| %>
-
-										<div class="row example-row">
-											<div class="col-md-12">Phone Number</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%#= builder.text_field :mobile_phone_number, class: "form-control", placeholder: "" %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<br>
-
-										<div class="row example-row">
-											<div class="col-md-12">Favorite Pro Team</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= builder.text_field :favorite_pro_team, class: "form-control", placeholder: "Redskins" %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<div class="row example-row">
-											<div class="col-md-12">Favorite College Team</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= builder.text_field :favorite_college_team, class: "form-control", placeholder: "Maryland" %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<div class="row example-row">
-											<div class="col-md-12">Favorite Pro Athlete</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= builder.text_field :favorite_pro_athlete, class: "form-control", placeholder: "John Wall" %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<% end %>
-									</div>
-								</div>
-
-              </div><!--tab-pane-->
-
-							<div class="tab-pane text-style" id="social-media">
-								
-								<div class="panel-body">
-									<h4 class="pull-right">Social Media Profiles</h4>
-
-									<%= f.fields_for :profile, @profile do |builder| %>
-
-										<div class="row example-row">
-											<div class="col-md-12">LinkedIn</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= builder.text_field :linkedin, class: "form-control", placeholder: "" %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<div class="row example-row">
-											<div class="col-md-12">Facebook</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= builder.text_field :facebook, class: "form-control", placeholder: "" %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<div class="row example-row">
-											<div class="col-md-12">Twitter</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= builder.text_field :twitter, class: "form-control", placeholder: "" %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<div class="row example-row">
-											<div class="col-md-12">Instagram</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= builder.text_field :instagram, class: "form-control", placeholder: "" %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<div class="row example-row">
-											<div class="col-md-12">Pinterest</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= builder.text_field :pinterest, class: "form-control", placeholder: "" %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<div class="row example-row">
-											<div class="col-md-12">Foursquare</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= builder.text_field :foursquare, class: "form-control", placeholder: "" %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-										    
-										<%#= render 'athlete', f: builder %>
-									<% end %>  
-								</div>
-							</div><!--tab-pane-->
-							
-							<div class="tab-pane text-style" id="stats">
-
-								<div class="panel-body">
-									<h4 class="pull-right">Sports Resume</h4>
-
-									<div class="col-md-12">
-										<%= f.fields_for :profile, @profile do |builder| %>
-										
-											<br/>
-											<div class="row">
-												<div class="col-md-3">
-													<div class="row example-row">
-														<div class="col-md-12">Height </div><!--.col-md-3-->
+														<div class="row example-row">
+														<div class="col-md-12">Favorite College Team</div><!--.col-md-3-->
 														<div class="col-md-12">
 															<div class="inputer">
 																<div class="input-wrapper">
-																	<%= builder.text_field :height_ft, class: "form-control", placeholder: "Feet" %>
+																	<%= builder.text_field :favorite_college_team, class: "form-control", placeholder: "" %>
 																</div>
 															</div>
 														</div><!--.col-md-9-->
-													</div><!--.row-->
-												</div>
+														</div><!--.row-->
 
-												<div class="col-md-3">
-													<div class="row example-row">
-														<div class="col-md-12">Height </div><!--.col-md-3-->
+														<div class="row example-row">
+														<div class="col-md-12">Favorite Pro Athlete</div><!--.col-md-3-->
 														<div class="col-md-12">
 															<div class="inputer">
 																<div class="input-wrapper">
-																	<%= builder.text_field :height_in, class: "form-control", placeholder: "Inches" %>
+																	<%= builder.text_field :favorite_pro_athlete, class: "form-control", placeholder: "" %>
 																</div>
 															</div>
 														</div><!--.col-md-9-->
-													</div><!--.row-->
-												</div>
+														</div><!--.row-->
 
-												<div class="col-md-3">
-													<div class="row example-row">
-														<div class="col-md-12">Weight </div><!--.col-md-3-->
-														<div class="col-md-12">
-															<div class="inputer">
-																<div class="input-wrapper">
-																	<%= builder.text_field :weight, class: "form-control", placeholder: "lbs." %>
-																</div>
-															</div>
-														</div><!--.col-md-9-->
-													</div><!--.row-->
+													<% end %>
 												</div>
 											</div>
+											<div class="form-buttons">
+												<div class="row">
+													<div class="col-lg-8 col-lg-offset-2">
+														<%= f.submit "Update Profile", class: "btn btn-large btn-blue btn-block" %>
+													</div>
+												</div>
+											</div>
+										</div><!--tab-pane-->
 
-											<br/>
-
-											<%= f.fields_for :profile, @profile do |builder| %>
-
+										<div class="tab-pane text-style" id="password">
+											<div class="panel-body">
+												<h4 class="text-right">Password</h4>
+												<hr class="margin-top-0"/>
+												<h5 class="bold text-primary">Reset Your Password</h4>
+												<br/>
+												
 												<div class="row example-row">
-													<div class="col-md-12">Hudl Profile</div><!--.col-md-3-->
+													<div class="col-md-12">Current Password </div><!--.col-md-3-->
 													<div class="col-md-12">
 														<div class="inputer">
 															<div class="input-wrapper">
-																<%= builder.text_field :hudl, class: "form-control", placeholder: "" %>
+																<%= f.password_field :current_password, label:false, placeholder:"", :class => "form-control" %>
 															</div>
 														</div>
 													</div><!--.col-md-9-->
 												</div><!--.row-->
 
-
 												<div class="row example-row">
-													<div class="col-md-12">Youtube Channel</div><!--.col-md-3-->
+													<div class="col-md-12">New Password </div><!--.col-md-3-->
 													<div class="col-md-12">
 														<div class="inputer">
 															<div class="input-wrapper">
-																<%= builder.text_field :youtube, class: "form-control", placeholder: "" %>
+																<%= f.password_field :current_password, label:false, placeholder:"", :class => "form-control" %>
 															</div>
 														</div>
 													</div><!--.col-md-9-->
 												</div><!--.row-->
 
-											<% end %>
-
-											<br/>
-										    <br/>
-											    
-											<%#= render 'athlete', f: builder %>
-										<% end %>  
-									</div>
-								</div>
-
-                <div class='row'>
-                  <div class="panel">
-                    <div class="panel-body">
-                      <div class="tab-content with-panel transparent">
-                        <div class="tab-pane active text-style" id="general">
-                          <div class="panel-body">
-                            <h4 class="pull-right">Measurables</h4>
-                            </br>
-                            </br>
-                            <%= link_to "Add Measure", new_user_measurable_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue pull-right' %>
-
-                            <div id="measures">
-                              <% @user.measurables.each do |m| %>
-                                <%= render 'measurables/form', m: m, u: @user %>
-                              <% end %>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-							</div><!--tab-pane-->
-							
-							
-							<% if @user.is_coach? %>
-							<div class="tab-pane text-style" id="certifications">
-								<div class="panel-body">
-
-									<h4 class="pull-right">Certifications</h4>
-
-									<div class="col-md-12">
-                    <div class='row'>
-                      <div class="panel">
-                        <div class="panel-body">
-                          <div class="tab-content with-panel transparent">
-                            <div class="tab-pane active text-style" id="general">
-                              <div class="panel-body">
-                                <%= link_to "Add Certificate", new_user_certificate_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue pull-right' %>
-
-                                <div id="certificates">
-                                  <% @user.certificates.each do |m| %>
-                                    <%= render 'certificates/form', m: m, u: @user %>
-                                  <% end %>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-									</div>
-								</div>
-							</div><!--tab-pane-->
-							
-							<% end %>
-
-
-
-							<div class="tab-pane text-style" id="favorites">
-								<div class="panel-body">
-
-									<h4 class="pull-right">Sports Favorites</h4>
-
-									<div class="col-md-12">
-
-										<%= f.fields_for :profile, @profile do |builder| %>
-
-
-										<div class="row example-row">
-											<div class="col-md-12">Favorite Pro Team</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= builder.text_field :favorite_pro_team, class: "form-control", placeholder: " " %>
+												<div class="row example-row">
+													<div class="col-md-12">Verify Password </div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.password_field :password_confirmation, label:false, placeholder:"", :class => "form-control" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+											<div class="form-buttons">
+												<div class="row">
+													<div class="col-lg-8 col-lg-offset-2">
+														<%= f.submit "Reset password", class: "btn btn-large btn-blue btn-block" %>
 													</div>
 												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
+											</div>
+										</div>
 
-										<div class="row example-row">
-											<div class="col-md-12">Favorite College Team</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= builder.text_field :favorite_college_team, class: "form-control", placeholder: "" %>
+						              	<div class="tab-pane text-style" id="media">
+						              		<div class="panel-body">
+												<h4 class="text-right">Media</h4>
+												<hr class="margin-top-0"/>
+												<h5 class="bold text-primary">Media Uploads</h4>
+												<br/>
+							                    <div id="medias">
+							                      <% @user.medias.each do |m| %>
+							                        <%= render 'media/form', m: m, u: @user %>
+							                      <% end %>
+							                    </div>
+							                </div>
+							                <div class="form-buttons">
+												<div class="row">
+													<div class="col-lg-8 col-lg-offset-2">
+														<%= link_to new_user_medium_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue btn-block' do %>
+															Add New Media <i class="ion-plus-circled margin-left-10"></i>
+														<% end %>
 													</div>
 												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<div class="row example-row">
-											<div class="col-md-12">Favorite Pro Athlete</div><!--.col-md-3-->
-											<div class="col-md-12">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<%= builder.text_field :favorite_pro_athlete, class: "form-control", placeholder: "" %>
-													</div>
-												</div>
-											</div><!--.col-md-9-->
-										</div><!--.row-->
-
-										<% end %>
-									</div>
-								</div>
-							</div><!--tab-pane-->
-
-
-
-							<div class="tab-pane text-style" id="password">
-
-								<div class="panel-body">
-
-									<h4 class="pull-right">Change Password</h4>
-
-									<div class="row example-row">
-										<div class="col-md-12">Current Password </div><!--.col-md-3-->
-										<div class="col-md-8">
-											<div class="inputer">
-												<div class="input-wrapper">
-													<%= f.password_field :current_password, label:false, placeholder:"", :class => "form-control" %>
-												</div>
 											</div>
-										</div><!--.col-md-9-->
-									</div><!--.row-->
-
-									<div class="row example-row">
-										<div class="col-md-12">New Password </div><!--.col-md-3-->
-										<div class="col-md-8">
-											<div class="inputer">
-												<div class="input-wrapper">
-													<%= f.password_field :current_password, label:false, placeholder:"", :class => "form-control" %>
-												</div>
-											</div>
-										</div><!--.col-md-9-->
-									</div><!--.row-->
-
-									<div class="row example-row">
-										<div class="col-md-12">Verify Password </div><!--.col-md-3-->
-										<div class="col-md-8">
-											<div class="inputer">
-												<div class="input-wrapper">
-													<%= f.password_field :password_confirmation, label:false, placeholder:"", :class => "form-control" %>
-												</div>
-											</div>
-										</div><!--.col-md-9-->
-									</div><!--.row-->
-								</div>
-							</div>
-
-              <div class="tab-pane text-style" id="media">
-
-								<div class="panel-body">
-
-									<h4 class="pull-right">Media</h4>
-
-                  <div class="col-md-12">
-                    <div class='row'>
-                      <div class="panel">
-                        <div class="panel-body">
-                          <div class="tab-content with-panel transparent">
-                            <div class="tab-pane active text-style" id="general">
-                              <div class="panel-body">
-                                <%= link_to "Add Media", new_user_medium_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue pull-right' %>
-
-                                <div id="medias">
-                                  <% @user.medias.each do |m| %>
-                                    <%= render 'media/form', m: m, u: @user %>
-                                  <% end %>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-								</div>
-							</div><!--.tab-pane-->
-						</div><!--.tab-content-->
-					</div><!--.panel-body-->
-				</div><!--.panel-->		
-				
-			</div><!--.col-md-12-->
-				</div><!--.row-->
+										</div><!--.tab-pane-->
+								</div><!--.panel-body-->
+							</div><!--.panel-->		
+						</div><!--.row-->
+					</div>
+				<% end %>
 			</div>
 		</div>
-		
-		<br/>
-
-		<%= f.submit "Update", class: "btn btn-large btn-blue pull-right" %>
-
-	<% end %>
-    </br>
-    </br>
-    <br/>
-
-</div>
+	</div>
 <!--.content-->
+</div>
                         
 
 

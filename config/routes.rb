@@ -2,6 +2,10 @@ Rails.application.routes.draw do
     root 'main#index'
     
     resources :users do
+      post :add_school_team_at_setup
+      post :add_non_school_team_at_setup
+      post :add_coach_team_at_setup
+      post :add_child_at_setup
       resources :user_profile_pictures, only: %w[create update destroy]
       resources :events
       resource :calendar do

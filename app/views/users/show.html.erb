@@ -15,13 +15,15 @@
 
 <div class="content">
 
-	<div class="page-header full-content parallax" style="height: 600px; overflow: hidden">
+	<div class="page-header full-content parallax">
 		<div class="parallax-bg" style="background: url('http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg') 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
 		</div>
 
 		<div class="profile-info">
 			<div class="profile-photo">
-				<img src="<%= image_path(@user.avatar) %>" alt="">
+				<div style="width: 100px; height: 100px; overflow: hidden;">
+					<img src="<%= image_path(@user.avatar) %>" alt="" style="min-height: 100px; height: 100%; width: auto; min-width: 100px; ">
+				</div>
 			</div><!--.profile-photo-->
 			<div class="profile-text light capitalize">
 				<%= @user.full_name %>
@@ -68,37 +70,55 @@
 				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
 				<li><a href="#teammates" data-toggle="tab" class="btn-ripple">Teammates</a></li>
 				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
-				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li>
+				<!-- <li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li> -->
 				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
+				<% if ParentChild.where(child_id: @user.id).present? %>
+				<li><a href="#parent-child" data-toggle="tab" class="btn-ripple">Parents</a></li>
+				<% end %>
+				<% if ParentChild.where(parent_id: @user.id).present? %>
+				<li><a href="#parent-child" data-toggle="tab" class="btn-ripple">Children</a></li>
+				<% end %>
 				<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
 			</ul>
 		</div>
 	</div><!--.page-header-->
+	
+
 
 	<div class="row user-profile">
 			<div class="col-md-12">
 				<div class="tab-content without-border">
 					
 					<!-- teams -->
-					<div id="teams" class="tab-pane">
+					<div id="teams" class="tab-pane active">
 
 						<div class="row masonry">
 							<% @teams.each do |team| %>
-								<div class="col-md-4">
+								<div class="col-md-4 col-lg-3 col-sm-12">
 									<div class="card card-meal card-meal-green card-square card-shadow">
-									<div class="card-heading">
-										<h3 class="card-title">
-											<%= link_to team.name, "/teams/#{team.slug}" %>
-										</h3>
-										<div class="card-subhead">
-											<%= team.sport %>
-										</div><!--.card-subhead-->
-									</div><!--.card-heading-->
-									<div class="card-body">
-										<div class="image">
-											<a href="#"><%= image_tag Sport.find_by_sport(team.sport).try(:default_photo)%></a>
-										</div><!--.image-->
-									</div><!--.card-body-->
+										<div class="card-heading row">
+											<div class="col-md-2">
+												<%= image_tag Sport.find_by_sport(team.sport).try(:default_photo), class: "img-responsive" %>
+											</div>
+											<div class="col-md-10">
+												<h4 class="card-title capitalize">
+													<%= link_to team.name, "/teams/#{team.slug}" %>
+												</h4>
+												<div class="card-subhead capitalize">
+													<%= team.sport %>
+												</div><!--.card-subhead-->
+												<div class="card-subhead capitalize">
+													<i class="ion-location"></i> [city, state]
+												</div><!--.card-subhead-->
+											</div>
+										</div><!--.card-heading-->
+										<div class="card-body">
+											<div class="image">
+												<a href="#">
+													<%= image_tag("placeholders/team-3.jpg")%>
+												</a>
+											</div><!--.image-->
+										</div><!--.card-body-->
 									</div><!--.card-->
 								</div><!--.col-md-4-->
 							<% end %>
@@ -113,7 +133,7 @@
 	                       
 	                       <% @teammates.each do |teammate| %>
 
-	                       <div class="col-md-4">
+	                       <div class="col-md-4 col-lg-3 col-sm-12">
 								<div class="card card-user card-clickable card-clickable-over-content">
 									<div class="card-heading heading-full">
 										<div class="user-image sample-member9"></div>

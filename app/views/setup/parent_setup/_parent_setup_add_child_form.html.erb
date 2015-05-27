@@ -1,0 +1,5 @@
+<%= form_for ParentChild.new, url: user_add_child_at_setup_path(current_user), html: {data: {remote: true}} do |f| %>
+  <%= f.hidden_field :child_id, value: child.id %>
+  <%= f.hidden_field :parent_id, value: current_user.id %>
+  <%= f.submit "Claim Child", class: "btn btn-block btn-primary" %>
+<% end %>

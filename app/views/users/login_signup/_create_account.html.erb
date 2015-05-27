@@ -1,6 +1,6 @@
 <h2>Create a New Account</h2>
 				
-<%= form_for @user do |f| %>
+<%= form_for User.new do |f| %>
 	<div class="form-group">
 		<div class="inputer">
 			<div class="input-wrapper">
@@ -34,6 +34,6 @@
 	</div>
 	<div class="form-buttons clearfix">
 		<button type="submit" class="btn btn-white pull-left show-pane-login">Cancel</button>
-		<%= f.submit "Sign Up", class: "btn btn-success pull-right" %>
+		<%= f.submit "Sign Up", class: "btn btn-primary pull-right" %>
 	</div><!--.form-buttons-->
 <% end %>
