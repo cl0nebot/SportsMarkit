@@ -15,67 +15,151 @@
   </div><!--.page-header-->
 
 <div class="row">
-	<div class="col-md-12">
-		<div class="panel">
-			<div class="panel-heading">
-				<div class="panel-title"><h4>Complete the form below. </h4></div>
-			</div><!--.panel-heading-->
-			<div class="panel-body">
+	<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+		<div class="panel box-shadow-ccc">
+			<div class="panel-header bg-cyan">
+				<br/>
+				<h5 class="text-right text-white semi-bold">Add or Create a New League
+					<i class="ion-plus-circled margin-right-10 margin-left-10 text-white"></i>
+				</h5>
+				<hr class="margin-top-0"/>
+			</div>
 
+			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
+
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
+					 	<div class="row text-center">
+							<div class="col-md-12">
+								<h3 class="semi-bold text-primary">Setup your new league</h3>
+								<h4>Is this a new or existing sports league?</h4>
+							</div>
+						</div>
+						<div class="row margin-bottom-0">
+							<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 well">
+								<div class="row clearfix">
+									<div class="col-md-6">
+										<div class="center">
+											<div class="radioer form-inline">
+												<input type="radio" name="radioOption8" id="radioColor14" value="option1" checked="checked">
+												<label for="radioColor14" class="margin-bottom-0" >New</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="center">
+											<div class="radioer form-inline">
+												<input type="radio" name="radioOption8" id="radioColor16" value="option1">
+												<label for="radioColor16" class="margin-bottom-0" >Existing</label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div><!--.col-md-9-->
+						</div><!--.row-->
+					</div>
+				</div>
+			</div>
+
+
+			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+				
 				<%= form_for League.new, url: leagues_path, html: {id: 'new-league-form', method: :post} do |f| %>
-	
 
-				<div class="row example-row">
-					<div class="col-md-3">Name </div><!--.col-md-3-->
-					<div class="col-md-9">
-						<div class="inputer">
-							<div class="input-wrapper">
-								<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
-							</div>
+				<div class="panel-body padding-right-40 padding-left-40">
+
+					<h5 class="semi-bold text-primary text-center">Simply complete the form to create a new league.</h5>
+					<br/>
+						
+					<div class="row example-row">
+						<div class="col-md-12">
+							<h4>Type</h4>
 						</div>
-					</div><!--.col-md-9-->
-				</div><!--.row-->
-
-				<div class="row example-row">
-					<div class="col-md-3">Sport </div><!--.col-md-3-->
-					<div class="col-md-9">
-						<div class="inputer">
-							<div class="input-wrapper">
-								<%= f.text_field :sport, type: "text", class: "form-control", placeholder: ""%>
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
+								</div>
 							</div>
-						</div>
-					</div><!--.col-md-9-->
-				</div><!--.row-->
+						</div><!--.col-md-9-->
+					</div><!--.row-->
 
-				<div class="row example-row">
-					<div class="col-md-3">State </div><!--.col-md-3-->
-					<div class="col-md-9">
-						<div class="inputer">
-							<div class="input-wrapper">
-								<%= f.text_field :state, type: "text", class: "form-control", placeholder: ""%>
+					<div class="row example-row">
+						<div class="col-md-12"><h4>Name</h4></div>
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
+								</div>
 							</div>
-						</div>
-					</div><!--.col-md-9-->
-				</div><!--.row-->
+						</div><!--.col-md-9-->
+					</div><!--.row-->
 
-				<div class="row example-row">
-					<div class="col-md-3">Description </div><!--.col-md-3-->
-					<div class="col-md-9">
-						<div class="inputer">
-							<div class="input-wrapper">
-								<%= f.text_area :description, type: "text", class: "form-control", placeholder: "", row: "6" %>
+					<div class="row example-row">
+						<div class="col-md-12"><h4>Sport</h4></div>
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :sport, type: "text", class: "form-control", placeholder: "" %>
+								</div>
 							</div>
-						</div>
-					</div><!--.col-md-9-->
-				</div><!--.row-->
+						</div><!--.col-md-9-->
+					</div><!--.row-->
 
-			</div><!--.panel-body-->
-		</div><!--.panel-->
-	</div><!--.col-md-12-->
-</div><!--.row-->
-<%= f.submit "Create League", class: "btn btn-blue" %>
-<% end %>     
+					<div class="row example-row">
+						<div class="col-md-12"><h4>State</h4></div><!--.col-md-3-->
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+					<div class="row example-row">
+						<div class="col-md-12"><h4>Description</h4></div><!--.col-md-3-->
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_area :description, type: "text", class: "form-control", placeholder: "", row: "6" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+				</div>
+			</div>
+
+				<div class="panel-body padding-right-40 padding-left-40 bg-cyan">
+					<div class="row example-row margin-bottom-0">
+						<div class="col-md-12 text-center">
+							<h3 class="text-white margin-bottom-0">Have and Questions?</h3>
+							<p class="text-white semi-bold">Please check out our 
+								<a href="#" class="text-white">		
+									<u>League FAQ.</u>
+								</a>
+							</p>
+						</div>
+					</div><!--.row-->
+				</div>
+
+				<div class="form-buttons no-margin">
+					<div class="row">
+						<div class="col-lg-8 col-lg-offset-2">
+							<br/>
+							<%= f.submit "Awesome. Let's create a league!", class: "btn btn-blue btn-lg btn-block btn-ripple" %>
+							<br/>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
 </div>
+
+
+
+
 <%#= @id %>
 <%#= @class %>
 

@@ -7,6 +7,20 @@
 
 /* Login page */
 
+.bg-muted .example-row > div:first-child {color: #777777; font-weight: 500;}
+
+.example-row > div:first-child {font-size: 16px; color: #aaa;}
+input.form-control {font-size: 26px; line-height: 30px;}
+
+.bg-muted {background: #f7f7f7;}
+
+.bg-muted .inputer .input-wrapper:before {
+  background: #e5e5e5;
+}
+
+
+.center {display: table; margin-right: auto; margin-left: auto;}
+
 .page-header.full-content.parallax {
    height: 350px; overflow: hidden
 }
@@ -22,6 +36,7 @@
 .fs_30 {font-size: 30px !important;}
 .lh_55 {line-height: 55px !important;}
 
+.margin-bottom-0  {margin-bottom: 0 !important;}
 .padding-bottom-0 {padding-bottom: 0;}
 .margin-top-0     {margin-top: 0;}
 
