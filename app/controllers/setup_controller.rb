@@ -6,6 +6,16 @@ class SetupController < ApplicationController
     @coach_teams = Team.where.not(id: @user.relationships.where(head: true).pluck(:team_id))
     @schools = School.all - [@user.schools.last]
     @athletes = User.athletes
+    @school_teams = Team.with_schools - @user.teams
+    @non_school_teams = Team.without_schools - @user.teams
+    @coached_teams = @user.coached_teams
+    @children = @user.children
+    @users_schools_teams_ids = Relationship.where(user_id: @user.id, participant: true).pluck(:team_id)
+    @users_schools_teams = Team.with_schools.where(id: @users_schools_teams_ids)
+    @users_non_schools_teams_ids = Relationship.where(user_id: @user.id, participant: true).pluck(:team_id)
+    @users_non_schools_teams = Team.without_schools.where(id: @users_non_schools_teams_ids)
+    @coachable_teams = Team.all - @coached_teams
+    @available_children = User.all - [@user] - @user.children
   end
   
   def overview

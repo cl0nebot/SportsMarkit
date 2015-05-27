@@ -1,0 +1,77 @@
+<%#= form_for @user, url: coach_setup_path(@user) do |f| %>
+	<% if @user.is_coach? %>
+		<div class="panel-body margin-top-10">
+	    	<div class="row">
+				<div class="col-lg-10 col-lg-offset-1">
+					<div class="row">
+						<div class="pull-left">
+							<%= image_tag("http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
+						</div>
+						<div class="pull-left">
+							<h4 class="margin-bottom-5">First Name, Last Name</h4>
+							<p class="small">My Coach Profile</p>
+						</div>
+					</div>
+
+					<div class="note note-warning note-left-striped">
+						<h4>Adding teams to your coach profile.</h4>
+						<p class="small text-grey">
+							Use the search box below to find your teams. Once added, the team administrator will be notified of your request to join that team. In the meantime, your status will be pending.
+						</p>
+					</div>
+
+					<hr class="no-margin"/>
+					<br/>
+			
+					<!-- <h5 class="semi-bold text-orange ">
+						<span class="bold margin-right-10">
+							1.	
+						</span>
+						Add teams to your athletic profile
+					</h5> -->
+
+					<div class="row well padding-bottom-0">
+						<div class="col-lg-4 col-md-6 col-sm-12">
+							<h3 class="bold text-primary margin-top-10">
+								<i class="ion ion-search margin-right-5"></i> Find your teams
+							</h3>
+						</div><!--.col-md-3-->
+						<div class="col-lg-8 col-md-6 col-sm-12">
+							<div class="inputer">
+								<!-- isotope filtering and typeahead-->
+								<textarea type="text" class="fs_30 lh_55 quicksearch-coaches typeahead typeahead-teams form-control" rows="1" placeholder="start typing..."></textarea>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+					<hr class="margin-top-10"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-10 col-lg-offset-1">
+
+					<h5 class="bold text-black">Your School
+		   				<span class="small semi-bold text-orange">(X)</span>
+		       		</h5>
+
+	   				<div class="panel-body without-padding">
+						<ul class="list-material" id="user-coach-team-list">
+							<%= render 'setup/coach_setup/user_coach_team_list', coached_teams: @coached_teams %>
+						</ul>
+					</div><!--.panel-body-->
+
+					<!-- You are currently not a member of any teams. Let's get you started. Find your teams below. -->
+				</div>
+
+		    </div>
+		</div>
+
+		<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
+		<div class="row coaches" id="coachable-teams-list">
+            <%= render 'setup/coach_setup/coachable_team_list', coachable_teams: @coachable_teams %>
+		</div>
+		</div><!--.row-->
+	<% end %>
+<%# end %>
+
+
+

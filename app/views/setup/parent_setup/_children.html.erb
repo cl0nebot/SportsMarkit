@@ -1,0 +1,27 @@
+						<% children.each do |child| %>
+						<li class="has-action-left has-action-right">
+							<a href="#" class="visible">
+								<div class="list-action-left">
+									<a class="btn btn-floating btn-orange btn-ripple">
+										<i class="ion-android-close"></i>
+									</a>
+								</div>
+								<div class="list-content padding-left-30">
+									<span class="title">
+										<%= child.full_name %>
+									</span>
+									<span class="caption">
+										<i class="ion-location"></i>
+										<%= child.age %>, 
+										[city, state], 
+										[Schoo/League Name], 
+										[# of team members] 
+									</span>
+								</div>
+								<div class="list-action-right">
+									<span class="top">Pending</span>
+									<i class="ion-android-checkmark-circle bottom"></i>
+								</div>
+							</a>
+						</li>
+						<% end %>

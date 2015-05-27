@@ -1,0 +1,86 @@
+<% if @user.is_parent?  %>
+	<div class="panel-body">
+    	<div class="row">
+			<div class="col-lg-10 col-lg-offset-1">
+				<div class="row">
+					<div class="pull-left">
+						<%= image_tag("http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
+					</div>
+					<div class="pull-left">
+						<h4 class="margin-bottom-5">First Name, Last Name</h4>
+						<p class="small">My Parent Profile</p>
+					</div>
+				</div>
+
+				<div class="note note-warning note-left-striped">
+					<h4>Claiming your child online.</h4>
+					<p class="small text-grey">
+						Use the search box below to find your teams. Once added, the team administrator will be notified of your request to join that team. In the meantime, your status will be pending.
+					</p>
+				</div>
+				
+				<hr class="no-margin"/>
+				<br/>
+
+				<div class="row well padding-bottom-0">
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<h3 class="bold text-primary margin-top-10">
+							<i class="ion ion-search margin-right-5"></i> Find your child
+						</h3>
+					</div><!--.col-md-3-->
+					<div class="col-lg-8 col-md-6 col-sm-12">
+						<div class="inputer">
+							
+							<!-- isotope filtering and typeahead-->
+							<textarea type="text" class="fs_30 lh_55 quicksearch-users typeahead typeahead-users form-control" rows="1" placeholder="start typing..."></textarea>
+
+						</div>
+					</div><!--.col-md-9-->
+				</div><!--.row-->
+				<hr class="margin-top-10"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-10 col-lg-offset-1">
+
+				<h5 class="bold text-black">Your Children
+	   				<span class="small semi-bold text-orange">(3)</span>
+	       		</h5>
+
+	       		<div class="panel-body without-padding">
+					<ul class="list-material">
+						<%= render 'setup/parent_setup/children', children: @children %>
+					</ul>
+				</div><!--.panel-body-->
+
+			</div>
+
+	    </div>
+	</div>
+	
+
+	<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
+		
+		<div class="row users" id="user-list">
+			<%= render 'setup/parent_setup/user_list', available_children: @available_children %>
+		</div>
+			
+	</div><!--.row-->
+
+
+
+<% end %>
+
+
+
+				 
+				 
+
+ 
+					 <%#= form_for ParentChild.new do |f| %>
+					 <%#=f.hidden_field :parent_id, value: user.id %>
+					 <%#=f.text_field :child_id %>
+					 <%#= f.submit "Claim Kid", class: "btn btn-blue" %>
+					 <%# end %>
+ 
+				 
