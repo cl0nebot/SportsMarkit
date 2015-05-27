@@ -2,6 +2,7 @@ Rails.application.routes.draw do
     root 'main#index'
     
     resources :users do
+      resources :photos
       post :add_school_team_at_setup
       post :add_non_school_team_at_setup
       post :add_coach_team_at_setup
@@ -38,6 +39,7 @@ Rails.application.routes.draw do
     end
     
     resources :teams do
+      resources :photos
       resources :events
       resource :calendar do
         get :events, on: :member
@@ -52,7 +54,10 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :facilities
+    resources :facilities do
+      resources :photos
+    end
+
     resources :tournaments
     resources :leagues 
     resources :fans

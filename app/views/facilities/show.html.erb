@@ -2,7 +2,7 @@
 
 	<div class="page-header full-content parallax" style="height: 600px; overflow: hidden">
 		
-		<div class="parallax-bg" style="background: url('http://despacedesigns.com/wp-content/uploads/2013/11/blog_YMCA_AB_2L3V9636.jpg') 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
+		<div class="parallax-bg" style="background: url('<%= background_url(@facility) %>') 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
 		</div>
 
 		<div class="bg-overlay"></div><!--.bg-overlay-->
@@ -59,7 +59,9 @@
 				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
 				<li><a href="#amenities" data-toggle="tab" class="btn-ripple">Amenities</a></li>
 				<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
-			</ul>
+        <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li>
+
+      </ul>
 		</div>
 	</div><!--.page-header-->
 
@@ -199,7 +201,8 @@
           </div>
 
         </div>
-				
+        <%= render 'shared/photo_tab', photo_owner: @facility %>
+
 
 			</div><!--.tab-content-->
 		</div><!--.col-->

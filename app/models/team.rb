@@ -1,5 +1,7 @@
 class Team < ActiveRecord::Base
   extend FriendlyId
+  include PhotoOwner
+
   friendly_id :use_for_slug, use: [:slugged, :finders]
   
   has_many :fans, as: :fannable

@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   include Location
+  include PhotoOwner
+
   extend FriendlyId
   friendly_id :use_for_slug, use: [:slugged, :finders]
   has_secure_password
