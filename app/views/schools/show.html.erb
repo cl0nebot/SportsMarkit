@@ -49,8 +49,8 @@
 
 		<div class="header-tabs scrollable-tabs sticky">
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
-				<li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">About</a></li>
-				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
+				<li><a href="#about" data-toggle="tab" class="btn-ripple">About</a></li>
+				<li class="active"><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
 				<li><a href="#people" data-toggle="tab" class="btn-ripple">People</a></li>
 				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
 				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li>
@@ -69,7 +69,7 @@
 				
 
 				<!-- following -->
-				<div id="about" class="tab-pane active">
+				<div id="about" class="tab-pane">
 
 					<div class="row">
 						<div class="col-md-12">
@@ -128,37 +128,983 @@
 				<!--#following.tab-pane-->
 
 				<!-- teams -->
-				<div id="teams" class="tab-pane">
+				<div id="teams" class="tab-pane active">
 
-					<div class="panel">
-						<div class="panel-body without-padding">
-							<ul class="list-material">
-								
-								<% @teams.each do |team| %>
-
-									<li class="has-action-left has-action-right">
-										<a href="#" class="visible">
-											<div class="list-action-left">
-												<i class="ion-university icon-circle"></i>
+					<div class="row">
+						<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 well">
+							<h3 class="center">
+								<i class="ion-search margin-right-20 text-blue"></i>	
+								Quickly find a team
+							</h3>
+							<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+								<option>Receational</option>
+								<option>School</option>
+								<option>School District</option>
+								<option>Youth</option>
+								<option>Adult</option>
+							</select>
+						</div><!--.col-md-9-->
+					</div>
+					<br/>
+					<div class="row teams">
+						<div class="col-md-4 col-lg-3 col-sm-6">
+							<div class="panel box-shadow-ccc">
+								<div class="panel-heading">
+									<div class="panel-title">
+										<div class="pull-left">
+											<%= image_tag("placeholders/league.jpg", height: "30", width: "30") %>
+										</div>
+										<div class="pull-left margin-left-10">
+											<h4 class="normal fs_18">
+												Girl's Junior Varsity Basketball
+											</h4>
+											<p class="text-muted margin-top-5">
+												<small>
+													3 Coaches, 12 Players, 1 Manager, 1 Medical Staff
+												</small>
+											</p>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="margin-left-40">
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														<i class="ion-gear-b margin-right-5"></i>
+														Edit
+													</a>
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														View
+													</a>
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														<i class="ion-person-add margin-right-5"></i>
+														Invite User
+													</a>
+												</div>
 											</div>
-											<div class="list-content">
-												<span class="title">
-													<%= link_to team.name, "/teams/#{team.slug}" %>
-												</span>
-												<span class="caption">Basketball</span>
-											</div>
-											<div class="list-action-right">
-												<span class="top">15 min</span>
-												<i class="ion-android-done bottom"></i>
-											</div>
-										</a>
-									</li>
+										</div>
+									</div>
+								</div><!--.panel-heading-->
+								<div class="panel-body without-padding">
+									<ul class="list-material borderless">
+										<li class="divider with-border">
+											Coaching Staff
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Thad McFad</span>
+													<span class="caption">Head Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/2.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">David Swavid</span>
+													<span class="caption">Assistant Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Cordis Lordis</span>
+													<span class="caption">Assistant Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Management & Support Staff
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/12.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Megan Hayward</span>
+													<span class="caption">Team Manager</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Team Manager
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/4.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Raymond Black</span>
+													<span class="caption">On-call Athletic Trainer</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Team Roster
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/5.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Leigh Gregory</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/6.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Kiki Williams</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/7.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Kristin Iwanaga</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/8.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Tasha O'Keith</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/9.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Khadijah Coakley</span>
+													<span class="caption">Power Forward / Center</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/10.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Nicole Berry</span>
+													<span class="caption">Shooting Guard</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/11.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Jacqueline Sanchez</span>
+													<span class="caption">Small Forward</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
 
-								<% end %>
+								</div><!--.panel-body-->
+							</div><!--.panel-->
+						</div><!--.col-->
+						<div class="col-md-4 col-lg-3 col-sm-6">
+							<div class="panel box-shadow-ccc">
+								<div class="panel-heading">
+									<div class="panel-title">
+										<div class="pull-left">
+											<%= image_tag("placeholders/league.jpg", height: "30", width: "30") %>
+										</div>
+										<div class="pull-left margin-left-10">
+											<h4 class="normal fs_18">
+												Girl's Junior Varsity Basketball
+											</h4>
+											<p class="text-muted margin-top-5">
+												<small>
+													3 Coaches, 12 Players, 1 Manager, 1 Medical Staff
+												</small>
+											</p>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="margin-left-40">
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														<i class="ion-gear-b margin-right-5"></i>
+														Edit
+													</a>
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														View
+													</a>
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														<i class="ion-person-add margin-right-5"></i>
+														Invite User
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div><!--.panel-heading-->
+								<div class="panel-body without-padding">
+									<ul class="list-material borderless">
+										<li class="divider with-border">
+											Coaching Staff
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Thad McFad</span>
+													<span class="caption">Head Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/2.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">David Swavid</span>
+													<span class="caption">Assistant Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Cordis Lordis</span>
+													<span class="caption">Assistant Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Management & Support Staff
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/12.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Megan Hayward</span>
+													<span class="caption">Team Manager</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Team Manager
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/4.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Raymond Black</span>
+													<span class="caption">On-call Athletic Trainer</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Team Roster
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/5.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Leigh Gregory</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/6.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Kiki Williams</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/7.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Kristin Iwanaga</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/8.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Tasha O'Keith</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/9.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Khadijah Coakley</span>
+													<span class="caption">Power Forward / Center</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/10.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Nicole Berry</span>
+													<span class="caption">Shooting Guard</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/11.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Jacqueline Sanchez</span>
+													<span class="caption">Small Forward</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
 
-							</ul>
-						</div><!--.panel-body-->
-					</div><!--.panel-->
+								</div><!--.panel-body-->
+							</div><!--.panel-->
+						</div><!--.col-->
+						<div class="col-md-4 col-lg-3 col-sm-6">
+							<div class="panel box-shadow-ccc">
+								<div class="panel-heading">
+									<div class="panel-title">
+										<div class="pull-left">
+											<%= image_tag("placeholders/league.jpg", height: "30", width: "30") %>
+										</div>
+										<div class="pull-left margin-left-10">
+											<h4 class="normal fs_18">
+												Girl's Junior Varsity Basketball
+											</h4>
+											<p class="text-muted margin-top-5">
+												<small>
+													3 Coaches, 12 Players, 1 Manager, 1 Medical Staff
+												</small>
+											</p>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="margin-left-40">
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														<i class="ion-gear-b margin-right-5"></i>
+														Edit
+													</a>
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														View
+													</a>
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														<i class="ion-person-add margin-right-5"></i>
+														Invite User
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div><!--.panel-heading-->
+								<div class="panel-body without-padding">
+									<ul class="list-material borderless">
+										<li class="divider with-border">
+											Coaching Staff
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Thad McFad</span>
+													<span class="caption">Head Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/2.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">David Swavid</span>
+													<span class="caption">Assistant Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Cordis Lordis</span>
+													<span class="caption">Assistant Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Management & Support Staff
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/12.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Megan Hayward</span>
+													<span class="caption">Team Manager</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Team Manager
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/4.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Raymond Black</span>
+													<span class="caption">On-call Athletic Trainer</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Team Roster
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/5.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Leigh Gregory</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/6.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Kiki Williams</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/7.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Kristin Iwanaga</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/8.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Tasha O'Keith</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/9.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Khadijah Coakley</span>
+													<span class="caption">Power Forward / Center</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/10.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Nicole Berry</span>
+													<span class="caption">Shooting Guard</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/11.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Jacqueline Sanchez</span>
+													<span class="caption">Small Forward</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+
+								</div><!--.panel-body-->
+							</div><!--.panel-->
+						</div><!--.col-->
+						<div class="col-md-4 col-lg-3 col-sm-6">
+							<div class="panel box-shadow-ccc">
+								<div class="panel-heading">
+									<div class="panel-title">
+										<div class="pull-left">
+											<%= image_tag("placeholders/league.jpg", height: "30", width: "30") %>
+										</div>
+										<div class="pull-left margin-left-10">
+											<h4 class="normal fs_18">
+												Girl's Junior Varsity Basketball
+											</h4>
+											<p class="text-muted margin-top-5">
+												<small>
+													3 Coaches, 12 Players, 1 Manager, 1 Medical Staff
+												</small>
+											</p>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="margin-left-40">
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														<i class="ion-gear-b margin-right-5"></i>
+														Edit
+													</a>
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														View
+													</a>
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														<i class="ion-person-add margin-right-5"></i>
+														Invite User
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div><!--.panel-heading-->
+								<div class="panel-body without-padding">
+									<ul class="list-material borderless">
+										<li class="divider with-border">
+											Coaching Staff
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Thad McFad</span>
+													<span class="caption">Head Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/2.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">David Swavid</span>
+													<span class="caption">Assistant Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Cordis Lordis</span>
+													<span class="caption">Assistant Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Management & Support Staff
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/12.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Megan Hayward</span>
+													<span class="caption">Team Manager</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Team Manager
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/4.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Raymond Black</span>
+													<span class="caption">On-call Athletic Trainer</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Team Roster
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/5.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Leigh Gregory</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/6.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Kiki Williams</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/7.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Kristin Iwanaga</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/8.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Tasha O'Keith</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/9.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Khadijah Coakley</span>
+													<span class="caption">Power Forward / Center</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/10.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Nicole Berry</span>
+													<span class="caption">Shooting Guard</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/11.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Jacqueline Sanchez</span>
+													<span class="caption">Small Forward</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+
+								</div><!--.panel-body-->
+							</div><!--.panel-->
+						</div><!--.col-->
+					</div>
+					<!-- <ul class="list-material">
+						<% @teams.each do |team| %>
+							<li class="has-action-left has-action-right">
+								<a href="#" class="visible">
+									<div class="list-action-left">
+										<i class="ion-university icon-circle"></i>
+									</div>
+									<div class="list-content">
+										<span class="title">
+											<%= link_to team.name, "/teams/#{team.slug}" %>
+										</span>
+										<span class="caption">Basketball</span>
+									</div>
+									<div class="list-action-right">
+										<span class="top">15 min</span>
+										<i class="ion-android-done bottom"></i>
+									</div>
+								</a>
+							</li>
+						<% end %>
+					</ul> -->
 				</div>
 				<!--#teams.tab-pane-->
 
@@ -276,6 +1222,47 @@
 
 
 
+<script type="text/javascript">
+	
+	// QUICKSEARCH USERS
+
+	$( function() {
+	  // quick search regex
+	  var qsRegex;
+	  
+	  // init Isotope
+	  var $grid = $('.teams').isotope({
+	    itemSelector: '.element-item',
+	    layoutMode: 'fitRows',
+	    filter: function() {
+	      return qsRegex ? $(this).text().match( qsRegex ) : true;
+	    }
+	  });
+
+	  // use value of search field to filter
+	  var $quicksearch = $('.teams').keyup( debounce( function() {
+	    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+	    $grid.isotope();
+	  }, 200 ) );
+
+	});
+
+	// debounce so filtering doesn't happen every millisecond
+	function debounce( fn, threshold ) {
+	  var timeout;
+	  return function debounced() {
+	    if ( timeout ) {
+	      clearTimeout( timeout );
+	    }
+	    function delayed() {
+	      fn();
+	      timeout = null;
+	    }
+	    timeout = setTimeout( delayed, threshold || 100 );
+	  }
+	}
+
+</script>
 
 
 

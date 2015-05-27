@@ -91,7 +91,7 @@
 //= require pleasure/globals/plugins/jquery.flexselect-0.7.0/jquery.flexselect
 //= require pleasure/globals/plugins/jquery.flexselect-0.7.0/liquidmetal
 
-//= require plugins/imagesloaded.pkgd.min
+//= require imagesloaded.pkgd.js
 
 // <!-- PLUGINS INITIALIZATION AND SETTINGS -->
 //= require pleasure/globals/scripts/user-pages
