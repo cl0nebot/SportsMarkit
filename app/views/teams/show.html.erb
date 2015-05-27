@@ -1,7 +1,6 @@
 <div class="content">
-
-	<div class="page-header full-content parallax">
-		<div class="parallax-bg" style="background: url('http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg') 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
+	<div class="page-header full-content parallax" style="height: 600px; overflow: hidden">
+		<div class="parallax-bg" style="background: url('<%= background_url(@team)%>') 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
 		</div>
 
 		<div class="social-buttons">
@@ -77,7 +76,8 @@
 				<li><a href="#payments" data-toggle="tab" class="btn-ripple">Payments</a></li>
 				<li><a href="#admin" data-toggle="tab" class="btn-ripple">Admin</a></li>
 				<li><a href="#leagues" data-toggle="tab" class="btn-ripple">League</a></li>
-			</ul>
+        <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li>
+      </ul>
 		</div>
 	</div><!--.page-header-->
 
@@ -246,6 +246,7 @@
 
 				</div>
 				<!--#facilities.tab-pane-->
+        <%= render 'shared/photo_tab', photo_owner: @team %>
 
 			</div><!--.tab-content-->
 

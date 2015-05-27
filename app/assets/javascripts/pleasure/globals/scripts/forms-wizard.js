@@ -111,11 +111,11 @@ var FormsWizard = {
 			'nextSelector': $bsWizardSteps.find('.bs-wizard-next'),
 			'previousSelector': $bsWizardSteps.find('.bs-wizard-prev'),
 			'onNext': function(tab, navigation, index) {
-				var $valid = $bsWizardSteps.find('form:first').valid();
-				if(!$valid) {
-					$form2_validator.focusInvalid();
-					return false;
-				}
+				var $valid = $bsWizardSteps.find('form:first')// .valid();
+// 				if(!$valid) {
+// 					$form2_validator.focusInvalid();
+// 					return false;
+// 				}
 				tab.next().children().removeClass('btn-white');
 				FormsWizard.manageFormElements(tab, navigation, index);
 			},

@@ -407,7 +407,6 @@ ActiveRecord::Schema.define(version: 20150523182359) do
     t.string   "provider"
     t.string   "uid"
     t.string   "mobile_phone_number"
-    t.integer  "temporary_school_ids"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

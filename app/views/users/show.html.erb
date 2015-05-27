@@ -1,7 +1,8 @@
 <style>
 
 .sample-bg-image13:before {
-  background-image: url('<%=image_path("thumbs/football-game.jpg")%>');
+
+  background-image: url('<%=background_url(@user) %>');
 	}
 .card-clickable {
   padding-bottom: 0;
@@ -16,7 +17,7 @@
 <div class="content">
 
 	<div class="page-header full-content parallax">
-		<div class="parallax-bg" style="background: url('http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg') 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
+		<div class="parallax-bg" style="background: url('<%= background_url(@user) %>') 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
 		</div>
 
 		<div class="profile-info">
@@ -79,7 +80,8 @@
 				<li><a href="#parent-child" data-toggle="tab" class="btn-ripple">Children</a></li>
 				<% end %>
 				<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
-			</ul>
+        <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li>
+      </ul>
 		</div>
 	</div><!--.page-header-->
 	
@@ -442,6 +444,7 @@
 
 						
 					</div>
+          <%= render 'shared/photo_tab', photo_owner: @user %>
 
 					</div>
 					<!--#media.tab-pane-->

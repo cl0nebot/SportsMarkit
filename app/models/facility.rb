@@ -1,6 +1,8 @@
 class Facility < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :use_for_slug, use: :slugged
+  include PhotoOwner
+
+  friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable
   
   belongs_to :team

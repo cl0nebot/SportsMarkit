@@ -1,5 +1,7 @@
 class Team < ActiveRecord::Base
   extend FriendlyId
+  include PhotoOwner
+
   friendly_id :use_for_slug, use: [:slugged, :finders]
   
   has_many :fans, as: :fannable
@@ -77,5 +79,25 @@ class Team < ActiveRecord::Base
     self.school_team_names + self.non_school_team_names
   end
   
+  
+  def city_state
+    if school_id.present?
+      "#{school.city}, #{school.state}"  
+    else
+      "TBD CODED"
+    end
+  end
+  
+  def with_school_name
+    "#{school.name} #{name}"
+  end
+  
+  def proper_name
+    if school_id.present?
+      with_school_name
+    else
+      name
+    end
+  end
 
 end

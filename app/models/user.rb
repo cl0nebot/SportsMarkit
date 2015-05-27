@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   include Location
+  include PhotoOwner
+
   extend FriendlyId
   friendly_id :use_for_slug, use: [:slugged, :finders]
   has_secure_password
@@ -233,11 +235,11 @@ class User < ActiveRecord::Base
   end
   
   def children_events #TODO finish
-    if ParentChild.where(parent_id: id).present? 
-      kid_id = ParentChild.where(parent_id: id).last
-      kid = User.friendly.find(kid_id)
-      kid.attendances
-    end
+    # if ParentChild.where(parent_id: id).present?
+    #   kid_id = ParentChild.where(parent_id: id).last
+    #   kid = User.friendly.find(kid_id)
+    #   kid.attendances
+    # end
   end
   
   def shared_teams(user_id)
@@ -283,6 +285,32 @@ class User < ActiveRecord::Base
     array
   end
   
+  def pending_team?(team)
+    if Relationship.where(team_id: team.id, user_id: id, accepted: nil).present?
+      true
+    else
+      false
+    end
+  end
+  
+  def coached_teams
+    coached_team_ids = Relationship.where(user_id: id, head: true).pluck(:team_id)
+    coached_teams = Team.where(id: coached_team_ids)
+  end
+  
+  def children
+    children_ids = ParentChild.where(parent_id: id).pluck(:child_id)
+    children = User.where(id: children_ids)
+  end
+  
+  def age
+    if profile.date_of_birth.present?
+      days = (Date.today - profile.date_of_birth).to_i
+      age = days / 365
+    else
+      "N/A"
+    end
+  end
   
   
     

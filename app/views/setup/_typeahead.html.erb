@@ -8,27 +8,27 @@
            selector: 'a[rel="tooltip"], [data-toggle="tooltip"]'
        });
 
-       $('.search-typeahead').typeahead([
+       var users = <%= raw(User.all.to_json) %>
+
+       search = function(users){
+         $.each(users, function(index, user){
+
+         })
+       }
+       $('.search-typeahead').typeahead(
+         {
+           hint: true,
+           highlight: true,
+           minLength: 1
+         },
          {
            name: 'destinations',
-           local: <%= raw(@athletes.to_json) %>,
-		   header: '<h3 class="typeahead-header"><i class="glyphicon glyphicon-map-marker"></i> Destinations</h3>',
+           source: search(users),
+           header: '<h3 class="typeahead-header"><i class="glyphicon glyphicon-map-marker"></i> Destinations</h3>',
            template: '{{pretty_name}}',
            engine: Hogan
-         },
-       ]);
+         }
+      );
 
-       $('.search-typeahead').on('typeahead:selected', function(e, datum){
-         var form = $('<form></form>');
-         form.attr("action", "<%= root_path %>");
-         form.attr("method", "get");
-         form.append("<input type='hidden' name='type' value='" + datum.type +"'/>");
-         form.append('<input type="hidden" name="value" value="' + datum.value +'"/>');
-         //form.append("<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'/>");
-         $('body').append(form);
-         form.submit();
-
-        
-       });
      });
    </script>

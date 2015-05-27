@@ -1,5 +1,7 @@
 class School < ActiveRecord::Base
   extend FriendlyId
+  include PhotoOwner
+
   friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable
   
@@ -7,21 +9,15 @@ class School < ActiveRecord::Base
   #has_many :event_facilities, as: :reservable
   has_many :teams
   has_many :facilities
-  has_many :photos, as: :photo_owner
-  
+
   has_many :athletic_directors, dependent: :destroy
   has_many :users, through: :athletic_directors
-
-  accepts_nested_attributes_for :photos
 
   def gmaps4rails_address
   #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
     "#{self.address_1}, #{self.city}, #{self.state}" 
   end
 
-  def main_photo
-    photos.main.first_or_initialize
-  end
 
   def use_for_slug
     existing_school = School.where('slug = ?', self.slug)
