@@ -7,6 +7,10 @@
 
 /* Login page */
 
+.page-header.full-content.parallax {
+   height: 350px; overflow: hidden
+}
+
 
 .page-header h1.h1-xlarge {
   font-size: 48px;
