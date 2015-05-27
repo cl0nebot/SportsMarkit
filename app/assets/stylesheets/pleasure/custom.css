@@ -7,6 +7,16 @@
 
 /* Login page */
 
+.page-header.full-content.parallax {
+   height: 350px; overflow: hidden
+}
+
+
+.page-header h1.h1-xlarge {
+  font-size: 48px;
+  margin: 0;
+  color: #ffffff;
+}
 
 .fs_18 {font-size: 18px !important;}
 .fs_30 {font-size: 30px !important;}
