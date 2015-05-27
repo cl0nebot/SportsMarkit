@@ -1,17 +1,22 @@
 <div class="content">
-  <div class="page-header full-content bg-blue">
-    <div class="row">
-      <div class="col-sm-6">
-      	<h1>All Leagues <small>(<%= League.count %>)</small></h1>
-      </div><!--.col-->
-      <div class="col-sm-6">
-        <ol class="breadcrumb">
-          <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="<%= users_path %>" class="active">All Leagues</a></li>
-        </ol>
-      </div><!--.col-->
-    </div><!--.row-->
-  </div><!--.page-header-->
+	<div class="page-header full-content">
+		<div class="row">
+			<div class="col-sm-5">
+				<h1>All Leagues <small>(<%= League.count %>)</small></h1>
+			</div><!--.col-->
+			<div class="col-sm-6">
+				<ol class="breadcrumb">
+					<li><a href="/"><i class="ion-home"></i></a></li>
+					<li><a href="#" class="active">All Leagues</a></li>
+				</ol>
+			</div><!--.col-->
+			<div class="col-sm-1 text-right">
+				<a class="btn btn-floating btn-pink" data-toggle="modal" data-target="#panel-new-league">
+					<i class="ion-android-add"></i>
+				</a>
+			</div>
+		</div><!--.row-->
+	</div><!--.page-header-->
 
   <div clas="panel">
     <div class="panel-body">
