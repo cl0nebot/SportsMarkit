@@ -140,7 +140,14 @@ class UsersController < ApplicationController
     end
   end
   
-  
+  def add_non_school_team_at_setup
+    @user = User.friendly.find(params[:user_id])
+    respond_to do |format|
+      format.js
+      format.html { redirect_to :back }
+    end
+  end
+
   protected
   
   def user_params
