@@ -45,6 +45,9 @@
 
  *= require pleasure/globals/plugins/indicator/indicator
  *= require pleasure/globals/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min
+
+ *= require pleasure/globals/plugins/video.js/dist/video-js/video-js.min
+ *= require pleasure/globals/plugins/video.js/themes/sublime/videojs-sublime-skin.min
  
  *= require pleasure/globals/css/plugins
  *= require pleasure/custom
@@ -52,7 +55,7 @@
  *= require fullcalendar
  *= require pleasure/globals/plugins/jquery.flexselect-0.7.0/flexselect.css
  */
-
+ 
 .preview-container.fileinput-preview{
     line-height: normal !important;
 }

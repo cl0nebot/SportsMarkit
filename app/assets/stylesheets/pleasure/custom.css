@@ -7,6 +7,8 @@
 
 /* Login page */
 
+#youtube {width: 100% !important; min-height: 300px !important;}
+
 .bg-muted .example-row > div:first-child {color: #777777; font-weight: 500;}
 
 .example-row > div:first-child {font-size: 16px; color: #aaa;}
