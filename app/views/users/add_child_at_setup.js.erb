@@ -1,0 +1,5 @@
+$('#user-children-list').empty();
+$('#user-children-list').append("<%= j(render 'setup/parent_setup/children', children: @children) %>")
+
+$('#available-children-list').empty();
+$('#available-children-list').append("<%= j(render 'setup/parent_setup/available_children_list', available_children: @available_children) %>")

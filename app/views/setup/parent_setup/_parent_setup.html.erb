@@ -48,7 +48,7 @@
 	       		</h5>
 
 	       		<div class="panel-body without-padding">
-					<ul class="list-material">
+					<ul class="list-material" id="user-children-list">
 						<%= render 'setup/parent_setup/children', children: @children %>
 					</ul>
 				</div><!--.panel-body-->
@@ -61,8 +61,8 @@
 
 	<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
 		
-		<div class="row users" id="user-list">
-			<%= render 'setup/parent_setup/user_list', available_children: @available_children %>
+		<div class="row users" id="available-children-list">
+			<%= render 'setup/parent_setup/available_children_list', available_children: @available_children %>
 		</div>
 			
 	</div><!--.row-->
