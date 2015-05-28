@@ -91,7 +91,12 @@
 //= require pleasure/globals/plugins/jquery.flexselect-0.7.0/jquery.flexselect
 //= require pleasure/globals/plugins/jquery.flexselect-0.7.0/liquidmetal
 
-//= require plugins/imagesloaded.pkgd.min
+//= require pleasure/globals/plugins/video.js/dist/video-js/video
+//= require pleasure/globals/plugins/video.js/plugins/playlist/videojs-playlists.min
+//= require pleasure/globals/plugins/video.js/plugins/youtube/youtube
+
+
+//= require imagesloaded.pkgd.js
 
 // <!-- PLUGINS INITIALIZATION AND SETTINGS -->
 //= require pleasure/globals/scripts/user-pages
@@ -101,6 +106,7 @@
 //= require pleasure/globals/scripts/forms-select
 //= require pleasure/globals/scripts/coming-soon
 //= require pleasure/globals/scripts/forms-wizard
+//= require pleasure/globals/scripts/widget-video
 
 // <!-- PLEASURE -->
 //= require pleasure/globals/js/pleasure
@@ -117,3 +123,5 @@
 //= require ./ready
 //= require ./validation/jquery.validate.min
 //= require validation
+
+

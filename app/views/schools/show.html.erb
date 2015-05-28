@@ -1,5 +1,17 @@
-<div class="content">
+<style>
+	.card-friend .friend-content {
+	  margin-left: 170px;
+	}
 
+	.card-friend .user-photo {
+	  float: left;
+	  width: 160px;
+	  height: auto;
+	  border-radius: 3px 0 0 3px;
+	}
+</style>
+
+<div class="content">
 	<div class="page-header full-content parallax">
 		
 		<div class="parallax-bg" style="background: url(<%= background_url(@school) %>) 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
@@ -49,8 +61,8 @@
 
 		<div class="header-tabs scrollable-tabs sticky">
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
-				<li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">About</a></li>
-				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
+				<li><a href="#about" data-toggle="tab" class="btn-ripple">About</a></li>
+				<li class="active"><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
 				<li><a href="#people" data-toggle="tab" class="btn-ripple">People</a></li>
 				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
 				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li>
@@ -69,10 +81,9 @@
 				
 
 				<!-- following -->
-				<div id="about" class="tab-pane active">
-
+				<div id="about" class="tab-pane">
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-2 col-sm-12">
 							<div class="panel">
 								<div class="panel-body">
 									<div class="row contact-us">
@@ -128,56 +139,2145 @@
 				<!--#following.tab-pane-->
 
 				<!-- teams -->
-				<div id="teams" class="tab-pane">
+				<div id="teams" class="tab-pane active">
 
-					<div class="panel">
-						<div class="panel-body without-padding">
-							<ul class="list-material">
-								
-								<% @teams.each do |team| %>
-
-									<li class="has-action-left has-action-right">
-										<a href="#" class="visible">
-											<div class="list-action-left">
-												<i class="ion-university icon-circle"></i>
+					<div class="row">
+						<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 well">
+							<h3 class="center">
+								<i class="ion-search margin-right-20 text-blue"></i>	
+								Quickly find a team
+							</h3>
+							<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+								<option>Receational</option>
+								<option>School</option>
+								<option>School District</option>
+								<option>Youth</option>
+								<option>Adult</option>
+							</select>
+						</div><!--.col-md-9-->
+					</div>
+					<br/>
+					<div class="row teams">
+						<div class="col-md-4 col-lg-3 col-sm-6">
+							<div class="panel box-shadow-ccc">
+								<div class="panel-heading">
+									<div class="panel-title">
+										<div class="pull-left">
+											<%= image_tag("placeholders/league.jpg", height: "30", width: "30") %>
+										</div>
+										<div class="pull-left margin-left-10">
+											<h4 class="normal fs_18">
+												Girl's Junior Varsity Basketball
+											</h4>
+											<p class="text-muted margin-top-5">
+												<small>
+													3 Coaches, 12 Players, 1 Manager, 1 Medical Staff
+												</small>
+											</p>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="margin-left-40">
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														<i class="ion-gear-b margin-right-5"></i>
+														Edit
+													</a>
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														View
+													</a>
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														<i class="ion-person-add margin-right-5"></i>
+														Invite User
+													</a>
+												</div>
 											</div>
-											<div class="list-content">
-												<span class="title">
-													<%= link_to team.name, "/teams/#{team.slug}" %>
-												</span>
-												<span class="caption">Basketball</span>
-											</div>
-											<div class="list-action-right">
-												<span class="top">15 min</span>
-												<i class="ion-android-done bottom"></i>
-											</div>
-										</a>
-									</li>
+										</div>
+									</div>
+								</div><!--.panel-heading-->
+								<div class="panel-body without-padding">
+									<ul class="list-material borderless">
+										<li class="divider with-border">
+											Coaching Staff
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Thad McFad</span>
+													<span class="caption">Head Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/2.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">David Swavid</span>
+													<span class="caption">Assistant Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Cordis Lordis</span>
+													<span class="caption">Assistant Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Management & Support Staff
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/12.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Megan Hayward</span>
+													<span class="caption">Team Manager</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Team Manager
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/4.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Raymond Black</span>
+													<span class="caption">On-call Athletic Trainer</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Team Roster
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/5.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Leigh Gregory</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/6.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Kiki Williams</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/7.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Kristin Iwanaga</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/8.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Tasha O'Keith</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/9.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Khadijah Coakley</span>
+													<span class="caption">Power Forward / Center</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/10.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Nicole Berry</span>
+													<span class="caption">Shooting Guard</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/11.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Jacqueline Sanchez</span>
+													<span class="caption">Small Forward</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
 
-								<% end %>
+								</div><!--.panel-body-->
+							</div><!--.panel-->
+						</div><!--.col-->
+						<div class="col-md-4 col-lg-3 col-sm-6">
+							<div class="panel box-shadow-ccc">
+								<div class="panel-heading">
+									<div class="panel-title">
+										<div class="pull-left">
+											<%= image_tag("placeholders/league.jpg", height: "30", width: "30") %>
+										</div>
+										<div class="pull-left margin-left-10">
+											<h4 class="normal fs_18">
+												Girl's Junior Varsity Basketball
+											</h4>
+											<p class="text-muted margin-top-5">
+												<small>
+													3 Coaches, 12 Players, 1 Manager, 1 Medical Staff
+												</small>
+											</p>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="margin-left-40">
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														<i class="ion-gear-b margin-right-5"></i>
+														Edit
+													</a>
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														View
+													</a>
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														<i class="ion-person-add margin-right-5"></i>
+														Invite User
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div><!--.panel-heading-->
+								<div class="panel-body without-padding">
+									<ul class="list-material borderless">
+										<li class="divider with-border">
+											Coaching Staff
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Thad McFad</span>
+													<span class="caption">Head Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/2.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">David Swavid</span>
+													<span class="caption">Assistant Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Cordis Lordis</span>
+													<span class="caption">Assistant Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Management & Support Staff
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/12.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Megan Hayward</span>
+													<span class="caption">Team Manager</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Team Manager
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/4.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Raymond Black</span>
+													<span class="caption">On-call Athletic Trainer</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Team Roster
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/5.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Leigh Gregory</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/6.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Kiki Williams</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/7.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Kristin Iwanaga</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/8.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Tasha O'Keith</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/9.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Khadijah Coakley</span>
+													<span class="caption">Power Forward / Center</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/10.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Nicole Berry</span>
+													<span class="caption">Shooting Guard</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/11.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Jacqueline Sanchez</span>
+													<span class="caption">Small Forward</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
 
-							</ul>
-						</div><!--.panel-body-->
-					</div><!--.panel-->
+								</div><!--.panel-body-->
+							</div><!--.panel-->
+						</div><!--.col-->
+						<div class="col-md-4 col-lg-3 col-sm-6">
+							<div class="panel box-shadow-ccc">
+								<div class="panel-heading">
+									<div class="panel-title">
+										<div class="pull-left">
+											<%= image_tag("placeholders/league.jpg", height: "30", width: "30") %>
+										</div>
+										<div class="pull-left margin-left-10">
+											<h4 class="normal fs_18">
+												Girl's Junior Varsity Basketball
+											</h4>
+											<p class="text-muted margin-top-5">
+												<small>
+													3 Coaches, 12 Players, 1 Manager, 1 Medical Staff
+												</small>
+											</p>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="margin-left-40">
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														<i class="ion-gear-b margin-right-5"></i>
+														Edit
+													</a>
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														View
+													</a>
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														<i class="ion-person-add margin-right-5"></i>
+														Invite User
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div><!--.panel-heading-->
+								<div class="panel-body without-padding">
+									<ul class="list-material borderless">
+										<li class="divider with-border">
+											Coaching Staff
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Thad McFad</span>
+													<span class="caption">Head Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/2.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">David Swavid</span>
+													<span class="caption">Assistant Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Cordis Lordis</span>
+													<span class="caption">Assistant Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Management & Support Staff
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/12.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Megan Hayward</span>
+													<span class="caption">Team Manager</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Team Manager
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/4.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Raymond Black</span>
+													<span class="caption">On-call Athletic Trainer</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Team Roster
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/5.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Leigh Gregory</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/6.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Kiki Williams</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/7.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Kristin Iwanaga</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/8.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Tasha O'Keith</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/9.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Khadijah Coakley</span>
+													<span class="caption">Power Forward / Center</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/10.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Nicole Berry</span>
+													<span class="caption">Shooting Guard</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/11.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Jacqueline Sanchez</span>
+													<span class="caption">Small Forward</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+
+								</div><!--.panel-body-->
+							</div><!--.panel-->
+						</div><!--.col-->
+						<div class="col-md-4 col-lg-3 col-sm-6">
+							<div class="panel box-shadow-ccc">
+								<div class="panel-heading">
+									<div class="panel-title">
+										<div class="pull-left">
+											<%= image_tag("placeholders/league.jpg", height: "30", width: "30") %>
+										</div>
+										<div class="pull-left margin-left-10">
+											<h4 class="normal fs_18">
+												Girl's Junior Varsity Basketball
+											</h4>
+											<p class="text-muted margin-top-5">
+												<small>
+													3 Coaches, 12 Players, 1 Manager, 1 Medical Staff
+												</small>
+											</p>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="margin-left-40">
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														<i class="ion-gear-b margin-right-5"></i>
+														Edit
+													</a>
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														View
+													</a>
+													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+														<i class="ion-person-add margin-right-5"></i>
+														Invite User
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div><!--.panel-heading-->
+								<div class="panel-body without-padding">
+									<ul class="list-material borderless">
+										<li class="divider with-border">
+											Coaching Staff
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Thad McFad</span>
+													<span class="caption">Head Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/2.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">David Swavid</span>
+													<span class="caption">Assistant Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Cordis Lordis</span>
+													<span class="caption">Assistant Coach</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Management & Support Staff
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/12.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Megan Hayward</span>
+													<span class="caption">Team Manager</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Team Manager
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/4.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Raymond Black</span>
+													<span class="caption">On-call Athletic Trainer</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border">
+											Team Roster
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/5.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Leigh Gregory</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/6.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Kiki Williams</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/7.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Kristin Iwanaga</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/8.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Tasha O'Keith</span>
+													<span class="caption">Collaboratively administrate</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/9.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Khadijah Coakley</span>
+													<span class="caption">Power Forward / Center</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/10.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Nicole Berry</span>
+													<span class="caption">Shooting Guard</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<img src="../../assets/globals/img/faces/11.jpg" class="face-radius" alt="">
+												</div>
+												<div class="list-content">
+													<span class="title">Jacqueline Sanchez</span>
+													<span class="caption">Small Forward</span>
+												</div>
+												<div class="list-action-right">
+													<span class="top">15 min</span>
+													<i class="ion-search bottom"></i>
+												</div>
+											</a>
+										</li>
+
+								</div><!--.panel-body-->
+							</div><!--.panel-->
+						</div><!--.col-->
+					</div>
+					<!-- <ul class="list-material">
+						<% @teams.each do |team| %>
+							<li class="has-action-left has-action-right">
+								<a href="#" class="visible">
+									<div class="list-action-left">
+										<i class="ion-university icon-circle"></i>
+									</div>
+									<div class="list-content">
+										<span class="title">
+											<%= link_to team.name, "/teams/#{team.slug}" %>
+										</span>
+										<span class="caption">Basketball</span>
+									</div>
+									<div class="list-action-right">
+										<span class="top">15 min</span>
+										<i class="ion-android-done bottom"></i>
+									</div>
+								</a>
+							</li>
+						<% end %>
+					</ul> -->
 				</div>
 				<!--#teams.tab-pane-->
 
 				<!-- people -->
 				<div id="people" class="tab-pane">
-					<div class="panel">
-						<div class="panel-body without-padding">
-							<ul class="list-material has-hidden">
-								<% @people.each do |person| %>
-						       		<%= render 'person', person: person %>
-						    	<% end %>
-							</ul>
-						</div><!--.panel-body-->
-					</div><!--.panel-->
+					<div class="row">
+						<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 well">
+							<h3 class="center">
+								<i class="ion-search margin-right-20 text-blue"></i>	
+								Find anyone in our Athletic Community
+							</h3>
+							<div class="row margin-top-20">
+								<div class="col-md-3">
+									<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+										<option>Coaches</option>
+										<option>School</option>
+										<option>School District</option>
+										<option>Youth</option>
+										<option>Adult</option>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+										<option>Athletes</option>
+										<option>School</option>
+										<option>School District</option>
+										<option>Youth</option>
+										<option>Adult</option>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+										<option>Healthcare</option>
+										<option>School</option>
+										<option>School District</option>
+										<option>Youth</option>
+										<option>Adult</option>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+										<option>Administrators</option>
+										<option>School</option>
+										<option>School District</option>
+										<option>Youth</option>
+										<option>Adult</option>
+									</select>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div>
+					<br/>
+
+					<div class="row">
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/2.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/3.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/4.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/5.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/6.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/7.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+						</div><!--.col-->
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/2.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/3.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/4.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/5.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/6.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/7.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+						</div><!--.col-->
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/2.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/3.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/4.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/5.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/6.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/7.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+						</div><!--.col-->
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/2.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/3.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/4.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/5.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/6.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/7.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title">Nicholas Murray</p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+						</div><!--.col-->
+					</div>
+
+					<!-- <ul class="list-material has-hidden">
+						<%# @people.each do |person| %>
+				       		<%#= render 'person', person: person %>
+				    	<%# end %>
+					</ul> -->
 				</div>
 				<!--#roster.tab-pane-->
 				
 				<!-- events -->
 				<div id="events" class="tab-pane">
+
+					<div class="row">
+						<div class="col-md-4">
+							<div class="panel">
+								<div class="panel-heading">
+									<div class="panel-title">
+										<h4>
+											<%= image_tag("icons/today.png", class: "margin-right-10",height: "30", width: "auto")%>
+											TODAY'S SPORTS CALENDAR
+										</h4>
+									</div>
+								</div><!--.panel-heading-->
+								<div class="panel-body without-padding">
+									<ul class="list-calendar list-calendar-fixed">
+										<li>
+											<div class="date">
+												<span class="number">27</span>
+												<span class="text">Mon</span>
+											</div><!--.date-->
+											<div class="event">
+												<div class="card card-calendar card-green">
+													<div class="event-detail">
+														<div class="primary">Women's Baskebtall Practice</div><!--.primary-->
+													</div><!--.event-detail-->
+												</div><!--.card-->
+											</div><!--.event-->
+										</li>
+									</ul>
+									<ul class="list-calendar list-calendar-day-view" style="height: 700px; overflow: auto">
+										<li>
+											<div class="date">
+												<span class="text">00:00</span>
+											</div><!--.date-->
+											<div class="event">
+
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">01:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">02:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">03:00</span>
+											</div><!--.date-->
+											<div class="event">
+												<div class="card card-calendar card-teal">
+													<div class="event-detail">
+														<div class="primary">Softball Awards Ceremony</div><!--.primary-->
+													</div><!--.event-detail-->
+												</div><!--.card-->
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">04:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">05:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">06:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">07:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">08:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">09:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">10:00</span>
+											</div><!--.date-->
+											<div class="event">
+												<div class="card card-calendar card-blue">
+													<div class="event-detail">
+														<div class="primary">	 Davidson</div><!--.primary-->
+														<div class="secondary">Birthday</div><!--.secondary-->
+														<div class="related-image">
+															<img src="../../assets/globals/img/faces/12.jpg" alt="">
+														</div><!--.related-image-->
+													</div><!--.event-detail-->
+												</div><!--.card-->
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">11:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">12:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">13:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">14:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">15:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">16:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">17:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">18:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">19:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">20:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">21:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">22:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date">
+												<span class="text">23:00</span>
+											</div><!--.date-->
+											<div class="event">
+											</div><!--.event-->
+										</li>
+									</ul>
+								</div><!--.panel-body-->
+							</div><!--.panel-->
+						</div><!--.col-->
+						<div class="col-md-4">
+							<div class="panel">
+								<div class="panel-heading">
+									<div class="panel-title">
+										<h4>
+											<%= image_tag("icons/practice.png", class: "margin-right-10", height: "30", width: "auto")%>
+											PRACTICE CALENDAR
+										</h4>
+									</div>
+								</div><!--.panel-heading-->
+								<div class="panel-body without-padding">
+									<ul class="list-calendar" style="height: 700px; overflow: auto">
+										<li>
+											<div class="date">
+												<span class="number">27</span>
+												<span class="text">Mon</span>
+											</div><!--.date-->
+											<div class="event">
+												<div class="card card-calendar card-green">
+													<div class="event-detail">
+														<div class="primary">Future of Web Design</div><!--.primary-->
+														<div class="secondary">Event</div><!--.secondary-->
+													</div><!--.event-detail-->
+												</div><!--.card-->
+											</div><!--.event-->
+											<div class="event">
+												<div class="card card-calendar card-teal">
+													<div class="event-detail">
+														<div class="primary">Stay at 85m2 Central Apartment, London England</div><!--.primary-->
+													</div><!--.event-detail-->
+												</div><!--.card-->
+											</div><!--.event-->
+											<div class="event">
+												<div class="card card-calendar card-blue">
+													<div class="event-detail">
+														<div class="primary">Donald Davidson</div><!--.primary-->
+														<div class="secondary">Birthday</div><!--.secondary-->
+														<div class="related-image">
+															<img src="../../assets/globals/img/faces/12.jpg" alt="">
+														</div><!--.related-image-->
+													</div><!--.event-detail-->
+												</div><!--.card-->
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date text-blue">
+												<span class="number">28</span>
+												<span class="text">Tue</span>
+											</div><!--.date-->
+											<div class="event">
+												<div class="card card-calendar card-calendar-image card-black bg-image sample-bg-image4 bg-opaque5">
+													<div class="event-detail">
+														<div class="primary">After party at FOWA</div><!--.primary-->
+														<div class="secondary">London, England</div><!--.secondary-->
+													</div><!--.event-detail-->
+												</div><!--.card-->
+											</div><!--.event-->
+										</li>
+										<li class="week-seperator">
+											<span>April 4-10</span>
+										</li>
+										<li>
+											<div class="date text-red">
+												<span class="number">6</span>
+												<span class="text">Wed</span>
+											</div><!--.date-->
+											<div class="event">
+												<div class="card card-calendar card-brown">
+													<div class="event-detail">
+														<div class="primary">Dinner with colleague friends</div><!--.primary-->
+														<div class="secondary">Istanbul, Turkey</div><!--.secondary-->
+													</div><!--.event-detail-->
+												</div><!--.card-->
+											</div><!--.event-->
+										</li>
+										<li class="month-seperator bg-image sample-bg-image11 bg-opaque7">
+											<span>June</span>
+										</li>
+										<li class="week-seperator">
+											<span>June 7-14</span>
+										</li>
+										<li>
+											<div class="date text-blue-grey">
+												<span class="number">12</span>
+												<span class="text">Thu</span>
+											</div><!--.date-->
+											<div class="event">
+												<div class="card card-calendar card-blue-grey">
+													<div class="event-detail">
+														<div class="primary">Brenda Thompson, Sandra Jimenez</div><!--.primary-->
+														<div class="secondary">Birthday</div><!--.secondary-->
+													</div><!--.event-detail-->
+												</div><!--.card-->
+											</div><!--.event-->
+										</li>
+									</ul>
+								</div><!--.panel-body-->
+							</div><!--.panel-->
+						</div><!--.col-->
+						<div class="col-md-4">
+							<div class="panel">
+								<div class="panel-heading">
+									<div class="panel-title">
+										<h4>
+											<%= image_tag("icons/game.png", class: "margin-right-10",height: "30", width: "auto")%>
+												GAME CALENDAR
+											</h4>
+										</div>
+								</div><!--.panel-heading-->
+								<div class="panel-body without-padding">
+									<ul class="list-calendar" style="height: 700px; overflow: auto">
+										<li>
+											<div class="date">
+												<span class="number">27</span>
+												<span class="text">Mon</span>
+											</div><!--.date-->
+											<div class="event">
+												<div class="card card-calendar card-green">
+													<div class="event-detail">
+														<div class="primary">Future of Web Design</div><!--.primary-->
+														<div class="secondary">Event</div><!--.secondary-->
+													</div><!--.event-detail-->
+												</div><!--.card-->
+											</div><!--.event-->
+											<div class="event">
+												<div class="card card-calendar card-teal">
+													<div class="event-detail">
+														<div class="primary">Stay at 85m2 Central Apartment, London England</div><!--.primary-->
+													</div><!--.event-detail-->
+												</div><!--.card-->
+											</div><!--.event-->
+											<div class="event">
+												<div class="card card-calendar card-blue">
+													<div class="event-detail">
+														<div class="primary">Donald Davidson</div><!--.primary-->
+														<div class="secondary">Birthday</div><!--.secondary-->
+														<div class="related-image">
+															<img src="../../assets/globals/img/faces/12.jpg" alt="">
+														</div><!--.related-image-->
+													</div><!--.event-detail-->
+												</div><!--.card-->
+											</div><!--.event-->
+										</li>
+										<li>
+											<div class="date text-blue">
+												<span class="number">28</span>
+												<span class="text">Tue</span>
+											</div><!--.date-->
+											<div class="event">
+												<div class="card card-calendar card-calendar-image card-black bg-image sample-bg-image4 bg-opaque5">
+													<div class="event-detail">
+														<div class="primary">After party at FOWA</div><!--.primary-->
+														<div class="secondary">London, England</div><!--.secondary-->
+													</div><!--.event-detail-->
+												</div><!--.card-->
+											</div><!--.event-->
+										</li>
+										<li class="week-seperator">
+											<span>April 4-10</span>
+										</li>
+										<li>
+											<div class="date text-red">
+												<span class="number">6</span>
+												<span class="text">Wed</span>
+											</div><!--.date-->
+											<div class="event">
+												<div class="card card-calendar card-brown">
+													<div class="event-detail">
+														<div class="primary">Dinner with colleague friends</div><!--.primary-->
+														<div class="secondary">Istanbul, Turkey</div><!--.secondary-->
+													</div><!--.event-detail-->
+												</div><!--.card-->
+											</div><!--.event-->
+										</li>
+										<li class="month-seperator bg-image sample-bg-image11 bg-opaque7">
+											<span>June</span>
+										</li>
+										<li class="week-seperator">
+											<span>June 7-14</span>
+										</li>
+										<li>
+											<div class="date text-blue-grey">
+												<span class="number">12</span>
+												<span class="text">Thu</span>
+											</div><!--.date-->
+											<div class="event">
+												<div class="card card-calendar card-blue-grey">
+													<div class="event-detail">
+														<div class="primary">Brenda Thompson, Sandra Jimenez</div><!--.primary-->
+														<div class="secondary">Birthday</div><!--.secondary-->
+													</div><!--.event-detail-->
+												</div><!--.card-->
+											</div><!--.event-->
+										</li>
+									</ul>
+								</div><!--.panel-body-->
+							</div><!--.panel-->
+						</div><!--.col-->
+						
+					</div><!--.row-->
 					
 					<% @events.each do |event| %>
 						<div class="col-md-6">
@@ -229,32 +2329,28 @@
 
 				<!--#events.tab-pane-->
 				<% if AthleticDirector.where(user_id: current_user.id, school_id: @school.id).present? %>
-				<!-- certifications -->
-				<div id="certifications" class="tab-pane">
-					
-				<% @certifications.each do |cert| %>
-				
-				certification: <%= cert.certification.name %><br>
-				issuer: <%= cert.certification.issuer %><br>
-				user: <%= cert.user.full_name %><br>
-				expiration: <%= cert.expiration %><br>
-				send notification: <%=  %><br>
-				
-				
-				<br><br><% end %>
-					
-				</div>
+					<!-- certifications -->
+					<div id="certifications" class="tab-pane">
+						
+						<% @certifications.each do |cert| %>
+						
+							certification: <%= cert.certification.name %><br>
+							issuer: <%= cert.certification.issuer %><br>
+							user: <%= cert.user.full_name %><br>
+							expiration: <%= cert.expiration %><br>
+							send notification: <%=  %><br>
+							<br><br>
 
-
-				<!--#certfications.tab-pane-->
+						<% end %>
+						
+					</div>
+					<!--#certfications.tab-pane-->
 				<% end %>
 
 				<!-- facilities -->
 				<div id="facilities" class="tab-pane">
 					<% @facilities.each do |facility| %>
-					
-					<%= link_to facility.name, "/facilities/#{facility.slug}" %>
-					
+						<%= link_to facility.name, "/facilities/#{facility.slug}" %>
 					<% end %>
 				</div>
 				<!--#facilities.tab-pane-->
@@ -262,9 +2358,84 @@
 				<!-- media -->
 				<div id="media" class="tab-pane">
 
+					<div class="row">
+						<div class="col-md-3">
+							<div class="card card-video card-player-orange">
+
+								<div class="card-heading">
+
+									<video id="youtube1" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" data-width="640" data-height="360" data-setup='{ "techOrder": ["youtube"], "src": "https://www.youtube.com/watch?v=qpwG8hbFY3g" }'></video>
+
+								</div><!--.card-heading-->
+
+								<div class="card-body">
+									<h5 class="semi-bold no-margin">Woodlawn High vs Milford Mill</h5>
+									<p class="small text-muted">
+										<small>Published on Dec 3, 2014</small>
+									</p>
+								</div><!--.card-body-->
+
+							</div><!--.card-->
+						</div><!--.col-md-6-->
+						<div class="col-md-3">
+							<div class="card card-video card-player-orange">
+
+								<div class="card-heading">
+
+									<video id="youtube2" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" data-width="640" data-height="360" data-setup='{ "techOrder": ["youtube"], "src": "https://www.youtube.com/watch?v=AOfkMP963fI" }'></video>
+
+								</div><!--.card-heading-->
+
+								<div class="card-body">
+									<h5 class="semi-bold no-margin">Milford Mill Justin Jenifer Highlights</h5>
+									<p class="small text-muted">
+										<small>Published on Dec 12, 2013</small>
+									</p>
+								</div><!--.card-body-->
+
+							</div><!--.card-->
+						</div><!--.col-md-6-->
+						<div class="col-md-3">
+							<div class="card card-video card-player-orange">
+
+								<div class="card-heading">
+
+									<video id="youtube3" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" data-width="640" data-height="360" data-setup='{ "techOrder": ["youtube"], "src": "https://www.youtube.com/watch?v=wGW6OIas9T8" }'></video>
+
+								</div><!--.card-heading-->
+
+								<div class="card-body">
+									<h5 class="semi-bold no-margin">Milford Mill Marching Band(2013)</h5>
+									<p class="small text-muted">
+										<small>Published on May 29, 2014</small>
+									</p>
+								</div><!--.card-body-->
+
+							</div><!--.card-->
+						</div><!--.col-md-6-->
+						<div class="col-md-3">
+							<div class="card card-video card-player-orange">
+
+								<div class="card-heading">
+
+									<video id="youtube4" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" data-width="640" data-height="360" data-setup='{ "techOrder": ["youtube"], "src": "https://www.youtube.com/watch?v=lnVHUINkK2Q" }'></video>
+
+								</div><!--.card-heading-->
+
+								<div class="card-body">
+									<h5 class="semi-bold no-margin">Milford Mill Academy vs Woodlawn</h5>
+									<p class="small text-muted">
+										<small>Published on Nov 9, 2014</small>
+									</p>
+								</div><!--.card-body-->
+
+							</div><!--.card-->
+						</div><!--.col-md-6-->
+					</div>
+
 				</div>
-				<!--#media.tab-pane-->
-        <%= render 'shared/photo_tab', photo_owner: @school %>
+				
+				<%= render 'shared/photo_tab', photo_owner: @school %>
 			</div><!--.tab-content-->
 		</div><!--.col-->
 	</div><!--.row-->
@@ -272,13 +2443,5 @@
 	<%= render "shared/modals/boostrap_image_gallery_lightbox" %>
 
 </div><!--.content-->
-
-
-
-
-
-
-
-
 
 
