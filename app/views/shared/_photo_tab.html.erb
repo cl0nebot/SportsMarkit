@@ -3,7 +3,7 @@
     <div class="fileinput fileinput-new" data-provides="fileinput">
 
       <div id="photo_image" class="jcrop-preimage jcrop-server fileinput-preview" data-trigger="fileinput">
-        <%= image_tag photo_owner.main_photo.image.url(:cropped) %>
+        <%= image_tag photo_owner.main_photo.image.url(:cropped), id: 'picture' %>
       </div>
 
       <div id="preview-pane" style="right: -800px; display: none;">

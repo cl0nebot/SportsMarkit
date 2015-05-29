@@ -40,6 +40,6 @@ module ApplicationHelper
      'User' => image_path("thumbs/football-game.jpg"),
      'Team' => 'http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg',
      'Facility' => 'http://despacedesigns.com/wp-content/uploads/2013/11/blog_YMCA_AB_2L3V9636.jpg'}
-    obj.main_photo.try(:persisted?) ? obj.main_photo.image.url(:cropped) : urls[obj.class.to_s]
+    (obj.main_photo.try(:persisted?) && obj.main_photo.image.url.present?) ? obj.main_photo.image.url : urls[obj.class.to_s]
   end
 end

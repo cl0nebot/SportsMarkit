@@ -14,10 +14,9 @@
 <div class="content">
 	<div class="page-header full-content parallax">
 		
-		<div class="parallax-bg" style="background: url(<%= background_url(@school) %>) 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
-		</div>
+    <%= render 'shared/background_photo_tab', photo_owner: @school %>
 
-		<div class="bg-overlay"></div><!--.bg-overlay-->
+		<!--<div class="bg-overlay"></div>&lt;!&ndash;.bg-overlay&ndash;&gt;-->
 
 
 		<div class="profile-info">
@@ -1431,7 +1430,7 @@
 
 				</div>
 				
-				<%= render 'shared/photo_tab', photo_owner: @school %>
+				<%= render 'shared/background_photo_tab', photo_owner: @school %>
 			</div><!--.tab-content-->
 		</div><!--.col-->
 	</div><!--.row-->
