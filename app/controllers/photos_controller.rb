@@ -7,7 +7,7 @@ class PhotosController < ApplicationController
   end
 
   def update
-    Photo.find(params[:id]).update(photo_params)
+    Photo.find(params[:id]).update_attributes(photo_params)
     redirect_to :back
   end
 
@@ -18,7 +18,7 @@ class PhotosController < ApplicationController
     end
 
     def photo_params
-      params.require(:photo).permit(:image, :main, :image_crop_x, :image_crop_y, :image_crop_w, :image_crop_h)
+      params.require(:photo).permit(:image, :main, :image_crop_x, :image_crop_y, :image_crop_w, :image_crop_h, :offset_x, :offset_y, :zoom)
     end
 
 end

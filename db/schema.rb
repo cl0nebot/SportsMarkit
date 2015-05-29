@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523182359) do
+ActiveRecord::Schema.define(version: 20150528233721) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -202,6 +202,7 @@ ActiveRecord::Schema.define(version: 20150523182359) do
     t.string  "photo_owner_type"
     t.string  "image"
     t.boolean "main",             default: false
+    t.text    "settings"
   end
 
   add_index "photos", ["photo_owner_id"], name: "index_photos_on_photo_owner_id", using: :btree
