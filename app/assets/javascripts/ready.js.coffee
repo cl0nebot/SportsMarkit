@@ -40,6 +40,8 @@ pictureCropping = ->
   img.cropit
     imageState:
       src: src
+    exportZoom: 0.1
+
     onImageLoaded: ->
       if settings.offset_x? and settings.offset_y?
         img.cropit('offset', {x: parseFloat(settings.offset_x), y: parseFloat(settings.offset_y)})
