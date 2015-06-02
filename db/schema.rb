@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150528233721) do
+ActiveRecord::Schema.define(version: 20150601190915) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -127,7 +127,6 @@ ActiveRecord::Schema.define(version: 20150528233721) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "school_id"
-    t.integer  "team_id"
   end
 
   add_index "facilities", ["slug"], name: "index_facilities_on_slug", unique: true, using: :btree
@@ -141,6 +140,11 @@ ActiveRecord::Schema.define(version: 20150528233721) do
   end
 
   add_index "fans", ["fannable_id", "fannable_type"], name: "index_fans_on_fannable_id_and_fannable_type", using: :btree
+
+  create_table "identity_checks", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "leagues", force: true do |t|
     t.string   "name"
@@ -352,6 +356,21 @@ ActiveRecord::Schema.define(version: 20150528233721) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "classification"
+    t.string   "abbreviation"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "zip_ext"
+    t.float    "latitude",           limit: 24
+    t.float    "longitude",          limit: 24
+    t.boolean  "gmaps"
+    t.string   "phone_number"
+    t.string   "email"
+    t.string   "website"
+    t.string   "stripe_customer_id"
   end
 
   create_table "tournaments", force: true do |t|
@@ -404,6 +423,7 @@ ActiveRecord::Schema.define(version: 20150528233721) do
     t.string   "provider"
     t.string   "uid"
     t.string   "mobile_phone_number"
+    t.integer  "temporary_school_ids"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
