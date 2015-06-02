@@ -59,6 +59,90 @@
 						</div><!--.row-->
 					</div>
 				</div>
+				
+				
+				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+					<div class="panel-body padding-right-40 padding-left-40">
+
+							<br/>
+							<h4 class="text-blue semi-bold">
+								<i class="ion-ios-location margin-right-10"></i> Address and Location Info
+							</h4>
+							<br/>
+							<div class="row example-row">
+								<div class="col-md-12"><h4>Address 1</h4></div><!--.col-md-3-->
+								<div class="col-md-12">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<%= f.text_field :address_1, type: "text", class: "form-control", placeholder: "" %>
+										</div>
+									</div>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
+
+							<div class="row example-row">
+								<div class="col-md-12"><h4>Address 2</h4></div><!--.col-md-3-->
+								<div class="col-md-12">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "" %>
+										</div>
+									</div>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
+
+							<div class="row example-row">
+								<div class="row">
+									<div class="col-md-5">
+										<div class="col-md-12"><h4>City</h4></div><!--.col-md-3-->
+										<div class="col-md-12">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<%= f.text_field :city, type: "text", class: "form-control", placeholder: "" %>
+												</div>
+											</div>
+										</div><!--.col-md-9-->
+									</div>
+									<div class="col-md-2">
+										<div class="col-md-12"><h4>State</h4></div><!--.col-md-3-->
+										<div class="col-md-12">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %>
+												</div>
+											</div>
+										</div><!--.col-md-9-->
+									</div>
+									<div class="col-md-3">
+										<div class="col-md-12"><h4>Zipcode</h4></div><!--.col-md-3-->
+										<div class="col-md-12">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true %>
+												</div>
+											</div>
+										</div><!--.col-md-9-->
+									</div>
+									<div class="col-md-2">
+										<div class="col-md-12"><h4>Ext.</h4></div><!--.col-md-3-->
+										<div class="col-md-12">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true %>
+												</div>
+											</div>
+										</div><!--.col-md-9-->
+									</div>
+								</div>
+							</div><!--.row-->
+					</div>
+				</div>
+				
+					<br/>
+					<%= f.submit "Awesome. Let's create a team!", class: "btn btn-blue btn-lg btn-block btn-ripple" %>
+					<br/>
+				</div>
+				
 			<% end %>
 		</div>
 	</div>  
