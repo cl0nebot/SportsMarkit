@@ -62,18 +62,22 @@ li.step h6 {
 
 <script>
 
-$('a[data-toggle=tab]').each(function () {
-  var $this = $(this);
- 
-  $this.on('shown.bs.tab', function () {
-    $container.imagesLoaded( function () {
-      $container.masonry({
-        columnWidth: '.item',
-        itemSelector: '.item'
-      });   
-    });  
-  });
-});
+  $(document).ready(function() {
+    $('a[data-toggle=tab]').each(function () {
+      var $this = $(this);
+
+      $this.on('shown.bs.tab', function () {
+        $container = $(this);
+        $container.imagesLoaded(function () {
+          $container.masonry({
+            columnWidth: '.item',
+            itemSelector: '.item'
+          });
+        });
+        $('#form2 .images').masonry();
+      });
+    });
+  })
 
 </script>
 
