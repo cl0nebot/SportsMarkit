@@ -51,6 +51,24 @@ class Team < ActiveRecord::Base
     relationships.where(accepted: nil, rejected: nil)
   end
   
+  def accepted_athletes
+    user_ids = Relationship.where(team_id: id, participant: true, accepted: true).pluck(:user_id)
+    User.where(id: user_ids )
+  end
+  
+  def accepted_coaches
+    user_ids = Relationship.where(team_id: id, head: true, accepted: true).pluck(:user_id)
+    User.where(id: user_ids )
+  end
+  
+  def accepted_athlete_relationships
+    Relationship.where(team_id: id, participant: true, accepted: true)
+  end
+  
+  def accepted_coach_relationships
+    Relationship.where(team_id: id, head: true, accepted: true)
+  end
+  
   def self.with_schools
     Team.where.not(school_id: nil)
   end
@@ -84,7 +102,7 @@ class Team < ActiveRecord::Base
     if school_id.present?
       "#{school.city}, #{school.state}"  
     else
-      "TBD CODED"
+      "#{city}, #{state}"
     end
   end
   
