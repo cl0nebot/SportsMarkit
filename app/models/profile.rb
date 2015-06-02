@@ -1,4 +1,5 @@
 class Profile < ActiveRecord::Base
+  include Location
   belongs_to :user
   
   serialize :focus, Array
