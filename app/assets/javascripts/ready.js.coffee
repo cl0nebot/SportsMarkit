@@ -18,7 +18,7 @@ $(document).ready ->
   $(".best_in_place").best_in_place();
   $('[name="photo[image]"]').change ->
     $('#crop-image').hide()
-    $('.preview-container').hide()
+    $(  '.preview-container').hide()
     $('#f_x, #f_y, #f_w, #f_h').val('')
   pictureCropping()
 

@@ -5,8 +5,10 @@
     <div class="row">
       <div class="col-md-1">
         <div class="list-action-left">
-          <%= link_to certificate_path(m), class: "btn btn-floating btn-orange btn-sm btn-ripple margin-top-10", method: :delete, remote: :true  do %>
-            <i class="ion-close"></i>
+          <% if m.persisted? %>
+            <%= link_to certificate_path(m), class: "btn btn-floating btn-orange btn-sm btn-ripple margin-top-10", method: :delete, remote: :true  do %>
+              <i class="ion-close"></i>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -28,8 +30,8 @@
               <div class="col-md-12">
                 <div class="checkboxer form-inline">
                   <!-- THIS NEEDS TO BE PASSED A UNIQUE ID INORDER TO WORK -->
-                  <%= f.check_box :expires %>
-                  <label for="certificate_expires"></label>
+                  <%= f.check_box :expires, id: "certificate_expires_#{m.fake_id}" %>
+                  <label for="certificate_expires_<%=m.fake_id%>"></label>
                   <!-- THIS NEEDS TO BE PASSED A UNIQUE ID INORDER TO WORK -->
                 </div>
               </div><!--.col-md-9-->
