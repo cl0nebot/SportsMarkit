@@ -162,7 +162,7 @@
 			
 			<% else %>
 			
-   		<% if params[:action] == "show" %>
+   		<% if params[:action] == "show" && @team.school.present? %>
    		  <% @team.school.facilities.each do |facility| %>
    		    <%= facility.name %>
    		<div id="team-facility-<%= facility.id %>">
