@@ -162,7 +162,7 @@
 					<hr/>
 
 					<div id='team-facility-list'>
-					  <%= render 'teams/facilities', facilities: @team.facilities %>
+					  <%= render 'shared/facilities', facilities: @team.facilities %>
 				    </div>
 
 				</div>
@@ -170,6 +170,11 @@
 
 				<!-- media -->
 				<div id="media" class="tab-pane">
+					<div class="row">
+	
+                    <%= render 'shared/media' %>
+						
+					</div>
 
 				</div>
 				<!--#media.tab-pane-->

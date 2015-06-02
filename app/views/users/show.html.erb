@@ -29,7 +29,7 @@
 			<div class="profile-text light capitalize">
 				<%= @user.full_name %>
 				<span class="caption">
-					<%= "Baltimore, Maryland" %> 
+					<%= @user.profile.location_description %> 
 				</span>
 			</div><!--.profile-text-->
 		</div><!--.profile-info-->
@@ -240,7 +240,7 @@
 													<%= team.sport %>
 												</div><!--.card-subhead-->
 												<div class="card-subhead capitalize">
-													<i class="ion-location"></i> [city, state]
+													<i class="ion-location"></i> <%= team.city_state %>
 												</div><!--.card-subhead-->
 											</div>
 										</div><!--.card-heading-->
@@ -267,47 +267,22 @@
 								<div class="panel">
 									<div class="panel-body without-padding">
 										<ul class="list-material borderless">
-											
-											<li class="has-action-left">
+											 <% @teammates.each do |teammate| %>
+											 <% if @teammates.first.id == teammate.id %>
+											    <li class="has-action-left">
+												<% else %>
+												<li class="has-action-left divider with-border">
+												<% end %>
 												<a href="#" class="visible">
 													<div class="list-action-left">
-														<img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
+														<img src="<%= teammate.avatar %>" class="face-radius" alt="">
 													</div>
 													<div class="list-content">
-														<span class="title">Margaret Ellis</span>
+														<span class="title"><%= teammate.full_name %></span>
 													</div>
 												</a>
 											</li>
-											<li class="has-action-left divider with-border">
-												<a href="#" class="visible">
-													<div class="list-action-left">
-														<img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
-													</div>
-													<div class="list-content">
-														<span class="title">Margaret Ellis</span>
-													</div>
-												</a>
-											</li>
-											<li class="has-action-left divider with-border">
-												<a href="#" class="visible">
-													<div class="list-action-left">
-														<img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
-													</div>
-													<div class="list-content">
-														<span class="title">Margaret Ellis</span>
-													</div>
-												</a>
-											</li>
-											<li class="has-action-left divider with-border">
-												<a href="#" class="visible">
-													<div class="list-action-left">
-														<img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
-													</div>
-													<div class="list-content">
-														<span class="title">Margaret Ellis</span>
-													</div>
-												</a>
-											</li>
+											<% end %>
 										</ul>
 									</div><!--.panel-body-->
 								</div><!--.panel-->
@@ -330,9 +305,13 @@
 														<div class="overflow-content">
 															<h4>Follow <%= teammate.first_name %></h4>
 															<ul class="inline-list social-list borderless">
-																<li><a class="btn btn-facebook btn-ripple"><i class="ion-social-facebook"></i></a></li>
-																<li><a class="btn btn-twitter btn-ripple"><i class="ion-social-twitter"></i></a></li>
-																<li><a class="btn btn-googleplus btn-ripple"><i class="ion-social-googleplus"></i></a></li>
+																<li><%= link_to "#{teammate.profile.facebook}", class: "btn btn-facebook btn-ripple" do %>
+																<i class="ion-social-facebook"></i>
+																<% end %></li>
+																<li><%= link_to "#{teammate.profile.twitter}", class: "btn btn-twitter btn-ripple" do %>
+																<i class="ion-social-twitter"></i>
+																<% end %></li>														
+																<!-- <li><a class="btn btn-googleplus btn-ripple"><i class="ion-social-googleplus"></i></a></li> -->
 															</ul>
 														</div><!--.overflow-content-->
 														<div class="clickable-close-button">
@@ -382,8 +361,8 @@
 
 									<div class="card-body">
 										<div class="calendar">
-											<div class="month">November</div>
-											<div class="date">27</div>
+											<div class="month"><%= format(att.event.starts_at, 9)%></div>
+											<div class="date"><%= format(att.event.starts_at, 10)%></div>
 										</div><!--.calendar-->
 										<h4 style="margin-bottom: 0;"><%= att.event.title %></h4>
 										<p>
@@ -441,6 +420,12 @@
 
 					<!-- media -->
 					<div id="media" class="tab-pane">
+						
+						<div class="row">
+	
+	                    <%= render 'shared/media' %>
+						
+						</div>
 
 						
 					</div>
