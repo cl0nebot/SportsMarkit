@@ -32,10 +32,10 @@
             Member since: <%= format(user.created_at, 4) %>
           </span>
           <br/>
-          [age] year old<br/>
+          <%= user.age %> years old<br/>
           <i class="ion-location text-blue margin-right-5"></i>[city, state]<br/>
           <i class="ion-email text-blue margin-right-5"></i> <%= user.email %><br/>
-          <i class="ion-phone text-blue"></i> <%= user.mobile_phone_number %>
+          <i class="ion-phone text-blue"></i> <%= number_to_phone(user.mobile_phone_number) %>
         </div>
       </div><!--.card-body-->
 
