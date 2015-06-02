@@ -1,10 +1,10 @@
 <% users_schools_teams.each do |team| %>
-  <li class="has-action-left has-action-right">
+  <li class="has-action-left has-action-right" id="school_team_<%= team.id %>">
     <a href="#" class="visible">
       <div class="list-action-left">
-        <a class="btn btn-floating btn-orange btn-ripple">
+        <%= link_to user_remove_school_team_path(user_id: @user.id, team_id: team.id ) , class: 'btn btn-floating btn-orange btn-ripple', remote: true, method: :delete do %>
           <i class="ion-android-close"></i>
-        </a>
+        <% end %>
       </div>
       <div class="list-content padding-left-30">
 

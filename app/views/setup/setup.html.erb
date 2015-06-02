@@ -67,13 +67,6 @@ li.step h6 {
       var $this = $(this);
 
       $this.on('shown.bs.tab', function () {
-        $container = $(this);
-        $container.imagesLoaded(function () {
-          $container.masonry({
-            columnWidth: '.item',
-            itemSelector: '.item'
-          });
-        });
         $('#form2 .images').masonry();
       });
     });

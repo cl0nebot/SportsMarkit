@@ -1,0 +1,45 @@
+<div class="col-md-4 element-item" data-category="" style="min-height: 400px;">
+
+  <div class="card card-meal card-meal-blue card-square card-shadow">
+    <div class="card-heading">
+      <h3 class="card-title"><%= team.school.name %></h3>
+
+      <div class="card-subhead">
+        <a href="#">
+          <%= team.name %><br><%= team.id %>
+          <i class="glyphicon glyphicon-map-marker"></i>
+          <%= team.city_state %>
+        </a>
+      </div>
+      <!--.card-subhead-->
+    </div>
+    <!--.card-heading-->
+    <div class="card-body">
+      <div class="image">
+        <a href="#">
+          <!-- placeholder image for school image -->
+          <%= image_tag("placeholders/classroom.jpg") %>
+        </a>
+      </div>
+      <!--.image-->
+    </div>
+    <!--.card-body-->
+    <div class="card-footer">
+      <div id="apply-for-school-team-<%= team.id %>">
+
+        <% unless Relationship.where(team_id: team.id, user_id: current_user.id).present? %>
+          <%= render 'setup/student_athlete_setup/student_athlete_setup_add_school_team_form', team: team %>
+        <% end %>
+
+
+      </div>
+      <!-- team id -->
+    </div>
+    <!--.card-footer-->
+  </div>
+  <!--.card-->
+
+
+  <div class="clearfix"></div>
+
+</div><!--.col-md-4-->

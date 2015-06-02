@@ -1,30 +1,30 @@
-						<% coached_teams.each do |team| %>
-						<li class="has-action-left has-action-right">
-							<a href="#" class="visible">
-								<div class="list-action-left">
-									<a class="btn btn-floating btn-orange btn-ripple">
-										<i class="ion-android-close"></i>
-									</a>
-								</div>
-								<div class="list-content padding-left-30">
+<% coached_teams.each do |team| %>
+  <li class="has-action-left has-action-right" id="coachable_team_<%= team.id %>">
+    <a href="#" class="visible">
+      <div class="list-action-left">
+        <%= link_to user_remove_coach_team_path(user_id: @user.id, team_id: team.id ) , class: 'btn btn-floating btn-orange btn-ripple', remote: true, method: :delete do %>
+          <i class="ion-android-close"></i>
+        <% end %>
+      </div>
+      <div class="list-content padding-left-30">
 									
 									<span class="title">
 										<%= team.proper_name %>
 									</span>
 									<span class="caption">
 										<i class="ion-location"></i>
-										<%= team.city_state %>, 
-										<%#= team.city_state %>, 
-										<%= pluralize team.users.count, "member" %> 
+                    <%= team.city_state %>,
+                    <%#= team.city_state %>,
+                    <%= pluralize team.users.count, "member" %>
 									</span>
-								</div>
-								<div class="list-action-right">
-									<% if current_user.pending_team?(team)%>
-									  <span class="top">Pending</span>
-									<% else %>
-									  <i class="ion-android-checkmark-circle bottom"></i>
-									<% end %>
-								</div>
-							</a>
-						</li>
-						<% end %>
+      </div>
+      <div class="list-action-right">
+        <% if current_user.pending_team?(team) %>
+          <span class="top">Pending</span>
+        <% else %>
+          <i class="ion-android-checkmark-circle bottom"></i>
+        <% end %>
+      </div>
+    </a>
+  </li>
+<% end %>
