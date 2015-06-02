@@ -26,6 +26,7 @@
 		</div>
 	</div><!--.page-header-->
 
+<%= form_for @team do |f| %>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel">
@@ -33,8 +34,25 @@
 
 					<div class="tab-content with-panel">
 						<div class="tab-pane active text-style" id="general">
+							
+							<%= f.select :sport, Sport.pluck(:sport), {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
 
-								Add some stuff here
+								<%= f.text_field :name %>
+								
+								<%= f.text_field :address_1, type: "text", class: "form-control", placeholder: "" %><br>
+								
+								<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "" %><br>
+								
+								<%= f.text_field :city, type: "text", class: "form-control", placeholder: "" %><br>
+								
+								<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %><br>
+								
+							   <%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true %><br>
+							   
+							   <%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true %><br>
+							   
+							   <%= f.submit "Awesome. Let's create a team!", class: "btn btn-blue btn-lg btn-block btn-ripple" %><br>
+									
 
 						</div><!--tab-pane-->
 
@@ -55,6 +73,7 @@
 			</div><!--.panel-->
 		</div><!--.col-md-12-->
 	</div><!--.row-->
+<% end %>
 </div>
 <!--.content-->
                         

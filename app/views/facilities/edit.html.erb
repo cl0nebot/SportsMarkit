@@ -34,7 +34,37 @@
 					<div class="tab-content with-panel">
 						<div class="tab-pane active text-style" id="general">
 
-								Add some stuff here
+								<%= form_for @facility do |f| %>
+								
+								<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%><br>
+								
+								<%= f.check_box :private %><br>
+								
+								<%= f.check_box :publicly_visible %><br>
+								
+								<%= f.text_field :address_1, type: "text", class: "form-control", placeholder: "" %><br>
+								
+								<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "" %><br>
+								
+								<%= f.text_field :city, type: "text", class: "form-control", placeholder: "" %><br>
+								
+								<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %><br>
+								
+								<%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true %><br>
+								
+								<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true %><br>
+								
+								<%= f.text_field :website, type: "text", class: "form-control", placeholder: ""  %><br>
+								
+								<%= f.text_field :email, type: "text", class: "form-control inputmask inputmask-email" %><br>
+								
+								<%= f.text_field :phone_number, type: "text", class: "form-control inputmask inputmask-phone" %><br>
+								
+								<%= f.submit "Awesome. Let's create a facility!", class: "btn btn-blue btn-lg btn-block btn-ripple" %><br>
+								
+								
+					
+								<% end %>
 
 						</div><!--tab-pane-->
 
