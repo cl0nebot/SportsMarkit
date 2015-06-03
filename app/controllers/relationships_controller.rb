@@ -32,10 +32,8 @@ class RelationshipsController < ApplicationController
   
   
   def destroy
-    
-    
   end
-  
+
   def users
     
   end

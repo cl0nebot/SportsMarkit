@@ -104,7 +104,25 @@ class UsersController < ApplicationController
       format.html { redirect_to :back }
     end
   end
-  
+
+  def remove_school_team
+    r = Relationship.where(team_id: params[:team_id], user_id: params[:user_id], participant: true).first
+    r.destroy
+    @team = r.team
+  end
+
+  def remove_non_school_team
+    r = Relationship.where(team_id: params[:team_id], user_id: params[:user_id], participant: true).first
+    r.destroy
+    @team = r.team
+  end
+
+  def remove_coach_team
+    r = Relationship.where(team_id: params[:team_id], user_id: params[:user_id]).first
+    r.destroy
+    @team = r.team
+  end
+
   def add_non_school_team_at_setup
     @user = User.friendly.find(params[:user_id])
     @relationship = Relationship.create(team_id: params[:relationship][:team_id], user_id: params[:relationship][:user_id], participant: params[:relationship][:participant])
@@ -112,7 +130,7 @@ class UsersController < ApplicationController
     @users_non_schools_teams = Team.without_schools.where(id: @users_non_schools_teams_ids)
     @non_school_teams = Team.without_schools - @user.teams
     respond_to do |format|
-      format.js 
+      format.js
       format.html { redirect_to :back }
     end
   end
@@ -128,6 +146,12 @@ class UsersController < ApplicationController
       format.html { redirect_to :back }
     end
   end
+
+  def remove_child
+    rel = ParentChild.where(child_id: params[:child_id], parent_id: params[:user_id]).first
+    rel.destroy
+    @child = rel.child
+  end
   
   def add_child_at_setup
     @user = User.friendly.find(params[:user_id])
@@ -140,13 +164,13 @@ class UsersController < ApplicationController
     end
   end
   
-  def add_non_school_team_at_setup
-    @user = User.friendly.find(params[:user_id])
-    respond_to do |format|
-      format.js
-      format.html { redirect_to :back }
-    end
-  end
+  # def add_non_school_team_at_setup
+  #   @user = User.friendly.find(params[:user_id])
+  #   respond_to do |format|
+  #     format.js
+  #     format.html { redirect_to :back }
+  #   end
+  # end
 
   protected
   

@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     resources :users do
       resources :photos
       post :add_school_team_at_setup
+      delete :remove_school_team
+      delete :remove_non_school_team
+      delete :remove_coach_team
+      delete :remove_child
       post :add_non_school_team_at_setup
       post :add_coach_team_at_setup
       post :add_child_at_setup

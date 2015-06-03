@@ -1,0 +1,2 @@
+$("#child_<%= @child.id %>").remove();
+$('.row.users.images').append('<%= j render 'setup/parent_setup/available_child', child: @child %>');

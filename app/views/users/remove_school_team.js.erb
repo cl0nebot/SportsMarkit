@@ -1,0 +1,2 @@
+$("#school_team_<%= @team.id %>").remove();
+$('.row.schools.images').append('<%= j render 'setup/student_athlete_setup/user_school_team', team: @team %>');
