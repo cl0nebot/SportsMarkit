@@ -4,7 +4,7 @@
     	<%= coach.team.name   %><br>
     </td>
     <td class="v-align-middle">
-    	<%= coach.user.full_name   %>
+    	<span class="capitalize"><%= coach.user.full_name %></span>
     </td>
     <td class="v-align-middle">
     	<%= coach.user.mobile_phone_number   %>
@@ -14,11 +14,8 @@
     </td>
     <td class="v-align-middle">
     	<div class="row clearfix">
-        	<div class="col-md-6">
+        	<div class="col-md-12">
 				<%= link_to "Accept", approve_coach_approval_path(coach.id), method: :patch, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-success row" %>
-
-        	</div>
-    		<div class="col-md-6">
         		<%#= link_to "Delete", ad, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-danger" %>
         	</div>
         </div>

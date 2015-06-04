@@ -1,38 +1,182 @@
-<%= form_for @tournament do |f| %>
-<%= f.hidden_field :user_id, value: current_user.id %>
+<div class="content">
 
-Tournament Name:<%= f.text_field :name %><br>
+	<br/>
 
-Sport<%= f.text_field :sport %><br> <!-- user sport drop down -->
+	<div class="row">
+		<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+			<div class="panel box-shadow-ccc">
+				<div class="panel-header bg-cyan">
+					<br/>
+					<h5 class="text-right text-white semi-bold">Add or Create a New Tournament
+						<i class="ion-plus-circled margin-right-10 margin-left-10 text-white"></i>
+					</h5>
+					<hr class="margin-top-0"/>
+				</div>
 
-Level <%= f.text_field :level %><br>
+				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
+						 	<div class="row text-center">
+								<div class="col-md-12">
+									<h3 class="semi-bold text-primary">Setup a new tournament</h3>
+									<h4>What sport?</h4>
+								</div>
+							</div>
+							<div class="row margin-bottom-0">
+								<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 well">
+									<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+										<option>Basketball</option>
+										<option>Volleyball</option>
+										<option>Tennis </option>
+										<option>Soccer</option>
+										<option>Baseball</option>
+										<option>Softball</option>
+										<option>Dodgeball</option>
+									</select>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
+						</div>
+					</div>
+				</div>
 
-Description <%= f.text_area :description %><br>
+				<%= form_for @tournament do |f| %>
 
-Active <%= f.check_box :active %><br>
+				<%= f.hidden_field :user_id, value: current_user.id %>
 
-<%= f.fields_for :events, @events do |event| %>
+				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+					<div class="panel-body padding-right-40 padding-left-40">
 
-<%= event.hidden_field :user_id, value: current_user.id %>
-<%= event.hidden_field :created_by, value: current_user.id %>
+						<h5 class="semi-bold text-muted text-center">Simply complete the form to create a new tounament.</h5>
+						<br/>
+							
+						<br/>
+						<h4 class="text-blue semi-bold">
+							<i class="ion-ios-location margin-right-10"></i> General Info
+						</h4>
+						<br/>
+						
+						<div class="row example-row">
+							<div class="col-md-12"><h4>Name</h4></div>
+							<div class="col-md-12">
+								<div class="inputer">
+									<div class="input-wrapper">
+										<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
+									</div>
+								</div>
+							</div><!--.col-md-9-->
+						</div><!--.row-->
+
+						<div class="row example-row">
+							<div class="col-md-12"><h4>Level</h4></div>
+							<div class="col-md-12">
+								<div class="inputer">
+									<div class="input-wrapper">
+										<%= f.text_field :level, type: "text", class: "form-control", placeholder: ""%>
+									</div>
+								</div>
+							</div><!--.col-md-9-->
+						</div><!--.row-->
+
+						<div class="row example-row">
+							<div class="col-md-12"><h4>Description</h4></div>
+							<div class="col-md-12">
+								<div class="inputer">
+									<div class="input-wrapper">
+										<%= f.text_area :description, type: "text", class: "form-control", placeholder: ""%>
+									</div>
+								</div>
+							</div><!--.col-md-9-->
+						</div><!--.row-->
+
+						<br/>
+
+						<%= f.fields_for :events, @events do |event| %>
+							<div class="row example-row">
+								<div class="col-md-3"><h4>Facility</h4></div>
+								<div class="col-md-9">
+									<div class="inputer">
+										<%= event.collection_select :facility_ids, Facility.all, :id, :name, {:selected => ""}, {  :multiple => false, :id => "multi", :class => "selecter", :placeholder => "Select A Facility"  } %>
+									</div>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
 
 
-  <div class="field">
-    <%= event.label :starts_at %><br />
-    <%= event.datetime_select :starts_at %>
-  </div>
-  <div class="field">
-    <%= event.label :ends_at %><br />
-    <%= event.datetime_select :ends_at %>
-  </div>
-  
-  <%= event.collection_select :facility_ids, Facility.all, :id, :name, {:selected => ""}, {  :multiple => false, :id => "multi", :class => "selecter", :placeholder => "Select A Facility"  } %>
-
-<% end %>
-
-<br><br>
-
-<%= f.submit %>
+							<div class="row example-row">
+		            <div class="col-md-3">Options</div><!--.col-md-3-->
+		            <div class="col-md-9">
+		                <div class="clearfix margin-bottom-10">
+		                  <div class="checkboxer form-inline">
+		                    <%= f.check_box :active %>
+		                    <label for="tournament_active">Active</label>
+		                  </div>
+		                </div>
+		            </div><!--.col-md-9-->
+		          </div><!--.row-->
 
 
-<% end %>
+      				<!-- event type -->
+		          <div class="row example-row">
+		            <div class="col-md-3">Date and Time</div><!--.col-md-3-->
+		            <div class="col-md-9">
+		              <div class="inputer">
+		                  <div class="input-wrapper">
+		                    <input type="text" style="width: 400px" name="event[reservation]" class="form-control bootstrap-daterangepicker-date-time" value="08/01/2013 1:00 PM - 08/01/2013 1:30 PM">
+		                  </div>
+		                </div>
+		            </div><!--.col-md-9-->
+		          </div><!--.row-->
+
+
+
+						  <div class="field">
+						    <%= event.label :starts_at %><br />
+						    <%= event.datetime_select :starts_at %>
+						  </div>
+						  <div class="field">
+						    <%= event.label :ends_at %><br />
+						    <%= event.datetime_select :ends_at %>
+						  </div>
+							  
+							  
+							<%= event.hidden_field :user_id, value: current_user.id %>
+							<%= event.hidden_field :created_by, value: current_user.id %>
+						<% end %>
+					</div>
+				</div>
+
+					<div class="panel-body padding-right-40 padding-left-40 bg-cyan">
+						<div class="row example-row margin-bottom-0">
+							<div class="col-md-12 text-center">
+								<h3 class="text-white margin-bottom-0">Have and Questions?</h3>
+								<p class="text-white semi-bold">Please check out our 
+									<a href="#" class="text-white">		
+										<u>Tournaments FAQ.</u>
+									</a>
+								</p>
+							</div>
+						</div><!--.row-->
+					</div>
+
+					<div class="form-buttons no-margin">
+						<div class="row">
+							<div class="col-lg-8 col-lg-offset-2">
+								<br/>
+								<%= f.submit "Awesome. Let's create a Tournament!", class: "btn btn-blue btn-lg btn-block btn-ripple" %>
+								<br/>
+							</div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>  
+</div>
+<%#= @id %>
+<%#= @class %>
+
+
+
+
+
+
+

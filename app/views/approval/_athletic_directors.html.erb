@@ -4,21 +4,18 @@
     	<%= ad.school.name   %><br>
     </td>
     <td class="v-align-middle">
-    	<%= ad.user.full_name   %>
+    	<span class="capitalize"><%= ad.user.full_name %></span>
     </td>
     <td class="v-align-middle">
     	<%= ad.user.mobile_phone_number   %>
     </td>
      <td class="v-align-middle">
-    	<h5 class="semi-bold muted"><%= ad.created_at %></h4>
+    	<p class="small muted"><%= ad.created_at %></p>
     </td>
     <td class="v-align-middle">
     	<div class="row clearfix">
-        	<div class="col-md-6">
+        	<div class="col-md-12">
 				<%= link_to "Accept", approve_director_approval_path(ad.id), method: :patch, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-success row" %>
-
-        	</div>
-    		<div class="col-md-6">
         		<%#= link_to "Delete", ad, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-danger" %>
         	</div>
         </div>

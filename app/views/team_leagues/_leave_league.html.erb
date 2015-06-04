@@ -1,1 +1,9 @@
-<%= link_to "Leave League", TeamLeague.where(team_id: team.id, league_id: league.id ).last , method: :delete, remote: true %>
+<%= link_to TeamLeague.where(team_id: team.id, league_id: league.id ).last , method: :delete, remote: true, class: "btn btn-sm btn-danger pull-right" do %>
+	Remove <i class="ion-close-circled pull-right margin-left-10"></i> 
+<% end %>
+<%= league.name %>
+<div class="clearfix"></div>
+<hr/>
+
+
+

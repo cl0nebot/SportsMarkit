@@ -16,6 +16,11 @@ $(document).on  'click', '.submit-form', ->
 
 $(document).ready ->
   $(".best_in_place").best_in_place();
+
+  $('a[data-toggle="tab"]').on 'shown.bs.tab', (e)->
+    if $('#youtube1').length
+      WidgetVideo.responsiveVideo()
+
   $('[name="photo[image]"]').change ->
     $('#crop-image').hide()
     $(  '.preview-container').hide()

@@ -1,27 +1,24 @@
 <div class="modal fade full-height from-right" id="panel-new-team-league" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Add a New League</h4>
+			<div class="modal-header padding-left-40 padding-right-40">
+				<h4 class="semi-bold modal-title text-primary">Select all leagues that apply.</h4>
 			</div>
-			<div class="modal-body">
+			<hr class="margin-bottom-0 margin-top-10"/>
+			<div class="modal-body padding-left-40 padding-right-40">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="panel">
-							<div class="panel-heading">
-								<div class="panel-title"><h4>Complete the form below. </h4></div>
-							</div><!--.panel-heading-->
 							<div class="panel-body">
 								
 								<% League.all.each do |league| %>
 
-                               <div id="league-<%= league.id %>">
-								<% unless TeamLeague.where(team_id: @team.id, league_id: league.id ).present? %>
-								  <%= render 'team_leagues/join_league', team: @team, league: league %>
-								<% else %>
-								  <%= render 'team_leagues/leave_league', team: @team, league: league %>
-								<% end %>
-							    </div>
+	                               <div id="league-<%= league.id %>">
+									<% unless TeamLeague.where(team_id: @team.id, league_id: league.id ).present? %>
+									  <%= render 'team_leagues/join_league', team: @team, league: league %>
+									<% else %>
+									  <%= render 'team_leagues/leave_league', team: @team, league: league %>
+									<% end %>
+								    </div>
 
 						        <% end %>
 

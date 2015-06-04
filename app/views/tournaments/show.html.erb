@@ -1,23 +1,79 @@
+<div class="content">
 
+	<br/>
 
-<%= link_to "Event Page", @tournament.events.first %><br>
+	<div class="row">
+		<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+			<div class="panel box-shadow-ccc">
+				<div class="panel-header bg-cyan">
+					<br/>
+					<h5 class="text-right text-white semi-bold">Tournament Information
+						<i class="ion-information-circled margin-right-10 margin-left-10 text-white"></i>
+					</h5>
+					<hr class="margin-top-0"/>
+				</div>
 
-Tournament Name: <%= @tournament.name %><br>
+				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
+						 	<div class="row text-center">
+								<div class="col-md-12">
+									<h1 class="semi-bold text-primary"><%= @tournament.name %></h1>
+									<h4><%= @tournament.sport %>, <%= @tournament.level %></h4>
+									<p class="small"><%= @tournament.description %></p>
+									<p>
+										<%= link_to "View Event Page", @tournament.events.first, class: "btn btn-primary" %>
+									</p>
+									
 
-Tournament Sport: <%= @tournament.sport %><br>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-Tournament Level: <%= @tournament.level %><br>
+				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+					<div class="panel-body padding-right-40 padding-left-40  text-center">
 
-Tournament Description: <%= @tournament.description %><br>
+						<h4 class="text-blue semi-bold">
+							<i class="ion-calendar margin-right-10"></i> Dates & Times
+						</h4>
+						<p class="small muted">
+							<a href="#" class="text-muted"><u><small>View Full Schedule</small></u></a>
+						</p>
+						<h3>
+							<span class="bold">Start:</span> 
+							<span class="margin-left-10"><%= @tournament.events.first.starts_at %></span>
+						</h3>
+						<h3>
+							<span class="bold">Ends:</span>
+							<span class="margin-left-10"><%= @tournament.events.first.ends_at %></span>
+						</h3>
 
-Tournament Start: <%= @tournament.events.first.starts_at %><br>
+						<br/>
+						<h4 class="text-blue semi-bold">
+							<i class="ion-ios-location margin-right-10"></i> Location Information
+						</h4>
+						<p class="small muted">
+							<a href="#" class="text-muted"><u><small>View Facility</small></u></a>
+						</p>
+						<h3 class="semi-bold"><%= @event.facility.name %><h3>
+						<p> 
+							<%= @event.facility.address_1 %>
+						 	<%= @event.facility.city %><br/>
+						 	<%= @event.facility.state %><br/>
+						 	<%= @event.facility.zip %>
+						</p>
+						<h4>
+							<i class="ion-android-call margin-right-10"></i>
+							<%= @event.facility.phone_number %>
+						</h4>
+					</div>
+				</div>
 
-Tournament End: <%= @tournament.events.first.ends_at %><br>
-
-Facility Name: <%= @event.facility.name %><br>
-
-Tournament Location: <%= @event.facility.address_1 %> <%= @event.facility.city %>  <%= @event.facility.state %> <%= @event.facility.zip %><br>
-
-Facility Phone Number: <%= @event.facility.phone_number %>
-
-<%= gmaps4rails(@json) %>
+				<%= gmaps4rails(@json) %>
+			</div>
+			
+		</div>
+	</div>  
+</div>
