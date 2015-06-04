@@ -34,7 +34,16 @@
 					<div class="tab-content with-panel">
 						<div class="tab-pane active text-style" id="general">
 
-								Add some stuff here
+								<%= form_for @league do |f| %>
+								
+								<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%><br>
+								<%= f.text_field :sport, type: "text", class: "form-control", placeholder: "" %><br>
+								<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %><br>
+								<%= f.text_area :description, type: "text", class: "form-control", placeholder: "", row: "6" %><br>
+								<%= f.submit "Awesome. Let's update your league!", class: "btn btn-blue btn-lg btn-block btn-ripple" %>
+								
+								
+								<% end %>
 
 						</div><!--tab-pane-->
 

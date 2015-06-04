@@ -1,0 +1,91 @@
+					<div class="row">
+						<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 well">
+							<h3 class="center">
+								<i class="ion-search margin-right-20 text-blue"></i>	
+								Find anyone in our Athletic Community
+							</h3>
+							<div class="row margin-top-20">
+								<div class="col-md-3">
+									<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+										<% @athletes.each do |user| %>
+											<%= link_to user_path(user) do %>
+												<option><%= user.full_name %></option>
+											<% end %>
+										<% end %>
+									</select>
+								</div>
+								<div class="col-md-3">
+									
+									<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+										<% @athletes.each do |user| %>
+											<%= link_to user_path(user) do %>
+												<option><%= user.full_name %></option>
+											<% end %>
+										<% end %>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+									<% @athletes.each do |user| %>
+										<%= link_to user_path(user) do %>
+											<option><%= user.full_name %></option>
+										<% end %>
+									<% end %>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+										<% @athletes.each do |user| %>
+											<%= link_to user_path(user) do %>
+												<option><%= user.full_name %></option>
+											<% end %>
+										<% end %>
+									</select>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div>
+					<br/>
+
+					<div class="row">
+						
+						
+							
+							<% @people.each_with_index do |person, i| %>
+							<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="card tile card-friend material-animate box-shadow-ccc">
+								<a href="user-profile.html">
+									<img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt="">
+								</a>
+								<div class="friend-content">
+									<div class="margin-bottom-5">
+										<p class="title"><%= person.name %></p>
+										<p><a href="user-profile.html">Student-Athlete, Senior</a></p>
+										<h6 class="margin-top-5 margin-bottom-0"><a href="#" class="text-blue semi-bold">Women's Basketball Team</a></h6>
+										<p><a href="user-profile.html">Power Forward</a></p>
+									</div>
+									<div class="clearfix">
+										<div class="pull-right">
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">View</a>
+											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+										</div>
+										<div class="pull-left">
+											<p class="margin-top-5 margin-bottom-0">
+												<a href="#" class="text-blue semi-bold">+3 teams</a>
+											</p>
+										</div>
+									</div>
+								</div><!--.friend-content-->
+							</div><!--.card-->
+							
+				
+							
+						</div><!--.col-->
+						<% end %>
+		
+						
+						
+						
+		
+			
+					</div>

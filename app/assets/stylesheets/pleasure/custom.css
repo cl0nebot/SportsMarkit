@@ -5,6 +5,9 @@
 }*/
 
 
+.inline-block {display: inline-block;}
+.block {display: block;}
+
 /* Login page */
 
 #youtube {width: 100% !important; min-height: 300px !important;}
@@ -120,3 +123,5 @@ input.form-control {font-size: 26px; line-height: 30px;}
 .social-buttons form {display: inline-block !important;}
 
 .title {text-transform: capitalize;}
+
+.img-thumbnail {padding: 2px;}
