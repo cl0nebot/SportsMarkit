@@ -1,5 +1,5 @@
 class MediaController < ApplicationController
-  before_filter :set_mediable, only: [:new, :create]
+  before_action :set_mediable, only: [:new, :create]
 
   def new
     @media = @mediable.medias.build

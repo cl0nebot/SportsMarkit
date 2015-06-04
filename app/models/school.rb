@@ -12,6 +12,7 @@ class School < ActiveRecord::Base
 
   has_many :athletic_directors, dependent: :destroy
   has_many :users, through: :athletic_directors
+  has_many :medias, as: :mediable
 
   def gmaps4rails_address
   #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki

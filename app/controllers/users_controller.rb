@@ -27,8 +27,8 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     @class = @user.class
     @object = @user
-    @team_ids = @user.relationships.pluck(:team_id)
-    @teammate_ids = Relationship.where(team_id: @team_ids).pluck(:user_id)
+    @team_ids = @user.relationships.where(accepted: true).pluck(:team_id)
+    @teammate_ids = Relationship.where(team_id: @team_ids, accepted: true).pluck(:user_id)
     @teammates = User.where(id: @teammate_ids).uniq - [@user]
     @teams = Team.where(id: @team_ids)
   end
@@ -38,6 +38,7 @@ class UsersController < ApplicationController
     @profile = @user.profile
     @user_profile_picture = @user.user_profile_pictures.build if @user.user_profile_pictures.empty?
     @user_profile_picture = @user.user_profile_pictures.last
+    @object = @user
   end
   
   def update

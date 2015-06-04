@@ -1,0 +1,21 @@
+						              		
+											<div class="panel-body">
+												<h4 class="text-right">Media</h4>
+												<hr class="margin-top-0"/>
+												<h5 class="bold text-primary">Media Uploads</h4>
+												<br/>
+							                    <div id="medias">
+							                      <% @object.medias.each do |m| %>
+							                        <%= render 'media/form', m: m, u: @object %>
+							                      <% end %>
+							                    </div>
+							                </div>
+							                <div class="form-buttons">
+												<div class="row">
+													<div class="col-lg-8 col-lg-offset-2">
+														<%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id})"), method: :get ,remote: true, class: 'btn btn-large btn-blue btn-block' do %>
+															Add New Media <i class="ion-plus-circled margin-left-10"></i>
+														<% end %>
+													</div>
+												</div>
+											</div>

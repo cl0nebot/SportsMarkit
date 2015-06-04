@@ -107,7 +107,7 @@ class TeamsController < ApplicationController
   end
 
   def edit
-    
+    @object = @team
   end
   
   def update

@@ -35,7 +35,9 @@ class SchoolsController < ApplicationController
     @certifications = @school.school_certifications
   end
   
-  def edit;end
+  def edit
+    @object = @school
+  end
   
   def update
     if @school.update_attributes(school_params)

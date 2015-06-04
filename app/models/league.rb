@@ -4,6 +4,7 @@ class League < ActiveRecord::Base
   
   has_many :fans, as: :fannable
   has_many :team_leagues
+  has_many :medias, as: :mediable
   
   def use_for_slug
     existing_league = League.where('slug = ?', self.slug)

@@ -9,6 +9,7 @@ class Team < ActiveRecord::Base
   has_many :events, as: :eventable
   has_many :team_facilities
   has_many :team_leagues
+  has_many :medias, as: :mediable
   
   has_many :relationships
   has_many :users, through: :relationships

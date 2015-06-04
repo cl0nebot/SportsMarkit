@@ -48,7 +48,7 @@ class FacilitiesController < ApplicationController
   end
   
   def edit
-    
+    @object = @facility
   end
   
   def update

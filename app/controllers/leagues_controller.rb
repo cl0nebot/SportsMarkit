@@ -25,7 +25,7 @@ class LeaguesController < ApplicationController
   end 
   
   def edit
-    
+    @object = @league
   end
   
   def update
