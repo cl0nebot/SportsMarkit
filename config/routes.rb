@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-    root 'main#index'
+    root 'main#home'
+
+    get "lockscreen" => "main#lockscreen"
+    get "home" => "main#home"
     
     resources :users do
       resources :photos
