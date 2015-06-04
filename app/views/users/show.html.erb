@@ -1,445 +1,485 @@
 <style>
 
-.sample-bg-image13:before {
+  .sample-bg-image13:before {
 
-  background-image: url('<%=background_url(@user) %>');
-	}
-.card-clickable {
-  padding-bottom: 0;
-}
+    background-image: url('<%=background_url(@user) %>');
+  }
 
-.sample-member9 {
-  background-image: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');
-}
+  .card-clickable {
+    padding-bottom: 0;
+  }
+
+  .sample-member9 {
+    background-image: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');
+  }
 </style>
 
 
 <div class="content">
 
-	<div class="page-header full-content parallax">
-		<div class="parallax-bg" style="background: url('<%= background_url(@user) %>') 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
-		</div>
+<div class="page-header full-content parallax">
+  <div class="parallax-bg" style="background: url('<%= background_url(@user) %>') 50% 50%; background-size: cover; width: 100%; height: 100%; position: absolute; left: 0; top: 0;">
+  </div>
 
-		<div class="profile-info">
-			<div class="profile-photo">
-				<div style="width: 100px; height: 100px; overflow: hidden;">
-					<img src="<%= image_path(@user.avatar) %>" alt="" style="min-height: 100px; height: 100%; width: auto; min-width: 100px; ">
-				</div>
-			</div><!--.profile-photo-->
-			<div class="profile-text light capitalize">
-				<%= @user.full_name %>
-				<span class="caption">
+  <div class="profile-info">
+    <div class="profile-photo">
+      <div style="width: 100px; height: 100px; overflow: hidden;">
+        <img src="<%= image_path(@user.avatar) %>" alt="" style="min-height: 100px; height: 100%; width: auto; min-width: 100px; ">
+      </div>
+    </div>
+    <!--.profile-photo-->
+    <div class="profile-text light capitalize">
+      <%= @user.full_name %>
+      <span class="caption">
 					<%= @user.profile.location_description %> 
 				</span>
-			</div><!--.profile-text-->
-		</div><!--.profile-info-->
+    </div>
+    <!--.profile-text-->
+  </div>
+  <!--.profile-info-->
 
-		<div class="social-buttons">
-			<%= render 'shared/fan' %>
-		</div>
+  <div class="social-buttons">
+    <%= render 'shared/fan' %>
+  </div>
 
-		<div class="row">
-			<div class="col-sm-5">
-				<h1>
-					<i class="ion-calendar m-r-5"></i>
-					Upcoming event 
-					<br/>
-					<small><% if @user.all_events.empty? %>
-						<%= @user.next_event %>
-						<% else %>
-						<%= link_to @user.next_event, event_path(@user.all_events.first.friendly_id) %>
-						<% end %>
-					</small>
-				</h1>
-			</div><!--.col-->
-			<div class="col-sm-6">
-				<ol class="breadcrumb">
-					<li><a href="/"><i class="ion-home"></i></a></li>
-					<li><a href="<%= users_path %>">users</a></li>
-					<li><a href="#" class="active">My Profile</a></li>
-				</ol>
-			</div><!--.col-->
-			<div class="col-sm-1 text-right">
-				<a href="<%= edit_user_path(User.first) %>" class="btn btn-floating btn-light-blue">
-					<i class="ion-android-settings"></i>
-				</a>
-			</div>
-		</div><!--.row-->
+  <div class="row">
+    <div class="col-sm-5">
+      <h1>
+        <i class="ion-calendar m-r-5"></i>
+        Upcoming event
+        <br/>
+        <small>
+          <% if @user.all_events.empty? %>
+            <%= @user.next_event %>
+          <% else %>
+            <%= link_to @user.next_event, event_path(@user.all_events.first.friendly_id) %>
+          <% end %>
+        </small>
+      </h1>
+    </div>
+    <!--.col-->
+    <div class="col-sm-6">
+      <ol class="breadcrumb">
+        <li><a href="/"><i class="ion-home"></i></a></li>
+        <li><a href="<%= users_path %>">users</a></li>
+        <li><a href="#" class="active">My Profile</a></li>
+      </ol>
+    </div>
+    <!--.col-->
+    <div class="col-sm-1 text-right">
+      <a href="<%= edit_user_path(User.first) %>" class="btn btn-floating btn-light-blue">
+        <i class="ion-android-settings"></i>
+      </a>
+    </div>
+  </div>
+  <!--.row-->
 
-		<div class="header-tabs scrollable-tabs sticky">
-			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
-				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
-				<li><a href="#teammates" data-toggle="tab" class="btn-ripple">Teammates</a></li>
-				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
-				<!-- <li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li> -->
-				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
-				<% if ParentChild.where(child_id: @user.id).present? %>
-				<li><a href="#parent-child" data-toggle="tab" class="btn-ripple">Parents</a></li>
-				<% end %>
-				<% if ParentChild.where(parent_id: @user.id).present? %>
-				<li><a href="#parent-child" data-toggle="tab" class="btn-ripple">Children</a></li>
-				<% end %>
-				<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
-        <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li>
-      </ul>
-		</div>
-	</div><!--.page-header-->
-	
+  <div class="header-tabs scrollable-tabs sticky">
+    <ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+      <li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
+      <li><a href="#teammates" data-toggle="tab" class="btn-ripple">Teammates</a></li>
+      <li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
+      <!-- <li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li> -->
+      <li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
+      <% if ParentChild.where(child_id: @user.id).present? %>
+        <li><a href="#parent-child" data-toggle="tab" class="btn-ripple">Parents</a></li>
+      <% end %>
+      <% if ParentChild.where(parent_id: @user.id).present? %>
+        <li><a href="#parent-child" data-toggle="tab" class="btn-ripple">Children</a></li>
+      <% end %>
+      <li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
+      <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li>
+    </ul>
+  </div>
+</div>
+<!--.page-header-->
 
 
-	<div class="row user-profile">
-			<div class="col-md-12">
-				<div class="tab-content without-border">
-					
-					<!-- teams -->
-					<div id="teams" class="tab-pane active">
+<div class="row user-profile">
+<div class="col-md-12">
+<div class="tab-content without-border">
 
-						<div class="col-md-4">
-							<div class="panel">
-								<div class="panel-heading">
-									<div class="panel-title"><h4>Coaching Staff</h4></div>
-								</div><!--.panel-heading-->
-								<div class="panel-body without-padding">
-									<ul class="list-material borderless">
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
-												</div>
-												<div class="list-content">
-													<span class="title">Margaret Ellis</span>
-												</div>
-											</a>
-										</li>
-										<li class="divider with-border">
-											Team Roster
-										</li>
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<img src="../../assets/globals/img/faces/2.jpg" class="face-radius" alt="">
-												</div>
-												<div class="list-content">
-													<span class="title">Raymond Black</span>
-													<span class="caption">Collaboratively administrate</span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">15 min</span>
-													<i class="ion-android-done bottom"></i>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
-												</div>
-												<div class="list-content">
-													<span class="title">Rebecca Welch</span>
-													<span class="caption">Collaboratively administrate</span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">15 min</span>
-													<i class="ion-android-done bottom"></i>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
-												</div>
-												<div class="list-content">
-													<span class="title">Rebecca Welch</span>
-													<span class="caption">Collaboratively administrate</span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">15 min</span>
-													<i class="ion-android-done bottom"></i>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
-												</div>
-												<div class="list-content">
-													<span class="title">Rebecca Welch</span>
-													<span class="caption">Collaboratively administrate</span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">15 min</span>
-													<i class="ion-android-done bottom"></i>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
-												</div>
-												<div class="list-content">
-													<span class="title">Rebecca Welch</span>
-													<span class="caption">Collaboratively administrate</span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">15 min</span>
-													<i class="ion-android-done bottom"></i>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
-												</div>
-												<div class="list-content">
-													<span class="title">Rebecca Welch</span>
-													<span class="caption">Collaboratively administrate</span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">15 min</span>
-													<i class="ion-android-done bottom"></i>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
-												</div>
-												<div class="list-content">
-													<span class="title">Rebecca Welch</span>
-													<span class="caption">Collaboratively administrate</span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">15 min</span>
-													<i class="ion-android-done bottom"></i>
-												</div>
-											</a>
-										</li>
+<!-- teams -->
+<div id="teams" class="tab-pane active">
 
-								</div><!--.panel-body-->
-							</div><!--.panel-->
-						</div><!--.col-->
+  <div class="col-md-4">
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="panel-title"><h4>Coaching Staff</h4></div>
+      </div>
+      <!--.panel-heading-->
+      <div class="panel-body without-padding">
+        <ul class="list-material borderless">
+          <li class="has-action-left">
+            <a href="#" class="visible">
+              <div class="list-action-left">
+                <img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
+              </div>
+              <div class="list-content">
+                <span class="title">Margaret Ellis</span>
+              </div>
+            </a>
+          </li>
+          <li class="divider with-border">
+            Team Roster
+          </li>
+          <li class="has-action-left">
+            <a href="#" class="visible">
+              <div class="list-action-left">
+                <img src="../../assets/globals/img/faces/2.jpg" class="face-radius" alt="">
+              </div>
+              <div class="list-content">
+                <span class="title">Raymond Black</span>
+                <span class="caption">Collaboratively administrate</span>
+              </div>
+              <div class="list-action-right">
+                <span class="top">15 min</span>
+                <i class="ion-android-done bottom"></i>
+              </div>
+            </a>
+          </li>
+          <li class="has-action-left">
+            <a href="#" class="visible">
+              <div class="list-action-left">
+                <img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
+              </div>
+              <div class="list-content">
+                <span class="title">Rebecca Welch</span>
+                <span class="caption">Collaboratively administrate</span>
+              </div>
+              <div class="list-action-right">
+                <span class="top">15 min</span>
+                <i class="ion-android-done bottom"></i>
+              </div>
+            </a>
+          </li>
+          <li class="has-action-left">
+            <a href="#" class="visible">
+              <div class="list-action-left">
+                <img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
+              </div>
+              <div class="list-content">
+                <span class="title">Rebecca Welch</span>
+                <span class="caption">Collaboratively administrate</span>
+              </div>
+              <div class="list-action-right">
+                <span class="top">15 min</span>
+                <i class="ion-android-done bottom"></i>
+              </div>
+            </a>
+          </li>
+          <li class="has-action-left">
+            <a href="#" class="visible">
+              <div class="list-action-left">
+                <img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
+              </div>
+              <div class="list-content">
+                <span class="title">Rebecca Welch</span>
+                <span class="caption">Collaboratively administrate</span>
+              </div>
+              <div class="list-action-right">
+                <span class="top">15 min</span>
+                <i class="ion-android-done bottom"></i>
+              </div>
+            </a>
+          </li>
+          <li class="has-action-left">
+            <a href="#" class="visible">
+              <div class="list-action-left">
+                <img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
+              </div>
+              <div class="list-content">
+                <span class="title">Rebecca Welch</span>
+                <span class="caption">Collaboratively administrate</span>
+              </div>
+              <div class="list-action-right">
+                <span class="top">15 min</span>
+                <i class="ion-android-done bottom"></i>
+              </div>
+            </a>
+          </li>
+          <li class="has-action-left">
+            <a href="#" class="visible">
+              <div class="list-action-left">
+                <img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
+              </div>
+              <div class="list-content">
+                <span class="title">Rebecca Welch</span>
+                <span class="caption">Collaboratively administrate</span>
+              </div>
+              <div class="list-action-right">
+                <span class="top">15 min</span>
+                <i class="ion-android-done bottom"></i>
+              </div>
+            </a>
+          </li>
+          <li class="has-action-left">
+            <a href="#" class="visible">
+              <div class="list-action-left">
+                <img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
+              </div>
+              <div class="list-content">
+                <span class="title">Rebecca Welch</span>
+                <span class="caption">Collaboratively administrate</span>
+              </div>
+              <div class="list-action-right">
+                <span class="top">15 min</span>
+                <i class="ion-android-done bottom"></i>
+              </div>
+            </a>
+          </li>
 
-						<div class="row ">
-							<% @teams.each do |team| %>
-								<div class="col-md-4 col-lg-3 col-sm-12">
-									<div class="card card-meal card-meal-green card-square card-shadow">
-										<div class="card-heading row">
-											<div class="col-md-2">
-												<%= image_tag Sport.find_by_sport(team.sport).try(:default_photo), class: "img-responsive" %>
-											</div>
-											<div class="col-md-10">
-												<h4 class="card-title capitalize">
-													<%= link_to team.name, "/teams/#{team.slug}" %>
-												</h4>
-												<div class="card-subhead capitalize">
-													<%= team.sport %>
-												</div><!--.card-subhead-->
-												<div class="card-subhead capitalize">
-													<i class="ion-location"></i> <%= team.city_state %>
-												</div><!--.card-subhead-->
-											</div>
-										</div><!--.card-heading-->
-										<div class="card-body">
-											<div class="image">
-												<a href="#">
-													<%= image_tag("placeholders/team-3.jpg")%>
-												</a>
-											</div><!--.image-->
-										</div><!--.card-body-->
-									</div><!--.card-->
-								</div><!--.col-md-4-->
-							<% end %>
-						</div><!--.row-->
+      </div>
+      <!--.panel-body-->
+    </div>
+    <!--.panel-->
+  </div>
+  <!--.col-->
 
-					</div>
-					<!--#teams.tab-pane-->
+  <div class="row ">
+    <% @teams.each do |team| %>
+      <div class="col-md-4 col-lg-3 col-sm-12">
+        <div class="card card-meal card-meal-green card-square card-shadow">
+          <div class="card-heading row">
+            <div class="col-md-2">
+              <%= image_tag Sport.find_by_sport(team.sport).try(:default_photo), class: "img-responsive" %>
+            </div>
+            <div class="col-md-10">
+              <h4 class="card-title capitalize">
+                <%= link_to team.name, "/teams/#{team.slug}" %>
+              </h4>
 
-					<!-- people -->
-					<div id="teammates" class="tab-pane">
-						
-						<div class="row">
-							<div class="col-md-2">
-								<div class="panel">
-									<div class="panel-body without-padding">
-										<ul class="list-material borderless">
-											 <% @teammates.each do |teammate| %>
-											 <% if @teammates.first.id == teammate.id %>
-											    <li class="has-action-left">
-												<% else %>
-												<li class="has-action-left divider with-border">
-												<% end %>
-												<a href="#" class="visible">
-													<div class="list-action-left">
-														<img src="<%= teammate.avatar %>" class="face-radius" alt="">
-													</div>
-													<div class="list-content">
-														<span class="title"><%= teammate.full_name %></span>
-													</div>
-												</a>
-											</li>
-											<% end %>
-										</ul>
-									</div><!--.panel-body-->
-								</div><!--.panel-->
-							</div><!--.col-->
-							<div class="col-md-10">
-								<div class="row">
-			                       <% @teammates.each do |teammate| %>
-										<%= link_to user_path(teammate) do %>
-											<div class="col-md-4 col-lg-3 col-sm-12">
-												<div class="card card-user card-clickable card-clickable-over-content">
-												<div class="card-heading heading-full">
-													<div class="user-image sample-member9"></div>
+              <div class="card-subhead capitalize">
+                <%= team.sport %>
+              </div>
+              <!--.card-subhead-->
+              <div class="card-subhead capitalize">
+                <i class="ion-location"></i> <%= team.city_state %>
+              </div>
+              <!--.card-subhead-->
+            </div>
+          </div>
+          <!--.card-heading-->
+          <div class="card-body">
+            <div class="image">
+              <a href="#">
+                <%= image_tag("placeholders/team-3.jpg") %>
+              </a>
+            </div>
+            <!--.image-->
+          </div>
+          <!--.card-body-->
+        </div>
+        <!--.card-->
+      </div>
+      <!--.col-md-4-->
+    <% end %>
+  </div>
+  <!--.row-->
 
-													<div class="clickable-button">
-														<div class="layer bg-green"></div>
-														<a class="btn btn-floating btn-green initial-position floating-open"><i class="ion-android-share-alt"></i></a>
-													</div>
+</div>
+<!--#teams.tab-pane-->
 
-													<div class="layered-content bg-green">
-														<div class="overflow-content">
-															<h4>Follow <%= teammate.first_name %></h4>
-															<ul class="inline-list social-list borderless">
-																<li><%= link_to "#{teammate.profile.facebook}", class: "btn btn-facebook btn-ripple" do %>
-																<i class="ion-social-facebook"></i>
-																<% end %></li>
-																<li><%= link_to "#{teammate.profile.twitter}", class: "btn btn-twitter btn-ripple" do %>
-																<i class="ion-social-twitter"></i>
-																<% end %></li>														
-																<!-- <li><a class="btn btn-googleplus btn-ripple"><i class="ion-social-googleplus"></i></a></li> -->
-															</ul>
-														</div><!--.overflow-content-->
-														<div class="clickable-close-button">
-															<a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
-														</div>
-													</div>
+<!-- people -->
+<div id="teammates" class="tab-pane">
 
-												</div><!--.card-heading-->
+  <div class="row">
+    <div class="col-md-2">
+      <div class="panel">
+        <div class="panel-body without-padding">
+          <ul class="list-material borderless">
+            <% @teammates.each do |teammate| %>
+              <% if @teammates.first.id == teammate.id %>
+                <li class="has-action-left">
+              <% else %>
+                <li class="has-action-left divider with-border">
+              <% end %>
+              <a href="#" class="visible">
+                <div class="list-action-left">
+                  <img src="<%= teammate.avatar %>" class="face-radius" alt="">
+                </div>
+                <div class="list-content">
+                  <span class="title"><%= teammate.full_name %></span>
+                </div>
+              </a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <!--.panel-body-->
+      </div>
+      <!--.panel-->
+    </div>
+    <!--.col-->
+    <div class="col-md-10">
+      <div class="row">
+        <% @teammates.each do |teammate| %>
+          <%= link_to user_path(teammate) do %>
+            <div class="col-md-4 col-lg-3 col-sm-12">
+              <div class="card card-user card-clickable card-clickable-over-content">
+                <div class="card-heading heading-full">
+                  <div class="user-image sample-member9"></div>
 
-												<div class="card-body">
-													<h3 class="card-title">
-														<a href="#" class="capitalize">
-														<%= teammate.first_name %> <%= teammate.last_name %>
-														</a>
-													</h3>
-													<div class="subhead mb0">
-														Shared Teams:
-														<% teammate.teams.each_with_index do |team, i| %>
-														<% if @user.shared_teams(teammate.id).include? team.id %>
-															<% count = i + 1 %>
-															<%= link_to team.name, team_path(team) %><%= count == teammate.teams.count ? "" : ","%>
-															<% end %>
-														<% end %>
-													</div>
-												</div><!--.card-body-->
-												</div><!--.card-->
-											</div><!--.col-md-4-->
-										<% end %>
-									<% end %>
-								</div><!--.row-->
-							</div>
-						</div>
-					</div>
-					<!--#people.tab-pane-->
+                  <div class="clickable-button">
+                    <div class="layer bg-green"></div>
+                    <a class="btn btn-floating btn-green initial-position floating-open"><i class="ion-android-share-alt"></i></a>
+                  </div>
 
-					<!-- events -->
-					<div id="events" class="tab-pane">
+                  <div class="layered-content bg-green">
+                    <div class="overflow-content">
+                      <h4>Follow <%= teammate.first_name %></h4>
+                      <ul class="inline-list social-list borderless">
+                        <li><%= link_to "#{teammate.profile.facebook}", class: "btn btn-facebook btn-ripple" do %>
+                            <i class="ion-social-facebook"></i>
+                          <% end %></li>
+                        <li><%= link_to "#{teammate.profile.twitter}", class: "btn btn-twitter btn-ripple" do %>
+                            <i class="ion-social-twitter"></i>
+                          <% end %></li>
+                        <!-- <li><a class="btn btn-googleplus btn-ripple"><i class="ion-social-googleplus"></i></a></li> -->
+                      </ul>
+                    </div>
+                    <!--.overflow-content-->
+                    <div class="clickable-close-button">
+                      <a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
+                    </div>
+                  </div>
 
-						<div class="row">
-							<% @user.attendances.each do |att| %>
+                </div>
+                <!--.card-heading-->
 
-								<div class="col-md-6">
-								<div class="card card-event card-clickable">
+                <div class="card-body">
+                  <h3 class="card-title">
+                    <a href="#" class="capitalize">
+                      <%= teammate.first_name %> <%= teammate.last_name %>
+                    </a>
+                  </h3>
 
-									<div class="card-heading bg-image sample-bg-image13" style="">
-									</div><!--.card-heading-->
+                  <div class="subhead mb0">
+                    Shared Teams:
+                    <% teammate.teams.each_with_index do |team, i| %>
+                      <% if @user.shared_teams(teammate.id).include? team.id %>
+                        <% count = i + 1 %>
+                        <%= link_to team.name, team_path(team) %><%= count == teammate.teams.count ? "" : "," %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+                <!--.card-body-->
+              </div>
+              <!--.card-->
+            </div>
+            <!--.col-md-4-->
+          <% end %>
+        <% end %>
+      </div>
+      <!--.row-->
+    </div>
+  </div>
+</div>
+<!--#people.tab-pane-->
 
-									<div class="card-body">
-										<div class="calendar">
-											<div class="month"><%= format(att.event.starts_at, 9)%></div>
-											<div class="date"><%= format(att.event.starts_at, 10)%></div>
-										</div><!--.calendar-->
-										<h4 style="margin-bottom: 0;"><%= att.event.title %></h4>
-										<p>
-											<%= att.event.event_type %>
-										</p>
-										<h5 class="h6 text-primary bold">
-											<%= format(att.event.starts_at, 4) %>
-											<%= format(att.event.starts_at, 8) %>
-											- 
-											<%= format(att.event.ends_at, 4) %>
-											<%= format(att.event.ends_at, 8) %>
-										</h5>
-									</div><!--.card-body-->
+<!-- events -->
+<div id="events" class="tab-pane">
 
-									<div class="clickable-button">
-										<div class="layer bg-primary"></div>
-										<a class="btn btn-floating btn-primary initial-position floating-open"><i class="ion-android-more-horizontal"></i></a>
-									</div>
+  <div class="row">
+    <% @user.attendances.each do |att| %>
 
-									<div class="layered-content bg-red">
-										<div class="overflow-content">
-											<h4>How Many People Are Attending?</h4>
-											<%= att.event.people_that_are_going.count %>
-										</div><!--.overflow-content-->
-										<div class="clickable-close-button">
-											<a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
-										</div>
-									</div>
+      <div class="col-md-6">
+        <div class="card card-event card-clickable">
 
-								</div><!--.card-->
-								</div><!--.col-md-6-->
+          <div class="card-heading bg-image sample-bg-image13" style="">
+          </div>
+          <!--.card-heading-->
 
-							<% end %>
+          <div class="card-body">
+            <div class="calendar">
+              <div class="month"><%= format(att.event.starts_at, 9) %></div>
+              <div class="date"><%= format(att.event.starts_at, 10) %></div>
+            </div>
+            <!--.calendar-->
+            <h4 style="margin-bottom: 0;"><%= att.event.title %></h4>
 
-						</div>
+            <p>
+              <%= att.event.event_type %>
+            </p>
+            <h5 class="h6 text-primary bold">
+              <%= format(att.event.starts_at, 4) %>
+              <%= format(att.event.starts_at, 8) %>
+              -
+              <%= format(att.event.ends_at, 4) %>
+              <%= format(att.event.ends_at, 8) %>
+            </h5>
+          </div>
+          <!--.card-body-->
 
-					</div>
-          <div id="calendar-tab" class="tab-pane">
+          <div class="clickable-button">
+            <div class="layer bg-primary"></div>
+            <a class="btn btn-floating btn-primary initial-position floating-open"><i class="ion-android-more-horizontal"></i></a>
+          </div>
 
-						<div class="row">
-              <%= render 'shared/calendar', eventable: @user %>
-						</div>
+          <div class="layered-content bg-red">
+            <div class="overflow-content">
+              <h4>How Many People Are Attending?</h4>
+              <%= att.event.people_that_are_going.count %>
+            </div>
+            <!--.overflow-content-->
+            <div class="clickable-close-button">
+              <a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
+            </div>
+          </div>
 
-					</div>
-					<!--#events.tab-pane-->
+        </div>
+        <!--.card-->
+      </div>
+      <!--.col-md-6-->
 
-					<!-- facilities -->
-					<div id="facilities" class="tab-pane">
-						<div class="row">
+    <% end %>
 
-							
-						</div><!--.row-->
-					</div>
-					<!--#facilities.tab-pane-->
+  </div>
 
-					<!-- media -->
-					<div id="media" class="tab-pane">
-						
-						<div class="row">
-	
-	                    <%= render 'shared/media' %>
-						
-						</div>
+</div>
+<div id="calendar-tab" class="tab-pane">
 
-						
-					</div>
-          <%= render 'shared/photo_tab', photo_owner: @user %>
+  <div class="row">
+    <%= render 'shared/calendar', eventable: @user %>
+  </div>
 
-					</div>
-					<!--#media.tab-pane-->
-				</div><!--.tab-content-->
-			</div><!--.col-->
-		</div><!--.row-->
+</div>
+<!--#events.tab-pane-->
 
-	<%= render "shared/modals/boostrap_image_gallery_lightbox" %>
+<!-- facilities -->
+<div id="facilities" class="tab-pane">
+  <div class="row">
 
-	<%#= render "shared/panels/new_event" %>
+
+  </div>
+  <!--.row-->
+</div>
+<!--#facilities.tab-pane-->
+
+<!-- media -->
+<div id="media" class="tab-pane">
+
+  <div class="row">
+
+    <%= render 'shared/media' %>
+
+  </div>
+
+</div>
+<%= render 'shared/photo_tab', photo_owner: @user %>
+
+</div>
+<!--#media.tab-pane-->
+</div>
+<!--.tab-content-->
+</div>
+<!--.col-->
+</div><!--.row-->
+
+<%= render "shared/modals/boostrap_image_gallery_lightbox" %>
+
+<%#= render "shared/panels/new_event" %>
 
 </div><!--.content-->
 

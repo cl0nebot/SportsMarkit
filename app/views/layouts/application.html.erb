@@ -20,6 +20,11 @@
 		<%= stylesheet_link_tag "application" %>
 		<%= stylesheet_link_tag 'gmaps4rails' %>
 
+		<%= google_webfonts_link_tag "Muli", "Oswald", "Droid Serif", "Montserrat", "Lato" %>
+
+		<%= google_webfonts_link_tag 	:lato        		=> [100, 300, 500, 700],
+                         				:yanone_kaffeesatz 	=> [300, 400] %>
+
 		<!-- BEGIN SHORTCUT AND TOUCH ICONS -->
 		<link rel="shortcut icon" href="../../assets/globals/img/icons/favicon.ico">
 		<link rel="apple-touch-icon" href="../../assets/globals/img/icons/apple-touch-icon.png">
