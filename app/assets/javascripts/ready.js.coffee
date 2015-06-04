@@ -41,7 +41,7 @@ pictureCropping = ->
       $('.crop-ui').hide()
       self.html('Edit')
       self.data('edit', 'edit')
-  
+
 
   img = $('#image-cropper')
   src = img.attr('src')
