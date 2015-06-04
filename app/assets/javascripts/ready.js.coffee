@@ -31,6 +31,18 @@ $(document).on 'click', '#crop-image', ->
   false
 
 pictureCropping = ->
+  $('#edit-background').click ->
+    self = $(@)
+    if self.data('edit') is 'edit'
+      $('.crop-ui').show()
+      self.html('Close')
+      self.data('edit', 'close')
+    else
+      $('.crop-ui').hide()
+      self.html('Edit')
+      self.data('edit', 'edit')
+  
+
   img = $('#image-cropper')
   src = img.attr('src')
   settings = img.data('settings')
