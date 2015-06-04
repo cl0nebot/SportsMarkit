@@ -39,8 +39,8 @@ $(document).ready ->
     refetchCalendar()
     false
 
-$('a[data-toggle="tab"]').on 'shown.bs.tab', (e)->
-  $('#calendar').fullCalendar('render')  if $(e.target).attr('href') == '#calendar-tab'
+  $('a[data-toggle="tab"]').on 'shown.bs.tab', (e)->
+    $('#calendar').fullCalendar('render')  if $(e.target).attr('href') == '#calendar-tab'
 
 updateEvent = (the_event) ->
   $.update "/events/" + the_event.id,
