@@ -1,5 +1,132 @@
-<% @tournaments.each do |t| %>
+<div class="content">
+	<div class="page-header full-content">
+		<div class="row">
+			<div class="col-sm-5">
+				<h1>Tournaments <small>(<%= Tournament.count %>)</small></h1>
+			</div><!--.col-->
+			<div class="col-sm-6">
+				<ol class="breadcrumb">
+					<li><a href="/"><i class="ion-home"></i></a></li>
+					<li><a href="#" class="active">All tournaments</a></li>
+				</ol>
+			</div><!--.col-->
+			<div class="col-sm-1 text-right">
+				<a class="btn btn-floating btn-pink" data-toggle="modal" data-target="#panel-new-tournament">
+					<i class="ion-android-add"></i>
+				</a>
+			</div>
+		</div><!--.row-->
+	</div><!--.page-header-->
 
-<%= link_to t.name, tournament_path(t) %>
+	<div clas="panel">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-lg-6 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-12">
+          <div class="padding-bottom-0">
+            <div class="inputer">
+              <!-- isotope filtering and typeahead-->
+              <textarea type="text" class=" fs_30 lh_55 quicksearch-tournaments typeahead typeahead-tournaments form-control" rows="1" placeholder="Start typing tournament name here..."></textarea>
+            </div>
+          </div>
+        </div><!--.col-md-9-->
+      </div><!--.row-->
+      <hr class="margin-top-10"/>
+    </div>
+  </div>
+  
 
-<% end %>
+  <div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
+    
+    <div class="row tournaments">
+		<% @tournaments.each do |t| %>
+
+			<%= link_to tournament_path(t) do %>
+				<div class="col-md-6 col-lg-3 col-sm-12 element-item">
+				    <div class="card card-user card-clickable card-clickable-over-content">
+				      <div class="card-heading heading-full">
+				        <div class="user-image sample-member9" style="background: url('/assets/classroom.jpg');"></div>
+
+				        <div class="layered-content bg-orange">
+				          <div class="overflow-content">
+				            <div class="btn-group btn-group-justified margin-bottom-20">
+				              <button type="button" class="btn btn-primary btn-block">View Profile</button>
+				            </div>
+				          </div><!--.overflow-content-->
+				        </div>
+				      </div><!--.card-heading-->
+
+				      <div class="card-body">
+				        <h5 class="card-title capitalize no-margin"><%= t.name %></h5>
+				        <p class="small no-margin"></p>
+					        	
+
+				        <div class="subhead">
+				          <span class="text-muted">
+				            <%= t.sport %>, <%= t.level %>
+				          </span>
+				          <span class="text-blue">
+				          	<i class="glyphicon glyphicon-map-marker margin-right-5"></i>
+				          	<u>[Facility Name]</u>
+				          </span>
+				        </div>
+				      </div><!--.card-body-->
+
+				    </div><!--.card-->
+	  			</div><!--.col-md-4-->
+	  		<% end %>
+
+		<% end %>
+    	
+    </div>
+  </div>
+      
+</div><!--.row-->
+
+
+<script type="text/javascript">
+	
+	// QUICKSEARCH USERS
+
+	$( function() {
+	  // quick search regex
+	  var qsRegex;
+	  
+	  // init Isotope
+	  var $grid = $('.tournaments').isotope({
+	    itemSelector: '.element-item',
+	    layoutMode: 'fitRows',
+	    filter: function() {
+	      return qsRegex ? $(this).text().match( qsRegex ) : true;
+	    }
+	  });
+
+	  // use value of search field to filter
+	  var $quicksearch = $('.quicksearch-tournaments').keyup( debounce( function() {
+	    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+	    $grid.isotope();
+	  }, 200 ) );
+
+	});
+
+	// debounce so filtering doesn't happen every millisecond
+	function debounce( fn, threshold ) {
+	  var timeout;
+	  return function debounced() {
+	    if ( timeout ) {
+	      clearTimeout( timeout );
+	    }
+	    function delayed() {
+	      fn();
+	      timeout = null;
+	    }
+	    timeout = setTimeout( delayed, threshold || 100 );
+	  }
+	}
+
+</script>
+	
+<!-- <h1><%#= format(Date.today, 4)%></h1> -->
+
+
+
+
