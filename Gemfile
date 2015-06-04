@@ -49,6 +49,9 @@ gem 'ransack'
 gem 'best_in_place', '~> 3.0.1'
 gem 'carrierwave-crop'
 
+#google web font library
+gem 'google-webfonts'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
