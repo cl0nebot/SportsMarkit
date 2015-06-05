@@ -23,7 +23,7 @@
         </div><!--.panel-heading-->
         <div class="panel-body">
 
-          <%= form_for [@object, @event] do |f| %>
+          <%= form_for [@object, @event], html: {id: 'event-form'} do |f| %>
     
 
           <!-- event title -->
@@ -67,7 +67,7 @@
             <div class="col-md-9">
               <div class="inputer">
                   <div class="input-wrapper">
-                    <input type="text" style="width: 400px" name="event[reservation]" class="form-control bootstrap-daterangepicker-date-time" value="08/01/2013 1:00 PM - 08/01/2013 1:30 PM">
+                    <input type="text" style="width: 400px" name="reservation" class="form-control bootstrap-daterangepicker-date-time" value="<%= "#{Time.now.month}/#{Time.now.day}/#{Time.now.year}" %> <%= "#{Time.now.hour}:#{Time.now.min}" %> - <%= "#{Time.now.month}/#{Time.now.day}/#{Time.now.year}" %> <%= "#{Time.now.hour + 1}:#{Time.now.min}" %>">
                   </div>
                 </div>
             </div><!--.col-md-9-->

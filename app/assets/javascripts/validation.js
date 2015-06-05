@@ -61,6 +61,12 @@ $(window).load(function(){
     validateCertificationForm($('#certification-form'));
   }
   
+  if($('#event-form').size()){
+    validateNewEventForm($('#event-form'));
+  }
+  
+  
+  
   
   
   
@@ -379,22 +385,102 @@ validateCertificationForm = function(el){
   });
 };
 
-validateSpaContactMessage = function(el){
+
+validateNewSchoolForm = function(el){
   $(el).validate({
     rules: {
-      "spa_contact_message[topic]": {
+      "school[name]": {
         required: true,
-        minlength: 2,
-        maxlength: 20
+        minlength: 3,
+        maxlength: 50
       },
-      "spa_contact_message[message]": {
+      "school[classification]": {
         required: true,
-        minlength: 2,
-        maxlength: 20
+      },
+      "school[abbreviation]": {
+        required: true
+      },
+      "school[address_1]": {
+        required: true
+      },
+      "school[city]": {
+        required: true
+      },
+      "school[state]": {
+        required: true
+      },
+      "school[zip]": {
+        required: true
+      },
+      "school[website]": {
+        required: true
+      }
+    },
+    messages: {
+      "school[name]": {
+        minlength: "Name must be at least 3 characters.",
+        maxlength: "Name must not exceed 50 characters."
       }
     }
   });
 };
+
+validateNewEventForm = function(el){
+  $(el).validate({
+    rules: {
+      "event[title]": {
+        required: true,
+        minlength: 3,
+        maxlength: 50
+      },
+      "event[event_type]": {
+        required: true,
+      },
+      "event[description]": {
+        required: true
+      },
+      "event[start_date]": {
+        required: true
+      },
+      "event[end_date]": {
+        required: true
+      },
+      "event[facility_ids]": {
+        required: true
+      }
+    },
+    messages: {
+      "event[title]": {
+        minlength: "Name must be at least 3 characters.",
+        maxlength: "Name must not exceed 50 characters."
+      }
+    }
+  });
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 validateContactMessageForm = function(el){
   $(el).validate({
