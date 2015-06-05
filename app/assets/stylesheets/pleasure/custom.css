@@ -28,7 +28,7 @@ input.form-control {font-size: 26px; line-height: 30px;}
 .center {display: table; margin-right: auto; margin-left: auto;}
 
 .page-header.full-content.parallax {
-   height: 350px; overflow: hidden
+   height: 450px; overflow: hidden
 }
 
 .page-header.full-content.parallax .parallax-bg {
@@ -138,3 +138,4 @@ input.form-control {font-size: 26px; line-height: 30px;}
 .img-thumbnail {padding: 2px;}
 
 
+.cropit-image-preview.cropit-image-loaded {height: 450px !important;}
