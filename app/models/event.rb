@@ -45,5 +45,13 @@ class Event < ActiveRecord::Base
   def people_that_are_going
     attendees.where(yes: true)
   end
+  
+  def name_and_phone_numbers
+    array = []
+    attendees.each do |att|
+      array << [att.user.first_name, att.user.mobile_phone_number] 
+    end
+    array
+  end
 
 end
