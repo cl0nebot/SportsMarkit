@@ -1,6 +1,8 @@
+require "teams_controller"
 class EventsController < ApplicationController
-  before_action :find_object, except: [:show]
-  before_action :find_event, only: [:edit, :update, :destroy]
+  before_action :find_object, except: [:show, :destroy]
+  before_action :find_event, only: [:edit, :update]
+  require 'twilio-ruby'
   
   def index
     @events = @object.events
@@ -42,8 +44,25 @@ class EventsController < ApplicationController
   end
   
   def destroy
+    @event = Event.friendly.find(params[:id])
+    @event.name_and_phone_numbers.each do |obj|
+      receiving_number = obj.last
+
+      twilio_sid = ENV['TWILIO_SID']
+      twilio_token = ENV['TWILIO_AUTH_TOKEN']
+      twilio_phone_number = "2025179077"
+      @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+      
+      @twilio_client.account.sms.messages.create(
+        :from => "+1#{twilio_phone_number}",
+        :to => receiving_number,
+        :body => "Hello #{obj.first}! Your event #{@event.title} has been canceled."
+      )
+      
+    end
+    
     @event.destroy
-    redirect_to events_path
+    redirect_to new_user_event_path(current_user)
     #add twilio
   end
   
