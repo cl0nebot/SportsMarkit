@@ -78,7 +78,7 @@
     <ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
       <li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
       <li><a href="#teammates" data-toggle="tab" class="btn-ripple">Teammates</a></li>
-      <li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
+      <!-- <li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li> -->
       <!-- <li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li> -->
       <li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
       <% if ParentChild.where(child_id: @user.id).present? %>
@@ -463,6 +463,18 @@
   <div class="row">
 
     <%= render 'shared/media' %>
+	
+	fans: <br>
+	
+	<% @follows.each do |follow| %>
+	<% if follow.fannable.class == "User" %>
+	  <%= follow.fannable.full_name  %><br>
+	<% else %>
+	 <%= follow.fannable.name  %><br>
+	<% end%>
+
+	
+	<% end %>
 
   </div>
 
