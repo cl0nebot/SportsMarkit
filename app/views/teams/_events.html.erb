@@ -1,6 +1,16 @@
 <div class="panel box-shadow-ccc">
 	<div class="panel-heading">
-		<div class="panel-title"><h4><%= event.event_type %></h4></div>
+		<div class="panel-title padding-bottom-0">
+			<h4><%= event.event_type %></h4>
+			<span class="pull-right m-t-10">
+				<small>
+					<strong>
+						<%= event.people_that_are_going.count %>
+					</strong> 
+					Attendees
+				</small>
+			</span>
+		</div>
 	</div><!--.panel-heading-->
 	<div class="panel-body without-padding">
 		<ul class="list-material">
@@ -17,10 +27,9 @@
 						</span>
 					</div>
 					<div class="list-action-right">
-						<span class="top">
-							<%= event.people_that_are_going.count %>
-						</span>
-						<i class="ion-search bottom"></i>
+						<button class="btn btn-primary margin-top-10 btn-xs button-striped button-full-striped btn-ripple">
+							View
+						</button>
 					</div>
 				</a>
 			</li>

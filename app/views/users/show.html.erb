@@ -99,140 +99,6 @@
 <!-- teams -->
 <div id="teams" class="tab-pane active">
 
-  <div class="col-md-4">
-    <div class="panel">
-      <div class="panel-heading">
-        <div class="panel-title"><h4>Coaching Staff</h4></div>
-      </div>
-      <!--.panel-heading-->
-      <div class="panel-body without-padding">
-        <ul class="list-material borderless">
-          <li class="has-action-left">
-            <a href="#" class="visible">
-              <div class="list-action-left">
-                <img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
-              </div>
-              <div class="list-content">
-                <span class="title">Margaret Ellis</span>
-              </div>
-            </a>
-          </li>
-          <li class="divider with-border">
-            Team Roster
-          </li>
-          <li class="has-action-left">
-            <a href="#" class="visible">
-              <div class="list-action-left">
-                <img src="../../assets/globals/img/faces/2.jpg" class="face-radius" alt="">
-              </div>
-              <div class="list-content">
-                <span class="title">Raymond Black</span>
-                <span class="caption">Collaboratively administrate</span>
-              </div>
-              <div class="list-action-right">
-                <span class="top">15 min</span>
-                <i class="ion-android-done bottom"></i>
-              </div>
-            </a>
-          </li>
-          <li class="has-action-left">
-            <a href="#" class="visible">
-              <div class="list-action-left">
-                <img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
-              </div>
-              <div class="list-content">
-                <span class="title">Rebecca Welch</span>
-                <span class="caption">Collaboratively administrate</span>
-              </div>
-              <div class="list-action-right">
-                <span class="top">15 min</span>
-                <i class="ion-android-done bottom"></i>
-              </div>
-            </a>
-          </li>
-          <li class="has-action-left">
-            <a href="#" class="visible">
-              <div class="list-action-left">
-                <img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
-              </div>
-              <div class="list-content">
-                <span class="title">Rebecca Welch</span>
-                <span class="caption">Collaboratively administrate</span>
-              </div>
-              <div class="list-action-right">
-                <span class="top">15 min</span>
-                <i class="ion-android-done bottom"></i>
-              </div>
-            </a>
-          </li>
-          <li class="has-action-left">
-            <a href="#" class="visible">
-              <div class="list-action-left">
-                <img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
-              </div>
-              <div class="list-content">
-                <span class="title">Rebecca Welch</span>
-                <span class="caption">Collaboratively administrate</span>
-              </div>
-              <div class="list-action-right">
-                <span class="top">15 min</span>
-                <i class="ion-android-done bottom"></i>
-              </div>
-            </a>
-          </li>
-          <li class="has-action-left">
-            <a href="#" class="visible">
-              <div class="list-action-left">
-                <img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
-              </div>
-              <div class="list-content">
-                <span class="title">Rebecca Welch</span>
-                <span class="caption">Collaboratively administrate</span>
-              </div>
-              <div class="list-action-right">
-                <span class="top">15 min</span>
-                <i class="ion-android-done bottom"></i>
-              </div>
-            </a>
-          </li>
-          <li class="has-action-left">
-            <a href="#" class="visible">
-              <div class="list-action-left">
-                <img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
-              </div>
-              <div class="list-content">
-                <span class="title">Rebecca Welch</span>
-                <span class="caption">Collaboratively administrate</span>
-              </div>
-              <div class="list-action-right">
-                <span class="top">15 min</span>
-                <i class="ion-android-done bottom"></i>
-              </div>
-            </a>
-          </li>
-          <li class="has-action-left">
-            <a href="#" class="visible">
-              <div class="list-action-left">
-                <img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
-              </div>
-              <div class="list-content">
-                <span class="title">Rebecca Welch</span>
-                <span class="caption">Collaboratively administrate</span>
-              </div>
-              <div class="list-action-right">
-                <span class="top">15 min</span>
-                <i class="ion-android-done bottom"></i>
-              </div>
-            </a>
-          </li>
-
-      </div>
-      <!--.panel-body-->
-    </div>
-    <!--.panel-->
-  </div>
-  <!--.col-->
-
   <div class="row ">
     <% @teams.each do |team| %>
       <div class="col-md-4 col-lg-3 col-sm-12">
@@ -260,7 +126,7 @@
           <div class="card-body">
             <div class="image">
               <a href="#">
-                <%= image_tag("placeholders/team-3.jpg") %>
+                <%= image_tag("http://ingridwu.dmmdmcfatter.com/wp-content/uploads/2015/01/placeholder.png") %>
               </a>
             </div>
             <!--.image-->
@@ -281,32 +147,7 @@
 <div id="teammates" class="tab-pane">
 
   <div class="row">
-    <div class="col-md-2">
-      <div class="panel">
-        <div class="panel-body without-padding">
-          <ul class="list-material borderless">
-            <% @teammates.each do |teammate| %>
-              <% if @teammates.first.id == teammate.id %>
-                <li class="has-action-left">
-              <% else %>
-                <li class="has-action-left divider with-border">
-              <% end %>
-              <a href="#" class="visible">
-                <div class="list-action-left">
-                  <img src="<%= teammate.avatar %>" class="face-radius" alt="">
-                </div>
-                <div class="list-content">
-                  <span class="title"><%= teammate.full_name %></span>
-                </div>
-              </a>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-        <!--.panel-body-->
-      </div>
-      <!--.panel-->
-    </div>
+    
     <!--.col-->
     <div class="col-md-10">
       <div class="row">
