@@ -1,5 +1,5 @@
 <div class="nav-bar-container">
-
+<% if current_user %>
 	<!-- BEGIN ICONS -->
 	<div class="nav-menu">
 		<div class="hamburger">
@@ -40,5 +40,40 @@
 
 	<div class="overlay-secondary"></div><!--.overlay-secondary-->
 	<!-- END OF OVERLAY HELPERS -->
+	
+	<% else %>
+	
+	<!-- BEGIN ICONS -->
+	<div class="nav-menu">
+		<div class="hamburger">
+			<span class="patty"></span>
+			<span class="patty"></span>
+			<span class="patty"></span>
+			<span class="patty"></span>
+			<span class="patty"></span>
+			<span class="patty"></span>
+		</div><!--.hamburger-->
+	</div><!--.nav-menu-->
+
+
+
+
+	<div class="nav-bar-border"></div><!--.nav-bar-border-->
+
+	<!-- BEGIN OVERLAY HELPERS -->
+	<div class="overlay">
+		<div class="starting-point">
+			<span></span>
+		</div><!--.starting-point-->
+		<div class="logo"></div><!--.logo-->
+	</div><!--.overlay-->
+
+	<div class="overlay-secondary"></div><!--.overlay-secondary-->
+	<!-- END OF OVERLAY HELPERS -->
+	
+	
+	
+	
+	<% end %>
 
 </div><!--.nav-bar-container-->

@@ -1,4 +1,5 @@
 <div class="menu-layer">
+	<% if false %>
 	<ul>
 		<li>
 			<a href="javascript:;">User</a>
@@ -123,4 +124,11 @@
 		</li>
 		
 	</ul>
+	<% else %>
+	
+	<ul>
+		<%= link_to "Signup", signup_path %>
+	</ul>
+	
+	<% end %>
 </div><!--.menu-layer-->
