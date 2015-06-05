@@ -33,7 +33,7 @@
           </span>
           <br/>
           <%= user.age %> years old<br/>
-          <i class="ion-location text-blue margin-right-5"></i>[city, state]<br/>
+          <i class="ion-location text-blue margin-right-5"></i><%= user.profile.location_description %><br/>
           <i class="ion-email text-blue margin-right-5"></i> <%= user.email %><br/>
           <i class="ion-phone text-blue"></i> <%= number_to_phone(user.mobile_phone_number) %>
         </div>
@@ -41,7 +41,7 @@
 
       <div class="card-footer">
         <%= link_to "Edit", edit_user_path(user), class: "btn btn-sm btn-message" %>
-        <%= link_to "Delete", user, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
+        <%#= link_to "Delete", user, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
       </div><!--.card-footer-->
 
     </div><!--.card-->
