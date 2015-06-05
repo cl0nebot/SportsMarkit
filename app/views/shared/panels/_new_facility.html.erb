@@ -1,157 +1,146 @@
 <div class="modal fade full-height from-right" id="panel-new-facility" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Add a New Facility</h4>
+			<div class="modal-header padding-left-40 padding-right-40">
+				<h4 class="semi-bold modal-title text-primary">Select all leagues that apply.</h4>
 			</div>
+			<hr class="margin-bottom-0 margin-top-10"/>
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="panel">
-							
-							
-							
-						<% unless params[:controller] == "teams" %>
-							  <div class="panel-title"><h4>Complete the form below. </h4></div>
-						<% else %>
-							  <div class="panel-title"><h4>Select Your Facility Below </h4></div>
-						<% end %>
-								
-								
-							<div class="panel-body">
-								<% unless params[:controller] == "teams" %>
+						<div class="panel-body">
+							<% unless params[:controller] == "teams" %>
 
-								<%= form_for Facility.new, html: {id: 'facility-form', data: {remote: true}} do |f|   %>
-					
+							<%= form_for Facility.new, html: {id: 'facility-form', data: {remote: true}} do |f|   %>
+				
 
-								<div class="row example-row">
-									<div class="col-md-3">Name </div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
-											</div>
+							<div class="row example-row">
+								<div class="col-md-3">Name </div><!--.col-md-3-->
+								<div class="col-md-9">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
 										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
+									</div>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
 
-								<div class="clearfix margin-bottom-10">
-									<div class="checkboxer form-inline">
-										<%= f.check_box :private %>
-										<label for="facility_private">Private</label>
-									</div>
-									<div class="checkboxer form-inline">
-										<input type="checkbox" id="inlineCheckbox2" value="option2">
-										<%= f.check_box :publicly_visible %>
-										<label for="facility_publicly_visible">Publicly Visible</label>
-									</div>
+							<div class="clearfix margin-bottom-10">
+								<div class="checkboxer form-inline">
+									<%= f.check_box :private %>
+									<label for="facility_private">Private</label>
 								</div>
+								<div class="checkboxer form-inline">
+									<input type="checkbox" id="inlineCheckbox2" value="option2">
+									<%= f.check_box :publicly_visible %>
+									<label for="facility_publicly_visible">Publicly Visible</label>
+								</div>
+							</div>
 
-								<% unless request.original_url.split("/").include? "schools" %>
-								<div class="row example-row">
-									<div class="col-md-3">Address 1 </div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :address_1, type: "text", class: "form-control", placeholder: "" %>
-											</div>
+							<% unless request.original_url.split("/").include? "schools" %>
+							<div class="row example-row">
+								<div class="col-md-3">Address 1 </div><!--.col-md-3-->
+								<div class="col-md-9">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<%= f.text_field :address_1, type: "text", class: "form-control", placeholder: "" %>
 										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
+									</div>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
 
 
-								<div class="row example-row">
-									<div class="col-md-3">Address 2 </div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "" %>
-											</div>
+							<div class="row example-row">
+								<div class="col-md-3">Address 2 </div><!--.col-md-3-->
+								<div class="col-md-9">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "" %>
 										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
+									</div>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
 
-								<div class="row example-row">
-									<div class="col-md-3">City</div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :city, type: "text", class: "form-control", placeholder: "" %>
-											</div>
+							<div class="row example-row">
+								<div class="col-md-3">City</div><!--.col-md-3-->
+								<div class="col-md-9">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<%= f.text_field :city, type: "text", class: "form-control", placeholder: "" %>
 										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
+									</div>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
 
-								<div class="row example-row">
-									<div class="col-md-3">State</div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %>
-											</div>
+							<div class="row example-row">
+								<div class="col-md-3">State</div><!--.col-md-3-->
+								<div class="col-md-9">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %>
 										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
+									</div>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
 
-								<div class="row example-row">
-									<div class="col-md-3">Zipcode</div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true %>
-											</div>
+							<div class="row example-row">
+								<div class="col-md-3">Zipcode</div><!--.col-md-3-->
+								<div class="col-md-9">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true %>
 										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
+									</div>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
 
-								<div class="row example-row">
-									<div class="col-md-3">Zip Extention</div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true %>
-											</div>
+							<div class="row example-row">
+								<div class="col-md-3">Zip Extention</div><!--.col-md-3-->
+								<div class="col-md-9">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true %>
 										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
+									</div>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
 
 
-								<div class="row example-row">
-									<div class="col-md-3">Website </div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :website, type: "text", class: "form-control", placeholder: ""  %>
-											</div>
+							<div class="row example-row">
+								<div class="col-md-3">Website </div><!--.col-md-3-->
+								<div class="col-md-9">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<%= f.text_field :website, type: "text", class: "form-control", placeholder: ""  %>
 										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
+									</div>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
 
-								<div class="row example-row">
-									<div class="col-md-3">Email</div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :email, type: "text", class: "form-control inputmask inputmask-email" %>
-											</div>
+							<div class="row example-row">
+								<div class="col-md-3">Email</div><!--.col-md-3-->
+								<div class="col-md-9">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<%= f.text_field :email, type: "text", class: "form-control inputmask inputmask-email" %>
 										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
+									</div>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
 
-								<div class="row example-row">
-									<div class="col-md-3">Phone</div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :phone_number, type: "text", class: "form-control inputmask inputmask-phone" %>
-											</div>
+							<div class="row example-row">
+								<div class="col-md-3">Phone</div><!--.col-md-3-->
+								<div class="col-md-9">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<%= f.text_field :phone_number, type: "text", class: "form-control inputmask inputmask-phone" %>
 										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
-								<% end %>
+									</div>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
+							<% end %>
 
-							</div><!--.panel-body-->
-						</div><!--.panel-->
+						</div><!--.panel-body-->
 					</div><!--.col-md-12-->
 				</div><!--.row-->
 			</div>
@@ -164,8 +153,8 @@
 			
    		<% if params[:action] == "show" && @team.school.present? %>
    		  <% @team.school.facilities.each do |facility| %>
-   		    <%= facility.name %>
-   		<div id="team-facility-<%= facility.id %>">
+   		    <div class="pull-left"><%= facility.name %></div>
+   			<div id="team-facility-<%= facility.id %>">
 			
 			
 			
