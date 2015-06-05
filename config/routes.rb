@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     resources :password_resets
     resources :schools do
       resources :facilities
+      resources :media
       resources :teams
       resources :photos
     end
@@ -48,6 +49,7 @@ Rails.application.routes.draw do
     resources :teams do
       resources :photos
       resources :events
+      resources :media
       resource :calendar do
         get :events, on: :member
       end
@@ -62,11 +64,14 @@ Rails.application.routes.draw do
     end
 
     resources :facilities do
+      resources :media
       resources :photos
     end
 
     resources :tournaments
-    resources :leagues 
+    resources :leagues do
+      resources :media
+    end 
     resources :fans
     resources :attendees
     resources :relationships
