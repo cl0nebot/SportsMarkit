@@ -1,5 +1,36 @@
-					<% facilities.each do |facility| %>
+<div class="panel box-shadow-ccc">
+	<div class="panel-heading">
+		<div class="panel-title"><h4> Our Facilities</h4></div>
+	</div><!--.panel-heading-->
+	<div class="panel-body without-padding">
+		<ul class="list-material">
+			<% facilities.each do |facility| %>
+				<li class="has-action-left has-action-right">
+					<a href="#" class="visible">
+						<div class="list-action-left">
+							<i class="ion-home icon-circle"></i>
+						</div>
+						<div class="list-content">
+							<span class="title"><%= facility.name %></span>
+							<span class="caption">[location]</span>
+						</div>
+						<div class="list-action-right">
+							<span class="top">View</span>
+							<i class="ion-ios-location bottom"></i>
+						</div>
+					</a>
+				</li>
+			<% end %>
+		</ul>
+	</div><!--.panel-body-->
+</div><!--.panel-->
+
+
+				
+
+
+
 					
-					<%= facility.name %>
 					
-					<% end %>
+					
+					
