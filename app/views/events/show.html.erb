@@ -22,7 +22,8 @@
 				<h1>
 					<i class="ion-calendar m-r-5"></i>
 					<small>
-						<%= @event.title %> 
+						<%= @event.title %>
+						<%= link_to "Cancel", @event, method: :delete %>
 					</small>
 				</h1>
 			</div><!--.col-->
