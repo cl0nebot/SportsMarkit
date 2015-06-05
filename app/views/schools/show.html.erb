@@ -16,9 +16,8 @@
 		
     <%= render 'shared/background_photo_tab', photo_owner: @school %>
 
-		<!--<div class="bg-overlay"></div>&lt;!&ndash;.bg-overlay&ndash;&gt;-->
-
-
+		<div class="bg-overlay"></div>
+		
 		<div class="profile-info">
 			<div class="profile-photo">
 				<img src="<%= image_path("thumbs/school.jpg") %>" alt="">
@@ -160,7 +159,7 @@
 					</div>
 					<br/>
 					<div class="row teams">
-				<%= render 'shared/team_rosters' %>
+					<%= render 'shared/team_rosters' %>
 						
 	
 					</div>
@@ -191,16 +190,14 @@
 				<!-- people -->
 				<div id="people" class="tab-pane">
 					
-               <%= render 'shared/people' %>
-					<!-- <ul class="list-material has-hidden">
-						<%# @people.each do |person| %>
-				       		<%#= render 'person', person: person %>
-				    	<%# end %>
-					</ul> -->
+	               <%= render 'shared/people' %>
+						<!-- <ul class="list-material has-hidden">
+							<%# @people.each do |person| %>
+					       		<%#= render 'person', person: person %>
+					    	<%# end %>
+						</ul> -->
 				</div>
 				<!--#roster.tab-pane-->
-				
-				
 
 				<!--#events.tab-pane-->
 				<% if AthleticDirector.where(user_id: current_user.id, school_id: @school.id).present? %>
@@ -237,6 +234,31 @@
 						
 					</div>
 
+				</div>
+
+				<!-- roster -->
+				<div id="certifications" class="tab-pane">
+
+					<div class="row">
+						<div class="col-lg-10 col-lg-offset-1">
+							<h3>
+								<i class="ion-paperclip text-primary margin-right-20"></i>
+								Certifications 
+							</h3>
+							<div class="panel">
+								<div class="panel-heading">
+									<div class="panel-title">
+									</div>
+								</div><!--.panel-heading-->
+								<div class="panel-body without-padding">
+									<ul class="list-material has-hidden">
+										
+									</ul>
+								</div><!--.panel-body-->
+							</div><!--.panel-->
+						</div>
+						<!--#roster.tab-pane-->
+					</div>
 				</div>
 				
 			</div><!--.tab-content-->

@@ -75,11 +75,12 @@
 				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
 				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li>
 				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
-				<li><a href="#payments" data-toggle="tab" class="btn-ripple">Payments</a></li>
+				<!-- <li><a href="#payments" data-toggle="tab" class="btn-ripple">Payments</a></li> -->
 				<li><a href="#admin" data-toggle="tab" class="btn-ripple">Admin</a></li>
 				<li><a href="#leagues" data-toggle="tab" class="btn-ripple">League</a></li>
-        <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li>
-      </ul>
+        		<li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li>
+        		<li><a href="#certifications" data-toggle="tab" class="btn-ripple">Certifications</a></li>
+      		</ul>
 		</div>
 	</div><!--.page-header-->
 
@@ -166,7 +167,6 @@
 					<div id='team-facility-list'>
 					  <%= render 'shared/facilities', facilities: @team.facilities %>
 				    </div>
-
 				</div>
 				<!--#facilities.tab-pane-->
 
@@ -177,64 +177,164 @@
                     <%= render 'shared/media' %>
 						
 					</div>
-
 				</div>
 				<!--#media.tab-pane-->
 
 				<!-- payments -->
-				<div id="payments" class="tab-pane">
-
-
-				</div>
+				<!-- <div id="payments" class="tab-pane">
+				</div> -->
 				<!--#payments.tab-pane-->
 
 				<!-- admin -->
 				<div id="admin" class="tab-pane">
-					<div class="panel">
-						<div class="panel-heading">
-							<div class="panel-title">
-								<h4>
-									<span class="text-black">
-										UNACCEPTED PENDING USERS
-									</span>
-								</h4>
+					<div class="row">
+						<div class="col-lg-10 col-lg-offset-1">
+							<div class="row">
+								<div class="col-md-7">
+									<h3><i class="ion-clipboard text-primary margin-right-20 h4"></i>Pending Users </h3>
+									<div class="panel box-shadow-ccc">
+										<div class="panel-heading">
+											<div class="panel-title">
+											</div>
+										</div><!--.panel-heading-->
+										<div class="panel-body without-padding">
+											<ul class="list-material has-hidden pending-members">
+												<% @pending_members.each do |m| %>
+											     <%= render 'pending', m: m%>
+											  <% end %>
+											</ul>
+										</div><!--.panel-body-->
+									</div><!--.panel-->
+								</div>
+								<div class="col-md-offset-1 col-md-4">
+									<div class="row">
+										<div class="pull-left">
+											<%= image_tag("http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "img-circle margin-left-20 margin-right-20", height: "45", width: "45" ) %>
+										</div>
+										<div class="pull-left">
+											<h3><i class="ion-person-add text-primary margin-right-10 h4"></i>Add New User</h3>
+										</div>
+									</div>
+
+									<div class="note note-warning note-left-striped">
+										<h4>Adding a new member to your team profile.</h4>
+										<p class="small text-grey">
+											<small>
+												Use the search box below to find your teams. Once added, the team administrator will be notified of your request to join that team. In the meantime, your status will be pending.
+											</small>
+										</p>
+									</div>
+
+									<hr class="no-margin"/>
+									<br/>
+
+									<div class="panel">
+							<div class="panel-body">
+
+
+								<%= form_for @new_user, url: create_roster_spot_team_path do |f| %>
+
+									<div class="row">
+										<div class="col-md-6">
+											<div class="row example-row">
+												<div class="col-md-12"><h4>First Name</h4></div><!--.col-md-3-->
+												<div class="col-md-12">
+													<div class="inputer">
+														<div class="input-wrapper">
+															<%= f.text_field :first_name, type: "text", class: "form-control", placeholder: "" %>
+														</div>
+													</div>
+												</div><!--.col-md-9-->
+											</div><!--.row-->
+										</div>
+
+										<div class="col-md-6">
+											<div class="row example-row">
+												<div class="col-md-12"><h4>Last Name</h4></div><!--.col-md-3-->
+												<div class="col-md-12">
+													<div class="inputer">
+														<div class="input-wrapper">
+															<%= f.text_field :last_name, type: "text", class: "form-control", placeholder: "" %>
+														</div>
+													</div>
+												</div><!--.col-md-9-->
+											</div><!--.row-->
+										</div>
+									</div>
+
+
+									<%= f.fields_for :relationships, @relationship do |r| %>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="row example-row">
+													<div class="col-md-12"><h4>Title</h4></div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= text_field_tag :head_title,"" , placeholder: "", type: "text", class: "form-control"%>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+
+											<div class="col-md-6">
+												<div class="row example-row">
+													<div class="col-md-12"><h4>Position</h4></div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= text_field_tag :position,"" , placeholder: "", type: "text", class: "form-control"%>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-md-6">
+												<div class="row example-row">
+													<div class="col-md-12"><h4>Cell Phone</h4></div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :mobile_phone_number, type: "text", class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+
+											<div class="col-md-6">
+												<div class="row example-row">
+													<div class="col-md-12"><h4>Classification</h4></div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= text_field_tag :participant_classification,"" , placeholder: "", type: "text", class: "form-control"%>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+											<%= hidden_field_tag :team_id,"", value: @team.id %>
+
+									<% end %>
+
+											
+										</div>
+
+
+								<%= f.submit "Add New Team Member", class: "btn btn-block btn-primary" %>
+
+							</div><!--.panel-body-->
+								</div><!--.panel-->
+								</div>
 							</div>
-						</div><!--.panel-heading-->
-						<div class="panel-body without-padding">
-							<ul class="list-material has-hidden pending-members">
-								<% @pending_members.each do |m| %>
-							     <%= render 'pending', m: m%>
-							  <% end %>
-							</ul>
-
-						</div><!--.panel-body-->
-
-					</div><!--.panel-->
-					Invited Pending Users
-					<br>
-					Add Roster
-
-					<%= form_for @new_user, url: create_roster_spot_team_path do |f| %>
-
-					<%= f.text_field :first_name, placeholder: "First Name" %><br>
-					<%= f.text_field :last_name, placeholder: "Last Name" %><br>
-					<%= f.text_field :mobile_phone_number, placeholder: "Mobile Phone Number" %><br>
-					<%= f.fields_for :relationships, @relationship do |r| %>
-					<%= text_field_tag :head_title,"" ,placeholder: "Title"%><br>
-					<%= text_field_tag :participant_classification,"", placeholder: "Participant Classification"%><br>
-					<%= text_field_tag :position,"", placeholder: "Position"%><br>
-					<%= hidden_field_tag :team_id,"", value: @team.id %><br>
-
-
-
-
-
-					<% end %>
-
-					<%= f.submit %>
-
-					<br>
-
+						</div>
+					</div>
 					<% end %>
 				</div>
 				<!--#admin.tab-pane-->
@@ -253,7 +353,8 @@
 
 				</div>
 				<!--#facilities.tab-pane-->
-        <%= render 'shared/photo_tab', photo_owner: @team %>
+        		
+        		<%= render 'shared/photo_tab', photo_owner: @team %>
 
 			</div><!--.tab-content-->
 
