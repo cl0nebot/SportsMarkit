@@ -69,6 +69,76 @@
 								<i class="ion-ios-location margin-right-10"></i> Address and Location Info
 							</h4>
 							<br/>
+							
+							<% if params[:school_id].present? %>
+							<div class="row example-row">
+								<div class="col-md-12"><h4>Address 1</h4></div><!--.col-md-3-->
+								<div class="col-md-12">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<%= f.text_field :address_1, value: @school.address_1, class: "form-control", readonly: true %>
+										</div>
+									</div>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
+
+							<div class="row example-row">
+								<div class="col-md-12"><h4>Address 2</h4></div><!--.col-md-3-->
+								<div class="col-md-12">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<%= f.text_field :address_2, value: @school.address_2, class: "form-control", readonly: true %>
+										</div>
+									</div>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
+
+							<div class="row example-row">
+								<div class="row">
+									<div class="col-md-5">
+										<div class="col-md-12"><h4>City</h4></div><!--.col-md-3-->
+										<div class="col-md-12">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<%= f.text_field :city, value: @school.city, class: "form-control", readonly: true %>
+												</div>
+											</div>
+										</div><!--.col-md-9-->
+									</div>
+									<div class="col-md-2">
+										<div class="col-md-12"><h4>State</h4></div><!--.col-md-3-->
+										<div class="col-md-12">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<%= f.text_field :state, value: @school.state, class: "form-control", readonly: true %>
+												</div>
+											</div>
+										</div><!--.col-md-9-->
+									</div>
+									<div class="col-md-3">
+										<div class="col-md-12"><h4>Zipcode</h4></div><!--.col-md-3-->
+										<div class="col-md-12">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<%= f.text_field :zip, value: @school.zip, class: "form-control payment-restrict", :restrict => true, readonly: true %>
+												</div>
+											</div>
+										</div><!--.col-md-9-->
+									</div>
+									<div class="col-md-2">
+										<div class="col-md-12"><h4>Ext.</h4></div><!--.col-md-3-->
+										<div class="col-md-12">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<%= f.text_field :zip_ext, value: @school.zip_ext, class: "form-control payment-restrict", :restrict => true, readonly: true %>
+												</div>
+											</div>
+										</div><!--.col-md-9-->
+									</div>
+								</div>
+							</div><!--.row-->
+							<% else %>
+							
 							<div class="row example-row">
 								<div class="col-md-12"><h4>Address 1</h4></div><!--.col-md-3-->
 								<div class="col-md-12">
@@ -135,6 +205,7 @@
 									</div>
 								</div>
 							</div><!--.row-->
+							<% end %>
 					</div>
 				</div>
 				
