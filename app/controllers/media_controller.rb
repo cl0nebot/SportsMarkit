@@ -23,7 +23,7 @@ class MediaController < ApplicationController
 
   private
     def media_params
-      params[:media].permit(:url, :publish_date, :mediable_id, :title)
+      params[:media].permit(:url, :publish_date, :mediable_id, :title, :category)
     end
   
     def set_mediable
