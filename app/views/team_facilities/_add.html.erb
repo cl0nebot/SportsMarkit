@@ -1,6 +1,9 @@
-  <%= form_for TeamFacility.new, html: {id: 'team-facility-form', data: {remote: true}} do |f|   %>
+ <%= form_for TeamFacility.new, html: {id: 'team-facility-form', data: {remote: true}} do |f|   %>
     <%= f.hidden_field :team_id, value: team.id %>
     <%= f.hidden_field :facility_id, value: facility.id %>
-    <%= f.submit "Add Facility"%>
+    <%= button_tag class: "btn btn-blue btn-sm pull-right" do %>
+	 Add Facility <i class="ion-checkmark-circled pull-right margin-left-10"></i>
+	<% end %>
+	<div class="clearfix"></div>
+	<hr/>
   <% end %>
-			  

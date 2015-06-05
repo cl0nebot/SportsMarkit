@@ -8,19 +8,19 @@
 			<div class="modal-body padding-left-40 padding-right-40">
 				<div class="row">
 					<div class="col-md-12">
-							<div class="panel-body">
-								
-								<% League.all.each do |league| %>
+						<div class="panel-body">
+							
+							<% League.all.each do |league| %>
 
-	                               <div id="league-<%= league.id %>">
-									<% unless TeamLeague.where(team_id: @team.id, league_id: league.id ).present? %>
-									  <%= render 'team_leagues/join_league', team: @team, league: league %>
-									<% else %>
-									  <%= render 'team_leagues/leave_league', team: @team, league: league %>
-									<% end %>
-								    </div>
+                               <div id="league-<%= league.id %>">
+								<% unless TeamLeague.where(team_id: @team.id, league_id: league.id ).present? %>
+								  <%= render 'team_leagues/join_league', team: @team, league: league %>
+								<% else %>
+								  <%= render 'team_leagues/leave_league', team: @team, league: league %>
+								<% end %>
+							    </div>
 
-						        <% end %>
+					        <% end %>
 
 						
 
