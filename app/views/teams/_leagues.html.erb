@@ -1,5 +1,29 @@
-					<% leagues.each do |league| %>
-					
-					<%= league.name %>
-					
-					<br><% end %>
+<div class="panel box-shadow-ccc">
+	<div class="panel-heading">
+		<div class="panel-title"><h4> OUR LEAGUES</h4></div>
+	</div><!--.panel-heading-->
+	<div class="panel-body without-padding">
+		<ul class="list-material">
+			<% leagues.each do |league| %>
+				<li class="has-action-left has-action-right">
+					<a href="#" class="visible">
+						<div class="list-action-left">
+							<i class="ion-flag icon-circle"></i>
+						</div>
+						<div class="list-content">
+							<span class="title"><%= league.name %></span>
+							<span class="caption">[location]</span>
+						</div>
+						<div class="list-action-right">
+							<span class="top">View</span>
+							<i class="ion-search bottom"></i>
+						</div>
+					</a>
+				</li>
+			<% end %>
+		</ul>
+	</div><!--.panel-body-->
+</div><!--.panel-->
+
+
+				

@@ -70,15 +70,13 @@
 
 		<div class="header-tabs scrollable-tabs sticky">
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
-				<li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">About</a></li>
-				<li><a href="#roster" data-toggle="tab" class="btn-ripple">Roster</a></li>
+				<li class="active"><a href="#roster" data-toggle="tab" class="btn-ripple">Roster</a></li>
 				<li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li>
-				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li>
-				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
+				<!-- <li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li>
+				 --><li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
 				<!-- <li><a href="#payments" data-toggle="tab" class="btn-ripple">Payments</a></li> -->
 				<li><a href="#admin" data-toggle="tab" class="btn-ripple">Admin</a></li>
-				<li><a href="#leagues" data-toggle="tab" class="btn-ripple">League</a></li>
-        		<li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li>
+				<li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li>
         		<li><a href="#certifications" data-toggle="tab" class="btn-ripple">Certifications</a></li>
       		</ul>
 		</div>
@@ -87,87 +85,111 @@
 	<div class="row user-profile">
 		<div class="col-md-12">
 			<div class="tab-content without-border">
-
-				<!-- about -->
-				<div id="about" class="tab-pane active">
-					<div class="panel">
-						<div class="panel-heading">
-							<div class="panel-title">
-								<h4>
-									<span class="text-black">
-										Coaches and Staff
-									</span>
-								</h4>
-							</div>
-						</div><!--.panel-heading-->
-						<div class="panel-body without-padding">
-							<ul class="list-material has-hidden">
-								<% @heads.each do |m| %>
-							 		<%= render 'head', m: m %>
-								<% end %>
-							</ul>
-						</div><!--.panel-body-->
-					</div><!--.panel-->
-				</div>
-				<!--#about.tab-pane-->
-
 				<!-- roster -->
-				<div id="roster" class="tab-pane">
+				<div id="roster" class="tab-pane active">
 
-					<div class="panel">
-						<div class="panel-heading">
-							<div class="panel-title">
-								<h4>
-									<i class="ion-clipboard"></i>
-									TEAM ROSTER
-								</h4>
+					<div class="row">
+						<div class="col-lg-10 col-lg-offset-1">
+							<div class="row">
+								<div class="col-lg-7">
+						<h3> 
+							<i class="ion-ios-people margin-right-10 text-blue"></i> Coaching Staff
+						</h3>
+						<div class="panel box-shadow-ccc">
+							<div class="panel-heading">
+								<div class="panel-title">
+									<h4>
+										<span class="text-black">
+											Coaches and Staff
+										</span>
+									</h4>
+								</div>
+							</div><!--.panel-heading-->
+							<div class="panel-body without-padding">
+								<ul class="list-material has-hidden">
+									<% @heads.each do |m| %>
+								 		<%= render 'head', m: m %>
+									<% end %>
+								</ul>
+							</div><!--.panel-body-->
+						</div><!--.panel-->
+						<br/>
+						<h3> 
+							<i class="ion-clipboard margin-right-10 text-blue"></i> Team Roster
+						</h3>
+						<div class="panel box-shadow-ccc">
+							<div class="panel-heading">
+								<div class="panel-title">
+								</div>
+							</div><!--.panel-heading-->
+							<div class="panel-body without-padding">
+								<ul class="list-material has-hidden">
+									<% @members.each do |m| %>
+									<% if current_user.can_edit_team?(@team) %>
+							       		<%= render 'admin_view_member', m: m%>
+									<% else %>
+										<%= render 'member', m: m%>
+									<% end %>
+							    	<% end %>
+								</ul>
+							</div><!--.panel-body-->
+						</div><!--.panel-->
+								</div>
+								<div class="col-lg-4">
+						<p class="text-right pull-right">
+							<button class="btn btn-blue btn-xs" data-toggle="modal" data-target="#panel-new-team-league">Join League</button>
+						</p>
+
+						<h3> 
+							<i class="ion-flag margin-right-10 text-blue"></i> Leagues
+						</h3>
+						
+						<div id='team-league-list'>
+						  <%= render 'teams/leagues', leagues: @team.leagues %>
+					    </div>
+
+					    <br/>
+
+					    <p class="text-right pull-right">
+						<button class="btn btn-blue btn-xs" data-toggle="modal" data-target="#panel-new-facility">New Facility</button>
+						</p>
+						<h3> 
+							<i class="ion-home margin-right-10 text-blue"></i> Facilities
+						</h3>
+
+						<div id='team-facility-list'>
+						  <%= render 'shared/facilities', facilities: @team.facilities %>
+					    </div>
+								</div>
 							</div>
-						</div><!--.panel-heading-->
-						<div class="panel-body without-padding">
-							<ul class="list-material has-hidden">
-								<% @members.each do |m| %>
-								<% if current_user.can_edit_team?(@team) %>
-						       		<%= render 'admin_view_member', m: m%>
-								<% else %>
-									<%= render 'member', m: m%>
-								<% end %>
-						    	<% end %>
-							</ul>
-						</div><!--.panel-body-->
-					</div><!--.panel-->
+						</div>
+					</div>
 				</div>
 				<!--#roster.tab-pane-->
 
 				<!-- events -->
 				<div id="events" class="tab-pane">
-					<p class="text-right">
-						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-event">	New Event
-						</button>
-					</p>
-
-					<hr/>
-
-					<% @events.each do |event| %>
-
-						<%= render 'teams/events', event: event %>
-
-					<% end %>
-
+					<div class="row">
+						<div class="col-lg-8 col-lg-offset-2">
+							<p class="text-right pull-right">
+								<button class="btn btn-blue btn-sm" data-toggle="modal" data-target="#panel-new-event">	New Event
+								</button>
+							</p>
+							<h3> 
+								<i class="ion-calendar margin-right-10 text-blue"></i> Upcoming Events
+							</h3>
+							<% @events.each do |event| %>
+								<%= render 'teams/events', event: event %>
+							<% end %>
+						</div>
+					</div>
 				</div>
 				<!--#events.tab-pane-->
 
 				<!-- facilities -->
-				<div id="facilities" class="tab-pane">
-					<p class="text-right">
-						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-facility">New Facility</button>
-					</p>
-
-					<hr/>
-
-					<div id='team-facility-list'>
-					  <%= render 'shared/facilities', facilities: @team.facilities %>
-				    </div>
-				</div>
+				<!-- <div id="facilities" class="tab-pane">
+					
+				</div> -->
 				<!--#facilities.tab-pane-->
 
 				<!-- media -->
@@ -339,21 +361,7 @@
 				</div>
 				<!--#admin.tab-pane-->
 
-				<!-- facilities -->
-				<div id="leagues" class="tab-pane">
-					<p class="text-right">
-						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-team-league">Join League</button>
-					</p>
-
-					<hr/>
-
-					<div id='team-league-list'>
-					  <%= render 'teams/leagues', leagues: @team.leagues %>
-				    </div>
-
-				</div>
-				<!--#facilities.tab-pane-->
-        		
+				
         		<%= render 'shared/photo_tab', photo_owner: @team %>
 
 			</div><!--.tab-content-->
