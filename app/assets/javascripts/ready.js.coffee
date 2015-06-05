@@ -42,11 +42,12 @@ pictureCropping = ->
       $('.crop-ui').show()
       self.html('Close')
       self.data('edit', 'close')
+      $('.bg-overlay').hide()
     else
       $('.crop-ui').hide()
       self.html('Edit')
       self.data('edit', 'edit')
-
+      $('.bg-overlay').show()
 
   img = $('#image-cropper')
   src = img.attr('src')
