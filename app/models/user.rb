@@ -252,7 +252,7 @@ class User < ActiveRecord::Base
   def can_edit_team?(team)
     if Relationship.where(user_id: id, head: true, team_id: team.id).present?
       true
-    elsif AthleticDirector.where(user_id: id, school_id: team.school_id)
+    elsif AthleticDirector.where(user_id: id, school_id: team.school_id).present?
       true
     elsif admin?
       true

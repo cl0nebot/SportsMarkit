@@ -12,6 +12,7 @@ class Team < ActiveRecord::Base
   has_many :medias, as: :mediable
   
   has_many :relationships
+  has_many :userless_relationships
   has_many :users, through: :relationships
   
   

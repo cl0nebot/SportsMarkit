@@ -17,17 +17,16 @@ class RelationshipsController < ApplicationController
   end
   
   def update
-    if @relationship.update_attributes(relationship_params)
-      respond_to do |format|
-        format.html{ redirect_to team_path(@relationship.team) }
-        format.json{ respond_with_bip(@relationship) }
-      end
-    else
-      respond_to do |format|
-        format.html{ render 'edit' }
-        format.json{ respond_with_bip(@relationship) }
-      end
-    end
+    @relationship = Relationship.find(params[:id])
+    @team = @relationship.team
+    @class = @relationship.class.to_s
+    @id = params[:id]
+    @object = @relationship
+    @relationship.update_attributes(relationship_params)
+    respond_to do |format|
+      format.js
+      format.html { redirect_to :back }
+    end  
   end
   
   
@@ -51,11 +50,11 @@ class RelationshipsController < ApplicationController
   protected
   
   def relationship_params
-    params.require(:relationship).permit(:user_id, :team_id, :head, :head_title, :participant, :participant_classification, :position, :quote)
+    params.require(:relationship).permit(:user_id, :team_id, :head, :head_title, :participant, :participant_classification, :position, :quote, :username, :mobile_phone_number)
   end
   
   def find_relationship
-    @relationship = Relationship.friendly.find(params[:id])
+    @relationship = Relationship.find(params[:id])
   end
   
   

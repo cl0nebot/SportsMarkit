@@ -1,73 +1,69 @@
-<li class="has-action-left">
-  <a href="#" class="hidden">
-    <i class="ion-checkmark-circled text-success"></i>
-  </a>
-  <a href="#" class="visible no-action">
-    <div class="list-content row">
-      <div class="col-sm-1">
-        <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 40px; height: 40px; margin-right: 10px;" %>
-      </div>
-      <div class="col-sm-11">
-        <div class="row">
-          <div class="col-sm-12">
-            <h3 class="margin-bottom-5 semi-bold capitalize">
-              <%= best_in_place m.user, :name, as: :input %>
-            </h3>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-2">
-          <h5 class="no-margin">
-            <%= best_in_place m, :participant_classification, as: :input  %>
-          </h5>
-          <p class="small">
-            <small>
-              Status
-            </small>
-          </p>
-          </div>
-          <div class="col-sm-3">
-            <h5 class="no-margin">
-              <%= best_in_place m, :position, as: :input %>
-            </h5>
-            <p class="small">
-              <small>
-                Position
-              </small>
-            </p>
-          </div>
-          <div class="col-sm-2 text-center">
-            <h5 class="no-margin">
-              <%= best_in_place m, :head, as: :input %>
-            </h5>
-            <p class="small">
-              <small>
-                Head
-              </small>
-            </p>
-          </div>
-          <div class="col-sm-3 text-center">
-            <h5 class="no-margin">
-              <%= best_in_place m, :head_title, as: :input %>
-            </h5>
-            <p class="small">
-              <small>
-                Head title
-              </small>
-            </p>
-          </div>
-          <div class="col-sm-1">
-            <h5 class="no-margin">
-              <%= best_in_place m, :admin, as: :checkbox, collection: {false: "No", true: "Yes"} %>
-            </h5>
-            <p class="small">
-              <small>
-                Admin
-              </small>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </a>
+<li id="member-<%= m.class.to_s %><%= m.id%>" class="">
+	<div class="list-content row">
+		<div class="col-sm-1">
+			<% if m.class == "Relationship" %>
+			  <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
+			<% else %>
+			  <%= image_tag "http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png", class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
+			<% end %>
+		</div>
+
+		<div class="col-sm-3">
+			<h4 class="semi-bold no-margin capitalize">
+				<% if m.class.to_s == "Relationship" %>
+				  <%= m.user.try(:full_name) %>
+				<% else %>
+				  <%= m.first_name  %> <%= m.last_name %>
+				<% end %>
+			</h4>
+			<p class="small">
+				<small>
+					Name
+				</small>
+			</p>
+		</div>
+		<div class="col-sm-2">
+			<h4 class="no-margin">
+				<%= m.participant_classification %>
+			</h4>
+			<p class="small">
+				<small>
+					Classification
+				</small>
+			</p>
+		</div>
+		<div class="col-sm-2">
+			<h4 class="no-margin">
+				<%= m.position %>
+			</h4>
+			<p class="small">
+				<small>
+					Position
+				</small>
+			</p>
+		</div>
+		<div class="col-sm-2">
+			<h4 class="no-margin">
+				<%#= %>
+			</h4>
+			<p class="small">
+				<small>
+					Admin Action
+				</small>
+			</p>
+		</div>
+		<div class="col-sm-2">
+			<h4 class="no-margin">
+				<%= link_to "edit", team_edit_roster_view_path(team_id: @team.id, class: m.class, id: m.id), remote: true %>
+				
+				<%#= link_to "Edit", params.merge(partial: "edit_member", m: m.id, class: m.class), remote: true  %>
+				<%= link_to "Send Invitation", ""  %>
+			</h4>
+			<p class="small">
+				<small>
+					Admin Action
+				</small>
+			</p>
+		</div>
+	</div>
 </li>

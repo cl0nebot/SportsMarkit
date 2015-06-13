@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605024949) do
+ActiveRecord::Schema.define(version: 20150612130432) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -399,6 +399,20 @@ ActiveRecord::Schema.define(version: 20150605024949) do
   add_index "user_profile_pictures", ["photo"], name: "index_user_profile_pictures_on_photo", using: :btree
   add_index "user_profile_pictures", ["user_id"], name: "index_user_profile_pictures_on_user_id", using: :btree
 
+  create_table "userless_relationships", force: true do |t|
+    t.integer  "team_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.boolean  "head"
+    t.string   "head_title"
+    t.boolean  "participant"
+    t.string   "participant_classification"
+    t.string   "position"
+    t.string   "mobile_phone_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "password_digest",         default: "", null: false
     t.string   "email",                   default: "", null: false
@@ -428,7 +442,6 @@ ActiveRecord::Schema.define(version: 20150605024949) do
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 

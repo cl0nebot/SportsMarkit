@@ -1,6 +1,6 @@
 class Relationship < ActiveRecord::Base
-  extend FriendlyId
-  friendly_id :use_for_slug, use: :slugged
+  #extend FriendlyId
+  #friendly_id :use_for_slug, use: :slugged
   
   belongs_to :user
   belongs_to :team

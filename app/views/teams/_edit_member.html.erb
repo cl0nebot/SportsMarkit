@@ -1,0 +1,88 @@
+<%= form_for m, html: {data: {remote: true}} do |f| %>
+<li id="edit-member-<%= m.class.to_s %><%= m.id%>" class="">
+	<div class="list-content row">
+		<div class="col-sm-1">
+			<% if m.class.to_s == "Relationship" %>
+			  <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
+			<% else %>
+			  <%= image_tag "http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png", class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
+			<% end %>
+		</div>
+
+		<div class="col-sm-3">
+			
+				<% if m.class.to_s == "Relationship" %>
+				<h4 class="semi-bold no-margin capitalize">
+				  <%= m.user.try(:full_name) %>
+			    </h4>
+				<% else %>
+				  <%= f.text_field :first_name %> 
+				<p class="small">
+					<small>
+						First Name
+					</small>
+				</p>
+				  <%= f.text_field :last_name %>
+				<% end %>
+			<p class="small">
+				<small>
+					Last Name
+				</small>
+			</p>
+		</div>
+		<div class="col-sm-3">
+			
+				
+				  <%= f.text_field :participant_classification %> 
+				<p class="small">
+					<small>
+						Classification
+					</small>
+				</p>
+				  <%= f.text_field :position %>
+			
+			<p class="small">
+				<small>
+					Position
+				</small>
+			</p>
+		</div>
+		
+		<div class="col-sm-2">
+
+				  <%= f.check_box :participant %> 
+				<p class="small">
+					<small>
+						Is Athlete?
+					</small>
+				</p>
+				  <%= f.text_field :mobile_phone_number %>
+			
+			<p class="small">
+				<small>
+					Mobile Phone Number
+				</small>
+			</p>
+		</div>
+		
+		<div class="col-sm-2">
+			
+				  <%= link_to "close", team_close_roster_view_path(team_id: team.id, class: m.class, id: m.id), remote: true %>
+				<p class="small">
+					<small>
+						
+					</small>
+				</p>
+				  <%= f.submit "update" %>
+			
+			<p class="small">
+				<small>
+					
+				</small>
+			</p>
+
+		</div>
+	</div>
+</li>
+
+<% end %>

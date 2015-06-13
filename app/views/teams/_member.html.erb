@@ -1,12 +1,20 @@
-<li class="">
+<li id="member-<%= m.class.to_s %><% m.id%>" class="">
 	<div class="list-content row">
 		<div class="col-sm-1">
-			<%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
+			<% if m.class == "Relationship" %>
+			  <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
+			<% else %>
+			  <%= image_tag "http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png", class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
+			<% end %>
 		</div>
 
 		<div class="col-sm-3">
 			<h4 class="semi-bold no-margin capitalize">
-				<%= m.user.try(:full_name) %>
+				<% if m.class == "Relationship" %>>
+				  <%= m.user.try(:full_name) %>
+				<% else %>
+				  <%= m.first_name  %> <%= m.last_name %>
+				<% end %>
 			</h4>
 			<p class="small">
 				<small>
@@ -20,7 +28,7 @@
 			</h4>
 			<p class="small">
 				<small>
-					Name
+					Classification
 				</small>
 			</p>
 		</div>

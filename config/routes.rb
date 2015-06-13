@@ -47,6 +47,8 @@ Rails.application.routes.draw do
     end
     
     resources :teams do
+      get :edit_roster_view
+      get :close_roster_view
       resources :photos
       resources :events
       resources :media
@@ -75,6 +77,7 @@ Rails.application.routes.draw do
     resources :fans
     resources :attendees
     resources :relationships
+    resources :userless_relationships
     resources :sitemap
     resources :sports
     resources :certifications

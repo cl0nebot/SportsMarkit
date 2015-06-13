@@ -1,0 +1,2 @@
+$('#member-<%= @class %><%= @id %>').empty()
+$('#member-<%= @class %><%= @id %>').append('<%= j render 'edit_member', m: @object, team: @team %>')
