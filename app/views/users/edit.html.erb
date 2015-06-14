@@ -11,7 +11,7 @@
 						<%= current_user.full_name %> 
 					</h1>
 					<h6 class="capitalize h1-xlarge text-white">
-						[Student-Athlete], [Senior]
+						<%= @user.classification_list %>
 					</h6>
 				</div>
 			</div><!--.col-->
@@ -196,7 +196,8 @@
 														<div class="col-md-12">
 															<div class="inputer margin-bottom-10">
 																<%= f.fields_for :profile, @profile do |builder| %>
-																	<%= builder.select(:city, User.cities_list.sort, {}, {:class => 'selecter', data:{live_search: 'true', width: '100%'}}) %>
+																	<%= builder.select(:city, User.cities_list.sort.collect {|city| [ city_with_state(city), city ] }, {}, {:class => 'selecter', data:{live_search: 'true', width: '100%'}}) %>
+																
 																<% end %>
 															</div>
 														</div><!--.col-md-9-->
