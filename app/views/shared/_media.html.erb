@@ -1,18 +1,20 @@
+						<% @videos.each do |vid| %>
 						<div class="col-md-3">
 							<div class="card card-video card-player-orange">
 
 								<div class="card-heading">
 
-									<video id="youtube1" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" data-width="640" data-height="360" data-setup='{ "techOrder": ["youtube"], "src": "https://www.youtube.com/watch?v=qpwG8hbFY3g" }'></video>
+									<video id="youtube1" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" data-width="640" data-height="360" data-setup='{ "techOrder": ["youtube"], "src": "<%= vid.url %>" }'></video>
 
 								</div><!--.card-heading-->
 
 								<div class="card-body">
-									<h5 class="semi-bold no-margin">Woodlawn High vs Milford Mill</h5>
+									<h5 class="semi-bold no-margin"><%= vid.title%></h5>
 									<p class="small text-muted">
-										<small>Published on Dec 3, 2014</small>
+										<small>Published on <%= format(vid.publish_date)%></small>
 									</p>
 								</div><!--.card-body-->
 
 							</div><!--.card-->
 						</div><!--.col-md-6-->
+						<% end %>
