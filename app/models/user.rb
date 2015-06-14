@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
 
   def avatar
     if user_profile_pictures.last.try(:id).blank?
-      "http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png"
+      "http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif"
     else
       user_profile_pictures.last.photo
     end
@@ -310,6 +310,14 @@ class User < ActiveRecord::Base
     else
       "N/A"
     end
+  end
+  
+  def classification_list
+    classifications.pluck(:classification).join(",").gsub(",", ", ")
+  end
+  
+  def has_profile_picture?
+    user_profile_pictures.present?
   end
   
   
