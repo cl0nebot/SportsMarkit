@@ -45,6 +45,8 @@ class FacilitiesController < ApplicationController
     @object = @facility
     @teams = @facility.all_teams
     @users_of_facility = @facility.people_that_use_facility
+    @videos = @facility.medias.where(category: "Video")
+    @articles = @facility.medias.where(category: "Article")
   end
   
   def edit

@@ -33,6 +33,8 @@ class SchoolsController < ApplicationController
     @events = @school.upcoming_events
     @facilities = @school.facilities
     @certifications = @school.school_certifications
+    @videos = @school.medias.where(category: "Video")
+    @articles = @school.medias.where(category: "Article")
   end
   
   def edit

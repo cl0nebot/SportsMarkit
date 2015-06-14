@@ -98,6 +98,8 @@ class TeamsController < ApplicationController
     @new_user = User.new
     @relationship = @new_user.relationships.build
     @event = @object.events.build
+    @videos = @team.medias.where(category: "Video")
+    @articles = @team.medias.where(category: "Article")
     
   end
   

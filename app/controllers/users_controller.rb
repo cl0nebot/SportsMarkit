@@ -32,6 +32,8 @@ class UsersController < ApplicationController
     @teammates = User.where(id: @teammate_ids).uniq - [@user]
     @teams = Team.where(id: @team_ids)
     @follows = @user.follows
+    @videos = @user.medias.where(category: "Video")
+    @articles = @user.medias.where(category: "Article")
   end
   
   def edit
