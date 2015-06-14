@@ -24,7 +24,9 @@
 
       <div class="card-body">
         <h4 class="card-title capitalize">
-          <a href="#"><%= user.first_name %> <%= user.last_name %></a>
+			<%= link_to user_path(user) do %>
+          <%= user.first_name %> <%= user.last_name %>
+		  <% end %>
         </h3>
 
         <div class="subhead">
