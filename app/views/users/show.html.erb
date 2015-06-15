@@ -14,7 +14,9 @@
 <div class="content">
 
 <div class="page-header full-content parallax">
-  <div class="parallax-bg" style="background: url('<%= background_url(@user) %>') 50% 50%;"></div>
+
+  <%= render 'shared/background_photo_tab', photo_owner: @user %>
+
 
   <div class="bg-overlay"></div><!--.bg-overlay-->
 
@@ -28,7 +30,7 @@
     <div class="profile-text light capitalize">
       <%= @user.full_name %>
       <span class="caption">
-					<%= @user.profile.location_description %> 
+					<%= @user.profile.location_description %>
 				</span>
     </div>
     <!--.profile-text-->
@@ -147,7 +149,7 @@
 <div id="teammates" class="tab-pane">
 
   <div class="row">
-    
+
     <!--.col-->
     <div class="col-md-10">
       <div class="row">
@@ -302,9 +304,9 @@
   <div class="row">
 
     <%= render 'shared/media' %>
-	
+
 	fans: <br>
-	
+
 	<% @follows.each do |follow| %>
 	<% if follow.fannable.class == "User" %>
 	  <%= follow.fannable.full_name  %><br>
@@ -312,7 +314,7 @@
 	 <%= follow.fannable.name  %><br>
 	<% end%>
 
-	
+
 	<% end %>
 
   </div>

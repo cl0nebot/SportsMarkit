@@ -1,7 +1,6 @@
 <div class="content">
 	<div class="page-header full-content parallax">
-		<div class="parallax-bg" style="background: url('<%= background_url(@team)%>') 50% 50%;">
-		</div>
+    <%= render 'shared/background_photo_tab', photo_owner: @team %>
 
 		<div class="bg-overlay"></div><!--.bg-overlay-->
 

@@ -1,6 +1,7 @@
 class League < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :use_for_slug, use: :slugged
+  include PhotoOwner
+  friendly_id :use_for_slug, use: [:slugged, :finders]
   
   has_many :fans, as: :fannable
   has_many :team_leagues, dependent: :destroy
