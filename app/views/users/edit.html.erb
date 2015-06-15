@@ -64,9 +64,16 @@
 								<span class="fileinput-exists">Change</span>
             				<%= f.file_field :photo %>
 							</span>
+							<% if @user_profile_picture.present? %>
+							  <%= link_to  [@user, @user_profile_picture], method: :delete, data: {confirm: "Are you sure?" } do %>
+								<span class="btn btn-sm btn-default btn-file">
+									<span class="fileinput-new">Delete</span>
+								</span>
+								<% end %>
+							<% end %>
 							<a href="#" class="btn btn-sm btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
 							<br/>
-							<p class="margin-top-20">
+							<p class="margin-top-20"> 
 								<%= f.submit class: "btn-block btn btn-primary" %>
 							</p>
 						</div>

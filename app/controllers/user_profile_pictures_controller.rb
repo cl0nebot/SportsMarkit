@@ -38,7 +38,7 @@ class UserProfilePicturesController < ApplicationController
   
   def destroy
     @picture.destroy
-    redirect_to user_user_profile_pictures_path(@user)
+    redirect_to :back
   end
   
   protected
