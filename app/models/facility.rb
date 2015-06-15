@@ -71,4 +71,9 @@ class Facility < ActiveRecord::Base
     Facility.pluck(:name)
   end
   
+  def upcoming_events
+    event_ids = EventFacility.where(facility_id: id).pluck(:event_id)
+    events = Event.where(id: event_ids )
+  end
+  
 end
