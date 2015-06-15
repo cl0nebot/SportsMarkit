@@ -76,7 +76,9 @@
 				 --><li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
 				<!-- <li><a href="#payments" data-toggle="tab" class="btn-ripple">Payments</a></li> -->
 				<li><a href="#admin" data-toggle="tab" class="btn-ripple">Admin</a></li>
-				<!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
+        <li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
+
+        <!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
         		<!-- <li><a href="#certifications" data-toggle="tab" class="btn-ripple">Certifications</a></li> -->
       		</ul>
 		</div>
@@ -191,6 +193,13 @@
 					
 				</div> -->
 				<!--#facilities.tab-pane-->
+        <div id="calendar-tab" class="tab-pane">
+
+          <div class="row">
+            <%= render 'shared/calendar', eventable: @team %>
+          </div>
+
+        </div>
 
 				<!-- media -->
 				<div id="media" class="tab-pane">

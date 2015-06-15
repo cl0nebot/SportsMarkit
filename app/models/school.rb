@@ -56,6 +56,10 @@ class School < ActiveRecord::Base
   def upcoming_events
     Event.where(eventable_type: "Team", eventable_id: team_ids)
   end
+
+  def all_events
+    upcoming_events
+  end
   
   def next_event
     upcoming_events.first.nil? ? "No upcoming events" : upcoming_events.first.title
