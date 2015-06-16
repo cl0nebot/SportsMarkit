@@ -14,8 +14,8 @@ class UserlessRelationshipsController < ApplicationController
     title = params[:userless_relationship][:title]
     position = params[:userless_relationship][:position]
     classification = params[:userless_relationship][:participant_classification]
-    head = params[:userless_relationship][:head].nil? ? true : false
-    participant = params[:userless_relationship][:participant].nil? ? true : false
+    head = params[:userless_relationship][:head].nil? ? false : true
+    participant = params[:userless_relationship][:participant].nil? ? false : true
     #if phone number present; remove userless, create real relationship and send invite
     
     if mobile_number.present?
@@ -58,7 +58,7 @@ class UserlessRelationshipsController < ApplicationController
   protected
   
   def userless_relationship_params
-    params.require(:userless_relationship).permit(:team_id, :first_name, :last_name, :head, :head_title, :participant, :participant_classification, :position, :mobile_phone_number)  
+    params.require(:userless_relationship).permit(:team_id, :first_name, :last_name, :head, :head_title, :participant, :participant_classification, :position, :mobile_phone_number, :age, :nickname)  
   end
    
   def send_mobile_invitation(user, password)
