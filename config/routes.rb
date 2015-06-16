@@ -73,7 +73,8 @@ Rails.application.routes.draw do
     resources :tournaments
     resources :leagues do
       resources :media
-    end 
+      resources :photos
+    end
     resources :fans
     resources :attendees
     resources :relationships

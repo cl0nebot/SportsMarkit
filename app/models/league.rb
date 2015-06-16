@@ -1,6 +1,7 @@
 class League < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :use_for_slug, use: :slugged
+  include PhotoOwner
+  friendly_id :use_for_slug, use: [:slugged, :finders]
   
   has_many :fans, as: :fannable
   has_many :team_leagues, dependent: :destroy
@@ -31,6 +32,8 @@ class League < ActiveRecord::Base
     team_ids = TeamLeague.where(league_id: id).pluck(:team_id)
     Event.where(eventable_type: "Team", eventable_id: team_ids)
   end
-  
-  
+
+  def all_events
+    upcoming_events
+  end
 end

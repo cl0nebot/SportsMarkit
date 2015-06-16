@@ -54,6 +54,7 @@
 
     <div class="col-md-12">
       <%= f.hidden_field :mediable_id, value: u.id %>
+      <%= f.hidden_field :mediable_type, value: u.class.to_s %>
       <% if m.persisted? %>
         <button class="btn btn-blue submit-form"> Update </button>
         <%= link_to "Remove", medium_path(m), class: "btn btn-orange", method: :delete, remote: :true %>

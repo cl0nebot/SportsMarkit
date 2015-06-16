@@ -1,8 +1,8 @@
 class MediaController < ApplicationController
-  before_action :set_mediable, only: [:new, :create]
+  before_action :set_mediable, only: :new
 
   def new
-    @media = @mediable.medias.build
+    @media = Media.new
   end
 
   def destroy
@@ -17,13 +17,14 @@ class MediaController < ApplicationController
   end
 
   def create
-    @media = @mediable.medias.build(media_params)
+    @media = Media.new(media_params)
     @media.save
+    @mediable = @media.mediable
   end
 
   private
     def media_params
-      params[:media].permit(:url, :publish_date, :mediable_id, :title, :category)
+      params[:media].permit(:url, :publish_date, :mediable_id, :title, :category, :mediable_type)
     end
   
     def set_mediable

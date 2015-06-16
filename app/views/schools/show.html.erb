@@ -33,9 +33,6 @@
 
 		<div class="social-buttons">
 			<%= render 'shared/fan' %>
-      <% if current_user.admin? %>
-        <%= link_to 'Edit', '#', id: 'edit-background', class: 'btn btn-primary btn-ripple', 'data-edit' => 'edit' %>
-      <% end %>
 		</div>
 
 		<div class="row">
@@ -68,8 +65,9 @@
 				<!-- <li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li> -->
 				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li>
 				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
-				
-				<% if AthleticDirector.where(user_id: current_user.id, school_id: @school.id).present? %>
+        <li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
+
+        <% if AthleticDirector.where(user_id: current_user.id, school_id: @school.id).present? %>
 				  <li><a href="#certifications" data-toggle="tab" class="btn-ripple">Certifications</a></li>
 				<% end %>
 			</ul>
@@ -224,7 +222,13 @@
 					<%= render 'shared/facilities', facilities: @facilities %>
 				</div>
 				<!--#facilities.tab-pane-->
+        <div id="calendar-tab" class="tab-pane">
 
+          <div class="row">
+            <%= render 'shared/calendar', eventable: @school %>
+          </div>
+
+        </div>
 				<!-- media -->
 				<div id="media" class="tab-pane">
 
