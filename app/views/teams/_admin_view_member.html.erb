@@ -1,69 +1,77 @@
 <li id="member-<%= m.class.to_s %><%= m.id%>" class="">
 	<div class="list-content row">
 		<div class="col-sm-1">
-			<% if m.class.to_s == "Relationship" %>
-			  <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
-			<% else %>
-			  <%= image_tag "http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png", class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
-			<% end %>
+			<div class="center">
+				<% if m.class.to_s == "Relationship" %>
+				  <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 65px; height: 65px; border: 2px solid #ddd;" %>
+				<% else %>
+				  <%= image_tag "http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png", class: "face-radius pl", alt: "", style: "width: 65px; height: 65px; border: 2px solid #ddd;" %>
+				<% end %>
+			</div>
 		</div>
 
 		<div class="col-sm-3">
-			<h4 class="semi-bold no-margin capitalize">
+			<h4 class="no-margin capitalize semi-bold">
 				<% if m.class.to_s == "Relationship" %>
 				  <%= m.user.try(:full_name) %>
 				<% else %>
 				  <%= m.first_name  %> <%= m.last_name %>
 				<% end %>
 			</h4>
-			<p class="small">
+			<p class="small text-grey">
 				<small>
 					Name
 				</small>
 			</p>
 		</div>
-		<div class="col-sm-2">
-			<h4 class="no-margin">
+		<div class="col-sm-1">
+			<h5 class="no-margin capitalize semi-bold">
+				K-coke
+			</h5>
+			<p class="small text-grey">
+				<small>
+					Nickname
+				</small>
+			</p>
+		</div>
+		<div class="col-sm-1">
+			<h5 class="no-margin semi-bold">
 				<%= m.participant_classification %>
-			</h4>
-			<p class="small">
+			</h5>
+			<p class="small text-grey">
 				<small>
-					Classification
+					Year
 				</small>
 			</p>
 		</div>
 		<div class="col-sm-2">
-			<h4 class="no-margin">
+			<h5 class="no-margin semi-bold">
 				<%= m.position %>
-			</h4>
-			<p class="small">
+				, [PG]
+			</h5>
+			<p class="small text-grey">
 				<small>
-					Position
+					Position(s)
 				</small>
 			</p>
 		</div>
-		<div class="col-sm-2">
-			<h4 class="no-margin">
-				<%#= %>
-			</h4>
-			<p class="small">
+		<div class="col-sm-1">
+			<h5 class="no-margin semi-bold">
+				[13+]
+			</h5>
+			<p class="small text-grey">
 				<small>
-					Admin Action
+					Age
 				</small>
 			</p>
 		</div>
-		<div class="col-sm-2">
-			<h4 class="no-margin">
-				<%= link_to "edit", team_edit_roster_view_path(team_id: @team.id, class: m.class, id: m.id), remote: true %>
+		<div class="col-sm-3">
+			<h5 class="no-margin semi-bold">
+				<%= link_to "Edit", team_edit_roster_view_path(team_id: @team.id, class: m.class, id: m.id), remote: true, class: "btn btn-primary mr20" %>
 				
 				<%#= link_to "Edit", params.merge(partial: "edit_member", m: m.id, class: m.class), remote: true  %>
 				<%= link_to "Send Invitation", ""  %>
-			</h4>
-			<p class="small">
-				<small>
-					Admin Action
-				</small>
-			</p>
+			</h5>
 		</div>
 	</div>
 </li>
