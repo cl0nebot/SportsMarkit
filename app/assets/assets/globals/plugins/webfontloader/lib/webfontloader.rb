@@ -1,6 +1,6 @@
 require 'yaml'
 
-require 'webfontloader/modules'
+#require 'webfontloader/modules'
 
 module WebFontLoader
   VERSION = '1.5.8'
