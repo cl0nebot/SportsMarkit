@@ -82,5 +82,13 @@ class School < ActiveRecord::Base
   def self.school_names
     School.pluck(:name)
   end
+  
+  def self.claimable_schools
+    where.not( id: AthleticDirector.select(:school_id).distinct)
+  end
+
+  def self.cached_claimable_schools(last_update)
+    Rails.cache.fetch([self, last_update, "claimable_schools", "v1"]) { self.claimable_schools }
+  end
     
 end
