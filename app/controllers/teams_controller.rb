@@ -83,6 +83,7 @@ class TeamsController < ApplicationController
       end
     else #mobile not present
       UserlessRelationship.create(first_name: fname, last_name: lname, team_id: @team.id, head: head, participant: participant, participant_classification: classification, position: position)
+      redirect_to :back
     end
   end
   
