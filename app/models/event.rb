@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
   belongs_to :user
   extend FriendlyId
   friendly_id :use_for_slug, use: [:slugged, :finders]
-  has_many :attendees
+  has_many :attendees, dependent: :destroy
   
   has_one :event_facility, dependent: :destroy
   has_one :facility, through: :event_facility
