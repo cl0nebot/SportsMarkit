@@ -26,7 +26,7 @@
 		</div>
 		<div class="col-sm-1">
 			<h5 class="no-margin capitalize semi-bold">
-				K-coke
+				<%= m.nickname.present? ? m.nickname : "TBD" %>
 			</h5>
 			<p class="small text-grey">
 				<small>
@@ -36,7 +36,7 @@
 		</div>
 		<div class="col-sm-1">
 			<h5 class="no-margin semi-bold">
-				<%= m.participant_classification %>
+				<%= m.participant_classification.present? ? m.participant_classification : "TBD" %>
 			</h5>
 			<p class="small text-grey">
 				<small>
@@ -46,8 +46,7 @@
 		</div>
 		<div class="col-sm-2">
 			<h5 class="no-margin semi-bold">
-				<%= m.position %>
-				, [PG]
+				<%= m.position.present? ? m.position : "TBD" %>
 			</h5>
 			<p class="small text-grey">
 				<small>
@@ -57,7 +56,7 @@
 		</div>
 		<div class="col-sm-1">
 			<h5 class="no-margin semi-bold">
-				[13+]
+				<%= m.age.present? ? m.age : "TBD" %>
 			</h5>
 			<p class="small text-grey">
 				<small>
