@@ -88,10 +88,10 @@ class TeamsController < ApplicationController
   end
   
   def show
-    @members = @team.relationships.where(accepted: true) + UserlessRelationship.where(team_id: @team.id)
+    @members = @team.relationships.where(accepted: true, participant: true) + UserlessRelationship.where(team_id: @team.id, participant: true)
     @athletes = @team.relationships.where(accepted: true, head: false)
     @pending_members = @team.relationships.where(accepted: nil, rejected: nil)
-    @heads = @team.relationships.where(accepted: true, head: true)
+    @heads = @team.relationships.where(accepted: true, head: true) + UserlessRelationship.where(team_id: @team.id, head: true)
     @class = @team.class
     @object = @team
     @events = @team.upcoming_events
