@@ -5,12 +5,21 @@
     <a href="#" class="visible">
         <div class="list-content row">
             <div class="col-sm-1">
-                <%= image_tag m.user.avatar, class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
+				<% if m.class.to_s == "Relationship" %>
+                  <%= image_tag m.user.avatar, class: "face-radius", alt: "", style: "width: 55px; height: 55px;" %>
+				<% else %>
+				  <%= image_tag "http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png", class: "face-radius pl", alt: "", style: "width: 65px; height: 65px; border: 2px solid #ddd;" %>
+				<% end %>
             </div>
 
             <div class="col-sm-3">
                 <h4 class="semi-bold no-margin capitalize">
-                    <%= m.user.full_name %>
+					<% if m.class.to_s == "Relationship" %>
+                      <%= m.user.full_name %>
+					<% else %>
+					  <%= m.first_name  %> <%= m.last_name %>ß
+					<% end %>
+				
                 </h4>
                 <p class="small">
                     <small>
