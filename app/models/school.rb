@@ -90,5 +90,15 @@ class School < ActiveRecord::Base
   def self.cached_claimable_schools(last_update)
     Rails.cache.fetch([self, last_update, "claimable_schools", "v1"]) { self.claimable_schools }
   end
+  
+  def main_photo
+    photo = Photo.where(photo_owner_id: id, photo_owner_type: "School").last 
+    if photo.present?
+      photo
+    else
+      "http://www.engraversnetwork.com/files/placeholder.jpg"
+    end
+  end
+  
     
 end

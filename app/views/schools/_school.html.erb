@@ -2,6 +2,7 @@
 	<div class="col-md-6 col-lg-3 col-sm-12 element-item">
 	    <div class="card card-user card-clickable card-clickable-over-content">
 	      <div class="card-heading heading-full">
+			  <%#= image_tag school.main_photo, size: "428x150" %>
 	        <div class="user-image sample-member9" style="background: url('/assets/classroom.jpg');"></div>
 
 	        <div class="clickable-button">
@@ -23,9 +24,9 @@
 
 	      <div class="card-body">
 	        <h5 class="card-title capitalize">
-	        	<a href="#">
-		        	<%= school.name %>
-				</a>
+	        
+		        	<%= link_to school.name, school_path(school) %>
+				
 	        </h5>
 
 	        <div class="subhead">
