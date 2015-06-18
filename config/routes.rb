@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     get "home" => "main#home"
     
     resources :users do
+      get :email
+      get :phone
       resources :photos
       post :add_school_team_at_setup
       delete :remove_school_team

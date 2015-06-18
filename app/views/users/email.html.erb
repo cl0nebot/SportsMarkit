@@ -1,0 +1,10 @@
+We need your email.
+
+
+<%= form_for @user, html: {id: 'user-edit-form'} do |f| %>
+
+<%= f.text_field :email, placeholder: "email" %><br>
+<%= f.submit "Update Email" %>
+
+
+<% end %>

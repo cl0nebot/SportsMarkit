@@ -14,8 +14,11 @@ class SessionsController < ApplicationController
     user = User.where(mobile_phone_number: params[:identifier]).first unless params[:identifier].include?("@")
     if user && user.authenticate(params[:password])
       cookies.permanent[:authentication_token] = user.authentication_token
-      user.errors.full_messages
-      redirect_to users_path
+      if user.email.blank? and user.mobile_phone_number.present?
+        redirect_to user_email_path(user)
+      else
+        redirect_to users_path  
+      end
     else
       flash[:error] = "Email or password is incorrect."
       redirect_to :back
