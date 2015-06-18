@@ -2,126 +2,121 @@
 	<% if current_user %>
 	<ul>
 		<li>
-			<a href="javascript:;">User</a>
+			<a href="javascript:;">Profile</a>
 			<ul class="child-menu">
 				<li>
-					<%= link_to "User Profile", user_path(current_user) %>
+					<%= link_to "View Profile", user_path(current_user) %>
 				</li>
-				<li><%= link_to "User Edit", edit_user_path(current_user) %></li>
-				<li><%= link_to "Users Index", users_path %></li>
+				<li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+				<li><%#= link_to "Users Index", users_path %></li>
 			</ul>
 		</li>
 
-		
+		<% if current_user.relationships.any? %>
 		<li>
-			<a href="javascript:;">Teams</a>
+			<a href="javascript:;">My Teams</a>
 			<ul class="child-menu">
-				<li><%= link_to "Team New", new_team_path%></li>
-				<li>
+				<!-- <li><%#= link_to "Team New", new_team_path%></li> -->
+				<!-- <li>
 					<a href="#" data-toggle="modal" data-target="#panel-new-team">
 					New Team Panel Form</a>
-				</li>
-				<% if Team.any? %>
-					<li><%= link_to "Team Edit", edit_team_path(Team.first)%></li>
-					<li><%= link_to "Team Profile", team_path(Team.first)%></li>
-				<% end %>
-				<li><%= link_to "Teams Index", teams_path(Team.first)%></li>
+				</li> -->
+				
+					<% current_user.relationships.each do |relationship| %>
+					<li><%= link_to "#{relationship.team.proper_name} #{relationship.accepted? ? '' : '(Pending)'}", team_path(relationship.team.id)%> </li>
+					<% end %>
+				
+				<li><%#= link_to "Teams Index", teams_path(Team.first)%></li>
 			</ul>
 		</li>
+		<% end %>
 
-
+       <% if current_user.user_schools.any? %>
 		<li>
-			<a href="javascript:;">School</a>
+			<a href="javascript:;">My School</a>
 			<ul class="child-menu">
-				<li>
-					<%= link_to "School New", new_school_path %>
-				</li>
-				<li>
+				<% current_user.user_schools.each do |school| %>
+				  <li><%= link_to school.name, school_path(school) %></li>
+				<% end %>
+				
+					<%#= link_to "School New", new_school_path %>
+				
+				<!-- <li>
 					<a href="#" data-toggle="modal" data-target="#panel-new-school">
 					New School Panel Form</a>
-				</li>
-				<% if School.any? %>
+				</li> -->
+				<%# if School.any? %>
 					<li>
-						<%= link_to "School Edit", edit_school_path(School.first)%>
+						<%#= link_to "School Edit", edit_school_path(School.first)%>
 					</li>
 					<li>
-						<%= link_to "School Profile", school_path(School.first)%>
+						<%#= link_to "School Profile", school_path(School.first)%>
 					</li>
-				<% end %>
+				<%# end %>
 				<li>
-					<%= link_to "Schools Index", schools_path %>
+					<%#= link_to "Schools Index", schools_path %>
 				</li>
 			</ul>
 		</li>
+		<% end %>
 
 
-		<li>
+		<!-- <li>
 			<a href="javascript:;">Facility</a>
 			<ul class="child-menu">
 				<li>
-					<%= link_to "Facility New", new_facility_path %>
+					<%#= link_to "Facility New", new_facility_path %>
 				</li>
 				<li>
 					<a href="#" data-toggle="modal" data-target="#panel-new-facility">
 					New Facility Panel Form </a>
 				</li>
-				<% if Facility.any? %>
+				<%# if Facility.any? %>
 					<li>
-						<%= link_to "Facility Edit", edit_facility_path(Facility.first)%>
+						<%#= link_to "Facility Edit", edit_facility_path(Facility.first)%>
 					</li>
 					<li>
-						<%= link_to "Facility Profile", facility_path(Facility.first)%>
+						<%#= link_to "Facility Profile", facility_path(Facility.first)%>
 					</li>
-				<% end %>
+				<%# end %>
 				<li>
-					<%= link_to "Facilities Index", facilities_path %>
+					<%#= link_to "Facilities Index", facilities_path %>
 				</li>
 			</ul>
-		</li>
+		</li> -->
 
 
-		<li>
+		<!-- <li>
 			<a href="javascript:;">League</a>
 			<ul class="child-menu">
 				<li>
-					<%= link_to "League New", new_league_path %>
+					<%#= link_to "League New", new_league_path %>
 				</li>
 				<li>
 					<a href="#" data-toggle="modal" data-target="#panel-new-league">
 					New League Panel Form</a>
 				</li>
-				<% if League.any? %>
-					<li><%= link_to "League Edit", edit_league_path(League.first)%></li>
-					<li><%= link_to "League Profile", league_path(League.first)%></li>
-				<% end %>
+				<%# if League.any? %>
+					<li><%#= link_to "League Edit", edit_league_path(League.first)%></li>
+					<li><%#= link_to "League Profile", league_path(League.first)%></li>
+				<%# end %>
 				<li>
-					<%= link_to "Leagues Index", leagues_path %>
+					<%#= link_to "Leagues Index", leagues_path %>
 				</li>
 			</ul>
-		</li>
-
-
-		<li>
-			<a href="javascript:;">Relationships</a>
-			<ul class="child-menu">
-				<% if Relationship.any? %>
-					<li>
-						<%= link_to "Relationship Edit", edit_relationship_path(Relationship.first)%>
-					</li>
+		</li> -->
+			
+			<li>
+				<%#= link_to session_path(current_user.id), method: :delete do %>
+					<!-- Logout &#32;&#32;<i class="ion-power m-l-5"></i> -->
+				<%# end %>
+				<% if current_user %>
+				<%= link_to session_path(current_user.id), method: :delete do %>
+					Logout &#32;&#32;<i class="ion-power m-l-5"></i>
 				<% end %>
-			</ul>
-		</li>
+				<% end %>
+			</li>
 
-		<li>
-			<%#= link_to session_path(current_user.id), method: :delete do %>
-				<!-- Logout &#32;&#32;<i class="ion-power m-l-5"></i> -->
-			<%# end %>
-			<% if current_user %>
-			<%= link_to session_path(current_user.id), method: :delete do %>
-				Logout &#32;&#32;<i class="ion-power m-l-5"></i>
-			<% end %>
-			<% end %>
-		</li>
 		
 	</ul>
 	<% else %>
@@ -132,3 +127,4 @@
 	
 	<% end %>
 </div><!--.menu-layer-->
+
