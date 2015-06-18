@@ -168,6 +168,19 @@ class UsersController < ApplicationController
     end
   end
   
+  def email
+    @user = User.friendly.find(params[:user_id])
+    if @user.email.present?
+      redirect_to edit_user_path(@user)
+    else
+      
+    end
+  end
+  
+  def update_email
+    
+  end
+  
   # def add_non_school_team_at_setup
   #   @user = User.friendly.find(params[:user_id])
   #   respond_to do |format|
