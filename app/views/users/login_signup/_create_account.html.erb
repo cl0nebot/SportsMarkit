@@ -1,6 +1,6 @@
 <h2>Create a New Account</h2>
 				
-<%= form_for User.new do |f| %>
+<%= form_for User.new, html: {id: 'signup-form'} do |f|   %>
 	<div class="form-group">
 		<div class="inputer">
 			<div class="input-wrapper">
@@ -19,6 +19,13 @@
 		<div class="inputer">
 			<div class="input-wrapper">
 				<%= f.email_field :email, class: "form-control", placeholder: "Email address" %>
+			</div>
+		</div>
+	</div><!--.form-group-->
+	<div class="form-group">
+		<div class="inputer">
+			<div class="input-wrapper">
+				<%= f.text_field :mobile_phone_number, class: "form-control", placeholder: "Phone Number" %>
 			</div>
 		</div>
 	</div><!--.form-group-->

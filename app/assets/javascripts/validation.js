@@ -163,6 +163,10 @@ validateSignup = function(el){
         email: true,
         uniqueEmail: true
       },
+      "user[mobile_phone_number]": {
+        required: true,
+        number: true
+      },
       "user[password]": {
         required: true
       },
