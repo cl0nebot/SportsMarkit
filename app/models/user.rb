@@ -320,6 +320,14 @@ class User < ActiveRecord::Base
     user_profile_pictures.present?
   end
   
+  def user_schools
+    team_ids = relationships.pluck(:team_id)
+    teams = Team.where(id: team_ids).where.not(school_id: nil)
+    school_ids = teams.pluck(:school_id)
+    schools = School.where(id: school_ids).uniq
+    
+  end
+  
   
     
   
