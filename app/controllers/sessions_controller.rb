@@ -18,7 +18,6 @@ class SessionsController < ApplicationController
       redirect_to users_path
     else
       flash[:error] = "Email or password is incorrect."
-      p user.full_errors
       redirect_to :back
     end
   end

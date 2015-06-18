@@ -1,18 +1,18 @@
 <h2>Login to FYESports</h2>
     		
-<%= form_tag sessions_path, id: 'sign-in-form' do %>
+<%= form_tag sessions_path, id: 'login-form' do |f|   %>
 
 	<div class="form-group">
 		<div class="inputer">
 			<div class="input-wrapper">
-				<%= text_field_tag(:identifier, nil, {placeholder: "Enter your phone number or email address.", class: "form-control", type: "text"}) %>
+				<%= text_field_tag(:identifier, nil, {placeholder: "Enter your phone number or email address.", class: "form-control"}) %>
 			</div>
 		</div>
 	</div><!--.form-group-->
 	<div class="form-group">
 		<div class="inputer">
 			<div class="input-wrapper">
-				<%= text_field_tag(:password, nil, {placeholder: "Enter your password", type: "password", class: "form-control"}) %>
+				<%= text_field_tag(:password, nil, {placeholder: "Enter your password", class: "form-control"}) %>
 			</div>
 		</div>
 	</div><!--.form-group-->
@@ -20,7 +20,7 @@
 		<label class="pull-left">
 			<input type="checkbox" name="remember" value="1"> Remember me
 		</label>
-		<%= submit_tag "Login", type: "submit", class: "btn btn-primary pull-right" %>
+		<%= submit_tag "Login", class: "btn btn-primary pull-right" %>
 	</div><!--.form-buttons-->
 
 	<div class="social-accounts">

@@ -197,9 +197,8 @@ validateSignup = function(el){
 validateLogin = function(el){
   $(el).validate({
     rules: {
-      "email": {
-        required: true,
-        email: true
+      "identifier": {
+        required: true
       },
       "password": {
         required: true
