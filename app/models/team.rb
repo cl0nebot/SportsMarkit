@@ -64,11 +64,27 @@ class Team < ActiveRecord::Base
   end
   
   def accepted_athlete_relationships
-    Relationship.where(team_id: id, participant: true, accepted: true)
+    rels = Relationship.where(team_id: id, participant: true, accepted: true)
+    userless_rels = UserlessRelationship.where(team_id: id, participant: true)
+    rels + userless_rels
   end
   
   def accepted_coach_relationships
-    Relationship.where(team_id: id, head: true, accepted: true)
+    rels = Relationship.where(team_id: id, head: true, accepted: true)
+    userless_rels = UserlessRelationship.where(team_id: id, head: true)
+    rels + userless_rels
+  end
+  
+  def accepted_trainer_relationships
+    rels = Relationship.where(team_id: id, trainer: true, accepted: true)
+    userless_rels = UserlessRelationship.where(team_id: id, trainer: true)
+    rels + userless_rels
+  end
+  
+  def accepted_manager_relationships
+    rels = Relationship.where(team_id: id, manager: true, accepted: true)
+    userless_rels = UserlessRelationship.where(team_id: id, manager: true)
+    rels + userless_rels
   end
   
   def self.with_schools
