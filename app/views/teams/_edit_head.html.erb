@@ -1,9 +1,9 @@
 <%= form_for m, html: {data: {remote: true}} do |f| %>
-<li id="edit-member-<%= m.class.to_s %><%= m.id%>" class="">
+<li id="edit-head-<%= m.class.to_s %><%= m.id%>" class="">
 	<div class="list-content pb40">
 		<div class="row">
 			<div class="col-sm-12">
-				<%= link_to team_close_roster_view_path(team_id: team.id, class: m.class, id: m.id, status: "member"), remote: true, class: "btn btn-floating btn-default btn-ripple pull-right mr20" do %>
+				<%= link_to team_close_roster_view_path(team_id: team.id, class: m.class, id: m.id, status: "head"), remote: true, class: "btn btn-floating btn-default btn-ripple pull-right mr20" do %>
 					<i class="ion-close-round"></i>
 				<% end %>
 			</div>
@@ -53,10 +53,10 @@
 				<div class="col-md-12">
 					<div class="row">
 						<div class="col-md-6">
-							<%= f.text_field :participant_classification, type: "text", class: "form-control" %> 
+							<%= f.text_field :head_title, type: "text", class: "form-control" %> 
 							<p class="small">
 								<small>
-									Class
+									Head Title
 								</small>
 							</p>
 						</div>
@@ -81,10 +81,26 @@
 							</p>
 						</div>
 						<div class="col-md-6">
-							<%= f.check_box :participant %> 
+							<%= f.check_box :head %> 
 							<p class="small">
 								<small>
-									Is Athlete?
+									Is Coach?
+								</small>
+							</p>
+						</div>
+						<div class="col-md-6">
+							<%= f.check_box :trainer %> 
+							<p class="small">
+								<small>
+									Is Trainer?
+								</small>
+							</p>
+						</div>
+						<div class="col-md-6">
+							<%= f.check_box :manager %> 
+							<p class="small">
+								<small>
+									Is Manager?
 								</small>
 							</p>
 						</div>

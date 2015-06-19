@@ -1,8 +1,4 @@
-<li class="has-action-left">
-    <a href="#" class="hidden">
-        <i class="ion-checkmark-circled text-success"></i>
-    </a>
-    <a href="#" class="visible">
+<li id="head-<%= m.class.to_s %><%= m.id%>" class="">
         <div class="list-content row">
             <div class="col-sm-1">
 				<% if m.class.to_s == "Relationship" %>
@@ -58,7 +54,15 @@
                     </small>
                 </p>
             </div>
+			<div class="col-sm-3">
+				<h5 class="no-margin semi-bold">
+					<%= link_to "Edit", team_edit_roster_view_path(team_id: @team.id, class: m.class, id: m.id, status: "head"), remote: true, class: "btn btn-primary mr20" %>
+				
+					<%#= link_to "Edit", params.merge(partial: "edit_member", m: m.id, class: m.class), remote: true  %>
+					<%= link_to "Send Invitation", ""  %>
+				</h5>
+			</div>
         </div>
-    </a>
+
 </li>
 

@@ -26,14 +26,14 @@ class UserlessRelationshipsController < ApplicationController
         if user.relationships.exists?(team_id: @team.id)  # check to see if that user already has a relationship with team
           flash[:error] = "User is on roster already" # if so, don't submit.
         else
-          Relationship.create(team_id: @team.id, user_id: user.id, accepted: true, head: head, participant: participant, mobile_phone_number: mobile_number, participant_classification: classification, position: position, admin: admin, nickname: nickname) # if user exists, but relationship does not, create relationship
+          Relationship.create(team_id: @team.id, user_id: user.id, accepted: true, head: head, participant: participant, mobile_phone_number: mobile_number, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager) # if user exists, but relationship does not, create relationship
         end
       else # if user doesn't exist with that mobile number, create
         password = generate_temporary_password(fname)
         @new_user = User.new(first_name: fname, last_name: lname, mobile_phone_number: mobile_number, password: password)
         if @new_user.save
           Profile.create(user_id: @new_user.id, focus: [], specialties: [], skills: [], injuries: [], current_ailments: [])
-          @relationship = Relationship.create(user_id: @new_user.id, team_id: @team.id, accepted: true, mobile_phone_number: mobile_number, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname )
+          @relationship = Relationship.create(user_id: @new_user.id, team_id: @team.id, accepted: true, mobile_phone_number: mobile_number, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager)
           if @team.school.present?
             Classification.create(user_id: @new_user.id, classification: "Student Athlete")
           else
@@ -60,7 +60,7 @@ class UserlessRelationshipsController < ApplicationController
   protected
   
   def userless_relationship_params
-    params.require(:userless_relationship).permit(:team_id, :first_name, :last_name, :head, :head_title, :participant, :participant_classification, :position, :mobile_phone_number, :age, :nickname)  
+    params.require(:userless_relationship).permit(:team_id, :first_name, :last_name, :head, :head_title, :participant, :participant_classification, :position, :mobile_phone_number, :age, :nickname, :admin, :trainer, :manager)  
   end
    
   def send_mobile_invitation(user, password)

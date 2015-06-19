@@ -1,7 +1,11 @@
 <% if UserlessRelationship.exists?(id: params[:id]) %>
   $('#edit-member-<%= @class %><%= @id %>').empty()
   $('#edit-member-<%= @class %><%= @id %>').append('<%= j render 'teams/admin_view_member', m: @object, team: @team %>')
+  $('#edit-head-<%= @class %><%= @id %>').empty()
+  $('#edit-head-<%= @class %><%= @id %>').append('<%= j render 'teams/head', m: @object, team: @team %>')
 <% else %>
   $('#edit-member-<%= @class %><%= @id %>').empty()
   $('#edit-member-<%= @class %><%= @id %>').append('<%= j render 'teams/admin_view_member', m: @team.relationships.last, team: @team %>')
+  $('#edit-head-<%= @class %><%= @id %>').empty()
+  $('#edit-head-<%= @class %><%= @id %>').append('<%= j render 'teams/head', m: @team.relationships.last, team: @team %>')
 <% end %>

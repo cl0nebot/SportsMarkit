@@ -1,3 +1,9 @@
+<% if params[:status] == "member" %>
 $('#edit-member-<%= @class %><%= @id %>').empty()
 $('#edit-member-<%= @class %><%= @id %>').append('<%= j render 'admin_view_member', m: @object %>')
+<% end %>
 
+<% if params[:status] == "head" %>
+$('#edit-head-<%= @class %><%= @id %>').empty()
+$('#edit-head-<%= @class %><%= @id %>').append('<%= j render 'head', m: @object %>')
+<% end %>

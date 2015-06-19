@@ -25,6 +25,7 @@ class TeamsController < ApplicationController
       @school = School.find_by_slug(request.referrer.split("/")[4])
       @team = @school.teams.build(team_params)
       if @team.save
+        Relationship.create(team_id: @team.id, user_id: current_user.id, accepted: true, admin: true)
         redirect_to "/teams/#{@team.slug}"
       else
         render 'new'
@@ -51,6 +52,8 @@ class TeamsController < ApplicationController
     head = params[:head].nil? ? false : true
     participant = params[:participant].nil? ? false : true
     admin = params[:admin].nil? ? false : true
+    trainer = params[:trainer].nil? ? false : true
+    manager = params[:manager].nil? ? false : true
     nickname = params[:nickname]
     
     if mobile_number.present? # if a phone number is provided in the form
@@ -60,14 +63,14 @@ class TeamsController < ApplicationController
           flash[:error] = "User is on roster already" # if so, don't submit.
           redirect_to :back
         else
-          Relationship.create(team_id: @team.id, user_id: user.id, accepted: true, head: head, participant: participant, mobile_phone_number: mobile_number, participant_classification: classification, position: position, admin: admin, nickname: nickname) # if user exists, but relationship does not, create relationship
+          Relationship.create(team_id: @team.id, user_id: user.id, accepted: true, head: head, participant: participant, mobile_phone_number: mobile_number, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager) # if user exists, but relationship does not, create relationship
         end
       else # if user doesn't exist with that mobile number, create
         password = generate_temporary_password(fname)
         @new_user = User.new(first_name: fname, last_name: lname, mobile_phone_number: mobile_number, password: password)
         if @new_user.save
           Profile.create(user_id: @new_user.id, focus: [], specialties: [], skills: [], injuries: [], current_ailments: [])
-          @relationship = Relationship.create(user_id: @new_user.id, team_id: @team.id, accepted: true, mobile_phone_number: mobile_number, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname )
+          @relationship = Relationship.create(user_id: @new_user.id, team_id: @team.id, accepted: true, mobile_phone_number: mobile_number, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager)
           if @team.school.present?
             Classification.create(user_id: @new_user.id, classification: "Student Athlete")
           else
@@ -84,7 +87,7 @@ class TeamsController < ApplicationController
         end
       end
     else #mobile not present
-      UserlessRelationship.create(first_name: fname, last_name: lname, team_id: @team.id, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname)
+      UserlessRelationship.create(first_name: fname, last_name: lname, team_id: @team.id, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager)
       redirect_to :back
     end
   end
@@ -93,7 +96,9 @@ class TeamsController < ApplicationController
     @members = @team.relationships.where(accepted: true, participant: true) + UserlessRelationship.where(team_id: @team.id, participant: true)
     @athletes = @team.relationships.where(accepted: true, head: false)
     @pending_members = @team.relationships.where(accepted: nil, rejected: nil)
-    @heads = @team.relationships.where(accepted: true, head: true) + UserlessRelationship.where(team_id: @team.id, head: true)
+    staff_relationships = @team.relationships.where(accepted: true, head: true) + @team.relationships.where(accepted: true, trainer: true) + @team.relationships.where(accepted: true, manager: true)
+    staff_userless_relationships = UserlessRelationship.where(team_id: @team.id, head: true) + UserlessRelationship.where(team_id: @team.id, trainer: true) + UserlessRelationship.where(team_id: @team.id, manager: true)
+    @heads = staff_relationships.uniq + staff_userless_relationships.uniq
     @class = @team.class
     @object = @team
     @events = @team.upcoming_events
@@ -107,15 +112,16 @@ class TeamsController < ApplicationController
   end
   
   def accept_user
-    @relationship = Relationship.find_by_slug(params[:id])
+    @relationship = Relationship.find(params[:id])
     @relationship.update_attributes(accepted: true)
+    @team = Team.find(@relationship.team_id)
     if @team.school.present?
-      Classification.create(user_id: @new_user.id, classification: "Student Athlete")
+      Classification.create(user_id: @relationship.user_id, classification: "Student Athlete")
     else
-      Classification.create(user_id: @new_user.id, classification: "Athlete")
+      Classification.create(user_id: @relationship.user_id, classification: "Athlete")
     end
     if @relationship.head?
-      Classification.create(user_id: @new_user.id, classification: "Coach")
+      Classification.create(user_id: @relationship.user_id, classification: "Coach")
     end
     # @pending_relationships = Relationship.where(team_id: @relationship.team_id, accepted: nil, rejected: nil)
     # @relationships = Relationship.where(team_id: @relationship.team_id, accepted: true)
@@ -126,7 +132,7 @@ class TeamsController < ApplicationController
   end
 
   def reject_user
-    @relationship = Relationship.find_by_slug(params[:id])
+    @relationship = Relationship.find(params[:id])
     @relationship.update_attribute(:rejected, true)
     # @pending_relationships = Relationship.where(team_id: @relationship.team_id, accepted: nil, rejected: nil)
     # @relationships = Relationship.where(team_id: @relationship.team_id, accepted: true)

@@ -1,2 +1,12 @@
-$('#edit-member-<%= @class %><%= @id %>').empty()
-$('#edit-member-<%= @class %><%= @id %>').append('<%= j render 'teams/admin_view_member', m: @object, team: @team %>')
+<% unless @accepting_action %>
+  $('#edit-member-<%= @class %><%= @id %>').empty()
+  $('#edit-member-<%= @class %><%= @id %>').append('<%= j render 'teams/admin_view_member', m: @object, team: @team %>')
+  $('#edit-head-<%= @class %><%= @id %>').empty()
+  $('#edit-head-<%= @class %><%= @id %>').append('<%= j render 'teams/head', m: @object, team: @team %>')
+<% else %>
+  $('#pending-<%= @relationship.id %>').empty()
+  $('#member-list').empty()
+  $('#member-list').append('<%= j render 'teams/members', members: @members, team: @team %>')
+  $('#coach-list').empty()
+  $('#coach-list').append('<%= j render 'teams/heads', heads: @heads, team: @team %>')
+<% end %>

@@ -23,6 +23,11 @@ class RelationshipsController < ApplicationController
     @id = params[:id]
     @object = @relationship
     @relationship.update_attributes(relationship_params)
+    @members = @team.relationships.where(accepted: true, participant: true) + UserlessRelationship.where(team_id: @team.id, participant: true)
+    staff_relationships = @team.relationships.where(accepted: true, head: true) + @team.relationships.where(accepted: true, trainer: true) + @team.relationships.where(accepted: true, manager: true)
+    staff_userless_relationships = UserlessRelationship.where(team_id: @team.id, head: true) + UserlessRelationship.where(team_id: @team.id, trainer: true) + UserlessRelationship.where(team_id: @team.id, manager: true)
+    @heads = staff_relationships.uniq + staff_userless_relationships.uniq
+    @accepting_action = params[:relationship][:accepted].nil? ? false : true
     respond_to do |format|
       format.js
       format.html { redirect_to :back }
@@ -50,7 +55,7 @@ class RelationshipsController < ApplicationController
   protected
   
   def relationship_params
-    params.require(:relationship).permit(:user_id, :team_id, :head, :head_title, :participant, :participant_classification, :position, :quote, :username, :mobile_phone_number, :age, :nickname)
+    params.require(:relationship).permit(:user_id, :team_id, :head, :head_title, :participant, :participant_classification, :position, :quote, :username, :mobile_phone_number, :age, :nickname, :admin, :accepted, :trainer, :manager)
   end
   
   def find_relationship

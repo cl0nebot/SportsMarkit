@@ -1,2 +1,9 @@
-$('#member-<%= @class %><%= @id %>').empty()
-$('#member-<%= @class %><%= @id %>').append('<%= j render 'edit_member', m: @object, team: @team %>')
+<% if params[:status] == "member" %>
+  $('#member-<%= @class %><%= @id %>').empty()
+  $('#member-<%= @class %><%= @id %>').append('<%= j render 'edit_member', m: @object, team: @team %>')
+<% end %>
+
+<% if params[:status] == "head" %>
+  $('#head-<%= @class %><%= @id %>').empty()
+  $('#head-<%= @class %><%= @id %>').append('<%= j render 'edit_head', m: @object, team: @team %>')
+<% end %>

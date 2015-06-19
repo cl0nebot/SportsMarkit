@@ -1,13 +1,9 @@
-<li class="has-action-left">
-  <%= link_to reject_user_team_path(m), method: :patch, class: "hidden", style: 'height: 50%; margin-top: 55px;' do %>
-	  <i class="ion-android-cancel text-success"></i>
-	<% end %>
-  <%= link_to accept_user_team_path(m), method: :patch, class: "hidden", style: "height: 50%;" do %>
-    <i class="ion-checkmark-circled text-success"></i>
-  <% end %>
+<li class="" id="pending-<%= m.id %>">
+<%= form_for m, html: {data: {remote: true}} do |f| %>
+<%= f.hidden_field :accepted, value: true %>
   <a href="#" class="visible">
 		<div class="list-content row">
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				<%= image_tag m.user.avatar, class: "face-radius margin-right-20 pull-left", alt: "", style: "width: 65px; height: 65px; border: 3px solid #ddd;" %>
 				<div class="pull-left">
 					<h4 class="semi-bold no-margin">
@@ -20,26 +16,44 @@
 					</p>
 				</div>
 			</div>
-			<div class="col-sm-3">
-				<h4 class="no-margin">
-					<%= m.participant_classification %>
-				</h4>
-				<p class="small">
-					<small>
-						Name
-					</small>
-				</p>
-			</div>
-			<div class="col-sm-3">
-				<h4 class="no-margin">
-					<%= m.position %>
-				</h4>
-				<p class="small">
-					<small>
-						Position
-					</small>
-				</p>
-			</div>
+	<div class="col-md-2">
+		<%= f.check_box :admin %> 
+		<p class="small">
+			<small>
+				Is Admin?
+			</small>
+		</p>
+	</div>
+	<div class="col-md-2">
+		<%= f.check_box :head %> 
+		<p class="small">
+			<small>
+				Is Coach?
+			</small>
+		</p>
+	</div>
+	<div class="col-md-2">
+		<%= f.check_box :participant %> 
+		<p class="small">
+			<small>
+				Is Athlete?
+			</small>
+		</p>
+	</div>
+	<div class="col-md-4">
+		<%= f.submit "Accept" %> 
+		<p class="small">
+		
+		</p>
+	</div>
+	
+	<div class="col-md-4">
+		<%= link_to "reject", reject_user_team_path(m), method: :patch, class: "btn", style: 'height: 50%; margin-top: 55px;', remote: true %>
+		<p class="small">
+			
+		</p>
+	</div>
 		</div>
 	</a>
 </li>
+<% end %>
