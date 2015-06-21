@@ -450,4 +450,16 @@ input.form-control {font-size: 26px; line-height: 30px;}
 }
 
 
+.hr-333 { border-top: 1px solid #333;}
 
+.bg-login .login-screen.create-account {
+  height: 610px;
+}
+
+.bg-login .login-screen.create-account {
+  height: 575px;
+}
+
+.bg-login .login-screen  {
+  height: 500px;
+}
