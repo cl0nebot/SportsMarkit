@@ -6,42 +6,61 @@
 							</h3>
 							<div class="row margin-top-20">
 								<div class="col-md-3">
-									<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+									<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+										Find a Student-Athlete <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu">
 										<% @athletes.each do |user| %>
-											<%= link_to user_path(user) do %>
-												<option><%= user.full_name %></option>
-											<% end %>
+											<li>
+												<%= link_to user_path(user) do %>
+										  			<%= user.full_name %>
+										  		<% end %>
+										  	</li>
 										<% end %>
-									</select>
-								</div>
+									</ul>
+								</div><!--.btn-group-->
 								<div class="col-md-3">
-									
-									<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+									<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+										Find a Coach <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu">
 										<% @athletes.each do |user| %>
-											<%= link_to user_path(user) do %>
-												<option><%= user.full_name %></option>
-											<% end %>
+											<li>
+												<%= link_to user_path(user) do %>
+										  			<%= user.full_name %>
+										  		<% end %>
+										  	</li>
 										<% end %>
-									</select>
-								</div>
+									</ul>
+								</div><!--.btn-group-->
 								<div class="col-md-3">
-									<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
-									<% @athletes.each do |user| %>
-										<%= link_to user_path(user) do %>
-											<option><%= user.full_name %></option>
-										<% end %>
-									<% end %>
-									</select>
-								</div>
-								<div class="col-md-3">
-									<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+									<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+										Find an Staff Member <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu">
 										<% @athletes.each do |user| %>
-											<%= link_to user_path(user) do %>
-												<option><%= user.full_name %></option>
-											<% end %>
+											<li>
+												<%= link_to user_path(user) do %>
+										  			<%= user.full_name %>
+										  		<% end %>
+										  	</li>
 										<% end %>
-									</select>
-								</div>
+									</ul>
+								</div><!--.btn-group-->
+								<div class="col-md-3">
+									<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+										Find an Administrator <span class="caret"></span>
+										</button>
+									<ul class="dropdown-menu" role="menu">
+										<% @athletes.each do |user| %>
+											<li>
+												<%= link_to user_path(user) do %>
+										  			<%= user.full_name %>
+										  		<% end %>
+										  	</li>
+										<% end %>
+									</ul>
+								</div><!--.btn-group-->
 							</div>
 						</div><!--.col-md-9-->
 					</div>

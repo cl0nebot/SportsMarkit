@@ -99,7 +99,7 @@
 										<div class="panel-heading">
 											<div class="panel-title">
 												<h6 class="semi-bold mt10 mb0 pull-right upper gf_oswald">
-													<%= @heads.count %> <%= @heads.count > 1 ? "Coaches and Staff Members" : "Coach and Staff Member" %>
+													[12] Coaches and Staff Members
 												</h6>
 												<h3 class="semi-bold fs_20 mt0 mb0 upper gf_oswald ls1">
 													<span class="h3 ion-ios-people margin-right-10 text-blue"></span> Coaches and Staff
@@ -108,8 +108,10 @@
 										</div><!--.panel-heading-->
 										<hr class="no-margin"/>
 										<div class="panel-body without-padding">
-											<ul class="list-material has-hidden" id="coach-list">
-												<%= render 'heads', heads: @heads %>
+											<ul class="list-material has-hidden">
+												<% @heads.each do |m| %>
+											 		<%= render 'head', m: m %>
+												<% end %>
 											</ul>
 										</div><!--.panel-body-->
 									</div><!--.panel-->
@@ -122,7 +124,7 @@
 										<div class="panel-heading pb10 pt10">
 											<div class="panel-title">
 												<h6 class="semi-bold mt10 mb0 pull-right upper gf_oswald">
-													<%= pluralize @members.count, "Athlete" %>
+													[12] Athletes
 												</h6>
 												<h3 class="semi-bold fs_20 mt0 mb0 upper gf_oswald">
 													<span class="ion-clipboard mr15 text-blue h3"></span> Team Roster
@@ -131,8 +133,14 @@
 										</div><!--.panel-heading-->
 										<hr class="no-margin"/>
 										<div class="panel-body without-padding">
-											<ul class="list-material has-hidden" id="member-list">
-												<%= render 'members', members: @members, team: @team %>
+											<ul class="list-material has-hidden">
+												<% @members.each do |m| %>
+												<% if current_user.can_edit_team?(@team) %>
+										       		<%= render 'admin_view_member', m: m%>
+												<% else %>
+													<%= render 'member', m: m%>
+												<% end %>
+										    	<% end %>
 											</ul>
 										</div><!--.panel-body-->
 									</div><!--.panel-->
@@ -168,13 +176,13 @@
 					
 				</div> -->
 				<!--#facilities.tab-pane-->
-        <div id="calendar-tab" class="tab-pane">
+        		<div id="calendar-tab" class="tab-pane">
 
-          <div class="row">
-            <%= render 'shared/calendar', eventable: @team %>
-          </div>
+		         <div class="row">
+		            <%= render 'shared/calendar', eventable: @team %>
+		         </div>
 
-        </div>
+		        </div>
 
 				<!-- media -->
 				<div id="media" class="tab-pane">
@@ -297,34 +305,6 @@
 												</div><!--.row-->
 											</div>
 										</div>
-										
-										<div class="row">
-											<div class="col-md-6">
-												<div class="row example-row">
-													<div class="col-md-12"><h4>Age</h4></div><!--.col-md-3-->
-													<div class="col-md-12">
-														<div class="inputer">
-															<div class="input-wrapper">
-																<%= text_field_tag :age,"" , placeholder: "", type: "text", class: "form-control"%>
-															</div>
-														</div>
-													</div><!--.col-md-9-->
-												</div><!--.row-->
-											</div>
-
-											<div class="col-md-6">
-												<div class="row example-row">
-													<div class="col-md-12"><h4>Nickname</h4></div><!--.col-md-3-->
-													<div class="col-md-12">
-														<div class="inputer">
-															<div class="input-wrapper">
-																<%= text_field_tag :nickname,"" , placeholder: "", type: "text", class: "form-control"%>
-															</div>
-														</div>
-													</div><!--.col-md-9-->
-												</div><!--.row-->
-											</div>
-										</div>
 
 
 										<div class="row">
@@ -345,19 +325,10 @@
 											<%= hidden_field_tag :team_id,"", value: @team.id %>
 											
 											athlete: <%= check_box_tag :participant, "", false%>
-											head: <%= check_box_tag :head, "", false%>
-											trainer: <%= check_box_tag :trainer, "", false%>
-											manager: <%= check_box_tag :manager, "", false%>
-											admin: <%= check_box_tag :admin, "", false%>
-											
-
-									
-
-											
-										
+											head: <%= check_box_tag :head, "", false %>
 
 
-								<%= f.submit "Add New Team Member", class: "btn btn-block btn-primary" %>
+								<%= f.submit "Add New Team Member", class: "btn btn-block btn-white" %>
 
 							</div><!--.panel-body-->
 								</div><!--.panel-->
@@ -370,7 +341,7 @@
 				<!--#admin.tab-pane-->
 
 				
-        		<%#= render 'shared/photo_tab', photo_owner: @team %>
+        		<%= render 'shared/photo_tab', photo_owner: @team %>
 
 			</div><!--.tab-content-->
 

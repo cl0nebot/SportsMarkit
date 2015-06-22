@@ -1,67 +1,146 @@
-        	<div class="form-group m-t-10">
-        		<div class="form-row">
-        			<div class="controls">
-									<%= form_for [@school], url: school_upgrade_school_path(@school), role: "form", html:{class: "card_form"} do |f| %>
-		            <label class="h5 text-black semi-bold">Name on Card</label>
-									<%#= text_field_tag :name_on_card, nil, class: "form-control", placeholder: "John Smith" %>
-									<br>Amount
-									<%#= f.hidden_field :total_price, value: @cart.total_price(current_user)%>
-		          </div>
-	          </div>
+<div class="content">
+  
+  <!-- page header -->
+  <div class="page-header full-content bg-blue">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1>Account Upgrae<small class="m-l-20 inline-block"> Payment information</small></h1>
+      </div><!--.col-->
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="<%= teams_path %>">Schools</a></li>
+          <li><a href="#">[School Name]</a></li>
+          <li><a href="#" class="active">Upgrade</a></li>
+        </ol>
+      </div><!--.col-->
+    </div><!--.row-->
+  </div><!--.page-header-->
+
+	<div class="row">
+		<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-md-offset-2">
+			<div class="panel box-shadow-ccc">
+				
+				<!-- panel header -->
+				<div class="panel-heading">
+					<div class="panel-title text-center">
+						<br/>
+						<h3>Please enter your email below.</h3>
+					</div>
+				</div>
+				<!--.panel-heading-->
+				
+				<!-- panel body -->
+				<div class="panel-body m-b-30 pr40 pl40">
+
+					<h5 class="text-muted text-center">Your account was created using your cell phone number,<br/> we need to update your account with a valid email address. </h5>
+
+					<br/>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group m-t-10">
+        				<div class="form-row">
+        					<div class="controls">
+										<%= form_for [@school], url: school_upgrade_school_path(@school), role: "form", html:{class: "card_form"} do |f| %>
+	            			<label class="text-black semi-bold text-center">Name on Card</label>
+									
+										<br>
+										<h1 class="text-center">34.99<small class="small">/month</small></h1>
+										<%#= f.hidden_field :total_price, value: @cart.total_price(current_user)%>
+		          	</div>
+	          	</div>
 	        </div>
 
-				  <div class="form-row">
-        		<label class="h5 semi-bold text-black">Credit card number</label>
-						<%= text_field_tag :card_number, nil, name: nil, required: true, class: "form-control", placeholder: "4242 4242 4242 4242" %>
-          </div>
+	        <hr/>
 
-	        <div clas="row clearfix m-t-10">
-						<img style="width: 30px;" src="https://s3.amazonaws.com/spatravlr_production/uploads/img/icons/credit-cards/american_express_128.png" />
-						<img style="width: 30px;" src="https://s3.amazonaws.com/spatravlr_production/uploads/img/icons/credit-cards/diners_club-128.png" />
-						<img style="width: 30px;" src="https://s3.amazonaws.com/spatravlr_production/uploads/img/icons/credit-cards/discover-128.png" />
-						<img style="width: 30px;" src="https://s3.amazonaws.com/spatravlr_production/uploads/img/icons/credit-cards/jcb-128.png" />
-						<img style="width: 30px;" src="https://s3.amazonaws.com/spatravlr_production/uploads/img/icons/credit-cards/mastercard_1_128.png" />
-						<img style="width: 30px;" src="https://s3.amazonaws.com/spatravlr_production/uploads/img/icons/credit-cards/visa-128.png" />
-					</div>
+						<div class="form-row">
+	        		<div class="row example-row">
+								<div class="col-md-12">Name on Card</div><!--.col-md-3-->
+								<div class="col-md-12">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<%= text_field_tag :card_number, nil, name: nil, required: true, class: "form-control", placeholder: "" %>
+												<%#= text_field_tag :name_on_card, nil, class: "form-control", placeholder: "John Smith" %>
+	          				</div>
+										</div>
+									</div>
+								</div><!--.col-md-9-->
+						</div><!--.row-->
 
-	        <div class="form-group m-t-30">
+						<div class="form-row">
+	        		<div class="row example-row">
+								<div class="col-md-12">Credit card number</div><!--.col-md-3-->
+								<div class="col-md-12">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<%= text_field_tag :card_number, nil, name: nil, required: true, class: "form-control", placeholder: "" %>
+	          				</div>
+										</div>
+									</div>
+								</div><!--.col-md-9-->
+						</div><!--.row-->
+										
+	         <div class="form-group m-t-30">
 		        <div class="form-row">
 	          	<div class="controls">
-	          		<label class="h5 semi-bold text-black">Expiration Date</label>
-	            	<div clas="row clearfix form-row">
-	            		<div class="row col-md-6">
-										<%= text_field_tag :card_month, nil, name: nil, required: true, class: "form-control", placeholder: "Month" %>
+	          		<div clas="row clearfix form-row">
+	            		<div class="row col-md-5">
+										
+										<div class="row example-row">
+											<div class="col-md-12">Expiration Month</div><!--.col-md-3-->
+											<div class="col-md-12">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<%= text_field_tag :card_month, nil, name: nil, required: true, class: "form-control", placeholder: "Month" %>
+													</div>
+												</div>
+											</div><!--.col-md-9-->
+										</div><!--.row-->
 		            	</div>
 		            	<div class="col-md-4">
-										<%= text_field_tag :card_year, nil, name: nil, required: true, class: "form-control", placeholder: "Year" %>
+										<div class="row example-row">
+											<div class="col-md-12">Expiration Year </div><!--.col-md-3-->
+											<div class="col-md-12">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<%= text_field_tag :card_year, nil, name: nil, required: true, class: "form-control", placeholder: "Year" %>
+													</div>
+												</div>
+											</div><!--.col-md-9-->
+										</div><!--.row-->
+		            	</div>
+		            	<div class="col-md-3">
+										<div class="row example-row">
+											<div class="col-md-12">CVC Number</div><!--.col-md-3-->
+											<div class="col-md-12">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<%= text_field_tag :card_year, nil, name: nil, required: true, class: "form-control", placeholder: "Year" %>
+													</div>
+												</div>
+											</div><!--.col-md-9-->
+										</div><!--.row-->
 		            	</div>
 		            </div>
 	            </div>
 	          </div>
 	        </div>
-
-	        <div class="clearfix"></div>
-		      <div class="form-group m-t-10">
-		        <div class="row form-row">
-	          	<div class="col-md-12">
-		            <label class="h5 semi-bold text-black">Security code (or "CVC" or CVV)</label>
-		            <div class="row col-md-4">
-									<%= text_field_tag :card_code, nil, name: nil, required: true, class: "form-control", placeholder: "198"%>
-		            </div>
-		            <div class="col-md-8">
-		            	<p class="m-t-10">( 3 digit code on back of your card )</p>
-		            </div>
-		          </div>
-		        </div>
-	        </div>
-
 	      </div>
-        <div class="row form-row">
-          
-        </div>
-		
-        <%= f.hidden_field :stripe_token %>
-      </div>
-      <div class="modal-footer text-center">
-		  <%= f.submit value: "Pay", class: "btn-primary btn-large custom-font h3 padding-20", style: "font-size: 18px; word-spacing: 5px;" %>
-		<% end %>
+	    </div>
+
+	        
+	      </div>
+				<!--.panel-body-->
+				<div class="panel-footer form-layout">
+					<br/>
+						<%= f.submit value: "Upgrade Account", class: "btn btn-primary btn-block "%>	
+  					<%= f.hidden_field :stripe_token %>
+  					<br/>
+				</div><!--.panel-body-->
+				<% end %>
+			</div><!--.panel-->
+		</div><!--.col-md-12-->
+	</div><!--.row-->
+
+</div>

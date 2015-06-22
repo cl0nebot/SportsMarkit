@@ -1,0 +1,140 @@
+<div class="tab-pane active text-style" id="general">
+											<div class="panel-body">
+
+												<h4 class="text-right">General</h4>
+												<hr class="margin-top-0"/>
+												<h5 class="bold text-primary">The Basics</h4>
+												<br/>
+
+												<div class="col-md-12">
+			
+													<div class="row example-row">
+														<div class="col-md-12">
+															<div class="row example-row">
+																<div class="col-md-12">Name </div><!--.col-md-3-->
+																<div class="col-md-12">
+																	<div class="inputer">
+																		<div class="input-wrapper">
+																			<%= f.text_field :first_name, type: "text", class: "form-control", placeholder: ""  %>
+																		</div>
+																	</div>
+																</div><!--.col-md-9-->
+															</div><!--.row-->
+
+															<div class="row example-row">
+																<div class="col-md-12">Middle Name </div><!--.col-md-3-->
+																<div class="col-md-12">
+																	<div class="inputer">
+																		<div class="input-wrapper">
+																			<%= f.text_field :middle_name, type: "text", class: "form-control", placeholder: ""  %>
+																		</div>
+																	</div>
+																</div><!--.col-md-9-->
+															</div><!--.row-->
+
+															<div class="row example-row">
+																<div class="col-md-12">Last Name </div><!--.col-md-3-->
+																<div class="col-md-12">
+																	<div class="inputer">
+																		<div class="input-wrapper">
+																			<%= f.text_field :last_name, type: "text", class: "form-control", placeholder: ""  %>
+																		</div>
+																	</div>
+																</div><!--.col-md-9-->
+															</div><!--.row-->
+
+															<%= f.fields_for :profile, @profile do |builder| %>
+
+																<div class="row">
+																	<div class="col-md-6 row">
+																		<div class="row example-row">
+																			<div class="col-md-12">Gender</div><!--.col-md-3-->
+																			<div class="col-md-12">
+																				<div class="inputer">
+																					<%= builder.select(:sex, [ 'Male', 'Female'], {prompt: "Select Gender"}, {:class => "selecter"}) %>
+																				</div>
+																			</div><!--.col-md-9-->
+																		</div><!--.row-->
+																	</div>
+
+																	<div class="col-md-6">
+																		<div class="row example-row">
+																			<div class="col-md-12">Birthday</div><!--.col-md-3-->
+																			<div class="col-md-12">
+																				<div class="inputer">
+																					<div class="input-wrapper">
+																						<%= builder.date_field :date_of_birth, class: "form-control" %>
+																					</div>
+																				</div>
+																			</div><!--.col-md-9-->
+																		</div><!--.row-->
+																	</div>
+																</div>
+
+															<% end %>
+														</div>
+													</div>
+
+													
+
+													<br/>	
+													<h5 class="bold text-primary">Contact Information</h5>
+													<br/>
+
+
+													<div class="row example-row">
+														<div class="col-md-12">Email</div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<%= f.text_field :email, class: "form-control", placeholder: "" %>
+																</div>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
+
+
+													<div class="row example-row">
+														<div class="col-md-12">Phone Number</div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<%= f.text_field :mobile_phone_number, class: "form-control", placeholder: "" %>
+																</div>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
+
+													<div class="row example-row">
+														<div class="col-md-12 margin-bottom-10">Location</div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer margin-bottom-10">
+																<%= f.fields_for :profile, @profile do |builder| %>
+																	<%= builder.select(:city, User.cities_list.sort.collect {|city| [ city_with_state(city), city ] }, {}, {:class => 'selecter', data:{live_search: 'true', width: '100%'}}) %>
+																
+																<% end %>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
+
+													<div class="row example-row">
+														<div class="col-md-12">Username</div><!--.col-md-3-->
+														<div class="col-md-12">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<%= f.text_field :username, class: "form-control", placeholder: "" %>
+																</div>
+															</div>
+														</div><!--.col-md-9-->
+													</div><!--.row-->
+												</div>
+											</div>
+
+											<div class="form-buttons">
+												<div class="row">
+													<div class="col-lg-8 col-lg-offset-2">
+														<%= f.submit "Update Profile", class: "btn btn-large btn-blue btn-block" %>
+													</div>
+												</div>
+											</div>
+										</div><!--tab-pane-->
