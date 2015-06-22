@@ -13,6 +13,8 @@ class School < ActiveRecord::Base
   has_many :athletic_directors, dependent: :destroy
   has_many :users, through: :athletic_directors
   has_many :medias, as: :mediable
+  
+  attr_accessor :stripe_token
 
   def gmaps4rails_address
   #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
@@ -91,14 +93,14 @@ class School < ActiveRecord::Base
     Rails.cache.fetch([self, last_update, "claimable_schools", "v1"]) { self.claimable_schools }
   end
   
-  def main_photo
-    photo = Photo.where(photo_owner_id: id, photo_owner_type: "School").last 
-    if photo.present?
-      photo
-    else
-      "http://www.engraversnetwork.com/files/placeholder.jpg"
-    end
-  end
+  # def main_photo
+  #   photo = Photo.where(photo_owner_id: id, photo_owner_type: "School").last
+  #   if photo.present?
+  #     photo
+  #   else
+  #     "http://www.engraversnetwork.com/files/placeholder.jpg"
+  #   end
+  # end
   
     
 end
