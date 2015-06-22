@@ -109,42 +109,20 @@ li.step h6 {
 					<div class="panel-title">
 						<div class="steps margin-top-20">
 							<ul class="wizard-steps">
+								<% @user.classifications.each_with_index do |c, i| %>
 								<li class="step">
-									<a href="#form2_tab1" data-toggle="tab" class="btn btn-primary">
-										1
+									<% if i == 0 %>
+									  <a href="#form2_tab<%= i + 1 %>" data-toggle="tab" class="btn btn-primary">
+									<% else %>
+									  <a href="#form2_tab<%= i + 1 %>" data-toggle="tab" class="btn btn-white">
+									<% end %>
+										
+										<%= i + 1%>
 									</a>
-									<h6>Student Athlete</h6>
+									<h6><%= c.classification %></h6>
 								</li>
-								<li class="step">
-									<a href="#form2_tab2" data-toggle="tab" class="btn btn-white">
-										2
-									</a>
-									<h6>Athlete</h6>
-								</li>
-								<li class="step">
-									<a href="#form2_tab3" data-toggle="tab" class="btn btn-white">
-										3
-									</a>
-									<h6>Coach</h6>
-								</li>
-								<li class="step">
-									<a href="#form2_tab4" data-toggle="tab" class="btn btn-white">
-										4
-									</a>
-									<h6>Parent</h6>
-								</li>
-								<li class="step">
-									<a href="#form2_tab5" data-toggle="tab" class="btn btn-white">
-										5
-									</a>
-									<h6>Athletic Director</h6>
-								</li>
-								<li class="step">
-									<a href="#form2_tab6" data-toggle="tab" class="btn btn-white">
-										6
-									</a>
-									<h6>Tournament Director</h6>
-								</li>
+								<% end %>
+								
 							</ul>
 						</div><!--.steps-pull-right-->
 					</div><!--.panel-title-->
@@ -159,31 +137,15 @@ li.step h6 {
 
 					<div id="form2">
 
-						<div class="tab-content">
-							<div class="tab-pane pane padding-top-20" id="form2_tab1">		
-								<%= render 'setup/student_athlete_setup/student_athlete_setup'%>
-							</div><!--.tab-pane-->
-
-							<div class="tab-pane pane padding-top-20" id="form2_tab2">
-								<%= render 'setup/athlete_setup/athlete_setup'%>
-							</div><!--.tab-pane-->
-
-							<div class="tab-pane pane padding-top-20" id="form2_tab3">
-								<%= render 'setup/coach_setup/coach_setup'%>
-							</div><!--.tab-pane-->
-
-							<div class="tab-pane pane padding-top-20" id="form2_tab4">
-								<%= render 'setup/parent_setup/parent_setup'%>
-							</div><!--.tab-pane-->
-
-							<div class="tab-pane pane padding-top-20" id="form2_tab5">
-								<%= render 'setup/director_setup/director_setup'%>
-							</div><!--.tab-pane-->
-
-							<div class="tab-pane padding-top-20" id="form2_tab6">
-								<%= render 'setup/tournament_director_setup/tournament_director_setup'%>
-							</div><!--.tab-pane-->
-						</div><!--.tab-content-->
+					<div class="tab-content">
+						<% @user.classifications.each_with_index do |c, i| %>
+						  <div class="tab-pane pane padding-top-20" id="form2_tab<%= i+1 %>">		
+						  	<%= render "setup/#{c.classification.downcase.sub(" ", "_")}_setup/#{c.classification.downcase.sub(" ", "_")}_setup"%>
+						  </div><!--.tab-pane-->
+			           <% end %>
+					</div><!--.tab-content-->
+						
+					
 
 					</div>
 					</div><!--.panel-body-->
