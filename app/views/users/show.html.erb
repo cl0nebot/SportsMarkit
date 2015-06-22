@@ -87,6 +87,8 @@
         <!-- <li><a href="#parent-child" data-toggle="tab" class="btn-ripple">Children</a></li> -->
       <%# end %>
       <li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
+      <li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li>
+      <li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
       <!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
     </ul>
   </div>
@@ -95,115 +97,43 @@
 
 
 <div class="row user-profile">
-<div class="col-md-12">
-<div class="tab-content without-border">
+  <div class="col-md-12">
+    <div class="tab-content without-border">
 
-<!-- teams -->
-<div id="teams" class="tab-pane active">
+      <!-- teams -->
+      <div id="teams" class="tab-pane active">
 
-  <div class="row ">
-    <% @teams.each do |team| %>
-      <div class="col-md-4 col-lg-3 col-sm-12">
-        <div class="card card-meal card-meal-green card-square card-shadow">
-          <div class="card-heading row">
-            <div class="col-md-2">
-              <%= image_tag Sport.find_by_sport(team.sport).try(:default_photo), class: "img-responsive" %>
-            </div>
-            <div class="col-md-10">
-              <h4 class="card-title capitalize">
-                <%= link_to team.name, "/teams/#{team.slug}" %>
-              </h4>
-
-              <div class="card-subhead capitalize">
-                <%= team.sport %>
-              </div>
-              <!--.card-subhead-->
-              <div class="card-subhead capitalize">
-                <i class="ion-location"></i> <%= team.city_state %>
-              </div>
-              <!--.card-subhead-->
-            </div>
-          </div>
-          <!--.card-heading-->
-          <div class="card-body">
-            <div class="image">
-              <a href="#">
-                <%= image_tag("http://ingridwu.dmmdmcfatter.com/wp-content/uploads/2015/01/placeholder.png") %>
-              </a>
-            </div>
-            <!--.image-->
-          </div>
-          <!--.card-body-->
-        </div>
-        <!--.card-->
-      </div>
-      <!--.col-md-4-->
-    <% end %>
-  </div>
-  <!--.row-->
-
-</div>
-<!--#teams.tab-pane-->
-
-<!-- people -->
-<div id="teammates" class="tab-pane">
-
-  <div class="row">
-
-    <!--.col-->
-    <div class="col-md-10">
-      <div class="row">
-        <% @teammates.each do |teammate| %>
-          <%= link_to user_path(teammate) do %>
+        <div class="row ">
+          <% @teams.each do |team| %>
             <div class="col-md-4 col-lg-3 col-sm-12">
-              <div class="card card-user card-clickable card-clickable-over-content">
-                <div class="card-heading heading-full">
-                  <!-- <div class="user-image sample-member9"></div> -->
-				          <%= image_tag teammate.avatar %>
-
-                  <div class="clickable-button">
-                    <div class="layer bg-green"></div>
-                    <a class="btn btn-floating btn-green initial-position floating-open"><i class="ion-android-share-alt"></i></a>
+              <div class="card card-meal card-meal-green card-square card-shadow">
+                <div class="card-heading row">
+                  <div class="col-md-2">
+                    <%= image_tag Sport.find_by_sport(team.sport).try(:default_photo), class: "img-responsive" %>
                   </div>
+                  <div class="col-md-10">
+                    <h4 class="card-title capitalize">
+                      <%= link_to team.name, "/teams/#{team.slug}" %>
+                    </h4>
 
-                  <div class="layered-content bg-green">
-                    <div class="overflow-content">
-                      <h4>Follow <%= teammate.first_name %></h4>
-                      <ul class="inline-list social-list borderless">
-                        <li><%= link_to "#{teammate.profile.facebook}", class: "btn btn-facebook btn-ripple" do %>
-                            <i class="ion-social-facebook"></i>
-                          <% end %></li>
-                        <li><%= link_to "#{teammate.profile.twitter}", class: "btn btn-twitter btn-ripple" do %>
-                            <i class="ion-social-twitter"></i>
-                          <% end %></li>
-                        <!-- <li><a class="btn btn-googleplus btn-ripple"><i class="ion-social-googleplus"></i></a></li> -->
-                      </ul>
+                    <div class="card-subhead capitalize">
+                      <%= team.sport %>
                     </div>
-                    <!--.overflow-content-->
-                    <div class="clickable-close-button">
-                      <a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
+                    <!--.card-subhead-->
+                    <div class="card-subhead capitalize">
+                      <i class="ion-location"></i> <%= team.city_state %>
                     </div>
+                    <!--.card-subhead-->
                   </div>
-
                 </div>
                 <!--.card-heading-->
-
                 <div class="card-body">
-                  <h3 class="card-title">
-                    <a href="#" class="capitalize">
-                      <%= teammate.first_name %> <%= teammate.last_name %>
+                  <div class="image">
+                    <a href="#">
+                      <%= image_tag("http://ingridwu.dmmdmcfatter.com/wp-content/uploads/2015/01/placeholder.png") %>
                     </a>
-                  </h3>
-
-                  <div class="subhead mb0">
-                    Shared Teams:
-                    <% teammate.teams.each_with_index do |team, i| %>
-                      <% if @user.shared_teams(teammate.id).include? team.id %>
-                        <% count = i + 1 %>
-                        <%= link_to team.name, team_path(team) %><%= count == teammate.teams.count ? "" : "," %>
-                      <% end %>
-                    <% end %>
                   </div>
+                  <!--.image-->
                 </div>
                 <!--.card-body-->
               </div>
@@ -211,120 +141,217 @@
             </div>
             <!--.col-md-4-->
           <% end %>
-        <% end %>
+        </div>
+        <!--.row-->
       </div>
-      <!--.row-->
-    </div>
-  </div>
-</div>
-<!--#people.tab-pane-->
+      <!--#teams.tab-pane-->
 
-<!-- events -->
-<div id="events" class="tab-pane">
+      <!-- people -->
+      <div id="teammates" class="tab-pane">
 
-  <div class="row">
-    <% @user.attendances.each do |att| %>
+        <div class="row">
 
-      <div class="col-md-6">
-        <div class="card card-event card-clickable">
+          <!--.col-->
+          <div class="col-md-10">
+            <div class="row">
+              <% @teammates.each do |teammate| %>
+                <%= link_to user_path(teammate) do %>
+                  <div class="col-md-4 col-lg-3 col-sm-12">
+                    <div class="card card-user card-clickable card-clickable-over-content">
+                      <div class="card-heading heading-full">
+                        <!-- <div class="user-image sample-member9"></div> -->
+      				          <%= image_tag teammate.avatar %>
 
-          <div class="card-heading bg-image sample-bg-image13" style="">
-          </div>
-          <!--.card-heading-->
+                        <div class="clickable-button">
+                          <div class="layer bg-green"></div>
+                          <a class="btn btn-floating btn-green initial-position floating-open"><i class="ion-android-share-alt"></i></a>
+                        </div>
 
-          <div class="card-body">
-            <div class="calendar">
-              <div class="month"><%= format(att.event.starts_at, 9) %></div>
-              <div class="date"><%= format(att.event.starts_at, 10) %></div>
+                        <div class="layered-content bg-green">
+                          <div class="overflow-content">
+                            <h4>Follow <%= teammate.first_name %></h4>
+                            <ul class="inline-list social-list borderless">
+                              <li><%= link_to "#{teammate.profile.facebook}", class: "btn btn-facebook btn-ripple" do %>
+                                  <i class="ion-social-facebook"></i>
+                                <% end %></li>
+                              <li><%= link_to "#{teammate.profile.twitter}", class: "btn btn-twitter btn-ripple" do %>
+                                  <i class="ion-social-twitter"></i>
+                                <% end %></li>
+                              <!-- <li><a class="btn btn-googleplus btn-ripple"><i class="ion-social-googleplus"></i></a></li> -->
+                            </ul>
+                          </div>
+                          <!--.overflow-content-->
+                          <div class="clickable-close-button">
+                            <a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
+                          </div>
+                        </div>
+
+                      </div>
+                      <!--.card-heading-->
+
+                      <div class="card-body">
+                        <h3 class="card-title">
+                          <a href="#" class="capitalize">
+                            <%= teammate.first_name %> <%= teammate.last_name %>
+                          </a>
+                        </h3>
+
+                        <div class="subhead mb0">
+                          Shared Teams:
+                          <% teammate.teams.each_with_index do |team, i| %>
+                            <% if @user.shared_teams(teammate.id).include? team.id %>
+                              <% count = i + 1 %>
+                              <%= link_to team.name, team_path(team) %><%= count == teammate.teams.count ? "" : "," %>
+                            <% end %>
+                          <% end %>
+                        </div>
+                      </div>
+                      <!--.card-body-->
+                    </div>
+                    <!--.card-->
+                  </div>
+                  <!--.col-md-4-->
+                <% end %>
+              <% end %>
             </div>
-            <!--.calendar-->
-            <h4 style="margin-bottom: 0;"><%= att.event.title %></h4>
-
-            <p>
-              <%= att.event.event_type %>
-            </p>
-            <h5 class="h6 text-primary bold">
-              <%= format(att.event.starts_at, 4) %>
-              <%= format(att.event.starts_at, 8) %>
-              -
-              <%= format(att.event.ends_at, 4) %>
-              <%= format(att.event.ends_at, 8) %>
-            </h5>
+            <!--.row-->
           </div>
-          <!--.card-body-->
+        </div>
+      </div>
+      <!--#people.tab-pane-->
 
-          <div class="clickable-button">
-            <div class="layer bg-primary"></div>
-            <a class="btn btn-floating btn-primary initial-position floating-open"><i class="ion-android-more-horizontal"></i></a>
-          </div>
+      <!-- events -->
+      <div id="events" class="tab-pane">
 
-          <div class="layered-content bg-red">
-            <div class="overflow-content">
-              <h4>How Many People Are Attending?</h4>
-              <%= att.event.people_that_are_going.count %>
+        <div class="row">
+          <% @user.attendances.each do |att| %>
+
+            <div class="col-md-6">
+              <div class="card card-event card-clickable">
+
+                <div class="card-heading bg-image sample-bg-image13" style="">
+                </div>
+                <!--.card-heading-->
+
+                <div class="card-body">
+                  <div class="calendar">
+                    <div class="month"><%= format(att.event.starts_at, 9) %></div>
+                    <div class="date"><%= format(att.event.starts_at, 10) %></div>
+                  </div>
+                  <!--.calendar-->
+                  <h4 style="margin-bottom: 0;"><%= att.event.title %></h4>
+
+                  <p>
+                    <%= att.event.event_type %>
+                  </p>
+                  <h5 class="h6 text-primary bold">
+                    <%= format(att.event.starts_at, 4) %>
+                    <%= format(att.event.starts_at, 8) %>
+                    -
+                    <%= format(att.event.ends_at, 4) %>
+                    <%= format(att.event.ends_at, 8) %>
+                  </h5>
+                </div>
+                <!--.card-body-->
+
+                <div class="clickable-button">
+                  <div class="layer bg-primary"></div>
+                  <a class="btn btn-floating btn-primary initial-position floating-open"><i class="ion-android-more-horizontal"></i></a>
+                </div>
+
+                <div class="layered-content bg-red">
+                  <div class="overflow-content">
+                    <h4>How Many People Are Attending?</h4>
+                    <%= att.event.people_that_are_going.count %>
+                  </div>
+                  <!--.overflow-content-->
+                  <div class="clickable-close-button">
+                    <a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
+                  </div>
+                </div>
+
+              </div>
+              <!--.card-->
             </div>
-            <!--.overflow-content-->
-            <div class="clickable-close-button">
-              <a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
-            </div>
-          </div>
+            <!--.col-md-6-->
+
+          <% end %>
 
         </div>
-        <!--.card-->
       </div>
-      <!--.col-md-6-->
 
-    <% end %>
+      <!-- calendar -->
+      <div id="calendar-tab" class="tab-pane">
 
+        <div class="row">
+          <%= render 'shared/calendar', eventable: @user %>
+        </div>
+      </div>
+
+      <!-- facilities -->
+      <div id="facilities" class="tab-pane">
+        <div class="row">
+        </div>
+        <!--.row-->
+      </div>
+      <!--#facilities.tab-pane-->
+
+      <!-- media -->
+      <div id="media" class="tab-pane">
+
+        <div class="row">
+
+          <%= render 'shared/media' %>
+
+      	fans: <br>
+
+      	<% @follows.each do |follow| %>
+      	<% if follow.fannable.class == "User" %>
+      	  <%= follow.fannable.full_name  %><br>
+      	<% else %>
+      	 <%= follow.fannable.name  %><br>
+      	<% end%>
+
+
+      	<% end %>
+
+        </div>
+      </div>
+      <%= render 'shared/photo_tab', photo_owner: @user %>
+
+      <!-- following -->
+      <div id="following" class="tab-pane">
+
+        <div class="row">
+
+          <!--.col-->
+          <div class="col-md-10">
+            <div class="row">
+            </div>
+            <!--.row-->
+          </div>
+        </div>
+      </div>
+
+      <!-- fans -->
+      <div id="fans" class="tab-pane">
+
+        <div class="row">
+
+          <!--.col-->
+          <div class="col-md-10">
+            <div class="row">
+            </div>
+            <!--.row-->
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
   </div>
-
-</div>
-<div id="calendar-tab" class="tab-pane">
-
-  <div class="row">
-    <%= render 'shared/calendar', eventable: @user %>
-  </div>
-
-</div>
-<!--#events.tab-pane-->
-
-<!-- facilities -->
-<div id="facilities" class="tab-pane">
-  <div class="row">
-
-
-  </div>
-  <!--.row-->
-</div>
-<!--#facilities.tab-pane-->
-
-<!-- media -->
-<div id="media" class="tab-pane">
-
-  <div class="row">
-
-    <%= render 'shared/media' %>
-
-	fans: <br>
-
-	<% @follows.each do |follow| %>
-	<% if follow.fannable.class == "User" %>
-	  <%= follow.fannable.full_name  %><br>
-	<% else %>
-	 <%= follow.fannable.name  %><br>
-	<% end%>
-
-
-	<% end %>
-
-  </div>
-
-</div>
-<%= render 'shared/photo_tab', photo_owner: @user %>
-
-</div>
-<!--#media.tab-pane-->
-</div>
 <!--.tab-content-->
 </div>
 <!--.col-->
