@@ -4,7 +4,7 @@
   <div class="page-header full-content bg-blue">
     <div class="row">
       <div class="col-sm-6">
-        <h1>Account Upgrae<small class="m-l-20 inline-block"> Payment information</small></h1>
+        <h1>Account Upgrade <small class="m-l-10 inline-block"> Payment information</small></h1>
       </div><!--.col-->
       <div class="col-sm-6">
         <ol class="breadcrumb">
@@ -25,7 +25,7 @@
 				<div class="panel-heading">
 					<div class="panel-title text-center">
 						<br/>
-						<h3>Please enter your email below.</h3>
+						<h3>Account Upgrade.</h3>
 					</div>
 				</div>
 				<!--.panel-heading-->
@@ -33,34 +33,35 @@
 				<!-- panel body -->
 				<div class="panel-body m-b-30 pr40 pl40">
 
-					<h5 class="text-muted text-center">Your account was created using your cell phone number,<br/> we need to update your account with a valid email address. </h5>
+					<%= form_for [@school], url: school_upgrade_school_path(@school), role: "form", html:{class: "card_form"} do |f| %>
 
+						<div class="form-row text-center">
+	        		<div class="row example-row no-margin">
+								<div class="col-md-12">Upgrade Plan </div><!--.col-md-3-->
+								<div class="col-md-12">
+									<label class="text-primary semi-bold text-center h4 MB0">
+		            		Premium High School Plan
+		            	</label>
+		            	<h1 class="text-center no-margin semi-bold">34.99 <small class="small h6">/month</small></h1>
+									<%#= f.hidden_field :total_price, value: @cart.total_price(current_user)%>
+								</div><!--.col-md-9-->
+							</div><!--.row-->
+						</div>
+					</div>
+
+					<hr class="no-margin"/>
 					<br/>
 
-					<div class="row">
-						<div class="col-md-12">
-							<div class="form-group m-t-10">
-        				<div class="form-row">
-        					<div class="controls">
-										<%= form_for [@school], url: school_upgrade_school_path(@school), role: "form", html:{class: "card_form"} do |f| %>
-	            			<label class="text-black semi-bold text-center">Name on Card</label>
-									
-										<br>
-										<h1 class="text-center">34.99<small class="small">/month</small></h1>
-										<%#= f.hidden_field :total_price, value: @cart.total_price(current_user)%>
-		          	</div>
-	          	</div>
-	        </div>
+					<h5 class="text-muted text-center">Please enter your payment information below.</h5>
 
-	        <hr/>
-
+					<div class="panel-body m-b-30 pr40 pl40">
 						<div class="form-row">
 	        		<div class="row example-row">
-								<div class="col-md-12">Name on Card</div><!--.col-md-3-->
+								<div class="col-md-12">Name on Card </div><!--.col-md-3-->
 								<div class="col-md-12">
 									<div class="inputer">
 										<div class="input-wrapper">
-											<%= text_field_tag :card_number, nil, name: nil, required: true, class: "form-control", placeholder: "" %>
+											<%= text_field_tag :card_number, nil, name: nil, required: true, class: "form-control", placeholder: "John Smith" %>
 												<%#= text_field_tag :name_on_card, nil, class: "form-control", placeholder: "John Smith" %>
 	          				</div>
 										</div>
@@ -74,25 +75,25 @@
 								<div class="col-md-12">
 									<div class="inputer">
 										<div class="input-wrapper">
-											<%= text_field_tag :card_number, nil, name: nil, required: true, class: "form-control", placeholder: "" %>
+											<%= text_field_tag :card_number, nil, name: nil, required: true, class: "form-control", placeholder: "4242 4242 4242 4242" %>
 	          				</div>
-										</div>
 									</div>
-								</div><!--.col-md-9-->
+								</div>
+							</div><!--.col-md-9-->
 						</div><!--.row-->
 										
 	         <div class="form-group m-t-30">
 		        <div class="form-row">
 	          	<div class="controls">
 	          		<div clas="row clearfix form-row">
-	            		<div class="row col-md-5">
-										
+
+	            		<div class="col-md-5">
 										<div class="row example-row">
 											<div class="col-md-12">Expiration Month</div><!--.col-md-3-->
 											<div class="col-md-12">
 												<div class="inputer">
 													<div class="input-wrapper">
-														<%= text_field_tag :card_month, nil, name: nil, required: true, class: "form-control", placeholder: "Month" %>
+														<%= text_field_tag :card_month, nil, name: nil, required: true, class: "form-control", placeholder: "January" %>
 													</div>
 												</div>
 											</div><!--.col-md-9-->
@@ -104,7 +105,7 @@
 											<div class="col-md-12">
 												<div class="inputer">
 													<div class="input-wrapper">
-														<%= text_field_tag :card_year, nil, name: nil, required: true, class: "form-control", placeholder: "Year" %>
+														<%= text_field_tag :card_year, nil, name: nil, required: true, class: "form-control", placeholder: "2020" %>
 													</div>
 												</div>
 											</div><!--.col-md-9-->
@@ -116,7 +117,7 @@
 											<div class="col-md-12">
 												<div class="inputer">
 													<div class="input-wrapper">
-														<%= text_field_tag :card_year, nil, name: nil, required: true, class: "form-control", placeholder: "Year" %>
+														<%= text_field_tag :card_year, nil, name: nil, required: true, class: "form-control", placeholder: "035" %>
 													</div>
 												</div>
 											</div><!--.col-md-9-->
@@ -126,10 +127,6 @@
 	            </div>
 	          </div>
 	        </div>
-	      </div>
-	    </div>
-
-	        
 	      </div>
 				<!--.panel-body-->
 				<div class="panel-footer form-layout">
