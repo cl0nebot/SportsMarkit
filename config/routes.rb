@@ -46,6 +46,8 @@ Rails.application.routes.draw do
       resources :media
       resources :teams
       resources :photos
+      get :upgrade
+      patch :upgrade_school
     end
     
     resources :teams do
