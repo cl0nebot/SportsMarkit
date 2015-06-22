@@ -108,10 +108,8 @@
 										</div><!--.panel-heading-->
 										<hr class="no-margin"/>
 										<div class="panel-body without-padding">
-											<ul class="list-material has-hidden">
-												<% @heads.each do |m| %>
-											 		<%= render 'head', m: m %>
-												<% end %>
+											<ul class="list-material has-hidden" id="coach-list">
+												<%= render 'heads', heads: @heads %>
 											</ul>
 										</div><!--.panel-body-->
 									</div><!--.panel-->
@@ -133,14 +131,8 @@
 										</div><!--.panel-heading-->
 										<hr class="no-margin"/>
 										<div class="panel-body without-padding">
-											<ul class="list-material has-hidden">
-												<% @members.each do |m| %>
-												<% if current_user.can_edit_team?(@team) %>
-										       		<%= render 'admin_view_member', m: m%>
-												<% else %>
-													<%= render 'member', m: m%>
-												<% end %>
-										    	<% end %>
+											<ul class="list-material has-hidden" id="member-list">
+												<%= render 'members', members: @members, team: @team %>
 											</ul>
 										</div><!--.panel-body-->
 									</div><!--.panel-->
@@ -354,6 +346,8 @@
 											
 											athlete: <%= check_box_tag :participant, "", false%>
 											head: <%= check_box_tag :head, "", false%>
+											trainer: <%= check_box_tag :trainer, "", false%>
+											manager: <%= check_box_tag :manager, "", false%>
 											admin: <%= check_box_tag :admin, "", false%>
 											
 
@@ -376,7 +370,7 @@
 				<!--#admin.tab-pane-->
 
 				
-        		<%= render 'shared/photo_tab', photo_owner: @team %>
+        		<%#= render 'shared/photo_tab', photo_owner: @team %>
 
 			</div><!--.tab-content-->
 
