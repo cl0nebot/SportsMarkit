@@ -23,54 +23,223 @@
 				<li><a href="#location" data-toggle="tab">Location</a></li>
 				<li><a href="#contact" data-toggle="tab">Contact</a></li>
 				<li><a href="#admin" data-toggle="tab">Admin</a></li>
-				<li><a href="#media" data-toggle="tab">Media</a></li>
+				<li><a href="#media" data-toggle="tab">Photos and Videos</a></li>
 			</ul>
 		</div>
 	</div><!--.page-header-->
 
 		<div class="row">
-			<div class="col-md-12">
-				<div class="panel">
-					<div class="panel-body">
-
+			<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+				<div class="panel box-shadow-ccc">
+					<div class="panel-body no-padding form-layout">
 						<%= form_for @school, html: {id: 'school-form', data: {remote: true}} do |f|   %>
-
 							<div class="tab-content with-panel">
+								
 								<div class="tab-pane active text-style" id="general">
+									<div class="panel-header">
+										<h4 class="text-right semi-bold text-primary">General</h4>
+									</div>
+									<hr class="margin-top-0"/>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-8 col-md-offset-2 col-sm-12">
+												<div class="row example-row">
+													<div class="col-md-12">Name</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :name, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
 
-									Name: <%= f.text_field  :name  %><br><br>
-								  	Classification: <%= f.select :classification, [ 'College', 'High School', 'Middle School'], :prompt => 'Select One' %><br><br>
-								  	Abbreviation: <%= f.text_field :abbreviation %><br><br>
-		  
-									
+												<div class="row example-row">
+													<div class="col-md-12">Classification</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<%= f.select :classification, [ 'College', 'High School', 'Middle School'], :prompt => 'Select One' %>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+
+												<div class="row example-row">
+													<div class="col-md-12">Classification</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :abbreviation, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+										</div>
+
+									</div>
 								</div><!--tab-pane-->
 
 								<div class="tab-pane text-style" id="location">
-									Address: <%= f.text_field :address_1 %><br><br>
-									  Address Line 2: <%= f.text_field :address_2 %><br><br>
-									  City: <%= f.text_field :city %><br><br>
-									  State: <%= f.text_field :state %><br><br>
-									  Zip: <%= f.text_field :zip %><br><br>
-									  Zip-ext: <%= f.text_field :zip_ext %><br><br> 
+									<div class="panel-header">
+										<h4 class="text-right semi-bold text-primary">Location</h4>
+									</div>
+									<hr class="margin-top-0"/>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-8 col-md-offset-2 col-sm-12">
+												<div class="row example-row">
+													<div class="col-md-12">Address</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :address_1, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
 
+
+												<div class="row example-row">
+													<div class="col-md-12">Address Line 2</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :address_2, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+
+												<div class="row example-row">
+													<div class="col-md-12">City</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :city, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+
+												<div class="row example-row">
+													<div class="col-md-12">State</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :state, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+
+
+												<div class="row example-row">
+													<div class="col-md-12">Zipcode</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :zip, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+
+												<div class="row example-row">
+													<div class="col-md-12">Zipcode Ext.</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :zip_ext, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+										</div>
+									</div>
 								</div><!--tab-pane-->
 
 								<div class="tab-pane text-style" id="contact">
-									
-									  Website: <%= f.text_field :website %><br><br>
-									  Email: <%= f.text_field :email %><br><br>
-									  Phone Number: <%= f.text_field :phone_number %><br><br>
+									<div class="panel-header">
+										<h4 class="text-right semi-bold text-primary">Contact Information</h4>
+									</div>
+									<hr class="margin-top-0"/>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-8 col-md-offset-2 col-sm-12">
+												<div class="row example-row">
+													<div class="col-md-12">Website</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :website, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
 
+
+												<div class="row example-row">
+													<div class="col-md-12">Email</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :email, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+
+												<div class="row example-row">
+													<div class="col-md-12">Phone Number</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :phone_number, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+										</div>
+									</div>
 								</div><!--.tab-pane-->
+
 								<div class="tab-pane text-style" id="admin">
-									<%= link_to "Add Teams", new_school_team_path(@school)%>
+									<div class="panel-header">
+										<h4 class="text-right semi-bold text-primary">Admin</h4>
+									</div>
+									<hr class="margin-top-0"/>
+									<div class="row">
+										<div class="col-md-8 col-md-offset-2 col-sm-12">
+											<p class="text-center">
+												<%= link_to "Add Teams", new_school_team_path(@school),  class: "btn btn-primary"%>
+											</p>
+										</div>
+									</div>
+								</div><!--.tab-pane-->
+
+								<div class="tab-pane text-style" id="media">
+									<div class="panel-header">
+										<h4 class="text-right semi-bold text-primary">Photos and Videos</h4>
+									</div>
+									<hr class="margin-top-0"/>
+									<div class="row">
+										<div class="col-md-8 col-md-offset-2 col-sm-12">
+											
+											
+										</div>
+									</div>
 								</div><!--.tab-pane-->
 							</div><!--.tab-content-->
-
-							<%= f.submit class: "btn btn-primary" %>
+					</div>
+					<div class="panel-footer form-layout">
+							<br/>
+							<p class="text-right	">
+								<%= f.submit class: "btn btn-white" %>
+							</p>
 
 						<% end %>
-
 					</div><!--.panel-body-->
 				</div><!--.panel-->
 			</div><!--.col-md-12-->

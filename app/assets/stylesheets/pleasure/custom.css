@@ -146,8 +146,8 @@ hr.light {border-top-color: #fff; border-bottom: 1px solid #eee;}
 .ws4 {word-spacing: 4px;}
 .ws5 {word-spacing: 5px;}
 
-.no-margin  {margin: 0;}
-.no-padding {padding: 0;}
+.no-margin  {margin: 0 !important;}
+.no-padding {padding: 0 !important;}
 
 .p5 {padding: 5px;}
 .p10 {padding: 10px;}
@@ -462,4 +462,49 @@ input.form-control {font-size: 26px; line-height: 30px;}
 
 .bg-login .login-screen  {
   height: 500px;
+}
+
+.panel-body.no-padding.form-layout .panel-header {
+  padding: 20px 40px 0px;
+}
+
+.panel .panel-footer {
+  background: #eee;
+  border-top: 1px solid #ccc;
+}
+
+
+
+
+.header-tabs.scrollable-tabs.sticky {
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+}
+
+.header-tabs ul li a {
+  background: transparent;
+  border: 0 !important;
+  color: #111;
+  font-weight: 500;
+  opacity: .7;
+  border-radius: 0;
+  padding: 16px 40px;
+  top: 0;
+  margin-right: 0;
+}
+
+.nav-tabs.tabs-active-text-white > li.active a,
+.nav-tabs.tabs-active-text-white > li.active a:hover,
+.nav-tabs.tabs-active-text-white > li.active a:active,
+.nav-tabs.tabs-active-text-white > li.active a:focus  {
+  color: #000;
+  font-weight: 500;
+}
+
+.page-header .nav-tabs li.active a:after, 
+.page-header .nav-tabs li.active a:hover:after, 
+.page-header .nav-tabs li.active a:active:after, 
+.page-header .nav-tabs li.active a:focus:after {
+  top: 0;
+  border-width: 5px;
 }
