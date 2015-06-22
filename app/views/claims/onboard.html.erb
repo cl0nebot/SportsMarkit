@@ -1,138 +1,143 @@
-<!-- BEGIN BODY -->
-<body class="error-body no-top lazy"  data-original="http://d3cbxdta7efhyu.cloudfront.net/uploads/images/backgrounds/signup_bg.jpg"  style="background-image: url(http://d3cbxdta7efhyu.cloudfront.net/uploads/images/backgrounds/signup_bg.jpg)"> 
-<div class="container">
+<div class="content">
   
+  <!-- page header -->
+  <div class="page-header full-content bg-blue">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1>Claiming a School <small class="m-l-10 inline-block"> Claim Form</small></h1>
+      </div><!--.col-->
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="<%= teams_path %>">Schools</a></li>
+          <li><a href="#">[School Name]</a></li>
+          <li><a href="#" class="active">Claim</a></li>
+        </ol>
+      </div><!--.col-->
+    </div><!--.row-->
+  </div><!--.page-header-->
 
-  <%= form_for new_user, url: partner_signup_claim_path, html: {id: 'partner-signup-form', :class => "animated fadeIn", style: "display: ;"} do |f| %>
-
-
-  <div class="row login-container animated fadeInUp">  
-    <div class="col-md-4 col-md-offset-4 tiles white no-padding">
-      <div class="p-t-30 p-b-10 xs-p-t-10 xs-p-l-10 xs-p-b-10 text-center"> 
-        <h3 class="normal m-b-20 semi-bold gf_muli ls0 ws0">Claim you listing, it's free.</h3>
-       </div>
-      <div class="tiles grey p-t-20 p-b-20 text-black">
+  <div class="row">
+    <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-md-offset-2">
+      <div class="panel box-shadow-ccc">
         
-        <!-- Beg Signup Form  -->
-
-          <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
-            <div class="col-md-12">
-              <p class="p-t-15 semi-bold h5 pb5">1. SELECT YOUR SPA</p> 
-              <%= f.collection_select :school_ids, @schools, :id, :name, {prompt: "Select Your School"}, { :multiple => false, :style => "width:100%", :id => "multi", :placeholder => "Select Your Spa"  } %>
-            </div>
+        <!-- panel header -->
+        <div class="panel-heading">
+          <div class="panel-title text-center">
+            <br/>
+            <h3>Claim Your school, it's free.</h3>
           </div>
+        </div>
+        <!--.panel-heading-->
+        
+        <!-- panel body -->
+        <div class="panel-body m-b-30 pr40 pl40">
 
-          <div class="row form-row m-t-10 m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
-            <div class="col-md-12">
-              <p class="p-t-15 semi-bold h5 pb5">2. CREATE A USER ACCOUNT</p> 
-              <div clas="clearfix">
-                <div class="form-row row">
-                  <div class="input-append col-md-11 col-sm-11 primary">
-                     <%= f.text_field :first_name, label: false, :autofocus => true, placeholder:"First Name", class: "form-control", type: "text" %>
-                    <span class="add-on"><span class="arrow"></span><i class="fa fa-user"></i> </span>
-                    <div id="first-name-email-div"></div>
+          <%= form_for new_user, url: partner_signup_claim_path, html: {id: 'partner-signup-form', :class => "animated fadeIn", style: "display: ;"} do |f| %>
+
+
+          <p class="text-center no-margin text-muted"><small>STEP 1</small></p>
+          <h4 class="text-primary text-center no-margin">
+            Find your school.
+          </h4>
+
+          <hr class="margin-top-10"/>
+
+          <div class="form-row">
+            <div class="row example-row no-margin">
+              <div class="col-md-12">
+                <div class="inputer">
+                  <%= f.collection_select :school_ids, @schools, :id, :name, {prompt: "Select Your School"}, { :multiple => false, :style => "width:100%", :id => "multi", :placeholder => "Select Your Spa", :class => "selecter", :data => {width: '100%'}  } %>
+                </div>
+              </div>
+            </div><!--.col-md-9-->
+          </div><!--.row-->
+        </div>
+
+        <hr class="margin-top-10"/>
+
+        <div class="panel-body m-b-30 pr40 pl40">
+          <p class="text-center no-margin text-muted"><small>STEP 2</small></p>
+          <h4 class="text-primary text-center no-margin">
+            Enter information for <br/>your account administrator.
+          </h4>
+
+          <hr class="margin-top-10"/>
+
+          <div class="form-row">
+            <div class="row example-row">
+              <div class="col-md-12">First Name</div><!--.col-md-3-->
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper">
+                    <%= f.text_field :first_name, label: false, :autofocus => true, placeholder:"Last Name", class: "form-control", type: "text" %>
                   </div>
                 </div>
-                <div class="form-row row">
-                  <div class="input-append col-md-11 col-sm-11 primary">
-                    <%= f.text_field :last_name, label: false, :autofocus => true, placeholder:"Last Name", class: "form-control", type: "text" %>
-                    <span class="add-on"><span class="arrow"></span><i class="fa fa-user"></i> </span>
-                    <div id="last-name-email-div"></div>
+              </div>
+            </div><!--.col-md-9-->
+          </div><!--.row-->
+
+           <div class="form-row">
+            <div class="row example-row">
+              <div class="col-md-12">Last Name</div><!--.col-md-3-->
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper">
+                    <%= f.text_field :last_name, label: false, :autofocus => true, placeholder:"First Name", class: "form-control", type: "text" %>
                   </div>
                 </div>
-                <div class="form-row row">
-                  <div class="input-append col-md-11 col-sm-11 primary">
+              </div>
+            </div><!--.col-md-9-->
+          </div><!--.row-->
+
+          <div class="form-row">
+            <div class="row example-row">
+              <div class="col-md-12">Email</div><!--.col-md-3-->
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper">
                     <%= f.text_field :email, :label => false, :autofocus => true, placeholder: "Email", class: "form-control", type: "text" %>
-                    <span class="add-on"><span class="arrow"></span><i class="fa fa-envelope"></i> </span>
-                    <div id="email-div"></div>
                   </div>
                 </div>
-                <div class="form-row row">
-                  <div class="input-append col-md-11 col-sm-11 primary">
+              </div>
+            </div><!--.col-md-9-->
+          </div><!--.row-->
+
+          <div class="form-row">
+            <div class="row example-row">
+              <div class="col-md-12">Password</div><!--.col-md-3-->
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper">
                     <%= f.text_field :password, :label => false, :autofocus => true, placeholder: "Password", type: "password", class: "form-control" %>
-                    <span class="add-on"><span class="arrow"></span><i class="fa fa-envelope"></i> </span>
-                    <div id="password-div"></div>
-                  </div>
-                </div>
-                <div class="form-row">
-                    <p class="semi-bold">Please select the city nearest you</p>
-                    <%#= f.collection_select :nearest_city, @cities, :to_s, :to_s, {include_blank: false}, {:multiple => false, :style => "width:100%", :placeholder => "Select Nearest City"  } %>
-                    <div id="location-div"></div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row form-row m-t-10 m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+            </div><!--.col-md-9-->
+          </div><!--.row-->
+
+
+          <div class="form-row">
+            <div class="row example-row">
+              <div class="col-md-12">Mobile Phone Number</div><!--.col-md-3-->
               <div class="col-md-12">
-                <p class="p-t-15 semi-bold h5 pb5">3. PROVIDE BUSINESS DETAILS</p> 
-                <div clas="clearfix">
-                  <div class="form-row row">
-                    <div class="input-append col-md-11 col-sm-11 primary">
-                       <%#= f.text_field :title, placeholder: "Business Position/Title", class: "form-control input-md" %>
-                      <span class="add-on"><span class="arrow"></span><i class="fa fa-user"></i> </span>
-                      <div id="title-div"></div>
-                    </div>
-                  </div>
-                  <div class="form-row row">
-                    <div class="input-append col-md-11 col-sm-11 primary">
-                      <%#= f.text_field :business_email, placeholder: "Business Email", class: "form-control" %>
-                      <span class="add-on"><span class="arrow"></span><i class="fa fa-envelope"></i> </span>
-                      <div id="business-email-div"></div>
-                    </div>
-                  </div>
-
-                  <div class="form-row row">
-                    <div class="input-append col-md-11 col-sm-11 primary">
-                      <%#= f.text_field :business_phone, placeholder: "Business Phone", class: "form-control" %>
-                      <span class="add-on"><span class="arrow"></span><i class="fa fa-phone"></i> </span>
-                      <div id="business-phone-div"></div>
-                    </div>
-                  </div>
-
-                  <div class="form-row row">
-                    <div class="input-append col-md-11 col-sm-11 primary">
-                      <%= f.text_field :mobile_phone_number, placeholder: "Mobile Phone", class: "form-control" %>
-                      <span class="add-on"><span class="arrow"></span><i class="fa fa-phone"></i> </span>
-                      <div id="mobile-phone-div"></div>
-                    </div>
+                <div class="inputer">
+                  <div class="input-wrapper">
+                    <%= f.text_field :mobile_phone_number, placeholder: "Mobile Phone", class: "form-control" %>
                   </div>
                 </div>
-                <div class="clearfix"></div>
               </div>
-            </div>
+            </div><!--.col-md-9-->
+          </div><!--.row-->
+        </div>
 
-            <div class="row p-t-10 m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
-              <div class="control-group col-md-12">
-                <div class="checkbox checkbox check-success"> 
-                  <input type="checkbox" id="checkbox1" value="1">
-                  <label for="checkbox1">Remember Me</label>
-                </div>
-              </div>
-            </div>
-            
-            <hr class="mb0"/>
-
-            <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
-              <div class="clearfix text-center m-t-20">
-                <p><span>No luck finding your spa?</span>
-                <a class="help" href="#"><u>Go here.</u></a></p>
-              </div>
-              <div class="col-md-12">
-                <%= f.submit "Create Account", :class => "btn btn-primary btn-cons btn-block", type: "submit", name: "partner_signup" %>
-                <p class="lh_12 no-margin text-center">
-                  <span class="h7 text-muted ws0">By signing up you confirm that you accept the <br/><u>Terms of Service</u> and <u>Privacy Policy</u></span>
-                </p>       
-              </div>
-            </div>
-           
-          <% end %>
-
-        <!-- End Login Form  -->
-      </div>   
-    </div>   
-  </div>
-</div>
-
-
-<%#= render 'shared/signup/user_login' %>
-
+        <!--.panel-body-->
+        <div class="panel-footer form-layout">
+          <br/>
+            <%= f.submit "Claim Your School", :class => "btn btn-primary btn-block", type: "submit", name: "partner_signup" %>
+            <br/>
+        </div><!--.panel-body-->
+        <% end %>
+      </div><!--.panel-->
+    </div><!--.col-md-12-->
+  </div><!--.row-->
