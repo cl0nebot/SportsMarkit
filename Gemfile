@@ -44,13 +44,16 @@ group :development do
 end
 
 gem 'twilio-ruby', '~> 4.1.0'
-gem 'rmagick'
+# gem 'rmagick'
 gem 'ransack'
 gem 'best_in_place', '~> 3.0.1'
 gem 'carrierwave-crop'
 
 #google web font library
 gem 'google-webfonts'
+
+#for payments
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
