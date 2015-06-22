@@ -124,5 +124,6 @@
 //= require ./validation/jquery.validate.min
 //= require validation
 //= require jquery.cropit
+//= require schools
 
 
