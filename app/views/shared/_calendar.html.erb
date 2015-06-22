@@ -1,21 +1,36 @@
-<div class="filters">
-  <%= form_tag "", method: :get, id: "calendar_filter", remote: true do %>
-    <p>Event Type:</p>
-    <% eventable.all_events.pluck(:event_type).uniq.each do |e_type| %>
-      <label><%= e_type %>
-        <%= check_box_tag "q[event_type_in][]", e_type %>
-      </label>
-    <% end %>
+<div class="row">
+  <div class="col-md-2">
+    <div class="filters">
+    <%= form_tag "", method: :get, id: "calendar_filter", remote: true do %>
+    
+      <h4 class="semi-bold">Event Type:</h4>
+      <hr class="no-margin"/>
+      <% eventable.all_events.pluck(:event_type).uniq.each do |e_type| %>
+        <label><%= e_type %>
+          <%= check_box_tag "q[event_type_in][]", e_type %>
+        </label>
+      <% end %>
 
-    <p>Created by:</p>
-    <% eventable.all_events.includes(:user).map(&:user).uniq.compact.each do |user| %>
-      <label><%= creator_name(user) %>
-        <%= check_box_tag "q[user_id_in][]", user.id %>
-      </label>
-    <% end %>
-    <br>
-    <%= button_tag "Reset", id: "reset_filters" %>
+      <br/>
+      <br/>
+
+      <h4 class="semi-bold">Created by:</h4>
+      <hr class="no-margin"/>
+      <% eventable.all_events.includes(:user).map(&:user).uniq.compact.each do |user| %>
+        <label><%= creator_name(user) %>
+          <%= check_box_tag "q[user_id_in][]", user.id %>
+        </label>
+      <% end %>
+      <br>
+    <%= button_tag "Clear all Filters", id: "reset_filters", class: "btn btn-white btn-block" %>
   <% end %>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="panel box-shadow-ccc">
+      <div class="panel-body transparent">
+        <div id="calendar" data-root="<%= request.url %>"></div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div id="calendar" data-root="<%= request.url %>"></div>
