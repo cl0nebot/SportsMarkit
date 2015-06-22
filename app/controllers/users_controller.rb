@@ -48,6 +48,7 @@ class UsersController < ApplicationController
     unless params[:user][:password].present?
       @profile = @user.profile
       if @user.update_attributes(user_params)
+        @user.relationships.update_all(mobile_phone_number: @user.mobile_phone_number)
         flash[:success] = "Updated successfully."
         respond_to do |format|
           format.html {redirect_to :back}
