@@ -36,6 +36,7 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
 
 		<%= csrf_meta_tags %>
+		<%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLISHABLE_KEY'] %>
 	</head>
 
     <%= render 'shared/navbar' %>
@@ -43,6 +44,7 @@
   <%= javascript_include_tag 'application' %>
 
 	<%= yield %>
+	
 
 	<!-- side panels -->
 	<%= render "shared/panels/new_school" %>
