@@ -2,9 +2,12 @@
   <div class="login-screen">
     <div class="panel-login blur-content">
 
-      <div class="panel-heading">
-        <%= image_tag("teamfox.png", height: "100", alt: "") %>
-      </div><!--.panel-heading-->
+      <div class="logo">
+        <h2 class="logo text-light-shadow text-center mb0">
+          <%= image_tag("icons/flag.png", height: "35", width: "auto", class: "margin-right-5", style: "margin-top: -3px;") %>
+            <span class="text-white">SportsMarkit</span>
+        </h2>
+      </div><!--.logo-->
 
       <div id="pane-login" class="panel-body active">
         <%= render "users/login_signup/login" %>
@@ -25,9 +28,9 @@
     <div class="overlay"></div><!--.overlay-->
   </div><!--.bg-blur-->
 
-  <svg version="1.1" xmlns='http://www.w3.org/2000/svg'>
+  <svg version="1.1" xmlns=''>
     <filter id='blur'>
-      <feGaussianBlur stdDeviation='7' />
+      <feGaussianBlur stdDeviation='4' />
     </filter>
   </svg>
 

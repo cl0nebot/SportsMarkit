@@ -1,44 +1,53 @@
-<h2>Login to FYESports</h2>
-    		
+<h5 class="text-muted semi-bold text-center">LOGIN BELOW</h5>
+
+<hr class="hr-333 mt10"/>
+
 <%= form_tag sessions_path, id: 'login-form' do |f|   %>
 
 	<div class="form-group">
 		<div class="inputer">
 			<div class="input-wrapper">
-				<%= text_field_tag(:identifier, nil, {placeholder: "Enter your phone number or email address.", class: "form-control"}) %>
+				<%= text_field_tag(:identifier, nil, {placeholder: "Phone number or email.", class: "form-control"}) %>
 			</div>
 		</div>
 	</div><!--.form-group-->
 	<div class="form-group">
 		<div class="inputer">
 			<div class="input-wrapper">
-				<%= password_field_tag(:password, nil, {placeholder: "Enter your password", class: "form-control"}) %>
+				<%= password_field_tag(:password, nil, {placeholder: "Password", class: "form-control"}) %>
 			</div>
 		</div>
 	</div><!--.form-group-->
-	<div class="form-buttons clearfix">
-		<label class="pull-left">
-			<input type="checkbox" name="remember" value="1"> Remember me
-		</label>
-		<%= submit_tag "Login", class: "btn btn-primary pull-right" %>
+
+	<div class="form-buttons clearfix m-t-10">
+		<%= submit_tag "Login", class: "btn btn-block btn-primary pull-right" %>
 	</div><!--.form-buttons-->
+
+	<br/>
+	<h5 class="text-muted semi-bold text-center">Or, use one-click-login</h5>
 
 	<div class="social-accounts">
 		<div class="btn-group-justified">
-			<%=link_to "/auth/facebook", class: "btn-block btn btn-primary" do %>
-				<i class="fa fa-facebook"></i> Facebook
+			<%=link_to "/auth/facebook", class: "btn-block btn btn-white" do %>
+				<span class="text-primary semi-bold">
+					<i class="fa fa-facebook"></i> 
+					Facebook
+				</span>
 			<% end %>
 		</div>
 	</div><!--.social-accounts-->
 
-	<ul class="extra-links">
+	<ul class="extra-links mt5">
 		<li>
 			<%= link_to new_password_reset_path, class:"text-muted pull-right" do %>
-				<h6>
+				<h6 class="no-margin">
 					<a href="#" class="show-pane-forgot-password">Forgot your password ?</a>
 				</h6>
 			<% end %>
 		</li>
-		<li><a href="#" class="show-pane-create-account">Create a new account</a></li>
+		<li>
+			<a href="#" class="bold show-pane-create-account ls1"><u>Create a new account</u></a>
+		</li>
 	</ul>
+	
 <% end %>

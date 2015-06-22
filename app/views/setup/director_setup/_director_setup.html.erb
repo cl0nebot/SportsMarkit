@@ -40,7 +40,7 @@
 									</div>
 									<div class="list-content padding-left-30">
 										<span class="title">
-											<%= @user.athletic_directors.last.school.name %>
+											<%#= @user.athletic_directors.last.school.name %>
 										</span>
 										<span class="caption">
 											[age], 
@@ -59,20 +59,24 @@
 						</ul>
 					</div><!--.panel-body-->
 
-				<% else %>
+				<%# else %>
 
-					<div class="row well">
-						<div class="col-lg-3 col-md-4 col-sm-12">
-							<h3 class="bold text-primary margin-top-10">
-								<i class="ion ion-search margin-right-5"></i> Find your school
-							</h3>
-						</div><!--.col-md-3-->
-						<div class="col-lg-9 col-md-8 col-sm-12">
-							<div class="inputer">
-								<textarea type="text" class="fs_30 lh_55 quicksearch-schools typeahead typeahead-schools form-control" rows="1" placeholder="start typing..."></textarea>
-							</div>
-						</div><!--.col-md-9-->
-					</div><!--.row-->
+					<div class="row well padding-bottom-0">
+			          <div class="col-lg-4 col-md-6 col-sm-12">
+			            <h3 class="bold text-primary margin-top-10">
+			              <i class="ion ion-search margin-right-5"></i> Find your school
+			            </h3>
+			          </div>
+			          <!--.col-md-3-->
+			          <div class="col-lg-8 col-md-6 col-sm-12">
+			            <div class="inputer">
+			              <!-- isotope filtering and typeahead-->
+			              <textarea type="text" class="fs_30 lh_55 quicksearch-directors typeahead typeahead-teams form-control" rows="1" placeholder="start typing..."></textarea>
+			            </div>
+			          </div>
+			          <!--.col-md-9-->
+			        </div>
+			        <!--.row-->
 
 					<hr class="margin-top-10"/>
 				
@@ -123,13 +127,14 @@
 
 	<% if @user.is_athletic_director? %>
 
-	<% else %>
+	<%# else %>
 
-		<div class="bg-muted padding-top-40 padding-right-40 padding-left-40 bg-color-light-grey">
-		
-			<div class="row schools">
+		<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
+    
+			<div class="row directors images" id="school-team-list">
+				<%= render 'setup/student_athlete_setup/school_team_list', school_teams: @school_teams %>
 			</div>
-			
+		
 		</div><!--.row-->
 
 	<% end %>

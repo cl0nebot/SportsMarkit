@@ -1,6 +1,9 @@
-<h2>Create a New Account</h2>
-				
+<h5 class="text-muted semi-bold text-center">LOGIN BELOW</h5>
+
+<hr class="hr-333 mt10"/>
+
 <%= form_for User.new, html: {id: 'signup-form'} do |f|   %>
+	
 	<div class="form-group">
 		<div class="inputer">
 			<div class="input-wrapper">
@@ -39,8 +42,17 @@
 	<div class="form-group">
 		<label><input type="checkbox" name="remember" value="1"> I have read and agree to the term of use.</label>
 	</div>
+
 	<div class="form-buttons clearfix">
-		<button type="submit" class="btn btn-white pull-left show-pane-login">Cancel</button>
-		<%= f.submit "Sign Up", class: "btn btn-primary pull-right" %>
+		<%= f.submit "Create Account", class: "btn btn-block btn-primary pull-right" %>
 	</div><!--.form-buttons-->
+
+	<div class="form-buttons clearfix">
+		<ul class="extra-links mt5">
+			<li>
+				<a href="#" class="bold show-pane-login ls1"><u>I have an Account</u></a>
+			</li>
+		</ul>
+	</div>
+	
 <% end %>
