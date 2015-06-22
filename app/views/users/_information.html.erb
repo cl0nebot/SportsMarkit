@@ -1,0 +1,47 @@
+<%= @user.full_name %> 						
+<%= @user.classification_list %>
+<%= @user.first_name %>
+<%= @user.middle_name %>
+<%= @user.last_name %>
+<%= @user.email %>
+<%= @user.mobile_phone_number %>
+<%= @user.profile.sex %>
+<%= @user.profile.date_of_birth %>
+<%= @user.age %>
+<%= @user.username %>
+<%= @user.profile.profile.location_description %>
+<%= @user.profile.linkedin %>
+<%= @user.profile.facebook %>
+<%= @user.profile.youtube %>
+<%= @user.profile.twitter %>
+<%= @user.profile.instagram %>
+<%= @user.profile.pinterest %>
+<%= @user.profile.foursquare %>
+<%= @user.profile.hudle %>
+<%= @user.profile.height_ft %>
+<%= @user.profile.height_in %>
+<%= @user.profile.weight %>
+
+<!-- these must stay together as an interator -->
+<% @user.measurables.each do |measurable| %>
+
+<%= measurable.sport %>
+<%= measurable.measurable %>
+<%= measurable.result %>
+<%= measurable.verified? %>
+
+<% end %>
+
+
+<%= @user.profile.favorite_pro_team %>													
+<%= @user.profile.favorite_college_team %>
+<%= @user.profile.favorite_pro_athlete %>	
+
+															
+
+
+								
+
+
+
+										
