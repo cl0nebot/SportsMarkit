@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619143430) do
+ActiveRecord::Schema.define(version: 20150619193913) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -303,8 +303,8 @@ ActiveRecord::Schema.define(version: 20150619143430) do
     t.string   "state"
     t.string   "zip"
     t.string   "zip_ext"
-    t.float    "latitude",           limit: 24
-    t.float    "longitude",          limit: 24
+    t.float    "latitude",               limit: 24
+    t.float    "longitude",              limit: 24
     t.boolean  "gmaps"
     t.string   "phone_number"
     t.string   "email"
@@ -313,6 +313,9 @@ ActiveRecord::Schema.define(version: 20150619143430) do
     t.string   "stripe_customer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "last_payment"
+    t.string   "stripe_subscription_id"
+    t.boolean  "premium"
   end
 
   add_index "schools", ["slug"], name: "index_schools_on_slug", unique: true, using: :btree
