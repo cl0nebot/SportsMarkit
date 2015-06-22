@@ -325,7 +325,10 @@
 											<%= hidden_field_tag :team_id,"", value: @team.id %>
 											
 											athlete: <%= check_box_tag :participant, "", false%>
-											head: <%= check_box_tag :head, "", false %>
+											coach: <%= check_box_tag :head, "", false %>
+                                            trainer: <%= check_box_tag :trainer, "", false%>		
+											manager: <%= check_box_tag :manager, "", false%>		
+											admin: <%= check_box_tag :admin, "", false%>
 
 
 								<%= f.submit "Add New Team Member", class: "btn btn-block btn-white" %>
