@@ -34,9 +34,9 @@ class User < ActiveRecord::Base
   has_many :athletic_directors, dependent: :destroy
   has_many :schools, through: :athletic_directors
   
-  has_many :attendees
-  has_many :classifications
-  has_many :measurables
+  has_many :attendees, dependent: :destroy
+  has_many :classifications, dependent: :destroy
+  has_many :measurables, dependent: :destroy
   has_many :certificates
   has_many :certifications, through: :certificates
   has_many :medias, as: :mediable
@@ -323,7 +323,7 @@ class User < ActiveRecord::Base
   def user_schools
     team_ids = relationships.pluck(:team_id)
     teams = Team.where(id: team_ids).where.not(school_id: nil)
-    school_ids = teams.pluck(:school_id)
+    school_ids = teams.pluck(:school_id) + AthleticDirector.where(user_id: id).pluck(:school_id)
     schools = School.where(id: school_ids).uniq
     
   end
