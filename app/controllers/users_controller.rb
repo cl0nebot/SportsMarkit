@@ -171,7 +171,7 @@ class UsersController < ApplicationController
   def email
     @user = User.friendly.find(params[:user_id])
     if @user.email.present?
-      redirect_to edit_user_path(@user)
+      #redirect_to edit_user_path(@user)
     else
       
     end
