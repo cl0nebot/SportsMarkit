@@ -1,5 +1,5 @@
 class SchoolsController < ApplicationController
-  before_action :find_school, except: [:index, :new, :create, :upgrade, :upgrade_school]
+  before_action :find_school, except: [:index, :new, :create, :upgrade, :upgrade_school, :plan]
   
   def index
     @schools = School.all
@@ -58,6 +58,10 @@ class SchoolsController < ApplicationController
       format.js
       format.html { redirect_to :back }
     end
+  end
+  
+  def plan
+    @school = School.friendly.find(params[:school_id])
   end
   
   def upgrade
