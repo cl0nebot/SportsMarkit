@@ -508,3 +508,10 @@ input.form-control {font-size: 26px; line-height: 30px;}
   top: 0;
   border-width: 5px;
 }
+
+
+.profile-photo {border: 4px solid #fff;}
+
+/*Calendar*/
+.fc-day-grid-container.fc-scroller {height: 700px !important;}
+.fc-toolbar h2 {font-weight: bold; color: #08c;}

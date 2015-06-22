@@ -58,9 +58,8 @@
 				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
 				<!-- <li><a href="#amenities" data-toggle="tab" class="btn-ripple">Amenities</a></li> -->
 				<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
-        <!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
-
-      </ul>
+        		<!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
+      		</ul>
 		</div>
 	</div><!--.page-header-->
 
@@ -72,8 +71,9 @@
 				<div id="about" class="tab-pane active">
 
 					<div class="row">
-						<div class="panel">
-							<div class="panel-body transparent">
+						<div class="col-md-8 col-md-offset-2">
+							<div class="panel box-shadow-ccc">
+								<div class="panel-body transparent">
 								<div class="row margin-top-20">
 									<div class="col-md-3">
 										<div class="address">
@@ -135,78 +135,52 @@
 										</div>
 									</div><!--.col-md-3-->
 								</div><!--.row-->
-							</div><!--.panel-body-->
-						</div><!--.panel-->
-					</div><!--.row-->
-
-					<div class="row about-us">
-						<div id="gmaps_10" class="map">
-							<%= gmaps4rails(@json) %>
+								</div><!--.panel-body-->
+							</div><!--.panel-->
+							<div class="about-us">
+								<div id="gmaps_10" class="map">
+									<%= gmaps4rails(@json) %>
+								</div>
+							</div><!--.row-->
 						</div>
 					</div><!--.row-->
-
-					
 				</div>
-				<!--#following.tab-pane-->
-
+				
 				<!-- teams -->
 				<div id="teams" class="tab-pane">
-                  
 				  <% @teams.each do |team| %>
-				  
-				  <%= team.name %>
-				  
+				  	<%= team.name %>
 				  <% end %>
-					
 				</div>
-				<!--#teams.tab-pane-->
 
 				<!-- people -->
 				<div id="people" class="tab-pane">
-					
 					<% @users_of_facility.each do |user| %>
-					
-					<%= user.full_name %>
-					
+						<%= user.full_name %>
 					<% end %>
-					
 				</div>
-				<!--#people.tab-pane-->
 
 				<!-- events -->
 				<div id="events" class="tab-pane">
-
-					
-
-					
 				</div>
-				<!--#events.tab-pane-->
 
 				<!-- facilities -->
 				<div id="facilities" class="tab-pane">
 					
 				</div>
-				<!--#facilities.tab-pane-->
-
+				
 				<!-- media -->
 				<div id="media" class="tab-pane">
-					
 					<div class="row">
-	
                     <%= render 'shared/media' %>
-						
 					</div>
-					
 				</div>
-				<!--#media.tab-pane-->
-        <div id="calendar-tab" class="tab-pane">
 
-          <div class="row">
-            <%= render 'shared/calendar', eventable: @facility %>
-          </div>
+				<div id="calendar-tab" class="tab-pane">
+					<%= render 'shared/calendar', eventable: @facility %>
+		        </div>
 
-        </div>
-        <%= render 'shared/photo_tab', photo_owner: @facility %>
+		        <%= render 'shared/photo_tab', photo_owner: @facility %>
 
 
 			</div><!--.tab-content-->
@@ -216,7 +190,6 @@
 	<%= render "shared/modals/boostrap_image_gallery_lightbox" %>
 
 </div><!--.content-->
-
 
 
 

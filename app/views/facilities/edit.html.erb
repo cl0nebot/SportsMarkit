@@ -20,66 +20,204 @@
 		<div class="header-tabs scrollable-tabs sticky">
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
 				<li class="active"><a href="#general" data-toggle="tab">General</a></li>
-				<li><a href="#tab2" data-toggle="tab">Tabs [2]</a></li>
-				<li><a href="#tab3" data-toggle="tab">Tabs [3]</a></li>
+				<li><a href="#contact" data-toggle="tab">Contact Information</a></li>
+				<li><a href="#media" data-toggle="tab">Upload Media</a></li>
 			</ul>
 		</div>
 	</div><!--.page-header-->
 
 	<div class="row">
-		<div class="col-md-12">
-			<div class="panel">
-				<div class="panel-body">
+		<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+			<div class="panel box-shadow-ccc">
+				<div class="panel-body no-padding form-layout">
+
+					<%= form_for @facility do |f| %>
 
 					<div class="tab-content with-panel">
 						<div class="tab-pane active text-style" id="general">
 
-								<%= form_for @facility do |f| %>
-								
-								<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%><br>
-								
-								<%= f.check_box :private %><br>
-								
-								<%= f.check_box :publicly_visible %><br>
-								
-								<%= f.text_field :address_1, type: "text", class: "form-control", placeholder: "" %><br>
-								
-								<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "" %><br>
-								
-								<%= f.text_field :city, type: "text", class: "form-control", placeholder: "" %><br>
-								
-								<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %><br>
-								
-								<%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true %><br>
-								
-								<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true %><br>
-								
-								<%= f.text_field :website, type: "text", class: "form-control", placeholder: ""  %><br>
-								
-								<%= f.text_field :email, type: "text", class: "form-control inputmask inputmask-email" %><br>
-								
-								<%= f.text_field :phone_number, type: "text", class: "form-control inputmask inputmask-phone" %><br>
-								
-								<%= f.submit "Awesome. Let's create a facility!", class: "btn btn-blue btn-lg btn-block btn-ripple" %><br>
-								
-								
-					
-								<% end %>
+							<div class="panel-header">
+								<h4 class="text-right semi-bold text-primary">General</h4>
+							</div>
+							<hr class="margin-top-0"/>
 
-						</div><!--tab-pane-->
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-md-8 col-md-offset-2 col-sm-12">
+										<div class="row example-row">
+											<div class="col-md-12">Name</div><!--.col-md-3-->
+											<div class="col-md-12">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<%= f.text_field :name, type: "text", class: "form-control", placeholder: "" %>
+													</div>
+												</div>
+											</div><!--.col-md-9-->
+										</div><!--.row-->
 
-						<div class="tab-pane text-style" id="tab2">
-							
-								put some more stuff here
+										<div class="clearfix margin-top-20 margin-bottom-20">
+											<div class="checkboxer form-inline">
+												<%= f.check_box :private %>
+												<label for="facility_private">Private</label>
+											</div>
+											<div class="checkboxer form-inline">
+												<input type="checkbox" id="inlineCheckbox2" value="option2">
+												<%= f.check_box :publicly_visible %>
+												<label for="facility_publicly_visible">Publicly Visible</label>
+											</div>
+										</div>
 
-						</div><!--tab-pane-->
+										<div class="row example-row">
+											<div class="col-md-12">Address</div><!--.col-md-3-->
+											<div class="col-md-12">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<%= f.text_field :address_1, type: "text", class: "form-control", placeholder: "" %>
+													</div>
+												</div>
+											</div><!--.col-md-9-->
+										</div><!--.row-->
 
-		              	<div class="tab-pane text-style" id="media">
-		                  <%= render 'shared/edit_media'%>
+										<div class="row example-row">
+											<div class="col-md-12">Address Line 2</div><!--.col-md-3-->
+											<div class="col-md-12">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<%= f.text_field :address_2,  type: "text", class: "form-control", placeholder: "" %>
+													</div>
+												</div>
+											</div><!--.col-md-9-->
+										</div><!--.row-->
+
+
+										<div class="row">
+											<div class="col-md-7">
+												<div class="row example-row">
+													<div class="col-md-12">City</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<input class="form-control" placeholder="City"/>
+
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+
+											<div class="col-md-5">
+												<div class="row example-row">
+													<div class="col-md-12">State</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-6">
+												<div class="row example-row">
+													<div class="col-md-12">Zipcode</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :zip,type: "text",  class: "form-control payment-restrict", :restrict => true, placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+
+											<div class="col-md-6">
+												<div class="row example-row">
+													<div class="col-md-12">Zipcode Extension</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true, placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+										</div>
+									</div>
+								</div><!--.panel-body-->
+							</div>
+						</div>
+						<div class="tab-pane text-style" id="contact">
+							<div class="panel-header">
+								<h4 class="text-right semi-bold text-primary">Contact Information</h4>
+							</div>
+							<hr class="margin-top-0"/>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-md-8 col-md-offset-2 col-sm-12">
+										<div class="row example-row">
+											<div class="col-md-12">Website</div><!--.col-md-3-->
+											<div class="col-md-12">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<%= f.text_field :website, class: "form-control", placeholder: "http://yourwebsite.com" %>
+													</div>
+												</div>
+											</div><!--.col-md-9-->
+										</div><!--.row-->
+
+
+										<div class="row example-row">
+											<div class="col-md-12">Email</div><!--.col-md-3-->
+											<div class="col-md-12">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<%= f.text_field :email, class: "form-control", placeholder: "info@yourfacility.com" %>
+													</div>
+												</div>
+											</div><!--.col-md-9-->
+										</div><!--.row-->
+
+										<div class="row example-row">
+											<div class="col-md-12">Phone Number</div><!--.col-md-3-->
+											<div class="col-md-12">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<%= f.text_field :phone_number, class: "form-control", placeholder: "555-555-5555" %>
+													</div>
+												</div>
+											</div><!--.col-md-9-->
+										</div><!--.row-->
+									</div>
+								</div>
+							</div>
+						</div><!--.tab-pane-->
+						<div class="tab-pane text-style" id="media">
+		                  	<div class="panel-header">
+								<h4 class="text-right semi-bold text-primary">Upload Media</h4>
+							</div>
+							<hr class="margin-top-0"/>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-md-8 col-md-offset-2 col-sm-12">
+										<%= render 'shared/edit_media'%>
+									</div>
+								</div>
+							</div>
 						</div><!--.tab-pane-->
 					</div><!--.tab-content-->
-
 				</div><!--.panel-body-->
+				<div class="panel-footer form-layout">
+					<p class="text-right">
+						<p class="text-right">
+							<%= f.submit "Update", class: "btn btn-primary btn-ripple" %>
+						</p>
+					</p>
+				</div><!--.panel-body-->
+				<% end %>
 			</div><!--.panel-->
 		</div><!--.col-md-12-->
 	</div><!--.row-->
