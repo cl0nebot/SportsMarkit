@@ -69,7 +69,11 @@
 				<%= link_to "Edit", team_edit_roster_view_path(team_id: @team.id, class: m.class, id: m.id, status: "member"), remote: true, class: "btn btn-primary mr20" %>
 				
 				<%#= link_to "Edit", params.merge(partial: "edit_member", m: m.id, class: m.class), remote: true  %>
-				<%= link_to "Send Invitation", ""  %>
+				<% if m.class.to_s == "Relationship" %>
+				  <%= link_to "Delete", relationship_path(id: m, class: "Relationship"), method: :delete, remote: true  %>
+				<% else %>
+				  <%= link_to "Delete", userless_relationship_path(id: m, class: "UserlessRelationship"), method: :delete, remote: true  %>
+				<% end %>
 			</h5>
 		</div>
 	</div>

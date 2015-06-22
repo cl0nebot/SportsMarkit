@@ -18,6 +18,8 @@ class UserlessRelationshipsController < ApplicationController
     participant = params[:userless_relationship][:participant].nil? ? false : true
     admin = params[:admin].nil? ? false : true
     nickname = params[:nickname]
+    trainer = params[:trainer].nil? ? false : true
+    manager = params[:manager].nil? ? false : true
     #if phone number present; remove userless, create real relationship and send invite
     
     if mobile_number.present?
@@ -55,6 +57,15 @@ class UserlessRelationshipsController < ApplicationController
       format.js
       format.html { redirect_to :back }
     end  
+  end
+  
+  def destroy
+    @userless_relationship = UserlessRelationship.find(params[:id])
+    @userless_relationship.destroy
+    respond_to do |format|
+      format.js
+      format.html { redirect_to :back }
+    end
   end
   
   protected
