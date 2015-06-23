@@ -30,7 +30,7 @@ class UserProfilePicturesController < ApplicationController
   
   def update
     if @picture.update_attributes(user_profile_picture_params)
-      redirect_to user_userprofile_pictures_path(@user)
+      redirect_to user_user_profile_pictures_path(@user)
     else
       render 'edit'
     end

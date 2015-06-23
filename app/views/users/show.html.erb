@@ -8,6 +8,17 @@
   .sample-member9 {
     background-image: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');
   }
+
+  .card-friend .user-photo {
+    float: left;
+    width: 160px;
+    height: auto;
+    border-radius: 3px 0 0 3px;
+  }
+  .card-friend .friend-content {
+    margin-left: 180px;
+  }
+
 </style>
 
 
@@ -272,25 +283,11 @@
 
       <!-- media -->
       <div id="media" class="tab-pane">
-
         <div class="row">
-
           <%= render 'shared/media' %>
-
-      	fans: <br>
-
-      	<% @follows.each do |follow| %>
-      	<% if follow.fannable.class == "User" %>
-      	  <%= follow.fannable.full_name  %><br>
-      	<% else %>
-      	 <%= follow.fannable.name  %><br>
-      	<% end%>
-
-
-      	<% end %>
-
         </div>
       </div>
+      
       <%= render 'shared/photo_tab', photo_owner: @user %>
 
       <!-- following -->
@@ -310,6 +307,7 @@
       <!-- fans -->
       <div id="fans" class="tab-pane">
 		  <%= render 'shared/fans', fans: @fans %>
+
       </div>
 <!--.tab-content-->
 </div>
