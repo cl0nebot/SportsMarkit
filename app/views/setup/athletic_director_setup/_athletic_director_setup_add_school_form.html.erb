@@ -1,0 +1,5 @@
+<%= form_for AthleticDirector.new, url: user_add_athletic_director_at_setup_path(current_user), html: {data: {remote: true}} do |f| %>
+  <%= f.hidden_field :school_id, value: school.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit "Add School", class: "btn btn-block btn-primary" %>
+<% end %>

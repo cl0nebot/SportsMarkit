@@ -1,0 +1,47 @@
+					<% if user.athletic_directors.present? %>
+					
+					<div class="note note-warning note-left-striped">
+						<h4>You're already assigned to a school</h4>
+						<p class="small text-grey">
+							You can technically only are currently the athletic director of .You can only be an athletic director of one school at a time. If you wish to select another school, do so below.
+						</p>
+					</div>
+					
+						<h5 class="bold text-black">Your School</h5>
+
+		       			<div class="panel-body without-padding">
+							<ul class="list-material">
+								<li class="has-action-left has-action-right">
+									<a href="#" class="visible">
+										<div class="list-action-left">
+											<a class="btn btn-floating btn-orange btn-ripple">
+												<i class="ion-android-close"></i>
+											</a>
+										</div>
+										<div class="list-content padding-left-30">
+											<span class="title">
+												<%= user.athletic_directors.last.school.name %>
+											</span>
+											<span class="caption">
+												[age],
+												[city, state], 
+												[School/League Name], 
+												[# of team members] 
+											</span>
+										</div>
+										<div class="list-action-right">
+											<span class="top">Pending</span>
+											<i class="ion-android-checkmark-circle bottom"></i>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div><!--.panel-body-->
+
+					<% else %>
+						
+						<h3>
+							You are currently not an athletic director. Let's get you started. Find your school below.
+						</h3>
+
+					<% end %>
