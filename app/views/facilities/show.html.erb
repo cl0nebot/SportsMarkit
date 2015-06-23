@@ -148,9 +148,7 @@
 				
 				<!-- teams -->
 				<div id="teams" class="tab-pane">
-				  <% @teams.each do |team| %>
-				  	<%= team.name %>
-				  <% end %>
+				  <%= render 'shared/teams' %>
 				</div>
 
 				<!-- people -->

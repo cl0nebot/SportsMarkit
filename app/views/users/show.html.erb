@@ -116,46 +116,7 @@
       <!-- teams -->
       <div id="teams" class="tab-pane">
 
-        <div class="row ">
-          <% @teams.each do |team| %>
-            <div class="col-md-4 col-lg-3 col-sm-12">
-              <div class="card card-meal card-meal-green card-square card-shadow">
-                <div class="card-heading row">
-                  <div class="col-md-2">
-                    <%= image_tag Sport.find_by_sport(team.sport).try(:default_photo), class: "img-responsive" %>
-                  </div>
-                  <div class="col-md-10">
-                    <h4 class="card-title capitalize">
-                      <%= link_to team.name, "/teams/#{team.slug}" %>
-                    </h4>
-
-                    <div class="card-subhead capitalize">
-                      <%= team.sport %>
-                    </div>
-                    <!--.card-subhead-->
-                    <div class="card-subhead capitalize">
-                      <i class="ion-location"></i> <%= team.city_state %>
-                    </div>
-                    <!--.card-subhead-->
-                  </div>
-                </div>
-                <!--.card-heading-->
-                <div class="card-body">
-                  <div class="image">
-                    <a href="#">
-                      <%= image_tag("http://ingridwu.dmmdmcfatter.com/wp-content/uploads/2015/01/placeholder.png") %>
-                    </a>
-                  </div>
-                  <!--.image-->
-                </div>
-                <!--.card-body-->
-              </div>
-              <!--.card-->
-            </div>
-            <!--.col-md-4-->
-          <% end %>
-        </div>
-        <!--.row-->
+        <%= render 'shared/teams' %>
       </div>
       <!--#teams.tab-pane-->
 
@@ -348,23 +309,8 @@
 
       <!-- fans -->
       <div id="fans" class="tab-pane">
-
-        <div class="row">
-
-          <!--.col-->
-          <div class="col-md-10">
-            <div class="row">
-            </div>
-            <!--.row-->
-          </div>
-        </div>
+		  <%= render 'shared/fans', fans: @fans %>
       </div>
-
-
-
-
-    </div>
-  </div>
 <!--.tab-content-->
 </div>
 <!--.col-->
