@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       delete :remove_child
       post :add_non_school_team_at_setup
       post :add_coach_team_at_setup
+      post :add_athletic_director_at_setup
       post :add_child_at_setup
       resources :user_profile_pictures, only: %w[create update destroy]
       resources :events

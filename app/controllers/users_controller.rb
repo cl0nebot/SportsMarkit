@@ -151,6 +151,17 @@ class UsersController < ApplicationController
       format.html { redirect_to :back }
     end
   end
+  
+  def add_athletic_director_at_setup
+    @user = User.friendly.find(params[:user_id])
+    @athletic_director = AthleticDirector.create(school_id: params[:athletic_director][:school_id], user_id: params[:athletic_director][:user_id])
+    @school = @athletic_director.school
+    @schools = School.all - [@school]
+    respond_to do |format|
+      format.js 
+      format.html { redirect_to :back }
+    end
+  end
 
   def remove_child
     rel = ParentChild.where(child_id: params[:child_id], parent_id: params[:user_id]).first
