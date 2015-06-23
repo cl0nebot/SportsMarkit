@@ -8,119 +8,19 @@
 					</div>
 					<div class="pull-left">
 						<h4 class="margin-bottom-5">First Name, Last Name</h4>
-						<p class="small">My Tournament Director Profile</p>
+						<p class="small">My Athletic Director Profile</p>
 					</div>
 				</div>
 
 				<hr class="no-margin"/>
 				<br/>
 		
-				<% if @user.is_athletic_director? %>
-
-					<div class="note note-warning note-left-striped">
-						<h4>You're already assigned to a school</h4>
-						<p class="small text-grey">
-							You can technically only are currently the athletic director of .You can only be an athletic director of one school at a time. If you wish to select another school, do so below.
-						</p>
-					</div>
-					
-					<hr class="no-margin"/>
-					<br/>
-
-					<h5 class="bold text-black">Assigned School</h5>
-
-		       		<div class="panel-body without-padding">
-						<ul class="list-material">
-							<li class="has-action-left has-action-right">
-								<a href="#" class="visible">
-									<div class="list-action-left">
-										<a class="btn btn-floating btn-orange btn-ripple">
-											<i class="ion-android-close"></i>
-										</a>
-									</div>
-									<div class="list-content padding-left-30">
-										<span class="title">
-											<%#= @user.athletic_directors.last.school.name %>
-										</span>
-										<span class="caption">
-											[age], 
-											<i class="ion-location"></i>
-											[city, state], 
-											[Schoo/League Name], 
-											[# of team members] 
-										</span>
-									</div>
-									<div class="list-action-right">
-										<span class="top">Confirmed</span>
-										<i class="ion-android-checkmark-circle bottom"></i>
-									</div>
-								</a>
-							</li>
-						</ul>
-					</div><!--.panel-body-->
-
-				<%# else %>
-
-					<div class="row well padding-bottom-0">
-			          <div class="col-lg-4 col-md-6 col-sm-12">
-			            <h3 class="bold text-primary margin-top-10">
-			              <i class="ion ion-search margin-right-5"></i> Find your school
-			            </h3>
-			          </div>
-			          <!--.col-md-3-->
-			          <div class="col-lg-8 col-md-6 col-sm-12">
-			            <div class="inputer">
-			              <!-- isotope filtering and typeahead-->
-			              <textarea type="text" class="fs_30 lh_55 quicksearch-directors typeahead typeahead-teams form-control" rows="1" placeholder="start typing..."></textarea>
-			            </div>
-			          </div>
-			          <!--.col-md-9-->
-			        </div>
-			        <!--.row-->
-
-					<hr class="margin-top-10"/>
 				
-					<% if @user.athletic_directors.present? %>
-						
-						<h5 class="bold text-black">Your School</h5>
-
-		       			<div class="panel-body without-padding">
-							<ul class="list-material">
-								<li class="has-action-left has-action-right">
-									<a href="#" class="visible">
-										<div class="list-action-left">
-											<i class="ion-calendar icon-circle"></i>
-										</div>
-										<div class="list-content">
-											<span class="title">
-												<%= @user.athletic_directors.last.school.name %>
-											</span>
-											<span class="caption">
-												<i class="ion-location"></i>
-												[age], 
-												[city, state], 
-												[Schoo/League Name], 
-												[# of team members] 
-											</span>
-										</div>
-										<div class="list-action-right">
-											<span class="top">Pending</span>
-											<i class="ion-android-checkmark-circle bottom"></i>
-										</div>
-									</a>
-								</li>
-							</ul>
-						</div><!--.panel-body-->
-
-					<% else %>
-						
-						<h3>
-							You are currently not an athletic director. Let's get you started. Find your school below.
-						</h3>
-
-					<% end %>
+                    <div id="school">
+					<%= render 'setup/athletic_director_setup/school' %>
+				</div>
 				   
-				<% end %>
+				
 			</div>
     	</div>
 	</div>
@@ -132,7 +32,7 @@
 		<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
     
 			<div class="row directors images" id="school-team-list">
-				<%= render 'setup/student_athlete_setup/school_team_list', school_teams: @school_teams %>
+				<%= render 'setup/athletic_director_setup/ad_school_list', schools: @schools %>
 			</div>
 		
 		</div><!--.row-->
