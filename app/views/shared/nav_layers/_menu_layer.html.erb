@@ -23,7 +23,7 @@
 				</li> -->
 				
 					<% current_user.relationships.where.not(id: nil).each do |relationship| %>
-					<li><%= link_to "#{relationship.team.proper_name} #{relationship.accepted? ? '' : '(Pending)'}", team_path(relationship.team.id)%> </li>
+					<li><%= link_to "#{relationship.team.proper_name} #{relationship.accepted? ? '' : '(Pending)'}", team_path(relationship.team.friendly_id)%> </li>
 					<% end %>
 				
 				<li><%#= link_to "Teams Index", teams_path(Team.first)%></li>
