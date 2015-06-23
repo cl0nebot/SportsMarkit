@@ -8,6 +8,17 @@
   .sample-member9 {
     background-image: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');
   }
+
+  .card-friend .user-photo {
+    float: left;
+    width: 160px;
+    height: auto;
+    border-radius: 3px 0 0 3px;
+  }
+  .card-friend .friend-content {
+    margin-left: 180px;
+  }
+
 </style>
 
 
@@ -311,25 +322,11 @@
 
       <!-- media -->
       <div id="media" class="tab-pane">
-
         <div class="row">
-
           <%= render 'shared/media' %>
-
-      	fans: <br>
-
-      	<% @follows.each do |follow| %>
-      	<% if follow.fannable.class == "User" %>
-      	  <%= follow.fannable.full_name  %><br>
-      	<% else %>
-      	 <%= follow.fannable.name  %><br>
-      	<% end%>
-
-
-      	<% end %>
-
         </div>
       </div>
+      
       <%= render 'shared/photo_tab', photo_owner: @user %>
 
       <!-- following -->
@@ -352,8 +349,48 @@
         <div class="row">
 
           <!--.col-->
-          <div class="col-md-10">
+          <div class="col-md-10 col-md-offset-1">
             <div class="row">
+
+              <br/>
+              <br/>
+              
+              <% @follows.each do |follow| %>
+                
+                <div class="col-md-4">
+                  <div class="card tile card-friend box-shadow-ccc">
+                    <%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "user-photo", alt: "") %>
+                    <div class="friend-content padding-left-10">
+                      <h5 class="semi-bold mb0 mt20">
+                        <span class="text-black">
+                          <% if follow.fannable.class == "User" %>
+                            <%= follow.fannable.full_name  %>
+                            <%= follow.fannable.name  %><br>
+                            <% else %>
+                            <%= follow.fannable.name  %><br>
+                          <% end %>
+                        </span>
+                      </h5>
+                      <hr class="mt10 mb10 pr20"/>
+                      <p><small>[Role, Team Type, Profile Information]</small></p>
+                      <p>
+                        <small>
+                          <span class="ion-location inline m-r-5"></span>
+                            [Location]
+                        </small>
+                      </p>
+                      <a class="btn btn-ripple btn-primary btn-xs margin-top-10 pull-right margin-right-20 margin-bottom-10">
+                        View
+                      </a>
+                      <a class="btn btn-ripple btn-primary btn-xs margin-top-10 pull-right margin-right-20 margin-bottom-10">
+                        Follow Back
+                      </a>
+                    </div><!--.friend-content-->
+                  </div><!--.card-->
+                </div><!--.col-md-6-->
+
+              <% end %>
+
             </div>
             <!--.row-->
           </div>

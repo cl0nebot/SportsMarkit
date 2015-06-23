@@ -1,142 +1,142 @@
-						<% @teams.each do |team| %>
-						<div class="col-md-4 col-lg-3 col-sm-6">
-							<div class="panel box-shadow-ccc">
-								<div class="panel-heading">
-									<div class="panel-title">
-										<div class="pull-left">
-											<%= image_tag("placeholders/league.jpg", height: "30", width: "30") %>
-										</div>
-										<div class="pull-left margin-left-10">
-											<h4 class="normal fs_18">
-												
-												<%= team.name%>
-											</h4>
-											<p class="text-muted margin-top-5">
-												<small>
-													<%= pluralize team.accepted_coach_relationships.count, "Coach" %>, <%= pluralize team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize team.accepted_trainer_relationships.count, "Trainer" %>
-												</small>
-											</p>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<div class="margin-left-40">
-													<%= link_to edit_team_path(team), class: "btn btn-primary btn-xs button-striped button-full-striped btn-ripple" do %>
-													<i class="ion-gear-b margin-right-5"></i>Edit
-													<% end %><a></a>
-													
-													<%= link_to team_path(team), class: "btn btn-primary btn-xs button-striped button-full-striped btn-ripple" do %>
-													View
-													<% end %><a></a>
+<% @teams.each do |team| %>
+	<div class="col-md-4 col-lg-3 col-sm-6">
+		<div class="panel box-shadow-ccc">
+			<div class="panel-heading">
+				<div class="panel-title">
+					<div class="pull-left">
+						<%= image_tag("placeholders/league.jpg", height: "30", width: "30") %>
+					</div>
+					<div class="pull-left margin-left-10">
+						<h4 class="normal fs_18">
+							
+							<%= team.name%>
+						</h4>
+						<p class="text-muted margin-top-5">
+							<small>
+								<%= pluralize team.accepted_coach_relationships.count, "Coach" %>, <%= pluralize team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize team.accepted_trainer_relationships.count, "Trainer" %>
+							</small>
+						</p>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="margin-left-40">
+								<%= link_to edit_team_path(team), class: "btn btn-primary btn-xs button-striped button-full-striped btn-ripple" do %>
+								<i class="ion-gear-b margin-right-5"></i>Edit
+								<% end %><a></a>
+								
+								<%= link_to team_path(team), class: "btn btn-primary btn-xs button-striped button-full-striped btn-ripple" do %>
+								View
+								<% end %><a></a>
 
-													<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
-														<i class="ion-person-add margin-right-5"></i>
-														Invite User
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div><!--.panel-heading-->
-								<div class="panel-body without-padding">
-									<ul class="list-material borderless">
-										<li class="divider with-border">
-											Coaching Staff
-										</li>
-										<% team.accepted_coach_relationships.each do |rel| %>
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
-												</div>
-												<div class="list-content">
-													<% if rel.class.to_s == "Relationship" %>
-													<span class="title"><%= rel.user.full_name %></span>
-													<% else %>
-													 <span class="title"><%= rel.first_name  %> <%= rel.last_name %></span>
-													<% end %>
-													<span class="caption"><%= rel.head_title %></span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">View</span>
-													<i class="ion-search bottom"></i>
-												</div>
-											</a>
-										</li>
-										<% end %>
-										<li class="divider with-border">
-											Management & Support Staff
-										</li>
-										<% team.accepted_manager_relationships.each do |rel| %>
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<img src="../../assets/globals/img/faces/12.jpg" class="face-radius" alt="">
-												</div>
-												<div class="list-content">
-													<% if rel.class.to_s == "Relationship" %>
-													<span class="title"><%= rel.user.full_name %></span>
-													<% else %>
-													 <span class="title"><%= rel.first_name  %> <%= rel.last_name %></span>
-													<% end %>
-													<span class="caption"><%= rel.head_title %></span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">View</span>
-													<i class="ion-search bottom"></i>
-												</div>
-											</a>
-										</li>
-										<% end %>
-										<li class="divider with-border">
-											Team Trainer
-										</li>
-										<% team.accepted_trainer_relationships.each do |rel| %>
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<img src="../../assets/globals/img/faces/4.jpg" class="face-radius" alt="">
-												</div>
-												<div class="list-content">
-													<% if rel.class.to_s == "Relationship" %>
-													<span class="title"><%= rel.user.full_name %></span>
-													<% else %>
-													 <span class="title"><%= rel.first_name  %> <%= rel.last_name %></span>
-													<% end %>
-													<span class="caption"><%= rel.head_title %></span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">View</span>
-													<i class="ion-search bottom"></i>
-												</div>
-											</a>
-										</li>
-										<% end %>
-										<li class="divider with-border">
-											Team Roster
-										</li>
-										<% team.accepted_athlete_relationships.each do |rel| %>
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<img src="../../assets/globals/img/faces/5.jpg" class="face-radius" alt="">
-												</div>
-												<div class="list-content">
-													<% if rel.class.to_s == "Relationship" %>
-													<span class="title"><%= rel.user.full_name %></span>
-													<% else %>
-													 <span class="title"><%= rel.first_name  %> <%= rel.last_name %></span>
-													<% end %>
-													<span class="caption"><%= rel.participant_classification %>, <%= rel.position %></span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">View</span>
-													<i class="ion-search bottom"></i>
-												</div>
-											</a>
-										</li>
-										<% end %>
+								<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+									<i class="ion-person-add margin-right-5"></i>
+									Invite User
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!--.panel-heading-->
+			<div class="panel-body without-padding">
+				<ul class="list-material borderless">
+					<li class="divider with-border">
+						Coaching Staff
+					</li>
+					<% team.accepted_coach_relationships.each do |rel| %>
+					<li class="has-action-left">
+						<a href="#" class="visible">
+							<div class="list-action-left">
+								<img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
+							</div>
+							<div class="list-content">
+								<% if rel.class.to_s == "Relationship" %>
+								<span class="title"><%= rel.user.full_name %></span>
+								<% else %>
+								 <span class="title"><%= rel.first_name  %> <%= rel.last_name %></span>
+								<% end %>
+								<span class="caption"><%= rel.head_title %></span>
+							</div>
+							<div class="list-action-right">
+								<span class="top">View</span>
+								<i class="ion-search bottom"></i>
+							</div>
+						</a>
+					</li>
+					<% end %>
+					<li class="divider with-border">
+						Management & Support Staff
+					</li>
+					<% team.accepted_manager_relationships.each do |rel| %>
+					<li class="has-action-left">
+						<a href="#" class="visible">
+							<div class="list-action-left">
+								<img src="../../assets/globals/img/faces/12.jpg" class="face-radius" alt="">
+							</div>
+							<div class="list-content">
+								<% if rel.class.to_s == "Relationship" %>
+								<span class="title"><%= rel.user.full_name %></span>
+								<% else %>
+								 <span class="title"><%= rel.first_name  %> <%= rel.last_name %></span>
+								<% end %>
+								<span class="caption"><%= rel.head_title %></span>
+							</div>
+							<div class="list-action-right">
+								<span class="top">View</span>
+								<i class="ion-search bottom"></i>
+							</div>
+						</a>
+					</li>
+					<% end %>
+					<li class="divider with-border">
+						Team Trainer
+					</li>
+					<% team.accepted_trainer_relationships.each do |rel| %>
+					<li class="has-action-left">
+						<a href="#" class="visible">
+							<div class="list-action-left">
+								<img src="../../assets/globals/img/faces/4.jpg" class="face-radius" alt="">
+							</div>
+							<div class="list-content">
+								<% if rel.class.to_s == "Relationship" %>
+								<span class="title"><%= rel.user.full_name %></span>
+								<% else %>
+								 <span class="title"><%= rel.first_name  %> <%= rel.last_name %></span>
+								<% end %>
+								<span class="caption"><%= rel.head_title %></span>
+							</div>
+							<div class="list-action-right">
+								<span class="top">View</span>
+								<i class="ion-search bottom"></i>
+							</div>
+						</a>
+					</li>
+					<% end %>
+					<li class="divider with-border">
+						Team Roster
+					</li>
+					<% team.accepted_athlete_relationships.each do |rel| %>
+					<li class="has-action-left">
+						<a href="#" class="visible">
+							<div class="list-action-left">
+								<img src="../../assets/globals/img/faces/5.jpg" class="face-radius" alt="">
+							</div>
+							<div class="list-content">
+								<% if rel.class.to_s == "Relationship" %>
+								<span class="title"><%= rel.user.full_name %></span>
+								<% else %>
+								 <span class="title"><%= rel.first_name  %> <%= rel.last_name %></span>
+								<% end %>
+								<span class="caption"><%= rel.participant_classification %>, <%= rel.position %></span>
+							</div>
+							<div class="list-action-right">
+								<span class="top">View</span>
+								<i class="ion-search bottom"></i>
+							</div>
+						</a>
+					</li>
+					<% end %>
 
-								</div><!--.panel-body-->
-							</div><!--.panel-->
-						</div><!--.col-->
-						<% end %>
+			</div><!--.panel-body-->
+		</div><!--.panel-->
+	</div><!--.col-->
+<% end %>

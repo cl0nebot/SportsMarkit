@@ -1,108 +1,108 @@
-					<div class="row">
-						<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 well">
-							<h3 class="center">
-								<i class="ion-search margin-right-20 text-blue"></i>	
-								Find anyone in our Athletic Community
-							</h3>
-							<div class="row margin-top-20">
-								<div class="col-md-3">
-									<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-										Find a Student-Athlete <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" role="menu">
-										<% @athletes.each do |user| %>
-											<li>
-												<%= link_to user_path(user) do %>
-										  			<%= user.full_name %>
-										  		<% end %>
-										  	</li>
-										<% end %>
-									</ul>
-								</div><!--.btn-group-->
-								<div class="col-md-3">
-									<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-										Find a Coach <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" role="menu">
-										<% @athletes.each do |user| %>
-											<li>
-												<%= link_to user_path(user) do %>
-										  			<%= user.full_name %>
-										  		<% end %>
-										  	</li>
-										<% end %>
-									</ul>
-								</div><!--.btn-group-->
-								<div class="col-md-3">
-									<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-										Find an Staff Member <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" role="menu">
-										<% @athletes.each do |user| %>
-											<li>
-												<%= link_to user_path(user) do %>
-										  			<%= user.full_name %>
-										  		<% end %>
-										  	</li>
-										<% end %>
-									</ul>
-								</div><!--.btn-group-->
-								<div class="col-md-3">
-									<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-										Find an Administrator <span class="caret"></span>
-										</button>
-									<ul class="dropdown-menu" role="menu">
-										<% @athletes.each do |user| %>
-											<li>
-												<%= link_to user_path(user) do %>
-										  			<%= user.full_name %>
-										  		<% end %>
-										  	</li>
-										<% end %>
-									</ul>
-								</div><!--.btn-group-->
-							</div>
-						</div><!--.col-md-9-->
-					</div>
-					<br/>
+<div class="row">
+	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 well">
+		<h3 class="center">
+			<i class="ion-search margin-right-20 text-blue"></i>	
+			Find anyone in our Athletic Community
+		</h3>
+		<div class="row margin-top-20">
+			<div class="col-md-3">
+				<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+					Find a Student-Athlete <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<% @athletes.each do |user| %>
+						<li>
+							<%= link_to user_path(user) do %>
+					  			<%= user.full_name %>
+					  		<% end %>
+					  	</li>
+					<% end %>
+				</ul>
+			</div><!--.btn-group-->
+			<div class="col-md-3">
+				<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+					Find a Coach <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<% @athletes.each do |user| %>
+						<li>
+							<%= link_to user_path(user) do %>
+					  			<%= user.full_name %>
+					  		<% end %>
+					  	</li>
+					<% end %>
+				</ul>
+			</div><!--.btn-group-->
+			<div class="col-md-3">
+				<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+					Find an Staff Member <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<% @athletes.each do |user| %>
+						<li>
+							<%= link_to user_path(user) do %>
+					  			<%= user.full_name %>
+					  		<% end %>
+					  	</li>
+					<% end %>
+				</ul>
+			</div><!--.btn-group-->
+			<div class="col-md-3">
+				<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+					Find an Administrator <span class="caret"></span>
+					</button>
+				<ul class="dropdown-menu" role="menu">
+					<% @athletes.each do |user| %>
+						<li>
+							<%= link_to user_path(user) do %>
+					  			<%= user.full_name %>
+					  		<% end %>
+					  	</li>
+					<% end %>
+				</ul>
+			</div><!--.btn-group-->
+		</div>
+	</div><!--.col-md-9-->
+</div>
+<br/>
 
-					<div class="row">
-						
-						
-							
-							<% @people.each_with_index do |person, i| %>
-							<div class="col-lg-3 col-md-4 col-sm-6">
-							<div class="card tile card-friend material-animate box-shadow-ccc">
-								<a href="user-profile.html">
-									<img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt="">
-								</a>
-								<div class="friend-content">
-									<div class="margin-bottom-5">
-										<p class="title"><%= person.name %></p>
-										<h5 class="no-margin">[Status], [Title/Level]</h5>
-										<h6 class="m-t-5">
-											<small>[No.] Teams</small>
-										</h6>
-									</div>
-									<div class="pull-bottom clearfix margin-left-10">
-										<div class="">
-											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
-												View Profile
-											</a>
-											<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
-										</div>
-									</div>
-								</div><!--.friend-content-->
-							</div><!--.card-->
-							
-				
-							
-						</div><!--.col-->
-						<% end %>
+<div class="row">
+	
+	
 		
-						
-						
-						
-		
-			
+		<% @people.each_with_index do |person, i| %>
+		<div class="col-lg-3 col-md-4 col-sm-6">
+		<div class="card tile card-friend material-animate box-shadow-ccc">
+			<a href="user-profile.html">
+				<img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt="">
+			</a>
+			<div class="friend-content">
+				<div class="margin-bottom-5">
+					<p class="title"><%= person.name %></p>
+					<h5 class="no-margin">[Status], [Title/Level]</h5>
+					<h6 class="m-t-5">
+						<small>[No.] Teams</small>
+					</h6>
+				</div>
+				<div class="pull-bottom clearfix margin-left-10">
+					<div class="">
+						<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
+							View Profile
+						</a>
+						<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
 					</div>
+				</div>
+			</div><!--.friend-content-->
+		</div><!--.card-->
+		
+
+		
+	</div><!--.col-->
+	<% end %>
+
+	
+	
+	
+
+
+</div>
