@@ -328,6 +328,20 @@ class User < ActiveRecord::Base
     
   end
   
+  def event_notifications
+    team_ids = Relationship.where(user_id: id).pluck(:team_id)
+    all_team_events_after_today = Event.where(eventable_type: "Team", eventable_id: team_ids).where('starts_at >= ?', Time.now)
+    
+    array = []
+    all_team_events_after_today.each do |event|
+      unless event.attendees.where(user_id: id).present?
+        array << event.id
+      end
+    end
+    Event.where(id: array)
+  end
+
+  
   
     
   
