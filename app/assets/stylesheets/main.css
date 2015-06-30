@@ -19,6 +19,7 @@
 
  
  */
+
 .no-padding {padding: 0;}
 
 .bg-image:after {
@@ -134,4 +135,13 @@ h1.h0 {font-size: 55px;}
 
 ul.navigation li.active  {
 	background-color: rgba(153, 153, 153, 0.25);
+}
+
+
+.slide {
+  background-color: #fff;
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 200px 0 !important;
 }
