@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-	<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-	<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-	<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-	<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-		<title>Fyesports</title>
+		<title>SportsMarkit</title>
 
 		<meta name="description" content="Pleasure is responsive, material admin dashboard panel">
 		<meta name="author" content="Teamfox">
@@ -17,48 +17,44 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 		<meta name="apple-touch-fullscreen" content="yes">
 
-		<!-- BEGIN SHORTCUT AND TOUCH ICONS -->
-		<link rel="shortcut icon" href="../../assets/globals/img/icons/favicon.ico">
-		<link rel="apple-touch-icon" href="../../assets/globals/img/icons/apple-touch-icon.png">
-		<!-- END SHORTCUT AND TOUCH ICONS -->
-
-		<%= stylesheet_link_tag 'gmaps4rails' %>
+		<script src="../../assets/globals/plugins/modernizr/modernizr.min.js"></script>
 
 		<%= google_webfonts_link_tag "Muli", "Oswald", "Droid Serif", "Montserrat", "Lato", "Black Ops One" %>
 
-		<%= google_webfonts_link_tag 	:lato        		=> [100, 300, 500, 700],
-                         				:yanone_kaffeesatz 	=> [300, 400] %>
+			<%= google_webfonts_link_tag 	:lato        				=> [100, 300, 500, 700],
+	                         					:yanone_kaffeesatz 	=> [300, 400] %>
 
-		
+			
 
-		<%= stylesheet_link_tag "main" %>
-		<%= stylesheet_link_tag "" %>
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-		
-		<%= csrf_meta_tags %>
-		<%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLISHABLE_KEY'] %>
+			<%= stylesheet_link_tag "main" %>
+			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+			
+			<%= csrf_meta_tags %>
+			<%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLISHABLE_KEY'] %>
 	</head>
-    
-  	<%= yield %>
+	
+	<body class="one-page">
+	    
+	  	<%= yield %>
 
-	<%= javascript_include_tag 'main' %>
+		<%= javascript_include_tag 'main' %>
 
-	<script type="text/javascript">
-		if (document.getElementsByTagName) {
+		<script type="text/javascript">
+			if (document.getElementsByTagName) {
 
-		var inputElements = document.getElementsByTagName(“input”);
+			var inputElements = document.getElementsByTagName(“input”);
 
-		for (i=0; inputElements[i]; i++) {
+			for (i=0; inputElements[i]; i++) {
 
-		if (inputElements[i].className && (inputElements[i].className.indexOf(“disableAutoComplete”) != -1)) {
+			if (inputElements[i].className && (inputElements[i].className.indexOf(“disableAutoComplete”) != -1)) {
 
-		inputElements[i].setAttribute(“autocomplete”,”off”);
+			inputElements[i].setAttribute(“autocomplete”,”off”);
 
-		}
+			}
 
-		}
+			}
 
-		}
-	</script>
-
+			}
+		</script>
+	</body>
 </html>
