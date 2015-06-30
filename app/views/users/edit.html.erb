@@ -8,7 +8,7 @@
 				</div>
 				<div class="pull-left">
 					<h1 class="capitalize h1-xlarge">
-						<%= current_user.full_name %> 
+						<%= @user.full_name %> 
 					</h1>
 					<h6 class="capitalize h1-xlarge text-white">
 						<%= @user.classification_list %>
@@ -19,7 +19,7 @@
 				<ol class="breadcrumb">
 					<li><a href="/"><i class="ion-home"></i></a></li>
 					<li><a href="<%= users_path %>">users</a></li>
-					<li><a href="<%= user_path %>"><%= current_user.full_name %> </a></li>
+					<li><a href="<%= user_path %>"><%= @user.full_name %> </a></li>
 					<li><a href="<%= edit_user_path %>" class="active">Edit</a></li>
 				</ol>
 			</div><!--.col-->
