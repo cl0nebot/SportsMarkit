@@ -10,6 +10,8 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-
-// <!-- PLEASURE -->
+//= require pleasure/globals/js/global-vendors
+//= require pleasure/globals/plugins/scrollMonitor/scrollMonitor
+//=  pleasure/globals/plugins/skrollr/skrollr.min
+//= require pleasure/globals/js/pleasure
 //= require pleasure/one-page-parallax/js/one-page-parallax
