@@ -46,7 +46,11 @@
 					<li class="has-action-left">
 						<a href="#" class="visible">
 							<div class="list-action-left">
-								<img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
+								<% if rel.class.to_s == "Relationship" %>
+								<img src="<%= rel.user.avatar %>" class="face-radius" alt="">
+								<% else %>
+								 <img src="http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif" class="face-radius" alt="">
+								<% end %>
 							</div>
 							<div class="list-content">
 								<% if rel.class.to_s == "Relationship" %>
@@ -70,7 +74,11 @@
 					<li class="has-action-left">
 						<a href="#" class="visible">
 							<div class="list-action-left">
-								<img src="../../assets/globals/img/faces/12.jpg" class="face-radius" alt="">
+								<% if rel.class.to_s == "Relationship" %>
+								<img src="<%= rel.user.avatar %>" class="face-radius" alt="">
+								<% else %>
+								 <img src="http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif" class="face-radius" alt="">
+								<% end %>
 							</div>
 							<div class="list-content">
 								<% if rel.class.to_s == "Relationship" %>
@@ -94,7 +102,11 @@
 					<li class="has-action-left">
 						<a href="#" class="visible">
 							<div class="list-action-left">
-								<img src="../../assets/globals/img/faces/4.jpg" class="face-radius" alt="">
+								<% if rel.class.to_s == "Relationship" %>
+								<img src="<%= rel.user.avatar %>" class="face-radius" alt="">
+								<% else %>
+								 <img src="http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif" class="face-radius" alt="">
+								<% end %>
 							</div>
 							<div class="list-content">
 								<% if rel.class.to_s == "Relationship" %>
@@ -118,7 +130,12 @@
 					<li class="has-action-left">
 						<a href="#" class="visible">
 							<div class="list-action-left">
-								<img src="../../assets/globals/img/faces/5.jpg" class="face-radius" alt="">
+								<% if rel.class.to_s == "Relationship" %>
+								<img src="<%= rel.user.avatar %>" class="face-radius" alt="">
+								<% else %>
+								 <img src="http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif" class="face-radius" alt="">
+								<% end %>
+								
 							</div>
 							<div class="list-content">
 								<% if rel.class.to_s == "Relationship" %>
