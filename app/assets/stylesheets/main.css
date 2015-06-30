@@ -48,7 +48,7 @@
   top: -4px;
 }
 
-h1, h2, h3, h4, h5 {font-family: 'Oswald';}
+.slide h1, h2, h3, h4, h5 {font-family: 'Oswald';}
 
 .bg-image > .container {z-index: 9999999;}
 
