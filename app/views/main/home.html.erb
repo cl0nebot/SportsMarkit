@@ -173,17 +173,17 @@
 			-->
 			<div class="animated-selector">
 				<ul class="navigation" role="tablist">
-					<li class="active" href="#schools" tabindex="-1" data-toggle="tab">
+					<li class="active" href="#schools" role="tab" data-toggle="tab">
 						SCHOOLS
 					</li>
-					<li href="#athletes" tabindex="-1" data-toggle="tab">
+					<li href="#athletes" role="tab" data-toggle="tab">
 						ATHLETES
 					</li>
-					<li href="#parents" tabindex="-1" data-toggle="tab">
+					<li href="#parents" role="tab" data-toggle="tab">
 						PARENTS
 					</li>
-					<li href="#leagues" tabindex="-1" data-toggle="tab">RECREATIONAL LEAGUES</li>
-					<li href="#fans" tabindex="-1" data-toggle="tab">SPORTS FANS</li>
+					<li href="#leagues" role="tab" data-toggle="tab">LEAGUES</li>
+					<li href="#fans" role="tab" data-toggle="tab">SPORTS FANS</li>
 				</ul>
 				<div class="selector"></div>
 			</div><!--.animated-selector-->
@@ -467,7 +467,7 @@
 				</div><!--.container-->
 			</div><!--.slide-->
 		</div>
-		<div class="tab-pane" id="parents">
+		<div class="tab-pane fade" id="parents">
 			<div class="slide bg-image" data-nav="remove" style="background-image: url('<%= image_path("placeholders/parents_bg.png") %>'); background-size: cover;">
 
 				<div class="container z1">
@@ -595,7 +595,7 @@
 				</div><!--.container-->
 			</div><!--.slide-->
 		</div>
-		<div class="tab-pane" id="fans">
+		<div class="tab-pane fade" id="fans">
 			<div class="slide bg-image" data-nav="remove" style="background-image: url(http://s3.amazonaws.com/vnn-aws-sites/24/files/2011/08/EGR-Crowd-Shot.png); background-size: cover;">
 
 				<div class="container z1">
