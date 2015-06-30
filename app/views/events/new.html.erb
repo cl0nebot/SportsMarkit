@@ -7,9 +7,9 @@
       <div class="col-sm-6">
         <ol class="breadcrumb">
           <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="#" class="active">[user name]</a></li>
-          <li><a href="#" class="active">[events index]</a></li>
-          <li><a href="#" class="active">[new]</a></li>
+          <li><a href="#" class="active"><%= @object.class == "User" ? @object.full_name : @object.name %></a></li>
+          <li><a href="#" class="active">events</a></li>
+          <li><a href="#" class="active">new</a></li>
         </ol>
       </div><!--.col-->
     </div><!--.row-->
