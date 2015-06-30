@@ -110,6 +110,12 @@
 											<h1>
 												<%= sport.sport%>
 											</h1>
+
+											<%= link_to "#", "data-toggle" => "modal", 'data-target' => "#sport-#{sport.id}", class: "btn btn-success btn-cons" do %>
+								              <i class="glyphicon glyphicon-plus-sign m-r-5"></i>
+								              Edit
+											<% end %>
+											<%= link_to "Delete", sport, method: :delete, :confirm => 'Are you sure?', class: 'btn' %>
 										</td>
 										<td>
 											<%= image_tag(sport.sport_photos.first.try(:photo), class: "img-responsive") %>
@@ -118,6 +124,7 @@
 											<%= image_tag(sport.sport_icons.first.try(:icon), class: "img-responsive") %>
 										</td>
 									</tr>
+									<%= render partial: 'photo_modal', locals: {modal_id: "sport-#{sport.id}", sport: sport} %>
 								<% end %>			
 							</tbody>
 						</table>

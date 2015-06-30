@@ -32,11 +32,22 @@ class SportsController < ApplicationController
   end
   
   def update
-    
+    if @sport.update_attributes(sport_params)
+      respond_to do |format|
+        format.html{redirect_to :back}
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html{redirect_to :back}
+        format.js
+      end
+    end
   end
   
   def destroy
-    
+    @sport.destroy
+    redirect_to :back
   end
   
   protected
