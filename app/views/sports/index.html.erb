@@ -14,7 +14,7 @@
   </div><!--.page-header-->
 
 <div class="row">
-	<%= form_for @sport do |f| %>
+	<%= form_for @sport, url: sports_path, method: :post do |f| %>
 	
 		<div class="col-md-4">
 			<div class="edxpanel">
@@ -86,7 +86,8 @@
 					<%= f.submit "Add Sport", class: "btn btn-block btn-blue" %>
 				</div>
 			</div>
-		</div>  
+		</div> 
+		<% end %>	
 
 		<div class="col-md-8">
 			<div class="panel">
@@ -132,8 +133,7 @@
 
 				</div><!--.panel-body-->
 			</div><!--.panel-->
-		</div><!--.row-->
-	<% end %>			
+		</div><!--.row-->		
 </div>
 <%#= @id %>
 <%#= @class %>
