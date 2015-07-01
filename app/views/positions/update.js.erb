@@ -1,0 +1,6 @@
+$('#<%= @position.id %>').modal('hide');
+$('#edit-position-form')[0].reset()
+$('#position-list tbody tr:nth-child(<%= @index %>)').replaceWith('<%= j render(@position) %>');
+$('.modal-backdrop').css({
+     'position': 'relative'
+ });
