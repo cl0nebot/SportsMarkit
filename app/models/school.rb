@@ -69,12 +69,47 @@ class School < ActiveRecord::Base
   
   def coach_ids_for_school
     team_ids = teams.pluck(:id)
-    relationships = Relationship.where(team_id: team_ids, head: true)
+    relationships = Relationship.where(team_id: team_ids, head: true, accepted: true)
     coach_ids = relationships.pluck(:user_id)
   end
   
   def coaches_for_school
     coaches = User.where(id: coach_ids_for_school)
+  end
+  
+  def userless_coaches_for_school
+    team_ids = teams.pluck(:id)
+    relationships = UserlessRelationship.where(team_id: team_ids, head: true)
+    relationships.pluck(:first_name, :last_name)
+  end
+  
+  def manager_ids_for_school
+    team_ids = teams.pluck(:id)
+    relationships = Relationship.where(team_id: team_ids, manager: true, accepted: true)
+    manager_ids = relationships.pluck(:user_id)
+  end
+  
+  def trainer_ids_for_school
+    team_ids = teams.pluck(:id)
+    relationships = Relationship.where(team_id: team_ids, trainer: true, accepted: true)
+    trainer_ids = relationships.pluck(:user_id)
+  end
+  
+  def manager_and_trainers
+     users = User.where(id: manager_ids_for_school) + User.where(id: trainer_ids_for_school)
+     manager_and_trainers = users.uniq
+  end
+  
+  def admin_ids_for_school
+    team_ids = teams.pluck(:id)
+    relationships = Relationship.where(team_id: team_ids, admin: true, accepted: true)
+    ad_ids = athletic_directors.pluck(:user_id)
+    admin_ids = relationships.pluck(:user_id)
+    ad_ids + admin_ids
+  end
+  
+  def admins
+    admins = User.where(id: admin_ids_for_school)
   end
   
   def school_certifications

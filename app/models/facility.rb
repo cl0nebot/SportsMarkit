@@ -76,4 +76,8 @@ class Facility < ActiveRecord::Base
     events = Event.where(id: event_ids )
   end
   
+  def next_event
+    upcoming_events.first.nil? ? "No upcoming events" : upcoming_events.first.title
+  end
+  
 end

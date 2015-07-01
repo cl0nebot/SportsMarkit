@@ -43,16 +43,7 @@
 
 		<div class="row">
 			<div class="col-sm-6">
-				<h1>
-					<i class="ion-calendar m-r-5"></i>
-					Upcoming event
-					<small><% if @team.upcoming_events.empty? %>
-						[<%= @team.next_event %>]
-						<% else %>
-						[<%= link_to @team.next_event, event_path(@team.upcoming_events.first.friendly_id) %>]
-						<% end %>
-					</small>
-				</h1>
+	          <%= render 'shared/upcoming_event', object: @team %>
 			</div><!--.col-->
 			<div class="col-sm-6">
 				<ol class="breadcrumb">

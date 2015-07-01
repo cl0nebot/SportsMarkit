@@ -32,6 +32,10 @@ class League < ActiveRecord::Base
     team_ids = TeamLeague.where(league_id: id).pluck(:team_id)
     Event.where(eventable_type: "Team", eventable_id: team_ids)
   end
+  
+  def next_event
+    upcoming_events.first.nil? ? "No upcoming events" : upcoming_events.first.title
+  end
 
   def all_events
     upcoming_events
