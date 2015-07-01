@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
   end
   
   def upcoming_events
-    all_events
+    all_events.where('starts_at >= ?', Time.now)
   end
   
   def next_event
