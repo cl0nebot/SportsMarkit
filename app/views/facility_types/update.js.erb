@@ -1,0 +1,6 @@
+$('#<%= @facility_type.id %>').modal('hide');
+$('#edit-facility-type-form')[0].reset()
+$('#facility-type-list tbody tr:nth-child(<%= @index %>)').replaceWith('<%= j render(@facility_type) %>');
+$('.modal-backdrop').css({
+     'facility_type': 'relative'
+ });
