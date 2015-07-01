@@ -23,7 +23,7 @@ class EventTypesController < ApplicationController
   end
   
   def update
-    @event_type = Certification.find(params[:id])
+    @event_type = EventType.find(params[:id])
     @index = @event_type.index_position
     @before_item = @index - 1
     @result = @event_type.update_attributes(event_type_params)
