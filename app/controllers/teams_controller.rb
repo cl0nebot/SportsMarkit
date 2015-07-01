@@ -115,6 +115,8 @@ class TeamsController < ApplicationController
     @relationship = Relationship.find(params[:id])
     @relationship.update_attributes(accepted: true)
     @team = Team.find(@relationship.team_id)
+    @heads = staff_relationships.uniq + staff_userless_relationships.uniq
+    @members = @team.relationships.where(accepted: true, participant: true) + UserlessRelationship.where(team_id: @team.id, participant: true)
     if @team.school.present?
       Classification.create(user_id: @relationship.user_id, classification: "Student Athlete")
     else

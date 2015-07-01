@@ -61,7 +61,15 @@ class UserlessRelationshipsController < ApplicationController
   
   def destroy
     @userless_relationship = UserlessRelationship.find(params[:id])
+    @team = @userless_relationship.team
+    @class = @userless_relationship.class.to_s
+    @id = params[:id]
+    @object = @userless_relationship
     @userless_relationship.destroy
+    @members = @team.relationships.where(accepted: true, participant: true) + UserlessRelationship.where(team_id: @team.id, participant: true)
+    staff_relationships = @team.relationships.where(accepted: true, head: true) + @team.relationships.where(accepted: true, trainer: true) + @team.relationships.where(accepted: true, manager: true)
+    staff_userless_relationships = UserlessRelationship.where(team_id: @team.id, head: true) + UserlessRelationship.where(team_id: @team.id, trainer: true) + UserlessRelationship.where(team_id: @team.id, manager: true)
+    @heads = staff_relationships.uniq + staff_userless_relationships.uniq
     respond_to do |format|
       format.js
       format.html { redirect_to :back }

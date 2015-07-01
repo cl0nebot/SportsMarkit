@@ -88,22 +88,13 @@
 									<!-- coaches and staff -->
 									<div class="panel">
 										<div class="panel-heading">
-											<div class="panel-title">
-												<h6 class="semi-bold mt10 mb0 pull-right upper gf_oswald">
-													[12] Coaches and Staff Members
-												</h6>
-												<h3 class="semi-bold fs_20 mt0 mb0 upper gf_oswald ls1">
-													<span class="h3 ion-ios-people margin-right-10 text-blue"></span> Coaches and Staff
-												</h3>
+											<div class="panel-title" id="coach-count">
+										       <%= render 'coach_count', heads: @heads %>
 											</div>
 										</div><!--.panel-heading-->
 										<hr class="no-margin"/>
-										<div class="panel-body without-padding">
-											<ul class="list-material has-hidden">
-												<% @heads.each do |m| %>
-											 		<%= render 'head', m: m %>
-												<% end %>
-											</ul>
+										<div class="panel-body without-padding" id="heads-of-team">
+											<%= render 'heads_of_team', heads: @heads %>
 										</div><!--.panel-body-->
 									</div><!--.panel-->
 									<br/>
@@ -113,26 +104,13 @@
 									<!-- team roster -->
 									<div class="panel box-shadow-ccc">
 										<div class="panel-heading pb10 pt10">
-											<div class="panel-title">
-												<h6 class="semi-bold mt10 mb0 pull-right upper gf_oswald">
-													[12] Athletes
-												</h6>
-												<h3 class="semi-bold fs_20 mt0 mb0 upper gf_oswald">
-													<span class="ion-clipboard mr15 text-blue h3"></span> Team Roster
-												</h3>
+											<div class="panel-title" id="athlete-count">
+											  <%= render 'athlete_count', members: @members%>
 											</div>
 										</div><!--.panel-heading-->
 										<hr class="no-margin"/>
-										<div class="panel-body without-padding">
-											<ul class="list-material has-hidden">
-												<% @members.each do |m| %>
-												<% if current_user.can_edit_team?(@team) %>
-										       		<%= render 'admin_view_member', m: m%>
-												<% else %>
-													<%= render 'member', m: m%>
-												<% end %>
-										    	<% end %>
-											</ul>
+										<div class="panel-body without-padding" id="athletes-of-team">
+								         <%= render 'athletes_of_team', members: @members, team: @team %>
 										</div><!--.panel-body-->
 									</div><!--.panel-->
 									<!-- team roster -->

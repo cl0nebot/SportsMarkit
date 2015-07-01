@@ -1,1 +1,5 @@
 $('#pending-<%= @relationship.id %>').empty()
+$('#heads-of-team').empty()
+$('#heads-of-team').append("<%= j render 'teams/heads_of_team', heads: @heads  %>")
+$('#athletes-of-team').empty()
+$('#athletes-of-team').append("<%= j render 'teams/athletes_of_team', members: @members, team: @team  %>")

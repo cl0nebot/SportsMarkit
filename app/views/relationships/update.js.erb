@@ -5,8 +5,12 @@
   $('#edit-head-<%= @class %><%= @id %>').append('<%= j render 'teams/head', m: @object, team: @team %>')
 <% else %>
   $('#pending-<%= @relationship.id %>').empty()
-  $('#member-list').empty()
-  $('#member-list').append('<%= j render 'teams/members', members: @members, team: @team %>')
-  $('#coach-list').empty()
-  $('#coach-list').append('<%= j render 'teams/heads', heads: @heads, team: @team %>')
+  $('#athletes-of-team').empty()
+  $('#athletes-of-team').append('<%= j render 'teams/athletes_of_team', members: @members, team: @team %>')
+  $('#heads-of-team').empty()
+  $('#heads-of-team').append('<%= j render 'teams/heads_of_team', heads: @heads, team: @team %>')
+  $('#coach-count').empty()
+  $('#coach-count').append("<%= j render 'teams/coach_count', heads: @heads %>")
+  $('#athlete-count').empty()
+  $('#athlete-count').append("<%= j render 'teams/athlete_count', members: @members %>")
 <% end %>
