@@ -1,0 +1,6 @@
+$('#<%= @event_type.id %>').modal('hide');
+$('#edit-event-type-form')[0].reset()
+$('#event-type-list tbody tr:nth-child(<%= @index %>)').replaceWith('<%= j render(@event_type) %>');
+$('.modal-backdrop').css({
+     'position': 'relative'
+ });
