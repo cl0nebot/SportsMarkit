@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619193913) do
+ActiveRecord::Schema.define(version: 20150701194754) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -86,6 +86,12 @@ ActiveRecord::Schema.define(version: 20150619193913) do
     t.datetime "updated_at"
   end
 
+  create_table "event_types", force: true do |t|
+    t.string   "event_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", force: true do |t|
     t.integer  "user_id"
     t.integer  "eventable_id"
@@ -130,6 +136,12 @@ ActiveRecord::Schema.define(version: 20150619193913) do
   end
 
   add_index "facilities", ["slug"], name: "index_facilities_on_slug", unique: true, using: :btree
+
+  create_table "facility_types", force: true do |t|
+    t.string   "facility_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "fans", force: true do |t|
     t.integer  "user_id"
@@ -212,6 +224,13 @@ ActiveRecord::Schema.define(version: 20150619193913) do
 
   add_index "photos", ["photo_owner_id"], name: "index_photos_on_photo_owner_id", using: :btree
   add_index "photos", ["photo_owner_type"], name: "index_photos_on_photo_owner_type", using: :btree
+
+  create_table "positions", force: true do |t|
+    t.integer  "sport_id"
+    t.string   "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "profiles", force: true do |t|
     t.integer  "user_id"

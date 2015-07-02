@@ -309,7 +309,7 @@ input.form-control {font-size: 26px; line-height: 30px;}
 .center {display: table; margin-right: auto; margin-left: auto;}
 
 .page-header.full-content.parallax {
-   height: 450px; overflow: hidden
+   height: 400px; overflow: hidden
 }
 
 .page-header.full-content.parallax .parallax-bg {
