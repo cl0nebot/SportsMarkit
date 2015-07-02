@@ -139,15 +139,5 @@ class School < ActiveRecord::Base
       "http://www.carlostoxtli.com/wp-content/uploads/2014/05/placeholder15.png"
     end
   end
-  
-  # def main_photo
-  #   photo = Photo.where(photo_owner_id: id, photo_owner_type: "School").last
-  #   if photo.present?
-  #     photo
-  #   else
-  #     "http://www.engraversnetwork.com/files/placeholder.jpg"
-  #   end
-  # end
-  
     
 end
