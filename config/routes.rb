@@ -88,6 +88,9 @@ Rails.application.routes.draw do
     resources :sitemap
     resources :sports
     resources :certifications
+    resources :event_types
+    resources :positions
+    resources :facility_types
     resources :amenities
     resources :team_facilities
     resources :team_leagues
