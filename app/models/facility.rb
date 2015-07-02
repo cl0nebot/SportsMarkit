@@ -80,4 +80,12 @@ class Facility < ActiveRecord::Base
     upcoming_events.first.nil? ? "No upcoming events" : upcoming_events.first.title
   end
   
+  def image
+    if Photo.where(photo_owner_id: id, photo_owner_type: "Facility").present?
+      Photo.where(photo_owner_id: id, photo_owner_type: "Facility").last.image
+    else
+      "http://www.carlostoxtli.com/wp-content/uploads/2014/05/placeholder15.png"
+    end
+  end
+  
 end

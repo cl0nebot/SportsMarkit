@@ -360,6 +360,14 @@ class User < ActiveRecord::Base
       user_schools.first
     end
   end
+  
+  def image
+    avatar
+  end
+  
+  def name
+    full_name
+  end
 
   
   

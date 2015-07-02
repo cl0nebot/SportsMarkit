@@ -31,6 +31,7 @@ class UsersController < ApplicationController
     @teammate_ids = Relationship.where(team_id: @team_ids, accepted: true).pluck(:user_id)
     @teammates = User.where(id: @teammate_ids).uniq - [@user]
     @teams = Team.where(id: @team_ids)
+    @fans = @user.fans
     @follows = @user.follows
     @videos = @user.medias.where(category: "Video")
     @articles = @user.medias.where(category: "Article")

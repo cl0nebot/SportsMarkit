@@ -40,4 +40,12 @@ class League < ActiveRecord::Base
   def all_events
     upcoming_events
   end
+  
+  def image
+    if Photo.where(photo_owner_id: id, photo_owner_type: "League").present?
+      Photo.where(photo_owner_id: id, photo_owner_type: "League").last.image
+    else
+      "http://www.hsph.harvard.edu/niehs/wp-content/themes/hsph/images/placeholder.jpg"
+    end
+  end
 end

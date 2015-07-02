@@ -135,5 +135,13 @@ class Team < ActiveRecord::Base
       name
     end
   end
+  
+  def image
+    if Photo.where(photo_owner_id: id, photo_owner_type: "Team").present?
+      Photo.where(photo_owner_id: id, photo_owner_type: "Team").last.image
+    else
+      "http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg"
+    end
+  end
 
 end

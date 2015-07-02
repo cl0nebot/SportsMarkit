@@ -1,10 +1,12 @@
-<div id="fan-button">
-	<% if current_user.follows.where(fannable_id: @object.id, fannable_type: @class).empty? %>
-	<%= render 'fans/fan', object: @object %>
-	<% else %>
-	<%= render 'fans/unfan', object: @object %>
-	<% end %>
-</div>
-<% if current_user.admin? %>
-  <%= link_to 'Edit', '#', id: 'edit-background', class: 'btn btn-primary btn-ripple', 'data-edit' => 'edit' %>
+<% if current_user %>
+	<div id="fan-button">
+		<% if current_user.follows.where(fannable_id: @object.id, fannable_type: @class).empty? %>
+		<%= render 'fans/fan', object: @object %>
+		<% else %>
+		<%= render 'fans/unfan', object: @object %>
+		<% end %>
+	</div>
+	<% if current_user.admin? %>
+	  <%= link_to 'Edit', '#', id: 'edit-background', class: 'btn btn-primary btn-ripple', 'data-edit' => 'edit' %>
+    <% end %>
 <% end %>

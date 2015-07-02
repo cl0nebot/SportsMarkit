@@ -132,6 +132,14 @@ class School < ActiveRecord::Base
     name
   end
   
+  def image
+    if Photo.where(photo_owner_id: id, photo_owner_type: "School").present?
+      Photo.where(photo_owner_id: id, photo_owner_type: "School").last.image
+    else
+      "http://www.carlostoxtli.com/wp-content/uploads/2014/05/placeholder15.png"
+    end
+  end
+  
   # def main_photo
   #   photo = Photo.where(photo_owner_id: id, photo_owner_type: "School").last
   #   if photo.present?
