@@ -18,3 +18,11 @@
 		</div><!--.card-->
 	</div><!--.col-md-6-->
 <% end %>
+
+
+<% @articles.each do |art| %>
+
+<%= link_to art.title, art.url %>
+					<small>Published on <%= format(art.publish_date, 2)%></small>
+
+<% end %>
