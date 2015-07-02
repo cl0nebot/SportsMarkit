@@ -312,8 +312,12 @@ class User < ActiveRecord::Base
     end
   end
   
-  def classification_list
-    classifications.pluck(:classification).join(",").gsub(",", ", ")
+  def classification_list(count=0)
+    if count == 0
+     classifications.pluck(:classification).join(", ")
+   else
+     classifications.pluck(:classification).first(count).join(", ")
+   end
   end
   
   def has_profile_picture?
@@ -325,7 +329,11 @@ class User < ActiveRecord::Base
     teams = Team.where(id: team_ids).where.not(school_id: nil)
     school_ids = teams.pluck(:school_id) + AthleticDirector.where(user_id: id).pluck(:school_id)
     schools = School.where(id: school_ids).uniq
-    
+  end
+  
+  def user_teams
+    team_ids = relationships.where(accepted: true).pluck(:team_id)
+    teams = Team.where(id: team_ids)
   end
   
   def event_notifications
@@ -339,6 +347,18 @@ class User < ActiveRecord::Base
       end
     end
     Event.where(id: array)
+  end
+  
+  def schools_and_teams
+    user_schools + user_teams
+  end
+  
+  def lead_affiliation
+    if user_schools.empty?
+      user_teams.first
+    else
+      user_schools.first
+    end
   end
 
   

@@ -128,6 +128,10 @@ class School < ActiveRecord::Base
     Rails.cache.fetch([self, last_update, "claimable_schools", "v1"]) { self.claimable_schools }
   end
   
+  def proper_name
+    name
+  end
+  
   # def main_photo
   #   photo = Photo.where(photo_owner_id: id, photo_owner_type: "School").last
   #   if photo.present?
