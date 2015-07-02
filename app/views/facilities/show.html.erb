@@ -53,6 +53,8 @@
 				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
 				<!-- <li><a href="#amenities" data-toggle="tab" class="btn-ripple">Amenities</a></li> -->
 				<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
+				<li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li>
+      			<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
         		<!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
       		</ul>
 		</div>
@@ -174,6 +176,30 @@
 		        </div>
 
 		        <%= render 'shared/photo_tab', photo_owner: @facility %>
+
+		        <!-- following -->
+			      <div id="following" class="tab-pane">
+
+			        <div class="row">
+			          <div class="col-md-3">
+			            <div class="card tile card-friend material-animate">
+			              <a href="user-profile.html"><img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt=""></a>
+			              <div class="friend-content">
+			                <p class="title">First Name, Last Name</p>
+			                <p><a href="user-profile.html">Title/Classification</a></p>
+			                <a class="btn btn-flat btn-primary btn-xs">Team/School</a>
+			                <p><a href="#" class="btn btn-default mt10">View Profile</a></p>
+			              </div><!--.friend-content-->
+			            </div><!--.card-->
+			          </div><!--.col-->
+			        </div>
+			      </div>
+
+			      <!-- fans -->
+			      <div id="fans" class="tab-pane">
+					  <%= render 'shared/fans', fans: @fans %>
+
+			      </div>
 
 
 			</div><!--.tab-content-->

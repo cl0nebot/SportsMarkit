@@ -1,3 +1,27 @@
+<style>
+  .sample-bg-image13:before {
+    background-image: url('');
+  }
+  .card-clickable {
+    padding-bottom: 0;
+  }
+  .sample-member9 {
+    background-image: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');
+  }
+
+  .card-friend .user-photo {
+    float: left;
+    width: 160px;
+    height: auto;
+    border-radius: 3px 0 0 3px;
+  }
+  .card-friend .friend-content {
+    margin-left: 180px;
+  }
+
+</style>
+
+
 <div class="content">
 
 	<div class="page-header full-content parallax">
@@ -37,13 +61,14 @@
 
 		<div class="header-tabs scrollable-tabs sticky">
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
-				<li class="active"><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li>
 				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
 				<li><a href="#people" data-toggle="tab" class="btn-ripple">People</a></li>
 				<!-- <li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li> -->
 				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilties</a></li>
 				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
         <li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
+        <li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li>
+      	<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
 
       </ul>
 		</div>
@@ -54,18 +79,7 @@
 				<div class="tab-content without-border">
 					
 
-					<!-- following -->
-					<div id="following" class="tab-pane active">
-
-						<div class="row masonry">
-
-							
-
-						</div><!--.row-->
-					</div>
-					<!--#following.tab-pane-->
-
-					<!-- teams -->
+							<!-- teams -->
 					<div id="teams" class="tab-pane">
 
 	  				  <% @teams.each do |team| %>
@@ -110,15 +124,34 @@
 
 					<!-- media -->
 					<div id="media" class="tab-pane">
-						
 						<div class="row">
-	
-	                    <%= render 'shared/media' %>
-						
+	            <%= render 'shared/media' %>
 						</div>
-						
 					</div>
 					<!--#media.tab-pane-->
+
+					<!-- following -->
+		      <div id="following" class="tab-pane">
+		        <div class="row">
+		          <div class="col-md-3">
+		            <div class="card tile card-friend material-animate">
+		              <a href="user-profile.html"><img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt=""></a>
+		              <div class="friend-content">
+		                <p class="title">First Name, Last Name</p>
+		                <p><a href="user-profile.html">Title/Classification</a></p>
+		                <a class="btn btn-flat btn-primary btn-xs">Team/School</a>
+		                <p><a href="#" class="btn btn-default mt10">View Profile</a></p>
+		              </div><!--.friend-content-->
+		            </div><!--.card-->
+		          </div><!--.col-->
+		        </div>
+		      </div>
+
+		      <!-- fans -->
+		      <div id="fans" class="tab-pane">
+				  <%= render 'shared/fans', fans: @fans %>
+
+		      </div>
 					
 					
 
