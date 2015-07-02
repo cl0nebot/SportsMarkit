@@ -30,19 +30,17 @@
   <div class="bg-overlay"></div><!--.bg-overlay-->
 
   <div class="profile-info">
-    <div class="profile-photo">
-      <div style="width: 100px; height: 100px; overflow: hidden;">
-        <img src="<%= image_path(@user.avatar) %>" class="" alt="" style="min-height: 100%; width: auto; min-width: 90px; border-radius: 0;">
-      </div>
+    <div class="pull-left margin-right-20">
+      <%= image_tag(@user.avatar, class: "img-thumbnail img-responsive", height: "", width: "100") %>
     </div>
-    <!--.profile-photo-->
-    <div class="profile-text light capitalize">
-      <%= @user.full_name %>
-      <span class="caption">
-				<%= @user.profile.location_description %>
-			</span>
+    <div class="pull-left">
+      <h1 class="capitalize h1-xlarge">
+        <%= @user.full_name %> 
+      </h1>
+      <h6 class="capitalize h1-xlarge text-white">
+        <%= @user.classification_list %>, <%= @user.profile.location_description %>
+      </h6>
     </div>
-    <!--.profile-text-->
   </div>
   <!--.profile-info-->
 
