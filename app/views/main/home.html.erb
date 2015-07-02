@@ -32,11 +32,16 @@ For ex: <div class="header header-red"> or <div class="header header-teal">
 			</ul>
 			<div class="selector"></div>
 		</div><!--.animated-selector-->
-
+        
+		<% if current_user %>
+		Logged in as <%= current_user.full_name %>
+		<% else %>
 		<div class="btn-action">
 				<a href="/signup" class="btn btn-indigo">Create a Free Account</a>
 				<a href="/login" class="btn btn-indigo">Login</a>
 			</div><!--.btn-action-->
+			
+			<% end %>
 
 
 		<div class="hamburger-btn"></div><!--.hamburger-btn-->
