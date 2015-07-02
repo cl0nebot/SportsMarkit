@@ -29,12 +29,17 @@ class SchoolsController < ApplicationController
     @object = @school
     @teams = @school.teams
     @athletes = @school.athletes
+    @coaches = @school.coaches_for_school
+    @userless_coaches = @school.userless_coaches_for_school
+    @manager_and_trainers = @school.manager_and_trainers
+    @admins = @school.admins
     @people = @school.people
     @events = @school.upcoming_events
     @facilities = @school.facilities
     @certifications = @school.school_certifications
     @videos = @school.medias.where(category: "Video")
     @articles = @school.medias.where(category: "Article")
+    @fans = @school.fans
   end
   
   def edit

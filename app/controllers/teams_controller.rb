@@ -108,7 +108,7 @@ class TeamsController < ApplicationController
     @event = @object.events.build
     @videos = @team.medias.where(category: "Video")
     @articles = @team.medias.where(category: "Article")
-    
+     @fans = @team.fans
   end
   
   def accept_user
