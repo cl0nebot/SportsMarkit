@@ -484,10 +484,12 @@ input.form-control {font-size: 26px; line-height: 30px;}
   background: transparent;
   border: 0 !important;
   color: #111;
+  font-size: 16px;
+  line-height: 20px;
   font-weight: 500;
   opacity: .7;
   border-radius: 0;
-  padding: 16px 40px;
+  padding: 20px 20px;
   top: 0;
   margin-right: 0;
 }
