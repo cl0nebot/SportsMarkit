@@ -35,9 +35,7 @@
   <div class="container">
     <div class="user-profile">
       <div class="row">
-        <div class="col-md-2" style="margin-top: -180px; z-index: 99999;">
-          <%= image_tag(@user.avatar, class: "img-thumbnail img-responsive b-rad-6") %>
-        </div>
+        <%= image_tag(@user.avatar, class: "col-md-2 img-thumbnail img-responsive b-rad-6", style: "margin-top: -180px; z-index: 99999;") %>
         <div class="col-md-10">
         </div>
       </div>

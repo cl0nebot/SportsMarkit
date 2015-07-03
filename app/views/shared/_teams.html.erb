@@ -12,13 +12,13 @@
 
             <div class="card-subhead capitalize">
               <h6 class="semi-bold no-margin lh_20">
-                <%= image_tag Sport.find_by_sport(team.sport).try(:default_photo), height: "20", width: "auto", class: "mr5" %>
+                <%= image_tag Sport.find_by_sport(team.sport).try(:default_photo), height: "10", width: "auto" %>
                 <small><%= team.sport %> Team</small>
               </h6>
             </div>
             <!--.card-subhead-->
             <div class="card-subhead capitalize">
-              <h6 class="semi-bold no-margin mt5">
+              <h6 class="semi-bold no-margin">
                 <small><i class="ion-location"></i> <%= team.city_state %></small>
               </h6>
             </div>
