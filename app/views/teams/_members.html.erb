@@ -1,7 +1,7 @@
-												<% members.each do |m| %>
-												<% if current_user.can_edit_team?(team) %>
-										       		<%= render 'teams/admin_view_member', m: m%>
-												<% else %>
-													<%= render 'teams/member', m: m%>
-												<% end %>
-										    	<% end %>
+<% members.each do |m| %>
+	<% if current_user.can_edit_team?(team) %>
+		<%= render 'teams/admin_view_member', m: m%>
+	<% else %>
+		<%= render 'teams/member', m: m%>
+	<% end %>
+<% end %>
