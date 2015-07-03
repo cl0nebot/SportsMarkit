@@ -2,23 +2,25 @@
   <div class="col-md-2">
     <div class="filters">
     <%= form_tag "", method: :get, id: "calendar_filter", remote: true do %>
+
+      <h4 class="semi-bold no-margin">Filters</h4>
+      <hr class="mt0 mb10"/>
     
-      <h5 class="semi-bold">Event Type:</h5>
-      <hr class="no-margin"/>
+      <h6 class="semi-bold">Events</h6>
       <% eventable.all_events.pluck(:event_type).uniq.each do |e_type| %>
-        <label><%= e_type %>
+        <label class="btn btn-alizarin btn-block fs_16 text-left">
           <%= check_box_tag "q[event_type_in][]", e_type %>
+          <span class="mrl5"><%= e_type %></span>
         </label>
       <% end %>
 
-      <br/>
-      <br/>
+      <hr class="mt10 mb10"/>
 
-      <h5 class="semi-bold">Created by:</h5>
-      <hr class="no-margin"/>
+     <h6 class="semi-bold">People</h6>
       <% eventable.all_events.includes(:user).map(&:user).uniq.compact.each do |user| %>
-        <label><%= creator_name(user) %>
+         <label class="btn btn-alizarin btn-block fs_14 text-left capitalize">
           <%= check_box_tag "q[user_id_in][]", user.id %>
+          <span class="mrl5"><%= creator_name(user) %></span>
         </label>
       <% end %>
       <br>

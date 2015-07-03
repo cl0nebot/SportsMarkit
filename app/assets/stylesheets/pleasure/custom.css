@@ -17,7 +17,7 @@
 .thin   {font-weight: 300;}
 .normal   {font-weight: 400;}
 
-
+.text-left {text-align: left !important;}
 .text-black {color: #000 !important;}
 
 .pull-bottom {position: relative; bottom: 30px;}
@@ -515,7 +515,7 @@ input.form-control {font-size: 26px; line-height: 30px;}
 
 /*Calendar*/
 .fc-day-grid-container.fc-scroller {height: 700px !important;}
-.fc-toolbar h2 {font-weight: bold; color: #08c;}
+.fc-toolbar h2 {font-weight: 400; color: #08c;}
 
 
 .card.tile {
