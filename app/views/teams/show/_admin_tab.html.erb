@@ -78,7 +78,7 @@
 									<div class="col-md-12">
 										<div class="inputer">
 											<div class="input-wrapper">
-												<%= text_field_tag :position,"" , placeholder: "", type: "text", class: "form-control"%>
+												<%= select_tag :position, options_for_select(Position.pluck(:position)), class: "form-control", multiple: true %>
 											</div>
 										</div>
 									</div><!--.col-md-9-->
@@ -103,41 +103,42 @@
 								<div class="row example-row">
 									<div class="col-md-12"><h4>Assignments</h4></div><!--.col-md-3-->
 									<div class="col-md-12">
-										<div class="inputer">
+									
 											<%= hidden_field_tag :team_id,"", value: @team.id %>
 
 											<div class="checkboxer form-inline mb5">
-						                      	<%= check_box_tag :participant, "",false %>
+						                      	<%= check_box_tag :participant, "",false, id: "participant" %>
 						                      	<label for="participant">
 						                      		Athlete?
 						                      	</label>
 						                    </div>
+											
 											<div class="checkboxer form-inline mb5">
-						                      	<%= check_box_tag :head, "",false %>
+						                      	<%= check_box_tag :head, "",false, id: "head"  %>
 						                      	<label for="head">Coach?
 						                      	</label>
 						                    </div>
 
 											<div class="checkboxer form-inline mb5">
-						                      	<%= check_box_tag :trainer, "",false %>
+						                      	<%= check_box_tag :trainer, "",false, id: "trainer"  %>
 						                      	<label for="trainer">Trainer?</label>
 						                    </div>
 
 											<div class="checkboxer form-inline mb5">
-						                      	<%= check_box_tag :manager, "",false %>
+						                      	<%= check_box_tag :manager, "",false, id: "manager"  %>
 						                      	<label for="manager">Manager?</label>
 						                    </div>
-
+											
 											<div class="checkboxer form-inline mb5">
-						                      	<%= check_box_tag :admin, "",false %>
-						                      	<label for="admin">Admin?</label>
+						                      	<%= check_box_tag :admin, "",false, id: "access"  %>
+						                      	<label for="access">Admin?</label>
 						                    </div>
-
-										</div>
+										
 									</div><!--.col-md-9-->
 								</div><!--.row-->
 							</div>
 						</div>
+	
 
 						<hr class="mt0" />
 
