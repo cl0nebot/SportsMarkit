@@ -42,6 +42,12 @@ class School < ActiveRecord::Base
     users = User.where(id: user_ids)
   end
   
+  def userless_athletes
+    team_ids = teams.pluck(:id)
+    relationships = UserlessRelationship.where(team_id: team_ids, participant: true)
+    relationships.pluck(:first_name, :last_name)
+  end
+  
   def team_ids
      teams.pluck(:id)
   end
@@ -55,6 +61,10 @@ class School < ActiveRecord::Base
     users = User.where(id: user_ids)
   end
   
+  def userless_people
+    rels = UserlessRelationship.where(team_id: team_ids)
+  end
+  
   def upcoming_events
     Event.where(eventable_type: "Team", eventable_id: team_ids).where('starts_at >= ?', Time.now)
   end
@@ -66,6 +76,8 @@ class School < ActiveRecord::Base
   def next_event
     upcoming_events.first.nil? ? "No upcoming events" : upcoming_events.first.title
   end
+  
+  #coaches
   
   def coach_ids_for_school
     team_ids = teams.pluck(:id)
@@ -83,11 +95,21 @@ class School < ActiveRecord::Base
     relationships.pluck(:first_name, :last_name)
   end
   
+  # managers
+  
   def manager_ids_for_school
     team_ids = teams.pluck(:id)
     relationships = Relationship.where(team_id: team_ids, manager: true, accepted: true)
     manager_ids = relationships.pluck(:user_id)
   end
+  
+  def userless_managers_for_school
+    team_ids = teams.pluck(:id)
+    relationships = UserlessRelationship.where(team_id: team_ids, manager: true)
+    relationships.pluck(:first_name, :last_name)
+  end
+  
+  # trainers
   
   def trainer_ids_for_school
     team_ids = teams.pluck(:id)
@@ -95,10 +117,27 @@ class School < ActiveRecord::Base
     trainer_ids = relationships.pluck(:user_id)
   end
   
+  def userless_trainers_for_school
+    team_ids = teams.pluck(:id)
+    relationships = UserlessRelationship.where(team_id: team_ids, trainer: true)
+    relationships.pluck(:first_name, :last_name)
+  end
+  
+  # managers and trainers
+  
   def manager_and_trainers
      users = User.where(id: manager_ids_for_school) + User.where(id: trainer_ids_for_school)
      manager_and_trainers = users.uniq
   end
+  
+  def userless_managers_and_trainers
+    team_ids = teams.pluck(:id)
+    manager_relationships = UserlessRelationship.where(team_id: team_ids, manager: true)
+    trainer_relationships = UserlessRelationship.where(team_id: team_ids, trainer: true)
+    (manager_relationships.pluck(:first_name, :last_name) + trainer_relationships.pluck(:first_name, :last_name)).uniq
+  end
+  
+  
   
   def admin_ids_for_school
     team_ids = teams.pluck(:id)
@@ -110,6 +149,12 @@ class School < ActiveRecord::Base
   
   def admins
     admins = User.where(id: admin_ids_for_school)
+  end
+  
+  def userless_admins
+    team_ids = teams.pluck(:id)
+    relationships = UserlessRelationship.where(team_id: team_ids, admin: true)
+    relationships.pluck(:first_name, :last_name)
   end
   
   def school_certifications

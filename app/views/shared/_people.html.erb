@@ -17,6 +17,11 @@
 					  		<% end %>
 					  	</li>
 					<% end %>
+					<% @userless_athletes.each do |user| %>
+						<li>
+							<%= user.first %> <%= user.last %>
+					  	</li>
+					<% end %>
 				</ul>
 			</div><!--.btn-group-->
 			<div class="col-md-3">
@@ -24,11 +29,16 @@
 					Find a Coach <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu" role="menu">
-					<% @athletes.each do |user| %>
+					<% @coaches.each do |user| %>
 						<li>
 							<%= link_to user_path(user) do %>
 					  			<%= user.full_name %>
 					  		<% end %>
+					  	</li>
+					<% end %>
+					<% @userless_coaches.each do |user| %>
+						<li>
+							<%= user.first %> <%= user.last %>
 					  	</li>
 					<% end %>
 				</ul>
@@ -38,11 +48,16 @@
 					Find an Staff Member <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu" role="menu">
-					<% @athletes.each do |user| %>
+					<% @manager_and_trainers.each do |user| %>
 						<li>
 							<%= link_to user_path(user) do %>
 					  			<%= user.full_name %>
 					  		<% end %>
+					  	</li>
+					<% end %>
+					<% @userless_managers_and_trainers.each do |user| %>
+						<li>
+							<%= user.first %> <%= user.last %>
 					  	</li>
 					<% end %>
 				</ul>
@@ -52,11 +67,17 @@
 					Find an Administrator <span class="caret"></span>
 					</button>
 				<ul class="dropdown-menu" role="menu">
-					<% @athletes.each do |user| %>
+					<% @admins.each do |user| %>
 						<li>
 							<%= link_to user_path(user) do %>
 					  			<%= user.full_name %>
 					  		<% end %>
+					  	</li>
+					<% end %>
+					
+					<% @admins.each do |user| %>
+						<li>
+							<%= user.first %> <%= user.last %>
 					  	</li>
 					<% end %>
 				</ul>
@@ -81,6 +102,34 @@
 					<p class="title"><%= person.name %></p>
 					<h5 class="no-margin">[Status], [Title/Level]</h5>
 					<h6 class="m-t-5">
+						<small><%= pluralize person.teams.count, "Team" %></small>
+					</h6>
+				</div>
+				<div class="pull-bottom clearfix margin-left-10">
+					<div class="">
+						
+							<%= link_to "View Profile", user_path(person), class: "btn btn-primary btn-xs button-striped button-full-striped btn-ripple"  %>
+						
+						<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+					</div>
+				</div>
+			</div><!--.friend-content-->
+		</div><!--.card-->
+	</div><!--.col-->
+	<% end %>
+	
+	
+		<% @userless_people.each_with_index do |person, i| %>
+		<div class="col-lg-3 col-md-4 col-sm-6">
+		<div class="card tile card-friend material-animate box-shadow-ccc">
+			<a href="user-profile.html">
+				<img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt="">
+			</a>
+			<div class="friend-content">
+				<div class="margin-bottom-5">
+					<p class="title"><%= person.first_name %> <%= person.last_name %></p>
+					<h5 class="no-margin">[Status], [Title/Level]</h5>
+					<h6 class="m-t-5">
 						<small>[No.] Teams</small>
 					</h6>
 				</div>
@@ -94,9 +143,6 @@
 				</div>
 			</div><!--.friend-content-->
 		</div><!--.card-->
-		
-
-		
 	</div><!--.col-->
 	<% end %>
 

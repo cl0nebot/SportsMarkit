@@ -29,11 +29,15 @@ class SchoolsController < ApplicationController
     @object = @school
     @teams = @school.teams
     @athletes = @school.athletes
+    @userless_athletes = @school.userless_athletes
     @coaches = @school.coaches_for_school
     @userless_coaches = @school.userless_coaches_for_school
     @manager_and_trainers = @school.manager_and_trainers
+    @userless_managers_and_trainers = @school.userless_managers_and_trainers
     @admins = @school.admins
+    @userless_admins = @school.userless_admins
     @people = @school.people
+    @userless_people = @school.userless_people
     @events = @school.upcoming_events
     @facilities = @school.facilities
     @certifications = @school.school_certifications
