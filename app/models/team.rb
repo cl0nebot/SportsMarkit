@@ -143,5 +143,13 @@ class Team < ActiveRecord::Base
       "http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg"
     end
   end
+  
+  def is_athletic_director?(user)
+    if school.present?
+      school.is_athletic_director?(user)
+    else
+      false
+    end
+  end
 
 end

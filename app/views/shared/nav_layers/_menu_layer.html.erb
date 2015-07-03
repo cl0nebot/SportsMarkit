@@ -24,6 +24,9 @@
 				
 					<% current_user.relationships.where.not(id: nil).each do |relationship| %>
 					<li><%= link_to "#{relationship.team.proper_name} #{relationship.accepted? ? '' : '(Pending)'}", team_path(relationship.team.friendly_id)%> </li>
+						<% if relationship.head? or relationship.admin? or relationship.team.is_athletic_director?(current_user) %>
+						<li><%= link_to "Edit #{relationship.team.proper_name} Information", edit_team_path(relationship.team.friendly_id)%> </li>
+						<% end %>
 					<% end %>
 				
 				<li><%#= link_to "Teams Index", teams_path(Team.first)%></li>
@@ -36,7 +39,10 @@
 			<a href="javascript:;">My School</a>
 			<ul class="child-menu">
 				<% current_user.user_schools.each do |school| %>
-				  <li><%= link_to school.name, school_path(school) %></li>
+				<li><%= link_to school.name, school_path(school) %></li>
+				  <% if school.is_athletic_director?(current_user)%>
+				    <li><%= link_to "Edit #{school.name}", edit_school_path(school) %></li>
+				  <% end %>
 				<% end %>
 				
 					<%#= link_to "School New", new_school_path %>

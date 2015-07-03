@@ -184,5 +184,9 @@ class School < ActiveRecord::Base
       "http://www.carlostoxtli.com/wp-content/uploads/2014/05/placeholder15.png"
     end
   end
+  
+  def is_athletic_director?(user)
+    AthleticDirector.where(school_id: id, user_id: user.id).present?
+  end
     
 end
