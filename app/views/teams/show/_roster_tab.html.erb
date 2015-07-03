@@ -4,9 +4,12 @@
 
 			<!-- coaches and staff -->
 			<div class="panel panel-transparent box-shadow-ccc">
-				<div class="panel-heading">
+				<div class="panel-heading no-margin">
 					<div class="panel-title" id="coach-count">
 				       <%= render 'coach_count', heads: @heads %>
+				       <h3 class="semi-bold fs_20 mb0">
+							Coaches and Administrative Staff Members
+						</h3>
 					</div>
 				</div><!--.panel-heading-->
 				<hr class="no-margin"/>
@@ -20,13 +23,12 @@
 
 			<!-- team roster -->
 			<div class="panel panel-transparent box-shadow-ccc">
-				<div class="panel-heading">
+				<div class="panel-heading no-margin">
 					<div class="panel-title" id="athlete-count">
 					  	<%= render 'athlete_count', members: @members%>
-					  	<h3 class="bold mt0 mb0 gf_muli fs_24">
-							<span class="ion-clipboard mr15 text-muted h3"></span> Team Roster
+					  	<h3 class="semi-bold fs_20 mb0">
+							Active Athletes
 						</h3>
-						
 					</div>
 				</div><!--.panel-heading-->
 				<hr class="no-margin"/>
@@ -35,6 +37,7 @@
 				</div><!--.panel-body-->
 			</div><!--.panel-->
 			<!-- team roster -->
+
 		</div>
 	</div>
 </div>
