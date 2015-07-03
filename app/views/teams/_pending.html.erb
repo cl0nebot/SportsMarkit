@@ -1,7 +1,7 @@
 <li class="has-action-left" id="pending-<%= m.id %>">
 	<%= form_for m, html: {data: {remote: true}} do |f| %>
 		<%= f.hidden_field :accepted, value: true %>
-		<div class="hidden pt10">
+		<div class="hidden pt30">
 			<p class="text-center mb5">
 				<%= link_to reject_user_team_path(m), method: :patch, remote: true, class: "btn btn-danger"  do %> 
 				<span class="ion-close-circled"></span>
@@ -15,11 +15,13 @@
 		</div>
 		<a href="#" class="visible">
 			<div class="list-content">
-				<div class="row">
-					<div class="col-md-6">
+				<div class="row pt20">
+					<div class="col-md-1">
+					</div>
+					<div class="col-md-5">
 						<%= image_tag m.user.avatar, class: "face-radius margin-right-20 pull-left", alt: "", style: "width: 65px; height: 65px; border: 3px solid #ddd;" %>
 						<div class="pull-left">
-							<h4 class="semi-bold no-margin">
+							<h4 class="semi-bold no-margin text-black">
 								<%= m.user.full_name %>
 							</h4>
 							<p class="small">
@@ -30,7 +32,10 @@
 						</div>
 					</div>
 					<div class="col-md-2">
-						<%= f.check_box :admin %> 
+						<div class="checkboxer form-inline mb5">
+	                      	<%= f.check_box :admin, id: "relationship_admin"  %>
+	                      	<label for="relationship_admin"></label>
+	                    </div>
 						<p class="small">
 							<small>
 								Admin?
@@ -38,7 +43,10 @@
 						</p>
 					</div>
 					<div class="col-md-2">
-						<%= f.check_box :head %> 
+						<div class="checkboxer form-inline mb5">
+	                      	<%= f.check_box :head, id: "relationship_head"  %>
+	                      	<label for="relationship_head"></label>
+	                    </div>
 						<p class="small">
 							<small>
 								Coach?
@@ -46,7 +54,10 @@
 						</p>
 					</div>
 					<div class="col-md-2">
-						<%= f.check_box :participant %> 
+						<div class="checkboxer form-inline mb5">
+	                      	<%= f.check_box :participant, id: "relationship_participant"  %>
+	                      	<label for="relationship_participant"></label>
+	                    </div>
 						<p class="small">
 							<small>
 								Athlete?
