@@ -1,35 +1,51 @@
-<div class="content">
-  <div class="page-header full-content bg-blue">
-    <div class="row">
-      <div class="col-sm-6">
-        <h1>New Event<small></small></h1>
-      </div><!--.col-->
-      <div class="col-sm-6">
-        <ol class="breadcrumb">
-          <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="#" class="active"><%= @object.class == "User" ? @object.full_name : @object.name %></a></li>
-          <li><a href="#" class="active">events</a></li>
-          <li><a href="#" class="active">new</a></li>
-        </ol>
-      </div><!--.col-->
-    </div><!--.row-->
-  </div><!--.page-header-->
+<div class="row">
+  <div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+    <div class="panel box-shadow-ccc">
+      <div class="panel-header bg-cyan">
+        <br/>
+        <h5 class="text-right text-white semi-bold">Create a New Event
+          <i class="ion-plus-circled margin-right-10 margin-left-10 text-white"></i>
+        </h5>
+        <hr class="margin-top-0"/>
+      </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel">
-        <div class="panel-heading">
-          <div class="panel-title"><h4>Complete the form below. </h4></div>
-        </div><!--.panel-heading-->
-        <div class="panel-body">
+      <div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
+            <div class="row text-center">
+              <div class="col-md-12">
+                <h3 class="semi-bold text-primary">Create a new event</h3>
+                <h4>What type of event?</h4>
+              </div>
+            </div>
+            <div class="row margin-bottom-0">
+              <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 well">
+                <select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+                  <option>Game</option>
+                  <option>Practice</option>
+                  <option>Tennis Match</option>
+                  <option>Track Meet</option>
+                  <option>Film Session</option>
+                  <option>Individual Training</option>
+                  <option>Scrimmage</option>
+                  <option>Banquet</option>
+                  <option>Team Meeting</option>
+                  <option>Tryouts</option>
+                </select>
+              </div><!--.col-md-9-->
+            </div><!--.row-->
+          </div>
+        </div>
+      </div>
 
-          <%= form_for [@object, @event], html: {id: 'event-form'} do |f| %>
-    
+      <%= form_for [@object, @event], html: {id: 'event-form'} do |f| %>
 
-          <!-- event title -->
+      <div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+        <div class="panel-body padding-right-40 padding-left-40">
+
           <div class="row example-row">
-            <div class="col-md-3">Event Title </div><!--.col-md-3-->
-            <div class="col-md-9">
+            <div class="col-md-12"><h4>Event Title</h4></div>
+            <div class="col-md-12">
               <div class="inputer">
                 <div class="input-wrapper">
                   <%= f.text_field :title, type: "text", class: "form-control", placeholder: ""%>
@@ -38,51 +54,28 @@
             </div><!--.col-md-9-->
           </div><!--.row-->
 
-
-          <!-- event type -->
           <div class="row example-row">
-            <div class="col-md-3">Event Type </div><!--.col-md-3-->
-            <div class="col-md-9">
+            <div class="col-md-12"><h4>Facility</h4></div>
+            <div class="col-md-12">
+              <div class="inputer">
+                <%= f.collection_select :facility_ids, Facility.all, :id, :name, {:selected => ""}, {  :multiple => false, :id => "multi", :class => "selecter", :placeholder => "Select A Facility"  } %>
+              </div>
+            </div><!--.col-md-9-->
+          </div><!--.row-->
+
+          <div class="row example-row">
+            <div class="col-md-12"><h4>Date and Time</h4></div>
+            <div class="col-md-12">
               <div class="inputer">
                 <div class="input-wrapper">
-                  <%= f.text_field :event_type, type: "text", class: "form-control", placeholder: "" %>
+                  <input type="text" style="width: 400px" name="event[reservation]" class="form-control bootstrap-daterangepicker-date-time" value="06/05/2015 3:00 PM - 06/05/2015 3:30 PM">
                 </div>
               </div>
             </div><!--.col-md-9-->
           </div><!--.row-->
-          
-
-          <!-- event type -->
-          <div class="row example-row">
-            <div class="col-md-3">Facility</div><!--.col-md-3-->
-            <div class="col-md-9">
-              <%= f.collection_select :facility_ids, Facility.all, :id, :name, {:selected => ""}, {  :multiple => false, :id => "multi", :class => "selecter", :placeholder => "Select A Facility"  } %>
-            </div><!--.col-md-9-->
-          </div><!--.row-->
 
 
-          <!-- event type -->
-          <div class="row example-row">
-            <div class="col-md-3">Date and Time</div><!--.col-md-3-->
-            <div class="col-md-9">
-              <div class="inputer">
-                  <div class="input-wrapper">
-                    <input type="text" style="width: 400px" name="event[reservation]" class="form-control bootstrap-daterangepicker-date-time" value="06/05/2015 3:00 PM - 06/05/2015 3:30 PM">
-                  </div>
-                </div>
-            </div><!--.col-md-9-->
-          </div><!--.row-->
-
-
-          <!-- <div class="field">
-            <%#= f.label :starts_at %><br />
-            <%#= f.datetime_select :starts_at %>
-          </div>
-          <div class="field">
-            <%#= f.label :ends_at %><br />
-            <%#= f.datetime_select :ends_at %>
-          </div> -->
-
+          <br/>
           <!-- event checkbox options -->
            <!-- event type -->
           <div class="row example-row">
@@ -101,11 +94,12 @@
             </div><!--.col-md-9-->
           </div><!--.row-->
 
+          <br/>
 
-          <!-- event description -->
+
           <div class="row example-row">
-            <div class="col-md-3">Description</div><!--.col-md-3-->
-            <div class="col-md-9">
+            <div class="col-md-12"><h4>Description</h4></div>
+            <div class="col-md-12">
               <div class="inputer">
                 <div class="input-wrapper">
                   <%= f.text_area :description, type: "text", class: "form-control", placeholder: "" %>
@@ -114,17 +108,45 @@
             </div><!--.col-md-9-->
           </div><!--.row-->
 
-
           <%= f.hidden_field :user_id, value: current_user.id %>
           <%= f.hidden_field :eventable_type, value: @class %>
 
 
-        </div><!--.panel-body-->
-      </div><!--.panel-->
-    </div><!--.col-md-12-->
-  </div><!--.row-->
-  <%= f.submit "Create Event", class: "btn btn-blue" %>
-  <% end %>     
-</div>
-<%#= @id %>
-<%#= @class %>
+          <!-- <div class="field">
+            <%#= f.label :starts_at %><br />
+            <%#= f.datetime_select :starts_at %>
+          </div>
+          <div class="field">
+            <%#= f.label :ends_at %><br />
+            <%#= f.datetime_select :ends_at %>
+          </div> -->
+        </div>
+      </div>
+      
+    
+        <div class="panel-body padding-right-40 padding-left-40 bg-cyan">
+          <div class="row example-row margin-bottom-0">
+            <div class="col-md-12 text-center">
+              <h3 class="text-white margin-bottom-0">Have and Questions?</h3>
+              <p class="text-white semi-bold">Please check out our 
+                <a href="#" class="text-white">   
+                  <u>Events FAQ.</u>
+                </a>
+              </p>
+            </div>
+          </div><!--.row-->
+        </div>
+
+        <div class="form-buttons no-margin">
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+              <br/>
+              <%= f.submit "Awesome. Let's create an Event!", class: "btn btn-blue btn-lg btn-block btn-ripple" %>
+              <br/>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>  
