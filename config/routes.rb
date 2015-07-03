@@ -27,6 +27,8 @@ Rails.application.routes.draw do
       resources :media
     end
     
+    get "send_certification_reminder" => "notifications#send_certification_reminder", as: :notification_text
+    
     get "testsetup" => "setup#testsetup", as: :test_setup
     get "/users/:id/setup" => "setup#setup", as: :user_setup
     get "/users/:id/overview" => "setup#overview", as: :user_overview
