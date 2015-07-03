@@ -119,15 +119,16 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<div class="panel box-shadow-ccc">
-				<div class="panel-heading">
-					<div class="panel-title">
-						<h3>
-							<i class="ion-clipboard text-primary margin-right-20 h4"></i>Pending Users 
+			<div class="panel panel-transparent box-shadow-ccc">
+				<div class="panel-heading no-margin">
+					<div class="panel-title" id="coach-count">
+				       <span class="ion-clipboard mr5 pull-right"></span>
+				       <h3 class="semi-bold fs_20 mb0">
+							Pending Users
 						</h3>
 					</div>
 				</div><!--.panel-heading-->
-				<div class="panel-body without-padding">
+				<div class="panel-body no-padding">
 					<ul class="list-material has-hidden pending-members">
 						<% @pending_members.each do |m| %>
 					     <%= render 'pending', m: m%>
