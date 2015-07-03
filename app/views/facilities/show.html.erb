@@ -136,7 +136,7 @@
 							</div><!--.panel-->
 							<div class="about-us">
 								<div id="gmaps_10" class="map">
-									<%= gmaps4rails(@json) %>
+									<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
 								</div>
 							</div><!--.row-->
 						</div>
