@@ -114,4 +114,9 @@ Rails.application.routes.draw do
     post "onboard", to: "claims#partner_initial_claim", as: :partner_signup_claim
     get "claim", to: "claims#claim", as: :claim_school
     patch "claim", to: "claims#add_claim", as: :add_claim
+    
+    # errors
+    get '/404', to: 'errors#not_found', as: :not_found
+    get '/422' => 'errors#server_error'
+    get '/500' => 'errors#server_error'
 end
