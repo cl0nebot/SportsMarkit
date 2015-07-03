@@ -1,41 +1,40 @@
 <div id="roster" class="tab-pane">
+	<div class="row pt40">
+		<div class="col-lg-12">
 
-	<div class="row">
-		<div class="col-lg-8 col-lg-offset-2">
-			<div class="row">
-				<div class="col-lg-12">
-
-					<!-- coaches and staff -->
-					<div class="panel">
-						<div class="panel-heading">
-							<div class="panel-title" id="coach-count">
-						       <%= render 'coach_count', heads: @heads %>
-							</div>
-						</div><!--.panel-heading-->
-						<hr class="no-margin"/>
-						<div class="panel-body without-padding" id="heads-of-team">
-							<%= render 'heads_of_team', heads: @heads %>
-						</div><!--.panel-body-->
-					</div><!--.panel-->
-					<br/>
-					<!-- coaches and staff -->
+			<!-- coaches and staff -->
+			<div class="panel panel-transparent box-shadow-ccc">
+				<div class="panel-heading">
+					<div class="panel-title" id="coach-count">
+				       <%= render 'coach_count', heads: @heads %>
+					</div>
+				</div><!--.panel-heading-->
+				<hr class="no-margin"/>
+				<div class="panel-body no-padding" id="heads-of-team">
+					<%= render 'heads_of_team', heads: @heads %>
+				</div><!--.panel-body-->
+			</div><!--.panel-->
+			<br/>
+			<!-- coaches and staff -->
 
 
-					<!-- team roster -->
-					<div class="panel box-shadow-ccc">
-						<div class="panel-heading pb10 pt10">
-							<div class="panel-title" id="athlete-count">
-							  <%= render 'athlete_count', members: @members%>
-							</div>
-						</div><!--.panel-heading-->
-						<hr class="no-margin"/>
-						<div class="panel-body without-padding" id="athletes-of-team">
-				         <%= render 'athletes_of_team', members: @members, team: @team %>
-						</div><!--.panel-body-->
-					</div><!--.panel-->
-					<!-- team roster -->
-				</div>
-			</div>
+			<!-- team roster -->
+			<div class="panel panel-transparent box-shadow-ccc">
+				<div class="panel-heading">
+					<div class="panel-title" id="athlete-count">
+					  	<%= render 'athlete_count', members: @members%>
+					  	<h3 class="bold mt0 mb0 gf_muli fs_24">
+							<span class="ion-clipboard mr15 text-muted h3"></span> Team Roster
+						</h3>
+						
+					</div>
+				</div><!--.panel-heading-->
+				<hr class="no-margin"/>
+				<div class="panel-body no-padding" id="athletes-of-team">
+		         <%= render 'athletes_of_team', members: @members, team: @team %>
+				</div><!--.panel-body-->
+			</div><!--.panel-->
+			<!-- team roster -->
 		</div>
 	</div>
 </div>

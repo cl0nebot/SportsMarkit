@@ -1,80 +1,103 @@
 <li id="member-<%= m.class.to_s %><%= m.id%>" class="">
-	<div class="list-content row">
-		<div class="col-sm-1">
-			<div class="center">
-				<% if m.class.to_s == "Relationship" %>
-				  <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 65px; height: 65px; border: 2px solid #ddd;" %>
-				<% else %>
-				  <%= image_tag "http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png", class: "face-radius pl", alt: "", style: "width: 65px; height: 65px; border: 2px solid #ddd;" %>
-				<% end %>
+	<div class="list-content">
+		<div class="row">
+			<div class="col-sm-2">
+				<div class="">
+					<% if m.class.to_s == "Relationship" %>
+					  <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 150px; height: 150px; border: 2px solid #ddd;" %>
+					<% else %>
+					  <%= image_tag "http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png", class: "face-radius pl", alt: "", style: "width: 150px; height: 150px; border: 2px solid #ddd;" %>
+					<% end %>
+				</div>
 			</div>
-		</div>
+			<div class="col-sm-10">
+				<div class="row">
+					<div class="col-md-8">
+						<h3 class="no-margin capitalize text-black semi-bold">
+							<% if m.class.to_s == "Relationship" %>
+							  <%= m.user.try(:full_name) %>
+							<% else %>
+							  <%= m.first_name  %> <%= m.last_name %>
+							<% end %>
+						</h3>
+						<p class="small text-grey">
+							<small>
+								Name
+							</small>
+						</p>
+					</div>
+					<div class="col-md-4">
+						
+						<%#= link_to "Edit", params.merge(partial: "edit_member", m: m.id, class: m.class), remote: true  %>
+						<% if m.class.to_s == "Relationship" %>
+						  <%= link_to relationship_path(id: m, class: "Relationship"), method: :delete, remote: true, class: "pull-right btn btn-orange"  do %>
+						  		<span class="ion-trash-b"></span>
+						  	<% end %>
+						<% else %>
+						  	<%= link_to userless_relationship_path(id: m, class: "UserlessRelationship"), method: :delete, remote: true, class: "btn btn-orange pull-right" do %>
+						  		<span class="ion-trash-b"></span>
+						  	<% end %>
+						<% end %>
 
-		<div class="col-sm-3">
-			<h4 class="no-margin capitalize semi-bold">
-				<% if m.class.to_s == "Relationship" %>
-				  <%= m.user.try(:full_name) %>
-				<% else %>
-				  <%= m.first_name  %> <%= m.last_name %>
-				<% end %>
-			</h4>
-			<p class="small text-grey">
-				<small>
-					Name
-				</small>
-			</p>
-		</div>
-		<div class="col-sm-1">
-			<h5 class="no-margin capitalize semi-bold">
-				<%= m.nickname.present? ? m.nickname : "TBD" %>
-			</h5>
-			<p class="small text-grey">
-				<small>
-					Nickname
-				</small>
-			</p>
-		</div>
-		<div class="col-sm-1">
-			<h5 class="no-margin semi-bold">
-				<%= m.participant_classification.present? ? m.participant_classification : "TBD" %>
-			</h5>
-			<p class="small text-grey">
-				<small>
-					Year
-				</small>
-			</p>
-		</div>
-		<div class="col-sm-2">
-			<h5 class="no-margin semi-bold">
-				<%= m.position.present? ? m.position : "TBD" %>
-			</h5>
-			<p class="small text-grey">
-				<small>
-					Position(s)
-				</small>
-			</p>
-		</div>
-		<div class="col-sm-1">
-			<h5 class="no-margin semi-bold">
-				<%= m.age.present? ? m.age : "TBD" %>
-			</h5>
-			<p class="small text-grey">
-				<small>
-					Age
-				</small>
-			</p>
-		</div>
-		<div class="col-sm-3">
-			<h5 class="no-margin semi-bold">
-				<%= link_to "Edit", team_edit_roster_view_path(team_id: @team.id, class: m.class, id: m.id, status: "member"), remote: true, class: "btn btn-primary mr20" %>
-				
-				<%#= link_to "Edit", params.merge(partial: "edit_member", m: m.id, class: m.class), remote: true  %>
-				<% if m.class.to_s == "Relationship" %>
-				  <%= link_to "Delete", relationship_path(id: m, class: "Relationship"), method: :delete, remote: true  %>
-				<% else %>
-				  <%= link_to "Delete", userless_relationship_path(id: m, class: "UserlessRelationship"), method: :delete, remote: true  %>
-				<% end %>
-			</h5>
+						<%= link_to team_edit_roster_view_path(team_id: @team.id, class: m.class, id: m.id, status: "member"), remote: true, class: "btn btn-primary pull-right mr10" do %>
+						  		<span class="ion-ios-gear"></span>
+						  	<% end %>
+						
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-2">
+					<h5 class="no-margin semi-bold">
+						<%= m.participant_classification.present? ? m.participant_classification : "TBD" %>
+					</h5>
+					<p class="small text-grey">
+						<small>
+							Year
+						</small>
+					</p>
+				</div>
+				<div class="col-sm-2">
+					<h5 class="no-margin capitalize semi-bold">
+						<%= m.nickname.present? ? m.nickname : "TBD" %>
+					</h5>
+					<p class="small text-grey">
+						<small>
+							Nickname
+						</small>
+					</p>
+					</div>
+				<div class="col-sm-2">
+					<h5 class="no-margin semi-bold">
+						#44
+					</h5>
+					<p class="small text-grey">
+						<small>
+							Jersey No.
+						</small>
+					</p>
+				</div>
+				<div class="col-sm-2">
+					<h5 class="no-margin semi-bold">
+						<%= m.position.present? ? m.position : "TBD" %>
+					</h5>
+					<p class="small text-grey">
+						<small>
+							Position(s)
+						</small>
+					</p>
+					</div>
+				<div class="col-sm-1">
+					<h5 class="no-margin semi-bold">
+						<%= m.age.present? ? m.age : "TBD" %>
+					</h5>
+					<p class="small text-grey">
+						<small>
+							Age
+						</small>
+					</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </li>
