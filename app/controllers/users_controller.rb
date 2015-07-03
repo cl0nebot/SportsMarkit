@@ -40,8 +40,8 @@ class UsersController < ApplicationController
   def edit
     @profile = @user.build_profile if @user.profile.nil?
     @profile = @user.profile
-    @user_profile_picture = @user.user_profile_pictures.build if @user.user_profile_pictures.empty?
-    @user_profile_picture = @user.user_profile_pictures.last
+    @user_profile_picture =  UserProfilePicture.where(user_id: @user.id).empty? ? @user.user_profile_pictures.build : UserProfilePicture.where(user_id: @user.id).last
+    @user_profile_pictures = UserProfilePicture.where(user_id: @user.id)
     @object = @user
   end
   

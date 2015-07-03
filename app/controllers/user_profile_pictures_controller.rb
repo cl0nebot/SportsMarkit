@@ -1,57 +1,50 @@
 class UserProfilePicturesController < ApplicationController
   before_action :find_user
-  before_action :find_picture, except: %w[index new create]
-  
-  
-  def index
-    @pictures = UserProfilePicture.where(user_id: @user.id)
-  end
-  
-  def new
-    @picture = @user.user_profile_pictures.build
-  end
   
   def create
-    @picture = @user.user_profile_pictures.build(user_profile_picture_params)
-    if @picture.save
-      redirect_to :back
+    @user_profile_picture = @user.user_profile_pictures.build(user_profile_params)
+    @user_profile_pictures = @user.user_profile_pictures.to_a
+    if @user_profile_picture.save
+      respond_to do |format|
+        format.js
+        format.html do
+          flash[:success] = "Profile picture added successfully."
+          redirect_to edit_user_path(@user)
+        end
+      end
     else
-      render 'new'
+      format.js
+      format.html do
+        flash[:error] = "Profile picture not uploaded. Try again."
+        redirect_to edit_user_path(@user)
+      end
     end
-  end
-  
-  def show
-    
-  end
-  
-  def edit
-    
   end
   
   def update
-    if @picture.update_attributes(user_profile_picture_params)
-      redirect_to user_user_profile_pictures_path(@user)
-    else
-      render 'edit'
-    end
+    @user_profile_picture = @user.user_profile_pictures.last #instead of finding by :id, always finds last; updates
+    @user_profile_pictures = @user.user_profile_pictures.to_a
+    @user_profile_picture.user_id = User.friendly.find(params[:user_id]).id
+    @user_profile_picture.update_attributes(user_id: @user.id, photo: params[:user_profile_picture][:photo])
   end
   
   def destroy
-    @picture.destroy
-    redirect_to :back
+    @user_profile_picture = @user.user_profile_pictures.find(params[:id])
+    @user_profile_picture.destroy
+    @user_profile_pictures = @user.user_profile_pictures.where.not(id: nil)
+    respond_to do |format|
+      format.js
+      format.html { redirect_to :back }
+    end
   end
   
   protected
   
+  def user_profile_params
+    params.require(:user_profile_picture).permit(:user_id, :photo)
+  end
+  
   def find_user
     @user = User.friendly.find(params[:user_id])
-  end
-  
-  def find_picture
-    @picture = @user.user_profile_pictures.find(params[:id])  
-  end
-  
-  def user_profile_picture_params
-    params.require(:user_profile_picture).permit(:name, :description, :photo, :user_id)
   end
 end
