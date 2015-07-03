@@ -1,19 +1,28 @@
 <% fans.each do |fan| %>
-
-<div class="col-md-6">
-  <div class="card tile card-friend material-animate">
-    <a href="user-profile.html"><img src="<%= fan.user.avatar %>" class="user-photo" alt=""></a>
-    <div class="friend-content">
-	    <% if true %>
-        <p class="title"><%= fan.user.full_name %></p>
-        <p><a href="user-profile.html"><%= fan.user.classification_list(3) %></a></p>
-        <a class="btn btn-flat btn-primary btn-xs"><%= truncate fan.user.lead_affiliation.try(:proper_name), length: 17 %></a>
-	    <% end %>
-	    <p>
-        <%= link_to "View Profile", user_path(fan.user), class: "btn btn-default mt10" %>
-      </p>
-    </div><!--.friend-content-->
-  </div><!--.card-->
-</div><!--.col-->
-
+  <%= link_to user_path(fan.user) do %>
+    <div class="col-md-6">
+      <div class="card tile card-friend material-animate">
+        <a href="user-profile.html"><img src="<%= fan.user.avatar %>" class="user-photo" alt=""></a>
+        <div class="friend-content">
+    	    <% if true %>
+            <h3 class="title mt20 fs_24 mb0"><%= fan.user.full_name %></h3>
+            <p>
+              <a href="user-profile.html"><%= fan.user.classification_list(3) %></a>
+            </p>
+            <a href="#">
+              <p>
+                <%= truncate fan.user.lead_affiliation.try(:proper_name), length: 30 %>
+              </p>
+            </a>
+    	    <% end %>
+            <small class="small mr10 text-muted fs_14">
+              <i class="ion-eye"></i> 245
+            </small>
+            <small class="small mr10 text-muted fs_14">
+              <i class="ion-person-stalker"></i> 245
+            </small>
+        </div><!--.friend-content-->
+      </div><!--.card-->
+    </div><!--.col-->
+  <% end %>
 <% end %>
