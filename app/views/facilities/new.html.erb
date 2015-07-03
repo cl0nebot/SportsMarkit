@@ -1,247 +1,244 @@
-<div class="content">
+<br/>
+<div class="row">
+	<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+		<div class="panel box-shadow-ccc">
+			<div class="panel-header bg-cyan">
+				<br/>
+				<h5 class="text-right text-white semi-bold">Add or Create a New Facility
+					<i class="ion-plus-circled margin-right-10 margin-left-10 text-white"></i>
+				</h5>
+				<hr class="margin-top-0"/>
+			</div>
 
-	<br/>
+			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
+					 	<div class="row text-center">
+							<div class="col-md-12">
+								<h3 class="semi-bold text-primary">Setup a new facility</h3>
+								<h4>What type of facility?</h4>
+							</div>
+						</div>
+						<div class="row margin-bottom-0">
+							<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 well">
+								<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+									<option>Basketball Gym</option>
+									<option>Recreation Center</option>
+									<option>Tennis Court</option>
+									<option>Volleyball Court</option>
+									<option>Soccer Field</option>
+									<option>Indoor Soccer Field</option>
+									<option>Track</option>
+									<option>Indoor Track</option>
+									<option>Football Field</option>
+									<option>Indoor Football Field</option>
+								</select>
+							</div><!--.col-md-9-->
+						</div><!--.row-->
+					</div>
+				</div>
+			</div>
 
-	<div class="row">
-		<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-			<div class="panel box-shadow-ccc">
-				<div class="panel-header bg-cyan">
+			<%= form_for Facility.new, html: {id: 'new-facility-form', data: {remote: true}} do |f|   %>
+
+
+
+			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+				<div class="panel-body padding-right-40 padding-left-40">
+
+					<h5 class="semi-bold text-muted text-center">Simply complete the form to create a new facility.</h5>
 					<br/>
-					<h5 class="text-right text-white semi-bold">Add or Create a New Facility
-						<i class="ion-plus-circled margin-right-10 margin-left-10 text-white"></i>
-					</h5>
-					<hr class="margin-top-0"/>
+						
+					<br/>
+					<h4 class="text-blue semi-bold">
+						<i class="ion-ios-location margin-right-10"></i> General Info
+					</h4>
+					<br/>
+					
+					<div class="row example-row">
+						<div class="col-md-12"><h4>Name</h4></div>
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+					
+		            <div class="row example-row">
+		             <div class="col-md-12"><h4>Accessibility</h4></div>
+		                <div class="col-md-12">
+		                  <div class="clearfix margin-bottom-10">
+		                    <div class="checkboxer form-inline">
+		                      <%= f.check_box :private, id: "facility_private"  %>
+		                      <label for="facility_private">Private?</label>
+		                    </div>
+		                    <div class="checkboxer form-inline">
+		                      <%= f.check_box :publicly_visible, id: "facility_publicly_visible" %>
+		                      <label for="facility_publicly_visible">Publicly Visible</label>
+		                    </div>
+		                  </div>
+		              </div><!--.col-md-9-->
+		            </div><!--.row-->
+					
+					
+					
+					
+					
+					
+				</div>
+			</div>
+
+			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+				<div class="panel-body padding-right-40 padding-left-40">
+					<% unless request.original_url.split("/").include? "schools" %>
+
+						<br/>
+						<h4 class="text-blue semi-bold">
+							<i class="ion-ios-location margin-right-10"></i> Address and Location Info
+						</h4>
+						<br/>
+						<div class="row example-row">
+							<div class="col-md-12"><h4>Address 1</h4></div><!--.col-md-3-->
+							<div class="col-md-12">
+								<div class="inputer">
+									<div class="input-wrapper">
+										<%= f.text_field :address_1, type: "text", class: "form-control", placeholder: "" %>
+									</div>
+								</div>
+							</div><!--.col-md-9-->
+						</div><!--.row-->
+
+						<div class="row example-row">
+							<div class="col-md-12"><h4>Address 2</h4></div><!--.col-md-3-->
+							<div class="col-md-12">
+								<div class="inputer">
+									<div class="input-wrapper">
+										<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "" %>
+									</div>
+								</div>
+							</div><!--.col-md-9-->
+						</div><!--.row-->
+
+						<div class="row example-row">
+							<div class="row">
+								<div class="col-md-5">
+									<div class="col-md-12"><h4>City</h4></div><!--.col-md-3-->
+									<div class="col-md-12">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :city, type: "text", class: "form-control", placeholder: "" %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div>
+								<div class="col-md-2">
+									<div class="col-md-12"><h4>State</h4></div><!--.col-md-3-->
+									<div class="col-md-12">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div>
+								<div class="col-md-3">
+									<div class="col-md-12"><h4>Zipcode</h4></div><!--.col-md-3-->
+									<div class="col-md-12">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div>
+								<div class="col-md-2">
+									<div class="col-md-12"><h4>Ext.</h4></div><!--.col-md-3-->
+									<div class="col-md-12">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div>
+							</div>
+						</div><!--.row-->
+				</div>
+			</div>
+			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+				<div class="panel-body padding-right-40 padding-left-40">
+					<br/>
+					<h4 class="text-blue semi-bold">
+						<i class="ion-email margin-right-10"></i> Contact Information
+					</h4>
+					<br/>
+
+					<div class="row example-row">
+						<div class="col-md-12"><h4>Website</h4></div><!--.col-md-3-->
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :website, type: "text", class: "form-control", placeholder: ""  %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+					<div class="row example-row">
+						<div class="col-md-12"><h4>Email</h4></div><!--.col-md-3-->
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :email, type: "text", class: "form-control inputmask inputmask-email" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+					<div class="row example-row">
+						<div class="col-md-12"><h4>Phone</h4></div><!--.col-md-3-->
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :phone_number, type: "text", class: "form-control inputmask inputmask-phone" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+				</div>
+			</div>
+
+				<div class="panel-body padding-right-40 padding-left-40 bg-cyan">
+					<div class="row example-row margin-bottom-0">
+						<div class="col-md-12 text-center">
+							<h3 class="text-white margin-bottom-0">Have and Questions?</h3>
+							<p class="text-white semi-bold">Please check out our 
+								<a href="#" class="text-white">		
+									<u>Facility FAQ.</u>
+								</a>
+							</p>
+						</div>
+					</div><!--.row-->
 				</div>
 
-				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
+				<div class="form-buttons no-margin">
 					<div class="row">
-						<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
-						 	<div class="row text-center">
-								<div class="col-md-12">
-									<h3 class="semi-bold text-primary">Setup a new facility</h3>
-									<h4>What type of facility?</h4>
-								</div>
-							</div>
-							<div class="row margin-bottom-0">
-								<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 well">
-									<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
-										<option>Basketball Gym</option>
-										<option>Recreation Center</option>
-										<option>Tennis Court</option>
-										<option>Volleyball Court</option>
-										<option>Soccer Field</option>
-										<option>Indoor Soccer Field</option>
-										<option>Track</option>
-										<option>Indoor Track</option>
-										<option>Football Field</option>
-										<option>Indoor Football Field</option>
-									</select>
-								</div><!--.col-md-9-->
-							</div><!--.row-->
+						<div class="col-lg-8 col-lg-offset-2">
+							<br/>
+							<%= f.submit "Awesome. Let's create a facility!", class: "btn btn-blue btn-lg btn-block btn-ripple" %>
+							<br/>
 						</div>
 					</div>
 				</div>
+			</div>
+		<% end %>
+		<% end %>
+	</div>
+</div>  
 
-				<%= form_for Facility.new, html: {id: 'new-facility-form', data: {remote: true}} do |f|   %>
-
-
-
-				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
-					<div class="panel-body padding-right-40 padding-left-40">
-
-						<h5 class="semi-bold text-muted text-center">Simply complete the form to create a new facility.</h5>
-						<br/>
-							
-						<br/>
-						<h4 class="text-blue semi-bold">
-							<i class="ion-ios-location margin-right-10"></i> General Info
-						</h4>
-						<br/>
-						
-						<div class="row example-row">
-							<div class="col-md-12"><h4>Name</h4></div>
-							<div class="col-md-12">
-								<div class="inputer">
-									<div class="input-wrapper">
-										<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
-									</div>
-								</div>
-							</div><!--.col-md-9-->
-						</div><!--.row-->
-
-						
-			            <div class="row example-row">
-			             <div class="col-md-12"><h4>Accessibility</h4></div>
-			                <div class="col-md-12">
-			                  <div class="clearfix margin-bottom-10">
-			                    <div class="checkboxer form-inline">
-			                      <%= f.check_box :private, id: "facility_private"  %>
-			                      <label for="facility_private">Private?</label>
-			                    </div>
-			                    <div class="checkboxer form-inline">
-			                      <%= f.check_box :publicly_visible, id: "facility_publicly_visible" %>
-			                      <label for="facility_publicly_visible">Publicly Visible</label>
-			                    </div>
-			                  </div>
-			              </div><!--.col-md-9-->
-			            </div><!--.row-->
-						
-						
-						
-						
-						
-						
-					</div>
-				</div>
-
-				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
-					<div class="panel-body padding-right-40 padding-left-40">
-						<% unless request.original_url.split("/").include? "schools" %>
-
-							<br/>
-							<h4 class="text-blue semi-bold">
-								<i class="ion-ios-location margin-right-10"></i> Address and Location Info
-							</h4>
-							<br/>
-							<div class="row example-row">
-								<div class="col-md-12"><h4>Address 1</h4></div><!--.col-md-3-->
-								<div class="col-md-12">
-									<div class="inputer">
-										<div class="input-wrapper">
-											<%= f.text_field :address_1, type: "text", class: "form-control", placeholder: "" %>
-										</div>
-									</div>
-								</div><!--.col-md-9-->
-							</div><!--.row-->
-
-							<div class="row example-row">
-								<div class="col-md-12"><h4>Address 2</h4></div><!--.col-md-3-->
-								<div class="col-md-12">
-									<div class="inputer">
-										<div class="input-wrapper">
-											<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "" %>
-										</div>
-									</div>
-								</div><!--.col-md-9-->
-							</div><!--.row-->
-
-							<div class="row example-row">
-								<div class="row">
-									<div class="col-md-5">
-										<div class="col-md-12"><h4>City</h4></div><!--.col-md-3-->
-										<div class="col-md-12">
-											<div class="inputer">
-												<div class="input-wrapper">
-													<%= f.text_field :city, type: "text", class: "form-control", placeholder: "" %>
-												</div>
-											</div>
-										</div><!--.col-md-9-->
-									</div>
-									<div class="col-md-2">
-										<div class="col-md-12"><h4>State</h4></div><!--.col-md-3-->
-										<div class="col-md-12">
-											<div class="inputer">
-												<div class="input-wrapper">
-													<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %>
-												</div>
-											</div>
-										</div><!--.col-md-9-->
-									</div>
-									<div class="col-md-3">
-										<div class="col-md-12"><h4>Zipcode</h4></div><!--.col-md-3-->
-										<div class="col-md-12">
-											<div class="inputer">
-												<div class="input-wrapper">
-													<%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true %>
-												</div>
-											</div>
-										</div><!--.col-md-9-->
-									</div>
-									<div class="col-md-2">
-										<div class="col-md-12"><h4>Ext.</h4></div><!--.col-md-3-->
-										<div class="col-md-12">
-											<div class="inputer">
-												<div class="input-wrapper">
-													<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true %>
-												</div>
-											</div>
-										</div><!--.col-md-9-->
-									</div>
-								</div>
-							</div><!--.row-->
-					</div>
-				</div>
-				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
-					<div class="panel-body padding-right-40 padding-left-40">
-						<br/>
-						<h4 class="text-blue semi-bold">
-							<i class="ion-email margin-right-10"></i> Contact Information
-						</h4>
-						<br/>
-
-						<div class="row example-row">
-							<div class="col-md-12"><h4>Website</h4></div><!--.col-md-3-->
-							<div class="col-md-12">
-								<div class="inputer">
-									<div class="input-wrapper">
-										<%= f.text_field :website, type: "text", class: "form-control", placeholder: ""  %>
-									</div>
-								</div>
-							</div><!--.col-md-9-->
-						</div><!--.row-->
-
-						<div class="row example-row">
-							<div class="col-md-12"><h4>Email</h4></div><!--.col-md-3-->
-							<div class="col-md-12">
-								<div class="inputer">
-									<div class="input-wrapper">
-										<%= f.text_field :email, type: "text", class: "form-control inputmask inputmask-email" %>
-									</div>
-								</div>
-							</div><!--.col-md-9-->
-						</div><!--.row-->
-
-						<div class="row example-row">
-							<div class="col-md-12"><h4>Phone</h4></div><!--.col-md-3-->
-							<div class="col-md-12">
-								<div class="inputer">
-									<div class="input-wrapper">
-										<%= f.text_field :phone_number, type: "text", class: "form-control inputmask inputmask-phone" %>
-									</div>
-								</div>
-							</div><!--.col-md-9-->
-						</div><!--.row-->
-					</div>
-				</div>
-
-					<div class="panel-body padding-right-40 padding-left-40 bg-cyan">
-						<div class="row example-row margin-bottom-0">
-							<div class="col-md-12 text-center">
-								<h3 class="text-white margin-bottom-0">Have and Questions?</h3>
-								<p class="text-white semi-bold">Please check out our 
-									<a href="#" class="text-white">		
-										<u>Facility FAQ.</u>
-									</a>
-								</p>
-							</div>
-						</div><!--.row-->
-					</div>
-
-					<div class="form-buttons no-margin">
-						<div class="row">
-							<div class="col-lg-8 col-lg-offset-2">
-								<br/>
-								<%= f.submit "Awesome. Let's create a facility!", class: "btn btn-blue btn-lg btn-block btn-ripple" %>
-								<br/>
-							</div>
-						</div>
-					</div>
-				</div>
-			<% end %>
-			<% end %>
-		</div>
-	</div>  
-</div>
 <%#= @id %>
 <%#= @class %>
 
