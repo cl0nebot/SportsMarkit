@@ -1,0 +1,59 @@
+ <%= render 'shared/background_photo_tab', photo_owner: @team %>
+
+		<div class="bg-overlay"></div><!--.bg-overlay-->
+
+		<div class="social-buttons">
+			<%= render 'shared/fan' %>
+		</div>
+
+		<div class="team-buttons" id="team-button">
+			<% if current_user.relationships.where(team_id: @team.id).empty? %>
+			  <%= render 'relationships/relationship'%>
+			<% elsif current_user.relationships.where(team_id: @team.id, accepted: nil, rejected: nil).present? %>
+			  <%= render 'relationships/pending'%>
+			<% elsif current_user.relationships.where(team_id: @team.id, accepted: true).present? %>
+				<%= render 'relationships/member'%>
+				<%= link_to "/relationships/#{current_user.relationships.where(team_id: @team.id, accepted: true).last.slug}/edit" do %>
+				   <button class="btn btn-flat btn-ripple pull-right text-off-white">
+				   		Edit Profile <i class="ion-android-settings"></i>
+				   </button>
+				<% end %>
+			<% end %>
+		</div>
+
+		<div class="profile-info">
+			<div class="profile-photo">
+				<img src="<%= image_path(Sport.find_by_sport(@team.sport).try(:default_photo)) %>" alt="">
+			</div><!--.profile-photo-->
+			<div class="profile-text light capitalize">
+				<%= @team.name %>
+				<% if @team.school.present? %>
+				  	<span class="caption inline">
+				  		<%= link_to @team.school.name, school_path(@team.school) %>
+				  	</span>
+				<% end %>
+				<br/>
+				<span class="caption"><span class="glyphicon glyphicon-map-marker"></span>
+				<%= @team.sport %></span>
+			</div><!--.profile-text-->
+		</div><!--.profile-info-->
+
+
+		<div class="row">
+			<div class="col-sm-6">
+	          <%= render 'shared/upcoming_event', object: @team %>
+			</div><!--.col-->
+			<div class="col-sm-6">
+				<ol class="breadcrumb">
+					<li><a href="/"><i class="ion-home"></i></a></li>
+					<li><a href="<%= teams_path %>">Teams</a></li>
+					<% if @team.school.present? %>
+				  		<li><a href="#"><%= @team.school.name %></a></li>
+				  		<!-- add path for linking -->
+					<% end %>
+					<li><a href="#" class="active"><%= @team.name %></a></li>
+				</ol>
+			</div><!--.col-->
+		</div><!--.row-->
+
+	
