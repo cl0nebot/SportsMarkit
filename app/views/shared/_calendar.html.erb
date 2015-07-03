@@ -3,7 +3,7 @@
     <div class="filters">
     <%= form_tag "", method: :get, id: "calendar_filter", remote: true do %>
     
-      <h4 class="semi-bold">Event Type:</h4>
+      <h5 class="semi-bold">Event Type:</h5>
       <hr class="no-margin"/>
       <% eventable.all_events.pluck(:event_type).uniq.each do |e_type| %>
         <label><%= e_type %>
@@ -14,7 +14,7 @@
       <br/>
       <br/>
 
-      <h4 class="semi-bold">Created by:</h4>
+      <h5 class="semi-bold">Created by:</h5>
       <hr class="no-margin"/>
       <% eventable.all_events.includes(:user).map(&:user).uniq.compact.each do |user| %>
         <label><%= creator_name(user) %>

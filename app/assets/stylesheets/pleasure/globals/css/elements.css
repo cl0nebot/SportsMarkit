@@ -8154,6 +8154,7 @@ select[data-style="btn-blue-grey"] + .bootstrap-select li.selected a {
   background-color: #fff;
   box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.26);
   overflow: hidden;
+  height: auto;
 }
 .card ul {
   list-style-type: none;
