@@ -6,18 +6,19 @@
           </div>
           <div class="col-lg-8">
             <ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
-              <li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">About</a></li>
+              <li class="active">
+                <a href="#about" data-toggle="tab" class="btn-ripple">About</a>
+              </li>
               <li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
               <li><a href="#teammates" data-toggle="tab" class="btn-ripple">Teammates</a></li>
-              <li><a href="#media" data-toggle="tab" class="btn-ripple">Photos & Videos</a></li>
+              <li>
+                <a href="#media" data-toggle="tab" class="btn-ripple">Photos & Videos</a>
+              </li>
               <% if ParentChild.where(child_id: @user.id).present? %>
                 <li>
                   <a href="#parent-child" data-toggle="tab" class="btn-ripple">Parents</a>
                 </li>
               <% end %>
-              <%# if ParentChild.where(parent_id: @user.id).present? %>
-                <!-- <li><a href="#parent-child" data-toggle="tab" class="btn-ripple">Children</a></li> -->
-              <%# end %>
               <li>
                 <a href="#calendar-tab" data-toggle="tab" class="btn-ripple">
                   Calendar
@@ -27,6 +28,9 @@
                 <a href="#following" data-toggle="tab" class="btn-ripple">Following</a>
               </li>
               <li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
+              <%# if ParentChild.where(parent_id: @user.id).present? %>
+                <!-- <li><a href="#parent-child" data-toggle="tab" class="btn-ripple">Children</a></li> -->
+              <%# end %>
               <!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
               <li>
                 <button href="" class="mt15 ml10 btn btn-primary button-striped button-full-striped btn-ripple btn-xs">Edit Profile</button>

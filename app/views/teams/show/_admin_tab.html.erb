@@ -1,141 +1,141 @@
-<div id="admin" class="tab-pane">
+<div id="admin" class="tab-pane pt40">
 	<div class="row">
-		<div class="col-lg-10 col-lg-offset-1">
+		<div class=" collapse col-md-12">
 			<div class="row">
-				<div class="col-md-7">
-					<h3><i class="ion-clipboard text-primary margin-right-20 h4"></i>Pending Users </h3>
-					<div class="panel box-shadow-ccc">
-						<div class="panel-heading">
-							<div class="panel-title">
-							</div>
-						</div><!--.panel-heading-->
-						<div class="panel-body without-padding">
-							<ul class="list-material has-hidden pending-members">
-								<% @pending_members.each do |m| %>
-							     <%= render 'pending', m: m%>
-							  <% end %>
-							</ul>
-						</div><!--.panel-body-->
-					</div><!--.panel-->
+				<div class="pull-left">
+					<%= image_tag("http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "img-circle margin-left-20 margin-right-20", height: "45", width: "45" ) %>
 				</div>
-				<div class="col-md-offset-1 col-md-4">
-					<div class="row">
-						<div class="pull-left">
-							<%= image_tag("http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "img-circle margin-left-20 margin-right-20", height: "45", width: "45" ) %>
-						</div>
-						<div class="pull-left">
-							<h3><i class="ion-person-add text-primary margin-right-10 h4"></i>Add New User</h3>
-						</div>
-					</div>
-
-					<div class="note note-warning note-left-striped">
-						<h4>Adding a new member to your team profile.</h4>
-						<p class="small text-grey">
-							<small>
-								Use the search box below to find your teams. Once added, the team administrator will be notified of your request to join that team. In the meantime, your status will be pending.
-							</small>
-						</p>
-					</div>
-
-					<hr class="no-margin"/>
-					<br/>
-
-					<div class="panel">
-			<div class="panel-body">
-
-
-				<%= form_for @new_user, url: create_roster_spot_team_path do |f| %>
-
-					<div class="row">
-						<div class="col-md-6">
-							<div class="row example-row">
-								<div class="col-md-12"><h4>First Name</h4></div><!--.col-md-3-->
-								<div class="col-md-12">
-									<div class="inputer">
-										<div class="input-wrapper">
-											<%= text_field_tag :first_name, "", type: "text", class: "form-control", placeholder: "" %>
-										</div>
-									</div>
-								</div><!--.col-md-9-->
-							</div><!--.row-->
-						</div>
-
-						<div class="col-md-6">
-							<div class="row example-row">
-								<div class="col-md-12"><h4>Last Name</h4></div><!--.col-md-3-->
-								<div class="col-md-12">
-									<div class="inputer">
-										<div class="input-wrapper">
-											<%= text_field_tag :last_name,"", type: "text", class: "form-control", placeholder: "" %>
-										</div>
-									</div>
-								</div><!--.col-md-9-->
-							</div><!--.row-->
-						</div>
-					</div>
-
-
-					
-						<div class="row">
-							<div class="col-md-6">
-								<div class="row example-row">
-									<div class="col-md-12"><h4>Classification</h4></div><!--.col-md-3-->
-									<div class="col-md-12">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= text_field_tag :participant_classification,"" , placeholder: "", type: "text", class: "form-control"%>
-											</div>
-										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
-							</div>
-
-							<div class="col-md-6">
-								<div class="row example-row">
-									<div class="col-md-12"><h4>Position</h4></div><!--.col-md-3-->
-									<div class="col-md-12">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= text_field_tag :position,"" , placeholder: "", type: "text", class: "form-control"%>
-											</div>
-										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
-							</div>
-						</div>
-
-
-						<div class="row">
-							<div class="col-md-12">
-								<div class="row example-row">
-									<div class="col-md-12"><h4>Cell Phone</h4></div><!--.col-md-3-->
-									<div class="col-md-12">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= text_field_tag :mobile_phone_number,"", type: "text", class: "form-control", placeholder: "" %>
-											</div>
-										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
-							</div>
-
-					
-							<%= hidden_field_tag :team_id,"", value: @team.id %>
-							
-							athlete: <%= check_box_tag :participant, "", false%>
-							coach: <%= check_box_tag :head, "", false %>
-                            trainer: <%= check_box_tag :trainer, "", false%>		
-							manager: <%= check_box_tag :manager, "", false%>		
-							admin: <%= check_box_tag :admin, "", false%>
-
-
-				<%= f.submit "Add New Team Member", class: "btn btn-block btn-white" %>
-
-			</div><!--.panel-body-->
-				</div><!--.panel-->
+				<div class="pull-left">
+					<h3><i class="ion-person-add text-primary margin-right-10 h4"></i>Add New User</h3>
 				</div>
 			</div>
+
+			<div class="note note-warning note-left-striped">
+				<h4>Adding a new member to your team profile.</h4>
+				<p class="small text-grey">
+					<small>
+						Use the search box below to find your teams. Once added, the team administrator will be notified of your request to join that team. In the meantime, your status will be pending.
+					</small>
+				</p>
+			</div>
+
+			<hr class="no-margin"/>
+			<br/>
+
+			<div class="panel">
+				<div class="panel-body">
+
+
+					<%= form_for @new_user, url: create_roster_spot_team_path do |f| %>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="row example-row">
+									<div class="col-md-12"><h4>First Name</h4></div><!--.col-md-3-->
+									<div class="col-md-12">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= text_field_tag :first_name, "", type: "text", class: "form-control", placeholder: "" %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+							</div>
+
+							<div class="col-md-6">
+								<div class="row example-row">
+									<div class="col-md-12"><h4>Last Name</h4></div><!--.col-md-3-->
+									<div class="col-md-12">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= text_field_tag :last_name,"", type: "text", class: "form-control", placeholder: "" %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+							</div>
+						</div>
+
+
+						
+							<div class="row">
+								<div class="col-md-6">
+									<div class="row example-row">
+										<div class="col-md-12"><h4>Classification</h4></div><!--.col-md-3-->
+										<div class="col-md-12">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<%= text_field_tag :participant_classification,"" , placeholder: "", type: "text", class: "form-control"%>
+												</div>
+											</div>
+										</div><!--.col-md-9-->
+									</div><!--.row-->
+								</div>
+
+								<div class="col-md-6">
+									<div class="row example-row">
+										<div class="col-md-12"><h4>Position</h4></div><!--.col-md-3-->
+										<div class="col-md-12">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<%= text_field_tag :position,"" , placeholder: "", type: "text", class: "form-control"%>
+												</div>
+											</div>
+										</div><!--.col-md-9-->
+									</div><!--.row-->
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div class="col-md-12">
+									<div class="row example-row">
+										<div class="col-md-12"><h4>Cell Phone</h4></div><!--.col-md-3-->
+										<div class="col-md-12">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<%= text_field_tag :mobile_phone_number,"", type: "text", class: "form-control", placeholder: "" %>
+												</div>
+											</div>
+										</div><!--.col-md-9-->
+									</div><!--.row-->
+								</div>
+
+						
+								<%= hidden_field_tag :team_id,"", value: @team.id %>
+								
+								athlete: <%= check_box_tag :participant, "", false%>
+								coach: <%= check_box_tag :head, "", false %>
+	                            trainer: <%= check_box_tag :trainer, "", false%>		
+								manager: <%= check_box_tag :manager, "", false%>		
+								admin: <%= check_box_tag :admin, "", false%>
+
+
+					<%= f.submit "Add New Team Member", class: "btn btn-block btn-white" %>
+
+				</div><!--.panel-body-->
+			</div><!--.panel-->
 		</div>
 	</div>
-	<% end %>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel box-shadow-ccc">
+				<div class="panel-heading">
+					<div class="panel-title">
+						<h3>
+							<i class="ion-clipboard text-primary margin-right-20 h4"></i>Pending Users 
+						</h3>
+					</div>
+				</div><!--.panel-heading-->
+				<div class="panel-body without-padding">
+					<ul class="list-material has-hidden pending-members">
+						<% @pending_members.each do |m| %>
+					     <%= render 'pending', m: m%>
+					  <% end %>
+					</ul>
+				</div><!--.panel-body-->
+			</div><!--.panel-->
+		</div>
+	</div>
 </div>
+<% end %>
