@@ -1,40 +1,44 @@
-        <div class="row ">
-          <% @teams.each do |team| %>
-            <div class="col-md-4 col-lg-3 col-sm-12">
-              <div class="card card-meal card-meal-green card-square card-shadow">
-                <div class="card-heading row">
-                  <div class="col-md-2">
-                    <%= image_tag Sport.find_by_sport(team.sport).try(:default_photo), class: "img-responsive" %>
-                  </div>
-                  <div class="col-md-10">
-                    <h4 class="card-title capitalize">
-                      <%= link_to team.proper_name, "/teams/#{team.slug}" %>
-                    </h4>
+<div class="row ">
+  <% @teams.each do |team| %>
+    <div class="col-md-3 col-sm-12">
+      <div class="card card-meal card-meal-blue card-square card-shadow">
+        <div class="card-heading row pr15 pl15 pt10 pb10">
+          <div class="col-md-12">
+            <h5 class="card-title capitalize lh_20 no-margin fs_16">
+              <span class="semi-bold">
+                <%= link_to team.proper_name, "/teams/#{team.slug}" %>
+              </span>
+            </h5>
 
-                    <div class="card-subhead capitalize">
-                      <%= team.sport %>
-                    </div>
-                    <!--.card-subhead-->
-                    <div class="card-subhead capitalize">
-                      <i class="ion-location"></i> <%= team.city_state %>
-                    </div>
-                    <!--.card-subhead-->
-                  </div>
-                </div>
-                <!--.card-heading-->
-                <div class="card-body">
-                  <div class="image">
-                    <a href="#">
-                      <%= image_tag("http://ingridwu.dmmdmcfatter.com/wp-content/uploads/2015/01/placeholder.png") %>
-                    </a>
-                  </div>
-                  <!--.image-->
-                </div>
-                <!--.card-body-->
-              </div>
-              <!--.card-->
+            <div class="card-subhead capitalize">
+              <h6 class="semi-bold no-margin lh_20">
+                <%= image_tag Sport.find_by_sport(team.sport).try(:default_photo), height: "20", width: "auto", class: "mr5" %>
+                <small><%= team.sport %> Team</small>
+              </h6>
             </div>
-            <!--.col-md-4-->
-          <% end %>
+            <!--.card-subhead-->
+            <div class="card-subhead capitalize">
+              <h6 class="semi-bold no-margin mt5">
+                <small><i class="ion-location"></i> <%= team.city_state %></small>
+              </h6>
+            </div>
+            <!--.card-subhead-->
+          </div>
         </div>
-        <!--.row-->
+        <!--.card-heading-->
+        <div class="card-body">
+          <div class="image">
+            <a href="#">
+              <%= image_tag("http://ingridwu.dmmdmcfatter.com/wp-content/uploads/2015/01/placeholder.png") %>
+            </a>
+          </div>
+          <!--.image-->
+        </div>
+        <!--.card-body-->
+      </div>
+      <!--.card-->
+    </div>
+    <!--.col-md-4-->
+  <% end %>
+</div>
+<!--.row-->
