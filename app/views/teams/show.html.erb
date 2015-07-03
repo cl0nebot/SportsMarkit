@@ -38,6 +38,10 @@
       <div class="row">
         <div class="col-md-12">
           <div class="tab-content without-border">
+						
+						<!-- about -->
+						<%= render "teams/show/about_tab" %>
+
 						<!-- roster -->
 						<%= render "teams/show/roster_tab" %>
 
@@ -52,19 +56,19 @@
 
 					 	<!-- following -->
 					 	<%= render "teams/show/following_tab" %>
-			      
-			      <!-- fans -->
-			      <%= render "teams/show/fans_tab" %>
+				      
+				      <!-- fans -->
+				      <%= render "teams/show/fans_tab" %>
 
-			      <!-- admin -->
-			      <%= render "teams/show/admin_tab" %>
+				      <!-- admin -->
+				      <%= render "teams/show/admin_tab" %>
 
-			      <!-- payments -->
-						<!-- <div id="payments" class="tab-pane">
-						</div> -->
-						<!--#payments.tab-pane-->
+				      <!-- payments -->
+							<!-- <div id="payments" class="tab-pane">
+							</div> -->
+							<!--#payments.tab-pane-->
 
-						<%#= render 'shared/photo_tab', photo_owner: @team %>
+							<%#= render 'shared/photo_tab', photo_owner: @team %>
 
 					</div><!--.tab-content-->
 				</div><!--.col-->

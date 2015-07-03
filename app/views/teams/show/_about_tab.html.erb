@@ -1,0 +1,16 @@
+<div id="about" class="tab-pane active">
+	<div class="row mt20">
+		<div class="profile-text light capitalize">
+			<h5 class="text-black mb5"><%= @team.name %></h5>
+			<% if @team.school.present? %>
+			  	<h3 class="semi-bold no-margin">
+			  		<%= link_to @team.school.name, school_path(@team.school) %>
+			  	</h3>
+			<% end %>
+			<p class="text-muted small"><%= @team.sport %> Team</p>
+		</div><!--.profile-text-->
+
+	</div>
+</div>
+
+
