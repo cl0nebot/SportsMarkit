@@ -45,7 +45,13 @@
 
 
 								
+<!-- these must stay together as an interator -->
+<% @user.certificates.each do |certificate| %>
 
+<%= certificate.certification.name %>
+<%= certificate.expiration %>
+
+<% end %>
 
 
 										
