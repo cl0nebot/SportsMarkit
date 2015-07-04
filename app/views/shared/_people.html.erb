@@ -1,5 +1,5 @@
-<div class="row">
-	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 well">
+<div class="row pt40">
+	<div class="well">
 		<h3 class="center">
 			<i class="ion-search margin-right-20 text-blue"></i>	
 			Find anyone in our Athletic Community
@@ -88,67 +88,59 @@
 <br/>
 
 <div class="row">
-	
-	
-		
-		<% @people.each_with_index do |person, i| %>
-		<div class="col-lg-3 col-md-4 col-sm-6">
-		<div class="card tile card-friend material-animate box-shadow-ccc">
-			<a href="user-profile.html">
-				<img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt="">
-			</a>
-			<div class="friend-content">
-				<div class="margin-bottom-5">
-					<p class="title"><%= person.name %></p>
-					<h5 class="no-margin">[Status], [Title/Level]</h5>
-					<h6 class="m-t-5">
-						<small><%= pluralize person.teams.count, "Team" %></small>
-					</h6>
-				</div>
-				<div class="pull-bottom clearfix margin-left-10">
-					<div class="">
-						
-							<%= link_to "View Profile", user_path(person), class: "btn btn-primary btn-xs button-striped button-full-striped btn-ripple"  %>
-						
-						<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
+	<% @people.each_with_index do |person, i| %>
+		<div class="col-lg-6 col-md-6 col-sm-6">
+			<div class="card tile card-friend material-animate box-shadow-ccc">
+				<a href="user-profile.html">
+					<img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt="">
+				</a>
+				<div class="friend-content">
+					<div class="margin-bottom-5">
+						<p class="title"><%= person.name %></p>
+						<p class="no-margin">[Status], [Title/Level]</p>
+						<h6 class="m-t-5">
+							<small><%= pluralize person.teams.count, "Team" %>: <a href="#">team 1</a>, <a href="#">team 2</a>, <a href="#">team 3</a></small>
+						</h6>
+						<div class="ml10">
+							<%= link_to user_path(person), class: "btn btn-orange btn-sm mr10"  do %>
+								<i class="ion-clipboard mr5"></i> View Profile
+							<% end %>
+							<a class="btn btn-primary btn-sm">
+								<i class="ion-gear-b mr5"></i> Edit
+							</a>
+						</div>
 					</div>
-				</div>
-			</div><!--.friend-content-->
-		</div><!--.card-->
-	</div><!--.col-->
-	<% end %>
-	
-	
-		<% @userless_people.each_with_index do |person, i| %>
-		<div class="col-lg-3 col-md-4 col-sm-6">
-		<div class="card tile card-friend material-animate box-shadow-ccc">
-			<a href="user-profile.html">
-				<img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt="">
-			</a>
-			<div class="friend-content">
-				<div class="margin-bottom-5">
-					<p class="title"><%= person.first_name %> <%= person.last_name %></p>
-					<h5 class="no-margin">[Status], [Title/Level]</h5>
-					<h6 class="m-t-5">
-						<small>[No.] Teams</small>
-					</h6>
-				</div>
-				<div class="pull-bottom clearfix margin-left-10">
-					<div class="">
-						<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
-							View Profile
-						</a>
-						<a class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">Edit</a>
-					</div>
-				</div>
-			</div><!--.friend-content-->
-		</div><!--.card-->
-	</div><!--.col-->
+				</div><!--.friend-content-->
+			</div><!--.card-->
+		</div><!--.col-->
 	<% end %>
 
-	
-	
-	
-
-
+	<% @userless_people.each_with_index do |person, i| %>
+		<div class="col-lg-6 col-md-6 col-sm-6">
+			<div class="card tile card-friend material-animate box-shadow-ccc">
+				<a href="user-profile.html">
+					<img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt="">
+				</a>
+				<div class="friend-content">
+					<div class="margin-bottom-5">
+						<p class="title">
+							<%= person.first_name %> <%= person.last_name %>
+						</p>
+						<p class="no-margin">[Status], [Title/Level]</p>
+						<h6 class="m-t-5">
+							<small><%#= pluralize person.teams.count, "Team" %>[4 Teams]: <a href="#">team 1</a>, <a href="#">team 2</a>, <a href="#">team 3</a></small>
+						</h6>
+						<div class="ml10">
+							<%= link_to user_path(person), class: "btn btn-orange btn-sm mr10"  do %>
+								<i class="ion-clipboard mr5"></i> View Profile
+							<% end %>
+							<a class="btn btn-primary btn-sm">
+								<i class="ion-gear-b mr5"></i> Edit
+							</a>
+						</div>
+					</div>
+				</div><!--.friend-content-->
+			</div><!--.card-->
+		</div><!--.col-->
+	<% end %>
 </div>

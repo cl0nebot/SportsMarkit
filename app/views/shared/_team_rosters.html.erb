@@ -10,22 +10,22 @@
 						<h4 class="normal fs_18">	
 							<%= team.name %>
 						</h4>
-						<p class="text-muted">
+						<p class="text-muted mb5">
 							<small>
 								<%= pluralize team.accepted_coach_relationships.count, "Coach" %>, 
 								<%= pluralize team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize team.accepted_trainer_relationships.count, "Trainer" %>
 							</small>
 						</p>
 					</div>
-					<div class="row">
+					<div class="row mt5 pl40">
 						<div class="col-md-12">
 							<div class="mr10">
-								<%= link_to edit_team_path(team), class: "btn btn-primary" do %>
+								<%= link_to edit_team_path(team), class: "btn btn-primary btn-sm mr5" do %>
 									<i class="ion-gear-b"></i>
 								<% end %>
 								
-								<%= link_to team_path(team), class: "btn btn-primary" do %>
-								<i class="ion-clipboard"></i>
+								<%= link_to team_path(team), class: "btn btn-orange btn-sm" do %>
+									<i class="ion-clipboard"></i>
 								<% end %>
 							</div>
 						</div>
