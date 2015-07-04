@@ -1,4 +1,10 @@
 <div id="facilities" class="tab-pane">
-	<%= link_to "Add New Facility", new_school_facility_path(@school)%>
+	<br/>
+	<p class="text-right">
+		<%= link_to new_school_facility_path(@school), class: "btn btn-primary mr10 " do %>
+			<i class="ion-plus-circled mr5"></i> Add Facility
+		<% end %>
+	</p>
+	
 	<%= render 'shared/facilities', facilities: @facilities %>
 </div>
