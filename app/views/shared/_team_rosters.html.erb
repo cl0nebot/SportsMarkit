@@ -1,5 +1,5 @@
 <% @teams.each do |team| %>
-	<div class="col-md-4 col-lg-3 col-sm-6">
+	<div class="col-md-6 col-lg-4 col-sm-6">
 		<div class="panel box-shadow-ccc">
 			<div class="panel-heading">
 				<div class="panel-title">
@@ -7,31 +7,26 @@
 						<%= image_tag("placeholders/league.jpg", height: "30", width: "30") %>
 					</div>
 					<div class="pull-left margin-left-10">
-						<h4 class="normal fs_18">
-							
-							<%= team.name%>
+						<h4 class="normal fs_18">	
+							<%= team.name %>
 						</h4>
-						<p class="text-muted margin-top-5">
+						<p class="text-muted">
 							<small>
-								<%= pluralize team.accepted_coach_relationships.count, "Coach" %>, <%= pluralize team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize team.accepted_trainer_relationships.count, "Trainer" %>
+								<%= pluralize team.accepted_coach_relationships.count, "Coach" %>, 
+								<%= pluralize team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize team.accepted_trainer_relationships.count, "Trainer" %>
 							</small>
 						</p>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
-							<div class="margin-left-40">
-								<%= link_to edit_team_path(team), class: "btn btn-primary btn-xs button-striped button-full-striped btn-ripple" do %>
-								<i class="ion-gear-b margin-right-5"></i>Edit
-								<% end %><a></a>
+							<div class="mr10">
+								<%= link_to edit_team_path(team), class: "btn btn-primary" do %>
+									<i class="ion-gear-b"></i>
+								<% end %>
 								
-								<%= link_to team_path(team), class: "btn btn-primary btn-xs button-striped button-full-striped btn-ripple" do %>
-								View
-								<% end %><a></a>
-
-								<a href="#" class="btn btn-primary btn-xs button-striped button-full-striped btn-ripple">
-									<i class="ion-person-add margin-right-5"></i>
-									Invite User
-								</a>
+								<%= link_to team_path(team), class: "btn btn-primary" do %>
+								<i class="ion-clipboard"></i>
+								<% end %>
 							</div>
 						</div>
 					</div>

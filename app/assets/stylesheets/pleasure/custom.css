@@ -543,3 +543,11 @@ input.form-control {font-size: 26px; line-height: 30px;}
   -webkit-transform: translate3d(-120px, 0, 0);
   transform: translate3d(-120px, 0, 0);
 }
+
+.panel > .panel-heading .panel-title h4 {
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-block;
+  margin: 0;
+  white-space: nowrap;
+}
