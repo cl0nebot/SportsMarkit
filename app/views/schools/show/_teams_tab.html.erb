@@ -1,0 +1,52 @@
+<div id="teams" class="tab-pane">
+	<div class="row">
+		<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 well">
+			<h3 class="center">
+				<i class="ion-search margin-right-20 text-blue"></i>	
+				Quickly find a team
+			</h3>
+			<div class="btn-group btn-block">
+				<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+				Select a Team <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<% @teams.each do |team| %>
+						<li>
+							<%= link_to team_path(team) do %>
+					  			<%= team.name %>
+					  		<% end %>
+					  	</li>
+					<% end %>
+				</ul>
+			</div><!--.btn-group-->
+		</div><!--.col-md-9-->
+	</div>
+	<br/>
+	<div class="row teams">
+	<%= render 'shared/team_rosters' %>
+		
+
+	</div>
+	<!-- <ul class="list-material">
+		<% @teams.each do |team| %>
+			<li class="has-action-left has-action-right">
+				<a href="#" class="visible">
+					<div class="list-action-left">
+						<i class="ion-university icon-circle"></i>
+					</div>
+					<div class="list-content">
+						<span class="title">
+							<%= link_to team.name, "/teams/#{team.slug}" %>
+						</span>
+						<span class="caption">Basketball</span>
+					</div>
+					<div class="list-action-right">
+						<span class="top">15 min</span>
+						<i class="ion-android-done bottom"></i>
+					</div>
+				</a>
+			</li>
+		<% end %>
+	</ul> -->
+</div>
+<!--#teams.tab-pane-->

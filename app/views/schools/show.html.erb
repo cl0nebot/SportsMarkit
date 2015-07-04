@@ -13,288 +13,51 @@
 
 <div class="content">
 	<div class="page-header full-content parallax">
-		
-    <%= render 'shared/background_photo_tab', photo_owner: @school %>
-
-		<div class="bg-overlay"></div>
-		
-		<div class="profile-info">
-			<div class="profile-photo">
-				<img src="<%= image_path("thumbs/school.jpg") %>" alt="">
-			</div><!--.profile-photo-->
-			<div class="profile-text light capitalize">
-				<%= @school.name %>
-				<span class="caption">
-					<%= @school.address_1 %><br>
-					<%= @school.city %>, <%= @school.state %>
-				</span>
-			</div><!--.profile-text-->
-		</div><!--.profile-info-->
-
-		<div class="social-buttons">
-			<%= render 'shared/fan' %>
-		</div>
-
-		<div class="row">
-			<div class="col-sm-6">
-			  <%= render 'shared/upcoming_event', object: @school %>
-			</div><!--.col-->
-			<div class="col-sm-6">
-				<ol class="breadcrumb">
-					<li><a href="/"><i class="ion-home"></i></a></li>
-					<li><a href="<%= schools_path %>">Schools</a></li>
-					<li><a href="#" class="active"><%= @school.name %></a></li>
-				</ol>
-			</div><!--.col-->
-		</div><!--.row-->
-
-		<div class="header-tabs scrollable-tabs sticky">
-			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
-				<li><a href="#about" data-toggle="tab" class="btn-ripple">About</a></li>
-				<li class="active"><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
-				<li><a href="#people" data-toggle="tab" class="btn-ripple">People</a></li>
-				<!-- <li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li> -->
-				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li>
-				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
-        		<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
-        		<li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li>
-      			<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
-
-        <% if AthleticDirector.where(user_id: current_user.id, school_id: @school.id).present? %>
-				  <li><a href="#certifications" data-toggle="tab" class="btn-ripple">Certifications</a></li>
-				<% end %>
-			</ul>
-		</div>
+		<%= render "schools/show/header" %>
+		<%= render "schools/show/tab_navigation" %>
 	</div><!--.page-header-->
 
-	<div class="row user-profile">
-		<div class="col-md-12">
-			<div class="tab-content without-border">
-				
+	<!-- main content div -->
+  <div class="container">
+    <div class="user-profile">
+      <div class="row">
+        <%= image_tag("thumbs/school.jpg", class: "col-md-2 img-thumbnail img-responsive b-rad-6", style: "margin-top: -180px; z-index: 99999;") %>
+        <div class="col-md-10">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="tab-content without-border">
 
-				<!-- following -->
-				<div id="about" class="tab-pane">
-					<div class="row">
-						<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-2 col-sm-12">
-							<div class="panel">
-								<div class="panel-body">
-									<div class="row contact-us">
-										
-										<br/>
-										<div class="col-md-3 col-sm-12">
-											<h2 class="text-center">
-												Contact
-											</h2>
-										</div><!--.col-->
-										<div class="col-md-9 col-sm-12">
-											<div class="row">
-												<div class="col-md-4 ">
-													<div class="address">
-														<h4>Address</h4>
-														<%= @school.address_1 %><br>
-														<%= @school.city %>, <%= @school.state %>, <%= @school.zip %>
-													</div>
-												</div><!--.col-md-3-->
-												<div class="col-md-4">
-													<div class="address">
-														<h4>Phone</h4>
-														<span class="fa fa-phone m-r-5"></span>
-														<%= @school.phone_number %><br>
-														<span class="fa fa-clock-o m-r-5"></span>
-														8am - 5pm<br>
-													</div>
-												</div><!--.col-md-3-->
-												<div class="col-md-4">
-													<div class="address">
-														<h4>Online</h4>
-														<span class="fa fa-desktop m-r-5"></span>
-														<%= @school.website %><br>
-														<span class="fa fa-envelope m-r-5"></span>
-														<%= @school.email %><br>
-													</div>
-												</div><!--.col-md-3-->
-											</div><!--.row-->
-										</div><!--col-->
-									</div><!--.row-->
-
-									<hr/>
-
-									<div class="col-md-12">
-                  						<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
-									</div><!--.col-->
-									
-								</div><!--.panel-body-->
-							</div><!--.panel-->
-						</div><!--.col-md-12-->
-					</div><!--.row-->
-				</div>
-				<!--#following.tab-pane-->
-
-				<!-- teams -->
-				<div id="teams" class="tab-pane active">
-
-					<div class="row">
-						<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 well">
-							<h3 class="center">
-								<i class="ion-search margin-right-20 text-blue"></i>	
-								Quickly find a team
-							</h3>
-							<div class="btn-group btn-block">
-								<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-								Select a Team <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu">
-									<% @teams.each do |team| %>
-										<li>
-											<%= link_to team_path(team) do %>
-									  			<%= team.name %>
-									  		<% end %>
-									  	</li>
-									<% end %>
-								</ul>
-							</div><!--.btn-group-->
-						</div><!--.col-md-9-->
-					</div>
-					<br/>
-					<div class="row teams">
-					<%= render 'shared/team_rosters' %>
+						<!-- about -->
+						<%= render "schools/show/about_tab" %>
 						
-	
-					</div>
-					<!-- <ul class="list-material">
-						<% @teams.each do |team| %>
-							<li class="has-action-left has-action-right">
-								<a href="#" class="visible">
-									<div class="list-action-left">
-										<i class="ion-university icon-circle"></i>
-									</div>
-									<div class="list-content">
-										<span class="title">
-											<%= link_to team.name, "/teams/#{team.slug}" %>
-										</span>
-										<span class="caption">Basketball</span>
-									</div>
-									<div class="list-action-right">
-										<span class="top">15 min</span>
-										<i class="ion-android-done bottom"></i>
-									</div>
-								</a>
-							</li>
-						<% end %>
-					</ul> -->
-				</div>
-				<!--#teams.tab-pane-->
-
-				<!-- people -->
-				<div id="people" class="tab-pane">
-					
-	               <%= render 'shared/people' %>
-						<!-- <ul class="list-material has-hidden">
-							<%# @people.each do |person| %>
-					       		<%#= render 'person', person: person %>
-					    	<%# end %>
-						</ul> -->
-				</div>
-				<!--#roster.tab-pane-->
-
-				<!--#events.tab-pane-->
-				<% if AthleticDirector.where(user_id: current_user.id, school_id: @school.id).present? %>
-					<!-- certifications -->
-					<div id="certifications" class="tab-pane">
+						<!-- teams -->
+						<%= render "schools/show/teams_tab" %>
 						
-						<% @certifications.each do |cert| %>
+						<!-- people -->
+						<%= render "schools/show/people_tab" %>
+
+						<!-- facilities -->
+						<%= render "schools/show/facilities_tab" %>
+
+						<!-- facilities -->
+						<%= render "schools/show/calendar_tab" %>
 						
-							certification: <%= cert.certification.name %><br>
-							issuer: <%= cert.certification.issuer %><br>
-							user: <%= cert.user.full_name %><br>
-							expiration: <%= cert.expiration %><br>
-							<div id="notification-link">
-							 <%= render 'notifications/notification_link', cert: cert %>
-						    </div>
-							<br><br>
+						<!-- media -->
+						<%= render "schools/show/media_tab" %>
 
-						<% end %>
-						
-					</div>
-					<!--#certfications.tab-pane-->
-				<% end %>
-
-				<!-- facilities -->
-				<div id="facilities" class="tab-pane">
-					<%= link_to "Add New Facility", new_school_facility_path(@school)%>
-					<%= render 'shared/facilities', facilities: @facilities %>
-				</div>
-				<!--#facilities.tab-pane-->
-		        <div id="calendar-tab" class="tab-pane">
-
-		          <div class="row">
-		            <%= render 'shared/calendar', eventable: @school %>
-		          </div>
-
-		        </div>
-				<!-- media -->
-				<div id="media" class="tab-pane">
-
-					<div class="row">
-	
-                    <%= render 'shared/media' %>
-						
-					</div>
-
-				</div>
-
-				<!-- roster -->
-				<div id="certifications" class="tab-pane">
-
-					<div class="row">
-						<div class="col-lg-10 col-lg-offset-1">
-							<h3>
-								<i class="ion-paperclip text-primary margin-right-20"></i>
-								Certifications 
-							</h3>
-							<div class="panel">
-								<div class="panel-heading">
-									<div class="panel-title">
-									</div>
-								</div><!--.panel-heading-->
-								<div class="panel-body without-padding">
-									<ul class="list-material has-hidden">
-										
-									</ul>
-								</div><!--.panel-body-->
-							</div><!--.panel-->
-						</div>
-						<!--#roster.tab-pane-->
-					</div>
-				</div>
-
-				<!-- following -->
-			      <div id="following" class="tab-pane">
-
-			        <div class="row">
-			          <div class="col-md-3">
-			            <div class="card tile card-friend material-animate">
-			              <a href="user-profile.html"><img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt=""></a>
-			              <div class="friend-content">
-			                <p class="title">First Name, Last Name</p>
-			                <p><a href="user-profile.html">Title/Classification</a></p>
-			                <a class="btn btn-flat btn-primary btn-xs">Team/School</a>
-			                <p><a href="#" class="btn btn-default mt10">View Profile</a></p>
-			              </div><!--.friend-content-->
-			            </div><!--.card-->
-			          </div><!--.col-->
-			        </div>
-			      </div>
+						<!-- following -->
+				    <%= render "schools/show/following_tab" %>
 
 			      <!-- fans -->
-			      <div id="fans" class="tab-pane">
-					  <%= render 'shared/fans', fans: @fans %>
-
-			      </div>
-				
-			</div><!--.tab-content-->
-		</div><!--.col-->
-	</div><!--.row-->
+			      <%= render "schools/show/fans_tab" %>
+					
+					</div><!--.tab-content-->
+				</div><!--.col-->
+			</div><!--.row-->
+		</div>
+	</div>
 
 	<%= render "shared/modals/boostrap_image_gallery_lightbox" %>
 
