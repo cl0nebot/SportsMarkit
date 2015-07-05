@@ -2,23 +2,23 @@
 	<div class="panel-heading">
 		<div class="panel-title"><h4> Our Facilities</h4></div>
 	</div><!--.panel-heading-->
-	<div class="panel-body without-padding">
-		<ul class="list-material">
+	<div class="panel-body without-padding">	
+		<ul class="list-material borderless">
 			<% facilities.each do |facility| %>
 				<li class="has-action-left has-action-right">
 					<a href="#" class="visible">
 						<div class="list-action-left">
-							<i class="ion-home icon-circle"></i>
+							<i class="ion-checkmark-circled icon-circle"></i>
 						</div>
 						<div class="list-content">
-							<span class="title"><%= facility.name %></span>
-							<span class="caption">[location]</span>
+							<span class="h4 bold"><%= facility.name %></span>
 						</div>
 						<div class="list-action-right">
-							<span class="top">View</span>
-							<i class="ion-ios-location bottom"></i>
+							<a href="#" class="btn btn-primary pull-right mt20">View</a>
 						</div>
 					</a>
+				</li>
+				<li class="divider with-border">
 				</li>
 			<% end %>
 		</ul>
@@ -28,9 +28,3 @@
 
 				
 
-
-
-					
-					
-					
-					
