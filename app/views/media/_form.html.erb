@@ -7,8 +7,18 @@
       
 
       <div class="row example-row"></div>
-      
-      
+
+      <div class="">
+        <div class="radioer form-inline">
+          <%= f.radio_button :category, 'Article', 'data-label'=>'article_label', type: "radio", id: "media_category_article" %>
+          <label for="media_category_article">Article</label>
+        </div>
+        <div class="radioer form-inline">
+          <%= f.radio_button :category, 'Video', 'data-label'=>'video_label', type: "radio", id: "media_category_video"%>
+          <label for="media_category_video">Video</label>
+        </div>
+      </div>
+      <br/>
       <div class="row example-row">
         <div class="col-md-12">Title </div><!--.col-md-3-->
         <div class="col-md-12">
@@ -40,36 +50,19 @@
         </div><!--.col-md-9-->
       </div>
       <!--.row-->
-       <div class="">
-        <div class="radioer form-inline">
-          <%= f.radio_button :category, 'Article', 'data-label'=>'article_label', type: "radio", id: "media_category_article" %>
-          <label for="media_category_article">Article</label>
-        </div>
-        <div class="radioer form-inline">
-          <%= f.radio_button :category, 'Video', 'data-label'=>'video_label', type: "radio", id: "media_category_video"%>
-          <label for="media_category_video">Video</label>
-        </div>
-      </div>
-
-      <br/>
-
-     
     </div>
 
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-12">
       <%= f.hidden_field :mediable_id, value: u.id %>
       <%= f.hidden_field :mediable_type, value: u.class.to_s %>
       <% if m.persisted? %>
         <button class="btn btn-blue submit-form"> Update </button>
         <%= link_to "Remove", medium_path(m), class: "btn btn-orange", method: :delete, remote: :true %>
       <% else %>
-        <br/>
         <div class="row">
-          <div class="col-md-6">
-            <button class="btn btn-large btn-block btn-blue submit-form"> Create </button>
+          <div class="col-md-12">
+            <button class="btn btn-blue submit-form mr10"> Create </button>
             <%= f.hidden_field :fake_id %>
-          </div>
-          <div class="col-md-6">
             <button class="btn btn-orange remove-form">Remove</button>
           </div>
         </div>
