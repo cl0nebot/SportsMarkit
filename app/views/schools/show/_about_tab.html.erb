@@ -4,16 +4,17 @@
 			<div class="panel">
 				<div class="panel-body">
 					<div class="row contact-us">
-						<div class="col-md-9 col-sm-12">
+						<div class="col-md-12 col-sm-12">
 							<div class="row">
-								<div class="col-md-5">
+								<div class="col-md-6">
 									<div class="address">
-										<h4>Address</h4>
-										<%= @school.address_1 %><br>
+										<h3 class="bold no-margin"><%= @school.name %></h3>
+										<span class="ion-university mr5"></span> <%= @school.classification %><br>
+										<span class="ion-location mr5"></span> <%= @school.address_1 %>
 										<%= @school.city %>, <%= @school.state %>, <%= @school.zip %>
 									</div>
 								</div><!--.col-md-3-->
-								<div class="col-md-4">
+								<div class="col-md-3">
 									<div class="address">
 										<h4>Phone</h4>
 										<span class="fa fa-phone m-r-5"></span>
