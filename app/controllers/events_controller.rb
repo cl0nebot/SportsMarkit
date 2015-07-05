@@ -16,6 +16,12 @@ class EventsController < ApplicationController
     @event = @object.events.build(event_params)
     if @event.save
       EventFacility.create(event_id: @event.id, facility_id: params[:event][:facility_ids])
+      if @event.eventable_type == "Team"
+        user_ids = Team.find(@event.eventable_id).relationships.where(accepted: true).pluck(:user_id).uniq
+        user_ids.each do |i|
+          Attendee.create(user_id: i, event_id: @event.id, yes: true)
+        end
+      end
       redirect_to @event
     else
       render 'new'
