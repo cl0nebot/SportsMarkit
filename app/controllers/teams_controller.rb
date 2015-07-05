@@ -94,6 +94,7 @@ class TeamsController < ApplicationController
   
   def show
     @members = @team.relationships.where(accepted: true, participant: true) + UserlessRelationship.where(team_id: @team.id, participant: true)
+    @admins = @team.relationships.where(accepted: true, admin: true) + UserlessRelationship.where(team_id: @team.id, admin: true)
     @athletes = @team.relationships.where(accepted: true, head: false)
     @pending_members = @team.relationships.where(accepted: nil, rejected: nil)
     staff_relationships = @team.relationships.where(accepted: true, head: true) + @team.relationships.where(accepted: true, trainer: true) + @team.relationships.where(accepted: true, manager: true)
