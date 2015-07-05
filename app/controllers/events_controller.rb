@@ -1,7 +1,6 @@
 require "teams_controller"
 class EventsController < ApplicationController
-  before_action :find_object, except: [:show, :destroy]
-  before_action :find_event, only: [:edit, :update]
+  before_action :find_object, except: [:show, :destroy, :edit, :update]
   require 'twilio-ruby'
   
   def index
@@ -32,10 +31,12 @@ class EventsController < ApplicationController
   end
   
   def edit
+    @event = Event.friendly.find(params[:id])
     
   end
   
   def update
+    @event = Event.friendly.find(params[:id])
     if @event.update_attributes(event_params)
       redirect_to events_path
     else
