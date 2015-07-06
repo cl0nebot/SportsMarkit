@@ -3,6 +3,9 @@ class Relationship < ActiveRecord::Base
   #friendly_id :use_for_slug, use: :slugged
   serialize :position, Array
   
+  has_many :positionings, :as => :positionable, :dependent => :destroy
+  has_many :positions, :through => :positionings
+  
   belongs_to :user
   belongs_to :team
   
@@ -13,6 +16,10 @@ class Relationship < ActiveRecord::Base
     else
       "#{self.team.name} #{self.user.first_name.first} #{self.user.last_name}"
     end
+  end
+  
+  def position_list
+    positions.pluck(:position).join(", ")
   end
   
   

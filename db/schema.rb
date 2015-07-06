@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706042300) do
+ActiveRecord::Schema.define(version: 20150706192941) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -234,6 +234,16 @@ ActiveRecord::Schema.define(version: 20150706042300) do
 
   add_index "photos", ["photo_owner_id"], name: "index_photos_on_photo_owner_id", using: :btree
   add_index "photos", ["photo_owner_type"], name: "index_photos_on_photo_owner_type", using: :btree
+
+  create_table "positionings", force: true do |t|
+    t.integer  "position_id"
+    t.integer  "positionable_id"
+    t.string   "positionable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "positionings", ["positionable_id", "positionable_type"], name: "index_positionings_on_positionable_id_and_positionable_type", using: :btree
 
   create_table "positions", force: true do |t|
     t.integer  "sport_id"

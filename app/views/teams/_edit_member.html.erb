@@ -61,7 +61,7 @@
 							</p>
 						</div>
 						<div class="col-md-6">
-						  	<%= f.text_field :position, type: "text", class: "form-control"  %>
+						  	<%= f.collection_select :position_ids, Position.all, :id, :position, {:selected => m.positions.pluck(:id)}, {  :multiple => true, :style => "width:100%", :placeholder => "Add Positions", class: "form-control"  } %>
 							<p class="small">
 								<small>
 									Position

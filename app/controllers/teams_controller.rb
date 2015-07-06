@@ -55,6 +55,7 @@ class TeamsController < ApplicationController
     trainer = params[:trainer].nil? ? false : true
     manager = params[:manager].nil? ? false : true
     nickname = params[:nickname]
+    position_ids = params[:position_ids]
     
     if mobile_number.present? # if a phone number is provided in the form
       if user_exists # check to see if a user exists on the site with that phone number
@@ -63,7 +64,10 @@ class TeamsController < ApplicationController
           flash[:error] = "User is on roster already" # if so, don't submit.
           redirect_to :back
         else
-          Relationship.create(team_id: @team.id, user_id: user.id, accepted: true, head: head, participant: participant, mobile_phone_number: mobile_number, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager) # if user exists, but relationship does not, create relationship
+          rel = Relationship.create(team_id: @team.id, user_id: user.id, accepted: true, head: head, participant: participant, mobile_phone_number: mobile_number, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager) # if user exists, but relationship does not, create relationship
+          position_ids.each do |i|
+            Positioning.create(position_id: i, positionable_id: rel.id, positionable_type: "Relationship")
+          end
         end
       else # if user doesn't exist with that mobile number, create
         password = generate_temporary_password(fname)
@@ -71,6 +75,9 @@ class TeamsController < ApplicationController
         if @new_user.save
           Profile.create(user_id: @new_user.id, focus: [], specialties: [], skills: [], injuries: [], current_ailments: [])
           @relationship = Relationship.create(user_id: @new_user.id, team_id: @team.id, accepted: true, mobile_phone_number: mobile_number, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager)
+          position_ids.each do |i|
+            Positioning.create(position_id: i, positionable_id: @relationship.id, positionable_type: "Relationship")
+          end
           if @team.school.present?
             Classification.create(user_id: @new_user.id, classification: "Student Athlete")
           else
@@ -87,7 +94,10 @@ class TeamsController < ApplicationController
         end
       end
     else #mobile not present
-      UserlessRelationship.create(first_name: fname, last_name: lname, team_id: @team.id, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager)
+      urel = UserlessRelationship.create(first_name: fname, last_name: lname, team_id: @team.id, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager)
+      position_ids.each do |i|
+        Positioning.create(position_id: i, positionable_id: urel.id, positionable_type: "UserlessRelationship")
+      end
       redirect_to :back
     end
   end
