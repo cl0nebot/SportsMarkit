@@ -25,8 +25,11 @@
 	          <span class="text-muted">
 	            <%= school.email %>
 	          </span>
-	          <p class="text-muted"><%= school.website %></p>
-	          <p class="text-muted"><%= school.phone_number %></p>
+	          <p class="text-muted no-margin">
+	          	<%= link_to school.website do %>
+	          		Website
+	          	<% end %> | <%= school.phone_number %>
+	          </p>
 	        </div>
 	      </div><!--.card-body-->
 
