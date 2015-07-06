@@ -26,6 +26,7 @@ class UserProfilePicturesController < ApplicationController
     @user_profile_pictures = @user.user_profile_pictures.to_a
     @user_profile_picture.user_id = User.friendly.find(params[:user_id]).id
     @user_profile_picture.update_attributes(user_id: @user.id, photo: params[:user_profile_picture][:photo])
+    redirect_to :back
   end
   
   def destroy
