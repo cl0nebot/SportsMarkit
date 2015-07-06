@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     if @user.save
       Profile.create(user_id: @user.id, focus: [], specialties: [], skills: [], injuries: [], current_ailments: [])
       cookies.permanent[:authentication_token] = @user.authentication_token
+      @user.increment!(:signin_count)
       flash[:success] = "Signed up."
       #Emails.user_signup(@user).deliver
       redirect_to user_overview_path(@user)
@@ -186,7 +187,7 @@ class UsersController < ApplicationController
   def email
     @user = User.friendly.find(params[:user_id])
     if @user.email.present?
-      #redirect_to edit_user_path(@user)
+      redirect_to edit_user_path(@user)
     else
       
     end
