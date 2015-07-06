@@ -12,6 +12,11 @@ class LeaguesController < ApplicationController
   def create
     @league = League.new(league_params)
     if @league.save
+      if current_user
+        unless current_user.admin?
+          LeagueManager.create(user_id: current_user.id, league_id: @league.id)
+        end
+			end
       redirect_to :back
     else
       render 'new'
@@ -42,6 +47,10 @@ class LeaguesController < ApplicationController
   def destroy
     @league.destroy
     redirect_to :back
+  end
+  
+  def managers
+    @league_managers = LeagueManager.all
   end
   
   protected
