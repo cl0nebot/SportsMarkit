@@ -5,21 +5,15 @@
       <div class="card-heading heading-full">
         <div class="user-image sample-member9" style="background: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');"></div>
 
-        <div class="clickable-button">
-          <div class="layer bg-orange"></div>
-          <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-person-stalker"></i></a>
-        </div>
+        <%= link_to edit_user_path(user) do %>
 
-        <div class="layered-content bg-orange">
-          <div class="overflow-content">
-            <div class="btn-group btn-group-justified margin-bottom-20">
-              <button type="button" class="btn btn-primary btn-block">View Profile</button>
-            </div>
-          </div><!--.overflow-content-->
-          <div class="clickable-close-button">
-            <a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
+          <div class="clickable-button">
+            <div class="layer bg-orange"></div>
+            <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-gear-b"></i></a>
           </div>
-        </div>
+
+        <% end %>
+
       </div><!--.card-heading-->
 
       <div class="card-body">
@@ -30,24 +24,25 @@
         </h3>
 
         <div class="subhead">
-          <span class="text-muted">
+          <!-- <span class="text-muted">
             Member since: <%= format(user.created_at, 4) %>
+          </span> -->
+          <span class="text-muted">
+           <!--  <%= user.age %> years old<br/> -->
+            <i class="ion-location text-blue margin-right-5"></i><%= user.profile.location_description.present? ? user.profile.location_description : "USA" %><br/>
+      		  <% if current_user.admin? %>
+                <i class="ion-email text-blue margin-right-5"></i> <%= user.email %><br/>
+                <i class="ion-phone text-blue"></i> <%= number_to_phone(user.mobile_phone_number) %>
+      		  <% end %>
           </span>
-          <br/>
-          <%= user.age %> years old<br/>
-          <i class="ion-location text-blue margin-right-5"></i><%= user.profile.location_description.present? ? user.profile.location_description : "USA" %><br/>
-		  <% if current_user.admin? %>
-          <i class="ion-email text-blue margin-right-5"></i> <%= user.email %><br/>
-          <i class="ion-phone text-blue"></i> <%= number_to_phone(user.mobile_phone_number) %>
-		  <% end %>
         </div>
       </div><!--.card-body-->
 
       <% if current_user.admin? %>
-      <div class="card-footer">
-        <%= link_to "Edit", edit_user_path(user), class: "btn btn-sm btn-message" %>
+      <!-- <div class="card-footer">
+        
         <%#= link_to "Delete", user, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
-      </div><!--.card-footer-->
+      </div> --><!--.card-footer-->
 	  <% end %>
 
     </div><!--.card-->

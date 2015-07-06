@@ -19,29 +19,31 @@
 	</div><!--.page-header-->
 
 	<div clas="panel">
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-lg-6 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-12">
-          <div class="padding-bottom-0">
-            <div class="inputer">
-              <!-- isotope filtering and typeahead-->
-              <textarea type="text" class=" fs_30 lh_55 quicksearch-schools typeahead typeahead-schools form-control" rows="1" placeholder="Start typing school name here..."></textarea>
-            </div>
-          </div>
-        </div><!--.col-md-9-->
-      </div><!--.row-->
-      <hr class="margin-top-10"/>
-    </div>
-  </div>
+	    <div class="panel-body">
+	      <div class="row">
+	        <div class="col-lg-6 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-12">
+	          <div class="padding-bottom-0">
+	            <div class="inputer">
+	              <!-- isotope filtering and typeahead-->
+	              <textarea type="text" class=" fs_30 lh_55 quicksearch-schools typeahead typeahead-schools form-control" rows="1" placeholder="Start typing school name here..."></textarea>
+	            </div>
+	          </div>
+	        </div><!--.col-md-9-->
+	      </div><!--.row-->
+	      <hr class="margin-top-10"/>
+	    </div>
+	  </div>
   
 
-  <div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
-    
-    <div class="row schools">
-    	<%= render @schools %>	
-    </div>
-  </div>
-      
+	  <div class="bg-muted" style="background: #F7F7F7;">
+	    
+	    <div class="row schools">
+	    	<div class="col-lg-10 col-lg-offset-1">
+	    		<%= render @schools %>	
+	    	</div>
+	    </div>
+	</div>
+	      
 </div><!--.row-->
 
 
