@@ -1,6 +1,7 @@
 class Relationship < ActiveRecord::Base
   #extend FriendlyId
   #friendly_id :use_for_slug, use: :slugged
+  serialize :position, Array
   
   belongs_to :user
   belongs_to :team
