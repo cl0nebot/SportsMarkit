@@ -1,207 +1,54 @@
+<style>
+  .card-friend .user-photo {
+    float: left;
+    width: 160px;
+    height: auto;
+    border-radius: 3px 0 0 3px;
+  }
+  .card-friend .friend-content {
+    margin-left: 180px;
+  }
+</style>
+
+
 <div class="content">
 
 	<div class="page-header full-content parallax">
 		
-    <%= render 'shared/background_photo_tab', photo_owner: @facility %>
-
-		<div class="bg-overlay"></div><!--.bg-overlay-->
-
-		<div class="profile-info">
-			<div class="profile-photo">
-				<img src="<%= image_path("placeholders/school.jpg") %>" alt="">
-			</div><!--.profile-photo-->
-			<div class="profile-text light capitalize">
-				<%= @facility.name %>
-				<span class="caption">
-					<% if @facility.school.present? %>
-					  <%= @facility.school.name %><br>
-					  <%= @facility.school.address_1 %><br>
-					  <%= @facility.school.city %>, <%= @facility.school.state %>
-					
-					<% else %>
-					
-					  <%= @facility.address_1 %><br>
-					  <%= @facility.city %>, <%= @facility.state %>
-					
-					<% end %>
-				</span>
-			</div><!--.profile-text-->
-		</div><!--.profile-info-->
-
-		<div class="social-buttons">
-			<%= render 'shared/fan' %>
-		</div>
-
-		<div class="row">
-			<div class="col-sm-6">
-				<%= render 'shared/upcoming_event', object: @facility %>
-			</div><!--.col-->
-			<div class="col-sm-6">
-				<ol class="breadcrumb">
-					<li><a href="/"><i class="ion-home"></i></a></li>
-					<li><a href="<%= facilities_path %>">Facilities</a></li>
-					<li><a href="#" class="active"><%= @facility.name %></a></li>
-				</ol>
-			</div><!--.col-->
-		</div><!--.row-->
-
-		<div class="header-tabs scrollable-tabs sticky">
-			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
-				<li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">About</a></li>
-				<!-- <li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li> -->
-				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
-				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
-				<!-- <li><a href="#amenities" data-toggle="tab" class="btn-ripple">Amenities</a></li> -->
-				<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
-				<li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li>
-      			<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
-        		<!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
-      		</ul>
-		</div>
+		<%= render "facilities/show/header" %>
+		<%= render "facilities/show/tab_navigation" %>
+	
 	</div><!--.page-header-->
 
-	<div class="row user-profile">
+	<!-- main content div -->
+  <div class="container">
+    <div class="user-profile">
+      <div class="row">
+        <%= image_tag("placeholders/users.jpg", class: "col-md-2 img-thumbnail img-responsive b-rad-6", style: "margin-top: -180px; z-index: 99999;") %>
+        <div class="col-md-10">
+        </div>
+      </div>
+      <div class="row">
 		<div class="col-md-12">
 			<div class="tab-content without-border">
 
-				<!-- following -->
-				<div id="about" class="tab-pane active">
+				<%= render "facilities/show/about" %>
 
-					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
-							<div class="panel box-shadow-ccc">
-								<div class="panel-body transparent">
-								<div class="row margin-top-20">
-									<div class="col-md-3">
-										<div class="address">
-											<h4>Facilities</h4>
-											<ul class="list-material">
-												<li class="">
-													<span class="fa fa-check-circle m-r-5"></span>
-													<span class="h6 semi-bold text-primary">Soccer Field</span>
-												</li>
-												<li class="">
-													<span class="fa fa-check-circle m-r-5"></span>
-													<span class="h6 semi-bold text-primary">Basketball Court</span>
-												</li>
-												<li class="">
-													<span class="fa fa-check-circle m-r-5"></span>
-													<span class="h6 semi-bold text-primary">Tennis Court</span>
-												</li>
-											</ul>
-										</div><!--.panel-->
-									</div><!--.col-md-3-->
-									<div class="col-md-3">
-										<div class="address">
-											<h4>Address</h4>
-											<span class="h6 semi-bold">
-												<%= @facility.address_1 %>
-											</span>
-											<br>
-											<span class="h6 semi-bold">
-												<%= @facility.city %>, <%= @facility.state %>, <%= @facility.zip %>
-											</span>
-										</div>
-									</div><!--.col-md-3-->
-									<div class="col-md-3">
-										<div class="address">
-											<h4>Phone</h4>
-											<span class="fa fa-phone m-r-5"></span>
-											<span class="h4">
-												<%= @facility.phone_number %>
-											</span>
-											<br/>
-											<span class="fa fa-clock-o m-r-5"></span>
-											8am - 5pm<br>
-										</div>
-									</div><!--.col-md-3-->
-									<div class="col-md-3">
-										<div class="address">
-											<h4>Online</h4>
-											<span class="fa fa-desktop m-r-5 gray-text"></span>
-											<span class="text-primary  gray-text semi-bold h6">
-												<%= @facility.website %>
-											</span>
+				<%= render "facilities/show/teams" %>
 
-											<br>
+				<%= render "facilities/show/people" %>
 
-											<span class="fa fa-envelope m-r-5"></span>
-											<span class="text-primary  gray-text semi-bold h6">
-												<%= @facility.email %>
-											</span>
-										</div>
-									</div><!--.col-md-3-->
-								</div><!--.row-->
-								</div><!--.panel-body-->
-							</div><!--.panel-->
-							<div class="about-us">
-								<div id="gmaps_10" class="map">
-									<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
-								</div>
-							</div><!--.row-->
-						</div>
-					</div><!--.row-->
-				</div>
+				<%= render "facilities/show/media" %>
+
+				<%= render "facilities/show/calendar" %>
 				
-				<!-- teams -->
-				<div id="teams" class="tab-pane">
-				  <%= render 'shared/teams' %>
-				</div>
+				<%= render 'shared/photo_tab', photo_owner: @facility %>
 
-				<!-- people -->
-				<div id="people" class="tab-pane">
-					<% @users_of_facility.each do |user| %>
-						<%= user.full_name %>
-					<% end %>
-				</div>
+				<%= render "facilities/show/following" %>
 
-				<!-- events -->
-				<div id="events" class="tab-pane">
-				</div>
-
-				<!-- facilities -->
-				<div id="facilities" class="tab-pane">
-					
-				</div>
-				
-				<!-- media -->
-				<div id="media" class="tab-pane">
-					<div class="row">
-                    <%= render 'shared/media' %>
-					</div>
-				</div>
-
-				<div id="calendar-tab" class="tab-pane">
-					<%= render 'shared/calendar', eventable: @facility %>
-		        </div>
-
-		        <%= render 'shared/photo_tab', photo_owner: @facility %>
-
-		        <!-- following -->
-			      <div id="following" class="tab-pane">
-
-			        <div class="row">
-			          <div class="col-md-3">
-			            <div class="card tile card-friend material-animate">
-			              <a href="user-profile.html"><img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt=""></a>
-			              <div class="friend-content">
-			                <p class="title">First Name, Last Name</p>
-			                <p><a href="user-profile.html">Title/Classification</a></p>
-			                <a class="btn btn-flat btn-primary btn-xs">Team/School</a>
-			                <p><a href="#" class="btn btn-default mt10">View Profile</a></p>
-			              </div><!--.friend-content-->
-			            </div><!--.card-->
-			          </div><!--.col-->
-			        </div>
-			      </div>
-
-			      <!-- fans -->
-			      <div id="fans" class="tab-pane">
-					  <%= render 'shared/fans', fans: @fans %>
-
-			      </div>
-
-
+				<%= render "facilities/show/fans" %>
+		       
+			  
 			</div><!--.tab-content-->
 		</div><!--.col-->
 	</div><!--.row-->

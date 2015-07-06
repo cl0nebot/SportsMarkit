@@ -1,0 +1,27 @@
+	
+    <%= render 'shared/background_photo_tab', photo_owner: @facility %>
+
+		<div class="bg-overlay"></div><!--.bg-overlay-->
+
+		<div class="profile-info">
+			<div class="profile-text light capitalize">
+				
+			</div><!--.profile-text-->
+		</div><!--.profile-info-->
+
+		<div class="social-buttons">
+			<%= render 'shared/fan' %>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<%= render 'shared/upcoming_event', object: @facility %>
+			</div><!--.col-->
+			<div class="col-sm-6">
+				<ol class="breadcrumb">
+					<li><a href="/"><i class="ion-home"></i></a></li>
+					<li><a href="<%= facilities_path %>">Facilities</a></li>
+					<li><a href="#" class="active"><%= @facility.name %></a></li>
+				</ol>
+			</div><!--.col-->
+		</div><!--.row-->
