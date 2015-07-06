@@ -37,4 +37,20 @@ class ApplicationController < ActionController::Base
     end
     first_part.last(3) + array.join.last(5) + first_part.first(3)
   end
+  
+  def authenticate_user!
+    redirect_to signup_path, alert: "Not authorized" if current_user.nil?
+  end
+  
+  def authenticate_user_account
+    authenticate_user!
+    unless current_user.admin? or current_user == User.friendly.find(params[:id])
+      flash[:message] = "This is your account."
+      redirect_to edit_user_path(current_user)
+      #render :file => "public/401.html", :status => :unauthorized
+    end
+  end
+  
+  
+  
 end
