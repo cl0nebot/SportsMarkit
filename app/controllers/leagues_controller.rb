@@ -26,6 +26,8 @@ class LeaguesController < ApplicationController
   def show
     @class = @league.class
     @object = @league
+    @picture =  @object.photos.build
+    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
     @teams = @league.teams
     @videos = @league.medias.where(category: "Video")
     @articles = @league.medias.where(category: "Article")
