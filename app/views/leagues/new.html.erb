@@ -64,7 +64,7 @@
 							<div class="col-md-12">
 								<div class="inputer">
 									<div class="input-wrapper">
-										<%= f.text_field :sport, type: "text", class: "form-control", placeholder: "" %>
+										<%= f.collection_select :sport, Sport.pluck(:sport).sort, :to_s, :to_s, {include_blank: false}, {:multiple => true, :style => "width:100%", :id => "multi2", :class => "select2"%>
 									</div>
 								</div>
 							</div><!--.col-md-9-->
@@ -92,7 +92,7 @@
 							</div><!--.col-md-9-->
 						</div><!--.row-->
 					</div>
-				</div>
+				</div>		
 
 					<div class="panel-body padding-right-40 padding-left-40 bg-cyan">
 						<div class="row example-row margin-bottom-0">

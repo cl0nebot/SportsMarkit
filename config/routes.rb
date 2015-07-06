@@ -114,6 +114,8 @@ Rails.application.routes.draw do
     
     get "onboard", to: "claims#onboard", as: :partner_signup
     post "onboard", to: "claims#partner_initial_claim", as: :partner_signup_claim
+    get "n/leagues/join", to: "claims#join", as: :league_signup
+     get "lmanagers", to: "leagues#managers", as: :league_managers
     get "claim", to: "claims#claim", as: :claim_school
     patch "claim", to: "claims#add_claim", as: :add_claim
     

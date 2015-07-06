@@ -43,6 +43,8 @@ class FacilitiesController < ApplicationController
     @json = @facility.to_gmaps4rails
     @class = @facility.class
     @object = @facility
+    @picture =  @object.photos.build
+    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
     @teams = @facility.all_teams
     @users_of_facility = @facility.people_that_use_facility
     @videos = @facility.medias.where(category: "Video")

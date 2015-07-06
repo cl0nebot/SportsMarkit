@@ -1,7 +1,6 @@
 require "teams_controller"
 class EventsController < ApplicationController
-  before_action :find_object, except: [:show, :destroy]
-  before_action :find_event, only: [:edit, :update]
+  before_action :find_object, except: [:show, :destroy, :edit, :update]
   require 'twilio-ruby'
   
   def index
@@ -17,6 +16,12 @@ class EventsController < ApplicationController
     @event = @object.events.build(event_params)
     if @event.save
       EventFacility.create(event_id: @event.id, facility_id: params[:event][:facility_ids])
+      if @event.eventable_type == "Team"
+        user_ids = Team.find(@event.eventable_id).relationships.where(accepted: true).pluck(:user_id).uniq
+        user_ids.each do |i|
+          Attendee.create(user_id: i, event_id: @event.id, yes: true)
+        end
+      end
       redirect_to @event
     else
       render 'new'
@@ -32,10 +37,12 @@ class EventsController < ApplicationController
   end
   
   def edit
+    @event = Event.friendly.find(params[:id])
     
   end
   
   def update
+    @event = Event.friendly.find(params[:id])
     if @event.update_attributes(event_params)
       redirect_to events_path
     else

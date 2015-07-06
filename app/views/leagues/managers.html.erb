@@ -1,0 +1,9 @@
+<% @league_managers.each do |lm| %>
+
+<%= lm.user.full_name %><br>
+<%= lm.league.name %><br>
+<%= lm.user.mobile_phone_number %><br>
+<%= lm.user.email %><br>
+<%= time_ago_in_words(lm.created_at) %> ago<br>
+
+<% end %>

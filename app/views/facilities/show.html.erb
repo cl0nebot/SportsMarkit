@@ -1,0 +1,72 @@
+<style>
+  .card-friend .user-photo {
+    float: left;
+    width: 160px;
+    height: auto;
+    border-radius: 3px 0 0 3px;
+  }
+  .card-friend .friend-content {
+    margin-left: 180px;
+  }
+</style>
+
+
+<div class="content">
+
+	<div class="page-header full-content parallax">
+		
+		<%= render "facilities/show/header" %>
+		<%= render "facilities/show/tab_navigation" %>
+	
+	</div><!--.page-header-->
+
+	<!-- main content div -->
+  <div class="container">
+    <div class="user-profile">
+      <div class="row">
+        <%= image_tag("placeholders/users.jpg", class: "col-md-2 img-thumbnail img-responsive b-rad-6", style: "margin-top: -180px; z-index: 99999;") %>
+        <div class="col-md-10">
+        </div>
+      </div>
+      <div class="row">
+		<div class="col-md-12">
+			<div class="tab-content without-border">
+
+				<%= render "facilities/show/about" %>
+
+				<%= render "facilities/show/teams" %>
+
+				<%= render "facilities/show/people" %>
+
+				<%= render "facilities/show/media" %>
+
+				<%= render "facilities/show/calendar" %>
+				
+				<%= render 'shared/photo_tab', photo_owner: @facility %>
+
+				<%= render "facilities/show/following" %>
+
+				<%= render "facilities/show/fans" %>
+		       
+			  
+			</div><!--.tab-content-->
+		</div><!--.col-->
+	</div><!--.row-->
+
+	<%= render "shared/modals/boostrap_image_gallery_lightbox" %>
+
+</div><!--.content-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+

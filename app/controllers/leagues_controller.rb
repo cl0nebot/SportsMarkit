@@ -12,6 +12,11 @@ class LeaguesController < ApplicationController
   def create
     @league = League.new(league_params)
     if @league.save
+      if current_user
+        unless current_user.admin?
+          LeagueManager.create(user_id: current_user.id, league_id: @league.id)
+        end
+			end
       redirect_to :back
     else
       render 'new'
@@ -21,6 +26,8 @@ class LeaguesController < ApplicationController
   def show
     @class = @league.class
     @object = @league
+    @picture =  @object.photos.build
+    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
     @teams = @league.teams
     @videos = @league.medias.where(category: "Video")
     @articles = @league.medias.where(category: "Article")
@@ -42,6 +49,10 @@ class LeaguesController < ApplicationController
   def destroy
     @league.destroy
     redirect_to :back
+  end
+  
+  def managers
+    @league_managers = LeagueManager.all
   end
   
   protected

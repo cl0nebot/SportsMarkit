@@ -94,6 +94,7 @@ class TeamsController < ApplicationController
   
   def show
     @members = @team.relationships.where(accepted: true, participant: true) + UserlessRelationship.where(team_id: @team.id, participant: true)
+    @admins = @team.relationships.where(accepted: true, admin: true) + UserlessRelationship.where(team_id: @team.id, admin: true)
     @athletes = @team.relationships.where(accepted: true, head: false)
     @pending_members = @team.relationships.where(accepted: nil, rejected: nil)
     staff_relationships = @team.relationships.where(accepted: true, head: true) + @team.relationships.where(accepted: true, trainer: true) + @team.relationships.where(accepted: true, manager: true)
@@ -101,6 +102,8 @@ class TeamsController < ApplicationController
     @heads = staff_relationships.uniq + staff_userless_relationships.uniq
     @class = @team.class
     @object = @team
+    @picture =  @object.photos.build
+    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
     @events = @team.upcoming_events
     @facilities = @team.facilities
     @new_user = User.new

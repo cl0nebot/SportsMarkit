@@ -5,10 +5,29 @@
 	<a href="#panel-new-facility" class="btn btn-primary mr10" data-toggle="modal">
 		<i class="ion-plus-circled mr5"></i> Add Facility
 	</a>
-	<a href="#panel-new-league" class="btn btn-primary" data-toggle="modal">
+	<a href="#panel-new-team-league" class="btn btn-primary" data-toggle="modal">
 		<i class="ion-plus-circled mr5"></i> Add League
 	</a>
 	<div class="row pt20">
+		
+		<!-- coaches and staff -->
+		<div class="panel panel-transparent box-shadow-ccc">
+			<div class="panel-heading no-margin">
+				<div class="panel-title" id="coach-count">
+			       <%= render 'admin_count', admins: @admins %>
+			       <h3 class="semi-bold fs_20 mb0">
+						Administrative Users
+					</h3>
+				</div>
+			</div><!--.panel-heading-->
+			<hr class="no-margin"/>
+			<div class="panel-body no-padding" id="admins-of-team">
+				<%= render 'admins_of_team', admins: @admins %>
+			</div><!--.panel-body-->
+		</div><!--.panel-->
+		<br/>
+		<!-- coaches and staff -->
+		
 		<div id="add_user" class=" collapse col-md-12">
 			<!-- <div class="row">
 				<div class="pull-left">

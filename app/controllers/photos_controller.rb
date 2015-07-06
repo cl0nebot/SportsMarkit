@@ -18,7 +18,7 @@ class PhotosController < ApplicationController
     end
 
     def photo_params
-      params.require(:photo).permit(:image, :main, :image_crop_x, :image_crop_y, :image_crop_w, :image_crop_h, :offset_x, :offset_y, :zoom)
+      params.require(:photo).permit(:image, :main, :image_crop_x, :image_crop_y, :image_crop_w, :image_crop_h, :offset_x, :offset_y, :zoom, :photo_owner_id, :photo_owner_type, :image)
     end
 
 end
