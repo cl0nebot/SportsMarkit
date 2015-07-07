@@ -1,4 +1,4 @@
-					<% if user.athletic_directors.present? %>
+					<% if @user.athletic_directors.present? %>
 					
 					<div class="note note-warning note-left-striped">
 						<h4>You're already assigned to a school</h4>
@@ -20,7 +20,7 @@
 										</div>
 										<div class="list-content padding-left-30">
 											<span class="title">
-												<%= user.athletic_directors.last.school.name %>
+												<%= @user.athletic_directors.last.school.name %>
 											</span>
 											<span class="caption">
 												[age],

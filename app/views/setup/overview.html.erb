@@ -33,11 +33,14 @@
 				<div class="panel-body">
 					<div class="row">
 						<div class="pull-left">
-							<%= image_tag("http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
+							<%= image_tag(@user.avatar, class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
 						</div>
 						<div class="pull-left">
-							<h4 class="margin-bottom-5">[First Name], [Last Name]</h4>
-							<p class="small">[location]</p>
+							<% if @user.first_name.present? %>
+							<h4 class="margin-bottom-5"><%= @user.full_name %></h4>
+							
+							<p class="small"><%= @user.profile.location_description %></p>
+							<% end %>
 						</div>
 					</div>
 
