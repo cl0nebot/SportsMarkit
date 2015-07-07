@@ -6,9 +6,7 @@
         <div class="col-md-12">Sport </div><!--.col-md-3-->
         <div class="col-md-12">
           <div class="inputer">
-            <div class="input-wrapper">
-              <%= f.select :sport, Sport.pluck(:sport), {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
-            </div>
+            <%= f.select(:sport, Sport.pluck(:sport), {}, {:class => 'selecter', :required => 'true'}) %>
           </div>
         </div><!--.col-md-9-->
       </div>
@@ -17,7 +15,7 @@
         <div class="col-md-12">
           <div class="inputer">
             <div class="input-wrapper">
-              <%= f.text_field :measurable, class: "form-control", placeholder: ""   %>
+              <%= f.text_field :measurable, class: "form-control", placeholder: "" %>
             </div>
           </div>
         </div><!--.col-md-9-->
@@ -27,7 +25,7 @@
         <div class="col-md-12">
           <div class="inputer">
             <div class="input-wrapper">
-              <%= f.text_field :result, class: "form-control", placeholder: ""   %>
+              <%= f.text_field :result, class: "form-control", placeholder: ""  %>
             </div>
           </div>
         </div><!--.col-md-9-->
