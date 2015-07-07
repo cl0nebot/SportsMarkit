@@ -3,736 +3,242 @@
 you can combine the header div with header-*(material-colors).
 For ex: <div class="header header-red"> or <div class="header header-teal">
 -->
-<div class="header">
-	<div class="container">
-
-		<div class="logo">
-			<h4 class="logo text-light-shadow">
-				<%= image_tag("icons/flag.png", height: "25", class: "margin-right-5", style: "margin-top: -3px; width: 25px;") %>
-				SportsMarkit
-			</h1>
-		</div><!--.logo-->
-
-		<!--
-		* data-nav-link attribute is necessary for data-anchor links.
-		* data-anchor="slide1" attribute is useful when user clicks the data-nav-link, the window moves the related slide.
-		-->
-		<div class="animated-selector">
-			<ul class="navigation" role="tablist">
-				<li class="active" href="#schools" role="tab" data-toggle="tab">
-					SCHOOLS
-				</li>
-				<li href="#athletes" role="tab" data-toggle="tab">
-					ATHLETES
-				</li>
-				<li href="#parents" role="tab" data-toggle="tab">
-					PARENTS
-				</li>
-				<li href="#fans" role="tab" data-toggle="tab">SPORTS FANS</li>
-			</ul>
-			<div class="selector"></div>
-		</div><!--.animated-selector-->
-        
-		<% if current_user %>
-		Logged in as <%= current_user.full_name %>
-		<% else %>
-		<div class="btn-action">
-				<a href="/signup" class="btn btn-indigo">Create a Free Account</a>
-				<a href="/login" class="btn btn-indigo">Login</a>
-			</div><!--.btn-action-->
-			
-			<% end %>
-
-
-		<div class="hamburger-btn"></div><!--.hamburger-btn-->
-
-	</div><!--.container-->
-</div><!--.header-->
-
-<div class="tab-content no-padding">
-	<div class="tab-pane active fade in" id="schools">
-		<div class="slide bg-image" style="background-image: url('http://www1.pgcps.org/uploadedImages/Offices/Communications/Press_Releases/2011_-_2012/June/Potomac%20Track%20Team.JPG');">
-
-			<div class="container z1">
-				<div class="row">
-					<div class="col-md-9">
-						<h1 class="h0 text-white text-light-shadow">
-							THE <span class="highlight ls1">EASIEST</span> WAY TO
-							<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">MANAGE</span><br>
-							HIGH SCHOOL ATHLETIC PROGRAMS.
-						</h1>
-						<p class="caption text-white text-light-shadow">Manage rosters, share calendars, centralize team communication, <br/> arrange payments, set notifications, invite fans, and much more...</p>
-					</div><!--.col-->
-				</div><!--.row-->
-
-				
-				<div class="row">
-					<div class="col-md-12">
-						<h4 class="text-white">MOBILE APP COMING SOON!</h4>
-						<h6 class="text-cyan bold ">Available In Stores Fall 2015</h6>
-						<ul class="store-list no-margin">
-							<li>
-								<a href="javascript:;">
-									<%= image_tag("one-page-parallax/on-appstore.png", alt: "") %>
-								</a>
-							</li>
-							<li>
-								<a href="javascript:;">
-									<%= image_tag("one-page-parallax/on-googleplay.png", alt: "") %>
-								</a>
-							</li>
-						</ul>
-					</div><!--.col-->
-				</div><!--.row-->
-
-
-			</div><!--.container-->
-
-			<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
-		</div><!--.slide-hero-->
-
-		<div class="slide" data-nav="slide1">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-5 col-md-offset-1">
-							<div class="row">
-								<div class="col-md-12">
-									<%= image_tag("screens/teams.png", alt: "", class: "img-responsive thumbnail") %>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
-								</div>
-								<div class="col-md-6">
-									<%= image_tag("screens/videos.png", alt: "", class: "img-responsive thumbnail") %>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<%= image_tag("screens/chat.png", alt: "", class: "img-responsive thumbnail") %>
-								</div>
-								<div class="col-md-6">
-									<%= image_tag("screens/setup.png", alt: "", class: "img-responsive thumbnail") %>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-offset-1 col-md-4">
-							<h5 class="highlight ws2 no-margin semi-bold">
-								HIGH SCHOOLS
-							</h5>
-							<h2 class="text-black ws2 margin-top-0">TAKE YOUR SCHOOL DIGITAL</h2>
-							<p class="caption">Give your sports administrators full access to the most powerful team management platform online.</p>
-							<ul class="list-vertical">
-								<li>
-									<div class="list-icon text-black">
-										<i class="ion-clipboard"></i>
-									</div><!--.list-icon-->
-									<div class="list-info">
-										<h4 class="text-indigo">TEAM ROSTERS</h4>
-										<span>
-											Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.
-										</span>
-									</div><!--.list-info-->
-								</li>
-								<li>
-									<div class="list-icon text-black">
-										<i class="ion-calendar"></i>
-									</div><!--.list-icon-->
-									<div class="list-info">
-										<h4 class="text-indigo">CALENDARS</h4>
-										<span>Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.</span>
-									</div><!--.list-info-->
-								</li>
-								<li>
-									<div class="list-icon text-black">
-										<i class="ion-chatboxes"></i>
-									</div><!--.list-icon-->
-									<div class="list-info">
-										<h4 class="text-indigo">COMMUNICATION</h4>
-										<span>Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.</span>
-									</div><!--.list-info-->
-								</li>
-								<li>
-									<div class="list-icon text-black">
-										<i class="ion-email-unread"></i>
-									</div><!--.list-icon-->
-									<div class="list-info">
-										<h4 class="text-indigo">NOTIFICATIONS</h4>
-										<span>Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.</span>
-									</div><!--.list-info-->
-								</li>
-								<li>
-									<div class="list-icon text-black">
-										<i class="ion-heart"></i>
-									</div><!--.list-icon-->
-									<div class="list-info">
-										<h4 class="text-indigo">FRIENDS, FAMILY & FANS</h4>
-										<span>Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.</span>
-									</div><!--.list-info-->
-								</li>
-							</ul>
-						</div><!--.col-->
-					</div><!--.row-->
-
-					<a class="btn btn-large btn-floating btn-pink btn-next btn-next-left" data-anchor="slide2" data-nav-link><i class="ion-chevron-down"></i></a>
-				</div><!--.container-->
-			</div><!--.slide-->
-
-		
-	</div>
-
-	<div class="tab-pane fade" id="athletes">
-		<div class="slide bg-image"  style="background-image: url('<%= image_path("placeholders/athlete_bg.png") %>'); background-size: cover;">
-
-			<div class="container z1">
-				<div class="row">
-					<div class="col-md-9">
-						<h1 class="h0 text-white text-light-shadow">
-							THE <span class="highlight ls1">EASIEST</span> WAY TO
-							<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">MANAGE</span><br>
-							YOUR ENTIRE SPORTS LIFE ONLINE.
-						</h1>
-						<p class="caption text-white text-light-shadow">Unlimited team profiles, personalized sports calendars, videos and photo<br/>
-						uploads, text-message notifications, get followed by fans, and more...</p>
-					</div><!--.col-->
-				</div><!--.row-->
-
-				<div class="row">
-					<div class="col-md-12">
-						<h4 class="text-white">MOBILE APP COMING SOON!</h4>
-						<h6 class="text-cyan bold ">Available In Stores Fall 2015</h6>
-						<ul class="store-list no-margin">
-							<li>
-								<a href="javascript:;">
-									<%= image_tag("one-page-parallax/on-appstore.png", alt: "") %>
-								</a>
-							</li>
-							<li>
-								<a href="javascript:;">
-									<%= image_tag("one-page-parallax/on-googleplay.png", alt: "") %>
-								</a>
-							</li>
-						</ul>
-					</div><!--.col-->
-				</div><!--.row-->
-			</div><!--.container-->
-			<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
-
-		</div><!--.slide-hero-->
-		<div class="slide" data-nav="slide1">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-5 col-md-offset-1">
-							<div class="row">
-								<div class="col-md-12">
-									<%= image_tag("screens/teams.png", alt: "", class: "img-responsive thumbnail") %>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
-								</div>
-								<div class="col-md-6">
-									<%= image_tag("screens/videos.png", alt: "", class: "img-responsive thumbnail") %>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<%= image_tag("screens/chat.png", alt: "", class: "img-responsive thumbnail") %>
-								</div>
-								<div class="col-md-6">
-									<%= image_tag("screens/setup.png", alt: "", class: "img-responsive thumbnail") %>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-offset-1 col-md-4">
-							<h5 class="highlight ws2 no-margin semi-bold">
-								ATHLETES 
-							</h5>
-							<h2 class="text-black ws2 margin-top-0">TAKE YOUR GAME TO THE NEXT LEVEL</h2>
-							<p class="caption">Start managing you sports life online with our super-easy to use platform that keeps you on time, up-to-date, and social.</p>
-							<ul class="list-vertical">
-								<li>
-							<div class="list-icon text-black">
-								<i class="ion-clipboard"></i>
-							</div><!--.list-icon-->
-							<div class="list-info">
-								<h4 class="text-indigo">UNLIMITED TEAMS</h4>
-								<span>
-									Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.
-								</span>
-							</div><!--.list-info-->
-						</li>
-						<li>
-							<div class="list-icon text-black">
-								<i class="ion-calendar"></i>
-							</div><!--.list-icon-->
-							<div class="list-info">
-								<h4 class="text-indigo">PERSONALIZED CALENDAR</h4>
-								<span>Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.</span>
-							</div><!--.list-info-->
-						</li>
-						<li>
-							<div class="list-icon text-black">
-								<i class="ion-email-unread"></i>
-							</div><!--.list-icon-->
-							<div class="list-info">
-								<h4 class="text-indigo">UPDATES & NOTFICATIONS</h4>
-								<span>Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.</span>
-							</div><!--.list-info-->
-						</li>
-						<li>
-							<div class="list-icon text-black">
-								<i class="ion-images"></i>
-							</div><!--.list-icon-->
-							<div class="list-info">
-								<h4 class="text-indigo">PHOTO & VIDEO SHARING</h4>
-								<span>Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.</span>
-							</div><!--.list-info-->
-						</li>
-						<li>
-							<div class="list-icon text-black">
-								<i class="ion-thumbsup"></i>
-							</div><!--.list-icon-->
-							<div class="list-info">
-								<h4 class="text-indigo">KEEP IT SOCIAL</h4>
-								<span>Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.</span>
-							</div><!--.list-info-->
-						</li>
-							</ul>
-						</div><!--.col-->
-					</div><!--.row-->
-
-					<a class="btn btn-large btn-floating btn-pink btn-next btn-next-left" data-anchor="slide2" data-nav-link><i class="ion-chevron-down"></i></a>
-				</div><!--.container-->
-			</div><!--.slide-->
-	</div>
-
-	<div class="tab-pane fade" id="parents">
-		<div class="slide bg-image" data-nav="remove" style="background-image: url('<%= image_path("placeholders/parents_bg.png") %>'); background-size: cover;">
-
-			<div class="container z1">
-				<div class="row">
-					<div class="col-md-9">
-						<h1 class="h0 text-white text-light-shadow">
-							THE <span class="highlight ls1">EASIEST</span> WAY TO
-							<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">KEEP TRACK</span><br>OF YOUR KID'S SPORTS LIFE.
-						</h1>
-						<p class="caption text-white text-light-shadow">Access team contact information, coach and player profiles, team calendars, <br/>team photos and videos, get updates & notifications, and much more...
-					</div><!--.col-->
-				</div><!--.row-->
-
-				<div class="row">
-					<div class="col-md-12">
-						<h4 class="text-white">MOBILE APP COMING SOON!</h4>
-						<h6 class="text-cyan bold ">Available In Stores Fall 2015</h6>
-						<ul class="store-list no-margin">
-							<li>
-								<a href="javascript:;">
-									<%= image_tag("one-page-parallax/on-appstore.png", alt: "") %>
-								</a>
-							</li>
-							<li>
-								<a href="javascript:;">
-									<%= image_tag("one-page-parallax/on-googleplay.png", alt: "") %>
-								</a>
-							</li>
-						</ul>
-					</div><!--.col-->
-				</div><!--.row-->
-
-			</div><!--.container-->
-			<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
-		</div><!--.slide-hero-->
-
-		<!--
-		* data-nav="slide1" attribute is an identifier for data-nav-links.
-		-->
-		<div class="slide" data-nav="slide1">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-5 col-md-offset-1">
-						<div class="row">
-							<div class="col-md-12">
-								<%= image_tag("screens/teams.png", alt: "", class: "img-responsive thumbnail") %>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
-							</div>
-							<div class="col-md-6">
-								<%= image_tag("screens/videos.png", alt: "", class: "img-responsive thumbnail") %>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<%= image_tag("screens/chat.png", alt: "", class: "img-responsive thumbnail") %>
-							</div>
-							<div class="col-md-6">
-								<%= image_tag("screens/setup.png", alt: "", class: "img-responsive thumbnail") %>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-offset-1 col-md-4">
-						<h5 class="highlight ws2 no-margin semi-bold">
-							PARENTS
-						</h5>
-						<h2 class="text-black ws2 margin-top-0">FOLLOW YOUR ATHLETE ONLINE!</h2>
-						<p class="caption">Give your sports administrators full access to the most powerful team management platform online.</p>
-						<ul class="list-vertical">
-							<li>
-								<div class="list-icon text-black">
-									<i class="ion-clipboard"></i>
-								</div><!--.list-icon-->
-								<div class="list-info">
-									<h4 class="text-indigo">TEAM ROSTERS</h4>
-									<span>
-										Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.
-									</span>
-								</div><!--.list-info-->
-							</li>
-							<li>
-								<div class="list-icon text-black">
-									<i class="ion-calendar"></i>
-								</div><!--.list-icon-->
-								<div class="list-info">
-									<h4 class="text-indigo">CALENDARS</h4>
-									<span>Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.</span>
-								</div><!--.list-info-->
-							</li>
-							<li>
-								<div class="list-icon text-black">
-									<i class="ion-chatboxes"></i>
-								</div><!--.list-icon-->
-								<div class="list-info">
-									<h4 class="text-indigo">COMMUNICATION</h4>
-									<span>Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.</span>
-								</div><!--.list-info-->
-							</li>
-							<li>
-								<div class="list-icon text-black">
-									<i class="ion-email-unread"></i>
-								</div><!--.list-icon-->
-								<div class="list-info">
-									<h4 class="text-indigo">NOTIFICATIONS</h4>
-									<span>Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.</span>
-								</div><!--.list-info-->
-							</li>
-							<li>
-								<div class="list-icon text-black">
-									<i class="ion-heart"></i>
-								</div><!--.list-icon-->
-								<div class="list-info">
-									<h4 class="text-indigo">FRIENDS, FAMILY & FANS</h4>
-									<span>Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.</span>
-								</div><!--.list-info-->
-							</li>
-						</ul>
-					</div><!--.col-->
-				</div><!--.row-->
-
-				<a class="btn btn-large btn-floating btn-pink btn-next btn-next-left" data-anchor="slide2" data-nav-link><i class="ion-chevron-down"></i></a>
-			</div><!--.container-->
-		</div><!--.slide-->
-	</div>
-
-	<div class="tab-pane fade" id="fans">
-		<div class="slide bg-image" data-nav="remove" style="background-image: url(http://s3.amazonaws.com/vnn-aws-sites/24/files/2011/08/EGR-Crowd-Shot.png); background-size: cover;">
-
-			<div class="container z1">
-				<div class="row">
-					<div class="col-md-9">
-						<h1 class="h0 text-white text-light-shadow">
-							THE <span class="highlight ls1">EASIEST</span> WAY TO
-							<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">STAY UP</span> ON<br> YOUR LOCAL SPORTS COMMUNITY
-						</h1>
-						<p class="caption text-white text-light-shadow">
-							Follow local sports teams of all levels, buy merchandise and game tickets,<br/> 
-							view team profiles, get the latest videos and photos, and more...<br/>
-						</p>
-						
-					</div><!--.col-->
-				</div><!--.row-->
-
-				<div class="row">
-					<div class="col-md-12">
-						<h4 class="text-white">MOBILE APP COMING SOON!</h4>
-						<h6 class="text-cyan bold ">Available In Stores Fall 2015</h6>
-						<ul class="store-list no-margin">
-							<li>
-								<a href="javascript:;">
-									<%= image_tag("one-page-parallax/on-appstore.png", alt: "") %>
-								</a>
-							</li>
-							<li>
-								<a href="javascript:;">
-									<%= image_tag("one-page-parallax/on-googleplay.png", alt: "") %>
-								</a>
-							</li>
-						</ul>
-					</div><!--.col-->
-				</div><!--.row-->
-
-			</div><!--.container-->
-			<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
-				</div><!--.slide-hero-->
-
-			<!--
-			* data-nav="slide1" attribute is an identifier for data-nav-links.
-			-->
-			<div class="slide" data-nav="slide1">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-5 col-md-offset-1">
-							<div class="row">
-								<div class="col-md-12">
-									<%= image_tag("screens/teams.png", alt: "", class: "img-responsive thumbnail") %>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
-								</div>
-								<div class="col-md-6">
-									<%= image_tag("screens/videos.png", alt: "", class: "img-responsive thumbnail") %>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<%= image_tag("screens/chat.png", alt: "", class: "img-responsive thumbnail") %>
-								</div>
-								<div class="col-md-6">
-									<%= image_tag("screens/setup.png", alt: "", class: "img-responsive thumbnail") %>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-offset-1 col-md-4">
-							<h5 class="highlight ws2 no-margin semi-bold">
-								SPORTS FANS
-							</h5>
-							<h2 class="text-black ws2 margin-top-0">FOLLOW LOCAL SPORTS ONLINE!</h2>
-							<p class="caption">Get access to team rosters, competition schedules, the latest teams news, videos and photos all in one platform.</p>
-							<ul class="list-vertical">
-								<li>
-									<div class="list-icon text-black">
-										<i class="ion-clipboard"></i>
-									</div><!--.list-icon-->
-									<div class="list-info">
-										<h4 class="text-indigo">VIEW ROSTERS</h4>
-										<span>
-											Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.
-										</span>
-									</div><!--.list-info-->
-								</li>
-								<li>
-									<div class="list-icon text-black">
-										<i class="ion-calendar"></i>
-									</div><!--.list-icon-->
-									<div class="list-info">
-										<h4 class="text-indigo">CALENDARS</h4>
-										<span>Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.</span>
-									</div><!--.list-info-->
-								</li>
-								<li>
-									<div class="list-icon text-black">
-										<i class="ion-chatboxes"></i>
-									</div><!--.list-icon-->
-									<div class="list-info">
-										<h4 class="text-indigo">COMMUNICATION</h4>
-										<span>Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.</span>
-									</div><!--.list-info-->
-								</li>
-								<li>
-									<div class="list-icon text-black">
-										<i class="ion-email-unread"></i>
-									</div><!--.list-icon-->
-									<div class="list-info">
-										<h4 class="text-indigo">NOTIFICATIONS</h4>
-										<span>Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.</span>
-									</div><!--.list-info-->
-								</li>
-								<li>
-									<div class="list-icon text-black">
-										<i class="ion-heart"></i>
-									</div><!--.list-icon-->
-									<div class="list-info">
-										<h4 class="text-indigo">FRIENDS, FAMILY & FANS</h4>
-										<span>Setup an entire highschool in minutes. Get athletic directors, coaches, athletes, medical staff, fans all connected online.</span>
-									</div><!--.list-info-->
-								</li>
-							</ul>
-						</div><!--.col-->
-					</div><!--.row-->
-
-					<a class="btn btn-large btn-floating btn-pink btn-next btn-next-left" data-anchor="slide2" data-nav-link><i class="ion-chevron-down"></i></a>
-				</div><!--.container-->
-			</div><!--.slide-->
-		</div>
-	</div>
-</div>
-
-<div class="slide bg-image" data-nav="remove" style="background-image: url('http://www.olgchs.org/uploaded/Athletics/Soccer-girls/2014_G_FR_Socc_WEB.jpg');">
-
-		<div class="container z1 text-center">
-			<div class="row">
-				<div class="col-md-12">
-					<h1 class="h0 text-white text-light-shadow">
-						GET YOUR TEAM ONLINE IN <span class="highlight ls1">MINUTES</span>
-					</h1>
-					<br/>
-					<p>
-						<a class="btn btn-lg btn-indigo">
-							CREATE A NEW TEAM ACCOUNT
-						</a>
-					</p>
-				</div><!--.col-->
-			</div><!--.row-->
-
-		</div><!--.container-->
-		<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
-	</div><!--.slide-hero-->
-
-	<div class="slide bg-pattern" style="background-image: url('assets/globals/img/patterns/sativa.png');" data-nav="slide4">
-
-		<div class="container-fluid">
-			<div class="row">
-				
-				<div class="col-md-8 col-md-offset-2">
-					<div class="row">
-						<div class="col-md-7 col-md-offset-1 col-sm-4 col-xs-12" data-bottom-top="bottom:-100px" data-center="bottom:0px">
-							<h5 class="highlight ws2 no-margin semi-bold">
-								EMPOWERING
-							</h5>
-							<h2 class="text-black ws2 margin-top-0">ADMINISTRATORS</h2>
-							<p class="caption no-margin">Give your sports administrators full access to the most powerful team management platform online.</p>
-							<ul class="list-vertical">
-								<li>
-									<div class="list-icon text-black">
-										<i class="ion-checkmark"></i>
-									</div><!--.list-icon-->
-									<div class="list-info">
-										<h4 class="text-indigo">TEAM ROSTERS</h4>
-										<span>
-											Setup an entire highschool in minutes. Get athletic directors, coaches,<br/> athletes, medical staff, fans all connected online.
-										</span>
-									</div><!--.list-info-->
-								</li>
-							</ul>
-						</div>
-						<div class="col-md-3 col-sm-4 col-xs-12" data-bottom-top="bottom:-100px" data-center="bottom:0px">
-							<%= image_tag("placeholders/administrator.png", class: "img-responsive img-circle", style: "border: 5px solid #eee;") %>
-						</div><!--.col-md-3-->
-					</div>
-
-					<hr/>
-
-					<div class="row">
-						<div class="col-md-7 col-md-offset-1 col-sm-4 col-xs-12" data-bottom-top="bottom:-100px" data-center="bottom:0px">
-							<h5 class="highlight ws2 no-margin semi-bold">
-								EMPOWERING
-							</h5>
-							<h2 class="text-black ws2 margin-top-0">ATHLETIC DIRECTORS & COACHES</h2>
-							<p class="caption no-margin">Give your sports administrators full access to the most powerful team management platform online.</p>
-							<ul class="list-vertical">
-								<li>
-									<div class="list-icon text-black">
-										<i class="ion-checkmark"></i>
-									</div><!--.list-icon-->
-									<div class="list-info">
-										<h4 class="text-indigo">TEAM ROSTERS</h4>
-										<span>
-											Setup an entire highschool in minutes. Get athletic directors, coaches,<br/> athletes, medical staff, fans all connected online.
-										</span>
-									</div><!--.list-info-->
-								</li>
-							</ul>
-						</div>
-						<div class="col-md-3 col-sm-4 col-xs-12" data-bottom-top="bottom:-100px" data-center="bottom:0px">
-							<%= image_tag("placeholders/athletic-director.png", class: "img-responsive img-circle", style: "border: 5px solid #eee;") %>
-						</div><!--.col-md-3-->
-					</div>
-
-					<hr/>
-
-					<div class="row">
-						<div class="col-md-7 col-md-offset-1 col-sm-4 col-xs-12" data-bottom-top="bottom:-100px" data-center="bottom:0px">
-							<h5 class="highlight ws2 no-margin semi-bold">
-								EMPOWERING
-							</h5>
-							<h2 class="text-black ws2 margin-top-0">TEAMS</h2>
-							<p class="caption no-margin">Give your sports administrators full access to the most powerful team management platform online.</p>
-							<ul class="list-vertical">
-								<li>
-									<div class="list-icon text-black">
-										<i class="ion-checkmark"></i>
-									</div><!--.list-icon-->
-									<div class="list-info">
-										<h4 class="text-indigo">TEAM ROSTERS</h4>
-										<span>
-											Setup an entire highschool in minutes. Get athletic directors, coaches,<br/> athletes, medical staff, fans all connected online.
-										</span>
-									</div><!--.list-info-->
-								</li>
-							</ul>
-						</div>
-						<div class="col-md-3 col-sm-4 col-xs-12" data-bottom-top="bottom:-100px" data-center="bottom:0px">
-							<%= image_tag("placeholders/female-team.png", class: "img-responsive img-circle", style: "border: 5px solid #eee;") %>
-						</div><!--.col-md-3-->
-					</div>
-				</div><!--.col-->
-				<div class="col-md-5 col-md-offset-1">
-					
-				</div>
-			</div><!--.row-->
-
-			<a class="btn btn-large btn-floating btn-pink btn-next btn-next-left" data-anchor="slide2" data-nav-link><i class="ion-chevron-down"></i></a>
-		</div><!--.container-->
-
-	</div><!--.slide-->
 
 
 
-	<div class="slide bg-image" data-nav="remove" style="background-image: url('http://www.olgchs.org/uploaded/Athletics/Soccer-girls/2014_G_FR_Socc_WEB.jpg');">
-
-		<div class="container z1 text-center">
-			<div class="row">
-				<div class="col-md-12">
-					<h1 class="h0 text-white text-light-shadow">
-						GET YOUR TEAM ONLINE IN <span class="highlight ls1">MINUTES</span>
-					</h1>
-					<br/>
-					<p>
-						<a class="btn btn-lg btn-indigo">
-							CREATE A NEW TEAM ACCOUNT
-						</a>
-					</p>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-				</div><!--.col-->
-			</div><!--.row-->
-
-		</div><!--.container-->
-		<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
-	</div><!--.slide-hero-->
-
-	<div class="footer bg-black">
+	<div class="page-wrapper">
+		<div class="header">
 		<div class="container">
 
-			<ul class="social-list">
-				<li><a href="javascript:;" class="facebook"><i class="ion-social-facebook"></i></a></li>
-				<li><a href="javascript:;" class="twitter"><i class="ion-social-twitter"></i></a></li>
-				<li><a href="javascript:;" class="pinterest"><i class="ion-social-github"></i></a></li>
-			</ul>
+			<div class="logo text-white">
+				<%= image_tag("icons/flag.png", height: "15", class: "margin-right-5", style: "margin-top: -5px; width: 15px;") %>
+				SportsMarkit
+			</div><!--.logo-->
 
-			<div class="copyright v-text">TEAMFOX &copy; 2015</div>
+			<!--
+			* data-nav-link attribute is necessary for data-anchor links.
+			* data-anchor="slide1" attribute is useful when user clicks the data-nav-link, the window moves the related slide.
+			-->
+			<div class="animated-selector">
+				<ul class="navigation">
+					<li class="active" href="#schools" role="tab" data-toggle="tab">
+					Schools
+				</li>
+				<li href="#athletes" role="tab" data-toggle="tab">
+					Athletes
+				</li>
+				<li href="#parents" role="tab" data-toggle="tab">
+					Parents
+				</li>
+				<li href="#fans" role="tab" data-toggle="tab">Sports Fans</li>
+				</ul>
+				<div class="selector"></div>
+			</div><!--.animated-selector-->
+
+			<div class="btn-action">
+
+				<button type="button" class="btn btn-flat btn-ripple text-white dropdown-toggle ls0" data-toggle="dropdown">
+				<%= image_tag("placeholders/user.jpg", class: "img-circle profile-mini", height: "35")%>
+				David Gibson <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="#"><span class="ion-person mr5"></span> My profile</a></li>
+					<li><a href="#"><span class="ion-gear-b mr5"></span> Account Setup</a></li>
+					<li class="divider"></li>
+					<li class="dropdown-submenu">
+						<a href="javascript:;"><span class="ion-power mr5"></span> Logout</a>
+						<ul class="dropdown-menu">
+							<!-- <li><a href="#">Logout</a></li> -->
+						</ul>
+					</li>
+				</ul>
+
+				<a href="/login" class="btn btn-white bold button-striped button-full-striped btn-ripple">Login</a>
+				<a href="/signup" class="btn btn-warning bold button-striped button-full-striped btn-ripple">Signup</a>
+			</div><!--.btn-action-->
+
+			<div class="hamburger-btn"></div><!--.hamburger-btn-->
 
 		</div><!--.container-->
-	</div><!--.footer-->
+		</div><!--.header-->
+
+			<div class="tab-content no-padding no-border">
+			<div class="tab-pane active fade in" id="schools">
+				<div class="slide bg-image" style="background-image: url('http://www1.pgcps.org/uploadedImages/Offices/Communications/Press_Releases/2011_-_2012/June/Potomac%20Track%20Team.JPG');">
+
+					<div class="container z1">
+						<div class="row">
+							<div class="col-md-9">
+								<h1 class="h0 text-white text-light-shadow">
+									THE <span class="highlight ls1">EASIEST</span> WAY TO
+									<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">MANAGE</span><br>
+									HIGH SCHOOL ATHLETIC PROGRAMS.
+								</h1>
+								<p class="caption text-white text-light-shadow">Manage rosters, share calendars, centralize team communication, <br/> arrange payments, set notifications, invite fans, and much more...</p>
+							</div><!--.col-->
+						</div><!--.row-->
+
+						
+						<div class="row">
+							<div class="col-md-12">
+								<h4 class="text-white">MOBILE APP COMING SOON!</h4>
+								<h6 class="text-cyan bold ">Available In Stores Fall 2015</h6>
+								<ul class="store-list no-margin">
+									<li>
+										<a href="javascript:;">
+											<%= image_tag("one-page-parallax/on-appstore.png", alt: "") %>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+											<%= image_tag("one-page-parallax/on-googleplay.png", alt: "") %>
+										</a>
+									</li>
+								</ul>
+							</div><!--.col-->
+						</div><!--.row-->
+
+
+					</div><!--.container-->
+				</div><!--.slide-hero-->
+				
+			</div>
+
+			<div class="tab-pane fade" id="athletes">
+				<div class="slide bg-image"  style="background-image: url('<%= image_path("placeholders/athlete_bg.png") %>'); background-size: cover;">
+
+					<div class="container z1">
+						<div class="row">
+							<div class="col-md-9">
+								<h1 class="h0 text-white text-light-shadow">
+									THE <span class="highlight ls1">EASIEST</span> WAY TO
+									<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">MANAGE</span><br>
+									YOUR ENTIRE SPORTS LIFE ONLINE.
+								</h1>
+								<p class="caption text-white text-light-shadow">Unlimited team profiles, personalized sports calendars, videos and photo<br/>
+								uploads, text-message notifications, get followed by fans, and more...</p>
+							</div><!--.col-->
+						</div><!--.row-->
+
+						<div class="row">
+							<div class="col-md-12">
+								<h4 class="text-white">MOBILE APP COMING SOON!</h4>
+								<h6 class="text-cyan bold ">Available In Stores Fall 2015</h6>
+								<ul class="store-list no-margin">
+									<li>
+										<a href="javascript:;">
+											<%= image_tag("one-page-parallax/on-appstore.png", alt: "") %>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+											<%= image_tag("one-page-parallax/on-googleplay.png", alt: "") %>
+										</a>
+									</li>
+								</ul>
+							</div><!--.col-->
+						</div><!--.row-->
+					</div><!--.container-->
+				</div><!--.slide-hero-->
+			</div>
+
+			<div class="tab-pane fade" id="parents">
+				<div class="slide bg-image" data-nav="remove" style="background-image: url('<%= image_path("placeholders/parents_bg.png") %>'); background-size: cover;">
+
+					<div class="container z1">
+						<div class="row">
+							<div class="col-md-9">
+								<h1 class="h0 text-white text-light-shadow">
+									THE <span class="highlight ls1">EASIEST</span> WAY TO
+									<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">KEEP TRACK</span><br>OF YOUR KID'S SPORTS LIFE.
+								</h1>
+								<p class="caption text-white text-light-shadow">Access team contact information, coach and player profiles, team calendars, <br/>team photos and videos, get updates & notifications, and much more...
+							</div><!--.col-->
+						</div><!--.row-->
+
+						<div class="row">
+							<div class="col-md-12">
+								<h4 class="text-white">MOBILE APP COMING SOON!</h4>
+								<h6 class="text-cyan bold ">Available In Stores Fall 2015</h6>
+								<ul class="store-list no-margin">
+									<li>
+										<a href="javascript:;">
+											<%= image_tag("one-page-parallax/on-appstore.png", alt: "") %>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+											<%= image_tag("one-page-parallax/on-googleplay.png", alt: "") %>
+										</a>
+									</li>
+								</ul>
+							</div><!--.col-->
+						</div><!--.row-->
+
+					</div><!--.container-->
+				</div><!--.slide-hero-->
+
+			</div>
+
+			<div class="tab-pane fade" id="fans">
+				<div class="slide bg-image" data-nav="remove" style="background-image: url(http://s3.amazonaws.com/vnn-aws-sites/24/files/2011/08/EGR-Crowd-Shot.png); background-size: cover;">
+
+					<div class="container z1">
+						<div class="row">
+							<div class="col-md-9">
+								<h1 class="h0 text-white text-light-shadow">
+									THE <span class="highlight ls1">EASIEST</span> WAY TO
+									<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">STAY UP</span> ON<br> YOUR LOCAL SPORTS COMMUNITY
+								</h1>
+								<p class="caption text-white text-light-shadow">
+									Follow local sports teams of all levels, buy merchandise and game tickets,<br/> 
+									view team profiles, get the latest videos and photos, and more...<br/>
+								</p>
+								
+							</div><!--.col-->
+						</div><!--.row-->
+
+						<div class="row">
+							<div class="col-md-12">
+								<h4 class="text-white">MOBILE APP COMING SOON!</h4>
+								<h6 class="text-cyan bold ">Available In Stores Fall 2015</h6>
+								<ul class="store-list no-margin">
+									<li>
+										<a href="javascript:;">
+											<%= image_tag("one-page-parallax/on-appstore.png", alt: "") %>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+											<%= image_tag("one-page-parallax/on-googleplay.png", alt: "") %>
+										</a>
+									</li>
+								</ul>
+							</div><!--.col-->
+						</div><!--.row-->
+
+					</div><!--.container-->
+				</div><!--.slide-hero-->
+
+					
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="footer" style="background: transparent; margin-top: -100px; z-index: 999999999; position: absolute;">
+				<ul class="social-list">
+					<li><a href="javascript:;" class="facebook"><i class="ion-social-facebook"></i></a></li>
+					<li><a href="javascript:;" class="twitter"><i class="ion-social-twitter"></i></a></li>
+					<li><a href="javascript:;" class="linkedin"><i class="ion-social-linkedin"></i></a></li>
+					<li><a href="javascript:;" class="youtube"><i class="ion-social-youtube"></i></a></li>
+				</ul>
+
+				<div class="copyright v-text semi-bold gf_oswald upper"><span class="muted">sportsmarkit &copy; 2015</span></div>
+
+			</div><!--.container-->
+		</div><!--.footer-->
+	</div>
+
+
 
