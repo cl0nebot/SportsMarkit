@@ -1,6 +1,5 @@
 <div class="content">
-
-  <div class="page-header full-content bg-blue mb0">
+  <div class="page-header full-content bg-primary mb0">
     <div class="row">
       <div class="col-sm-6">
         <h1>All Users <small><%= User.all.count%></small></h1>
@@ -14,16 +13,25 @@
     </div><!--.row-->
   </div><!--.page-header-->
 
-   <div class="page-header full-content box-shadow-ccc"  style="background: #fff;">
+  <div class="page-header full-content"  style="background: #fff; border-bottom: 1px solid #ccc;">
     <div class="row">
       <div clas="panel panel-default">
         <div class="panel-body">
           <div class="row">
-            <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 box-shadow-ccc"  style="background: #fff;">
-              <div class="padding-bottom-0">
-                <div class="inputer">
-                  <!-- isotope filtering and typeahead-->
-                  <input type="text" class=" fs_20 lh_40 quicksearch-users typeahead typeahead-users form-control" rows="1" placeholder="Find a user...">
+            <div class="col-md-6 col-md-offset-3">
+              <div class="row">
+                <div class="col-md-4 text-center mt10">
+                  <h4 class="semi-bold">
+                    <span class="ion-search text-primary h4 no-margin"></span>                   
+                    <span class="h5 upper bold ws1 ml10 no-margin">search all users</span>
+                  </h4>
+                </div>
+                <div class="col-md-8 box-shadow-ccc"  style="background: #fff;">
+                  <div class="padding-bottom-0">
+                    <div class="inputer mt5 mb5 ml10">
+                      <input type="text" class=" fs_20 quicksearch-users typeahead typeahead-users form-control" rows="1" placeholder="Enter user name...">
+                    </div>
+                  </div>
                 </div>
               </div>
             </div><!--.col-md-9-->
@@ -38,9 +46,8 @@
       <%= render @users %>
     </div>
   </div>
+</div>
       
-</div><!--.row-->
-
 
 <script type="text/javascript">
 

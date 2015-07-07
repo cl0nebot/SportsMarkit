@@ -1,44 +1,112 @@
+<div class="content">
+	<div class="page-header full-content bg-blue mb0">
+	  <div class="row">
+	    <div class="col-sm-6">
+	      <h1>Admin <small>facility types</small></h1>
+	    </div><!--.col-->
+	    <div class="col-sm-6">
+	      <ol class="breadcrumb">
+	        <li><a href="/"><i class="ion-home"></i></a></li>
+	        <li><a href="<%= users_path %>" class="active">all users</a></li>
+	      </ol>
+	    </div><!--.col-->
+	  </div><!--.row-->
+	</div><!--.page-header-->
 
-<div class="page-content condensed">
-  <div class="content">
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="grid simple no-border">
-          <div class="grid-body">
-            <div class="clearfix">
-				<h4 class="semi-bold">Create a New Facility Type</h4>
-				<%= form_for @facility_type, html: {id: 'facility-type-form', data: {remote: true}} do |f| %>
-					<div class="row">
-						<div class="col-md-6">
-							<%= f.text_field :facility_type, class: "col-md-12", placeholder: "" %>
-						</div>
-						
-						<div class="col-md-2">
-							<%= f.submit class: "btn btn-white" %>
+	   
+	  	
+	<div class="pt60">
+		<div class="row">
+			<div class="col-lg-4">
+	    	<%= form_for @facility_type, html: {id: 'facility-type-form', data: {remote: true}} do |f| %>
+		    <div class="panel box-shadow-ccc">
+		    	<div class="panel-heading">
+						<div class="panel-title">
+							<span class="ion-plus-circled text-primary h1 mr15 mt0 pull-left"></span>
+							<h3 class="semi-bold mt10">
+								<span class="">New Faciliy Type</span>
+							</h3>
 						</div>
 					</div>
-				<% end %>
-				<br/>
-				<br/>
-				<br/>
-      			<table id="facility-type-list" class="table table-hover table-condensed" id="example">
-	                <thead>
-	                  <tr>
-	                    <th style="width:15%" class="gf_muli">Facility Type</th>
-						<th style="width:15%" class="gf_muli">All Time</th>
-	                    <th style="width:20%" class="gf_muli"># Certified </th>
-	                    <th style="width:22%" class="gf_muli">Actions</th>
-	                  </tr>
-	                </thead>
-	                <tbody>
-		                <%= render @facility_types %>
-	                </tbody>
-	              </table>
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
+					<div class="panel-body">
+			      <div class="row">
+			      	<div class="col-md-12">
+			        	<div class="row">
+									<div class="col-md-12">
+										<div class="row example-row no-margin">
+											<div class="col-md-12">Enter Facility Type Name</div>
+											<div class="col-md-12">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<%= f.text_field :facility_type, type: "text", class: "form-control", placeholder: "" %>
+													</div>
+												</div>
+											</div><!--.col-md-9-->
+										</div><!--.row-->
+									</div>
+								</div>
+								<div class="row mt20">
+									<div class="col-md-12">
+										<div class="example-row">
+											<div class="col-md-12 mb10">Associated Sport</span></div>
+											<div class="col-md-12">
+												<div class="inputer">
+													<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
+														<option>Basketball Gym</option>
+														<option>Recreation Center</option>
+														<option>Tennis Court</option>
+														<option>Volleyball Court</option>
+														<option>Soccer Field</option>
+														<option>Indoor Soccer Field</option>
+														<option>Track</option>
+														<option>Indoor Track</option>
+														<option>Football Field</option>
+														<option>Indoor Football Field</option>
+													</select>
+												</div>
+											</div><!--.col-md-9-->
+										</div><!--.row-->
+									</div>
+								</div>
+								<div class="row mt10">
+					        <div class="col-md-12">
+					        	<%= f.submit "Create Facility Type", class: "btn btn-blue btn-block mt20" %>
+					        </div>
+					      </div>
+					    </div>
+			      </div>
+			    </div>
+			  </div>
+				<% end %>	
+			</div>
+			<div class="col-lg-8">
+				<div class="panel box-shadow-ccc">
+					<div class="panel-heading">
+						<div class="panel-title">
+							<h4 class="semi-bold">All Facility Types</h4>
+						</div>
+					</div>
+					<div class="panel-body pb40">
+						<div class="">
+							<table id="facility-type-list" class="table table-hover table-condensed" id="example">
+					          <thead>
+					            <tr>
+					              <th style="width:30%" class="semi-bold h6 text-muted">Facility Type</th>
+								  <th style="width:30%" class="semi-bold h6 text-muted">Sport</th>
+					              <th style="width:30%" class="semi-bold h6 text-muted">Actions</th>
+					            </tr>
+					          </thead>
+					          <tbody>
+					            <%= render @facility_types %>
+					          </tbody>
+				        	</table>
+				      	</div>
+				      </div>
+				    </div>
+				</div>
+			</div>
+		</div>
 	</div>
+</div>
+
 

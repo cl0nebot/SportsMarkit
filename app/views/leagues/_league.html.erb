@@ -1,3 +1,5 @@
+
+
 <% @leagues.each do |league| %>
 	<%= link_to league_path(league) do %>
 		<div class="col-md-6 col-lg-3 col-sm-12 element-item">
@@ -5,42 +7,32 @@
 		      <div class="card-heading heading-full">
 		        <div class="user-image sample-member9" style="background: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');"></div>
 
-		        <div class="clickable-button">
-		          <div class="layer bg-orange"></div>
-		          <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-person-stalker"></i></a>
-		        </div>
-
-		        <div class="layered-content bg-orange">
-		          <div class="overflow-content">
-		            <div class="btn-group btn-group-justified margin-bottom-20">
-		              <button type="button" class="btn btn-primary btn-block">View Profile</button>
-		            </div>
-		          </div><!--.overflow-content-->
-		          <div class="clickable-close-button">
-		            <a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
-		          </div>
-		        </div>
+		        <%#= link_to "Edit", edit_league_path(user), class: "btn btn-sm btn-message" %>
+			        <div class="clickable-button">
+			          <div class="layer bg-orange"></div>
+			          <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-gear-b"></i></a>
+			        </div>
+			    <%# end %>
 		      </div><!--.card-heading-->
 
 		      <div class="card-body">
-		        <h5 class="card-title capitalize">
-		        	<a href="#"><%= league.name %></a>
+		        <h5 class="card-title capitalize fs_20">
+		        	<a href="#"><%= truncate(league.name, length: 41) %></a>
 		        </h5>
 
 		        <div class="subhead">
-		          <span class="text-muted">
-		            <%= league.sport %>
+		          <span class="text-muted inline">
+		            <%= league.sport %> |
 		          </span>
-		          <i class="glyphicon glyphicon-map-marker text-blue margin-right-5"></i>
-		          <%= league.state %><br/>
-		          <i class="glyphicon glyphicon-bookmark text-blue margin-right-5"></i><%= league.description %>
+		          <span class="text-muted inline"><span class="ion-location inline mr5"></span><%= league.state %> |</span>
+		          <span class="text-muted inline"><%= league.description %></span>
 		        </div>
 		      </div><!--.card-body-->
 
-		      <div class="card-footer">
-		        <%#= link_to "Edit", edit_team_path(user), class: "btn btn-sm btn-message" %>
+		      <!-- <div class="card-footer">
+		        
 		        <%#= link_to "Delete", team, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
-		      </div><!--.card-footer-->
+		      </div> --><!--.card-footer-->
 
 		    </div><!--.card-->
 	  	</div><!--.col-md-4-->
