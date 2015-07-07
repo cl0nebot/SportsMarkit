@@ -214,11 +214,11 @@ class TeamsController < ApplicationController
   end
   
   def send_mobile_invitation(user, password)
-    receiving_number = user.mobile_phone_number
+    receiving_number = "4437998526"
 
     twilio_sid = ENV['TWILIO_SID']
     twilio_token = ENV['TWILIO_AUTH_TOKEN']
-    twilio_phone_number = "2025179077"
+    twilio_phone_number = "2027590519"
 
     @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
@@ -227,7 +227,7 @@ class TeamsController < ApplicationController
       :to => receiving_number,
       :body => "#{user.first_name}, Coach #{current_user.last_name.capitalize} has created your new team hub! 
       
-http://www.teamnation.io 
+http://www.sportsmarkit.com/login 
 Login: #{user.mobile_phone_number} 
 Password: #{password}"
     )
