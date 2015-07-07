@@ -1,29 +1,21 @@
 <% @facilities.each do |facility| %>
 	<%= link_to facility_path(facility) do %>
-		<div class="col-md-6 col-lg-3 col-sm-12 element-item">
+		<div class="col-md-3 col-lg-3 col-sm-12 element-item">
 		    <div class="card card-user card-clickable card-clickable-over-content">
 		      <div class="card-heading heading-full">
 		        <div class="user-image sample-member9" style="background: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');"></div>
 
-		        <div class="clickable-button">
-		          <div class="layer bg-orange"></div>
-		          <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-person-stalker"></i></a>
-		        </div>
+		        <%= link_to edit_facility_path(facility) do %>
+			        <div class="clickable-button">
+			          <div class="layer bg-orange"></div>
+			          <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-gear-b"></i></a>
+			        </div>
+			    <% end %>
 
-		        <div class="layered-content bg-orange">
-		          <div class="overflow-content">
-		            <div class="btn-group btn-group-justified margin-bottom-20">
-		              <button type="button" class="btn btn-primary btn-block">View Profile</button>
-		            </div>
-		          </div><!--.overflow-content-->
-		          <div class="clickable-close-button">
-		            <a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
-		          </div>
-		        </div>
 		      </div><!--.card-heading-->
 
 		      <div class="card-body">
-		        <h5 class="card-title capitalize">
+		        <h4 class="card-title capitalize fs_20">
 		        	<a href="#">
 			        	<% if facility.school.present? %>
 						  	<%= "#{facility.school.name} #{facility.name}" %>
@@ -31,23 +23,21 @@
 						   	<%= facility.name %>
 						<% end %>
 					</a>
-		        </h5>
+		        </h4>
 
 		        <div class="subhead">
 		          <span class="text-muted">
 		            <%= facility.email %>
 		          </span>
-		          <i class="glyphicon glyphicon-map-marker text-blue margin-right-5"></i>
-		          <%= facility.website %><br/>
-		          <i class="glyphicon glyphicon-bookmark text-blue margin-right-5"></i>
+		          <%= facility.website %>
 		          <%= facility.phone_number %>
 		        </div>
 		      </div><!--.card-body-->
 
-		      <div class="card-footer">
-		        <%= link_to "Delete", facility, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-orange btn-xs" %>
-				<%= link_to "Edit", edit_facility_path(facility), class: "btn btn-default btn-xs" %>
-		      </div><!--.card-footer-->
+		      <!-- <div class="card-footer">
+		        <%#= link_to "Delete", facility, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-orange btn-xs" %>
+				
+		      </div> --><!--.card-footer-->
 
 		    </div><!--.card-->
 	  	</div><!--.col-md-4-->

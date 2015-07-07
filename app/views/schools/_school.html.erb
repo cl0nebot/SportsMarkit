@@ -5,27 +5,19 @@
 			  <%#= image_tag school.main_photo, size: "428x150" %>
 	        <div class="user-image sample-member9" style="background: url('/assets/classroom.jpg');"></div>
 
-	        <div class="clickable-button">
-	          <div class="layer bg-orange"></div>
-	          <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-person-stalker"></i></a>
-	        </div>
+	        <%= link_to edit_school_path(school) do %>
+		        <div class="clickable-button">
+		          <div class="layer bg-orange"></div>
+		          <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-gear-b"></i></a>
+		        </div>
+		    <% end %>
 
-	        <div class="layered-content bg-orange">
-	          <div class="overflow-content">
-	            <div class="btn-group btn-group-justified margin-bottom-20">
-	              <button type="button" class="btn btn-primary btn-block">View Profile</button>
-	            </div>
-	          </div><!--.overflow-content-->
-	          <div class="clickable-close-button">
-	            <a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
-	          </div>
-	        </div>
 	      </div><!--.card-heading-->
 
 	      <div class="card-body">
-	        <h5 class="card-title capitalize">
+	        <h5 class="card-title fs_20">
 	        
-		        	<%= link_to school.name, school_path(school) %>
+		        <%= link_to school.name, school_path(school) %>
 				
 	        </h5>
 
@@ -33,17 +25,18 @@
 	          <span class="text-muted">
 	            <%= school.email %>
 	          </span>
-	          <i class="glyphicon glyphicon-map-marker text-blue margin-right-5"></i>
-	          <%= school.website %><br/>
-	          <i class="glyphicon glyphicon-bookmark text-blue margin-right-5"></i>
-	          <%= school.phone_number %>
+	          <p class="text-muted no-margin">
+	          	<%= link_to school.website do %>
+	          		Website
+	          	<% end %> | <%= school.phone_number %>
+	          </p>
 	        </div>
 	      </div><!--.card-body-->
 
-	      <div class="card-footer">
-	        <%= link_to "Delete", school, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-orange btn-xs" %>
-			<%= link_to "Edit", edit_school_path(school), class: "btn btn-default btn-xs" %>
-	      </div><!--.card-footer-->
+	     <!--  <div class="card-footer">
+	        <%#= link_to "Delete", school, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-orange btn-xs" %>
+			
+	      </div> --><!--.card-footer-->
 
 	    </div><!--.card-->
   	</div><!--.col-md-4-->

@@ -6,7 +6,7 @@
 
         <div class="clickable-button">
           <div class="layer bg-orange"></div>
-          <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-person-stalker"></i></a>
+          <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-gear-b"></i></a>
         </div>
 
         <div class="layered-content bg-orange">
@@ -22,7 +22,7 @@
       </div><!--.card-heading-->
 
       <div class="card-body">
-        <h5 class="card-title capitalize">
+        <h5 class="card-title capitalize fs_20">
         	<a href="#"><%= link_to team.name, team_path(team) %></a>
         </h5>
 
@@ -30,15 +30,15 @@
           <span class="text-muted">
             <%= team.sport %>
           </span>
-          <i class="glyphicon glyphicon-map-marker text-blue margin-right-5"></i>	[city, state]<br/>
-          <i class="glyphicon glyphicon-bookmark text-blue margin-right-5"></i>[school name]
+          <span class="text-muted">[city, state]</span>
+          <span class="text-muted">[school name or Team Type]</span>
         </div>
       </div><!--.card-body-->
 
-      <div class="card-footer">
-        <%#= link_to "Edit", edit_team_path(user), class: "btn btn-sm btn-message" %>
-        <%#= link_to "Delete", team, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
-      </div><!--.card-footer-->
+        <!-- <div class="card-footer">
+          <%#= link_to "Edit", edit_team_path(user), class: "btn btn-sm btn-message" %>
+          <%#= link_to "Delete", team, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
+        </div> --><!--.card-footer-->
 
     </div><!--.card-->
   </div><!--.col-md-4-->
