@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       if user.email.blank? and user.mobile_phone_number.present?
         redirect_to user_email_path(user)
       else
-        if @user.signin_count < 1 or @user.classifications.blank?
+        if user.signin_count < 1 or user.classifications.blank?
           if user.mobile_phone_number.present? && Relationship.where(user_id: user.id, mobile_phone_number: user.mobile_phone_number)
             send_mobile_notification(user)
           end
@@ -56,13 +56,13 @@ class SessionsController < ApplicationController
     relationship_ids = user.relationships.pluck(:team_id)
     coach_user_ids = Relationship.where(team_id: relationship_ids, head: true, accepted: true).pluck(:user_id)
     
-    User.where(user_id: coach_user_ids).each do |coach|
+    User.where(id: coach_user_ids).each do |coach|
       
       receiving_number = coach.mobile_phone_number
 
       twilio_sid = ENV['TWILIO_SID']
       twilio_token = ENV['TWILIO_AUTH_TOKEN']
-      twilio_phone_number = "2025179077"
+      twilio_phone_number = "2027590519"
 
       @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
