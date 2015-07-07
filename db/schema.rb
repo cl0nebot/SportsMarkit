@@ -491,7 +491,7 @@ ActiveRecord::Schema.define(version: 20150707203533) do
     t.string   "uid"
     t.string   "mobile_phone_number"
     t.integer  "temporary_school_ids"
-    t.integer  "signin_count",            default: 0
+    t.integer  "signin_count"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

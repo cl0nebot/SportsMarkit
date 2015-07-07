@@ -8,32 +8,45 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <br>
         <i class="icon-credit-card icon-7x"></i>
-        <h4 id="myModalLabel" class="semi-bold"><%= position.position %></h4>
-        <p class="no-margin">Place the new event type in the field below. </p>
-        <br>
+        <h4 id="myModalLabel" class="semi-bold">Edit "<span class="bold"><%= position.position %>"</span> position</h4>
       </div>
+      <hr class="no-margin"/>
       <div class="modal-body">
-		  <!-- jasny -->
-        <div class="fileinput fileinput-new" data-provides="fileinput">
-          <div class="fileinput-new thumbnail no-padding" style="width: 300px; max-height: 180px;">
-			  
-			   
+        <div class="row example-row">
+          <div class="col-md-12">Position Name</div>
+          <div class="col-md-12">
+            <div class="inputer">
+              <div class="input-wrapper">
+                <%= f.text_field :position, placeholder: "Position", class: "form-control" %>
+              </div>
+            </div>
+          </div><!--.col-md-9-->
+        </div><!--.row-->
 
-          </div>
-          <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 300px; max-height: 180px;"></div>
-          
-		  <br>
-		  <%= f.text_field :position, placeholder: "position" %>
-        </div>
-		<%= f.text_field :abbreviation, placeholder: "position" %>
+        <div class="row example-row">
+          <div class="col-md-12">Abbreviation</div>
+          <div class="col-md-12">
+            <div class="inputer">
+              <div class="input-wrapper">
+                <%= f.text_field :abbreviation, placeholder: "Abbreviation", class: "form-control" %>
+              </div>
+            </div>
+          </div><!--.col-md-9-->
+        </div><!--.row-->
+
+        <div class="row example-row">
+          <div class="col-md-12">Sport</div>
+          <div class="col-md-12">
+            <div class="inputer">
+              <div class="input-wrapper">
+                <%= f.collection_select :sport_id, Sport.all, :id, :sport, {:selected => [position.sport_id]}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", placeholder: "Select a Sport" } %>
+              </div>
+            </div>
+          </div><!--.col-md-9-->
+        </div><!--.row-->
       </div>
-	 
-	  <%= f.collection_select :sport_id, Sport.all, :id, :sport, {:selected => [position.sport_id]}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", placeholder: "Select a Sport" } %>
-	  
-	  
-      <div class="modal-footer">
-		 
-		  <%= f.submit "Save", class: "btn btn-primary" %>
+      <div class="modal-footer bg-primary">
+		    <%= f.submit "Save", class: "btn btn-white" %>
       </div>
     </div>
     <!-- /.modal-content -->
