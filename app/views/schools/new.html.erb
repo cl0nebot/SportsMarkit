@@ -1,225 +1,221 @@
-<div class="content">
+<div class="row">
+	<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+		<div class="panel box-shadow-ccc">
+			<div class="panel-header bg-cyan">
+				<br/>
+				<h5 class="text-right text-white semi-bold">Add or Create a New School
+					<i class="ion-plus-circled margin-right-10 margin-left-10 text-white"></i>
+				</h5>
+				<hr class="margin-top-0"/>
+			</div>
 
-	<br/>
+			<%= form_for School.new, html: {id: 'new-school-form'} do |f|   %>
 
-	<div class="row">
-		<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-			<div class="panel box-shadow-ccc">
-				<div class="panel-header bg-cyan">
+			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
+					 	<div class="row text-center">
+							<div class="col-md-12">
+								<h3 class="semi-bold text-primary">Setup a new school</h3>
+								<h4>What type of school?</h4>
+							</div>
+						</div>
+						<div class="row example-row">
+							<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 well margin-bottom-0">
+								<%= f.select :classification, [ 'College', 'High School', 'Middle School'], {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
+							</div><!--.col-md-9-->
+						</div><!--.row-->
+					</div>
+				</div>
+			</div>
+
+			
+			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+				<div class="panel-body padding-right-40 padding-left-40">
+
+					<h5 class="semi-bold text-muted text-center">Simply fill out all of the information below to create a new school.</h5>
 					<br/>
-					<h5 class="text-right text-white semi-bold">Add or Create a New School
-						<i class="ion-plus-circled margin-right-10 margin-left-10 text-white"></i>
-					</h5>
-					<hr class="margin-top-0"/>
-				</div>
-
-				<%= form_for School.new, html: {id: 'new-school-form'} do |f|   %>
-
-				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
-					<div class="row">
-						<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
-						 	<div class="row text-center">
-								<div class="col-md-12">
-									<h3 class="semi-bold text-primary">Setup a new school</h3>
-									<h4>What type of school?</h4>
-								</div>
-							</div>
-							<div class="row example-row">
-								<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 well margin-bottom-0">
-									<%= f.select :classification, [ 'College', 'High School', 'Middle School'], {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
-								</div><!--.col-md-9-->
-							</div><!--.row-->
-						</div>
-					</div>
-				</div>
-
-				
-				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
-					<div class="panel-body padding-right-40 padding-left-40">
-
-						<h5 class="semi-bold text-muted text-center">Simply fill out all of the information below to create a new school.</h5>
-						<br/>
-							
-						<br/>
-						<h4 class="text-blue semi-bold">
-							<i class="ion-ios-location margin-right-10"></i> General Info
-						</h4>
-						<br/>
-						<div class="row example-row">
-							<div class="col-md-12">
-								<h4>Name</h4>
-							</div>
-							<div class="col-md-12">
-								<div class="inputer">
-									<div class="input-wrapper">
-										<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
-									</div>
-								</div>
-							</div><!--.col-md-9-->
-						</div><!--.row-->
-
-						<div class="row example-row">
-							<div class="col-md-12"><h4>Abbreviation</h4></div>
-							<div class="col-md-3">
-								<div class="inputer">
-									<div class="input-wrapper">
-										<%= f.text_field :abbreviation, type: "text", class: "form-control", placeholder: "" %>
-									</div>
-								</div>
-							</div><!--.col-md-9-->
-						</div><!--.row-->
-
-
-
 						
-					</div>
-				</div>
-
-				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
-					<div class="panel-body padding-right-40 padding-left-40">
-
-							<br/>
-							<h4 class="text-blue semi-bold">
-								<i class="ion-ios-location margin-right-10"></i> Address and Location Info
-							</h4>
-							<br/>
-							<div class="row example-row">
-								<div class="col-md-12"><h4>Address 1</h4></div><!--.col-md-3-->
-								<div class="col-md-12">
-									<div class="inputer">
-										<div class="input-wrapper">
-											<%= f.text_field :address_1, type: "text", class: "form-control", placeholder: "" %>
-										</div>
-									</div>
-								</div><!--.col-md-9-->
-							</div><!--.row-->
-
-							<div class="row example-row">
-								<div class="col-md-12"><h4>Address 2</h4></div><!--.col-md-3-->
-								<div class="col-md-12">
-									<div class="inputer">
-										<div class="input-wrapper">
-											<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "" %>
-										</div>
-									</div>
-								</div><!--.col-md-9-->
-							</div><!--.row-->
-
-							<div class="row example-row">
-								<div class="row">
-									<div class="col-md-5">
-										<div class="col-md-12"><h4>City</h4></div><!--.col-md-3-->
-										<div class="col-md-12">
-											<div class="inputer">
-												<div class="input-wrapper">
-													<%= f.text_field :city, type: "text", class: "form-control", placeholder: "" %>
-												</div>
-											</div>
-										</div><!--.col-md-9-->
-									</div>
-									<div class="col-md-2">
-										<div class="col-md-12"><h4>State</h4></div><!--.col-md-3-->
-										<div class="col-md-12">
-											<div class="inputer">
-												<div class="input-wrapper">
-													<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %>
-												</div>
-											</div>
-										</div><!--.col-md-9-->
-									</div>
-									<div class="col-md-3">
-										<div class="col-md-12"><h4>Zipcode</h4></div><!--.col-md-3-->
-										<div class="col-md-12">
-											<div class="inputer">
-												<div class="input-wrapper">
-													<%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true %>
-												</div>
-											</div>
-										</div><!--.col-md-9-->
-									</div>
-									<div class="col-md-2">
-										<div class="col-md-12"><h4>Ext.</h4></div><!--.col-md-3-->
-										<div class="col-md-12">
-											<div class="inputer">
-												<div class="input-wrapper">
-													<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true %>
-												</div>
-											</div>
-										</div><!--.col-md-9-->
-									</div>
+					<br/>
+					<h4 class="text-blue semi-bold">
+						<i class="ion-ios-location margin-right-10"></i> General Info
+					</h4>
+					<br/>
+					<div class="row example-row">
+						<div class="col-md-12">
+							<h4>Name</h4>
+						</div>
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
 								</div>
-							</div><!--.row-->
-					</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+					<div class="row example-row">
+						<div class="col-md-12"><h4>Abbreviation</h4></div>
+						<div class="col-md-3">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :abbreviation, type: "text", class: "form-control", placeholder: "" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+
+
+					
 				</div>
-				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
-					<div class="panel-body padding-right-40 padding-left-40">
+			</div>
+
+			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+				<div class="panel-body padding-right-40 padding-left-40">
+
 						<br/>
 						<h4 class="text-blue semi-bold">
-							<i class="ion-email margin-right-10"></i> Contact Information
+							<i class="ion-ios-location margin-right-10"></i> Address and Location Info
 						</h4>
 						<br/>
-
 						<div class="row example-row">
-							<div class="col-md-12"><h4>Website</h4></div><!--.col-md-3-->
+							<div class="col-md-12"><h4>Address 1</h4></div><!--.col-md-3-->
 							<div class="col-md-12">
 								<div class="inputer">
 									<div class="input-wrapper">
-										<%= f.text_field :website, type: "text", class: "form-control", placeholder: ""  %>
+										<%= f.text_field :address_1, type: "text", class: "form-control", placeholder: "" %>
 									</div>
 								</div>
 							</div><!--.col-md-9-->
 						</div><!--.row-->
 
 						<div class="row example-row">
-							<div class="col-md-12"><h4>Email</h4></div><!--.col-md-3-->
+							<div class="col-md-12"><h4>Address 2</h4></div><!--.col-md-3-->
 							<div class="col-md-12">
 								<div class="inputer">
 									<div class="input-wrapper">
-										<%= f.text_field :email, type: "text", class: "form-control" %>
+										<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "" %>
 									</div>
 								</div>
 							</div><!--.col-md-9-->
 						</div><!--.row-->
 
 						<div class="row example-row">
-							<div class="col-md-12"><h4>Phone</h4></div><!--.col-md-3-->
-							<div class="col-md-12">
-								<div class="inputer">
-									<div class="input-wrapper">
-										<%= f.text_field :phone_number, type: "text", class: "form-control" %>
-									</div>
+							<div class="row">
+								<div class="col-md-5">
+									<div class="col-md-12"><h4>City</h4></div><!--.col-md-3-->
+									<div class="col-md-12">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :city, type: "text", class: "form-control", placeholder: "" %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
 								</div>
-							</div><!--.col-md-9-->
+								<div class="col-md-2">
+									<div class="col-md-12"><h4>State</h4></div><!--.col-md-3-->
+									<div class="col-md-12">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div>
+								<div class="col-md-3">
+									<div class="col-md-12"><h4>Zipcode</h4></div><!--.col-md-3-->
+									<div class="col-md-12">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div>
+								<div class="col-md-2">
+									<div class="col-md-12"><h4>Ext.</h4></div><!--.col-md-3-->
+									<div class="col-md-12">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div>
+							</div>
 						</div><!--.row-->
-					</div>
+				</div>
+			</div>
+			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+				<div class="panel-body padding-right-40 padding-left-40">
+					<br/>
+					<h4 class="text-blue semi-bold">
+						<i class="ion-email margin-right-10"></i> Contact Information
+					</h4>
+					<br/>
+
+					<div class="row example-row">
+						<div class="col-md-12"><h4>Website</h4></div><!--.col-md-3-->
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :website, type: "text", class: "form-control", placeholder: ""  %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+					<div class="row example-row">
+						<div class="col-md-12"><h4>Email</h4></div><!--.col-md-3-->
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :email, type: "text", class: "form-control" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+					<div class="row example-row">
+						<div class="col-md-12"><h4>Phone</h4></div><!--.col-md-3-->
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :phone_number, type: "text", class: "form-control" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+				</div>
+			</div>
+
+				<div class="panel-body padding-right-40 padding-left-40 bg-cyan">
+					<div class="row example-row margin-bottom-0">
+						<div class="col-md-12 text-center">
+							<h3 class="text-white margin-bottom-0">Have and Questions?</h3>
+							<p class="text-white semi-bold">Please check out our 
+								<a href="#" class="text-white">		
+									<u>School FAQ.</u>
+								</a>
+							</p>
+						</div>
+					</div><!--.row-->
 				</div>
 
-					<div class="panel-body padding-right-40 padding-left-40 bg-cyan">
-						<div class="row example-row margin-bottom-0">
-							<div class="col-md-12 text-center">
-								<h3 class="text-white margin-bottom-0">Have and Questions?</h3>
-								<p class="text-white semi-bold">Please check out our 
-									<a href="#" class="text-white">		
-										<u>School FAQ.</u>
-									</a>
-								</p>
-							</div>
-						</div><!--.row-->
-					</div>
-
-					<div class="form-buttons no-margin">
-						<div class="row">
-							<div class="col-lg-8 col-lg-offset-2">
-								<br/>
-								<%= f.submit "Awesome. Let's create a school!", class: "btn btn-blue btn-lg btn-block btn-ripple" %>
-								<br/>
-							</div>
+				<div class="form-buttons no-margin">
+					<div class="row">
+						<div class="col-lg-8 col-lg-offset-2">
+							<br/>
+							<%= f.submit "Awesome. Let's create a school!", class: "btn btn-blue btn-lg btn-block btn-ripple" %>
+							<br/>
 						</div>
 					</div>
 				</div>
-			<% end %>
-		</div>
-	</div>  
-</div>
+			</div>
+		<% end %>
+	</div>
+</div>  
+
 <%#= @id %>
 <%#= @class %>
