@@ -1,5 +1,5 @@
 <div class="content">
-	<div class="page-header full-content">
+	<div class="page-header full-content mb0">
 		<div class="row">
 			<div class="col-sm-5">
 				<h1>All Leagues <small>(<%= League.count %>)</small></h1>
@@ -18,22 +18,34 @@
 		</div><!--.row-->
 	</div><!--.page-header-->
 
-  <div clas="panel">
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-lg-6 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-12">
-          <div class="padding-bottom-0">
-            <div class="inputer">
-              <!-- isotope filtering and typeahead-->
-              <textarea type="text" class=" fs_30 lh_55 quicksearch-leagues typeahead typeahead-leagues form-control" rows="1" placeholder="Start typing league name here..."></textarea>
-            </div>
-          </div>
-        </div><!--.col-md-9-->
-      </div><!--.row-->
-      <hr class="margin-top-10"/>
+	<div class="page-header full-content box-shadow-ccc"  style="background: #fff;">
+    <div class="row">
+      <div clas="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+          	<div class="col-md-6 col-md-offset-3">
+	          	<div class="row">
+		            <div class="col-md-4 text-center">
+		            	<h4 class="semi-bold">
+		            		<span class="ion-search text-primary h3 mr20"></span>		            		
+		            		<span class="h4 upper bold ws1">Find a league</span>
+		            	</h4>
+		            </div>
+		            <div class="col-md-8 box-shadow-ccc"  style="background: #fff;">
+		              <div class="padding-bottom-0">
+		                <div class="inputer mt5 mb5 ml10">
+		                  <!-- isotope filtering and typeahead-->
+		                  <input type="text" class="fs_20 quicksearch-leagues typeahead typeahead-leagues form-control" rows="1" placeholder="Enter League name...">
+		                </div>
+		              </div>
+		            </div><!--.col-md-9-->
+		          </div><!--.row-->
+		      </div>
+	      </div>
+        </div>
+      </div>
     </div>
   </div>
-  
 
   <div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
     
