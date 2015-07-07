@@ -320,6 +320,15 @@ class User < ActiveRecord::Base
    end
   end
   
+  def certification_list(count=0)
+    c = certificates.where('expiration >= ?', Time.now).pluck(:certification_id).uniq  
+    if count == 0
+      Certification.where(id: c).pluck(:name).join(", ")
+    else
+      Certification.where(id: c).pluck(:name).first(count).join(", ")
+    end
+  end
+  
   def has_profile_picture?
     user_profile_pictures.present?
   end

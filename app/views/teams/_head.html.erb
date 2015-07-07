@@ -41,7 +41,7 @@
             <div class="row">
                 <div class="col-sm-2">
                     <h5 class="no-margin semi-bold">
-                        <%= m.head_title if m.head?%> [TBD]
+                        <%= m.head_title.blank? ? "TBD" : m.head_title %>
                     </h5>
                     <p class="small text-grey">
                         <small>
@@ -50,24 +50,28 @@
                     </p>
                 </div>
                 <div class="col-sm-4">
+					<% if m.class.to_s == "Relationship" %>
                     <h5 class="no-margin capitalize semi-bold">
-                        NSPC, KDSFDS, SDFAD, 
+                        <%= m.user.certification_list.blank? ? "TBD" : m.user.certification_list %>
                     </h5>
                     <p class="small text-grey">
                         <small>
-                            certfications
+                            certifications
                         </small>
                     </p>
+					<% end %>
                     </div>
                 <div class="col-sm-2">
+					<% if m.class.to_s == "Relationship" %>
                     <h5 class="no-margin semi-bold">
-                        516-000-9999
+                        <%= m.user.mobile_phone_number.blank? ? "TBD" : number_to_phone(m.user.mobile_phone_number) %>
                     </h5>
                     <p class="small text-grey">
                         <small>
                             phone
                         </small>
                     </p>
+					<% end %>
                 </div>
             </div>
         </div>
