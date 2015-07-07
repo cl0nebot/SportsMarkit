@@ -36,8 +36,25 @@ For ex: <div class="header header-red"> or <div class="header header-teal">
 			</div><!--.animated-selector-->
 
 			<div class="btn-action">
-				<a href="#" class="btn btn-white bold button-striped button-full-striped btn-ripple" target="_blank">Login</a>
-				<a href="#" class="btn btn-warning bold button-striped button-full-striped btn-ripple" target="_blank">Signup</a>
+
+				<button type="button" class="btn btn-flat btn-ripple text-white dropdown-toggle ls0" data-toggle="dropdown">
+				<%= image_tag("placeholders/user.jpg", class: "img-circle profile-mini", height: "35")%>
+				David Gibson <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="#"><span class="ion-person mr5"></span> My profile</a></li>
+					<li><a href="#"><span class="ion-gear-b mr5"></span> Account Setup</a></li>
+					<li class="divider"></li>
+					<li class="dropdown-submenu">
+						<a href="javascript:;"><span class="ion-power mr5"></span> Logout</a>
+						<ul class="dropdown-menu">
+							<!-- <li><a href="#">Logout</a></li> -->
+						</ul>
+					</li>
+				</ul>
+
+				<a href="/login" class="btn btn-white bold button-striped button-full-striped btn-ripple">Login</a>
+				<a href="/signup" class="btn btn-warning bold button-striped button-full-striped btn-ripple">Signup</a>
 			</div><!--.btn-action-->
 
 			<div class="hamburger-btn"></div><!--.hamburger-btn-->

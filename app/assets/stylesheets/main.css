@@ -182,4 +182,15 @@ body {background: #f5f5f5;}
 
 .page-wrapper {overflow: hidden !important;}
 
-btn.
+img.profile-mini {border: 2px solid #fff; margin-right: 10px;}
+
+
+.btn-flat:hover, .btn-flat:focus, .btn-flat.focus, .btn-flat:active, .btn-flat.active, .open > .dropdown-toggle.btn-flat {
+  box-shadow: none;
+  color: #fff !important;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color: transparent;
+}
+
+.dropdown-menu {border-radius: 4px !important;}
+
