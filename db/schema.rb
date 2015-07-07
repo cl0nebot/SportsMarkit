@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706192941) do
+ActiveRecord::Schema.define(version: 20150707203533) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -250,6 +250,7 @@ ActiveRecord::Schema.define(version: 20150706192941) do
     t.string   "position"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "abbreviation"
   end
 
   create_table "profiles", force: true do |t|
@@ -490,7 +491,7 @@ ActiveRecord::Schema.define(version: 20150706192941) do
     t.string   "uid"
     t.string   "mobile_phone_number"
     t.integer  "temporary_school_ids"
-    t.integer  "signin_count"
+    t.integer  "signin_count",            default: 0
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

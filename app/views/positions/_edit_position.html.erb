@@ -8,7 +8,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <br>
         <i class="icon-credit-card icon-7x"></i>
-        <h4 id="myModalLabel" class="semi-bold"><%= position.name %></h4>
+        <h4 id="myModalLabel" class="semi-bold"><%= position.position %></h4>
         <p class="no-margin">Place the new event type in the field below. </p>
         <br>
       </div>
@@ -25,7 +25,10 @@
 		  <br>
 		  <%= f.text_field :position, placeholder: "position" %>
         </div>
+		<%= f.text_field :abbreviation, placeholder: "position" %>
       </div>
+	 
+	  <%= f.collection_select :sport_id, Sport.all, :id, :sport, {:selected => [position.sport_id]}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", placeholder: "Select a Sport" } %>
 	  
 	  
       <div class="modal-footer">

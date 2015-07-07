@@ -42,7 +42,7 @@ class PositionsController < ApplicationController
   
   def destroy
     @position = Position.find(params[:id])
-    @index = @certification.index_position
+    @index = @position.index_position
     @position.destroy
     respond_to do |format|
       format.js
@@ -54,7 +54,7 @@ class PositionsController < ApplicationController
   protected
   
   def position_params
-    params.require(:position).permit(:position, :sport_id)
+    params.require(:position).permit(:position, :sport_id, :abbreviation)
   end
 end
   

@@ -2,8 +2,8 @@
     <td class="v-align-middle">
     	<%= position.position %>
     </td>
-    <td></td>
-    <td></td>
+    <td><%= position.abbreviation %></td>
+    <td><%= position.sport.try(:sport) %></td>
     <td class="v-align-middle">
     	<div class="row clearfix">
     		<div class="col-md-6">
@@ -18,3 +18,5 @@
         </div>
     </td>
 </tr>
+
+<%= render 'edit_position', position: position %>
