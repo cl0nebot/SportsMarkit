@@ -132,6 +132,13 @@ ul.navigation li.active  {
 .button-full-striped.btn-warning {
   border-color: #fec006;
   color: #fec006 !important;
+  background: rgba(0,0,0, .20);
+}
+
+.button-full-striped.btn-white {
+  border-color: #fff;
+  color: #fff !important;
+  background: rgba(0,0,0, .20);
 }
 
 
@@ -164,3 +171,5 @@ ul.navigation li.active  {
 body {background: #f5f5f5;}
 
 .page-wrapper {overflow: hidden !important;}
+
+btn.
