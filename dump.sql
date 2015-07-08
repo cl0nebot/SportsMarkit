@@ -58,7 +58,7 @@ CREATE TABLE `athletic_directors` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `athletic_directors` (
 
 LOCK TABLES `athletic_directors` WRITE;
 /*!40000 ALTER TABLE `athletic_directors` DISABLE KEYS */;
-INSERT INTO `athletic_directors` VALUES (1,2,7,NULL,NULL,NULL,'2015-05-20 04:27:32','2015-05-20 13:13:47'),(3,29,6,1,NULL,NULL,'2015-05-21 21:03:31','2015-05-21 21:04:47');
+INSERT INTO `athletic_directors` VALUES (6,2,9,NULL,NULL,NULL,'2015-06-22 22:07:45','2015-06-22 22:07:45');
 /*!40000 ALTER TABLE `athletic_directors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +88,7 @@ CREATE TABLE `attendees` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +97,7 @@ CREATE TABLE `attendees` (
 
 LOCK TABLES `attendees` WRITE;
 /*!40000 ALTER TABLE `attendees` DISABLE KEYS */;
-INSERT INTO `attendees` VALUES (20,8,2,0,0,1,'2015-04-21 16:50:03','2015-04-21 16:50:07'),(21,25,2,1,0,0,'2015-04-27 22:41:38','2015-04-27 22:42:00'),(47,26,2,1,0,0,'2015-05-06 06:29:31','2015-05-17 17:23:20'),(48,4,2,0,0,1,'2015-05-06 15:42:26','2015-05-06 22:46:30'),(49,5,2,0,1,0,'2015-05-06 15:42:30','2015-05-06 15:42:33'),(50,18,2,1,0,0,'2015-05-21 21:16:53','2015-05-21 21:17:04'),(51,41,2,1,0,0,'2015-05-22 16:33:38','2015-05-22 16:33:40');
+INSERT INTO `attendees` VALUES (4,87,2,NULL,NULL,1,'2015-07-08 17:31:24','2015-07-08 19:00:34'),(5,85,2,NULL,NULL,1,'2015-07-08 18:36:22','2015-07-08 19:00:27'),(6,91,2,1,NULL,NULL,'2015-07-08 18:52:54','2015-07-08 18:53:00'),(7,86,2,NULL,NULL,1,'2015-07-08 19:00:29','2015-07-08 19:00:31');
 /*!40000 ALTER TABLE `attendees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +145,7 @@ CREATE TABLE `certificates` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,6 +154,7 @@ CREATE TABLE `certificates` (
 
 LOCK TABLES `certificates` WRITE;
 /*!40000 ALTER TABLE `certificates` DISABLE KEYS */;
+INSERT INTO `certificates` VALUES (1,2,7,'2015-06-17',1,'2015-06-04 14:43:50','2015-06-04 14:43:50'),(4,63,7,'2015-07-11',1,'2015-06-18 22:29:01','2015-07-06 21:25:39');
 /*!40000 ALTER TABLE `certificates` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,7 +226,7 @@ CREATE TABLE `classifications` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,7 +235,7 @@ CREATE TABLE `classifications` (
 
 LOCK TABLES `classifications` WRITE;
 /*!40000 ALTER TABLE `classifications` DISABLE KEYS */;
-INSERT INTO `classifications` VALUES (10,9,'Parent','2015-05-07 00:11:00','2015-05-07 00:11:00'),(24,26,'Athletic Director','2015-05-20 15:38:59','2015-05-20 15:38:59'),(25,27,'Athlete','2015-05-20 15:40:06','2015-05-20 15:40:06'),(26,27,'Coach','2015-05-20 15:40:07','2015-05-20 15:40:07'),(27,28,'Coach','2015-05-20 15:41:03','2015-05-20 15:41:03'),(28,29,'Athlete','2015-05-21 21:02:13','2015-05-21 21:02:13'),(29,29,'Coach','2015-05-21 21:02:15','2015-05-21 21:02:15'),(30,29,'Athletic Director','2015-05-21 21:02:17','2015-05-21 21:02:17'),(31,33,'Student Athlete','2015-05-22 18:05:26','2015-05-22 18:05:26'),(35,2,'Student Athlete','2015-05-26 18:54:40','2015-05-26 18:54:40'),(36,2,'Athlete','2015-05-26 18:54:41','2015-05-26 18:54:41'),(37,2,'Coach','2015-05-26 18:54:42','2015-05-26 18:54:42'),(38,2,'Parent','2015-05-26 18:54:43','2015-05-26 18:54:43'),(39,2,'Athletic Director','2015-05-26 18:54:44','2015-05-26 18:54:44'),(40,2,'Tournament Director','2015-05-26 18:54:44','2015-05-26 18:54:44');
+INSERT INTO `classifications` VALUES (10,9,'Parent','2015-05-07 00:11:00','2015-05-07 00:11:00'),(24,26,'Athletic Director','2015-05-20 15:38:59','2015-05-20 15:38:59'),(25,27,'Athlete','2015-05-20 15:40:06','2015-05-20 15:40:06'),(26,27,'Coach','2015-05-20 15:40:07','2015-05-20 15:40:07'),(27,28,'Coach','2015-05-20 15:41:03','2015-05-20 15:41:03'),(28,29,'Athlete','2015-05-21 21:02:13','2015-05-21 21:02:13'),(29,29,'Coach','2015-05-21 21:02:15','2015-05-21 21:02:15'),(30,29,'Athletic Director','2015-05-21 21:02:17','2015-05-21 21:02:17'),(31,33,'Student Athlete','2015-05-22 18:05:26','2015-05-22 18:05:26'),(51,34,'Student Athlete','2015-06-05 18:37:10','2015-06-05 18:37:10'),(52,35,'Student Athlete','2015-06-05 18:38:44','2015-06-05 18:38:44'),(59,36,'Student Athlete','2015-06-05 19:20:48','2015-06-05 19:20:48'),(60,37,'Student Athlete','2015-06-12 15:23:51','2015-06-12 15:23:51'),(61,37,'Coach','2015-06-12 15:23:51','2015-06-12 15:23:51'),(62,38,'Student Athlete','2015-06-12 15:31:18','2015-06-12 15:31:18'),(63,38,'Coach','2015-06-12 15:31:18','2015-06-12 15:31:18'),(64,39,'Student Athlete','2015-06-12 15:31:57','2015-06-12 15:31:57'),(65,39,'Coach','2015-06-12 15:31:57','2015-06-12 15:31:57'),(66,40,'Student Athlete','2015-06-12 15:34:25','2015-06-12 15:34:25'),(67,40,'Coach','2015-06-12 15:34:25','2015-06-12 15:34:25'),(68,41,'Student Athlete','2015-06-12 15:35:54','2015-06-12 15:35:54'),(69,41,'Coach','2015-06-12 15:35:54','2015-06-12 15:35:54'),(70,42,'Student Athlete','2015-06-12 15:40:26','2015-06-12 15:40:26'),(71,42,'Coach','2015-06-12 15:40:26','2015-06-12 15:40:26'),(72,43,'Student Athlete','2015-06-12 15:42:49','2015-06-12 15:42:49'),(73,43,'Coach','2015-06-12 15:42:49','2015-06-12 15:42:49'),(74,44,'Student Athlete','2015-06-12 15:43:14','2015-06-12 15:43:14'),(75,44,'Coach','2015-06-12 15:43:14','2015-06-12 15:43:14'),(76,45,'Student Athlete','2015-06-12 15:44:34','2015-06-12 15:44:34'),(77,45,'Coach','2015-06-12 15:44:34','2015-06-12 15:44:34'),(78,46,'Student Athlete','2015-06-12 15:45:17','2015-06-12 15:45:17'),(79,46,'Coach','2015-06-12 15:45:17','2015-06-12 15:45:17'),(80,47,'Student Athlete','2015-06-12 15:45:54','2015-06-12 15:45:54'),(94,54,'Student Athlete','2015-06-13 19:06:02','2015-06-13 19:06:02'),(95,54,'Coach','2015-06-13 19:06:02','2015-06-13 19:06:02'),(96,55,'Student Athlete','2015-06-13 19:18:35','2015-06-13 19:18:35'),(97,55,'Coach','2015-06-13 19:18:35','2015-06-13 19:18:35'),(98,59,'Student Athlete','2015-06-16 16:02:14','2015-06-16 16:02:14'),(99,59,'Coach','2015-06-16 16:02:14','2015-06-16 16:02:14'),(100,60,'Student Athlete','2015-06-16 17:58:14','2015-06-16 17:58:14'),(101,60,'Coach','2015-06-16 17:58:14','2015-06-16 17:58:14'),(102,61,'Student Athlete','2015-06-16 18:02:08','2015-06-16 18:02:08'),(103,63,'Student Athlete','2015-06-18 22:11:44','2015-06-18 22:11:44'),(104,63,'Athlete','2015-06-18 22:12:13','2015-06-18 22:12:13'),(105,63,'Coach','2015-06-18 22:12:14','2015-06-18 22:12:14'),(106,63,'Parent','2015-06-18 22:12:14','2015-06-18 22:12:14'),(109,64,'Athlete','2015-06-18 22:41:43','2015-06-18 22:41:43'),(110,65,'Athlete','2015-06-18 22:47:57','2015-06-18 22:47:57'),(111,63,'Athlete','2015-06-19 01:52:32','2015-06-19 01:52:32'),(112,63,'Athlete','2015-06-19 01:57:47','2015-06-19 01:57:47'),(113,63,'Athlete','2015-06-19 02:04:28','2015-06-19 02:04:28'),(114,66,'Athlete','2015-06-19 03:36:04','2015-06-19 03:36:04'),(116,75,'Student Athlete','2015-06-22 12:48:19','2015-06-22 12:48:19'),(123,76,'Student Athlete','2015-06-22 14:37:45','2015-06-22 14:37:45'),(128,2,'Student Athlete','2015-06-23 15:26:35','2015-06-23 15:26:35'),(129,2,'Athlete','2015-06-23 15:26:36','2015-06-23 15:26:36'),(130,2,'Coach','2015-06-23 15:26:37','2015-06-23 15:26:37'),(131,2,'Parent','2015-06-23 15:30:16','2015-06-23 15:30:16'),(132,77,'Student Athlete','2015-06-23 15:47:30','2015-06-23 15:47:30'),(133,2,'Athletic Director','2015-06-30 00:01:45','2015-06-30 00:01:45'),(134,79,'Student Athlete','2015-07-01 21:44:05','2015-07-01 21:44:05'),(139,84,'Student Athlete','2015-07-07 00:37:50','2015-07-07 00:37:50');
 /*!40000 ALTER TABLE `classifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,7 +254,7 @@ CREATE TABLE `event_facilities` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,8 +263,35 @@ CREATE TABLE `event_facilities` (
 
 LOCK TABLES `event_facilities` WRITE;
 /*!40000 ALTER TABLE `event_facilities` DISABLE KEYS */;
-INSERT INTO `event_facilities` VALUES (1,20,NULL,NULL,'2015-04-21 19:02:39','2015-04-21 19:02:39'),(2,21,NULL,NULL,'2015-04-21 19:02:43','2015-04-21 19:02:43'),(3,22,3,NULL,'2015-04-21 19:03:41','2015-04-21 19:03:41'),(4,23,3,NULL,'2015-04-24 16:21:58','2015-04-24 16:21:58'),(5,24,3,NULL,'2015-04-27 22:39:51','2015-04-27 22:39:51'),(6,25,3,NULL,'2015-04-27 22:40:16','2015-04-27 22:40:16'),(7,26,3,NULL,'2015-05-05 17:44:58','2015-05-05 17:44:58'),(8,27,3,NULL,'2015-05-05 23:50:54','2015-05-05 23:50:54'),(9,28,3,NULL,'2015-05-06 22:39:55','2015-05-06 22:39:55'),(10,28,9,NULL,'2015-05-21 21:17:45','2015-05-21 21:17:45'),(11,41,10,NULL,'2015-05-22 16:31:02','2015-05-22 16:31:02'),(12,42,9,NULL,'2015-05-27 06:13:02','2015-05-27 06:13:02'),(13,43,3,NULL,'2015-05-27 06:14:00','2015-05-27 06:14:00');
+INSERT INTO `event_facilities` VALUES (1,20,NULL,NULL,'2015-04-21 19:02:39','2015-04-21 19:02:39'),(2,21,NULL,NULL,'2015-04-21 19:02:43','2015-04-21 19:02:43'),(3,22,3,NULL,'2015-04-21 19:03:41','2015-04-21 19:03:41'),(4,23,3,NULL,'2015-04-24 16:21:58','2015-04-24 16:21:58'),(5,24,3,NULL,'2015-04-27 22:39:51','2015-04-27 22:39:51'),(6,25,3,NULL,'2015-04-27 22:40:16','2015-04-27 22:40:16'),(7,26,3,NULL,'2015-05-05 17:44:58','2015-05-05 17:44:58'),(8,27,3,NULL,'2015-05-05 23:50:54','2015-05-05 23:50:54'),(9,28,3,NULL,'2015-05-06 22:39:55','2015-05-06 22:39:55'),(10,28,9,NULL,'2015-05-21 21:17:45','2015-05-21 21:17:45'),(11,41,10,NULL,'2015-05-22 16:31:02','2015-05-22 16:31:02'),(12,42,9,NULL,'2015-05-27 06:13:02','2015-05-27 06:13:02'),(13,43,3,NULL,'2015-05-27 06:14:00','2015-05-27 06:14:00'),(14,44,12,NULL,'2015-06-05 16:12:22','2015-06-05 16:12:22'),(15,45,3,NULL,'2015-06-05 16:18:07','2015-06-05 16:18:07'),(16,46,3,NULL,'2015-06-05 16:18:27','2015-06-05 16:18:27'),(17,47,3,NULL,'2015-06-05 16:20:00','2015-06-05 16:20:00'),(18,48,3,NULL,'2015-06-05 16:20:49','2015-06-05 16:20:49'),(19,49,3,NULL,'2015-06-05 16:23:19','2015-06-05 16:23:19'),(20,50,9,NULL,'2015-06-05 16:46:23','2015-06-05 16:46:23'),(21,51,3,NULL,'2015-06-05 17:05:02','2015-06-05 17:05:02'),(22,52,3,NULL,'2015-06-05 17:13:20','2015-06-05 17:13:20'),(23,53,3,NULL,'2015-06-05 18:10:28','2015-06-05 18:10:28'),(24,54,3,NULL,'2015-06-05 18:13:48','2015-06-05 18:13:48'),(25,55,3,NULL,'2015-06-05 18:13:58','2015-06-05 18:13:58'),(26,56,3,NULL,'2015-06-05 18:14:20','2015-06-05 18:14:20'),(27,57,3,NULL,'2015-06-05 18:15:40','2015-06-05 18:15:40'),(28,58,3,NULL,'2015-06-05 18:15:41','2015-06-05 18:15:41'),(29,59,3,NULL,'2015-06-05 18:16:54','2015-06-05 18:16:54'),(30,60,3,NULL,'2015-06-05 18:16:56','2015-06-05 18:16:56'),(31,61,3,NULL,'2015-06-05 18:16:58','2015-06-05 18:16:58'),(32,62,3,NULL,'2015-06-05 18:19:07','2015-06-05 18:19:07'),(33,63,3,NULL,'2015-06-05 18:19:09','2015-06-05 18:19:09'),(34,64,3,NULL,'2015-06-05 18:19:09','2015-06-05 18:19:09'),(35,65,3,NULL,'2015-06-05 18:19:10','2015-06-05 18:19:10'),(36,66,3,NULL,'2015-06-05 18:19:12','2015-06-05 18:19:12'),(37,67,3,NULL,'2015-06-05 18:20:38','2015-06-05 18:20:38'),(38,68,3,NULL,'2015-06-05 18:22:02','2015-06-05 18:22:02'),(39,69,9,NULL,'2015-06-05 18:26:26','2015-06-05 18:26:26'),(40,70,3,NULL,'2015-06-05 18:28:24','2015-06-05 18:28:24'),(41,71,3,NULL,'2015-06-05 18:28:42','2015-06-05 18:28:42'),(42,72,3,NULL,'2015-06-05 18:28:56','2015-06-05 18:28:56'),(43,73,9,NULL,'2015-06-05 18:33:33','2015-06-05 18:33:33'),(44,74,9,NULL,'2015-06-05 18:33:50','2015-06-05 18:33:50'),(45,75,9,NULL,'2015-06-05 18:34:05','2015-06-05 18:34:05'),(46,76,9,NULL,'2015-06-05 18:34:20','2015-06-05 18:34:20'),(47,77,9,NULL,'2015-06-05 18:40:34','2015-06-05 18:40:34'),(48,78,9,NULL,'2015-06-05 18:40:49','2015-06-05 18:40:49'),(49,79,9,NULL,'2015-06-05 18:46:03','2015-06-05 18:46:03'),(51,80,9,NULL,'2015-06-16 18:08:55','2015-06-16 18:08:55'),(52,81,9,NULL,'2015-06-16 18:13:19','2015-06-16 18:13:19'),(54,83,13,NULL,'2015-06-18 23:01:42','2015-06-18 23:01:42'),(55,84,13,NULL,'2015-06-18 23:02:11','2015-06-18 23:02:11'),(56,85,9,NULL,'2015-07-01 20:03:33','2015-07-01 20:03:33'),(57,86,3,NULL,'2015-07-02 22:42:41','2015-07-02 22:42:41'),(58,87,3,NULL,'2015-07-08 16:47:39','2015-07-08 16:47:39'),(59,88,3,NULL,'2015-07-08 18:27:59','2015-07-08 18:27:59'),(60,89,3,NULL,'2015-07-08 18:28:11','2015-07-08 18:28:11'),(61,90,3,NULL,'2015-07-08 18:28:20','2015-07-08 18:28:20'),(62,91,3,NULL,'2015-07-08 18:28:27','2015-07-08 18:28:27');
 /*!40000 ALTER TABLE `event_facilities` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `event_types`
+--
+
+DROP TABLE IF EXISTS `event_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `event_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `sport_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `event_types`
+--
+
+LOCK TABLES `event_types` WRITE;
+/*!40000 ALTER TABLE `event_types` DISABLE KEYS */;
+INSERT INTO `event_types` VALUES (1,'event','2015-07-01 17:05:39','2015-07-01 17:05:39',NULL),(4,'Free Throw Practice','2015-07-08 01:21:19','2015-07-08 01:21:19',24);
+/*!40000 ALTER TABLE `event_types` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -292,7 +320,7 @@ CREATE TABLE `events` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_events_on_slug` (`slug`),
   KEY `index_events_on_eventable_id_and_eventable_type` (`eventable_id`,`eventable_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -301,7 +329,7 @@ CREATE TABLE `events` (
 
 LOCK TABLES `events` WRITE;
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
-INSERT INTO `events` VALUES (4,2,2,'User','Practice','Test Event','2015-04-20 20:14:00','2015-04-20 21:14:00',0,'hey',0,NULL,'1429561957-test-event','2015-04-20 20:32:37','2015-04-20 20:32:37'),(5,2,2,'User','Game','another event','2015-04-21 20:14:00','2015-04-21 21:14:00',0,'hey',0,NULL,'1429562100-another-event','2015-04-20 20:35:00','2015-04-20 20:35:00'),(8,2,2,'User','Practice','me me me','2015-04-23 20:14:00','2015-04-23 22:14:00',0,'hey',0,NULL,'1429631976-me-me-me','2015-04-21 15:59:37','2015-04-21 15:59:37'),(17,2,2,'User','','test','2015-04-21 18:32:00','2015-04-21 18:32:00',0,'',0,NULL,'1429641175-test','2015-04-21 18:32:55','2015-04-21 18:32:55'),(18,2,2,'User','','test','2015-04-21 18:32:00','2015-04-21 18:32:00',0,'',0,NULL,'1429641223-test','2015-04-21 18:33:43','2015-04-21 18:33:43'),(20,2,2,'User','','','2015-04-21 19:01:00','2015-04-21 19:01:00',0,'',0,NULL,'1429642958','2015-04-21 19:02:38','2015-04-21 19:02:38'),(21,2,2,'User','','','2015-04-21 19:01:00','2015-04-21 19:01:00',0,'',0,NULL,'1429642963','2015-04-21 19:02:43','2015-04-21 19:02:43'),(22,2,2,'User','','','2015-04-21 19:01:00','2015-04-21 19:01:00',0,'',0,NULL,'1429643021','2015-04-21 19:03:41','2015-04-21 19:03:41'),(23,2,2,'User','Practice','event for me',NULL,NULL,0,'HYH',0,NULL,'1429892517-event-for-me','2015-04-24 16:21:58','2015-04-24 16:21:58'),(24,2,2,'User','Practice','grits and biscuits party',NULL,NULL,0,'this is a party a club',0,NULL,'1430174390-grits-and-biscuits-party','2015-04-27 22:39:51','2015-04-27 22:39:51'),(25,2,2,'User','Practice','grits and biscuits party',NULL,NULL,0,'this is a party a club',0,NULL,'1430174416-grits-and-biscuits-party','2015-04-27 22:40:16','2015-04-27 22:40:16'),(26,2,5,'Team','Game','Game vs. WESTERN',NULL,NULL,0,'',0,NULL,'1430847898-game-vs-western','2015-05-05 17:44:58','2015-05-05 17:44:58'),(41,2,13,'Tournament','Tournament','wth facility','2015-05-22 16:18:00','2015-05-24 16:18:00',NULL,'dfskl',NULL,2,'1432312262-wth-facility','2015-05-22 16:31:02','2015-05-22 16:31:02'),(42,2,5,'Team','sdfljk','test','2015-05-28 17:00:00','2015-05-28 17:30:00',0,'',0,NULL,'1432707182-test','2015-05-27 06:13:02','2015-05-27 06:13:02'),(43,2,5,'Team','sdfljk','test','2015-05-28 17:00:00','2015-05-28 17:30:00',0,'',0,NULL,'1432707240-test','2015-05-27 06:14:00','2015-05-27 06:14:00');
+INSERT INTO `events` VALUES (81,2,5,'Team','Practice','test time','2015-07-09 04:34:27','2015-06-05 19:30:00',0,'test time',0,NULL,'1434478399-test-time','2015-06-16 18:13:19','2015-07-08 18:34:27'),(83,63,16,'Team','Practice','Ghost Note Personal Training','2015-07-09 05:34:27','2015-06-18 22:30:00',0,'PRACTICE',0,NULL,'1434668502-ghost-note-personal-training','2015-06-18 23:01:42','2015-07-08 18:34:27'),(84,63,16,'Team','Game','Ghost Note Personal Training','2015-07-09 06:34:27','2015-06-25 22:30:00',0,'game',0,NULL,'1434668531-ghost-note-personal-training','2015-06-18 23:02:11','2015-07-08 18:34:27'),(85,8,2,'User','efsd','Test Event','2015-07-09 07:34:27','2015-07-04 19:30:00',0,'sf',0,NULL,'1435781012-test-event','2015-07-01 20:03:32','2015-07-08 18:34:27'),(86,2,2,'User','Practice','Shade','2015-07-09 08:34:27','2015-07-04 19:30:00',0,'ff',0,NULL,'1435876960-shade','2015-07-02 22:42:41','2015-07-08 18:34:27'),(87,2,5,'Team','event','','2015-07-09 09:34:27','2015-07-08 17:40:00',0,'',0,NULL,'1436374058','2015-07-08 16:47:38','2015-07-08 18:34:27'),(88,2,2,'User','event','','2015-07-09 10:34:27','2015-07-08 19:27:00',0,'',0,NULL,'1436380078','2015-07-08 18:27:58','2015-07-08 18:34:27'),(89,2,2,'User','event','','2015-07-09 11:34:27','2015-07-08 19:27:00',0,'',0,NULL,'1436380091','2015-07-08 18:28:11','2015-07-08 18:34:27'),(90,2,2,'User','event','','2015-07-09 12:34:27','2015-07-08 19:27:00',0,'',0,NULL,'1436380099','2015-07-08 18:28:19','2015-07-08 18:34:27'),(91,2,2,'User','event','','2015-07-09 13:34:27','2015-07-08 19:27:00',0,'',0,NULL,'1436380107','2015-07-08 18:28:27','2015-07-08 18:34:27');
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -315,7 +343,7 @@ DROP TABLE IF EXISTS `facilities`;
 CREATE TABLE `facilities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `field_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `facility_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `private` tinyint(1) DEFAULT NULL,
   `publicly_visible` tinyint(1) DEFAULT NULL,
   `address_1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -350,6 +378,32 @@ INSERT INTO `facilities` VALUES (3,'Milford Mill Track','',1,1,'3800 Washington 
 UNLOCK TABLES;
 
 --
+-- Table structure for table `facility_types`
+--
+
+DROP TABLE IF EXISTS `facility_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `facility_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `facility_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `facility_types`
+--
+
+LOCK TABLES `facility_types` WRITE;
+/*!40000 ALTER TABLE `facility_types` DISABLE KEYS */;
+INSERT INTO `facility_types` VALUES (1,'gym','2015-07-01 19:56:21','2015-07-01 19:56:21'),(3,'bapp','2015-07-08 02:01:10','2015-07-08 02:04:42');
+/*!40000 ALTER TABLE `facility_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `fans`
 --
 
@@ -365,7 +419,7 @@ CREATE TABLE `fans` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_fans_on_fannable_id_and_fannable_type` (`fannable_id`,`fannable_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -374,7 +428,7 @@ CREATE TABLE `fans` (
 
 LOCK TABLES `fans` WRITE;
 /*!40000 ALTER TABLE `fans` DISABLE KEYS */;
-INSERT INTO `fans` VALUES (1,9,9,'User','2015-05-07 00:17:02','2015-05-07 00:17:02');
+INSERT INTO `fans` VALUES (1,9,9,'User','2015-05-07 00:17:02','2015-05-07 00:17:02'),(6,2,6,'School','2015-06-05 02:19:16','2015-06-05 02:19:16'),(7,2,2,'User','2015-06-22 14:33:54','2015-06-22 14:33:54'),(8,2,3,'Facility','2015-06-23 15:55:18','2015-06-23 15:55:18'),(9,2,6,'School','2015-07-02 16:10:33','2015-07-02 16:10:33'),(10,8,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(11,9,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(12,24,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(13,27,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(14,28,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(15,29,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(16,32,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(17,33,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(18,34,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(19,35,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(20,59,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(21,61,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(22,63,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(23,64,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(24,65,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(25,75,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(26,76,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(27,77,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(28,78,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35'),(29,79,2,'User','2015-07-02 16:33:35','2015-07-02 16:33:35');
 /*!40000 ALTER TABLE `fans` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -400,6 +454,36 @@ CREATE TABLE `identity_checks` (
 LOCK TABLES `identity_checks` WRITE;
 /*!40000 ALTER TABLE `identity_checks` DISABLE KEYS */;
 /*!40000 ALTER TABLE `identity_checks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `league_managers`
+--
+
+DROP TABLE IF EXISTS `league_managers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `league_managers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `league_id` int(11) DEFAULT NULL,
+  `accepted` tinyint(1) DEFAULT NULL,
+  `rejected` tinyint(1) DEFAULT NULL,
+  `mobile_phone_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `league_managers`
+--
+
+LOCK TABLES `league_managers` WRITE;
+/*!40000 ALTER TABLE `league_managers` DISABLE KEYS */;
+INSERT INTO `league_managers` VALUES (1,2,8,NULL,NULL,NULL,'2015-07-06 01:34:08','2015-07-06 01:34:08');
+/*!40000 ALTER TABLE `league_managers` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -451,7 +535,7 @@ CREATE TABLE `measurables` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -460,7 +544,7 @@ CREATE TABLE `measurables` (
 
 LOCK TABLES `measurables` WRITE;
 /*!40000 ALTER TABLE `measurables` DISABLE KEYS */;
-INSERT INTO `measurables` VALUES (2,9,NULL,'40y Dash','4.23','Football','2015-05-07 00:13:38','2015-05-07 00:13:38'),(3,9,NULL,'40y Dash','4.19','Football','2015-05-07 00:14:56','2015-05-07 00:14:56');
+INSERT INTO `measurables` VALUES (2,9,NULL,'40y Dash','4.23','Football','2015-05-07 00:13:38','2015-05-07 00:13:38'),(3,9,NULL,'40y Dash','4.19','Football','2015-05-07 00:14:56','2015-05-07 00:14:56'),(4,2,NULL,'40y','4.45','Football','2015-06-05 19:09:31','2015-06-05 19:09:31'),(5,2,NULL,'40y','4.39','Football','2015-06-05 19:09:57','2015-06-05 19:09:57');
 /*!40000 ALTER TABLE `measurables` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -481,9 +565,10 @@ CREATE TABLE `media` (
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `publish_date` date DEFAULT NULL,
+  `category` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_media_on_mediable_id_and_mediable_type` (`mediable_id`,`mediable_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -492,7 +577,7 @@ CREATE TABLE `media` (
 
 LOCK TABLES `media` WRITE;
 /*!40000 ALTER TABLE `media` DISABLE KEYS */;
-INSERT INTO `media` VALUES (1,NULL,29,'User','2015-05-21 21:07:44','2015-05-21 21:07:44','my highlight','http://ww.youtube.com/sdfsd','2015-05-21');
+INSERT INTO `media` VALUES (1,63,63,'User','2015-06-18 22:24:57','2015-06-18 22:26:09','Harden','https://www.youtube.com/watch?v=GRhHM-257mE','2015-06-18','Video'),(2,NULL,17,'Team','2015-06-19 01:40:09','2015-06-19 01:40:09','Steph','https://www.youtube.com/watch?v=EgENwP5zSbo','2015-06-19','Video'),(12,NULL,2,'User','2015-07-08 14:25:44','2015-07-08 14:25:44','LEBRON','https://www.youtube.com/watch?v=Ya2VNqgR_2I','2015-07-09','Video');
 /*!40000 ALTER TABLE `media` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -541,7 +626,7 @@ CREATE TABLE `parent_children` (
   `sender_id` int(11) DEFAULT NULL,
   `accepted` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -550,7 +635,7 @@ CREATE TABLE `parent_children` (
 
 LOCK TABLES `parent_children` WRITE;
 /*!40000 ALTER TABLE `parent_children` DISABLE KEYS */;
-INSERT INTO `parent_children` VALUES (6,2,33,'2015-05-27 13:41:02','2015-05-27 13:41:02',NULL,NULL),(7,2,8,'2015-05-28 19:33:47','2015-05-28 19:33:47',NULL,NULL);
+INSERT INTO `parent_children` VALUES (13,63,8,'2015-06-18 22:16:51','2015-06-18 22:16:51',NULL,NULL),(14,63,8,'2015-06-18 22:16:51','2015-06-18 22:16:51',NULL,NULL),(29,2,8,'2015-06-23 15:31:58','2015-06-23 15:31:58',NULL,NULL);
 /*!40000 ALTER TABLE `parent_children` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -571,7 +656,7 @@ CREATE TABLE `photos` (
   PRIMARY KEY (`id`),
   KEY `index_photos_on_photo_owner_id` (`photo_owner_id`),
   KEY `index_photos_on_photo_owner_type` (`photo_owner_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -580,8 +665,65 @@ CREATE TABLE `photos` (
 
 LOCK TABLES `photos` WRITE;
 /*!40000 ALTER TABLE `photos` DISABLE KEYS */;
-INSERT INTO `photos` VALUES (1,6,'School','basketball-icon.png',1,'--- !ruby/hash:Hashie::Mash\noffset_x: \'0\'\noffset_y: \"-317\"\nzoom: \'6.984375\'\n');
+INSERT INTO `photos` VALUES (1,6,'School','basketball-icon.png',1,'--- !ruby/hash:Hashie::Mash\noffset_x: \'0\'\noffset_y: \"-317\"\nzoom: \'6.984375\'\n'),(2,16,'Team','footballfield.png',1,'--- !ruby/hash:Hashie::Mash\noffset_x: \'0\'\noffset_y: \'0\'\nzoom: \'1.5263157894736843\'\n'),(3,5,'Team','Screen_Shot_2015-07-01_at_8.03.38_PM.png',1,'--- !ruby/hash:Hashie::Mash\noffset_x: \'0\'\noffset_y: \'0\'\nzoom: \'1.4688679245283018\'\n'),(5,2,'User','amerx.jpg',0,'--- !ruby/hash:Hashie::Mash {}\n'),(6,2,'User','alterG.jpg',0,'--- !ruby/hash:Hashie::Mash {}\n');
 /*!40000 ALTER TABLE `photos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `positionings`
+--
+
+DROP TABLE IF EXISTS `positionings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `positionings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `position_id` int(11) DEFAULT NULL,
+  `positionable_id` int(11) DEFAULT NULL,
+  `positionable_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_positionings_on_positionable_id_and_positionable_type` (`positionable_id`,`positionable_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `positionings`
+--
+
+LOCK TABLES `positionings` WRITE;
+/*!40000 ALTER TABLE `positionings` DISABLE KEYS */;
+INSERT INTO `positionings` VALUES (1,1,21,'UserlessRelationship','2015-07-06 20:35:46','2015-07-06 20:35:46'),(2,2,21,'UserlessRelationship','2015-07-06 20:35:47','2015-07-06 20:35:47'),(7,1,165,'Relationship','2015-07-07 00:37:50','2015-07-07 00:37:50');
+/*!40000 ALTER TABLE `positionings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `positions`
+--
+
+DROP TABLE IF EXISTS `positions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `positions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sport_id` int(11) DEFAULT NULL,
+  `position` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `abbreviation` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `positions`
+--
+
+LOCK TABLES `positions` WRITE;
+/*!40000 ALTER TABLE `positions` DISABLE KEYS */;
+INSERT INTO `positions` VALUES (1,NULL,'cornerback','2015-07-01 17:52:10','2015-07-01 17:52:10',NULL),(2,12,'1500m','2015-07-03 20:19:29','2015-07-07 21:41:21',''),(4,12,'Wide Receiver','2015-07-07 20:32:20','2015-07-07 20:32:20',NULL),(5,12,'Quarterback','2015-07-07 20:39:10','2015-07-07 20:39:10','QB'),(6,24,'Point Guard','2015-07-07 20:59:51','2015-07-07 20:59:51','PG');
+/*!40000 ALTER TABLE `positions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -648,7 +790,7 @@ CREATE TABLE `profiles` (
   `song` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_profiles_on_user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -657,7 +799,7 @@ CREATE TABLE `profiles` (
 
 LOCK TABLES `profiles` WRITE;
 /*!40000 ALTER TABLE `profiles` DISABLE KEYS */;
-INSERT INTO `profiles` VALUES (1,2,5,10,170,'1985-05-12',NULL,NULL,NULL,'http://www.linkedin.com/myname','','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Akron',NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-04-07 22:27:35','2015-06-01 15:52:16','Male','','','','','','','',NULL,NULL,NULL),(5,8,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-04-18 14:53:16','2015-04-18 14:53:16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,9,6,2,195,NULL,NULL,NULL,NULL,'http://www.twitter.com/dfrank42','http://www.facebook.com/dwight.franklin32','','http://www.twitter.com/dfrank42',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Akron',NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-05-07 00:10:23','2015-06-01 16:19:16','','','','','','','','',NULL,NULL,NULL),(18,24,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-05-20 15:36:48','2015-05-20 15:36:48',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(20,27,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-05-20 15:39:57','2015-05-20 15:39:57',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(21,28,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-05-20 15:40:57','2015-05-20 15:40:57',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(22,29,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-05-21 21:01:43','2015-05-21 21:06:56','','','','','','','','',NULL,NULL,NULL),(24,32,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-05-21 21:30:58','2015-05-21 21:30:58',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(25,33,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-05-22 18:05:26','2015-05-22 18:05:26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `profiles` VALUES (1,2,5,10,170,'1985-05-12',NULL,NULL,NULL,'http://www.linkedin.com/myname','http://www.facebook/cordis.stanfield','http://www.instagram.com/cordis','http://www.twitter.com/cordis',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cary',NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-04-07 22:27:35','2015-06-29 23:24:17','Male','','','http://www.pinterest.com/cordis','http://www.foursqaure.com/cordis','','','',NULL,NULL,NULL),(5,8,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-04-18 14:53:16','2015-04-18 14:53:16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,9,6,2,195,NULL,NULL,NULL,NULL,'http://www.twitter.com/dfrank42','http://www.facebook.com/dwight.franklin32','','http://www.twitter.com/dfrank42',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Akron',NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-05-07 00:10:23','2015-06-01 16:19:16','','','','','','','','',NULL,NULL,NULL),(18,24,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-05-20 15:36:48','2015-05-20 15:36:48',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(20,27,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-05-20 15:39:57','2015-05-20 15:39:57',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(21,28,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-05-20 15:40:57','2015-05-20 15:40:57',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(22,29,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-05-21 21:01:43','2015-05-21 21:06:56','','','','','','','','',NULL,NULL,NULL),(24,32,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-05-21 21:30:58','2015-05-21 21:30:58',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(25,33,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-05-22 18:05:26','2015-05-22 18:05:26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(26,34,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-06-05 18:37:10','2015-06-05 18:37:10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(27,35,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-06-05 18:38:44','2015-06-05 18:38:44',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(50,59,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-06-16 16:02:14','2015-06-16 16:02:14',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(52,61,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-06-16 18:02:08','2015-06-16 18:02:08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(54,63,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-06-18 22:10:37','2015-06-18 22:10:37',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(55,64,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-06-18 22:41:42','2015-06-18 22:41:42',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(56,65,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-06-18 22:47:57','2015-06-18 22:47:57',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(65,75,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-06-22 12:48:19','2015-06-22 12:48:19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(66,76,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-06-22 14:37:45','2015-06-22 14:37:45',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(67,77,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-06-23 15:47:30','2015-06-23 15:47:30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(68,78,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-06-29 23:01:45','2015-06-29 23:01:45',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(69,79,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-07-01 21:44:05','2015-07-01 21:44:05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(74,84,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--- []\n','--- []\n','--- []\n','--- []\n','--- []\n',NULL,NULL,NULL,NULL,'2015-07-07 00:37:50','2015-07-07 00:37:50',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -685,8 +827,12 @@ CREATE TABLE `relationships` (
   `updated_at` datetime DEFAULT NULL,
   `mobile_phone_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `admin` tinyint(1) DEFAULT '0',
+  `age` int(11) DEFAULT NULL,
+  `nickname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `manager` tinyint(1) DEFAULT NULL,
+  `trainer` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=167 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -695,7 +841,7 @@ CREATE TABLE `relationships` (
 
 LOCK TABLES `relationships` WRITE;
 /*!40000 ALTER TABLE `relationships` DISABLE KEYS */;
-INSERT INTO `relationships` VALUES (66,2,9,NULL,NULL,1,NULL,'PG',NULL,NULL,NULL,'black-run-organization-c-stanfield','2015-05-27 18:36:47','2015-05-28 20:22:24',NULL,0),(67,2,5,1,NULL,NULL,NULL,'SG',NULL,NULL,NULL,'men-s-varsity-basketball-c-stanfield','2015-05-28 19:33:34','2015-05-28 20:22:39',NULL,0),(68,33,5,NULL,NULL,1,NULL,NULL,NULL,1,NULL,'men-s-varsity-basketball-d-brady','2015-05-28 20:20:24','2015-05-28 20:20:24',NULL,0),(69,9,5,NULL,NULL,1,NULL,NULL,NULL,1,NULL,'men-s-varsity-basketball-d-franklin','2015-05-28 20:20:30','2015-05-28 20:20:30',NULL,0),(70,32,5,1,'Head Coach',NULL,NULL,NULL,NULL,1,NULL,'men-s-varsity-basketball-s-sister','2015-05-28 20:20:44','2015-05-28 20:22:02',NULL,0);
+INSERT INTO `relationships` VALUES (142,63,17,1,'Head Coach',1,'','',NULL,1,NULL,NULL,'2015-06-19 04:45:14','2015-06-19 14:29:33','',0,NULL,NULL,NULL,NULL),(156,2,9,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,'2015-06-23 15:31:30','2015-06-23 15:31:30','5047998526',0,NULL,NULL,NULL,NULL),(157,2,8,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-06-23 15:31:48','2015-06-23 15:31:48','5047998526',0,NULL,NULL,NULL,NULL),(158,77,5,0,NULL,1,'Junior','SF',NULL,1,NULL,NULL,'2015-06-23 15:47:30','2015-06-23 15:47:30','2023160669',0,NULL,NULL,0,0),(159,2,5,1,NULL,1,'Junior','--- []\n',NULL,1,NULL,NULL,'2015-06-30 00:01:07','2015-07-05 18:25:59','5047998526',1,NULL,NULL,NULL,NULL),(165,84,5,0,NULL,1,'g',NULL,NULL,1,NULL,NULL,'2015-07-07 00:37:50','2015-07-07 00:37:50','7776665555',0,NULL,NULL,0,0),(166,2,14,NULL,NULL,1,NULL,'--- []\n',NULL,NULL,NULL,NULL,'2015-07-07 20:05:31','2015-07-07 20:05:31',NULL,0,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `relationships` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -718,7 +864,7 @@ CREATE TABLE `schema_migrations` (
 
 LOCK TABLES `schema_migrations` WRITE;
 /*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
-INSERT INTO `schema_migrations` VALUES ('20150407212944'),('20150407213356'),('20150407214116'),('20150413123509'),('20150417165447'),('20150417170653'),('20150417171634'),('20150417224325'),('20150418040539'),('20150420173328'),('20150420174705'),('20150421173143'),('20150421211314'),('20150429174842'),('20150429183304'),('20150429205543'),('20150505175615'),('20150506012234'),('20150506103211'),('20150506104802'),('20150506105125'),('20150506105647'),('20150506134431'),('20150506134705'),('20150506144835'),('20150506160142'),('20150516163109'),('20150517182242'),('20150518122740'),('20150518160953'),('20150518163112'),('20150518175657'),('20150518183232'),('20150519115308'),('20150519123124'),('20150519144056'),('20150520035951'),('20150520040053'),('20150522113651'),('20150523174939'),('20150523182359'),('20150528233721'),('20150601190915');
+INSERT INTO `schema_migrations` VALUES ('20150407212944'),('20150407213356'),('20150407214116'),('20150413123509'),('20150417165447'),('20150417170653'),('20150417171634'),('20150417224325'),('20150418040539'),('20150420173328'),('20150420174705'),('20150421173143'),('20150421211314'),('20150429174842'),('20150429183304'),('20150429205543'),('20150505175615'),('20150506012234'),('20150506103211'),('20150506104802'),('20150506105125'),('20150506105647'),('20150506134431'),('20150506134705'),('20150506144835'),('20150506160142'),('20150516163109'),('20150517182242'),('20150518122740'),('20150518160953'),('20150518163112'),('20150518175657'),('20150518183232'),('20150519115308'),('20150519123124'),('20150519144056'),('20150520035951'),('20150520040053'),('20150522113651'),('20150523174939'),('20150523182359'),('20150528233721'),('20150601190915'),('20150605024949'),('20150611141329'),('20150612130432'),('20150616172233'),('20150617195002'),('20150619143430'),('20150619193913'),('20150630124138'),('20150701160756'),('20150701173926'),('20150701194754'),('20150706042300'),('20150706192941'),('20150707195226'),('20150707203533'),('20150708010213'),('20150708021007');
 /*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -750,6 +896,9 @@ CREATE TABLE `schools` (
   `stripe_customer_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
+  `last_payment` date DEFAULT NULL,
+  `stripe_subscription_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `premium` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_schools_on_slug` (`slug`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -761,7 +910,7 @@ CREATE TABLE `schools` (
 
 LOCK TABLES `schools` WRITE;
 /*!40000 ALTER TABLE `schools` DISABLE KEYS */;
-INSERT INTO `schools` VALUES (6,'Randallstown High School','High School','RHS','4000 Offutt Road','','Randallstown','Maryland','21133','',39.3829,-76.7985,1,'','','','randallstown-high-school-randallstown-maryland',NULL,'2015-04-18 01:36:17','2015-04-18 01:36:17'),(7,'Kearny High School','High School','KHS','	7651 Wellington Way','','San Diego','California','92111','',32.8011,-117.16,1,'','','','kearny-high-school-san-diego-california',NULL,'2015-04-18 14:54:59','2015-04-18 14:54:59'),(9,'Teddy Ruxpin','College','TRC','1600 Pennsylvania Avenue','','Washington','DC','','',38.8787,-76.9817,1,'','','','teddy-ruxpin-washington-dc',NULL,'2015-05-06 16:45:08','2015-05-06 16:45:08'),(10,'DeMatha High School','High School','DHS','4313 Madison Street','','Hyattsville','Maryland','20781','',38.9585,-76.9425,1,'','','http://www.dematha.org/','dematha-high-school-hyattsville-maryland',NULL,'2015-05-20 15:24:20','2015-05-20 15:24:20'),(11,'Forest Park High','High School','FPHS','3701 Eldorado Ave','','Baltimore','Maryland','21207','',39.3326,-76.6898,1,'','','http://www.baltimorecityschools.org/406','forest-park-high-baltimore-maryland',NULL,'2015-05-20 15:26:01','2015-05-20 15:26:01'),(12,'Kingwood High School','High School','KHS','2701 Kingwood Drive','','Kingwood','Texas','77339','',30.0452,-95.1953,1,'','','http://www.humbleisd.net/KHS','kingwood-high-school-kingwood-texas',NULL,'2015-05-20 15:33:22','2015-05-20 15:33:22');
+INSERT INTO `schools` VALUES (6,'Randallstown High School','High School','RHS','4000 Offutt Road','','Randallstown','Maryland','21133','',39.3829,-76.7985,1,'','','','randallstown-high-school-randallstown-maryland',NULL,'2015-04-18 01:36:17','2015-07-02 23:16:59',NULL,NULL,NULL),(7,'Kearny High School','High School','KHS','	7651 Wellington Way','','San Diego','California','92111','',32.8011,-117.16,1,'','','','kearny-high-school-san-diego-california',NULL,'2015-04-18 14:54:59','2015-04-18 14:54:59',NULL,NULL,NULL),(9,'Teddy Ruxpin','College','TRC','1600 Pennsylvania Avenue','','Washington','DC','','',38.8787,-76.9817,1,'','','','teddy-ruxpin-washington-dc',NULL,'2015-05-06 16:45:08','2015-05-06 16:45:08',NULL,NULL,NULL),(10,'DeMatha High School','High School','DHS','4313 Madison Street','','Hyattsville','Maryland','20781','',38.9585,-76.9425,1,'','','http://www.dematha.org/','dematha-high-school-hyattsville-maryland',NULL,'2015-05-20 15:24:20','2015-05-20 15:24:20',NULL,NULL,NULL),(11,'Forest Park High','High School','FPHS','3701 Eldorado Ave','','Baltimore','Maryland','21207','',39.3326,-76.6898,1,'','','http://www.baltimorecityschools.org/406','forest-park-high-baltimore-maryland',NULL,'2015-05-20 15:26:01','2015-05-20 15:26:01',NULL,NULL,NULL),(12,'Kingwood High School','High School','KHS','2701 Kingwood Drive','','Kingwood','Texas','77339','',30.0452,-95.1953,1,'','','http://www.humbleisd.net/KHS','kingwood-high-school-kingwood-texas',NULL,'2015-05-20 15:33:22','2015-05-20 15:33:22',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `schools` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -779,7 +928,7 @@ CREATE TABLE `sport_icons` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -788,7 +937,7 @@ CREATE TABLE `sport_icons` (
 
 LOCK TABLES `sport_icons` WRITE;
 /*!40000 ALTER TABLE `sport_icons` DISABLE KEYS */;
-INSERT INTO `sport_icons` VALUES (3,12,'fb1.png','2015-05-06 23:09:13','2015-05-06 23:09:13'),(4,13,'basketball-icon.png','2015-05-06 23:10:06','2015-05-06 23:10:06'),(5,14,'soccer-i.png','2015-05-06 23:11:47','2015-05-06 23:11:47');
+INSERT INTO `sport_icons` VALUES (3,12,'fb1.png','2015-05-06 23:09:13','2015-05-06 23:09:13'),(7,24,'basketball-icon.png','2015-06-30 16:51:25','2015-06-30 16:51:25');
 /*!40000 ALTER TABLE `sport_icons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -807,7 +956,7 @@ CREATE TABLE `sport_photos` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_sport_photos_on_sport_id` (`sport_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -816,7 +965,7 @@ CREATE TABLE `sport_photos` (
 
 LOCK TABLES `sport_photos` WRITE;
 /*!40000 ALTER TABLE `sport_photos` DISABLE KEYS */;
-INSERT INTO `sport_photos` VALUES (9,12,'fb1.png','2015-05-06 23:09:11','2015-05-06 23:09:11'),(10,13,'basketball-icon.png','2015-05-06 23:10:04','2015-05-06 23:10:04'),(11,14,'soccer-i.png','2015-05-06 23:11:46','2015-05-06 23:11:46');
+INSERT INTO `sport_photos` VALUES (9,12,'fb1.png','2015-05-06 23:09:11','2015-05-06 23:09:11'),(12,24,'basketball-icon.png','2015-06-30 16:51:23','2015-06-30 16:51:23');
 /*!40000 ALTER TABLE `sport_photos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -833,7 +982,7 @@ CREATE TABLE `sports` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -842,7 +991,7 @@ CREATE TABLE `sports` (
 
 LOCK TABLES `sports` WRITE;
 /*!40000 ALTER TABLE `sports` DISABLE KEYS */;
-INSERT INTO `sports` VALUES (12,'Football','2015-05-06 23:09:11','2015-05-06 23:09:11'),(13,'Basketball','2015-05-06 23:10:04','2015-05-06 23:10:04'),(14,'Soccer','2015-05-06 23:11:46','2015-05-06 23:11:46');
+INSERT INTO `sports` VALUES (12,'Football','2015-05-06 23:09:11','2015-05-06 23:09:11'),(24,'Basketball','2015-06-30 16:51:23','2015-06-30 16:51:23');
 /*!40000 ALTER TABLE `sports` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -860,7 +1009,7 @@ CREATE TABLE `team_facilities` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -869,7 +1018,7 @@ CREATE TABLE `team_facilities` (
 
 LOCK TABLES `team_facilities` WRITE;
 /*!40000 ALTER TABLE `team_facilities` DISABLE KEYS */;
-INSERT INTO `team_facilities` VALUES (14,5,9,'2015-05-21 21:13:11','2015-05-21 21:13:11'),(15,5,11,'2015-05-21 21:13:12','2015-05-21 21:13:12');
+INSERT INTO `team_facilities` VALUES (14,5,9,'2015-05-21 21:13:11','2015-05-21 21:13:11'),(19,5,11,'2015-06-15 16:05:37','2015-06-15 16:05:37');
 /*!40000 ALTER TABLE `team_facilities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -887,7 +1036,7 @@ CREATE TABLE `team_leagues` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -932,7 +1081,7 @@ CREATE TABLE `teams` (
   `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `stripe_customer_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -941,7 +1090,7 @@ CREATE TABLE `teams` (
 
 LOCK TABLES `teams` WRITE;
 /*!40000 ALTER TABLE `teams` DISABLE KEYS */;
-INSERT INTO `teams` VALUES (5,6,NULL,'Men\'s Varsity Basketball','Basketball','men-s-varsity-basketball-randallstown-high-school-basketball','2015-04-18 03:23:21','2015-04-18 03:23:21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,6,NULL,'Men\'s Soccer','Soccer','men-s-soccer-randallstown-high-school-soccer','2015-04-18 03:28:00','2015-04-18 03:28:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(7,7,NULL,'Women\'s Basketball','Basketball','women-s-basketball-kearny-high-school-basketball','2015-04-18 14:55:47','2015-04-18 14:55:47',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(8,NULL,NULL,'Boys & Girls Club','Running','boys-girls-club-running','2015-04-18 15:00:50','2015-04-18 15:00:50',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(9,NULL,NULL,'black run organization','Running','black-run-organization-running','2015-04-27 22:10:26','2015-04-27 22:10:26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(10,6,NULL,'Junior Varsity Fencing','Fencing','junior-varsity-fencing-randallstown-high-school-fencing','2015-04-27 22:24:36','2015-04-27 22:24:36',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(11,NULL,NULL,'Florida A&M Rattlers','Football','florida-a-m-rattlers-football','2015-04-27 23:14:19','2015-04-27 23:14:19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(12,6,NULL,'Volleyball','Volleyball','volleyball-randallstown-high-school-volleyball','2015-05-05 19:00:30','2015-05-05 19:00:30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(14,9,NULL,'Varsity Football','Football','varsity-football-teddy-ruxpin-football','2015-05-06 17:07:12','2015-05-06 17:07:12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(15,NULL,NULL,'Keswick Warriors','','keswick-warriors','2015-06-01 20:10:29','2015-06-01 20:10:29',NULL,NULL,'1575 Keswick Winery Drive','','Keswick','VA','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `teams` VALUES (5,6,NULL,'Men\'s Varsity Basketball','Basketball','men-s-varsity-basketball-randallstown-high-school-basketball','2015-04-18 03:23:21','2015-04-18 03:23:21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,6,NULL,'Men\'s Soccer','Soccer','men-s-soccer-randallstown-high-school-soccer','2015-04-18 03:28:00','2015-04-18 03:28:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(7,7,NULL,'Women\'s Basketball','Basketball','women-s-basketball-kearny-high-school-basketball','2015-04-18 14:55:47','2015-04-18 14:55:47',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(8,NULL,NULL,'Boys & Girls Club','Running','boys-girls-club-running','2015-04-18 15:00:50','2015-04-18 15:00:50',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(9,NULL,NULL,'black run organization','Running','black-run-organization-running','2015-04-27 22:10:26','2015-04-27 22:10:26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(10,6,NULL,'Junior Varsity Fencing','Fencing','junior-varsity-fencing-randallstown-high-school-fencing','2015-04-27 22:24:36','2015-04-27 22:24:36',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(11,NULL,NULL,'Florida A&M Rattlers','Football','florida-a-m-rattlers-football','2015-04-27 23:14:19','2015-04-27 23:14:19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(12,6,NULL,'Volleyball','Volleyball','volleyball-randallstown-high-school-volleyball','2015-05-05 19:00:30','2015-05-05 19:00:30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(14,9,NULL,'Varsity Football','Football','varsity-football-teddy-ruxpin-football','2015-05-06 17:07:12','2015-05-06 17:07:12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(15,NULL,NULL,'Keswick Warriors','','keswick-warriors','2015-06-01 20:10:29','2015-06-01 20:10:29',NULL,NULL,'1575 Keswick Winery Drive','','Keswick','VA','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(16,NULL,NULL,'Ellis All Star Football','Football','ellis-all-star-football-football','2015-06-18 22:31:59','2015-06-18 22:31:59',NULL,NULL,'1600 Pennsylvania Avenue','','Washington','DC','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(17,NULL,NULL,'Test Now','Soccer','test-now-soccer','2015-06-19 01:31:32','2015-06-19 01:31:32',NULL,NULL,'1600 Pennsylvania Avenue','','Washington','DC','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `teams` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -995,7 +1144,7 @@ CREATE TABLE `user_profile_pictures` (
   PRIMARY KEY (`id`),
   KEY `index_user_profile_pictures_on_user_id` (`user_id`),
   KEY `index_user_profile_pictures_on_photo` (`photo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1005,6 +1154,45 @@ CREATE TABLE `user_profile_pictures` (
 LOCK TABLES `user_profile_pictures` WRITE;
 /*!40000 ALTER TABLE `user_profile_pictures` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user_profile_pictures` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `userless_relationships`
+--
+
+DROP TABLE IF EXISTS `userless_relationships`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `userless_relationships` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `team_id` int(11) DEFAULT NULL,
+  `first_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `head` tinyint(1) DEFAULT NULL,
+  `head_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `participant` tinyint(1) DEFAULT NULL,
+  `participant_classification` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `position` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mobile_phone_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `nickname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `admin` tinyint(1) DEFAULT NULL,
+  `manager` tinyint(1) DEFAULT NULL,
+  `trainer` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `userless_relationships`
+--
+
+LOCK TABLES `userless_relationships` WRITE;
+/*!40000 ALTER TABLE `userless_relationships` DISABLE KEYS */;
+INSERT INTO `userless_relationships` VALUES (7,5,'Jason','Smith',1,NULL,1,'Senior','PG',NULL,'2015-06-16 15:54:52','2015-06-16 15:54:52',NULL,NULL,NULL,NULL,NULL),(12,5,'Michael','Zendol',1,'',0,'Coach','COACH','','2015-06-17 20:03:18','2015-06-22 13:45:22',NULL,NULL,0,0,0),(15,17,'Robert','Anderson',1,'Trainers',0,'','','','2015-06-19 14:46:50','2015-06-19 14:55:08',NULL,'',0,1,0),(17,5,'BOB','stewart',0,NULL,0,'Freshman','C',NULL,'2015-06-29 23:43:45','2015-06-29 23:43:45',NULL,NULL,0,1,1),(19,5,'Michael','Reid',0,NULL,1,'Junior','---\n- cornerback\n- \'1500\'\n',NULL,'2015-07-03 22:57:24','2015-07-03 22:57:24',NULL,NULL,0,0,0),(21,5,'Marcus','Garvey',0,NULL,1,'Junior',NULL,NULL,'2015-07-06 20:35:46','2015-07-06 20:35:46',NULL,NULL,0,0,0);
+/*!40000 ALTER TABLE `userless_relationships` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1041,12 +1229,12 @@ CREATE TABLE `users` (
   `uid` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `mobile_phone_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `temporary_school_ids` int(11) DEFAULT NULL,
+  `signin_count` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
   UNIQUE KEY `index_users_on_authentication_token` (`authentication_token`),
   UNIQUE KEY `index_users_on_slug` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1055,7 +1243,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'$2a$10$Kc8ui5/gVsQgVa5lkpwxj.kZr11kIA/9Emw1k27BI1l14YCrNDNKC','cordis.stanfield@gmail.com','miler350',NULL,'cordis','smoods','stanfield',NULL,NULL,NULL,'8lDT0f3ZrcQpa3daNnrV-Q','cordis-stanfield',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-04-07 22:27:35','2015-06-02 12:21:47',NULL,NULL,'4437998526',NULL),(8,'$2a$10$N1nk7cQK4eN2DVyvYnqWZuq8zRypSbGpfrTIfb/n1laBr01gjsMdW','kc@kc.com',NULL,NULL,'Khadijah',NULL,'Coakley',NULL,NULL,NULL,'dgKhQYbxtR6ZkHXzBEr38g','khadijah-coakley',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-04-18 14:53:16','2015-04-18 14:53:16',NULL,NULL,NULL,NULL),(9,'$2a$10$g7Zkk.HuHgUC9pZjxRF9IOYLf9/4kssbiqLEeQH64XjVbgsgMk5PC','df@df.com','dfrank42',NULL,'Dwight','','Franklin',NULL,NULL,NULL,'uiFLyy0L9GmPGURS3CnE-g','dwight-franklin',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-05-07 00:10:23','2015-05-07 00:12:44',NULL,NULL,NULL,NULL),(24,'$2a$10$1hwhHjhB6/PXpSb8jGk/ROfUyI7u6GxnLS10BrrynnWPjQetrvoUe','mcollins@mc.com',NULL,NULL,'Marty ',NULL,'Collins',NULL,NULL,NULL,'QzZ66QGktL-CHqkDmT3n6Q','marty-collins',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-05-20 15:36:48','2015-05-20 15:36:48',NULL,NULL,NULL,NULL),(27,'$2a$10$U4OIacMlw/UxR.UNEvNiBucX9XuQcyY.ZJdEue3hLf.aTGpG9MuFi','tdiego@td.com',NULL,NULL,'Tony',NULL,'Diego',NULL,NULL,NULL,'C4OGn_6WnIaXVjFgzfpxLA','tony-diego',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-05-20 15:39:57','2015-05-20 15:39:57',NULL,NULL,NULL,NULL),(28,'$2a$10$FI/4LMa5j/Wz87rWG6nT8.s7ek4OFB.7rzXlOzGWwmfsoLuod6OdS','kshiawa@ks.com',NULL,NULL,'Kanuko',NULL,'Shiawa',NULL,NULL,NULL,'OVBdb0rznzGLPUCW1drMEg','kanuko-shiawa',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-05-20 15:40:57','2015-05-20 15:40:57',NULL,NULL,NULL,NULL),(29,'$2a$10$sYWlm8Huy253HrEYn8hgaO.zWpBe5L7ryPa3OjAYpcBc6B7BWscZC','ejenkins@google.com','ejenkins13',NULL,'Eric','Mark','Jenkins',NULL,NULL,NULL,'LqwnOtqwlHN6buN9xyasvw','eric-jenkins',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-05-21 21:01:43','2015-05-21 21:06:56',NULL,NULL,NULL,NULL),(32,'$2a$10$jdoQ3.O.n3VRwZ/hPKkY.eefwvN2LuEEu/dOTr.DkY0QV6K1KcWNe','r@fdkjslkj.com',NULL,NULL,'Sorority',NULL,'Sister',NULL,NULL,NULL,'yqlMklVBxOeHH9viNwYM_w','sorority-sister',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-05-21 21:30:58','2015-05-22 18:04:50',NULL,NULL,'5613864491',NULL),(33,'$2a$10$HgYr5HuVHiAkEwnBvSTmb.LCpVZ/z.v0DjsCjkWPX7DF5QTl.QKlC','d@brady.com',NULL,NULL,'Donovan',NULL,'Brady',NULL,NULL,NULL,'WXqBhqCn0rpU9GE441UpCA','donovan-brady',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-05-22 18:05:25','2015-05-22 18:06:01',NULL,NULL,'4437998526',NULL);
+INSERT INTO `users` VALUES (2,'$2a$10$Kc8ui5/gVsQgVa5lkpwxj.kZr11kIA/9Emw1k27BI1l14YCrNDNKC','cordis.stanfield@gmail.com','miler350',NULL,'cordis','maurice','stanfield',NULL,NULL,NULL,'8lDT0f3ZrcQpa3daNnrV-Q','cordis-stanfield',1,NULL,NULL,NULL,NULL,NULL,NULL,'2015-04-07 22:27:35','2015-07-08 01:12:05',NULL,NULL,'5047998526',NULL,2),(8,'$2a$10$N1nk7cQK4eN2DVyvYnqWZuq8zRypSbGpfrTIfb/n1laBr01gjsMdW','kc@kc.com',NULL,NULL,'Khadijah',NULL,'Coakley',NULL,NULL,NULL,'dgKhQYbxtR6ZkHXzBEr38g','khadijah-coakley',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-04-18 14:53:16','2015-04-18 14:53:16',NULL,NULL,NULL,NULL,0),(9,'$2a$10$g7Zkk.HuHgUC9pZjxRF9IOYLf9/4kssbiqLEeQH64XjVbgsgMk5PC','df@df.com','dfrank42',NULL,'Dwight','','Franklin',NULL,NULL,NULL,'uiFLyy0L9GmPGURS3CnE-g','dwight-franklin',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-05-07 00:10:23','2015-05-07 00:12:44',NULL,NULL,NULL,NULL,0),(24,'$2a$10$1hwhHjhB6/PXpSb8jGk/ROfUyI7u6GxnLS10BrrynnWPjQetrvoUe','mcollins@mc.com',NULL,NULL,'Marty ',NULL,'Collins',NULL,NULL,NULL,'QzZ66QGktL-CHqkDmT3n6Q','marty-collins',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-05-20 15:36:48','2015-05-20 15:36:48',NULL,NULL,NULL,NULL,0),(27,'$2a$10$U4OIacMlw/UxR.UNEvNiBucX9XuQcyY.ZJdEue3hLf.aTGpG9MuFi','tdiego@td.com',NULL,NULL,'Tony',NULL,'Diego',NULL,NULL,NULL,'C4OGn_6WnIaXVjFgzfpxLA','tony-diego',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-05-20 15:39:57','2015-05-20 15:39:57',NULL,NULL,NULL,NULL,0),(28,'$2a$10$FI/4LMa5j/Wz87rWG6nT8.s7ek4OFB.7rzXlOzGWwmfsoLuod6OdS','kshiawa@ks.com',NULL,NULL,'Kanuko',NULL,'Shiawa',NULL,NULL,NULL,'OVBdb0rznzGLPUCW1drMEg','kanuko-shiawa',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-05-20 15:40:57','2015-05-20 15:40:57',NULL,NULL,NULL,NULL,0),(29,'$2a$10$sYWlm8Huy253HrEYn8hgaO.zWpBe5L7ryPa3OjAYpcBc6B7BWscZC','ejenkins@google.com','ejenkins13',NULL,'Eric','Mark','Jenkins',NULL,NULL,NULL,'LqwnOtqwlHN6buN9xyasvw','eric-jenkins',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-05-21 21:01:43','2015-05-21 21:06:56',NULL,NULL,NULL,NULL,0),(32,'$2a$10$jdoQ3.O.n3VRwZ/hPKkY.eefwvN2LuEEu/dOTr.DkY0QV6K1KcWNe','r@fdkjslkj.com',NULL,NULL,'Sorority',NULL,'Sister',NULL,NULL,NULL,'yqlMklVBxOeHH9viNwYM_w','sorority-sister',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-05-21 21:30:58','2015-06-16 16:01:07',NULL,NULL,'6667778888',NULL,0),(33,'$2a$10$HgYr5HuVHiAkEwnBvSTmb.LCpVZ/z.v0DjsCjkWPX7DF5QTl.QKlC','d@brady.com',NULL,NULL,'Donovan',NULL,'Brady',NULL,NULL,NULL,'WXqBhqCn0rpU9GE441UpCA','donovan-brady',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-05-22 18:05:25','2015-06-12 15:14:23',NULL,NULL,'4447998526',NULL,0),(34,'$2a$10$NmYuPtIW6xy6fFd8TFNRXepz2b8RTCA/XwD8rUjKXtulW9HnQla2K','thad@thad.com',NULL,NULL,'Thaddeus',NULL,'Payton',NULL,NULL,NULL,'QyflUVevA13FbREif7zGYA','thaddeus-payton',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-06-05 18:37:10','2015-06-05 18:38:21',NULL,NULL,'2405933717',NULL,0),(35,'$2a$10$BoCHK9j960ldzeq9.7rWCusTii/cXZhtfDvKisU7qbpICpzu11bNi','thad@max.com',NULL,NULL,'David',NULL,'Paul',NULL,NULL,NULL,'uOJ12CjdeXJFIlvg2GPABg','david-paul',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-06-05 18:38:44','2015-06-16 16:01:21',NULL,NULL,'7777778888',NULL,0),(59,'$2a$10$NzaJRrGF7W23/Xc4m0NAmeEH5LxUiw5jFgf6.3Zph5dj7rOMnJpqK','',NULL,NULL,'David ',NULL,'Gibson',NULL,NULL,NULL,'LeqEYCPaVIpTbCq5Ir_RpA','david-gibson',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-06-16 16:02:14','2015-06-16 16:02:14',NULL,NULL,'5613864491',NULL,0),(61,'$2a$10$oAq3CfhNqPqkS2BIXBez2.abFuRRhLztcxbJY5zmnTzx2nLZEMwHe','cordis.stanfield@yahoo.com',NULL,NULL,'Maurice',NULL,'Jones',NULL,NULL,NULL,'38EfezS4fY0pMdY6NifCSA','maurice-jones',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-06-16 18:02:08','2015-06-19 03:38:21',NULL,NULL,'6667778888',NULL,0),(63,'$2a$10$V5D5lR9sInla2GzyAgbwjOlsDqvzac1VZf1AbmxBxtmXwXKTAQ.vm','jellis@bellis.com',NULL,NULL,'James',NULL,'Ellis',NULL,NULL,NULL,'xU6X_dEGmEEzFzSpEmPbxw','james-ellis',1,NULL,NULL,NULL,NULL,NULL,NULL,'2015-06-18 22:10:37','2015-06-18 22:45:46',NULL,NULL,'4105558956',NULL,0),(64,'$2a$10$yKmJCQy/aOz5EHkNlSlpJeKK/8XnrNQBC.mjokT5JpAUQ5v/Y8Mj6','',NULL,NULL,'Brandon ',NULL,'Ellis',NULL,NULL,NULL,'tehaebz0rRKf9LlOQNZ93A','brandon-ellis',1,NULL,NULL,NULL,NULL,NULL,NULL,'2015-06-18 22:41:42','2015-06-18 22:45:03',NULL,NULL,'2024233572',NULL,0),(65,'$2a$10$m.7WA.tTa0ifIBX1yynkC.97iG.fHTRgJl.DubJwYbPVs.OW7hoXW','',NULL,NULL,'Dmitri',NULL,'Davis',NULL,NULL,NULL,'WgHPf67KzlV7HtPsNYrcZw','dmitri-davis',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-06-18 22:47:57','2015-06-18 22:47:57',NULL,NULL,'2405055299',NULL,0),(75,'$2a$10$x6K1sVc4V22ylkEw8puSeOGNzSeIxZ0j9C0YKbsNV0Ahxo7WlhKve','',NULL,NULL,'Johnny ',NULL,'Flt',NULL,NULL,NULL,'qCGrPn971SS1OCpggcmG8w','johnny-flt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-06-22 12:48:19','2015-06-22 12:48:19',NULL,NULL,'4437998526',NULL,0),(76,'$2a$10$MW/.9GcknHzG7BINaij4texsmWdE3U2NiWI55q7n5wObahbIyKkxq','',NULL,NULL,'LeBron',NULL,'James',NULL,NULL,NULL,'B4YJZCyS-jaUuo9N8tdp1g','lebron-james',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-06-22 14:37:45','2015-06-22 14:37:45',NULL,NULL,'2024603467',NULL,0),(77,'$2a$10$XXxm3UccJP/qmIH/CQz13etY01lYfwXyPoBTB3I0kMf/bnqq7c.k2','',NULL,NULL,'Henry',NULL,'Hunter',NULL,NULL,NULL,'D8oWpGMC_eVdS1ytsUXDLw','henry-hunter',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-06-23 15:47:30','2015-06-23 15:47:30',NULL,NULL,'2023160669',NULL,0),(78,'$2a$10$9K.S00d9Dni4JX65.z.5WOFwOUDireE.Tiq7nU5oFi3CT7t3RNj3y','@facebook.com',NULL,NULL,'Cordis',NULL,'Stanfield',NULL,NULL,NULL,'I4njH0DhTK5ebwPm8fRAdA','cordis-stanfield-1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-06-29 23:01:45','2015-06-29 23:01:45','facebook','8901673',NULL,NULL,0),(79,'$2a$10$GSq/pYco92joexiKcBIq3OTb6JiUeIql/R8RTDgOhbOh70ONe5X2K','',NULL,NULL,'Andwele',NULL,'Lewis',NULL,NULL,NULL,'mk_BCkiVUzmcRbuol2VaNA','andwele-lewis',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-07-01 21:44:05','2015-07-01 21:44:05',NULL,NULL,'4108870660',NULL,0),(84,'$2a$10$m2r7LzozUsxm.L2sgnic5OLAaseMbrSoA.mG5VBn7VrPwjCZp7su2','',NULL,NULL,'Mary',NULL,'Ang',NULL,NULL,NULL,'pINmDXz3xPGdu6IIwUbQXQ','mary-ang',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-07-07 00:37:50','2015-07-07 00:37:50',NULL,NULL,'7776665555',NULL,0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1068,4 +1256,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-02  8:32:25
+-- Dump completed on 2015-07-08 18:44:33
