@@ -52,6 +52,8 @@ gem 'carrierwave-crop'
 #google web font library
 gem 'google-webfonts'
 
+gem 'american_date'
+
 #for payments
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 

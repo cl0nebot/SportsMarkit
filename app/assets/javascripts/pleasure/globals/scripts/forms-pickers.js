@@ -34,7 +34,7 @@ var FormsPickers = {
 	dateRangePicker: function () {
 		$('.bootstrap-daterangepicker-basic').daterangepicker({
 			singleDatePicker: true,
-      format: 'DD/MM/YYYY'
+      format: 'MM/DD/YYYY'
       }, function(start, end, label) {
 				console.log(start.toISOString(), end.toISOString(), label);
 			}
