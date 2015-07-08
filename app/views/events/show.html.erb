@@ -1,0 +1,44 @@
+<style>
+
+.layout-device .profile-info .profile-text,
+.profile-info .profile-text {
+  margin: 0 0 0 0;
+  font-size: 24px;
+}
+
+</style>
+
+<div class="content">
+	<div class="page-header full-content parallax">
+		<%= render "events/show/header" %>
+		<%= render "events/show/tab_navigation" %>
+	</div>
+</div>
+
+<!-- main content div -->
+<div class="container">
+  <div class="user-profile">
+    <div class="row">
+      <%= image_tag("placeholders/users.jpg", class: "col-md-2 img-thumbnail img-responsive b-rad-6", style: "margin-top: -180px; z-index: 99999;") %>
+      <div class="col-md-10">
+      </div>
+    </div>
+    <div class="row">
+			<div class="col-md-12">
+
+				<div class="tab-content without-border pt40">
+
+					<%= render "events/show/location_tab" %>
+					<%= render "events/show/attending_tab" %>
+					<%= render "events/show/maybe_tab" %>
+					<%= render "events/show/no_tab" %>
+				 
+				</div><!--.tab-content-->
+			</div><!--.col-->
+		</div><!--.row-->
+	</div><!--.content-->
+
+
+
+
+
