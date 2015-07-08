@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     redirect_to signup_path, alert: "Not authorized" if current_user.nil?
   end
+  
+  def authenticate_admin!
+    redirect_to edit_user_path(current_user) unless current_user.admin?
+  end
 
   def xeditable?
     true # Or something like current_user.xeditable?

@@ -1,5 +1,6 @@
 require "teams_controller"
 class EventsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_object, except: [:show, :destroy, :edit, :update]
   require 'twilio-ruby'
   
