@@ -22,8 +22,10 @@ class SessionsController < ApplicationController
           if user.mobile_phone_number.present? && Relationship.where(user_id: user.id, mobile_phone_number: user.mobile_phone_number)
             send_mobile_notification(user)
           end
+          user.increment!(:signin_count)
           redirect_to user_overview_path(user)
         else
+          user.increment!(:signin_count)
           redirect_to users_path
         end 
       end
