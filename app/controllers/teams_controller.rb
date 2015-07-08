@@ -214,7 +214,7 @@ class TeamsController < ApplicationController
   end
   
   def send_mobile_invitation(user, password)
-    receiving_number = "4437998526"
+    receiving_number = user.mobile_phone_number
 
     twilio_sid = ENV['TWILIO_SID']
     twilio_token = ENV['TWILIO_AUTH_TOKEN']
