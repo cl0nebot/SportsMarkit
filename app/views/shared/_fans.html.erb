@@ -16,10 +16,10 @@
             </a>
     	    <% end %>
             <small class="small mr10 text-muted fs_14">
-              <i class="ion-eye"></i> 245
+              <i class="ion-eye"></i> <%= fan.user.follows.count %>
             </small>
             <small class="small mr10 text-muted fs_14">
-              <i class="ion-person-stalker"></i> 245
+              <i class="ion-person-stalker"></i> <%= fan.user.fans.count %>
             </small>
         </div><!--.friend-content-->
       </div><!--.card-->
