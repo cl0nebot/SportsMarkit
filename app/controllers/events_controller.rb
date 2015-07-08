@@ -57,7 +57,7 @@ class EventsController < ApplicationController
 
       twilio_sid = ENV['TWILIO_SID']
       twilio_token = ENV['TWILIO_AUTH_TOKEN']
-      twilio_phone_number = "2025179077"
+      twilio_phone_number = "2027590519"
       @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
       
       @twilio_client.account.sms.messages.create(
