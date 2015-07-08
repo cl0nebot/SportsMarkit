@@ -81,8 +81,8 @@
 		</div>
 
 
-		<div class="social-buttons">
-			<%= render 'rsvp' %>
+		<div class="social-buttons" id="social-buttons">
+			<%= render 'rsvp_buttons', event: @event %>
 		</div>
 
 	</div>
@@ -104,89 +104,31 @@
 					</div>
 				</div>
 				<!--#following.tab-pane-->
+				
+			
+			 <!-- following -->
+			 <div id="yes" class="tab-pane">
+				 
+             <%= render 'events/rsvp_list', people: @attendees %> 		
 
-				<!-- following -->
-				<div id="yes" class="tab-pane">
+			 </div>
+			 <!--#following.tab-pane-->
 
-					<% @attendees.each do |person| %>
-						<div class="panel">
-							<div class="panel-body without-padding">
-								<ul class="list-material">
-									<li class="has-action-left">
-										<a href="#" class="visible">
-											<div class="list-action-left">
-												<img src="<%= image_path("placeholders/user.jpg", class: "face-radius") %>">
-											</div>
-											<div class="list-content">
-												<span class="title">
-													<%= person.user.full_name %>
-												</span>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div><!--.panel-body-->
-						</div><!--.panel-->
-					<% end %>
+			 <!-- teams -->
+			 <div id="maybe" class="tab-pane">
 
-				</div>
-				<!--#following.tab-pane-->
+		     <%= render 'events/rsvp_list', people: @maybes %>
 
-				<!-- teams -->
-				<div id="maybe" class="tab-pane">
+			 </div>
+			 <!--#teams.tab-pane-->
 
-					<% @maybes.each do |person| %>
-
-						<div class="panel">
-							<div class="panel-body without-padding">
-								<ul class="list-material">
-									<li class="has-action-left">
-										<a href="#" class="visible">
-											<div class="list-action-left">
-												<img src="<%= image_path("placeholders/user.jpg", class: "face-radius") %>">
-											</div>
-											<div class="list-content">
-												<span class="title">
-													<%= person.user.full_name %>
-												</span>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div><!--.panel-body-->
-						</div><!--.panel-->
-
-					<% end %>
-
-				</div>
-				<!--#teams.tab-pane-->
-
-				<!-- people -->
-				<div id="no" class="tab-pane">
-					
-					<% @nos.each do |person| %>
-
-						<div class="panel">
-							<div class="panel-body without-padding">
-								<ul class="list-material">
-									<li class="has-action-left">
-										<a href="#" class="visible">
-											<div class="list-action-left">
-												<img src="<%= image_path("placeholders/user.jpg", class: "face-radius") %>">
-											</div>
-											<div class="list-content">
-												<span class="title">
-													<%= person.user.full_name %>
-												</span>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div><!--.panel-body-->
-						</div><!--.panel-->
-						
-					<% end %>
-				</div>
+			 <!-- people -->
+			 <div id="no" class="tab-pane">
+	
+		     <%= render 'events/rsvp_list', people: @nos %>
+			 
+			 </div>
+			
 
 			</div><!--.tab-content-->
 		</div><!--.col-->

@@ -41,7 +41,9 @@ Rails.application.routes.draw do
     resources :measurables
     resources :certificates
     resources :media
-    resources :events
+    resources :events do
+      get :rsvp
+    end
     resources :sessions
     resources :password_resets
     resources :schools do

@@ -73,6 +73,22 @@ class EventsController < ApplicationController
     #add twilio
   end
   
+  def rsvp
+    @event = Event.find(params[:event_id])
+    @user = User.find(params[:user_id])
+    boolean = params[:rsvp]
+    rsvp = Attendee.find_or_initialize_by(event_id: @event.id, user_id: @user.id)
+    rsvp.update_attributes(yes: nil, maybe: nil, no: nil)
+    rsvp.update_attributes(boolean.to_sym => true)
+    @attendees = @event.attendees.where(yes: true)
+    @maybes = @event.attendees.where(maybe: true)
+    @nos = @event.attendees.where(no: true)
+    respond_to do |format|
+      format.html{redirect_to :back}
+      format.js
+    end  
+  end
+  
   protected
   
   def event_params

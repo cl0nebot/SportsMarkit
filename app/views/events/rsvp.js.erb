@@ -1,0 +1,10 @@
+$('#social-buttons').empty()
+$('#social-buttons').append("<%= j render 'events/rsvp_buttons', event: @event %>")
+$('#yes').empty()
+$('#yes').append("<%= j render 'events/rsvp_list', people: @attendees %>")
+$('#maybe').empty()
+$('#maybe').append("<%= j render 'events/rsvp_list', people: @maybes %>")
+$('#no').empty()
+$('#no').append("<%= j render 'events/rsvp_list', people: @nos %>")
+
+	
