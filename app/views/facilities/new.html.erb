@@ -9,6 +9,7 @@
 				</h5>
 				<hr class="margin-top-0"/>
 			</div>
+			<%= form_for Facility.new, html: {id: 'new-facility-form', data: {remote: true}} do |f|   %>
 
 			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
 				<div class="row">
@@ -21,25 +22,15 @@
 						</div>
 						<div class="row margin-bottom-0">
 							<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 well">
-								<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
-									<option>Basketball Gym</option>
-									<option>Recreation Center</option>
-									<option>Tennis Court</option>
-									<option>Volleyball Court</option>
-									<option>Soccer Field</option>
-									<option>Indoor Soccer Field</option>
-									<option>Track</option>
-									<option>Indoor Track</option>
-									<option>Football Field</option>
-									<option>Indoor Football Field</option>
-								</select>
+								<%= f.collection_select :facility_type, FacilityType.pluck(:facility_type), :to_s, :to_s, {include_blank: false}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0" } %>
+						
 							</div><!--.col-md-9-->
 						</div><!--.row-->
 					</div>
 				</div>
 			</div>
 
-			<%= form_for Facility.new, html: {id: 'new-facility-form', data: {remote: true}} do |f|   %>
+			
 
 
 

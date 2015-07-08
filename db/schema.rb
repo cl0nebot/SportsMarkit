@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708010213) do
+ActiveRecord::Schema.define(version: 20150708021007) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 20150708010213) do
 
   create_table "facilities", force: true do |t|
     t.string   "name"
-    t.string   "field_type"
+    t.string   "facility_type"
     t.boolean  "private"
     t.boolean  "publicly_visible"
     t.string   "address_1"
