@@ -1,4 +1,8 @@
 class FacilityTypesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authenticate_admin!
+  
+  
   def index
     @facility_types = FacilityType.all
     @facility_type = FacilityType.new

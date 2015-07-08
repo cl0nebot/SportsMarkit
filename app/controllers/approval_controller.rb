@@ -1,4 +1,6 @@
 class ApprovalController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authenticate_admin!
   
   def index
     @athletic_directors = AthleticDirector.where(accepted: nil).where.not(school_id: nil)

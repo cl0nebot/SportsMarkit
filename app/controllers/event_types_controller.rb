@@ -1,5 +1,6 @@
 class EventTypesController < ApplicationController
-  
+  before_action :authenticate_user!
+  before_action :authenticate_admin!
   
   def index
     @event_types = EventType.all
