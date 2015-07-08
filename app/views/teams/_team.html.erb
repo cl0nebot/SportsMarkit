@@ -23,15 +23,15 @@
 
       <div class="card-body">
         <h5 class="card-title capitalize fs_20">
-        	<a href="#"><%= link_to team.name, team_path(team) %></a>
+        	<a href="#"><%= link_to team.proper_name, team_path(team) %></a>
         </h5>
 
         <div class="subhead">
           <span class="text-muted">
             <%= team.sport %>
           </span>
-          <span class="text-muted">[city, state]</span>
-          <span class="text-muted">[school name or Team Type]</span>
+          <span class="text-muted"><%= team.city_state %></span>
+          <!-- <span class="text-muted">[school name or Team Type]</span> -->
         </div>
       </div><!--.card-body-->
 

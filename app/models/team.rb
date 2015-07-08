@@ -118,9 +118,11 @@ class Team < ActiveRecord::Base
   
   def city_state
     if school_id.present?
-      "#{school.city}, #{school.state}"  
+      comma = (school.city.present? && school.state.present?) ? "," : ""
+      "#{school.city}#{comma} #{school.state}"  
     else
-      "#{city}, #{state}"
+      comma = (city.present? && state.present?) ? "," : ""
+      "#{city}#{comma} #{state}"
     end
   end
   
