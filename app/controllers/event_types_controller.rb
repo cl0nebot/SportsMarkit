@@ -44,7 +44,7 @@ class EventTypesController < ApplicationController
   
   def destroy
     @event_type = EventType.find(params[:id])
-    @index = @certification.index_position
+    @index =  @event_type.index_position
     @event_type.destroy
     respond_to do |format|
       format.js
@@ -56,7 +56,7 @@ class EventTypesController < ApplicationController
   protected
   
   def event_type_params
-    params.require(:event_type).permit(:event_type)
+    params.require(:event_type).permit(:event_type, :sport_id)
   end
 end
   

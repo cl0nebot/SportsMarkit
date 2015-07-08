@@ -51,18 +51,9 @@
 											<div class="col-md-12 mb10">Associated Sport</span></div>
 											<div class="col-md-12">
 												<div class="inputer">
-													<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
-														<option>Basketball Gym</option>
-														<option>Recreation Center</option>
-														<option>Tennis Court</option>
-														<option>Volleyball Court</option>
-														<option>Soccer Field</option>
-														<option>Indoor Soccer Field</option>
-														<option>Track</option>
-														<option>Indoor Track</option>
-														<option>Football Field</option>
-														<option>Indoor Football Field</option>
-													</select>
+													<%= f.collection_select :sport_id, Sport.all, :id, :sport, {:prompt => 'Select a sport if applicable', :selected => ""}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", placeholder: "Select a Sport" } %>
+													
+											
 												</div>
 											</div><!--.col-md-9-->
 										</div><!--.row-->
@@ -92,7 +83,7 @@
 		          <thead>
 		            <tr>
 		              <th style="width:30%" class="semi-bold h6 text-muted">Event Type</th>
-					  			<th style="width:30%" class="semi-bold h6 text-muted">Sport</th>
+					  <th style="width:30%" class="semi-bold h6 text-muted">Sport</th>
 		              <th style="width:30%" class="semi-bold h6 text-muted">Actions</th>
 		            </tr>
 		          </thead>

@@ -8,7 +8,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <br>
         <i class="icon-credit-card icon-7x"></i>
-        <h4 id="myModalLabel" class="semi-bold"><%= event_type.name %></h4>
+        <h4 id="myModalLabel" class="semi-bold"><%= event_type.event_type %></h4>
         <p class="no-margin">Place the new event type in the field below. </p>
         <br>
       </div>
@@ -25,6 +25,12 @@
 		  <br>
 		  <%= f.text_field :event_type, placeholder: "Event Type" %>
         </div>
+		<% if event_type.sport_id.present? %>
+		<%= f.collection_select :sport_id, Sport.all, :id, :sport, {:selected => [event_type.sport_id]}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", placeholder: "Select a Sport" } %>
+		<% else %>
+		<%= f.collection_select :sport_id, Sport.all, :id, :sport, {:prompt => 'Select a sport if applicable'}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", placeholder: "Select a Sport" } %>
+		
+		<% end %>
       </div>
 	  
 	  

@@ -1,4 +1,5 @@
 class EventType < ActiveRecord::Base
+  belongs_to :sport
   
   def index_position
     array = []

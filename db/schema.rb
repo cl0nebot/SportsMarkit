@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707203533) do
+ActiveRecord::Schema.define(version: 20150708010213) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20150707203533) do
     t.string   "event_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sport_id"
   end
 
   create_table "events", force: true do |t|
@@ -491,7 +492,7 @@ ActiveRecord::Schema.define(version: 20150707203533) do
     t.string   "uid"
     t.string   "mobile_phone_number"
     t.integer  "temporary_school_ids"
-    t.integer  "signin_count"
+    t.integer  "signin_count",            default: 0
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

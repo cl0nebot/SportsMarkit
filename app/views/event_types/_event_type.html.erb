@@ -4,10 +4,7 @@
 			                    	<%= event_type.event_type %>
 			                    </td>
 			                    <td class="v-align-middle">
-			                    	<%= Event.where(event_type: event_type).count %>
-			                    </td>
-			                     <td class="v-align-middle">
-			                    	<h5 class="semi-bold muted"><%#= tag.sub_category%></h4>
+			                    	<%= event_type.sport.try(:sport)%>
 			                    </td>
 			                    <td class="v-align-middle">
 			                    	<div class="row clearfix">
@@ -22,3 +19,4 @@
 			                    </td>
 			                </tr>
 	                	
+						<%= render 'edit_event_type', event_type: event_type %>
