@@ -11,15 +11,24 @@
 						<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilities</a></li>
 						<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
 						<!-- <li><a href="#payments" data-toggle="tab" class="btn-ripple">Payments</a></li> -->
-						<li><a href="#admin" data-toggle="tab" class="btn-ripple">Admin</a></li>
+						<% if current_user %>
+						  <% if current_user.admin? or current_user.can_edit_team?(@team)%>
+						    <li><a href="#admin" data-toggle="tab" class="btn-ripple">Admin</a></li>
+						  <% end %>
+						<% end %>
 						<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
-						<li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li>
+						<!-- <li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li> -->
 						<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
+
 						<li>
-			                <%#= link_to "/relationships/#{current_user.relationships.where(team_id: @team.id, accepted: true).last.slug}/edit" do %>
-			                	<button href="" class="mt15 ml10 btn btn-primary button-striped button-full-striped btn-ripple btn-xs">Edit Profile</button>
-			                <%# end %>
-			            </li>
+						<% if current_user %>
+						  <% if current_user.admin? or current_user.can_edit_team?(@team)%>
+						    <%= link_to edit_team_path(@team) do %>
+		                	  <button href="" class="mt15 ml10 btn btn-primary button-striped button-full-striped btn-ripple btn-xs">Edit Profile</button>
+		                    <% end %>
+						  <% end %>
+						<% end %>
+						</li>
 						<!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
 						<!-- <li><a href="#certifications" data-toggle="tab" class="btn-ripple">Certifications</a></li> -->
 					</ul>
