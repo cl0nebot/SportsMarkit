@@ -1,39 +1,5 @@
-
-   <% if @user.attendances.where(event_id: event.id).empty? %>
-
-	  <%= form_for @user.attendees.build, html: {method: :post, remote: true } do |f| %>
-		  <%= f.hidden_field :user_id, value: @user.id %>
-		  <%= f.hidden_field :event_id, value: event.id %>
-		  <%= f.hidden_field :yes, value: true %>
-		  <%= f.submit "Attend", class: "btn btn-green btn-flat" %>
-	  <% end %>
-
-	  <%= form_for @user.attendees.build, html: {method: :post, remote: true } do |f| %>
-		  <%= f.hidden_field :user_id, value: @user.id %>
-		  <%= f.hidden_field :event_id, value: event.id %>
-		  <%= f.hidden_field :maybe, value: true %>
-		  <%= f.submit "Maybe", class: "btn btn-orange btn-flat" %>
-	  <% end %>
-
-	  <%= form_for @user.attendees.build, html: {method: :post, remote: true } do |f| %>
-		  <%= f.hidden_field :user_id, value: @user.id %>
-		  <%= f.hidden_field :event_id, value: event.id %>
-		  <%= f.hidden_field :no, value: true %>
-		  <%= f.submit "Decline", class: "btn btn-red btn-flat" %>
-	  <% end %>
-
-   <% elsif @user.attendances.where(event_id: event.id, yes: true).last.present? %>
-
-	  <%= render 'attendees/yes_index', event: event %>
-
-   <% elsif @user.attendances.where(event_id: event.id, maybe: true).last.present? %>
-
-      <%= render 'attendees/maybe_index', event: event %>
-
-   <% elsif @user.attendances.where(event_id: event.id, no: true).last.present? %>
-
-	   <%= render 'attendees/no_index', event: event %>
-
-<% end %>
+<%= link_to "Attend", event_rsvp_path(event.id, user_id: @user.id, rsvp: "yes", page: "index"), class: "btn btn-green btn-flat", remote: true, disabled: (@user.attendees.where(user_id: @user.id, event_id: event.id, yes: true).present? ? true : false ) %>
+<%= link_to "Maybe", event_rsvp_path(event.id, user_id: @user.id, rsvp: "maybe", page: "index"), class: "btn btn-orange btn-flat", remote: true, disabled: (@user.attendees.where(user_id: @user.id, event_id: event.id, maybe: true).present? ? true : false ) %>
+<%= link_to "Decline", event_rsvp_path(event.id, user_id: @user.id, rsvp: "no", page: "index"), class: "btn btn-red btn-flat", remote: true, disabled: (@user.attendees.where(user_id: @user.id, event_id: event.id, no: true).present? ? true : false ) %> 
 
 

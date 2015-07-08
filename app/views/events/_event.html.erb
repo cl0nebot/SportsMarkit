@@ -1,0 +1,40 @@
+			<div class="col-md-4">
+			<div class="card card-event">
+				<div class="card-heading bg-image sample-bg-image12">
+				</div><!--.card-heading-->
+
+				<div class="card-body">
+					<div class="calendar">
+						<div class="month"><%= event.starts_at.try(:strftime, "%B") %></div>
+						<div class="date"><%= event.starts_at.try(:day) %></div>
+					</div><!--.calendar-->
+					<h4 style="margin-bottom: 0;"><%= event.title %></h4>
+					<h5 class="text-grey">
+						<%= event.event_type %>
+					</h5>
+					<h5 class="h6 text-orange bold">
+						<%= format(event.starts_at, 4) %>
+						<%= format(event.starts_at, 8) %>
+						- 
+						<%= format(event.ends_at, 4) %>
+						<%= format(event.ends_at, 8) %>
+					</h5>  	
+					<p class="small caption">
+						<small>
+							Created By: 
+							<%= link_to event.user.try(:full_name), user_path(event.user) %>
+						</small>
+					</p>
+				</div><!--.card-body-->
+
+				<div class="card-footer">
+					<div class="btn-group btn-merged btn-group-sm pull-right">
+						
+						
+							<%= render 'events/rsvp_index', event: event %>
+					   
+					
+					</div>
+				</div><!--.card-footer-->
+			</div><!--.card-->
+			</div><!--.col-md-6-->

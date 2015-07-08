@@ -1,10 +1,15 @@
-$('#social-buttons').empty()
-$('#social-buttons').append("<%= j render 'events/rsvp_buttons', event: @event %>")
-$('#yes').empty()
-$('#yes').append("<%= j render 'events/rsvp_list', people: @attendees %>")
-$('#maybe').empty()
-$('#maybe').append("<%= j render 'events/rsvp_list', people: @maybes %>")
-$('#no').empty()
-$('#no').append("<%= j render 'events/rsvp_list', people: @nos %>")
+<% if params[:page] == "show" %>
+	$('#social-buttons').empty()
+	$('#social-buttons').append("<%= j render 'events/rsvp_buttons', event: @event %>")
+	$('#yes').empty()
+	$('#yes').append("<%= j render 'events/rsvp_list', people: @attendees %>")
+	$('#maybe').empty()
+	$('#maybe').append("<%= j render 'events/rsvp_list', people: @maybes %>")
+	$('#no').empty()
+	$('#no').append("<%= j render 'events/rsvp_list', people: @nos %>")
+<% elsif params[:page] == "index" %>
+    $('#rsvp-for-event-<%= params[:event_id]%>').empty()
+    $('#rsvp-for-event-<%= params[:event_id]%>').append("<%= j render 'events/event', event: @event %>")
+<% end %>
 
 	
