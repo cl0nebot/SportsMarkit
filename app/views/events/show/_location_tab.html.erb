@@ -1,0 +1,9 @@
+<div id="location" class="tab-pane active">
+	<h3 class="bold"><%= @event.facility.name %></h3>
+	<br>
+	<div class="row contact-us">
+		<div class="col-md-12">
+				<%= gmaps4rails(@json) %>
+		</div><!--.col-->
+	</div>
+</div>
