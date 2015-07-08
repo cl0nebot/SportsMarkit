@@ -15,10 +15,12 @@
 				                    		<%= link_to "Delete", facility_type, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-danger" %>
 				                    	</div>
 				                    	<div class="col-md-6">
-				                    		<%#= render 'edit_certification', certification: certification %>
 				                    		<button class="btn btn-block btn-small btn-success row" data-toggle="modal" data-target="#<%= facility_type.id %>"> Edit</button>
 				                    	</div>
 				                    </div>
 			                    </td>
 			                </tr>
+							
+							
+							<%= render 'edit_facility_type', facility_type: facility_type %>
 	                	

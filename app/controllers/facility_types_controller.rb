@@ -22,7 +22,7 @@ class FacilityTypesController < ApplicationController
   
   def update
     @facility_type = FacilityType.find(params[:id])
-    @index = @facility_type.index_facility_type
+    @index = @facility_type.index_position
     @before_item = @index - 1
     @result = @facility_type.update_attributes(facility_type_params)
     if @result
@@ -42,7 +42,7 @@ class FacilityTypesController < ApplicationController
   
   def destroy
     @facility_type = FacilityType.find(params[:id])
-    @index = @certification.index_position
+    @index = @facility_type.index_position
     @facility_type.destroy
     respond_to do |format|
       format.js
