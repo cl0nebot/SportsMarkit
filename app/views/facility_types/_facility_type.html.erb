@@ -1,26 +1,33 @@
-		                  	<tr>
-			               
-			                    <td class="v-align-middle">
-			                    	<%= facility_type.facility_type %>
-			                    </td>
-			                    <td class="v-align-middle">
-			                    	<%#= Event.where(facility_type: facility_type).count %>
-			                    </td>
-			                     <td class="v-align-middle">
-			                    	<h5 class="semi-bold muted"><%#= tag.sub_category%></h4>
-			                    </td>
-			                    <td class="v-align-middle">
-			                    	<div class="row clearfix">
-			                    		<div class="col-md-6">
-				                    		<%= link_to "Delete", facility_type, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-danger" %>
-				                    	</div>
-				                    	<div class="col-md-6">
-				                    		<button class="btn btn-block btn-small btn-success row" data-toggle="modal" data-target="#<%= facility_type.id %>"> Edit</button>
-				                    	</div>
-				                    </div>
-			                    </td>
-			                </tr>
-							
-							
-							<%= render 'edit_facility_type', facility_type: facility_type %>
-	                	
+<tr>
+	<td class="v-align-middle">
+		<%= facility_type.facility_type %>
+	</td>
+	<td class="v-align-middle">
+		<%#= Event.where(facility_type: facility_type).count %>
+	</td>
+	 <td class="v-align-middle">
+		<h5 class="semi-bold muted"><%#= tag.sub_category%></h4>
+	</td>
+	<td class="v-align-middle">
+
+		<div class="row clearfix">
+    		<div class="col-md-6">
+        		<%= link_to facility_type, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-sm btn-orange" do %>
+        		 	<span class="ion-trash-b"></span>
+        		<% end %>
+        	</div>
+        	<div class="col-md-6">
+        		<button class="btn btn-block btn-sm btn-primary row" data-toggle="modal" data-target="#<%= facility_type.id %>"> <span class="ion-gear-b"></span>
+        		</button>
+        	</div>
+        </div>
+	</td>
+</tr>
+
+
+<%= render 'edit_facility_type', facility_type: facility_type %>
+
+
+<td class="v-align-middle">
+    	
+    </td>
