@@ -9,7 +9,7 @@
         <h3 id="myModalLabel" class="bold">Update a Photo.</h3>
       </div>
       <div class="modal-body">
-		  <%= form_for [@user, @picture], html: {multipart: true, class: 'remote-upload'} do |f| %>
+		  <%= form_for [@object, @picture], html: {multipart: true, class: 'remote-upload'} do |f| %>
           <!-- jasny -->
 		  <div class="center">
         <div class="fileinput fileinput-new" data-provides="fileinput">
