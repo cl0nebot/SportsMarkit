@@ -7,12 +7,23 @@ class League < ActiveRecord::Base
   has_many :team_leagues, dependent: :destroy
   has_many :medias, as: :mediable
   
+  has_many :league_sports, :dependent => :destroy
+  has_many :sports, :through => :league_sports
+  
   def use_for_slug
     existing_league = League.where('slug = ?', self.slug)
     if existing_league.present?
       "#{name} #{state} #{existing_league.count}"
     else
       "#{name} #{state}"
+    end
+  end
+  
+  def sport_list(count=0)
+    if count == 0
+      sports.pluck(:sport).join(", ")
+    else
+      sports.pluck(:sport).first(count).join(", ")
     end
   end
   

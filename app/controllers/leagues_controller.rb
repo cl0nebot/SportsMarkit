@@ -17,7 +17,7 @@ class LeaguesController < ApplicationController
           LeagueManager.create(user_id: current_user.id, league_id: @league.id)
         end
 			end
-      redirect_to :back
+      redirect_to @league
     else
       render 'new'
     end
@@ -64,7 +64,7 @@ class LeaguesController < ApplicationController
   end
   
   def league_params
-    params.require(:league).permit(:name, :description, :sport, :state, :slug)
+    params.require(:league).permit({:sport_ids => []}, :name, :description, :sport, :state, :slug)
   end
   
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708021007) do
+ActiveRecord::Schema.define(version: 20150709145242) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -154,6 +154,11 @@ ActiveRecord::Schema.define(version: 20150708021007) do
 
   add_index "fans", ["fannable_id", "fannable_type"], name: "index_fans_on_fannable_id_and_fannable_type", using: :btree
 
+  create_table "identity_checks", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "league_managers", force: true do |t|
     t.integer  "user_id"
     t.integer  "league_id"
@@ -164,14 +169,21 @@ ActiveRecord::Schema.define(version: 20150708021007) do
     t.datetime "updated_at"
   end
 
+  create_table "league_sports", force: true do |t|
+    t.integer  "sport_id"
+    t.integer  "league_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "leagues", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "sport"
     t.string   "state"
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "school_affiliated"
   end
 
   add_index "leagues", ["name"], name: "index_leagues_on_name", using: :btree
@@ -323,14 +335,11 @@ ActiveRecord::Schema.define(version: 20150708021007) do
     t.datetime "updated_at"
     t.string   "mobile_phone_number"
     t.boolean  "admin",                      default: false
-    t.integer  "school_id"
     t.integer  "age"
     t.string   "nickname"
     t.boolean  "manager"
     t.boolean  "trainer"
   end
-
-  add_index "relationships", ["slug"], name: "index_relationships_on_slug", unique: true, using: :btree
 
   create_table "schools", force: true do |t|
     t.string   "name"

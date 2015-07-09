@@ -32,7 +32,7 @@
 									<div class="col-md-9">
 										<div class="inputer">
 											<div class="input-wrapper">
-												<%= f.text_field :sport, type: "text", class: "form-control", placeholder: ""%>
+												<%= f.collection_select :sport_ids, Sport.all, :id, :sport, {:selected => ""}, {:multiple => true, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0" } %>
 											</div>
 										</div>
 									</div><!--.col-md-9-->
