@@ -56,7 +56,10 @@ class FacilitiesController < ApplicationController
   
   def edit
     @object = @facility
+    @picture =  @object.photos.build
+    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
   end
+  
   
   def update
     if @facility.update_attributes(facility_params)

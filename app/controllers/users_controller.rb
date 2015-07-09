@@ -43,9 +43,9 @@ class UsersController < ApplicationController
     @profile = @user.profile
     @user_profile_picture =  UserProfilePicture.where(user_id: @user.id).empty? ? @user.user_profile_pictures.build : UserProfilePicture.where(user_id: @user.id).last
     @user_profile_pictures = UserProfilePicture.where(user_id: @user.id)
-    @picture =  @user.photos.build
-    @pictures = Photo.where(photo_owner_id: @user.id, photo_owner_type: "User", main: false)
     @object = @user
+    @picture =  @object.photos.build
+    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
   end
   
   def update

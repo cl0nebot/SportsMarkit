@@ -36,6 +36,8 @@ class LeaguesController < ApplicationController
   
   def edit
     @object = @league
+    @picture =  @object.photos.build
+    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
   end
   
   def update
