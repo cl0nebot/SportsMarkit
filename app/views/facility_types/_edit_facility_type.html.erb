@@ -8,29 +8,23 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <br>
         <i class="icon-credit-card icon-7x"></i>
-        <h4 id="myModalLabel" class="semi-bold"><%= facility_type.facility_type %></h4>
-        <p class="no-margin">Place the new facility type in the field below. </p>
-        <br>
+        <h4 id="myModalLabel" class="semi-bold">Edit "<span class="bold"><%= facility_type.facility_type %></span>"" position</h4>
       </div>
+      <hr class="no-margin"/>
       <div class="modal-body">
-		  <!-- jasny -->
-        <div class="fileinput fileinput-new" data-provides="fileinput">
-          <div class="fileinput-new thumbnail no-padding" style="width: 300px; max-height: 180px;">
-			  
-			   
-
-          </div>
-          <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 300px; max-height: 180px;"></div>
-          
-		  <br>
-		  <%= f.text_field :facility_type, placeholder: "facility_type" %>
-        </div>
+        <div class="row example-row">
+          <div class="col-md-12">Facility Type</div>
+          <div class="col-md-12">
+            <div class="inputer">
+              <div class="input-wrapper">
+                <%= f.text_field :facility_type, placeholder: "facility type", class: "form-control" %>
+              </div>
+            </div>
+          </div><!--.col-md-9-->
+        </div><!--.row-->
       </div>
-	  
-	  
-      <div class="modal-footer">
-		 
-		  <%= f.submit "Save", class: "btn btn-primary" %>
+      <div class="modal-footer bg-primary">
+        <%= f.submit "Save", class: "btn btn-white" %>
       </div>
     </div>
     <!-- /.modal-content -->
@@ -40,3 +34,4 @@
 
 </div>
 <!-- /.modal -->
+

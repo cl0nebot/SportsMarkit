@@ -1,22 +1,23 @@
-		                  	<tr>
-			               
-			                    <td class="v-align-middle">
-			                    	<%= event_type.event_type %>
-			                    </td>
-			                    <td class="v-align-middle">
-			                    	<%= event_type.sport.try(:sport)%>
-			                    </td>
-			                    <td class="v-align-middle">
-			                    	<div class="row clearfix">
-			                    		<div class="col-md-6">
-				                    		<%= link_to "Delete", event_type, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-danger" %>
-				                    	</div>
-				                    	<div class="col-md-6">
-				                    		<%#= render 'edit_certification', certification: certification %>
-				                    		<button class="btn btn-block btn-small btn-success row" data-toggle="modal" data-target="#<%= event_type.id %>"> Edit</button>
-				                    	</div>
-				                    </div>
-			                    </td>
-			                </tr>
-	                	
-						<%= render 'edit_event_type', event_type: event_type %>
+<tr>
+	<td class="v-align-middle">
+		<%= event_type.event_type %>
+	</td>
+	<td class="v-align-middle">
+		<%= event_type.sport.try(:sport)%>
+	</td>
+	<td class="v-align-middle">
+		<div class="row clearfix">
+    		<div class="col-md-6">
+        		<%= link_to event_type, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-sm btn-orange" do %>
+        		 	<span class="ion-trash-b"></span>
+        		<% end %>
+        	</div>
+        	<div class="col-md-6">
+        		<button class="btn btn-block btn-sm btn-primary row" data-toggle="modal" data-target="#<%= event_type.id %>"> <span class="ion-gear-b"></span>
+        		</button>
+        	</div>
+        </div>
+	</td>
+</tr>
+
+<%= render 'edit_event_type', event_type: event_type %>
