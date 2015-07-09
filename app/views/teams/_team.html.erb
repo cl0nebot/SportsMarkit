@@ -4,21 +4,13 @@
       <div class="card-heading heading-full">
         <div class="user-image sample-member9" style="background: url('<%= team.image %>');"></div>
 
+        
         <div class="clickable-button">
-          <div class="layer bg-orange"></div>
-          <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-gear-b"></i></a>
-        </div>
-
-        <div class="layered-content bg-orange">
-          <div class="overflow-content">
-            <div class="btn-group btn-group-justified margin-bottom-20">
-              <button type="button" class="btn btn-primary btn-block">View Profile</button>
-            </div>
-          </div><!--.overflow-content-->
-          <div class="clickable-close-button">
-            <a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
+            <%= link_to edit_team_path(team), class: "btn btn-floating btn-orange initial-position floating-open" do %>
+              <i class="ion-gear-b"></i>
+          <% end %>
           </div>
-        </div>
+
       </div><!--.card-heading-->
 
       <div class="card-body">
