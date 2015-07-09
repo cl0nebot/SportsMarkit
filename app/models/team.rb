@@ -30,7 +30,7 @@ class Team < ActiveRecord::Base
   end
 
   def upcoming_events
-    Event.where(eventable_type: "Team", eventable_id: id).where('starts_at >= ?', Time.now)
+    Event.where(eventable_type: "Team", eventable_id: id).where('ends_at >= ?', Time.now)
   end
   
   def next_event
