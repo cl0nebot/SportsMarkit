@@ -1,28 +1,31 @@
-<%= link_to "Users Index", users_path %><br>
-<%= link_to "User Profile", user_path(User.first) %><br>
-<%= link_to "User Edit", edit_user_path(User.first) %><br>
-<%= link_to "Team New", new_team_path %><br>
-<% if Team.any? %>
-<%= link_to "Team Edit", edit_team_path(Team.first)%><br>
-<%= link_to "Team Profile/Page", team_path(Team.first)%><br>
-<% end %>
-<%= link_to "School New", new_school_path(School.first)%><br>
-<% if School.any? %>
-<%= link_to "School Edit", edit_school_path(School.first)%><br>
-<%= link_to "School Profile/Page", school_path(School.first)%><br>
-<% end %>
-<%= link_to "Facility New", new_facility_path(Facility.first)%><br>
-<% if Facility.any? %>
-<%= link_to "Facility Edit", edit_facility_path(Facility.first)%><br>
-<%= link_to "Facility Profile/Page", facility_path(Facility.first)%><br>
-<% end %>
+<h4>Example User: <% user = User.fourth %><%= user.full_name%></h4><br>
+1. All users will be prompted to self-identify themselves by adding classifications during the onboarding process.
+   <%= link_to "#{user.full_name}: Overview", user_overview_path(user) %><br>
+2. After selecting classifications, those classifications will be used to build the user's setup page.
+   <%= link_to "#{user.full_name}: Setup", user_setup_path(user) %><br>
+3. The user will now edit their user profile. Here you can add a user profile picture, measurables, photos, videos etc.
+   <%= link_to "#{user.full_name}: Edit Profile", edit_user_path(user) %><br>
+4. Then you can view the users profile.
+   <%= link_to "#{user.full_name}: Profile", user_path(user) %><br>
+5. Next, visit the teams index page to see all the teams.
+   <%= link_to "Teams", teams_path %><br>
+6. Go to a team. Here, you can join a team, approve it, manage rosters for the demo. Send SMS.
+   <%= link_to "First Team", team_path(Team.first) %><br>
+7. After joining and approving a team spot, visit the school.<br>
+8. Go back to team, go to create an event for team. <%= link_to "Create Team Event", events_team_calendar_path(Team.first) %><br>
+9. Cancel event. Receive SMS.<br>
+10. Create Items: <%= link_to "Team", new_team_path %> |  <%= link_to "School", new_school_path %> | <%= link_to "Facility", new_facility_path %> | <%= link_to "League", new_league_path %><br>
+11. View All: <%= link_to "Users", users_path %> | <%= link_to "Teams", teams_path %> |  <%= link_to "Schools", schools_path %> | <%= link_to "Facilities", facilities_path %> | <%= link_to "Leagues", leagues_path %><br><br>
 
-<%= link_to "League New", new_league_path(League.first)%><br>
-<% if League.any? %>
-<%= link_to "League Edit", edit_league_path(League.first)%><br>
-<%= link_to "League Profile/Page", league_path(League.first)%><br>
-<% end %>
-<% if Relationship.any? %>
-<%= link_to "Relationship Edit", edit_relationship_path(Relationship.first)%><br>
-<% end %>
+<h4>Admin Actions:</h4>
+
+<%= link_to "View League Managers", league_managers_path %><br>
+<%= link_to "Add Positions", positions_path %><br>
+<%= link_to "Add Facility Types", facility_types_path %><br>
+<%= link_to "Add Event Types", event_types_path %><br>
+<%= link_to "Add Certifications", certifications_path %><br>
+<%= link_to "Approve", approval_index_path %>
+
+
+
 
