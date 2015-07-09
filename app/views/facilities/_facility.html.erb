@@ -5,12 +5,12 @@
 		      <div class="card-heading heading-full">
 		        <div class="user-image sample-member9" style="background: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');"></div>
 
-		        <%= link_to edit_facility_path(facility) do %>
-			        <div class="clickable-button">
-			          <div class="layer bg-orange"></div>
-			          <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-gear-b"></i></a>
-			        </div>
-			    <% end %>
+	            <div class="clickable-button">
+	            	<%= link_to edit_facility_path(facility), class: "btn btn-floating btn-orange initial-position floating-open" do %>
+			          	<i class="ion-gear-b"></i>
+			        <% end %>
+			    </div>
+			    
 
 		      </div><!--.card-heading-->
 
