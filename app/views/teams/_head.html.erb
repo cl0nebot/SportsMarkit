@@ -26,6 +26,7 @@
                             </small>
                         </p>
                     </div>
+					<% if current_user.can_edit_team?(@team) %>
                     <div class="col-md-4">
 
                         <%= link_to m, method: :delete, remote: true,  class: "pull-right btn btn-orange"  do %>
@@ -36,6 +37,7 @@
                                 <span class="ion-ios-gear"></span>
                         <% end %>
                     </div>
+					<% end %>
                 </div>
             </div>
             <div class="row">
