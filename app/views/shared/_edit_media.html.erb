@@ -4,23 +4,31 @@
         <%= render 'media/form', m: m, u: @object %>
       <% end %>
     </div>
-	<div class="row m-b-20">
-		<div class="col-lg-8 col-lg-offset-2">
-			<%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id})"), method: :get ,remote: true, class: 'btn btn-large btn-blue btn-block' do %>
-				Add New Media <i class="ion-plus-circled margin-left-10"></i>
-			<% end %>
+	<div class="row m-b-20 well">
+		<div class="col-lg-4">
+			<%= image_tag("placeholders/video.png", class: "img-responsive thumbnail mb10")%>
+			<div class="center">
+				<%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id})"), method: :get ,remote: true, class: 'btn btn-large btn-blue btn-block btn-sm' do %>
+					Add Video <i class="ion-plus-circled margin-left-10"></i>
+				<% end %>
+			</div>
 		</div>
-	</div>
-	
-	<br><br><br>
-	
-	<div class="col-md-3">
-        <div id="user-profile-picture">
-          <%= render 'shared/add_photo' %>
-        </div>
-		
-        <div id="user-profile-picture">
-          <%= render 'shared/gallery' %>
-        </div>
+		<div class="col-lg-4">
+			<%= image_tag("http://www2.warwick.ac.uk/fac/soc/economics/apps/templates/external_article_placeholder.jpg", class: "img-responsive thumbnail mb10")%>
+	        <div class="center">
+	        	<%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id})"), method: :get ,remote: true, class: 'btn btn-large btn-blue btn-sm' do %>
+					Add Article <i class="ion-plus-circled margin-left-10"></i>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-md-4">
+	        <div id="user-profile-picture">
+	          <%= render 'shared/add_photo' %>
+	        </div>
+			
+	        <div id="user-profile-picture">
+	          <%= render 'shared/gallery' %>
+	        </div>
+		</div>
 	</div>
 </div>
