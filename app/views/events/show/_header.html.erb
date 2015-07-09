@@ -9,7 +9,8 @@
 			<i class="ion-calendar m-r-5"></i>
 			<small>
 				<%= @event.title %>
-				<%= link_to "Cancel", @event, method: :delete %>
+				<%= link_to "Cancel", @event, method: :delete, class: "ml20 btn btn-danger btn-xs" %>
+				<a href="#" class="btn btn-white btn-xs">Reschedule</a>
 			</small>
 		</h1>
 	</div><!--.col-->
