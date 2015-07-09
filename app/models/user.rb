@@ -261,6 +261,16 @@ class User < ActiveRecord::Base
     end
   end
   
+  def can_edit_school?(school)
+    if AthleticDirector.where(user_id: id, school_id: school.id).present?
+      true
+    elsif admin?
+      true
+    else
+      false
+    end
+  end
+  
   def self.athletes
     relationship_user_ids = Relationship.where(participant: true).pluck(:user_id)
     student_athlete_user_ids = Classification.where(classification: "Student Athlete").pluck(:user_id) 
