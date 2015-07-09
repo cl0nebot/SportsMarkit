@@ -1,0 +1,58 @@
+<div class="parallax-bg" style="background: url('http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg') 50% 50%;">
+</div>
+
+<div class="bg-overlay"></div><!--.bg-overlay-->
+
+<div class="row">
+	<div class="col-sm-5">
+		<h1>
+			<i class="ion-calendar m-r-5"></i>
+			<small>
+				<%= @event.title %>
+				<%= link_to "Cancel", @event, method: :delete, class: "ml20 btn btn-danger btn-xs" %>
+				<a href="#" class="btn btn-white btn-xs">Reschedule</a>
+			</small>
+		</h1>
+	</div><!--.col-->
+	<div class="col-sm-6">
+		<ol class="breadcrumb">
+			<li><a href="/"><i class="ion-home"></i></a></li>
+			<li><a href="<%= teams_path %>">[User Name]</a></li>
+			<li><a href="<%= teams_path %>">Events</a></li>
+			<li><a href="#" class="active">Event Name</a></li>
+		</ol>
+	</div><!--.col-->
+	<div class="col-sm-1 text-right">
+		<a href="<%= edit_user_path(User.first) %>" class="btn btn-floating btn-light-blue">
+			<i class="ion-android-settings"></i>
+		</a>
+	</div>
+</div><!--.row-->
+
+
+<div class="profile-info">
+	<!--.profile-photo-->
+	<div class="profile-text light capitalize">
+		<span class="h6 text-amber bold">
+			<%= format(@event.starts_at, 4) %>
+			<%= format(@event.starts_at, 8) %>
+			- 
+			<%= format(@event.ends_at, 4) %>
+			<%= format(@event.ends_at, 8) %>
+		</span>
+		<br/>
+		<%= @event.title %> 
+		<h4 class="text-grey">
+			<%= @event.event_type %>
+		</h4>
+		<span class="caption">
+			Created By: <%= link_to @event.user.full_name, user_path(@event.user) %>
+		</span>
+	</div><!--.profile-text-->
+</div><!--.profile-info-->
+
+
+
+<div class="social-buttons" id="social-buttons">
+	<%= render 'rsvp_buttons', event: @event %>
+</div>

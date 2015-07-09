@@ -9,7 +9,7 @@
 				</h5>
 				<hr class="margin-top-0"/>
 			</div>
-			<%= form_for Facility.new, html: {id: 'new-facility-form', data: {remote: true}} do |f|   %>
+			<%= form_for Facility.new, html: {id: 'new-facility-form'} do |f|   %>
 
 			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
 				<div class="row">
@@ -183,7 +183,7 @@
 						<div class="col-md-12">
 							<div class="inputer">
 								<div class="input-wrapper">
-									<%= f.text_field :email, type: "text", class: "form-control inputmask inputmask-email" %>
+									<%= f.text_field :email, type: "text", class: "form-control" %>
 								</div>
 							</div>
 						</div><!--.col-md-9-->
@@ -194,7 +194,7 @@
 						<div class="col-md-12">
 							<div class="inputer">
 								<div class="input-wrapper">
-									<%= f.text_field :phone_number, type: "text", class: "form-control inputmask inputmask-phone" %>
+									<%= f.text_field :phone_number, type: "text", class: "form-control" %>
 								</div>
 							</div>
 						</div><!--.col-md-9-->
