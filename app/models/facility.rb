@@ -73,7 +73,7 @@ class Facility < ActiveRecord::Base
   
   def upcoming_events
     event_ids = EventFacility.where(facility_id: id).pluck(:event_id)
-    events = Event.where(id: event_ids ).where('starts_at >= ?', Time.now)
+    events = Event.where(id: event_ids ).where('ends_at >= ?', Time.now)
   end
   
   def next_event

@@ -66,7 +66,7 @@ class School < ActiveRecord::Base
   end
   
   def upcoming_events
-    Event.where(eventable_type: "Team", eventable_id: team_ids).where('starts_at >= ?', Time.now)
+    Event.where(eventable_type: "Team", eventable_id: team_ids).where('ends_at >= ?', Time.now)
   end
 
   def all_events

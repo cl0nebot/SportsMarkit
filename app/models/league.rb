@@ -41,7 +41,7 @@ class League < ActiveRecord::Base
   
   def upcoming_events
     team_ids = TeamLeague.where(league_id: id).pluck(:team_id)
-    Event.where(eventable_type: "Team", eventable_id: team_ids).where('starts_at >= ?', Time.now)
+    Event.where(eventable_type: "Team", eventable_id: team_ids).where('ends_at >= ?', Time.now)
   end
   
   def next_event
