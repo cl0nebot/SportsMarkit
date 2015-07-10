@@ -464,8 +464,9 @@ input.form-control {font-size: 26px; line-height: 30px;}
 }
 
 .bg-login .login-screen  {
-  height: 500px;
+  height: 580px !important;
 }
+
 
 .panel-body.no-padding.form-layout .panel-header {
   padding: 20px 40px 0px;
@@ -551,3 +552,4 @@ input.form-control {font-size: 26px; line-height: 30px;}
   margin: 0;
   white-space: nowrap;
 }
+
