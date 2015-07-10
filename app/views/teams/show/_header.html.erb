@@ -1,38 +1,38 @@
- <%= render 'shared/background_photo_tab', photo_owner: @team %>
+<%= render 'shared/background_photo_tab', photo_owner: @team %>
 
-		<div class="bg-overlay"></div><!--.bg-overlay-->
+<div class="bg-overlay"></div><!--.bg-overlay-->
 
-		<div class="social-buttons">
-			<%= render 'shared/fan' %>
-		</div>
+<div class="social-buttons">
+	<%= render 'shared/fan' %>
+</div>
 
-		<div class="team-buttons" id="team-button">
-			<% if current_user.relationships.where(team_id: @team.id).empty? %>
-			  <%= render 'relationships/relationship'%>
-			<% elsif current_user.relationships.where(team_id: @team.id, accepted: nil, rejected: nil).present? %>
-			  <%= render 'relationships/pending'%>
-			<% elsif current_user.relationships.where(team_id: @team.id, accepted: true).present? %>
-				<%= render 'relationships/member'%>
-				
+<div class="team-buttons" id="team-button">
+	<% if current_user.relationships.where(team_id: @team.id).empty? %>
+	  <%= render 'relationships/relationship'%>
+	<% elsif current_user.relationships.where(team_id: @team.id, accepted: nil, rejected: nil).present? %>
+	  <%= render 'relationships/pending'%>
+	<% elsif current_user.relationships.where(team_id: @team.id, accepted: true).present? %>
+		<%= render 'relationships/member'%>
+		
+	<% end %>
+</div>
+
+
+<div class="row">
+	<div class="col-sm-6">
+      <%= render 'shared/upcoming_event', object: @team %>
+	</div><!--.col-->
+	<div class="col-sm-6">
+		<ol class="breadcrumb">
+			<li><a href="/"><i class="ion-home"></i></a></li>
+			<li><a href="<%= teams_path %>">Teams</a></li>
+			<% if @team.school.present? %>
+		  		<li><a href="#"><%= @team.school.name %></a></li>
+		  		<!-- add path for linking -->
 			<% end %>
-		</div>
-
-
-		<div class="row">
-			<div class="col-sm-6">
-	          <%= render 'shared/upcoming_event', object: @team %>
-			</div><!--.col-->
-			<div class="col-sm-6">
-				<ol class="breadcrumb">
-					<li><a href="/"><i class="ion-home"></i></a></li>
-					<li><a href="<%= teams_path %>">Teams</a></li>
-					<% if @team.school.present? %>
-				  		<li><a href="#"><%= @team.school.name %></a></li>
-				  		<!-- add path for linking -->
-					<% end %>
-					<li><a href="#" class="active"><%= @team.name %></a></li>
-				</ol>
-			</div><!--.col-->
-		</div><!--.row-->
+			<li><a href="#" class="active"><%= @team.name %></a></li>
+		</ol>
+	</div><!--.col-->
+</div><!--.row-->
 
 	
