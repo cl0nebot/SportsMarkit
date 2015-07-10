@@ -2,5 +2,9 @@
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :fannable_id, value: object.id %>
   <%= f.hidden_field :fannable_type, value: @class %>
-  <%= f.submit "Become a Fan!", class: "btn btn-orange", id: "hey" %>
+  
+  <%= button_tag class: "btn btn-orange", id: "hey" do %>
+  	<span class="ion-person-add mr5"></span> Become a Fan!
+  <% end %>
+
 <% end %>
