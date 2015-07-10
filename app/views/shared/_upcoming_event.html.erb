@@ -1,10 +1,10 @@
 <h1>
 	<i class="ion-calendar m-r-5"></i>
-	Upcoming event
-	<small><% if object.upcoming_events.empty? %>
-		[<%= object.next_event %>]
+	Events<br/>
+	<small class="text-warning semi-bold"><% if object.upcoming_events.empty? %>
+		<%= object.next_event %>
 		<% else %>
-		[<%= link_to object.next_event, event_path(object.upcoming_events.first.friendly_id) %>]
+		<%= link_to object.next_event, event_path(object.upcoming_events.first.friendly_id) %>
 		<% end %>
 	</small>
 </h1>
