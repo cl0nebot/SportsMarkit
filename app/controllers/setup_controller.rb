@@ -4,7 +4,7 @@ class SetupController < ApplicationController
   def setup
     @athlete_teams = Team.where.not(id: @user.relationships.where(participant: true).pluck(:team_id))
     @coach_teams = Team.where.not(id: @user.relationships.where(head: true).pluck(:team_id))
-    @schools = School.all - [@user.schools.last]
+    @schools = School.all
     @athletes = User.athletes
     @school_teams = Team.with_schools
     @non_school_teams = Team.without_schools

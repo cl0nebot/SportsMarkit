@@ -143,6 +143,13 @@ class UsersController < ApplicationController
     @children = @user.children
     @available_children = User.all - [@user]
   end
+  
+  def remove_athletic_director
+    rel = AthleticDirector.where(school_id: params[:school_id], user_id: params[:user_id]).first
+    rel.destroy
+    @user = User.find(params[:user_id])
+    @schools = School.all
+  end
 
   def add_non_school_team_at_setup
     @user = User.friendly.find(params[:user_id])
@@ -169,10 +176,16 @@ class UsersController < ApplicationController
   end
   
   def add_athletic_director_at_setup
-    @user = User.friendly.find(params[:user_id])
+    @user = User.find(params[:user_id])
     @athletic_director = AthleticDirector.create(school_id: params[:athletic_director][:school_id], user_id: params[:athletic_director][:user_id])
+    @count = @user.athletic_directors.count
+    @user.athletic_directors.each do |ad|
+      unless ad == @user.athletic_directors.last
+        ad.destroy
+      end
+    end
     @school = @athletic_director.school
-    @schools = School.all - [@school]
+    @schools = School.all
     respond_to do |format|
       format.js 
       format.html { redirect_to :back }

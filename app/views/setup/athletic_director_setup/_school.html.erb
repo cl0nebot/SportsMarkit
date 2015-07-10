@@ -1,6 +1,4 @@
-					<% if @user.athletic_directors.present? %>
-					
-					<div class="note note-warning note-left-striped">
+<div class="note note-warning note-left-striped">
 						<h4>You're already assigned to a school</h4>
 						<p class="small text-grey">
 							You can technically only are currently the athletic director of .You can only be an athletic director of one school at a time. If you wish to select another school, do so below.
@@ -14,34 +12,38 @@
 								<li class="has-action-left has-action-right">
 									<a href="#" class="visible">
 										<div class="list-action-left">
-											<a class="btn btn-floating btn-orange btn-ripple">
-												<i class="ion-android-close"></i>
-											</a>
+											<% if @user.athletic_directors.present? %>
+									        <%= link_to user_remove_athletic_director_path(user_id: @user.id, school_id: @user.athletic_directors.last.try(:school).try(:id)) , class: 'btn btn-floating btn-orange btn-ripple', remote: true, method: :delete do %>
+									          <i class="ion-android-close"></i>
+									        <% end %>
+											<% end %>
 										</div>
 										<div class="list-content padding-left-30">
+											<% if @user.athletic_directors.present? %>
 											<span class="title">
-												<%= @user.athletic_directors.last.school.name %>
+												
+												  <%= @user.athletic_directors.last.school.name %>
+						
+												
 											</span>
 											<span class="caption">
-												[age],
-												[city, state], 
-												[School/League Name], 
-												[# of team members] 
+												<%= @user.athletic_directors.last.school.city_and_state %> 
+												,<%= pluralize @user.athletic_directors.last.school.teams.count, "Team" %>
+												,<%= pluralize @user.athletic_directors.last.school.people.count, "User" %>  
 											</span>
+											<% end %>
 										</div>
+										
 										<div class="list-action-right">
-											<span class="top">Pending</span>
-											<i class="ion-android-checkmark-circle bottom"></i>
+											<% if @user.athletic_directors.present? %>
+											  <% unless @user.athletic_directors.last.accepted? %>
+											    <span class="top">Pending</span>
+											<% else%>
+											    <i class="ion-android-checkmark-circle bottom"></i>
+											  <% end %>
+											<% end %>
 										</div>
 									</a>
 								</li>
 							</ul>
 						</div><!--.panel-body-->
-
-					<% else %>
-						
-						<h3>
-							Let's get you started. Find your school below.
-						</h3>
-
-					<% end %>

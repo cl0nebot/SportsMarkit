@@ -6,10 +6,11 @@
 
         <div class="card-subhead">
           <a href="#">
-            <%#= school.city %><br>
+			<%= pluralize school.teams.count, "Team" %>
+			,<%= pluralize school.people.count, "User" %>
 
       <i class="glyphicon glyphicon-map-marker"></i>
-      <%#= school.city_state %>
+      <%= school.city_and_state %>
       </a>
       </div><!--.card-subhead-->
       </div><!--.card-heading-->
@@ -26,9 +27,9 @@
       <div class="card-footer">
         <div id="apply-for-school-<%= school.id %>">
 
-          <% unless AthleticDirector.where(school_id: school.id, user_id: current_user.id).present? %>
+          
             <%= render 'setup/athletic_director_setup/athletic_director_setup_add_school_form', school: school %>
-          <% end %>
+        
 
 
         </div>

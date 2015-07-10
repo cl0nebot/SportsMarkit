@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       delete :remove_non_school_team
       delete :remove_coach_team
       delete :remove_child
+      delete :remove_athletic_director
       post :add_non_school_team_at_setup
       post :add_coach_team_at_setup
       post :add_athletic_director_at_setup

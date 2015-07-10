@@ -1,4 +1,4 @@
-<%= form_for @user, url: athletic_director_setup_path(@user) do |f| %>
+
 	<div class="panel-body">
     	<div class="row">
 			<div class="col-lg-10 col-lg-offset-1">
@@ -29,15 +29,15 @@
 			</div>
     	</div>
 	</div>
-	<% end %>
+	
 
-	<% if @user.is_athletic_director? %>
+	
 
 	<%# else %>
 
 		<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
     
-			<div class="row directors images" id="school-team-list">
+			<div class="row directors images" id="ad-school-team-list">
 				<%= render 'setup/athletic_director_setup/ad_school_list', schools: @schools %>
 			</div>
 			<div class="clearfix"></div>
@@ -46,5 +46,5 @@
 
 	
 	
-<% end %>
+
 
