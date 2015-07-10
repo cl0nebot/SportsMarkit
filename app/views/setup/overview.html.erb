@@ -33,13 +33,14 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="pull-left">
-						<%= image_tag(@user.avatar, class: "img-circle margin-left-20 margin-right-20", height: "35", width: "35" ) %>
+						<%= image_tag(@user.avatar, class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
 					</div>
 					<div class="pull-left">
 						<% if @user.first_name.present? %>
 						<h4 class="margin-bottom-5"><%= @user.full_name %></h4>
 						
-						<p class="small"><%= @user.profile.location_description %></p>
+						<!-- <p class="small"><%= @user.profile.location_description %></p> -->
+						<p class="small">My Profile Setup</p>
 						<% end %>
 					</div>
 				</div>
