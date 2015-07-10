@@ -16,58 +16,59 @@
     </div><!--.row-->
   </div><!--.page-header-->
 
-	<div class="row">
-		<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-md-6 col-md-offset-3">
-			<div class="panel">
-				
-				<!-- panel header -->
-				<div class="panel-heading">
-					<div class="panel-title">
-						<br/>
-						<h3>Let's quickly customize your account.</h3>
-					</div>
-				</div>
-				<!--.panel-heading-->
-				
-				<!-- panel body -->
-				<div class="panel-body">
-					<div class="row">
-						<div class="pull-left">
-							<%= image_tag(@user.avatar, class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
-						</div>
-						<div class="pull-left">
-							<% if @user.first_name.present? %>
-							<h4 class="margin-bottom-5"><%= @user.full_name %></h4>
-							
-							<p class="small"><%= @user.profile.location_description %></p>
-							<% end %>
-						</div>
-					</div>
-
-					<div class="note note-warning note-left-striped">
-						<h4>Adding profiles to your account.</h4>
-						<p class="small text-grey">
-							SportsMarkit allows you to customize your account with various profiles. Get the most out of our platform by managing your entire sports life online. Please select all profiles that should be applied to your account.
-						</p>
-					</div>
-
-					<hr class="no-margin"/>
+<div class="row pb60">
+	<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-md-6 col-md-offset-3">
+		<div class="panel">
+			
+			<!-- panel header -->
+			<div class="panel-heading">
+				<div class="panel-title">
 					<br/>
-					
-					<div id="type-list">
-						 <%= render 'classifications/type', user: @user %>
+					<h3>Let's quickly customize your account.</h3>
+				</div>
+			</div>
+			<!--.panel-heading-->
+			
+			<!-- panel body -->
+			<div class="panel-body">
+				<div class="row">
+					<div class="pull-left">
+						<%= image_tag(@user.avatar, class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
+					</div>
+					<div class="pull-left">
+						<% if @user.first_name.present? %>
+						<h4 class="margin-bottom-5"><%= @user.full_name %></h4>
+						
+						<!-- <p class="small"><%= @user.profile.location_description %></p> -->
+						<p class="small">My Profile Setup</p>
+						<% end %>
 					</div>
 				</div>
-				<!--.panel-body-->
 
-			</div><!--.panel-->
+				<div class="note note-warning note-left-striped">
+					<h4>Adding profiles to your account.</h4>
+					<p class="small text-grey">
+						SportsMarkit allows you to customize your account with various profiles. Get the most out of our platform by managing your entire sports life online. Please select all profiles that should be applied to your account.
+					</p>
+				</div>
 
-			<%= link_to user_setup_path(@user), class: "btn btn-block btn-primary" do %> 
-			 	Let's Customize Your Profiles <i class="margin-left-20 ion ion-chevron-right"></i>
-			<% end %>
+				<hr class="no-margin"/>
+				<br/>
+				
+				<div id="type-list">
+					 <%= render 'classifications/type', user: @user %>
+				</div>
+			</div>
+			<!--.panel-body-->
 
-		</div><!--.col-md-12-->
-	</div><!--.row-->
+		</div><!--.panel-->
+
+		<%= link_to user_setup_path(@user), class: "btn btn-block btn-primary" do %> 
+		 	Let's Customize Your Profiles <i class="margin-left-20 ion ion-chevron-right"></i>
+		<% end %>
+
+	</div><!--.col-md-12-->
+</div><!--.row-->
 
 </div>
 <%#= @id %>

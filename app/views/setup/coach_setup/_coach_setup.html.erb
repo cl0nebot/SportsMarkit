@@ -7,9 +7,12 @@
             <%= image_tag("http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65") %>
           </div>
           <div class="pull-left">
-            <h4 class="margin-bottom-5">First Name, Last Name</h4>
-
-            <p class="small">My Coach Profile</p>
+            <% if @user.first_name.present? %>
+              <h4 class="margin-bottom-5"><%= @user.full_name %></h4>
+            <% else %>
+              <h4 class="margin-bottom-5">My Profile</h4>
+            <% end %>
+            <p class="small">Coach Profile Setup</p>
           </div>
         </div>
 

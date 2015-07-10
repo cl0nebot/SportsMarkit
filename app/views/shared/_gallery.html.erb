@@ -1,5 +1,5 @@
 <% @pictures.each do |p| %>
-
-<%= image_tag p.image, size: "150x150"%>
-
+	<div class="col-md-3">
+		<%= image_tag p.image, class: "thumbnail img-responsive" %>
+	</div>
 <% end %>
