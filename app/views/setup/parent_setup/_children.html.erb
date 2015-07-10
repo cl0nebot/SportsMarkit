@@ -12,15 +12,28 @@
 									</span>
 									<span class="caption">
 										<i class="ion-location"></i>
-                    <%= child.age %>,
-										[city, state], 
-										[Schoo/League Name], 
-										[# of team members] 
+										<% if child.age.present? %>
+                    <%= child.age %>
+					<% end %>
+					<% if child.profile.city.present? %>
+										, <%= child.profile.residence %>
+										<% end %> 
+										<% if child.schools.present? %>
+										, <%= child.schools.first.name %>
+										
+										<% end %>
+										
+										<% if child.teammates.count > 0 %>
+										,<%= pluralize child.teammates.count, "Teammate"%> 
+										<% end %>
 									</span>
       </div>
       <div class="list-action-right">
+		  <% unless child.has_confirmed_parent?(@user) %>
         <span class="top">Pending</span>
+		<% else %>
         <i class="ion-android-checkmark-circle bottom"></i>
+		<% end %>
       </div>
     </a>
   </li>

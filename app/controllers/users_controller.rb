@@ -135,6 +135,14 @@ class UsersController < ApplicationController
     @team = r.team
     @coachable_teams = Team.all
   end
+  
+  def remove_child
+    rel = ParentChild.where(child_id: params[:child_id], parent_id: params[:user_id]).first
+    rel.destroy
+    @user = User.find(params[:user_id])
+    @children = @user.children
+    @available_children = User.all - [@user]
+  end
 
   def add_non_school_team_at_setup
     @user = User.friendly.find(params[:user_id])
@@ -170,18 +178,12 @@ class UsersController < ApplicationController
       format.html { redirect_to :back }
     end
   end
-
-  def remove_child
-    rel = ParentChild.where(child_id: params[:child_id], parent_id: params[:user_id]).first
-    rel.destroy
-    @child = rel.child
-  end
   
   def add_child_at_setup
     @user = User.friendly.find(params[:user_id])
     @parent_child = ParentChild.create(child_id: params[:parent_child][:child_id], parent_id: params[:parent_child][:parent_id])
     @children = @user.children
-    @available_children = User.all - [@user] - @user.children
+    @available_children = User.all - [@user]
     respond_to do |format|
       format.js 
       format.html { redirect_to :back }

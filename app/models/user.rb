@@ -234,12 +234,22 @@ class User < ActiveRecord::Base
     end
   end
   
+  def has_confirmed_parent?(user)
+    ParentChild.where(parent_id: user.id, child_id: id, accepted: true).present?
+  end
+  
   def children_events #TODO finish
     # if ParentChild.where(parent_id: id).present?
     #   kid_id = ParentChild.where(parent_id: id).last
     #   kid = User.friendly.find(kid_id)
     #   kid.attendances
     # end
+  end
+  
+  def teammates
+    team_ids = relationships.where(accepted: true).pluck(:team_id)
+    teammate_ids = Relationship.where(team_id: team_ids, accepted: true).pluck(:user_id)
+    teammates = User.where(id: teammate_ids).uniq - [self]
   end
   
   def shared_teams(user_id)
@@ -386,6 +396,10 @@ class User < ActiveRecord::Base
   
   def name
     full_name
+  end
+  
+  def city_state
+    profile.location_description
   end
 
   

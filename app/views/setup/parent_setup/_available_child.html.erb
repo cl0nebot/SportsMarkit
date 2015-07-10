@@ -29,13 +29,20 @@
       </h3>
 
       <div class="subhead">
-        <%= child.age %>,
+	    <% if child.age.present? %>
+	       <%= child.age %>
+	   	<% end %>
         <i class="ion-location"></i>
-        [city, state],
-        [# of team members]
+		<% if child.profile.city.present? %>
+							, <%= child.profile.residence %>
+							<% end %>
+	<% if child.teammates.count > 0 %>
+	,<%= pluralize child.teammates.count, "Teammate"%> 
+	<% end %>
       </div>
     </div>
     <!--.card-body-->
+						
 
     <div class="card-footer">
       <%= render 'setup/parent_setup/parent_setup_add_child_form', child: child %>
