@@ -553,3 +553,5 @@ input.form-control {font-size: 26px; line-height: 30px;}
   white-space: nowrap;
 }
 
+ol li {list-style-type: decimal-leading-zero;}
+

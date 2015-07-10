@@ -1,30 +1,96 @@
-<h4>Example User: <% user = User.fourth %><%= user.full_name%></h4><br>
-1. All users will be prompted to self-identify themselves by adding classifications during the onboarding process.
-   <%= link_to "#{user.full_name}: Overview", user_overview_path(user) %><br>
-2. After selecting classifications, those classifications will be used to build the user's setup page.
-   <%= link_to "#{user.full_name}: Setup", user_setup_path(user) %><br>
-3. The user will now edit their user profile. Here you can add a user profile picture, measurables, photos, videos etc.
-   <%= link_to "#{user.full_name}: Edit Profile", edit_user_path(user) %><br>
-4. Then you can view the users profile.
-   <%= link_to "#{user.full_name}: Profile", user_path(user) %><br>
-5. Next, visit the teams index page to see all the teams.
-   <%= link_to "Teams", teams_path %><br>
-6. Go to a team. Here, you can join a team, approve it, manage rosters for the demo. Send SMS.
-   <%= link_to "First Team", team_path(Team.first) %><br>
-7. After joining and approving a team spot, visit the school.<br>
-8. Go back to team, go to create an event for team. <%= link_to "Create Team Event", events_team_calendar_path(Team.first) %><br>
-9. Cancel event. Receive SMS.<br>
-10. Create Items: <%= link_to "Team", new_team_path %> |  <%= link_to "School", new_school_path %> | <%= link_to "Facility", new_facility_path %> | <%= link_to "League", new_league_path %><br>
-11. View All: <%= link_to "Users", users_path %> | <%= link_to "Teams", teams_path %> |  <%= link_to "Schools", schools_path %> | <%= link_to "Facilities", facilities_path %> | <%= link_to "Leagues", leagues_path %><br><br>
+<div class="content">
+  
+  <!-- page header -->
+  <div class="page-header full-content bg-blue">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1>Welcome <small> Let's Get Started</small></h1>
+      </div><!--.col-->
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="active">Account setup</a></li>
+          <li><a href="#" class="active">New</a></li>
+        </ol>
+      </div><!--.col-->
+    </div><!--.row-->
+  </div><!--.page-header-->
 
-<h4>Admin Actions:</h4>
+<div class="row pb60">
+	<div class="col-lg-10 col-lg-offset-1">
+		<div class="panel box-shadow-ccc">
+			
+			<!-- panel header -->
+			<div class="panel-heading">
+				<div class="panel-title">
+					<br/>
+					<h3>Sitemap - Site Walkthrough</h3>
+				</div>
+			</div>
+			<!--.panel-heading-->
+			
+			<!-- panel body -->
+			<div class="panel-body padding-40">
+				<h4 class="bold">Example User: <% user = User.fourth %><%= user.full_name%></h4>
+				<ol class="ordered-list">
+					<li>
+						All users will be prompted to self-identify themselves by adding classifications during the onboarding process.
+				   		<%= link_to "#{user.full_name}: Overview", user_overview_path(user) %></li>
+					<li>
+						After selecting classifications, those classifications will be used to build the user's setup page.
+				   		<%= link_to "#{user.full_name}: Setup", user_setup_path(user) %></li>
+					<li>
+						The user will now edit their user profile. Here you can add a user profile picture, measurables, photos, videos etc.
+				   		<%= link_to "#{user.full_name}: Edit Profile", edit_user_path(user) %></li>
+				   	<li>
+				   		Then you can view the users profile.
+				   		<%= link_to "#{user.full_name}: Profile", user_path(user) %></li>
+					<li>
+						Next, visit the teams index page to see all the teams.
+				   		<%= link_to "Teams", teams_path %></li>
+					<li>
+						Go to a team. Here, you can join a team, approve it, manage rosters for the demo. Send SMS.
+				   		<%= link_to "First Team", team_path(Team.first) %></li>
+					<li>
+						After joining and approving a team spot, visit the school.</li>
+					<li>
+						Go back to team, go to create an event for team. <%= link_to "Create Team Event", events_team_calendar_path(Team.first) %></li>
+					<li>
+						Cancel event. Receive SMS.</li>
+					<li>
+						Create Items: <%= link_to "Team", new_team_path %> |  <%= link_to "School", new_school_path %> | <%= link_to "Facility", new_facility_path %> | <%= link_to "League", new_league_path %></li>
 
-<%= link_to "View League Managers", league_managers_path %><br>
-<%= link_to "Add Positions", positions_path %><br>
-<%= link_to "Add Facility Types", facility_types_path %><br>
-<%= link_to "Add Event Types", event_types_path %><br>
-<%= link_to "Add Certifications", certifications_path %><br>
-<%= link_to "Approve", approval_index_path %>
+					<li>
+						View All: <%= link_to "Users", users_path %> | <%= link_to "Teams", teams_path %> |  <%= link_to "Schools", schools_path %> | <%= link_to "Facilities", facilities_path %> | <%= link_to "Leagues", leagues_path %></li>
+				</ol>
+
+				<hr/>
+
+				<h4 class="bold">Admin Actions:</h4>
+
+				<ul>
+					<li><%= link_to "View League Managers", league_managers_path %></li>
+					<li><%= link_to "Add Positions", positions_path %></li>
+					<li><%= link_to "Add Facility Types", facility_types_path %></li>
+					<li><%= link_to "Add Event Types", event_types_path %></li>
+					<li><%= link_to "Add Certifications", certifications_path %></li>
+					<li><%= link_to "Approve", approval_index_path %></li>
+				</ul>
+				
+				
+			</div>
+			<!--.panel-body-->
+
+		</div><!--.panel-->
+
+		
+
+	</div><!--.col-md-12-->
+</div><!--.row-->
+
+</div>
+<%#= @id %>
+<%#= @class %>
 
 
 
