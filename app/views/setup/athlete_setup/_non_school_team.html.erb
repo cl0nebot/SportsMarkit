@@ -21,9 +21,9 @@
     <div class="card-footer">
       <div id="apply-for-school-team-<%= team.id %>">
 
-        <% unless Relationship.where( team_id: team.id, user_id: current_user.id ).present? %>
+        
           <%= render 'setup/athlete_setup/athlete_setup_add_non_school_team_form', team: team %>
-        <% end %>
+        
 
       </div><!-- team id -->
     </div><!--.card-footer-->

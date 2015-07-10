@@ -1,12 +1,10 @@
-	<% if @user.is_athlete? %>
-    <%= form_for @user, url: athlete_setup_path(@user) do |f| %>
       <div class="panel-body margin-top-10">
 	    	<div class="row">
 				<div class="col-lg-10 col-lg-offset-1">
 
 					<div class="row">
 						<div class="pull-left">
-							<%= image_tag("http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
+							<%= image_tag(@user.avatar, class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
 						</div>
 						<div class="pull-left">
 							<% if @user.first_name.present? %>
@@ -27,14 +25,6 @@
 
 					<hr class="no-margin"/>
 					<br/>
-			
-					<!-- <h5 class="semi-bold text-orange ">
-						<span class="bold margin-right-10">
-							1.	
-						</span>
-						Add teams to your athletic profile
-					</h5> -->
-
 					<div class="row well padding-bottom-0">
 						<div class="col-lg-4 col-md-6 col-sm-12">
 							<h3 class="bold text-primary margin-top-10">
@@ -57,10 +47,7 @@
 					<h5 class="bold text-black">Your Teams
 		   			<span class="small semi-bold text-orange">(<%=@user.relationships.where(participant: true).count %>)</span>
 		       		</h5>
-
-		       		<% if @user.relationships.where(participant: true).present? %>
 	        
-		       			<% @user.relationships.where(participant: true).each do |relationship| %>
 			   				<div class="panel-body without-padding">
 								
 								<ul class="list-material" id="user-team-list">
@@ -69,19 +56,12 @@
 								
 							</div><!--.panel-body-->
 
-						<% end %>
 
-					<% else %>
-
-						You are currently not a member of any teams. Let's get you started. Find your teams below.
-
-					<% end %>
 				
 				</div>
 
 		    </div>
 		</div>
-    <% end %>
 
 		<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
 
@@ -90,4 +70,10 @@
 			</div>
 			<div class="clearfix"></div>
 		</div><!--.row-->
-	<% end %>
+
+	
+	
+	
+	
+	
+	

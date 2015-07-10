@@ -106,7 +106,7 @@ class UsersController < ApplicationController
   def add_school_team_at_setup
     @user = User.friendly.find(params[:user_id])
     @relationship = Relationship.create(team_id: params[:relationship][:team_id], user_id: params[:relationship][:user_id], participant: params[:relationship][:participant])
-    @school_teams = Team.with_schools - @user.teams
+    @school_teams = Team.with_schools
     @users_schools_teams_ids = Relationship.where(user_id: @user.id, participant: true).pluck(:team_id)
     @users_schools_teams = Team.with_schools.where(id: @users_schools_teams_ids)
     respond_to do |format|
@@ -119,12 +119,14 @@ class UsersController < ApplicationController
     r = Relationship.where(team_id: params[:team_id], user_id: params[:user_id], participant: true).first
     r.destroy
     @team = r.team
+    @school_teams = Team.with_schools
   end
 
   def remove_non_school_team
     r = Relationship.where(team_id: params[:team_id], user_id: params[:user_id], participant: true).first
     r.destroy
     @team = r.team
+    @non_school_teams = Team.without_schools
   end
 
   def remove_coach_team
@@ -138,7 +140,7 @@ class UsersController < ApplicationController
     @relationship = Relationship.create(team_id: params[:relationship][:team_id], user_id: params[:relationship][:user_id], participant: params[:relationship][:participant])
     @users_non_schools_teams_ids = Relationship.where(user_id: @user.id, participant: true).pluck(:team_id)
     @users_non_schools_teams = Team.without_schools.where(id: @users_non_schools_teams_ids)
-    @non_school_teams = Team.without_schools - @user.teams
+    @non_school_teams = Team.without_schools
     respond_to do |format|
       format.js
       format.html { redirect_to :back }
