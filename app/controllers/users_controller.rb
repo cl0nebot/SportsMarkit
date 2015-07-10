@@ -133,6 +133,7 @@ class UsersController < ApplicationController
     r = Relationship.where(team_id: params[:team_id], user_id: params[:user_id]).first
     r.destroy
     @team = r.team
+    @coachable_teams = Team.all
   end
 
   def add_non_school_team_at_setup
@@ -152,7 +153,7 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:user_id])
     @relationship = Relationship.create(team_id: params[:relationship][:team_id], user_id: params[:relationship][:user_id], head: params[:relationship][:head])
     @coached_teams = @user.coached_teams
-    @coachable_teams = Team.all - @coached_teams
+    @coachable_teams = Team.all
     respond_to do |format|
       format.js 
       format.html { redirect_to :back }

@@ -14,7 +14,7 @@ class SetupController < ApplicationController
     @users_schools_teams = Team.with_schools.where(id: @users_schools_teams_ids)
     @users_non_schools_teams_ids = Relationship.where(user_id: @user.id, participant: true).pluck(:team_id)
     @users_non_schools_teams = Team.without_schools.where(id: @users_non_schools_teams_ids)
-    @coachable_teams = Team.all - @coached_teams
+    @coachable_teams = Team.all
     @available_children = User.all - [@user] - @user.children
   end
   

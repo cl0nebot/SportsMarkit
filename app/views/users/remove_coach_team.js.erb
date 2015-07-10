@@ -1,2 +1,5 @@
 $("#coachable_team_<%= @team.id %>").remove();
 $('.row.coaches.images').append('<%= j render 'setup/coach_setup/coachable_team', team: @team %>');
+
+$('#coachable-teams-list').empty();
+$('#coachable-teams-list').append("<%= j render 'setup/coach_setup/coachable_team_list', coachable_teams: @coachable_teams %>")
