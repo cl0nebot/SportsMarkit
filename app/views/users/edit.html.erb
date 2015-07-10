@@ -420,24 +420,11 @@
 								                
 								                </br>
 								                <%= link_to "Add Measure", new_user_measurable_path(@user), method: :get ,remote: true, class: 'btn btn-large btn-blue pull-right' %>
-							                	<select class="selectpicker" data-live-search="true">
-													<option>Baskebtall</option>
-													<option>Football</option>
-													<option>Soccer</option>
-												</select>
-				
-			
+							                
 
 												<div id="measures">
 								                  <% @user.measurables.each do |m| %>
 								                    <%= render 'measurables/form', m: m, u: @user %>
-
-								                    <select class="selectpicker" data-live-search="true">
-														<option>Baskebtall</option>
-														<option>Football</option>
-														<option>Soccer</option>
-													</select>
-			
 								                  <% end %>
 							                	</div>
 							              	</div>

@@ -28,6 +28,7 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     @class = @user.class
     @object = @user
+    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
     @team_ids = @user.relationships.where(accepted: true).pluck(:team_id)
     @teammate_ids = Relationship.where(team_id: @team_ids, accepted: true).pluck(:user_id)
     @teammates = User.where(id: @teammate_ids).uniq - [@user]

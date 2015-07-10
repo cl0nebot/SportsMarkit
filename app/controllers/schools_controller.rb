@@ -27,6 +27,7 @@ class SchoolsController < ApplicationController
     @json = @school.to_gmaps4rails
     @class = @school.class
     @object = @school
+    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
     @teams = @school.teams
     @athletes = @school.athletes
     @userless_athletes = @school.userless_athletes
