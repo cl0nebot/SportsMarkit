@@ -17,13 +17,13 @@
 	<%= form_for @sport, url: sports_path, method: :post do |f| %>
 	
 		<div class="col-md-4">
-			<div class="edxpanel">
+			<div class="panel box-shadow-ccc">
 				<div class="panel-heading">
-					<div class="panel-title"><h4>Add a Sport</h4></div>
+					<div class="panel-title"><h4>Add a New Sport</h4></div>
 				</div><!--.panel-heading-->
-				<div class="panel-body">
+				<div class="panel-body padding-40">
 					<div class="row example-row">
-						<div class="col-md-3">Sport </div><!--.col-md-3-->
+						<div class="col-md-3"><h4 class="semi-bold">Sport</h4></div><!--.col-md-3-->
 						<div class="col-md-9">
 							<div class="inputer">
 								<div class="input-wrapper">
@@ -33,10 +33,10 @@
 						</div><!--.col-md-9-->
 					</div><!--.row-->
 
-          <%= f.fields_for :sport_icons, @sport_icon do |s| %>
+          			<%= f.fields_for :sport_icons, @sport_icon do |s| %>
 
 						<div class="row example-row">
-							<div class="col-md-3">Icon</div><!--.col-md-3-->
+							<div class="col-md-3"><h4 class="semi-bold">Icon</h4></div><!--.col-md-3-->
 							<div class="col-md-9">
 
 								<div class="fileinput fileinput-new" data-provides="fileinput">
@@ -45,10 +45,10 @@
 									</div>
 									<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
 									<div>
-										<span class="btn btn-default btn-file">
+										<span class="btn btn-primary btn-sm btn-file">
 											<span class="fileinput-new">Select image</span>
 											<span class="fileinput-exists">Change</span>
-                      <%= s.file_field :icon %>
+                      						<%= s.file_field :icon %>
 										</span>
 										<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
 									</div>
@@ -57,12 +57,12 @@
 							</div><!--.col-md-9-->
 						</div><!--.row-->
 						
-						<% end %>
+					<% end %>
 						
 			<%= f.fields_for :sport_photos, @sport_photo do |s| %>
 
             <div class="row example-row">
-              <div class="col-md-3">Photo</div><!--.col-md-3-->
+              <div class="col-md-3"><h4 class="semi-bold">Photo</h4></div><!--.col-md-3-->
               <div class="col-md-9">
 
                 <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -71,7 +71,7 @@
                   </div>
                   <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                   <div>
-                    <span class="btn btn-default btn-file">
+                    <span class="btn btn-primary btn-sm btn-file">
                       <span class="fileinput-new">Select image</span>
                       <span class="fileinput-exists">Change</span>
                       <%= s.file_field :photo, type: "file"%>
@@ -82,15 +82,16 @@
             <% end %>
               </div><!--.col-md-9-->
           </div><!--.row-->
-
-					<%= f.submit "Add Sport", class: "btn btn-block btn-blue" %>
+      </div>
+      <div class="panel-footer padding-40">
+			<%= f.submit "Add Sport", class: "btn btn-block btn-blue" %>
 				</div>
 			</div>
 		</div> 
 		<% end %>	
 
 		<div class="col-md-8">
-			<div class="panel">
+			<div class="panel box-shadow-ccc">
 				<div class="panel-heading">
 					<!-- <div class="panel-title"><h4>ALPHABET SORTING</h4></div> -->
 				</div><!--.panel-heading-->
@@ -99,30 +100,30 @@
 						<table class="display datatables-alphabet-sorting">
 							<thead>
 								<tr class="fs-16">
-									<th>Sport</th>
-									<th width="30%">Photo</th>
-									<th width="30%">Icon</th>
+									<th width="10%">Sport</th>
+									<th width="15%">Photo</th>
+									<th width="15%">Icon</th>
+									<th width="1%">Edit</th>
+									<th width="1%">Delete</th>
 								</tr>
 							</thead>
 							<tbody id="schools">
 								<% @sports.each do |sport| %>
 									<tr>
+										<td><h5 class="bold"><%= sport.sport%></h5></td>
 										<td>
-											<h1>
-												<%= sport.sport%>
-											</h1>
-
-											<%= link_to "#", "data-toggle" => "modal", 'data-target' => "#sport-#{sport.id}", class: "btn btn-success btn-cons" do %>
-								              <i class="glyphicon glyphicon-plus-sign m-r-5"></i>
-								              Edit
+											<%= image_tag(sport.sport_photos.first.try(:photo), class: "thumbnail", style: "height: 65px; width: auto;") %>
+										</td>
+										<td>
+											<%= image_tag(sport.sport_icons.first.try(:icon), class: "thumbnail", style: "height: 65px; width: auto;") %>
+										</td>
+										<td>
+											<%= link_to "#", "data-toggle" => "modal", 'data-target' => "#sport-#{sport.id}", class: "btn btn-primary mr10" do %>
+							             		 <i class="ion-gear-b"></i>
 											<% end %>
-											<%= link_to "Delete", sport, method: :delete, :confirm => 'Are you sure?', class: 'btn' %>
 										</td>
 										<td>
-											<%= image_tag(sport.sport_photos.first.try(:photo), class: "img-responsive") %>
-										</td>
-										<td>
-											<%= image_tag(sport.sport_icons.first.try(:icon), class: "img-responsive") %>
+											<%= link_to sport, method: :delete, :confirm => 'Are you sure?', class: 'btn btn-orange' do %> <i class="ion-trash-b"></i> <% end %>
 										</td>
 									</tr>
 									<%= render partial: 'photo_modal', locals: {modal_id: "sport-#{sport.id}", sport: sport} %>
