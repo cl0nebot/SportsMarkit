@@ -8,7 +8,6 @@
   .sample-member9 {
     background-image: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');
   }
-
   .card-friend .user-photo {
     float: left;
     width: 160px;
@@ -18,154 +17,122 @@
   .card-friend .friend-content {
     margin-left: 180px;
   }
-
 </style>
 
 
 <div class="content">
 
 	<div class="page-header full-content parallax">
-    <%= render 'shared/background_photo_tab', photo_owner: @league %>
-    <div class="bg-overlay"></div><!--.bg-overlay-->
 
-		<div class="profile-info">
-			<div class="profile-photo">
-				<img src="<%= image_path("placeholders/league.jpg") %>" alt="">
-			</div><!--.profile-photo-->
-			<div class="profile-text light capitalize">
-				<%= @league.name %>
-				<span class="caption inline"><%= @league.sport_list %></span>
-				<br/>
-				<span class="caption"><span class="glyphicon glyphicon-map-marker"></span>
-				<%= @league.state %></span>
-				
-			</div><!--.profile-text-->
-		</div><!--.profile-info-->
+		<%= render "leagues/show/header" %>
+		<%= render "leagues/show/tab_navigation" %>
 
-		<div class="social-buttons">
-			<%= render 'shared/fan' %>
-		</div>
-
-		<div class="row">
-			<div class="col-sm-6">
-			  <%= render 'shared/upcoming_event', object: @league %>
-			</div><!--.col-->
-			<div class="col-sm-6">
-				<ol class="breadcrumb">
-					<li><a href="/"><i class="ion-home"></i></a></li>
-					<li><a href="<%= leagues_path %>">Leagues</a></li>
-					<li><a href="#" class="active"><%= @league.name %></a></li>
-				</ol>
-			</div><!--.col-->
-		</div><!--.row-->
-
-		<div class="header-tabs scrollable-tabs sticky">
-			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
-				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
-				<li><a href="#people" data-toggle="tab" class="btn-ripple">People</a></li>
-				<!-- <li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li> -->
-				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilties</a></li>
-				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
-
-        <li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
-        <!--<li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li>-->
-      	<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
-
-      </ul>
-		</div>
 	</div><!--.page-header-->
+	
 
-	<div class="row user-profile">
-			<div class="col-md-12">
-				<div class="tab-content without-border">
-					
-
-							<!-- teams -->
-					<div id="teams" class="tab-pane">
-
-	  				  <% @teams.each do |team| %>
-				  
-	  				  	<%= team.name %>
-				  
-	  				  <% end %>
+  <!-- main content div -->
+  <div class="container">
+    <div class="user-profile">
+      <div class="row">
+		<img src="<%= image_path("placeholders/league.jpg") %>" alt="" class="col-md-2 img-thumbnail img-responsive b-rad-6"style="margin-top: -180px; z-index: 99999;  min-width; 195px; min-height: 195px;"/>
+		</div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="tab-content without-border pt40">
 
 
-					</div>
-					<!--#teams.tab-pane-->
-
-					<!-- people -->
-					<div id="people" class="tab-pane">
-						
-					</div>
-					<!--#people.tab-pane-->
-
-					<!-- events -->
-					<div id="events" class="tab-pane">
-
-						
-					</div>
-					<!--#events.tab-pane-->
-
-					<!-- facilities -->
-					<div id="facilities" class="tab-pane">
-						<p class="text-right">
-							<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-team">New Facility</button>
-						</p>
-
-						<hr/>
-					</div>
-          <div id="calendar-tab" class="tab-pane">
-
-            <div class="row">
-              <%= render 'shared/calendar', eventable: @league %>
-            </div>
-
-          </div>
-					<!--#facilities.tab-pane-->
-
-					<!-- media -->
-					<div id="media" class="tab-pane">
-						<div class="row">
-	            <%= render 'shared/media' %>
+          		<div id="about" class="tab-pane">
+					<div class="row">
+						<div class="col-md-2">
+							<h3 class="bold"><%= @league.name %></h3>
+							<h4 class="bold"><%= @league.sport_list %></h4>
+							<span class="caption"><span class="glyphicon glyphicon-map-marker"></span>
+							<%= @league.state %></span>
 						</div>
-					</div>
-					<!--#media.tab-pane-->
+				
+		        		<div class="col-md-10">
+		          		</div>
+		          	</div>
+		          </div>
+				
 
-<% if false %>
-					<!-- following -->
-		      <div id="following" class="tab-pane">
-		        <div class="row">
-		          <div class="col-md-3">
-		            <div class="card tile card-friend material-animate">
-		              <a href="user-profile.html"><img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt=""></a>
-		              <div class="friend-content">
-		                <p class="title">First Name, Last Name</p>
-		                <p><a href="user-profile.html">Title/Classification</a></p>
-		                <a class="btn btn-flat btn-primary btn-xs">Team/School</a>
-		                <p><a href="#" class="btn btn-default mt10">View Profile</a></p>
-		              </div><!--.friend-content-->
-		            </div><!--.card-->
-		          </div><!--.col-->
+				<!-- teams -->
+				<div id="teams" class="tab-pane">
+
+  				  <% @teams.each do |team| %>
+			  
+  				  	<%= team.name %>
+			  
+  				  <% end %>
+				</div>
+				<!--#teams.tab-pane-->
+
+				<!-- people -->
+				<div id="people" class="tab-pane">					
+				</div>
+				<!--#people.tab-pane-->
+
+				<!-- events -->
+				<div id="events" class="tab-pane">
+				</div>
+				<!--#events.tab-pane-->
+
+				<!-- facilities -->
+				<div id="facilities" class="tab-pane">
+					<p class="text-right">
+						<button class="btn btn-pink" data-toggle="modal" data-target="#panel-new-team">New Facility</button>
+					</p>
+					<hr/>
+				</div>
+
+		        <div id="calendar-tab" class="tab-pane">
+		            <div class="row">
+		              <%= render 'shared/calendar', eventable: @league %>
+		            </div>
 		        </div>
-		      </div>
-			  <% end %>
+				<!--#facilities.tab-pane-->
 
-		      <!-- fans -->
-		      <div id="fans" class="tab-pane">
-				  <%= render 'shared/fans', fans: @fans %>
+				<!-- media -->
+				<div id="media" class="tab-pane">
+					<div class="row">
+            			<%= render 'shared/media' %>
+					</div>
+				</div>
+				<!--#media.tab-pane-->
 
-		      </div>
-					
-					
+				<% if false %>
+				
+					<!-- following -->
+			      	<div id="following" class="tab-pane">
+			        	<div class="row">
+			          		<div class="col-md-3">
+			            		<div class="card tile card-friend material-animate">
+			              			<a href="user-profile.html"><img src="../../assets/globals/img/faces/1.jpg" class="user-photo" alt=""></a>
+			              			<div class="friend-content">
+			                			<p class="title">First Name, Last Name</p>
+			                			<p><a href="user-profile.html">Title/Classification</a></p>
+			                			<a class="btn btn-flat btn-primary btn-xs">Team/School</a>
+			                			<p><a href="#" class="btn btn-default mt10">View Profile</a></p>
+			              			</div><!--.friend-content-->
+			            		</div><!--.card-->
+			          		</div><!--.col-->
+			        	</div>
+			      	</div>
 
-				</div><!--.tab-content-->
-			</div><!--.col-->
-		</div><!--.row-->
+			  	<% end %>
+
+	      		<!-- fans -->
+	      		<div id="fans" class="tab-pane">
+			  		<%= render 'shared/fans', fans: @fans %>
+	      		</div>
+
+			</div><!--.tab-content-->
+		</div><!--.col-->
+	</div><!--.row-->
 
 	<%= render "shared/modals/boostrap_image_gallery_lightbox" %>
 
 </div><!--.content-->
 
 <%= render "shared/panels/new_team" %>
-
-
