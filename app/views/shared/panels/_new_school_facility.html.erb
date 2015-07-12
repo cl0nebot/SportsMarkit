@@ -1,0 +1,192 @@
+<div class="modal fade full-height from-right" id="panel-new-facility" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12 pr20 pl20 pt10">
+						<div class="panel">
+							<div class="panel-heading no-border">
+								<div class="panel-title">
+									<h4 class="text-primary">
+										<span class="ion-plus-circled mr5"></span>
+										Complete the form below.
+									</h4>
+									<h3 class="modal-title bold mt0 mb0">Add a New School Facility</h3>
+								</div>
+							</div><!--.panel-heading-->
+							<div class="panel-body pt20">
+							<% unless params[:controller] == "teams" %>
+
+							<%= form_for Facility.new, html: {id: 'facility-form', data: {remote: true}} do |f|   %>
+				
+
+								<div class="row example-row">
+									<div class="col-md-3">Name </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<% unless request.original_url.split("/").include? "schools" %>
+								<div class="row example-row">
+									<div class="col-md-3">Address 1 </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :address_1, type: "text", class: "form-control", placeholder: "" %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+
+								<div class="row example-row">
+									<div class="col-md-3">Address 2 </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "" %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">City</div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :city, type: "text", class: "form-control", placeholder: "" %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">State</div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">Zipcode</div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">Zip Extention</div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+
+								<div class="row example-row">
+									<div class="col-md-3">Website </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :website, type: "text", class: "form-control", placeholder: ""  %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">Email</div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :email, type: "text", class: "form-control inputmask inputmask-email" %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">Phone</div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :phone_number, type: "text", class: "form-control inputmask inputmask-phone" %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="clearfix margin-bottom-10">
+									<div class="checkboxer form-inline">
+										<%= f.check_box :private %>
+										<label for="facility_private">Private</label>
+									</div>
+									<div class="checkboxer form-inline">
+										<input type="checkbox" id="inlineCheckbox2" value="option2">
+										<%= f.check_box :publicly_visible %>
+										<label for="facility_publicly_visible">Publicly Visible</label>
+									</div>
+								</div>
+							<% end %>
+
+						</div><!--.panel-body-->
+					</div><!--.col-md-12-->
+				</div><!--.row-->
+			</div>
+		</div>
+			<div class="modal-footer bg-light-grey padding-40">
+				<%= f.submit "Create Facility", class: "btn btn-block btn-blue" %>
+			</div>
+			<% end %>
+			
+			<% else %>
+			
+		   		<% if params[:action] == "show" && @team.school.present? %>
+		   		  <% @team.school.facilities.each do |facility| %>
+		   		    <div class="pull-left"><%= facility.name %></div>
+		   			<div id="team-facility-<%= facility.id %>">
+					
+					
+			
+			
+   			     <% unless @team.team_facilities.where(facility_id: facility.id).present? %>
+   				   <%= render 'team_facilities/add', facility: facility, team: @team %>
+   				 <% else %>
+   			       <% @team.team_facilities.where(facility_id: facility.id).each do |tf| %>
+   				   <%= render 'team_facilities/remove', tf: tf %>
+   				   <% end %>
+   				<% end %>
+   		</div>
+		
+   		<% end %>
+   		<% end %>
+		   
+						</div><!--.panel-body-->
+					</div><!--.panel-->
+				</div><!--.col-md-12-->
+			</div><!--.row-->
+		</div>
+			
+			<% end %>
+			
+						
+		</div>
+	</div>
+</div><!--.modal-->
