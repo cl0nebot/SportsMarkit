@@ -43,6 +43,7 @@
 
 
           		<div id="about" class="tab-pane">
+
 					<div class="row">
 						<div class="col-md-2">
 							<h3 class="bold"><%= @league.name %></h3>
@@ -59,11 +60,8 @@
 
 				<!-- teams -->
 				<div id="teams" class="tab-pane">
-
   				  <% @teams.each do |team| %>
-			  
   				  	<%= team.name %>
-			  
   				  <% end %>
 				</div>
 				<!--#teams.tab-pane-->
