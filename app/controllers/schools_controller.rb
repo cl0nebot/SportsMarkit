@@ -1,5 +1,9 @@
 class SchoolsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authenticate_pending_athletic_director!, only: [:upgrade]
+  before_action :authenticate_athletic_director!, only: [:edit, :update, :destroy]
   before_action :find_school, except: [:index, :new, :create, :upgrade, :upgrade_school, :plan]
+  
   
   def index
     @schools = School.all
