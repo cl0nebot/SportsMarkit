@@ -9,7 +9,9 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates :first_name, :presence => true, length: {minimum: 2, maximum: 20}
   validates :last_name, :presence => true, length: {minimum: 2, maximum: 20}
-  #validates :email, :presence => true, :uniqueness => true
+  validates :email, :uniqueness => true, allow_blank: true
+  validates :username, :uniqueness => true, allow_blank: true
+  validates :mobile_phone_number, :uniqueness => true, allow_blank: true 
 
   before_save { self.email = email.downcase }
 
