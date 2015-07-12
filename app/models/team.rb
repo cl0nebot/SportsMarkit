@@ -15,6 +15,8 @@ class Team < ActiveRecord::Base
   has_many :userless_relationships
   has_many :users, through: :relationships
   
+  validates :sport, presence: true
+  
   
   def use_for_slug
     existing_team = Team.where('slug = ?', self.slug)
