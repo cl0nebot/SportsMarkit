@@ -28,6 +28,7 @@ class TeamsController < ApplicationController
         Relationship.create(team_id: @team.id, user_id: current_user.id, accepted: true, admin: true)
         redirect_to "/teams/#{@team.slug}"
       else
+        flash[:error] = "Oops."
         render 'new'
       end
     else
@@ -35,6 +36,7 @@ class TeamsController < ApplicationController
       if @team.save
         redirect_to teams_path
       else
+        flash[:error] = "Oops."
         render 'new'
       end
     end

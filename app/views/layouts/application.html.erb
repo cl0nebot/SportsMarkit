@@ -43,6 +43,10 @@
     <%= render 'shared/navbar' %>
 	
   <%= javascript_include_tag 'application' %>
+  
+  <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
 
 	<%= yield %>
 	

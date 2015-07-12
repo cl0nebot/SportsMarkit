@@ -26,7 +26,8 @@
 							</div>
 							<div class="row example-row">
 								<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 well margin-bottom-0">
-									<%= f.select :sport, Sport.pluck(:sport), {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
+									<%#= f.select :sport, Sport.pluck(:sport), {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => true, data:{live_search: 'true', width: '100%'}} %>
+									<%= f.select :sport, Sport.pluck(:sport), { :include_blank => 'Select Sport' }, {:class => 'selecter bg-white margin-bottom-0', :required => true, data:{ live_search: 'true', width: '100%'}} %>
 								</div><!--.col-md-9-->
 							</div><!--.row-->
 						</div>
