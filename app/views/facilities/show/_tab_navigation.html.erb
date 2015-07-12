@@ -14,6 +14,18 @@
     				<!-- <li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li> -->
           	<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
       		  <!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
+            <li>
+            <% if current_user %>
+              <% if current_user.admin? or current_user.can_edit_facility?(@facility)%>
+                <button href="" class="ml10 mt15 btn btn-blue btn-ripple btn-xs">
+                  <%= link_to edit_facility_path(@facility) do %>
+                            <span class=" text-white">
+                              <span class="ion-gear-b mr5"></span> Edit</span>
+                          <% end %>
+                        </button>
+              <% end %>
+            <% end %>
+          </li>
     		  </ul>
         </div>
       </div>
