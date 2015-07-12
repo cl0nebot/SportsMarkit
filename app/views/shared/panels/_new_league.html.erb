@@ -1,15 +1,18 @@
 <div class="modal fade full-height from-right" id="panel-new-league" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Add a New League</h4>
-			</div>
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="panel">
-							<div class="panel-heading">
-								<div class="panel-title"><h4>Complete the form below. </h4></div>
+							<div class="panel-heading no-border">
+								<div class="panel-title">
+									<h4 class="text-primary">
+										<span class="ion-plus-circled mr5"></span>
+										Complete the form below.
+									</h4>
+									<h3 class="modal-title bold mt0 mb0">Add a New League</h3>
+								</div>
 							</div><!--.panel-heading-->
 							<div class="panel-body">
 
@@ -65,8 +68,8 @@
 					</div><!--.col-md-12-->
 				</div><!--.row-->
 			</div>
-			<div class="modal-footer">
-				<%= f.submit "Create League", class: "btn btn-blue" %>
+			<div class="modal-footer bg-light-grey padding-40">
+				<%= f.submit "Create League", class: "btn btn-block btn-blue" %>
 			</div>
 			<% end %>			
 		</div>

@@ -1,44 +1,44 @@
 <div class="modal fade full-height from-right" id="panel-new-team" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Add a New Team</h4>
-			</div>
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 pr20 pl20 pt10">
 						<div class="panel">
-							<div class="panel-heading">
-								<div class="panel-title"><h4>Complete the form below. </h4></div>
+							<div class="panel-heading no-border">
+								<div class="panel-title">
+									<h4 class="text-primary">
+										<span class="ion-plus-circled mr5"></span>
+										Complete the form below.
+									</h4>
+									<h3 class="modal-title bold mt0 mb0">Add a New Team</h3>
+								</div>
 							</div><!--.panel-heading-->
 							<div class="panel-body">
-
-
 								<%= form_for Team.new, url: teams_path, method: :post do |f| %>
 
+									<br/>
 									<div class="row example-row">
-									<div class="col-md-3">Name </div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
-												<% if params[:controller]== "schools" %>
-												  <%= f.hidden_field :school_id, value: @school.id %>									
-												<% end %>
+										<div class="col-md-3"><h4 class="semi-bold">Name</h4></div><!--.col-md-3-->
+										<div class="col-md-9">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
+													<% if params[:controller]== "schools" %>
+													  <%= f.hidden_field :school_id, value: @school.id %>									
+													<% end %>
+												</div>
 											</div>
-										</div>
-									</div><!--.col-md-9-->
+										</div><!--.col-md-9-->
 									</div><!--.row-->
 
 									<div class="row example-row">
-									<div class="col-md-3">Sport </div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.select :sport, Sport.pluck(:sport), :class => 'selecter', :prompt => 'Select One' %>
+										<div class="col-md-3"><h4 class="semi-bold">Sport</h4></div><!--.col-md-3-->
+										<div class="col-md-9">
+											<div class="inputer">													
+												<%= f.select :sport, Sport.pluck(:sport), {}, { :class => 'selecter' } %>
 											</div>
-										</div>
-									</div><!--.col-md-9-->
+										</div><!--.col-md-9-->
 									</div><!--.row-->
 
 							</div><!--.panel-body-->
@@ -46,8 +46,8 @@
 					</div><!--.col-md-12-->
 				</div><!--.row-->
 			</div>
-			<div class="modal-footer">
-				<%= f.submit "Create Team", class: "btn btn-blue" %>
+			<div class="modal-footer bg-light-grey padding-40">
+				<%= f.submit "Create Team", class: "btn btn-blue btn-block" %>
 			</div>
 			<% end %>			
 		</div>
