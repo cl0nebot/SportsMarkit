@@ -33,7 +33,16 @@
             <%# end %>
             <!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
             <li>
-              <button href="" class="mt15 ml10 btn btn-primary button-striped button-full-striped btn-ripple btn-xs">Edit Profile</button>
+              <% if current_user %>
+                <% if current_user.admin? or current_user.can_edit_user?(@suser)%>
+                  <button href="" class="ml10 mt15 btn btn-blue btn-ripple btn-xs text-white">
+                    <%= link_to edit_user_path(@user) do %>
+                        <span class="text-white">
+                          <span class="ion-gear-b mr5"></span> Edit</span>
+                      <% end %>
+                    </button>
+                <% end %>
+              <% end %>
             </li>
           </ul>
         </div>
