@@ -21,7 +21,7 @@ class ClaimsController < ApplicationController
         Profile.create(user_id: @user.id, focus: [], specialties: [], skills: [], injuries: [], current_ailments: [])
         AthleticDirector.create(user_id: @user.id, school_id: params[:user][:school_ids])
         cookies.permanent[:authentication_token] = @user.authentication_token
-        redirect_to user_path(@user)
+        redirect_to school_upgrade_path(params[:user][:school_ids])
 
       else
         flash.now[:error] = @user.errors.full_messages
