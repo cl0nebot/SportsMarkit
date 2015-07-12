@@ -29,7 +29,7 @@
 	</div><!--.page-header-->
 
 	<div class="container">
-  	<div class="user-profile">
+		<div class="user-profile">
 	    <div class="row">
 		  	<% if Sport.where(sport: @team.sport).present? %>
 		      	<img src="<%= image_path(Sport.find_by_sport(@team.sport).try(:default_photo)) %>" alt="" class="col-md-2 img-thumbnail img-responsive b-rad-6" style="margin-top: -180px; z-index: 99999;  min-width; 195px; min-height: 195px;">
@@ -39,46 +39,46 @@
 		    <div class="col-md-10">
 		    </div>
 		  </div>
-		    <div class="row">
-		      <div class="col-md-12">
-		        <div class="tab-content without-border  pt40">
-										
-					<!-- about -->
-					<%= render "teams/show/about_tab" %>
-
-					<!-- roster -->
-					<%= render "teams/show/roster_tab" %>
-
-					<!-- facilities -->
-					<%= render "teams/show/facilities_tab" %>
-
-					<!-- calendar -->
-					<%= render "teams/show/calendar_tab" %>
-				
-					<!-- media -->
-					<%= render "teams/show/media_tab" %>
-
-				 	<!-- following -->
-				 	<%= render "teams/show/following_tab" %>
-					      
-			      	<!-- fans -->
-			      	<%= render "teams/show/fans_tab" %>
-
-			      	<!-- admin -->
-			      	<%= render "teams/show/admin_tab" %>
-
-		      		<!-- payments -->
-							<!-- <div id="payments" class="tab-pane">
-							</div> -->
-							<!--#payments.tab-pane-->
-
-							<%#= render 'shared/photo_tab', photo_owner: @team %>
-
-				</div><!--.tab-content-->
-				</div><!--.col-->
-			</div><!--.row-->
 		</div>
 	</div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tab-content without-border  pt40">
+							
+				<!-- about -->
+				<%= render "teams/show/about_tab" %>
+
+				<!-- roster -->
+				<%= render "teams/show/roster_tab" %>
+
+				<!-- facilities -->
+				<%= render "teams/show/facilities_tab" %>
+
+				<!-- calendar -->
+				<%= render "teams/show/calendar_tab" %>
+			
+				<!-- media -->
+				<%= render "teams/show/media_tab" %>
+
+			 	<!-- following -->
+			 	<%= render "teams/show/following_tab" %>
+				      
+		      	<!-- fans -->
+		      	<%= render "teams/show/fans_tab" %>
+
+		      	<!-- admin -->
+		      	<%= render "teams/show/admin_tab" %>
+
+	      		<!-- payments -->
+				<!-- <div id="payments" class="tab-pane">
+				</div> -->
+				<!--#payments.tab-pane-->
+
+				<%#= render 'shared/photo_tab', photo_owner: @team %>
+
+			</div><!--.tab-content-->
+		</div><!--.col-->
+	</div><!--.row-->
 
 	<%= render "shared/modals/boostrap_image_gallery_lightbox" %>
 
