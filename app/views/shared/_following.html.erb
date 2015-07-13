@@ -1,6 +1,6 @@
 <div class="row">
   <% follows.each do |follow| %>
-    <div class="col-md-6">
+    <div class="col-md-3">
       <div class="card tile card-friend material-animate">
         <a href="user-profile.html"><img src="<%= follow.fannable.image %>" class="user-photo" alt=""></a>
         <div class="friend-content">
@@ -8,7 +8,7 @@
           <p><a href="user-profile.html">Title/Classification</a></p>
           <a class="btn btn-flat btn-primary btn-xs"><%= follow.fannable_type %></a>
           <p><%= link_to "View Profile", eval("#{follow.fannable.class.to_s.downcase}_path(follow.fannable)"), class: "btn btn-default mt10" %></p>
-        I'd</div><!--.friend-content-->
+        </div><!--.friend-content-->
       </div><!--.card-->
     </div><!--.col-->
   <% end %>
