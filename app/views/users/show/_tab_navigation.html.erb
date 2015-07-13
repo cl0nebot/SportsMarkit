@@ -34,7 +34,7 @@
             <!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
             <li>
               <% if current_user %>
-                <% if current_user.admin? or current_user.can_edit_user?(@suser)%>
+                <% if current_user.admin? or current_user == @user %>
                   <button href="" class="ml10 mt15 btn btn-blue btn-ripple btn-xs text-white">
                     <%= link_to edit_user_path(@user) do %>
                         <span class="text-white">
