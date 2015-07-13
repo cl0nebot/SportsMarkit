@@ -97,7 +97,7 @@
 				<div class="friend-content">
 					<div class="margin-bottom-5">
 						<p class="title"><%= person.name %></p>
-						<p class="no-margin">[Status], [Title/Level]</p>
+						<p class="no-margin"><%= %></p>
 						<h6 class="m-t-5">
 							<small><%= pluralize person.teams.count, "Team" %>: <a href="#">team 1</a>, <a href="#">team 2</a>, <a href="#">team 3</a></small>
 						</h6>
@@ -105,9 +105,14 @@
 							<%= link_to user_path(person), class: "btn btn-orange btn-sm mr10"  do %>
 								<i class="ion-clipboard mr5"></i> View Profile
 							<% end %>
-							<a class="btn btn-primary btn-sm">
-								<i class="ion-gear-b mr5"></i> Edit
-							</a>
+							<% if current_user %>
+								<% if current_user.admin? or (current_user == person)%>
+									<%= link_to edit_user_path(user), class: "btn btn-primary btn-sm" do %>
+										<i class="ion-gear-b mr5"></i> Edit
+									<% end %>
+								<% end %>
+							<% end %>
+							
 						</div>
 					</div>
 				</div><!--.friend-content-->
