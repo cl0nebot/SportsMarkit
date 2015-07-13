@@ -29,6 +29,11 @@
 	          	<%= link_to school.website do %>
 	          		Website
 	          	<% end %> | <%= school.phone_number %>
+	  		  <% if current_user %>
+	  		  <% if current_user.admin? %>
+	  		    <span class="text-muted"><%= link_to "Add Teams", new_school_team_path(school) %></span>
+	  		  <% end %>
+	  		  <% end %>
 	          </p>
 	        </div>
 	      </div><!--.card-body-->
