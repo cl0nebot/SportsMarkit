@@ -5,10 +5,10 @@ class NotificationsController < ApplicationController
     @user = User.find(params[:user_id])
     @certificate = Certificate.find(params[:cert_id])
     
-    receiving_number = "4437998526"
+    receiving_number = @user.mobile_phone_number
     twilio_sid = ENV['TWILIO_SID']
     twilio_token = ENV['TWILIO_AUTH_TOKEN']
-    twilio_phone_number = "2025179077"
+    twilio_phone_number = "2027590519"
 
     @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
