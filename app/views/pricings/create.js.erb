@@ -1,0 +1,2 @@
+$('#school-price-<%= @school.id %>').empty()
+$('#school-price-<%= @school.id %>').append("<%= j render 'pricings/pricing', school: @school %>")

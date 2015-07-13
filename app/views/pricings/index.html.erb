@@ -1,0 +1,9 @@
+<% @schools.each do |school| %>
+
+
+<div id="school-price-<%= school.id %>">
+<%= render 'pricings/pricing', school: school %>
+</div>
+
+
+<% end %>

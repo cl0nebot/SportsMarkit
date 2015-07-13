@@ -1,0 +1,2 @@
+$('#school-price-<%= params[:school_id] %>').empty()
+$('#school-price-<%= params[:school_id] %>').append("<%= j render 'pricings/form', school: School.find(params[:school_id]) %>")

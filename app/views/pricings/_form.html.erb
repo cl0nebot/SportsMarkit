@@ -1,0 +1,6 @@
+<%= form_for pricing_path(school), remote: true do |f| %>
+	<%= school.name %> 
+	<%= hidden_field_tag :school_id, school.id %>
+	<%= text_field_tag :price, school.price %>
+<%= f.submit "Add Price" %>
+<% end %>

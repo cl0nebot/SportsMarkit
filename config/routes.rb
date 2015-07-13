@@ -98,6 +98,7 @@ Rails.application.routes.draw do
     resources :facility_types
     resources :amenities
     resources :team_facilities
+    resources :pricings
     resources :team_leagues
     resources :classifications
     resources :parent_children

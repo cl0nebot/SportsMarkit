@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709145242) do
+ActiveRecord::Schema.define(version: 20150713154903) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -364,6 +364,7 @@ ActiveRecord::Schema.define(version: 20150709145242) do
     t.date     "last_payment"
     t.string   "stripe_subscription_id"
     t.boolean  "premium"
+    t.float    "price",                  limit: 24
   end
 
   add_index "schools", ["slug"], name: "index_schools_on_slug", unique: true, using: :btree
