@@ -4,7 +4,11 @@
 			<div class="panel-heading">
 				<div class="panel-title">
 					<div class="pull-left">
-						<%= image_tag("placeholders/league.jpg", height: "30", width: "30") %>
+						<% if Sport.find_by_sport(team.sport).present? %>
+						<%= image_tag(Sport.find_by_sport(team.sport).try(:default_photo), height: "30", width: "30") %>
+						<% else %>
+						<%= image_tag(team.image, height: "30", width: "30") %>
+						<% end %>
 					</div>
 					<div class="pull-left margin-left-10">
 						<h4 class="normal fs_18">	
