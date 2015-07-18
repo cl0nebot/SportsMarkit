@@ -219,7 +219,7 @@ var Layout = {
 	},
 
 	listenForUserLayer: function () {
-		$('.nav-user').on('click', function() {
+		$('.xnav-user').on('click', function() {
 
 			// Define neccessary elements
 			var $this = $(this),
