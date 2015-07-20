@@ -107,7 +107,7 @@
 							<% end %>
 							<% if current_user %>
 								<% if current_user.admin? or (current_user == person)%>
-									<%= link_to edit_user_path(user), class: "btn btn-primary btn-sm" do %>
+									<%= link_to edit_user_path(person), class: "btn btn-primary btn-sm" do %>
 										<i class="ion-gear-b mr5"></i> Edit
 									<% end %>
 								<% end %>
