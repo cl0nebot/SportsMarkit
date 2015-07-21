@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
-  scope :between, ->(start_time, end_time){ where("? < starts_at < ?", Event.format_date(start_time), Event.format_date(end_time)) }
+  # scope :between, ->(start_time, end_time){ where("? < starts_at < ?", Event.format_date(start_time), Event.format_date(end_time)) }
+  # scope :between, lambda {{ :conditions => ["starts_at >= ? AND starts_at <= ?", Event.format_date(start_time), Event.format_date(end_time)] }}
   belongs_to :eventable, polymorphic: true
   belongs_to :user
   extend FriendlyId
@@ -8,6 +9,10 @@ class Event < ActiveRecord::Base
   
   has_one :event_facility, dependent: :destroy
   has_one :facility, through: :event_facility
+  
+  def self.between(start_time, end_time)
+    where('starts_at >= ?', Event.format_date(start_time)).where('starts_at <= ?', Event.format_date(end_time)).where.not('starts_at > ?', Event.format_date(end_time)).uniq
+  end
   
   def use_for_slug
     existing_event = Event.where('slug = ?', self.slug)
