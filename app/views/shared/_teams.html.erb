@@ -1,43 +1,44 @@
 <div class="row ">
   <% @teams.each do |team| %>
-    <div class="col-md-4 col-sm-12">
-      <div class="card card-meal card-meal-blue card-square card-shadow">
-        <div class="card-heading row pr15 pl15 pt10 pb10">
-          <div class="col-md-12">
-            <h4 class="card-title capitalize no-margin">
-              <span class="semi-bold lh_22">
-                <%= link_to team.proper_name, "/teams/#{team.slug}" %>
-              </span>
-            </h4>
-            <div class="card-subhead capitalize">
-              <h5 class="semi-bold mb0 text-muted">
-                <%#= image_tag Sport.find_by_sport(team.sport).try(:default_photo), height: "10", width: "auto" %>
-                <small><%= team.sport %> Team</small>
-              </h5>
-            </div>
-            <!--.card-subhead-->
-            <div class="card-subhead capitalize">
-              <h6 class="semi-bold no-margin">
-                <small><i class="ion-location text-primary"></i> <%= team.city_state %></small>
-              </h6>
-            </div>
-            <!--.card-subhead-->
-          </div>
-        </div>
-        <!--.card-heading-->
-        <div class="card-body">
-          <div class="image">
-            <a href="#">
-              <%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg") %>
+
+  <div class="col-md-4">
+    <div class="card card-meal card-meal-indigo card-square card-hover-shadow">
+      <div class="card-heading">
+        <h3 class="card-title">
+          <span class="text-black lh_22"><%= team.proper_name %></span>
+        </h3>
+        <div class="card-subhead">
+         <%= team.sport %> Team, 
+         <i class="ion-location text-primary ml5"></i> 
+         <%= team.city_state %>
+        </div><!--.card-subhead-->
+      </div><!--.card-heading-->
+      <div class="card-body">
+        <div class="image">
+          <%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg") %>
+        </div><!--.image-->
+        <ul class="users">
+          <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa"><img src="../../assets/globals/img/faces/1.jpg" alt=""></a></li>
+          <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
+          <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
+          <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
+          <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
+          <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
+          <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+        </ul>
+      </div><!--.card-body-->
+      <div class="card-footer">
+        <ul>
+          <li><span class="mr5">9 People</span></li>
+          <li>
+            <a href="#" class="btn btn-indigo btn-xs">
+              <span class="text-white">View Team</span>
             </a>
-          </div>
-          <!--.image-->
-        </div>
-        <!--.card-body-->
-      </div>
-      <!--.card-->
-    </div>
-    <!--.col-md-4-->
+          </li>
+        </ul>
+      </div><!--.card-footer-->
+    </div><!--.card-->
+  </div><!--.col-md-12-->
   <% end %>
 </div>
 <!--.row-->
