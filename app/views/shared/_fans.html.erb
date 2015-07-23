@@ -1,26 +1,27 @@
 <% fans.each do |fan| %>
   <%= link_to user_path(fan.user) do %>
-    <div class="col-md-3">
+    <div class="col-md-6">
       <div class="card tile card-friend material-animate">
         <a href="user-profile.html"><img src="<%= fan.user.avatar %>" class="user-photo" alt=""></a>
         <div class="friend-content">
-    	    <% if true %>
-            <h3 class="title mt20 fs_24 mb0"><%= fan.user.full_name %></h3>
-            <p>
-              <a href="user-profile.html"><%= fan.user.classification_list(3) %></a>
+          <p class="title pt20 mb0"><%= fan.user.full_name %></p>
+          <p><a href="user-profile.html"><%= fan.user.classification_list(3) %></a></p>
+          <small class="small mr10 text-muted fs_11">
+            Following 
+            <p class="inline-block ml5">
+              <span class="label label-primary fs_11">
+                <%= fan.user.follows.count %>
+              </span>
             </p>
-            <a href="#">
-              <p>
-                <%= truncate fan.user.lead_affiliation.try(:proper_name), length: 30 %>
-              </p>
-            </a>
-    	    <% end %>
-            <small class="small mr10 text-muted fs_14">
-              <i class="ion-eye"></i> <%= fan.user.follows.count %>
-            </small>
-            <small class="small mr10 text-muted fs_14">
-              <i class="ion-person-stalker"></i> <%= fan.user.fans.count %>
-            </small>
+          </small>
+          <small class="small mr10 text-muted fs_11">
+            Followers 
+            <p class="inline-block ml5">
+              <span class="label label-primary fs_11">
+                <%= fan.user.fans.count %>
+              </span>
+            </p>
+          </small>
         </div><!--.friend-content-->
       </div><!--.card-->
     </div><!--.col-->
