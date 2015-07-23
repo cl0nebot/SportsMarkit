@@ -6,42 +6,42 @@
           <% @teammates.each do |teammate| %>
             <%= link_to user_path(teammate) do %>
 
-            <div class="col-lg-6 col-md-4">
-              <div class="card tile card-friend">
-                <%= image_tag teammate.avatar, class: "user-photo" %>
-                <div class="friend-content">
-                  <p class="title fs_26 mt10 text-primary mb0 lh_34">
-                    <%= teammate.first_name %> <%= teammate.last_name %>
-                  </p>
-                  <!-- Shared Teams: -->
-                  <p class="text-muted fs_11"> Male, 30 years-old</p>
-                  <p><span class="ion-email mr5"></span>
-                  <p><span class="ion-email mr5"></span>
-                  <p class="mt10 fs_14">
-                    <% teammate.teams.each_with_index do |team, i| %>
-                    <% if @user.shared_teams(teammate.id).include? team.id %>
-                      <% count = i + 1 %>
-                      
-                        <span class="lh_40 fs_14">
-                          <%= link_to team.name, team_path(team) %>
-                            <%= count == teammate.teams.count ? "" : "," %>
-                        </span> 
-                        <span class="ml5 fs_10 text-muted inline label label-primary">
-                          Shooting Guard
-                        </span>
-                      <% end %>
-                    <% end %>
-                  </p>
-                  <div class="row">
-                  </div>
-                </div><!--.friend-content-->
+              <div class="col-md-6">
+                <div class="card tile card-friend material-animate">
+                  <a href="user-profile.html">
+                    <img src="<%= teammate.avatar %>" class="user-photo" alt="">
+                  </a>
+                  <div class="friend-content">
+                    <p class="title mt15"><%= teammate.first_name %> <%= teammate.last_name %></p>
+                    <p><a href="user-profile.html">Title/Classification</a></p>
+                    <p><i class="ion-ios-telephone text-primary mr5"></i> xxx-xxx-xxxx</p>
+                    <p><i class="ion-email text-primary mr5"></i> hello@sportsmarkit.com</p>
 
-              </div><!--.card-->
-            </div><!--.col-md-6-->
+                    <hr class="light mt5 mb0"/>
+                    
+                    <p class="no-margin fs_14">
+                      <% teammate.teams.each_with_index do |team, i| %>
+                        <% if @user.shared_teams(teammate.id).include? team.id %>
+                          <% count = i + 1 %>
+                          
+                          <span class="lh_40 fs_14 inline">
+                            <%= link_to team.name, team_path(team) %>
+                              <%= count == teammate.teams.count ? "" : "," %>
+                          </span> 
+                          <span class="ml5 fs_10 text-muted inline label label-primary">
+                            Shooting Guard
+                          </span>
+                        <% end %>
+                      <% end %>
+                    </p>
+                  </div><!--.friend-content-->
+                </div><!--.card-->
+              </div><!--.col-->
+
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
-      <!--.row-->
+        </div>
+        <!--.row-->
       </div>
     </div>
   </div>
