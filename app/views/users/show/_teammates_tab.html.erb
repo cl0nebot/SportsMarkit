@@ -1,71 +1,48 @@
 <div id="teammates" class="tab-pane">
-
-  <div class="row">
-
-    <!--.col-->
-    <div class="col-md-10">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
       <div class="row">
         <% @teammates.each do |teammate| %>
           <%= link_to user_path(teammate) do %>
-            <div class="col-md-3 col-sm-12">
-              <div class="card card-user card-clickable card-clickable-over-content">
-                <div class="card-heading heading-full">
-                  <!-- <div class="user-image sample-member9"></div> -->
-				          <%= image_tag teammate.avatar, style: "max-height: 205px" %>
 
-                  <div class="clickable-button">
-                    <div class="layer bg-primary"></div>
-                    <a class="btn btn-floating btn-primary initial-position floating-open"><i class="ion-android-share-alt"></i></a>
-                  </div>
-
-                  <div class="layered-content bg-primary">
-                    <div class="overflow-content">
-                      <h4>Follow <%= teammate.first_name %></h4>
-                      <ul class="inline-list social-list borderless">
-                        <li><%= link_to "#{teammate.profile.facebook}", class: "btn btn-facebook btn-ripple" do %>
-                            <i class="ion-social-facebook"></i>
-                          <% end %></li>
-                        <li><%= link_to "#{teammate.profile.twitter}", class: "btn btn-twitter btn-ripple" do %>
-                            <i class="ion-social-twitter"></i>
-                          <% end %></li>
-                        <!-- <li><a class="btn btn-googleplus btn-ripple"><i class="ion-social-googleplus"></i></a></li> -->
-                      </ul>
-                    </div>
-                    <!--.overflow-content-->
-                    <div class="clickable-close-button">
-                      <a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
-                    </div>
-                  </div>
-
-                </div>
-                <!--.card-heading-->
-
-                <div class="card-body">
-                  <h5 class="card-title fs_18 semi-bold">
-                    <a href="#" class="capitalize">
-                      <%= teammate.first_name %> <%= teammate.last_name %>
-                    </a>
-                  </h5>
-
-                  <div class="subhead mb0">
-                    <!-- Shared Teams: -->
-                    <% teammate.teams.each_with_index do |team, i| %>
-                      <% if @user.shared_teams(teammate.id).include? team.id %>
-                        <% count = i + 1 %>
-                        <%= link_to team.name, team_path(team) %><%= count == teammate.teams.count ? "" : "," %>
-                      <% end %>
+          <div class="col-lg-6 col-md-4">
+            <div class="card tile card-friend">
+              <%= image_tag teammate.avatar, class: "user-photo" %>
+              <div class="friend-content">
+                <p class="title fs_26 mt10 text-primary mb0 lh_34">
+                  <%= teammate.first_name %> <%= teammate.last_name %>
+                </p>
+                <!-- Shared Teams: -->
+                <p class="text-muted fs_11"> Male, 30 years-old</p>
+                <p><span class="ion-email mr5"></span>
+                <p><span class="ion-email mr5"></span>
+                <p class="mt10 fs_14">
+                  <% teammate.teams.each_with_index do |team, i| %>
+                  <% if @user.shared_teams(teammate.id).include? team.id %>
+                    <% count = i + 1 %>
+                    
+                      <span class="lh_40 fs_14">
+                        <%= link_to team.name, team_path(team) %>
+                          <%= count == teammate.teams.count ? "" : "," %>
+                      </span> 
+                      <span class="ml5 fs_10 text-muted inline label label-primary">
+                        Shooting Guard
+                      </span>
                     <% end %>
-                  </div>
+                  <% end %>
+                </p>
+                <div class="row">
                 </div>
-                <!--.card-body-->
-              </div>
-              <!--.card-->
-            </div>
-            <!--.col-md-4-->
-          <% end %>
+              </div><!--.friend-content-->
+
+            </div><!--.card-->
+          </div><!--.col-md-6-->
         <% end %>
-      </div>
-      <!--.row-->
+      <% end %>
+    </div>
+    <!--.row-->
     </div>
   </div>
+</div>
 </div>
