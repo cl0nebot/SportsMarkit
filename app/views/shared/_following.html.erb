@@ -9,8 +9,9 @@
           </p>
           <p class="title mt0"><%= follow.fannable.name %></p>
           <p><a href="user-profile.html">Title/Classification</a></p>
+          <hr class="light mt5 mb0"/>
           
-          <%= link_to "View Profile", eval("#{follow.fannable.class.to_s.downcase}_path(follow.fannable)"), class: "fs_14 btn btn-default btn-xs btn-ripple mt10" %>
+          <%= link_to "View Profile", eval("#{follow.fannable.class.to_s.downcase}_path(follow.fannable)"), class: "fs_14 ml10 btn btn-default btn-xs btn-ripple mt15" %>
         </div><!--.friend-content-->
       </div><!--.card-->
     </div><!--.col-->
