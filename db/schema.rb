@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713154903) do
+ActiveRecord::Schema.define(version: 20150728220253) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -428,6 +428,7 @@ ActiveRecord::Schema.define(version: 20150713154903) do
     t.string   "email"
     t.string   "website"
     t.string   "stripe_customer_id"
+    t.boolean  "premium"
   end
 
   create_table "tournaments", force: true do |t|

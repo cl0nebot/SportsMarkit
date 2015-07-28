@@ -26,13 +26,37 @@ class Team < ActiveRecord::Base
       "#{name} #{self.school.name if self.school} #{sport}"
     end
   end
+  
+  def is_premium?
+    if school_id.present?
+      if school.premium?
+        true
+      else
+        false
+      end
+    else
+      if premium?
+        true
+      else
+        false
+      end
+    end
+  end
 
   def all_events
-    events
+    if is_premium?
+      events
+    else
+      events.where('starts_at <= ?', Date.today + 2.weeks).uniq
+    end
   end
 
   def upcoming_events
-    Event.where(eventable_type: "Team", eventable_id: id).where('ends_at >= ?', Time.now)
+    if is_premium?
+      Event.where(eventable_type: "Team", eventable_id: id).where('ends_at >= ?', Time.now)
+    else
+      Event.where(eventable_type: "Team", eventable_id: id).where('starts_at <= ?', Date.today + 2.weeks).uniq
+    end
   end
   
   def next_event

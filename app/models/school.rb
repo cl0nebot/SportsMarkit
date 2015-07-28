@@ -66,12 +66,17 @@ class School < ActiveRecord::Base
   end
   
   def upcoming_events
-    Event.where(eventable_type: "Team", eventable_id: team_ids).where('ends_at >= ?', Time.now)
+    if premium?
+      Event.where(eventable_type: "Team", eventable_id: team_ids).where('ends_at >= ?', Time.now)
+    else
+      Event.where(eventable_type: "Team", eventable_id: team_ids).where('starts_at <= ?', Date.today + 2.weeks).uniq
+    end
   end
 
   def all_events
     upcoming_events
   end
+
   
   def next_event
     upcoming_events.first.nil? ? "No upcoming events" : upcoming_events.first.title
