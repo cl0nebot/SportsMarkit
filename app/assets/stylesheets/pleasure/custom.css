@@ -576,7 +576,7 @@ ol li {list-style-type: decimal-leading-zero;}
 
 .card.card-meal .card-body .users.expanded{
     width: 100%;
-    height: 128px;
+    height: 120px;
     padding: 3px 20px;
     border-top: 1px solid #f0f0f0;
     border-bottom: 1px solid #f0f0f0;
@@ -588,3 +588,8 @@ ol li {list-style-type: decimal-leading-zero;}
     font-size: 16px;
     font-weight: 400;
 }
+
+.no-padding-left {padding-left: 0 !important;}
+.no-padding-right {padding-right: 0 !important;}
+
+
