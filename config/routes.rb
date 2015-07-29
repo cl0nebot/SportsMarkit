@@ -52,6 +52,9 @@ Rails.application.routes.draw do
       resources :media
       resources :teams
       resources :photos
+      resource :calendar do
+        get :events, on: :member
+      end
       get :upgrade
       get :plan
       patch :upgrade_school
@@ -77,12 +80,18 @@ Rails.application.routes.draw do
     end
 
     resources :facilities do
+      resource :calendar do
+        get :events, on: :member
+      end
       resources :media
       resources :photos
     end
 
     resources :tournaments
     resources :leagues do
+      resource :calendar do
+        get :events, on: :member
+      end
       resources :media
       resources :photos
     end
