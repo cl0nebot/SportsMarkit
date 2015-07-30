@@ -1,0 +1,668 @@
+<div id="about" class="tab-pane active">
+	<div class="row pt40">
+		<div class="col-lg-12">
+
+			<div id="about" class="tab-pane active">
+				<div class="container">
+					<div class="row">
+
+						<div class="col-md-6">
+							<div class="card tile card-post" style="border-top: 3px solid #ccc;">
+								<div class="card-heading pl40 pr40">
+									<% if current_user %>
+			              <% if current_user.admin? or current_user == @user %>
+			                <button href="" class="pull-right btn bt-xs btn-grey button-striped button-full-striped btn-ripple fs_14">
+			                  <a href="#">
+	                        <span class="text-muted">
+	                        	<i class="ion-gear-b fs_16 mr5"></i> Edit Profile
+	                        </span>
+		                    </a>
+			                  </button>
+			              <% end %>
+			            <% end %>
+			            <!-- <img src="../../assets/globals/img/faces/14.jpg" class="user-image" alt=""> -->
+									<p class="author">
+										<a href="#">
+										<i class="ion-ionic mr5"></i>
+										4 People Online</a> 
+									</p>
+									<p class="fs_11 time">Last online - March 25, 2015 02:33p</p>
+								</div><!--.card-heading-->
+								<hr class="light no-margin"/>
+								<div class="card-body pl40 pr40">
+									<h4 class="bold"><%= @league.sport_list %></h4>
+									<h3 class="semi-bold capitalize text-black no-margin lh_34">
+										<%= @league.name %>
+									</h3>
+									<p class="semi-bold small text-muted no-margin fs_14">
+										<span class="inline">
+											<i class="ion-ios-telephone fs_16 text-primary mr5"></i>
+											410-887-4554
+										</span>
+
+										<span class="inline mr10 ml10 text-muted">|</span>
+
+										<span class="inline">
+											<i class="ion-monitor fs_16 text-primary mr5"></i>
+											<a href="#">Website</a>
+										</span>
+
+										<span class="inline mr10 ml10 text-muted">|</span>
+
+										<span class="inline">
+											<i class="ion-email fs_20 text-primary mr5 v-align-middle"></i>
+											Email
+										</span>
+									</p>
+										
+									<p class="fs_14 lh_18 text-muted mb20 mt10">
+										Baltimore County Public Schools is the school district in charge of all public schools in Baltimore County, Maryland, United States. The nation's 18th largest school system as of 2008,[1] it is managed by the Board of Education, headquartered in Towson. The Superintendent is Dr. S. Dallas Dance.
+									</p>
+								</div>
+								<hr class="light mt15 mb15"/>
+								<div class="card-heading pl40 pr40">
+									<p class="author lh_26">
+										<a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a> 
+									</p>
+									<p class="no-margin fs_14 text-muted">
+										<i class="ion-location"></i> 6901 Charles Street, Towson, Maryland 21204
+									</p>
+									<hr class="light mt10"/>
+									<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
+								</div>
+								<hr class="light mt15 mb0"/>
+								<div class="card-heading pl40 p40">
+									<h6 class="semi-bold mb0 fs_14"><%= @league.name %></h6>
+									<h5 class="semi-bold mt0 mb0 text-black">Teams</h3>
+								</div><!--.card-heading-->
+								<div class="card-body pr40">
+									<ul class="list-material borderless">
+										
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="pull-right pt20">
+													<span class="text-muted fs_11">
+														<i class="ion-ios-telephone text-primary mr5"></i>
+														(240) 555-5555
+													</span>
+													<span class="text-muted fs_11">
+														<i class="ion-email text-primary mr5"></i>
+														coachgibson@randall.com
+													</span>
+												</div>
+
+												<div class="list-action-left">
+													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
+												</div>
+												<div class="list-content">
+													<span class="title">Team #1</span>
+													<span class="fs_11 text-muted">Head Coach</span>
+												</div>
+
+											</a>
+										</li>
+
+										<li class="divider with-border no-padding no-margin">
+										</li>
+
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="pull-right pt20">
+													<span class="text-muted fs_11">
+														<i class="ion-ios-telephone text-primary mr5"></i>
+														(240) 555-5555
+													</span>
+													<span class="text-muted fs_11">
+														<i class="ion-email text-primary mr5"></i>
+														coachgibson@randall.com
+													</span>
+												</div>
+
+												<div class="list-action-left">
+													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
+												</div>
+												
+												<div class="list-content">
+													<span class="title">Team #2</span>
+													<span class="fs_11 text-muted">Assistant Coach</span>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border no-padding no-margin">
+										</li>
+
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="pull-right pt20">
+													<span class="text-muted fs_11">
+														<i class="ion-ios-telephone text-primary mr5"></i>
+														(240) 555-5555
+													</span>
+													<span class="text-muted fs_11">
+														<i class="ion-email text-primary mr5"></i>
+														coachgibson@randall.com
+													</span>
+												</div>
+
+												<div class="list-action-left">
+													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
+												</div>
+												<div class="list-content">
+													<span class="title">Team #3</span>
+													<span class="fs_11 text-muted">Team Manager</span>
+												</div>
+											</a>
+										</li>
+
+										<li class="divider with-border no-padding no-margin">
+										</li>
+										
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="pull-right pt20">
+													<span class="text-muted fs_11">
+														<i class="ion-ios-telephone text-primary mr5"></i>
+														(240) 555-5555
+													</span>
+													<span class="text-muted fs_11">
+														<i class="ion-email text-primary mr5"></i>
+														coachgibson@randall.com
+													</span>
+												</div>
+
+												<div class="list-action-left">
+													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
+												</div>
+												<div class="list-content">
+													<span class="title">Team #4</span>
+													<span class="fs_11 text-muted">Team Athletic Trainer</span>
+												</div>
+											</a>
+										</li>
+
+										<li class="divider with-border no-padding no-margin">
+										</li>
+
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="pull-right pt20">
+													<span class="text-muted fs_11">
+														<i class="ion-ios-telephone text-primary mr5"></i>
+														(240) 555-5555
+													</span>
+													<span class="text-muted fs_11">
+														<i class="ion-email text-primary mr5"></i>
+														coachgibson@randall.com
+													</span>
+												</div>
+
+												<div class="list-action-left">
+													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
+												</div>
+												<div class="list-content">
+													<span class="title">Team #5</span>
+													<span class="fs_11 text-muted">Strength & Conditioning Coach</span>
+												</div>
+											</a>
+										</li>
+
+									</ul>
+								</div><!--.card-body-->
+									
+								<br/>
+								<hr class="light mt15 mb15"/>
+								<div class="card-body pl40 pr40">
+									<h6 class="upper text-muted bold mt0"><small>general information</small></h6>
+									<div class="clearfix">
+										<p class="semi-bold fs_14 text-muted no-margin">
+											<i class="ion-university fs_20 text-primary mr5"></i>
+											Public School - 2,234 Students
+										</p>
+										<p class="semi-bold small fs_14 text-muted no-margin">
+											<i class="ion-quote fs_20 text-primary mr5"></i>
+											Motto - "Pride + Determination = Success"
+										</p>
+										<p class="semi-bold small fs_14 text-muted no-margin">
+											<i class="ion-speakerphone fs_20 text-primary mr5"></i>
+											Blue, Green, Yellow
+										</p>
+										<p class="semi-bold small fs_14 text-muted no-margin">
+											<i class="ion-document-text fs_20 text-primary mr5"></i>
+											36 Sports Teams
+										</p>
+										<p class="semi-bold small fs_14 text-muted no-margin">
+											<i class="ion-flag fs_20 text-primary mr5"></i>
+											Mascot - Vikings
+										</p>
+									</div>
+								</div>
+								<hr class="light mt15 mb15"/>
+									<div class="card-heading pl40 pr40">
+										<p class="author">
+											<a href="#">
+											<i class="ion-trophy mr5"></i>
+											Academic and Athletic Achievments</a> 
+										</p>
+									</div>
+									<div class="card-body pl40 pr40">
+									<h6 class="upper text-muted bold mt0"><small>School Awards</small></h6>
+									<!-- these must stay together as an interator -->
+									<table class="table table-hover bgcolor-white box-shadow-ccc">
+										<thead>
+											<th><span class="text-muted semi-bold fs_12">Award/Distinction</span></th>
+											<th><span class="text-muted semi-bold fs_12">Year</span></th>
+										</thead>
+										<tbody>
+											<%# @user.certificates.each do |certificate| %>
+												<tr>
+													<td><span class="fs_12"><%#= certificate.certification.name %></span></td>
+													<td><span class="fs_12"><%#= certificate.expiration %></span></td>
+												</tr>
+											<%# end %>
+										</tbody>
+									</table>
+								</div>
+								<hr class="light mt15 mb15"/>
+								<div class="card-body pl40 pr40">
+									<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Sports Team Awards & Distinctions</small></h6>
+									<!-- these must stay together as an interator -->
+									<div class="clearfix">
+										<table class="table table-hover bgcolor-white box-shadow-ccc">
+											<thead>
+												<th><span class="text-muted semi-bold fs_12">Team</span></th>
+												<th><span class="text-muted semi-bold fs_12">Award</span></th>
+												<th><span class="text-muted semi-bold fs_12">Year</span></th>
+											</thead>
+											<tbody>
+												<%# @user.measurables.each do |measurable| %>
+													<tr>
+														<td><span class="fs_12"><%#= measurable.measurable %></span></td>
+														<td><span class="fs_12"><%#= measurable.sport %></span></td>
+														<td><span class="fs_12"><%#= measurable.result %></span></td>
+													</tr>
+												<%# end %>
+											</tbody>
+										</table>
+									</div>
+
+									<br/>
+									<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Individual Athlete Awards & Distinctions</small></h6>
+									<!-- these must stay together as an interator -->
+									<div class="clearfix">
+										<table class="table table-hover bgcolor-white box-shadow-ccc">
+											<thead>
+												<th><span class="text-muted semi-bold fs_12">Athlete</span></th>
+												<th><span class="text-muted semi-bold fs_12">Award</span></th>
+												<th><span class="text-muted semi-bold fs_12">Year</span></th>
+											</thead>
+											<tbody>
+												<%# @user.measurables.each do |measurable| %>
+													<tr>
+														<td><span class="fs_12"><%#= measurable.measurable %></span></td>
+														<td><span class="fs_12"><%#= measurable.sport %></span></td>
+														<td><span class="fs_12"><%#= measurable.result %></span></td>
+													</tr>
+												<%# end %>
+											</tbody>
+										</table>
+									</div>
+									<!-- <h6 class="upper text-muted bold no-margin"><small>My favorites</small></h6> -->
+									<%#= @user.profile.hudl %>
+									<%#= @user.profile.favorite_pro_team %>													
+									<%#= @user.profile.favorite_college_team %>
+									<%#= @user.profile.favorite_pro_athlete %>	
+								</div><!--.card-body-->
+								<div class="card-footer mt20 pl40 pr40">
+									<h6 class="upper text-muted bold"><small>social profiles</small></h6>
+									<p>
+										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
+											<i class="ion-social-facebook"></i>
+										</a>
+										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
+											<i class="ion-social-linkedin"></i>
+										</a>
+										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
+											<i class="ion-social-youtube"></i>
+										</a>
+										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
+											<i class="ion-social-twitter"></i>
+										</a>
+										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
+											<i class="ion-social-instagram"></i>
+										</a>
+										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
+											<i class="ion-social-pinterest"></i>
+										</a>
+									</p>
+								</div><!--.card-footer-->
+							</div><!--.card-->
+						</div><!--.col-md-6-->
+
+						<div class="col-md-6">
+							<!-- Athletes -->
+							<div class="col-md-12">
+								<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+									<div class="card-heading" style="border-top: 3px solid #ccc;">
+										<h6 class="semi-bold fs_14 mb0"><%= @league.name %></h6>
+										<h3 class="card-title">Athletes</h3>
+										<!-- <div class="card-subhead">
+										 <a href="#">124 Students</a>
+										</div> -->
+										<!--.card-subhead-->
+									</div><!--.card-heading-->
+									<div class="card-body">
+										<ul class="users expanded">
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												</a>
+											</li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												</a>
+											</li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												</a>
+											</li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												</a>
+											</li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												</a>
+											</li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<ul>
+											<li><span class="mr5 fs_14">124 Athletes</span></li>
+											<li><a href="#" class="fs_14">View All</a></li>
+										</ul>
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-12-->
+							<!-- Athletes -->
+
+							<!-- Coaches -->
+							<div class="col-md-12">
+								<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+									<div class="card-heading" style="border-top: 3px solid #ccc;">
+										<h6 class="semi-bold fs_14 mb0"><%= @league.name %></h6>
+										<h3 class="card-title">Coaches</h3>
+										<!-- <div class="card-subhead">
+										 <a href="#">124 Students</a>
+										</div> -->
+										<!--.card-subhead-->
+									</div><!--.card-heading-->
+									<div class="card-body">
+										<ul class="users expanded">
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												</a>
+											</li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												</a>
+											</li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												</a>
+											</li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												</a>
+											</li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												</a>
+											</li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<ul>
+											<li><span class="mr5 fs_14">54 Coaches</span></li>
+											<li><a href="#" class="fs_14">View All</a></li>
+										</ul>
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-12-->
+							<!-- Coaches -->
+
+							<!-- Coaches -->
+							<div class="col-md-12">
+								<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+									<div class="card-heading" style="border-top: 3px solid #ccc;">
+										<h6 class="semi-bold fs_14 mb0"><%= @league.name %></h6>
+										<h3 class="card-title">Athletic Administrators</h3>
+										<!-- <div class="card-subhead">
+										 <a href="#">124 Students</a>
+										</div> -->
+										<!--.card-subhead-->
+									</div><!--.card-heading-->
+									<div class="card-body">
+										<ul class="users expanded">
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												</a>
+											</li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												</a>
+											</li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												</a>
+											</li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												</a>
+											</li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												</a>
+											</li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
+
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
+											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<ul>
+											<li><span class="mr5 fs_14">14 Athletic Administrators </span></li>
+											<li><a href="#" class="fs_14">View All</a></li>
+										</ul>
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-12-->
+							<!-- Coaches -->
+
+							
+
+							<!-- My Schedule -->
+							<div class="col-md-12">
+								<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
+									<div class="card-heading" style="border-top: 3px solid #ccc;">
+										<h6 class="semi-bold fs_14 mb0"><%= @league.name %></h6>
+										<h3 class="card-title">Upcoming Events</h3>
+										<!-- <div class="card-subhead">
+										 <a href="#">7 Upcoming Events</a>
+										</div> -->
+										<!--.card-subhead-->
+									</div><!--.card-heading-->
+									<div class="card-body pl40">
+										<div class="timeline single">
+											<div class="frame">
+												<div class="timeline-badge">
+													<i class="ion-android-calendar"></i>
+												</div><!--.timeline-badge-->
+												<span class="timeline-date bold">Fri, Jul 30th, 2015</span>
+												<div class="timeline-content">
+													<h5 class="semi-bold no-margin">Lacrosse Practice</h5>
+													<p class="fs_12 lh_16 mt5 mb5 text-muted">"Meet on the field near the locker rooms. Remember to bring your pads and be warmed up and ready to go."</p>
+													<p class="fs_11 text-muted mb0">
+														<i class="ion-checkmark-circled text-primary mr5"></i>18 People Attending</p>
+													<p class="fs_11 text-muted">
+														<i class="ion-map text-primary mr5"></i> Woodrow Willson High School Baskebtall Gym, Upper Marlboro, MD
+													</p>
+												</div><!--.timeline-content-->
+											</div><!--.frame-->
+											<div class="frame">
+												<div class="timeline-badge">
+													<i class="ion-android-calendar"></i>
+												</div><!--.timeline-badge-->
+												<span class="timeline-date bold">Wed, Aug 4th, 2015</span>
+												<div class="timeline-content">
+													<h5  class="semi-bold no-margin">Basketball Practice</h5>
+													<p class="fs_12 lh_16 mt5 mb5 text-muted">"Be center court ready to got at 5pm"</p>
+													<p class="fs_11 text-muted mb0">
+														<i class="ion-checkmark-circled text-primary mr5"></i>18 People Attending</p>
+													<p class="fs_11 text-muted">
+														<i class="ion-map text-primary mr5"></i> Woodrow Willson High School Baskebtall Gym, Upper Marlboro, MD
+													</p>
+												</div><!--.timeline-content-->
+											</div><!--.frame-->
+											<div class="frame">
+												<div class="timeline-badge">
+													<i class="ion-android-calendar"></i>
+												</div><!--.timeline-badge-->
+												<span class="timeline-date bold">Fri, Jul 30th, 2015</span>
+												<div class="timeline-content">
+													<h5  class="semi-bold no-margin">Awards Banquet</h5>
+													<p class="fs_14 mb5 text-muted">"Meet on the field near the locker rooms. Remember to bring your pads and be warmed up and ready to go."</p>
+													<p class="fs_11 text-muted mb0">
+														<i class="ion-checkmark-circled text-primary mr5"></i>18 People Attending</p>
+													<p class="fs_11 text-muted">
+														<i class="ion-map text-primary mr5"></i> Woodrow Willson High School Baskebtall Gym, Upper Marlboro, MD
+													</p>
+												</div><!--.timeline-content-->
+											</div><!--.frame-->
+											<div class="frame">
+												<div class="timeline-badge">
+													<i class="ion-android-calendar"></i>
+												</div><!--.timeline-badge-->
+												<span class="timeline-date bold">Wed, Aug 4th, 2015</span>
+												<div class="timeline-content">
+													<h5  class="semi-bold no-margin">Championship Game</h5>
+													<p class="fs_14 mb5 text-muted">"Be center court ready to got at 5pm"</p>
+													<p class="fs_11 text-muted mb0">
+														<i class="ion-checkmark-circled text-primary mr5"></i>18 People Attending</p>
+													<p class="fs_11 text-muted">
+														<i class="ion-map text-primary mr5"></i> Woodrow Willson High School Baskebtall Gym, Upper Marlboro, MD
+													</p>
+												</div><!--.timeline-content-->
+											</div><!--.frame-->
+										</div>
+									</div>
+									<hr class="no-margin"/>
+									
+									<div class="card-footer">
+										<ul>
+											<li class="fs_14"><span class="mr5">7 Upcoming Events</span></li>
+											<li><a href="#" class="fs_14">View All Events</a></li>
+										</ul>
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.timeline-->
+						</div><!--.col-md-12-->
+						<!-- My Schedule -->
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
