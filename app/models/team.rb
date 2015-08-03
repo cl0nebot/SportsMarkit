@@ -183,5 +183,9 @@ class Team < ActiveRecord::Base
   def last_chat_stream_message_id
     Message.where(chatroom_id: id).last.find_beginning_of_stream
   end
+  
+  def people
+    relationships.where(accepted: true).uniq
+  end
 
 end

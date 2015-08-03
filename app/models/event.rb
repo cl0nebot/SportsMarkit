@@ -58,5 +58,22 @@ class Event < ActiveRecord::Base
     end
     array
   end
+  
+  def proper_facility_name
+    if facility.school.present?
+      "#{facility.school.name} #{facility.name}"
+    else
+      "#{facility.name}"
+    end
+  end
+  
+  def proper_facility_name_and_location
+    if facility.school.present?
+      "#{facility.school.name} #{facility.name}, #{facility.city_and_state}"
+    else
+      "#{facility.name} #{facility.city_and_state}"
+    end
+    
+  end
 
 end
