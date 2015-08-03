@@ -186,9 +186,9 @@
 						</div><!--.card-heading-->
 						<div class="card-body">
 							<ul class="users">
-								<%= @teammates.each do |teammate| %>
+								<% @teammates.each do |teammate| %>
 								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
+									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= teammate.full_name %>">
 										<%= image_tag teammate.avatar %>
 									</a>
 								</li>
