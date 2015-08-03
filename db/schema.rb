@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730175553) do
+ActiveRecord::Schema.define(version: 20150803213848) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -134,6 +134,13 @@ ActiveRecord::Schema.define(version: 20150730175553) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "school_id"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "linkedin"
+    t.string   "pinterest"
+    t.string   "instagram"
+    t.string   "foursquare"
+    t.string   "youtube"
   end
 
   add_index "facilities", ["slug"], name: "index_facilities_on_slug", unique: true, using: :btree
@@ -184,6 +191,13 @@ ActiveRecord::Schema.define(version: 20150730175553) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "school_affiliated"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "linkedin"
+    t.string   "pinterest"
+    t.string   "instagram"
+    t.string   "foursquare"
+    t.string   "youtube"
   end
 
   add_index "leagues", ["name"], name: "index_leagues_on_name", using: :btree
@@ -374,6 +388,13 @@ ActiveRecord::Schema.define(version: 20150730175553) do
     t.string   "stripe_subscription_id"
     t.boolean  "premium"
     t.float    "price",                  limit: 24
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "linkedin"
+    t.string   "pinterest"
+    t.string   "instagram"
+    t.string   "foursquare"
+    t.string   "youtube"
   end
 
   add_index "schools", ["slug"], name: "index_schools_on_slug", unique: true, using: :btree
@@ -438,6 +459,13 @@ ActiveRecord::Schema.define(version: 20150730175553) do
     t.string   "website"
     t.string   "stripe_customer_id"
     t.boolean  "premium"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "linkedin"
+    t.string   "pinterest"
+    t.string   "instagram"
+    t.string   "foursquare"
+    t.string   "youtube"
   end
 
   create_table "tournaments", force: true do |t|

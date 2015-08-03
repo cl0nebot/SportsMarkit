@@ -41,7 +41,7 @@
 									<p class="semi-bold small text-muted no-margin fs_12">
 										<span class="inline">
 											<i class="ion-ios-telephone fs_14 text-primary mr5"></i>
-											<%= @team.phone_number %> (240) 555-5555
+											<%= @team.phone_number %> 
 										</span>
 
 										<span class="inline mr10 ml10 text-muted">|</span>
@@ -72,95 +72,21 @@
 								<div class="card-body pr40">
 									<ul class="list-material borderless">
 										
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="pull-right pt20">
-													<span class="text-muted fs_11">
-														<i class="ion-ios-telephone text-primary mr5"></i>
-														<%= @team.phone_number %> (240) 555-5555
-													</span>
-													<span class="text-muted fs_11">
-														<i class="ion-email text-primary mr5"></i>
-														<%= @team.email %> coachgibson@randall.com
-													</span>
-												</div>
-
-												<div class="list-action-left">
-													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-												</div>
-												<div class="list-content">
-													<span class="title">Coach Gibson</span>
-													<span class="fs_11 text-muted">Head Coach</span>
-												</div>
-
-											</a>
-										</li>
-
-										<li class="divider with-border no-padding no-margin">
-										</li>
-
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="pull-right pt20">
-													<span class="text-muted fs_11">
-														<i class="ion-ios-telephone text-primary mr5"></i>
-														<%= @team.phone_number %> (240) 555-5555
-													</span>
-													<span class="text-muted fs_11">
-														<i class="ion-email text-primary mr5"></i>
-														<%= @team.email %> coachgibson@randall.com
-													</span>
-												</div>
-
-												<div class="list-action-left">
-													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-												</div>
-												
-												<div class="list-content">
-													<span class="title">Coach Payton</span>
-													<span class="fs_11 text-muted">Assistant Coach</span>
-												</div>
-											</a>
-										</li>
-										<li class="divider with-border no-padding no-margin">
-										</li>
-
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="pull-right pt20">
-													<span class="text-muted fs_11">
-														<i class="ion-ios-telephone text-primary mr5"></i>
-														<%= @team.phone_number %> (240) 555-5555
-													</span>
-													<span class="text-muted fs_11">
-														<i class="ion-email text-primary mr5"></i>
-														<%= @team.email %> coachgibson@randall.com
-													</span>
-												</div>
-
-												<div class="list-action-left">
-													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-												</div>
-												<div class="list-content">
-													<span class="title">Anisa Coakley</span>
-													<span class="fs_11 text-muted">Team Manager</span>
-												</div>
-											</a>
-										</li>
-
-										<li class="divider with-border no-padding no-margin">
-										</li>
+										<% @heads.each do |head| %>
+										
+										
+										
 										
 										<li class="has-action-left">
 											<a href="#" class="visible">
 												<div class="pull-right pt20">
 													<span class="text-muted fs_11">
 														<i class="ion-ios-telephone text-primary mr5"></i>
-														<%= @team.phone_number %> (240) 555-5555
+														<%= head.mobile_phone_number %> 
 													</span>
 													<span class="text-muted fs_11">
 														<i class="ion-email text-primary mr5"></i>
-														<%= @team.email %> coachgibson@randall.com
+														<%#= head.email %> 
 													</span>
 												</div>
 
@@ -168,37 +94,21 @@
 													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
 												</div>
 												<div class="list-content">
-													<span class="title">Khadijah Coakley</span>
-													<span class="fs_11 text-muted">Team Athletic Trainer</span>
+													<span class="title"><%= head.first_name %> <%= head.last_name %></span>
+													<span class="fs_11 text-muted"><%= head.head_title %></span>
 												</div>
+
 											</a>
 										</li>
 
 										<li class="divider with-border no-padding no-margin">
 										</li>
+										<% end %>
 
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="pull-right pt20">
-													<span class="text-muted fs_11">
-														<i class="ion-ios-telephone text-primary mr5"></i>
-														<%= @team.phone_number %> (240) 555-5555
-													</span>
-													<span class="text-muted fs_11">
-														<i class="ion-email text-primary mr5"></i>
-														<%= @team.email %> coachgibson@randall.com
-													</span>
-												</div>
+			
 
-												<div class="list-action-left">
-													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-												</div>
-												<div class="list-content">
-													<span class="title">Coach Mitchell</span>
-													<span class="fs_11 text-muted">Strength & Conditioning Coach</span>
-												</div>
-											</a>
-										</li>
+					
+										
 
 									</ul>
 								</div><!--.card-body-->
@@ -292,27 +202,46 @@
 									<%#= @user.profile.favorite_pro_athlete %>	
 								</div><!--.card-body-->
 								<div class="card-footer mt20 pl40 pr40">
+									<% if @team.social_media_present? %>
 									<h6 class="upper text-muted bold"><small>social profiles</small></h6>
-									<p>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-facebook"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-linkedin"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-youtube"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-twitter"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-instagram"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-pinterest"></i>
-										</a>
+  									  <% @team.facebook.present? %>	
+  									    <% if @team.facebook.present? %>	
+  											<%=  link_to @team.facebook, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+  												<i class="ion-social-facebook"></i>
+  											<% end %>
+  										<% end %>
+							
+  										<% if @team.linkedin.present? %>	
+  											<%=  link_to @team.linkedin, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+  												<i class="ion-social-linkedin"></i>
+  											<% end %>
+  										<% end %>
+										
+							            <% if @team.youtube.present? %>
+	  										<%=  link_to @team.youtube, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+	  											<i class="ion-social-youtube"></i>
+	  										<% end %>
+										<% end %>
+										
+										<% if @team.twitter.present? %>
+	  										<%=  link_to @team.twitter, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+	  											<i class="ion-social-twitter"></i>
+	  										<% end %>
+										<% end %>
+										
+										<% if @team.instagram.present? %>
+	  										<%=  link_to @team.instagram, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+	  											<i class="ion-social-instagram"></i>
+	  										<% end %>
+										<% end %>
+										
+										<% if @team.pinterest.present? %>
+	  										<%=  link_to @team.pinterest, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+	  											<i class="ion-social-pinterest"></i>
+	  										<% end %>
+										<% end %>
 									</p>
+									<% end  %>
 								</div><!--.card-footer-->
 							</div><!--.card-->
 						</div><!--.col-md-6-->

@@ -187,5 +187,9 @@ class Team < ActiveRecord::Base
   def people
     relationships.where(accepted: true).uniq
   end
+  
+  def social_media_present?
+    [facebook.present? , linkedin.present? ,  youtube.present?, twitter.present?, instagram.present?, pinterest.present?].include? true
+  end
 
 end
