@@ -9,23 +9,29 @@
 			<i class="ion-calendar m-r-5"></i>
 			<small>
 				<%= @event.title %>
-				<%= link_to "Cancel", @event, method: :delete, class: "ml20 btn btn-danger btn-xs" %>
-				<a href="#" class="btn btn-white btn-xs">Reschedule</a>
+				<% if current_user %>
+					<% if @event.user == current_user %>
+					  <%= link_to "Cancel", @event, method: :delete, class: "ml20 btn btn-danger btn-xs" %>
+					  <%= link_to "Reschedule", edit_event_path(@event), class: "btn btn-white btn-xs" %>
+					<% end %>
+				<% end %>
 			</small>
 		</h1>
 	</div><!--.col-->
 	<div class="col-sm-6">
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="ion-home"></i></a></li>
-			<li><a href="<%= teams_path %>">[User Name]</a></li>
+			<!-- <li><a href="/"><i class="ion-home"></i></a></li> -->
+			<!-- <li><a href="<%= teams_path %>">[User Name]</a></li> -->
 			<li><a href="<%= teams_path %>">Events</a></li>
-			<li><a href="#" class="active">Event Name</a></li>
+			<li><a href="#" class="active"><%= @event.title %></a></li>
 		</ol>
 	</div><!--.col-->
 	<div class="col-sm-1 text-right">
-		<a href="<%= edit_user_path(User.first) %>" class="btn btn-floating btn-light-blue">
-			<i class="ion-android-settings"></i>
-		</a>
+		<% if current_user %>
+			<%= link_to edit_event_path(@event), class:"btn btn-floating btn-light-blue" do %>
+			  <i class="ion-android-settings"></i>
+			<% end %>
+		<% end %>
 	</div>
 </div><!--.row-->
 
