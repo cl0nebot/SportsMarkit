@@ -54,8 +54,13 @@ gem 'google-webfonts'
 
 gem 'american_date'
 
+gem 'puma'
+
 #for payments
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
+# Pusher Gem
+gem 'pusher'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
