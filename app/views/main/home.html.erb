@@ -8,66 +8,69 @@ For ex: <div class="header header-red"> or <div class="header header-teal">
 
 	<div class="page-wrapper">
 		<div class="header">
-		<div class="container">
+			<div class="container">
 
-			<div class="logo text-white">
-				<%= image_tag("icons/flag.png", height: "15", class: "margin-right-5", style: "margin-top: -5px; width: 15px;") %>
-				SportsMarkit
-			</div><!--.logo-->
+				<div class="logo text-white">
+					<%= image_tag("icons/flag.png", height: "15", class: "margin-right-5", style: "margin-top: -5px; width: 15px;") %>
+					SportsMarkit
+				</div><!--.logo-->
 
-			<!--
-			* data-nav-link attribute is necessary for data-anchor links.
-			* data-anchor="slide1" attribute is useful when user clicks the data-nav-link, the window moves the related slide.
-			-->
-			<div class="animated-selector">
-				<ul class="navigation">
-					<li class="active" href="#schools" role="tab" data-toggle="tab">
-					Schools
-				</li>
-				<li href="#athletes" role="tab" data-toggle="tab">
-					Athletes
-				</li>
-				<li href="#parents" role="tab" data-toggle="tab">
-					Parents
-				</li>
-				<li href="#fans" role="tab" data-toggle="tab">Sports Fans</li>
-				</ul>
-				<div class="selector"></div>
-			</div><!--.animated-selector-->
+				<!--
+				* data-nav-link attribute is necessary for data-anchor links.
+				* data-anchor="slide1" attribute is useful when user clicks the data-nav-link, the window moves the related slide.
+				-->
+				<div class="animated-selector">
+					<ul class="navigation">
+						<li class="active" href="#schools" role="tab" data-toggle="tab">
+							Schools
+						</li>
+						<li href="#athletes" role="tab" data-toggle="tab">
+							Athletes
+						</li>
+						<li href="#parents" role="tab" data-toggle="tab">
+							Parents
+						</li>
+						<li href="#fans" role="tab" data-toggle="tab">
+							Sports Fans
+						</li>
+						<li href="#leagues" role="tab" data-toggle="tab">
+							Leagues
+						</li>
+					</ul>
+					<div class="selector"></div>
+				</div><!--.animated-selector-->
 
-			<div class="btn-action">
-             <% if current_user %>
-				<button type="button" class="btn btn-flat btn-ripple text-white dropdown-toggle ls0" data-toggle="dropdown">
-				<%= image_tag(current_user.avatar, class: "img-circle profile-mini", height: "35")%>
-				<%= current_user.full_name %> <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="<%= user_path(current_user) %>"><span class="ion-person mr5"></span> My profile</a></li>
-					<li><a href="<%= user_overview_path(current_user) %>"><span class="ion-gear-b mr5"></span> Account Setup</a></li>
-					<li class="divider"></li>
-					<li class="dropdown-submenu">
-	                    <%= link_to session_path(current_user.id), method: :delete do %>
-	                      <span class="ion-power mr5"></span> Logout
-	                    <% end %>
-						<ul class="dropdown-menu">
-							<!-- <li><a href="#">Logout</a></li> -->
+				<div class="btn-action">
+	        <% if current_user %>
+						<button type="button" class="btn btn-flat btn-ripple text-white dropdown-toggle ls0" data-toggle="dropdown">
+						<%= image_tag(current_user.avatar, class: "img-circle profile-mini", height: "35")%>
+						<%= current_user.full_name %> <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="<%= user_path(current_user) %>"><span class="ion-person mr5"></span> My profile</a></li>
+							<li><a href="<%= user_overview_path(current_user) %>"><span class="ion-gear-b mr5"></span> Account Setup</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-submenu">
+			          <%= link_to session_path(current_user.id), method: :delete do %>
+			            <span class="ion-power mr5"></span> Logout
+			          <% end %>
+								<ul class="dropdown-menu">
+									<!-- <li><a href="#">Logout</a></li> -->
+								</ul>
+							</li>     
 						</ul>
-					</li>
-					
-                    
-				</ul>
-             <% else %>
-				  <a href="/login" class="btn btn-white bold button-striped button-full-striped btn-ripple">Login</a>
-				  <a href="/signup" class="btn btn-warning bold button-striped button-full-striped btn-ripple">Signup</a>
-				<% end %>
-			</div><!--.btn-action-->
+	        <% else %>
+					  <a href="/login" class="btn btn-white bold button-striped button-full-striped btn-ripple">Login</a>
+					  <a href="/signup" class="btn btn-warning bold button-striped button-full-striped btn-ripple">Signup</a>
+					<% end %>
+				</div><!--.btn-action-->
 
-			<div class="hamburger-btn"></div><!--.hamburger-btn-->
+				<div class="hamburger-btn"></div><!--.hamburger-btn-->
 
-		</div><!--.container-->
+			</div><!--.container-->
 		</div><!--.header-->
 
-			<div class="tab-content no-padding no-border">
+		<div class="tab-content no-padding no-border">
 			<div class="tab-pane active fade in" id="schools">
 				<div class="slide bg-image" style="background-image: url('http://www1.pgcps.org/uploadedImages/Offices/Communications/Press_Releases/2011_-_2012/June/Potomac%20Track%20Team.JPG');">
 
@@ -77,7 +80,7 @@ For ex: <div class="header header-red"> or <div class="header header-teal">
 								<h1 class="h0 text-white text-light-shadow">
 									THE <span class="highlight ls1">EASIEST</span> WAY TO
 									<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">MANAGE</span><br>
-									HIGH SCHOOL ATHLETIC PROGRAMS.
+									SCHOOL ATHLETIC PROGRAMS.
 								</h1>
 								<p class="caption text-white text-light-shadow">Manage rosters, share calendars, centralize team communication, <br/> arrange payments, set notifications, invite fans, and much more...</p>
 							</div><!--.col-->
@@ -105,13 +108,11 @@ For ex: <div class="header header-red"> or <div class="header header-teal">
 
 
 					</div><!--.container-->
-				</div><!--.slide-hero-->
-				
+				</div><!--.slide-hero-->			
 			</div>
 
 			<div class="tab-pane fade" id="athletes">
 				<div class="slide bg-image"  style="background-image: url('<%= image_path("placeholders/athlete_bg.png") %>'); background-size: cover;">
-
 					<div class="container z1">
 						<div class="row">
 							<div class="col-md-9">
@@ -182,7 +183,44 @@ For ex: <div class="header header-red"> or <div class="header header-teal">
 
 					</div><!--.container-->
 				</div><!--.slide-hero-->
+			</div>
 
+			<div class="tab-pane fade" id="leagues">
+				<div class="slide bg-image" data-nav="remove" style="background-image: url(http://www.talbotcountymd.gov/uploads/images/Parks_and_Rec/Basketball%20pic.jpg); background-size: cover;">
+
+					<div class="container z1">
+						<div class="row">
+							<div class="col-md-9">
+								<h1 class="h0 text-white text-light-shadow">
+									THE <span class="highlight ls1">EASIEST</span> WAY TO
+									<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">MANAGE</span><br>
+									RECREATIONAL SPORTS TEAMS & LEAGUES.
+								</h1>
+								<p class="caption text-white text-light-shadow">Access team contact information, coach and player profiles, team calendars, <br/>team photos and videos, get updates & notifications, and much more...
+							</div><!--.col-->
+						</div><!--.row-->
+
+						<div class="row">
+							<div class="col-md-12">
+								<h4 class="text-white">MOBILE APP COMING SOON!</h4>
+								<h6 class="text-cyan bold ">Available In Stores Fall 2015</h6>
+								<ul class="store-list no-margin">
+									<li>
+										<a href="javascript:;">
+											<%= image_tag("one-page-parallax/on-appstore.png", alt: "") %>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+											<%= image_tag("one-page-parallax/on-googleplay.png", alt: "") %>
+										</a>
+									</li>
+								</ul>
+							</div><!--.col-->
+						</div><!--.row-->
+
+					</div><!--.container-->
+				</div><!--.slide-hero-->
 			</div>
 
 			<div class="tab-pane fade" id="fans">
@@ -228,6 +266,8 @@ For ex: <div class="header header-red"> or <div class="header header-teal">
 					
 				</div>
 			</div>
+
+			
 		</div>
 
 		<div class="container">

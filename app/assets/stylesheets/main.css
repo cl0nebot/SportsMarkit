@@ -157,7 +157,7 @@ ul.navigation li.active  {
   position: relative;
   width: 100%;
   border-bottom: 1px solid #f0f0f0;
-  padding: 330px 0 !important;
+  padding: 250px 0 !important;
   overflow: hidden;
 }
 
@@ -178,7 +178,7 @@ ul.navigation li.active  {
 
 .muted {color: #aaa !important;}
 
-body {background: #f5f5f5;}
+body {background: #000;}
 
 .page-wrapper {overflow: hidden !important;}
 
