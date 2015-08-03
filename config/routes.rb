@@ -28,6 +28,8 @@ Rails.application.routes.draw do
       resources :media
     end
     
+    resources :chatrooms
+    
     get "send_certification_reminder" => "notifications#send_certification_reminder", as: :notification_text
     
     get "testsetup" => "setup#testsetup", as: :test_setup
@@ -39,6 +41,12 @@ Rails.application.routes.draw do
 
     get "welcome" => "users#welcome", as: :user_welcome
 
+    resources :messages do
+      collection do
+        get :chatroom
+        get :events
+      end
+    end
     resources :measurables
     resources :certificates
     resources :media
@@ -66,6 +74,7 @@ Rails.application.routes.draw do
       resources :photos
       resources :events
       resources :media
+      resources :chat
       resource :calendar do
         get :events, on: :member
       end
