@@ -181,36 +181,25 @@
 						<div class="card-heading" style="border-top: 3px solid #ccc;">
 							<h3 class="card-title">My Teammates</h3>
 							<div class="card-subhead">
-							 <a href="#">24 Teammates</a>
+							 <!-- <a href="#">24 Teammates</a> -->
 							</div><!--.card-subhead-->
 						</div><!--.card-heading-->
 						<div class="card-body">
 							<ul class="users">
+								<%= @teammates.each do |teammate| %>
 								<li>
 									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-										<img src="../../assets/globals/img/faces/1.jpg" alt="">
+										<%= image_tag teammate.avatar %>
 									</a>
 								</li>
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-										<img src="../../assets/globals/img/faces/1.jpg" alt="">
-									</a>
-								</li>
-
-								<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-								<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-								<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-								<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-								<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-								<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+					           <% end %>
 							</ul>
 						</div><!--.card-body-->
 						<div class="card-footer">
 							<ul>
-								<li><span class="mr5 fs_14">34 People</span></li>
-								<li><a href="#" class="fs_14">View All Teammates</a></li>
+								<li><span class="mr5 fs_14"><%= pluralize @teammates.count, "Person" %></span></li>
+								<li><%= link_to "View All Teammates", "/users/#{@user.slug}/#tab_teammates", class: "fs_14" %></li>
+								
 							</ul>
 						</div><!--.card-footer-->
 					</div><!--.card-->
@@ -223,63 +212,37 @@
 						<div class="card-heading" style="border-top: 3px solid #ccc;">
 							<h3 class="card-title">My Teams</h3>
 							<div class="card-subhead">
-							 <a href="#">8 Teams</a>
+							 <!-- <a href="#">8 Teams</a> -->
 							</div><!--.card-subhead-->
 						</div><!--.card-heading-->
 						<div class="card-body">
 							<ul class="list-material borderless">
+			                  <% @user.user_teams.each do |team| %>
 								<li class="has-action-left">
 									<a href="#" class="visible">
 										<div class="list-action-left">
 											<%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg", class: "face-radius")%>
 										</div>
 										<div class="list-content">
-											<span class="title">Women's Basketball Team</span>
-											<span class="fs_11 text-muted">18 People, 
-												<i class="ion-location text-primary ml5"></i> Upper Marlboro, MD
+											<span class="title"><%= team.name %></span>
+											<span class="fs_11 text-muted">
+												<%= pluralize team.people.count, "Person" %>,
+												<i class="ion-location text-primary ml5"></i> <%= team.city_state %>
 											</span>
 										</div>
 									</a>
 								</li>
 								<li class="divider with-border no-padding no-margin">
 								</li>
-								<li class="has-action-left">
-									<a href="#" class="visible">
-										<div class="list-action-left">
-											<%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg", class: "face-radius")%>
-										</div>
-										<div class="list-content">
-											<span class="title">Lacrosse Recreational Adult League</span>
-											<span class="fs_11 text-muted">
-												18 People,
-												<i class="ion-location text-primary ml5"></i> Upper Marlboro, MD
-											</span>
-										</div>
-									</a>
-								</li>
-								<li class="divider with-border no-padding no-margin">
-								</li>
-								<li class="has-action-left">
-									<a href="#" class="visible">
-										<div class="list-action-left">
-											<%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg", class: "face-radius")%>
-										</div>
-										<div class="list-content">
-											<span class="title">Rebecca Welch</span>
-											<span class="fs_11 text-muted">
-												18 People,
-												<i class="ion-location text-primary ml5"></i> Upper Marlboro, MD
-											</span>
-										</div>
-									</a>
-								</li>
+								<% end %>
+	
 							</ul>
 						</div><!--.card-body-->
 						<hr class="no-margin"/>
 						<div class="card-footer">
 							<ul>
-								<li class="fs_14"><span class="mr5">7 Teams</span></li>
-								<li><a href="#" class="fs_14">View All Teams</a></li>
+								<li class="fs_14"><span class="mr5"><%= pluralize @user.user_teams.count, "Team"%></span></li>
+								<li><%= link_to "View All Teams", "/users/#{@user.slug}/#tab_teams", class: "fs_14" %></li>
 							</ul>
 						</div><!--.card-footer-->
 					</div><!--.card-->
@@ -292,49 +255,40 @@
 						<div class="card-heading" style="border-top: 3px solid #ccc;">
 							<h3 class="card-title">My Schedule</h3>
 							<div class="card-subhead">
-							 <a href="#">7 Upcoming Events</a>
+							 <!-- <a href="#">7 Upcoming Events</a> -->
 							</div><!--.card-subhead-->
 						</div><!--.card-heading-->
 						<div class="card-body pl40">
 							<div class="timeline single">
+								<% @user.upcoming_events.each do |event| %>
 								<div class="frame">
 									<div class="timeline-badge">
 										<i class="ion-android-calendar"></i>
 									</div><!--.timeline-badge-->
-									<span class="timeline-date bold">Fri, Jul 30th, 2015</span>
+									<span class="timeline-date bold"><%=event.starts_at.strftime("%A") %>, <%= event.starts_at.strftime("%B")%> <%= event.starts_at.day.ordinalize %>, <%= event.starts_at.year %></span>
 									<div class="timeline-content">
-										<h4  class="semi-bold no-margin">Lacrosse Practice</h4>
-										<p class="fs_14 mb5">Meet on the field near the locker rooms. Remember to bring your pads and be warmed up and ready to go.</p>
+										<h4  class="semi-bold no-margin"><%= event.title %></h4>
+										<p class="fs_14 mb5"><%= event.description %></p>
 										<p class="fs_11 text-muted mb0">
-											<i class="ion-checkmark-circled text-primary mr5"></i>18 People Attending</p>
+											<i class="ion-checkmark-circled text-primary mr5"></i><%= pluralize event.attendees.where(yes: true).count, "Person" %> Attending</p>
 										<p class="fs_11 text-muted">
-											<i class="ion-map text-primary mr5"></i> Woodrow Willson High School Baskebtall Gym, Upper Marlboro, MD
+											<i class="ion-map text-primary mr5"></i> <%= event.proper_facility_name_and_location %>
 										</p>
 									</div><!--.timeline-content-->
 								</div><!--.frame-->
-								<div class="frame">
-									<div class="timeline-badge">
-										<i class="ion-android-calendar"></i>
-									</div><!--.timeline-badge-->
-									<span class="timeline-date bold">Wed, Aug 4th, 2015</span>
-									<div class="timeline-content">
-										<h4  class="semi-bold no-margin">Basketball Practice</h4>
-										<p class="fs_14 mb5">Be center court ready to got at 5pm</p>
-										<p class="fs_11 text-muted mb0">
-											<i class="ion-checkmark-circled text-primary mr5"></i>18 People Attending</p>
-										<p class="fs_11 text-muted">
-											<i class="ion-map text-primary mr5"></i> Woodrow Willson High School Baskebtall Gym, Upper Marlboro, MD
-										</p>
-									</div><!--.timeline-content-->
-								</div><!--.frame-->
+								<% end %>
+								
+				
+								
 							</div>
 						</div>
 						<hr class="no-margin"/>
 						
 						<div class="card-footer">
 							<ul>
-								<li class="fs_14"><span class="mr5">7 Upcoming Events</span></li>
-								<li><a href="#" class="fs_14">View All Events</a></li>
+								<li class="fs_14"><span class="mr5"><%= pluralize @user.upcoming_events.count, "Upcoming Event" %> </span></li>
+								<li><%= link_to "View All Events", "/users/#{@user.slug}/events", class: "fs_14" %></li>
+							
 							</ul>
 						</div><!--.card-footer-->
 					</div><!--.card-->
