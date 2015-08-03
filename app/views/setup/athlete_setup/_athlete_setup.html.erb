@@ -48,22 +48,18 @@
 		   			<span class="small semi-bold text-orange">(<%=@user.relationships.where(participant: true).count %>)</span>
 		       		</h5>
 	        
-			   				<div class="panel-body without-padding">
-								
-								<ul class="list-material" id="user-team-list">
-					               <%= render 'setup/athlete_setup/user_non_school_team_list', users_non_schools_teams: @users_non_schools_teams %>
-								</ul>
-								
-							</div><!--.panel-body-->
-
-
-				
+	   				<div class="panel-body without-padding">
+						
+							<ul class="list-material" id="user-team-list">
+				        <%= render 'setup/athlete_setup/user_non_school_team_list', users_non_schools_teams: @users_non_schools_teams %>
+							</ul>
+							
+						</div><!--.panel-body-->
 				</div>
-
-		    </div>
+		  </div>
 		</div>
 
-		<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7;">
+		<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7; height: 500px; overflow: scroll;">
 
 			<div class="row teams images" id="non-school-team-list">
 			<%= render 'setup/athlete_setup/non_school_team_list', non_school_teams: @non_school_teams %>

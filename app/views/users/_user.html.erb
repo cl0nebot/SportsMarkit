@@ -23,12 +23,12 @@
           <!-- <span class="text-muted">
             Member since: <%= format(user.created_at, 4) %>
           </span> -->
-          <span class="text-muted">
+          <span class="text-muted fs_11">
            <!--  <%= user.age %> years old<br/> -->
-            <i class="ion-location text-blue margin-right-5"></i><%= user.profile.location_description.present? ? user.profile.location_description : "USA" %><br/>
+            <i class="ion-location text-blue margin-right-5"></i> <%= user.profile.location_description.present? ? user.profile.location_description : "USA" %><br/>
       		  <% if current_user.admin? %>
-                <i class="ion-email text-blue margin-right-5"></i> <%= user.email %><br/>
-                <i class="ion-phone text-blue"></i> <%= number_to_phone(user.mobile_phone_number) %>
+                <i class="ion-email text-blue margin-right-5"></i><%= user.email %><br/>
+                <i class="ion-ios-telephone text-blue margin-right-5"></i> <%= number_to_phone(user.mobile_phone_number) %>
       		  <% end %>
           </span>
         </div>
