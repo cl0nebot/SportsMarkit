@@ -42,24 +42,13 @@
     <div class="col-md-12">
       <div class="tab-content without-border pt40">
 
-    		<div id="about" class="tab-pane">
-					<div class="row">
-						<div class="col-md-2">
-							<h3 class="bold"><%= @league.name %></h3>
-							<h4 class="bold"><%= @league.sport_list %></h4>
-							<span class="caption"><span class="glyphicon glyphicon-map-marker"></span>
-							<%= @league.state %></span>
-						</div>
-        		<div class="col-md-10">
-          	</div>
-          </div>
-        </div>
+    		<%= render "leagues/show/tab_about" %>
 
 				<!-- teams -->
 				<div id="teams" class="tab-pane">
-  				  <% @teams.each do |team| %>
-  				  	<%= team.name %>
-  				  <% end %>
+				  <% @teams.each do |team| %>
+				  	<%= team.name %>
+				  <% end %>	
 				</div>
 				<!--#teams.tab-pane-->
 
