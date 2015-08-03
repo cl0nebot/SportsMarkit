@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728220253) do
+ActiveRecord::Schema.define(version: 20150730175553) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -212,6 +212,15 @@ ActiveRecord::Schema.define(version: 20150728220253) do
   end
 
   add_index "media", ["mediable_id", "mediable_type"], name: "index_media_on_mediable_id_and_mediable_type", using: :btree
+
+  create_table "messages", force: true do |t|
+    t.integer  "user_id"
+    t.text     "message"
+    t.integer  "chatroom_id"
+    t.string   "file"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "occupations", force: true do |t|
     t.string   "title"
