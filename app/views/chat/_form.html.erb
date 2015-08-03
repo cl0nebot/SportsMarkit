@@ -1,0 +1,16 @@
+					<%= form_for Message.new, html: {id: "chat-message-form", remote: true} do |f| %>
+						<div class="input-group">
+							<div class="inputer inputer-blue">
+								<div class="input-wrapper">
+									<%= f.text_area :message , class: "form-control js-auto-size", placeholder: "Message", rows: 1 %>
+									<%= f.hidden_field :user_id, value: current_user.id %>
+									<%= f.hidden_field :chatroom_id, value: chatroom_id %>
+								</div>
+							</div><!--.inputer-->
+							<span class="input-group-btn">
+								
+								<%= f.submit "Send", class: "btn btn-blue" %>
+								
+							</span>
+						</div>
+					<% end %>
