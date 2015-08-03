@@ -125,5 +125,6 @@
 //= require validation
 //= require jquery.cropit
 //= require schools
+//= require messages
 
 
