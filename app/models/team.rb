@@ -179,5 +179,9 @@ class Team < ActiveRecord::Base
       false
     end
   end
+  
+  def last_chat_stream_message_id
+    Message.where(chatroom_id: id).last.find_beginning_of_stream
+  end
 
 end
