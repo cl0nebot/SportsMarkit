@@ -1,0 +1,10 @@
+<script>
+var pusher = new Pusher('3c24dbb4c612b9b37a4f'); // uses your APP KEY 
+var channel = pusher.subscribe("chat-<%= message.chatroom_id %>");
+channel.bind('message-push', function(data) {
+$("#message-<%= message.find_beginning_of_stream %>").load(location.href+" #message-<%= message.find_beginning_of_stream %>>*","");
+$('#messages-for-chat').scrollTop($('#messages-for-chat')[0].scrollHeight);
+});
+$('#chat-message-form')[0].reset()
+// alert("<%= message.find_beginning_of_stream %>")
+</script>

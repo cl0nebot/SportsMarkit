@@ -1,0 +1,6 @@
+$('#messages-for-chat').empty()
+$('#messages-for-chat').append("<%= j render 'shared/nav_layers/messages', messages: Message.where(chatroom_id: params[:team_id]) %>")
+$('#form-for-chat').empty()
+$('#form-for-chat').append("<%= j render 'shared/nav_layers/form', chatroom_id: params[:team_id] %>")
+
+

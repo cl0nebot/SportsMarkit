@@ -1,0 +1,9 @@
+<script>
+var pusher = new Pusher('<%= ENV['PUSHER_KEY'] %>'); // uses your APP KEY
+var channel = pusher.subscribe('test_channel');
+channel.bind('message-push', function(data) {
+  $("#message-157").load(location.href+" #message-157>*","");
+  $('#messages-for-chat').scrollTop($('#messages-for-chat')[0].scrollHeight);
+  $('#chat-message-form-<%= 6 %>')[0].reset()
+});
+</script>
