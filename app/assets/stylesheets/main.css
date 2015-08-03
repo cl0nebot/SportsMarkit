@@ -157,7 +157,7 @@ ul.navigation li.active  {
   position: relative;
   width: 100%;
   border-bottom: 1px solid #f0f0f0;
-  padding: 250px 0 !important;
+  padding: 330px 0 !important;
   overflow: hidden;
 }
 
@@ -193,4 +193,9 @@ img.profile-mini {border: 2px solid #fff; margin-right: 10px;}
 }
 
 .dropdown-menu {border-radius: 4px !important;}
+
+
+html {
+    background-color: #ccc;
+}
 
