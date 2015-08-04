@@ -1,9 +1,5 @@
-<% @schools.each do |school| %>
+<%= link_to "Schools", pricings_path(view: "schools"), remote: true %> | <%= link_to "Teams", pricings_path(view: "teams"), remote: true %> | <%= link_to "Leagues", pricings_path(view: "leagues"), remote: true %>
 
-
-<div id="school-price-<%= school.id %>">
-<%= render 'pricings/pricing', school: school %>
+<div id="objects">
+  <%= render 'pricings/list', objects: @schools %>
 </div>
-
-
-<% end %>

@@ -2,11 +2,12 @@ class PricingsController < ApplicationController
   
   def index
     @schools = School.all
+    @teams = Team.without_schools
   end
   
   def create
-    @school = School.find(params[:school_id])
-    @school.update_attributes(price: params[:price])
+    @object = params[:object].constantize.find(params[:id])
+    @object.update_attributes(price: params[:price])
     respond_to do |format|
       format.html{redirect_to :back}
       format.js

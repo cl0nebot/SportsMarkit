@@ -1,2 +1,14 @@
-$('#school-price-<%= params[:school_id] %>').empty()
-$('#school-price-<%= params[:school_id] %>').append("<%= j render 'pricings/form', school: School.find(params[:school_id]) %>")
+<% if params[:view] == "teams" %>
+  $('#objects').empty()
+  $('#objects').append("<%= j render 'pricings/list', objects: Team.without_schools %>")
+<% elsif params[:view] == "schools" %>
+  $('#objects').empty()
+  $('#objects').append("<%= j render 'pricings/list', objects: @schools %>")
+<% elsif params[:view] == "leagues" %>
+  $('#objects').empty()
+  $('#objects').append("<%= j render 'pricings/list', objects: League.all %>")
+<% end %>
+<% if params[:event] == "edit" %>
+$('#price-<%= params[:object] %>-<%= params[:object_id] %>').empty()
+$('#price-<%= params[:object] %>-<%= params[:object_id] %>').append("<%= j render 'pricings/form', object: params[:object].constantize.find(params[:object_id]) %>")
+<% end %>

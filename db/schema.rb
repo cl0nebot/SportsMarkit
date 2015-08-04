@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803213848) do
+ActiveRecord::Schema.define(version: 20150804182701) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20150803213848) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
+    t.float    "price",            limit: 24
   end
 
   add_index "facilities", ["slug"], name: "index_facilities_on_slug", unique: true, using: :btree
@@ -198,6 +199,17 @@ ActiveRecord::Schema.define(version: 20150803213848) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
+    t.string   "email"
+    t.string   "website"
+    t.string   "mobile_phone_number"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.integer  "zip"
+    t.integer  "zip_ext"
+    t.float    "latitude",            limit: 24
+    t.float    "longitude",           limit: 24
+    t.float    "price",               limit: 24
   end
 
   add_index "leagues", ["name"], name: "index_leagues_on_name", using: :btree
@@ -466,6 +478,7 @@ ActiveRecord::Schema.define(version: 20150803213848) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
+    t.float    "price",              limit: 24
   end
 
   create_table "tournaments", force: true do |t|
