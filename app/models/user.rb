@@ -408,9 +408,7 @@ class User < ActiveRecord::Base
     [profile.facebook.present? , profile.linkedin.present? , profile.youtube.present?, profile.twitter.present?, profile.instagram.present?, profile.pinterest.present?, profile.foursquare.present?].include? true
   end
 
-  
-  
-    
-  
-
+  def chatroom
+    relationships.first.team.id
+  end
 end

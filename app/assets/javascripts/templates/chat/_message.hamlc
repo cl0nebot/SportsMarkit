@@ -1,0 +1,17 @@
+- begin_stream_class = ''
+- wrap_class = 'message left'
+
+- if @current_user is true
+  - wrap_class = 'message right'
+
+- if @begin_stream is true
+  - begin_stream_class = 'begin_stream'
+
+.message-wrap(data-id=@user_id data-toggle="tooltip" data-placement="top" data-original-title=@time)
+  %div(class="#{wrap_class} #{begin_stream_class}")
+    .message-text= @message
+    - if @file?
+      %br
+      %b "#{@user_name} has shared a file: <a href='#{@file}'>File</a>"
+    - if @begin_stream
+      %img.user-picture(src=@avatar)

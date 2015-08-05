@@ -1,0 +1,408 @@
+<script src="//js.pusher.com/2.2/pusher.min.js"></script>
+<script>
+  var pusher = new Pusher('<%=ENV["PUSHER_KEY"]%>'); // uses your APP KEY
+  var channel = pusher.subscribe("chat-<%= current_user.chatroom %>");
+  var user_id = <%=current_user.id%>;
+  channel.bind('message-push', function (data) {
+    // $("#message-<%#= @team.last_chat_stream_message_id %>").empty();
+    // 	$("#message-<%#= @team.last_chat_stream_message_id %>").append("<%#= j render 'message', message: Message.where(chatroom_id: @team.id).last.beginning_of_stream %>")
+    if (data.user_id == user_id) {
+      data.current_user = true;
+    }
+    else{
+      data.current_user = false;
+    }
+    if (data.user_id != $('.message-wrap:last').data('id')){
+      data.begin_stream = true;
+    }else{
+      data.begin_stream = false;
+    }
+    $("#messages-for-chat").append(JST['chat/message'](data));
+    $('#messages-for-chat').scrollTop($('#messages-for-chat')[0].scrollHeight);
+    $('#chat-message-form')[0].reset()
+  });
+  // $('#chat-message-form')[0].reset()
+
+</script>
+
+<div id="pusher">
+
+</div>
+
+<div class="user-layer">
+<ul class="nav nav-tabs nav-justified" role="tablist">
+  <li class="active"><a href="#messages" data-toggle="tab">Messages</a></li>
+  <!-- <li><a href="#notifications" data-toggle="tab">Notifications <span class="badge">0</span></a></li>
+  <li><a href="#settings" data-toggle="tab">Settings</a></li> -->
+</ul>
+
+<div class="row no-gutters tab-content">
+
+<div class="tab-pane fade in active" id="messages">
+  <div class="col-md-4">
+    <div class="message-list-overlay"></div>
+    <ul class="list-material">
+
+
+      <li class="has-action-left has-action-right"></li>
+
+      <% current_user.relationships.each do |rel| %>
+          <li class="has-action-left has-action-right">
+
+            <div class="list-action-left">
+              <!-- <img src="<%= image_path("placeholders/user.jpg") %>" class="face-radius" alt=""> -->
+            </div>
+            <div class="list-content">
+              <span class="title"><%= link_to rel.team.proper_name, chatroom_messages_path(status: "Athlete", team_id: rel.team.id), remote: true %></span>
+              <!-- <span class="caption">Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.</span> -->
+            </div>
+            <div class="list-action-right">
+              <!-- <span class="top">15 min</span>
+              <i class="ion-android-done bottom"></i> -->
+            </div>
+
+          </li>
+      <% end %>
+
+    </ul>
+  </div>
+  <!--.col-->
+  <div class="col-md-8">
+    <div class="message-send-container" id="scroll">
+
+      <div class="messages" id="messages-for-chat">
+        <%= render 'shared/nav_layers/messages', messages: Message.where(chatroom_id: current_user.chatroom) %>
+      </div>
+      <!--.messages-->
+
+
+      <div class="send-message" id="form-for-chat">
+        <%= render 'shared/nav_layers/form', chatroom_id: current_user.chatroom %>
+      </div>
+      <!--.send-message-->
+
+    </div>
+    <!--.message-send-container-->
+  </div>
+  <!--.col-->
+
+  <div class="mobile-back">
+    <div class="mobile-back-button"><i class="ion-android-arrow-back"></i></div>
+  </div>
+  <!--.mobile-back-->
+</div>
+<!--.tab-pane #messages-->
+
+<div class="tab-pane fade" id="notifications">
+
+  <div class="col-md-6 col-md-offset-3">
+
+    <ul class="list-material has-hidden">
+      <li class="has-action-left has-action-right has-long-story">
+        <a href="#" class="hidden"><i class="ion-android-delete"></i></a>
+        <a href="#" class="visible">
+          <div class="list-action-left">
+            <i class="ion-bag icon text-indigo"></i>
+          </div>
+          <div class="list-content">
+            <span class="caption">Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.</span>
+          </div>
+          <div class="list-action-right">
+            <span class="top">2 hr</span>
+            <i class="ion-record text-green bottom"></i>
+          </div>
+        </a>
+      </li>
+      <li class="has-action-left has-action-right has-long-story">
+        <a href="#" class="hidden"><i class="ion-android-delete"></i></a>
+        <a href="#" class="visible">
+          <div class="list-action-left">
+            <i class="ion-image text-green icon"></i>
+          </div>
+          <div class="list-content">
+            <span class="caption">Dramatically visualize customer directed convergence without revolutionary ROI. Efficiently unleash cross-media information without cross-media value.</span>
+          </div>
+          <div class="list-action-right">
+            <span class="top">16:55</span>
+            <i class="ion-record text-green bottom"></i>
+          </div>
+        </a>
+      </li>
+      <li class="has-action-left has-action-right has-long-story">
+        <a href="#" class="hidden"><i class="ion-android-delete"></i></a>
+        <a href="#" class="visible">
+          <div class="list-action-left">
+            <img src="<%= image_path("placeholders/user.jpg") %>" class="face-radius" alt="">
+          </div>
+          <div class="list-content">
+            <span class="caption">Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</span>
+          </div>
+          <div class="list-action-right">
+            <span class="top">Yesterday</span>
+            <i class="ion-record text-green bottom"></i>
+          </div>
+        </a>
+      </li>
+      <li class="has-action-left has-action-right has-long-story">
+        <a href="#" class="hidden"><i class="ion-android-delete"></i></a>
+        <a href="#" class="visible">
+          <div class="list-action-left">
+            <img src="<%= image_path("placeholders/user_3.jpg") %>" class="face-radius" alt="">
+          </div>
+          <div class="list-content">
+            <span class="caption">Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.</span>
+          </div>
+          <div class="list-action-right">
+            <span class="top">2 days ago</span>
+            <i class="ion-android-done bottom"></i>
+          </div>
+        </a>
+      </li>
+      <li class="has-action-left has-action-right has-long-story">
+        <a href="#" class="hidden"><i class="ion-android-delete"></i></a>
+        <a href="#" class="visible">
+          <div class="list-action-left">
+            <i class="ion-location text-light-blue icon"></i>
+          </div>
+          <div class="list-content">
+            <span class="caption">Dynamically innovate resource-leveling customer service for state of the art customer service. Objectively innovate empowered manufactured products whereas parallel platforms.</span>
+          </div>
+          <div class="list-action-right">
+            <span class="top">1 week ago</span>
+            <i class="ion-android-done bottom"></i>
+          </div>
+        </a>
+      </li>
+      <li class="has-action-left has-action-right has-long-story">
+        <a href="#" class="hidden"><i class="ion-android-delete"></i></a>
+        <a href="#" class="visible">
+          <div class="list-action-left">
+            <i class="ion-bookmark text-deep-orange icon"></i>
+          </div>
+          <div class="list-content">
+            <span class="caption">Holisticly predominate extensible testing procedures for reliable supply chains. Dramatically engage top-line web services vis-a-vis cutting-edge deliverables.</span>
+          </div>
+          <div class="list-action-right">
+            <span class="top">10 Jan</span>
+            <i class="ion-android-done bottom"></i>
+          </div>
+        </a>
+      </li>
+      <li class="has-action-left has-action-right has-long-story">
+        <a href="#" class="hidden"><i class="ion-android-delete"></i></a>
+        <a href="#" class="visible">
+          <div class="list-action-left">
+            <i class="ion-locked icon"></i>
+          </div>
+          <div class="list-content">
+            <span class="caption">Phosfluorescently engage worldwide methodologies with web-enabled technology.</span>
+          </div>
+          <div class="list-action-right">
+            <span class="top">9 Jan</span>
+            <i class="ion-android-done bottom"></i>
+          </div>
+        </a>
+      </li>
+      <li class="has-action-left has-action-right has-long-story">
+        <a href="#" class="hidden"><i class="ion-android-delete"></i></a>
+        <a href="#" class="visible">
+          <div class="list-action-left">
+            <img src="<%= image_path("placeholders/user_1.jpg") %>" class="face-radius" alt="">
+          </div>
+          <div class="list-content">
+            <span class="caption">Synergistically evolve 2.0 technologies rather than just in time initiatives. Quickly deploy strategic networks with compelling e-business. Credibly pontificate highly efficient manufactured products and enabled data.</span>
+          </div>
+          <div class="list-action-right">
+            <span class="top">7 Jan</span>
+            <i class="ion-android-done bottom"></i>
+          </div>
+        </a>
+      </li>
+      <li class="has-action-left has-action-right has-long-story">
+        <a href="#" class="hidden"><i class="ion-android-delete"></i></a>
+        <a href="#" class="visible">
+          <div class="list-action-left">
+            <i class="ion-navigate text-indigo icon"></i>
+          </div>
+          <div class="list-content">
+            <span class="caption">Objectively pursue diverse catalysts for change for interoperable meta-services. Dramatically mesh low-risk high-yield alignments before transparent e-tailers.</span>
+          </div>
+          <div class="list-action-right">
+            <span class="top">7 Jan</span>
+            <i class="ion-android-done bottom"></i>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+  <!--.col-->
+</div>
+<!--.tab-pane #notifications-->
+
+<div class="tab-pane fade" id="settings">
+  <div class="col-md-6 col-md-offset-3">
+
+    <div class="settings-panel">
+      <div class="legend">Privacy Controls</div>
+      <ul>
+        <li>
+          Show my profile on search results
+          <div class="switcher switcher-indigo pull-right">
+            <input id="settings1" type="checkbox" hidden="hidden" checked="checked">
+            <label for="settings1"></label>
+          </div>
+          <!--.switcher-->
+        </li>
+        <li>
+          Only God can judge me
+          <div class="switcher switcher-indigo pull-right">
+            <input id="settings2" type="checkbox" hidden="hidden" checked="checked">
+            <label for="settings2"></label>
+          </div>
+          <!--.switcher-->
+        </li>
+        <li>
+          These n*ggas ain't loyal
+          <div class="switcher switcher-indigo pull-right">
+            <input id="settings3" type="checkbox" hidden="hidden">
+            <label for="settings3"></label>
+          </div>
+          <!--.switcher-->
+        </li>
+      </ul>
+
+      <div class="legend">Fan Notifications</div>
+      <ul>
+        <li>
+          Profile Updates
+          <div class="switcher switcher-indigo pull-right">
+            <input id="settings4" type="checkbox" hidden="hidden" checked="checked">
+            <label for="settings4"></label>
+          </div>
+          <!--.switcher-->
+        </li>
+        <li>
+          New Events
+          <div class="switcher switcher-indigo pull-right">
+            <input id="settings4" type="checkbox" hidden="hidden" checked="checked">
+            <label for="settings4"></label>
+          </div>
+          <!--.switcher-->
+        </li>
+        <li>
+          Event Time or Date Change
+          <div class="switcher switcher-indigo pull-right">
+            <input id="settings4" type="checkbox" hidden="hidden" checked="checked">
+            <label for="settings4"></label>
+          </div>
+          <!--.switcher-->
+        </li>
+        <li>
+          New Teams
+          <div class="switcher switcher-indigo pull-right">
+            <input id="settings5" type="checkbox" hidden="hidden">
+            <label for="settings5"></label>
+          </div>
+          <!--.switcher-->
+        </li>
+        <li>
+          New Members
+          <div class="switcher switcher-indigo pull-right">
+            <input id="settings6" type="checkbox" hidden="hidden">
+            <label for="settings6"></label>
+          </div>
+          <!--.switcher-->
+        </li>
+        <li>
+          Game Results
+          <div class="switcher switcher-indigo pull-right">
+            <input id="settings6" type="checkbox" hidden="hidden">
+            <label for="settings6"></label>
+          </div>
+          <!--.switcher-->
+        </li>
+        <li>
+          Media Uploads
+          <div class="switcher switcher-indigo pull-right">
+            <input id="settings6" type="checkbox" hidden="hidden">
+            <label for="settings6"></label>
+          </div>
+          <!--.switcher-->
+        </li>
+      </ul>
+
+      <div class="legend">Admin Notifications</div>
+      <ul>
+        <li>
+          New Pending Member
+          <div class="switcher switcher-indigo pull-right">
+            <input id="settings4" type="checkbox" hidden="hidden" checked="checked">
+            <label for="settings4"></label>
+          </div>
+          <!--.switcher-->
+        </li>
+        <li>
+          Deleted Member
+          <div class="switcher switcher-indigo pull-right">
+            <input id="settings4" type="checkbox" hidden="hidden" checked="checked">
+            <label for="settings4"></label>
+          </div>
+          <!--.switcher-->
+        </li>
+        <li>
+          Updated Member Profile
+          <div class="switcher switcher-indigo pull-right">
+            <input id="settings4" type="checkbox" hidden="hidden" checked="checked">
+            <label for="settings4"></label>
+          </div>
+          <!--.switcher-->
+        </li>
+        <li>
+          Calendar Updates
+          <div class="switcher switcher-indigo pull-right">
+            <input id="settings5" type="checkbox" hidden="hidden">
+            <label for="settings5"></label>
+          </div>
+          <!--.switcher-->
+        </li>
+        <li>
+          Media Uploads
+          <div class="switcher switcher-indigo pull-right">
+            <input id="settings6" type="checkbox" hidden="hidden">
+            <label for="settings6"></label>
+          </div>
+          <!--.switcher-->
+        </li>
+      </ul>
+
+
+      <div class="legend">Newsletter</div>
+      <ul>
+        <li>
+          Friend requests
+          <div class="checkboxer checkboxer-indigo pull-right">
+            <input type="checkbox" id="checkboxSettings1" value="option1" checked="checked">
+            <label for="checkboxSettings1"></label>
+          </div>
+        </li>
+        <li>
+          People you may know
+          <div class="checkboxer checkboxer-indigo pull-right">
+            <input type="checkbox" id="checkboxSettings2" value="option1">
+            <label for="checkboxSettings2"></label>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+    <!--.settings-panel-->
+
+  </div>
+  <!--.col-->
+</div>
+<!--.tab-pane #settings-->
+
+</div>
+<!--.row-->
+</div><!--.user-layer-->
