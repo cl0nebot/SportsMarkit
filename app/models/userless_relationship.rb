@@ -9,4 +9,8 @@ class UserlessRelationship < ActiveRecord::Base
     positions.pluck(:position).join(", ")
   end
   
+  def head_position_list
+    "#{'Coach' if head?}#{', ' if (head? && (trainer? || manager? ))}#{'Trainer' if trainer?}#{', ' if (manager? && trainer?)}#{'Manager' if manager?}"
+  end
+  
 end
