@@ -34,7 +34,7 @@
 				<div class="panel box-shadow-ccc">
 					<div class="panel-body padding-40">
 
-						<%= form_for @new_user, url: create_roster_spot_team_path do |f| %>
+						<%= form_for @new_user, url: create_roster_spot_team_path, html: {id: "roster-form"} do |f| %>
 
 							<div class="row">
 								<div class="col-md-4">
@@ -43,7 +43,7 @@
 										<div class="col-md-12">
 											<div class="inputer">
 												<div class="input-wrapper">
-													<%= text_field_tag :first_name, "", type: "text", class: "form-control", placeholder: "" %>
+													<%= text_field_tag :first_name, "", type: "text", class: "form-control", placeholder: "", name: "first_name" %>
 												</div>
 											</div>
 										</div><!--.col-md-9-->
@@ -56,7 +56,7 @@
 										<div class="col-md-12">
 											<div class="inputer">
 												<div class="input-wrapper">
-													<%= text_field_tag :last_name,"", type: "text", class: "form-control", placeholder: "" %>
+													<%= text_field_tag :last_name,"", type: "text", class: "form-control", placeholder: "", name: "last_name" %>
 												</div>
 											</div>
 										</div><!--.col-md-9-->
@@ -68,7 +68,7 @@
 										<div class="col-md-12">
 											<div class="inputer">
 												<div class="input-wrapper">
-													<%= text_field_tag :participant_classification,"" , placeholder: "", type: "text", class: "form-control"%>
+													<%= text_field_tag :participant_classification,"" , placeholder: "", type: "text", class: "form-control", name: "classification" %>
 												</div>
 											</div>
 										</div><!--.col-md-9-->
@@ -84,7 +84,7 @@
 											<div class="inputer">
 												<div class="input-wrapper">
 													<%#= f.collection_select :position_ids, Position.all, :id, :position, {:selected => nil}, {  :multiple => true, :style => "width:100%", :placeholder => "Add Positions", class: "form-control"  } %>
-													<%= select_tag :position_ids, options_for_select(Position.pluck(:position, :id)), class: "form-control", multiple: true %>
+													<%= select_tag :position_ids, options_for_select(Position.pluck(:position, :id)), class: "form-control", multiple: true, name: "position" %>
 												</div>
 											</div>
 										</div><!--.col-md-9-->
@@ -113,14 +113,14 @@
 												<%= hidden_field_tag :team_id,"", value: @team.id %>
 
 												<div class="checkboxer form-inline mb5">
-							                      	<%= check_box_tag :participant, "",false, id: "participant" %>
+							                      	<%= check_box_tag :participant, "",false, id: "participant", name: "selection[]" %>
 							                      	<label for="participant">
 							                      		Athlete?
 							                      	</label>
 							                    </div>
 												
 												<div class="checkboxer form-inline mb5">
-							                      	<%= check_box_tag :head, "",false, id: "head"  %>
+							                      	<%= check_box_tag :head, "",false, id: "head", name: "selection[]" %>
 							                      	<label for="head">Coach?
 							                      	</label>
 							                    </div>

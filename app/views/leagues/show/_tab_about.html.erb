@@ -37,14 +37,14 @@
 									<p class="semi-bold small text-muted no-margin fs_14">
 										<span class="inline">
 											<i class="ion-ios-telephone fs_16 text-primary mr5"></i>
-											410-887-4554
+											<%= @league.mobile_phone_number %>
 										</span>
 
 										<span class="inline mr10 ml10 text-muted">|</span>
 
 										<span class="inline">
 											<i class="ion-monitor fs_16 text-primary mr5"></i>
-											<a href="#">Website</a>
+											<%= link_to "Website", "#{@league.website}" %>
 										</span>
 
 										<span class="inline mr10 ml10 text-muted">|</span>
@@ -56,7 +56,7 @@
 									</p>
 										
 									<p class="fs_14 lh_18 text-muted mb20 mt10">
-										Baltimore County Public Schools is the school district in charge of all public schools in Baltimore County, Maryland, United States. The nation's 18th largest school system as of 2008,[1] it is managed by the Board of Education, headquartered in Towson. The Superintendent is Dr. S. Dallas Dance.
+										<%= @league.description %>
 									</p>
 								</div>
 								<hr class="light mt15 mb15"/>
@@ -65,7 +65,7 @@
 										<a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a> 
 									</p>
 									<p class="no-margin fs_14 text-muted">
-										<i class="ion-location"></i> 6901 Charles Street, Towson, Maryland 21204
+										<i class="ion-location"></i> <%= @league.address %>
 									</p>
 									<hr class="light mt10"/>
 									<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
@@ -78,6 +78,7 @@
 								<div class="card-body pr40">
 									<ul class="list-material borderless">
 										
+									<% @league.schools.each do |school| %>	
 										<li class="has-action-left">
 											<a href="#" class="visible">
 												<div class="pull-right pt20">
@@ -88,75 +89,25 @@
 													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
 												</div>
 												<div class="list-content">
-													<span class="title">Catonsville Center for Alternative Studies</span>
+													<span class="title"><%= school.name %></span>
 													<span class="text-muted fs_11 inline mr10">
 														<i class="ion-ios-telephone text-primary mr5"></i>
-														(240) 555-5555
+														<%= school.phone_number %>
 													</span>
 													<span class="text-muted fs_11 inline mr10">
 														<i class="ion-email text-primary mr5"></i>
-														Email
+														<%#= mail_to school.email, "Email" %>
 													</span>
 													<span class="text-muted fs_11 inline mr10">
 														<i class="ion-android-desktop text-primary mr5"></i>
-														Website
+														<%#= link_to "Website", "#{school.website}" %>
 													</span>
 												</div>
 
 											</a>
 										</li>
+										<% end %>
 
-										<li class="divider with-border no-padding no-margin">
-										</li>
-
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-												</div>
-												
-												<div class="list-content">
-													<span class="title">Catonsville High</span>
-													<span class="text-muted fs_11 inline mr10">
-														<i class="ion-ios-telephone text-primary mr5"></i>
-														(240) 555-5555
-													</span>
-													<span class="text-muted fs_11 inline mr10">
-														<i class="ion-email text-primary mr5"></i>
-														Email
-													</span>
-													<span class="text-muted fs_11 inline mr10">
-														<i class="ion-android-desktop text-primary mr5"></i>
-														Website
-													</span>
-												</div>
-											</a>
-										</li>
-										<li class="divider with-border no-padding no-margin">
-										</li>
-
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-												</div>
-												<div class="list-content">
-													<span class="title">Chesapeake High</span>
-													<span class="text-muted fs_11 inline mr10">
-														<i class="ion-ios-telephone text-primary mr5"></i>
-														(240) 555-5555
-													</span>
-													<span class="text-muted fs_11 inline mr10">
-														<i class="ion-email text-primary mr5"></i>
-														Email
-													</span>
-													<span class="text-muted fs_11 inline mr10">
-														<i class="ion-android-desktop text-primary mr5"></i>
-														Website
-													</span>
-												</div>
-											</a>
-										</li>
 									</ul>
 								</div><!--.card-body-->
 									
@@ -166,7 +117,7 @@
 										<p class="author">
 											<a href="#">
 											<i class="ion-trophy mr5"></i>
-											Athletic Achievments</a> 
+											Athletic Achievements</a> 
 										</p>
 									</div>
 									<div class="card-body pl40 pr40">
@@ -219,24 +170,46 @@
 									<%#= @user.profile.favorite_pro_athlete %>	
 								</div><!--.card-body-->
 								<div class="card-footer mt20 pl40 pr40">
+									<% if @league.social_media_present? %>
 									<h6 class="upper text-muted bold"><small>social profiles</small></h6>
-									<p>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-facebook"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-linkedin"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-youtube"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-twitter"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-instagram"></i>
-										</a>
+									  <% @league.facebook.present? %>	
+									    <% if @league.facebook.present? %>	
+											<%=  link_to @league.facebook, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+												<i class="ion-social-facebook"></i>
+											<% end %>
+										<% end %>
+				
+										<% if @league.linkedin.present? %>	
+											<%=  link_to @league.linkedin, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+												<i class="ion-social-linkedin"></i>
+											<% end %>
+										<% end %>
+							
+							            <% if @league.youtube.present? %>
+											<%=  link_to @league.youtube, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+												<i class="ion-social-youtube"></i>
+											<% end %>
+										<% end %>
+							
+										<% if @league.twitter.present? %>
+											<%=  link_to @league.twitter, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+												<i class="ion-social-twitter"></i>
+											<% end %>
+										<% end %>
+							
+										<% if @league.instagram.present? %>
+											<%=  link_to @league.instagram, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+												<i class="ion-social-instagram"></i>
+											<% end %>
+										<% end %>
+							
+										<% if @league.pinterest.present? %>
+											<%=  link_to @league.pinterest, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+												<i class="ion-social-pinterest"></i>
+											<% end %>
+										<% end %>
 									</p>
+									<% end  %>
 								</div><!--.card-footer-->
 							</div><!--.card-->
 						</div><!--.col-md-6-->
@@ -255,63 +228,19 @@
 									</div><!--.card-heading-->
 									<div class="card-body">
 										<ul class="users expanded">
+											<% @league.athletes.each do |user| %>
 											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+													<%= image_tag user.avatar %>
 												</a>
 											</li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+											<% end %>
+											
 										</ul>
 									</div><!--.card-body-->
 									<div class="card-footer">
 										<ul>
-											<li><span class="mr5 fs_14">124 Athletes</span></li>
+											<li><span class="mr5 fs_14"><%= pluralize @league.athletes.count, "Athlete" %></span></li>
 											<li><a href="#" class="fs_14">View All</a></li>
 										</ul>
 									</div><!--.card-footer-->
@@ -332,63 +261,18 @@
 									</div><!--.card-heading-->
 									<div class="card-body">
 										<ul class="users expanded">
+											<%# @league.coaches.each do |user| %>
 											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%#= user.full_name %>">
+													<%#= image_tag user.avatar %>
 												</a>
 											</li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+											<%# end %>
 										</ul>
 									</div><!--.card-body-->
 									<div class="card-footer">
 										<ul>
-											<li><span class="mr5 fs_14">54 Coaches</span></li>
+											<li><span class="mr5 fs_14"><%#= pluralize @league.coaches.count, "Coach" %></span></li>
 											<li><a href="#" class="fs_14">View All</a></li>
 										</ul>
 									</div><!--.card-footer-->

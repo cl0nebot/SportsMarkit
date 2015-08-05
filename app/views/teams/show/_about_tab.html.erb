@@ -266,63 +266,18 @@
 									</div><!--.card-heading-->
 									<div class="card-body">
 										<ul class="users expanded">
+											<% @team.people.each do |rel|%>
 											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= rel.user.full_name %>">
+													<%= image_tag rel.user.avatar %>
 												</a>
 											</li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+											<% end %>
 										</ul>
 									</div><!--.card-body-->
 									<div class="card-footer">
 										<ul>
-											<li><span class="mr5 fs_14">124 Student-Athletes</span></li>
+											<li><span class="mr5 fs_14"><%= pluralize @team.people.count, "Person" %></span></li>
 											<li><a href="#" class="fs_14">View All</a></li>
 										</ul>
 									</div><!--.card-footer-->
@@ -347,6 +302,7 @@
 									</div><!--.card-heading-->
 									<div class="card-body">
 										<ul class="list-material borderless">
+											<% @members.each do |member| %>
 											<li class="has-action-left">
 												<a href="#" class="visible">
 													<div class="pull-right pr20">
@@ -359,89 +315,27 @@
 														<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
 													</div>
 													<div class="list-content">
-														<span class="title">David Gibson</span>
-														<span class="fs_11 text-muted">Junior, Center</span>
+													
+														<span class="title"><% if member.class.to_s == "Relationship" %>
+														  <%= member.user.try(:full_name) %>
+														<% else %>
+														  <%= member.first_name  %> <%= member.last_name %>
+														<% end %></span>
+														<span class="fs_11 text-muted"><%= member.participant_classification.capitalize %><%= "#{', ' if (member.participant_classification.present? && member.position_list.present?) }"%> <%= member.position_list %></span>
 													</div>
 
 												</a>
 											</li>
+											
 											<li class="divider with-border no-padding no-margin">
 											</li>
-											<li class="has-action-left">
-												<a href="#" class="visible">
-													<div class="pull-right pr20">
-														<span class="lh_20 pull-right h3 inline">
-															<sup class="fs_18">#</sup>1
-														</span>
-													</div>
-													<div class="list-action-left">
-														<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-													</div>
-													<div class="list-content">
-														<span class="title">Thad Payton</span>
-														<span class="fs_11 text-muted">Sophomore, Shooting Guard</span>
-													</div>
-												</a>
-											</li>
-											<li class="divider with-border no-padding no-margin">
-											</li>
-											<li class="has-action-left">
-												<a href="#" class="visible">
-													<div class="pull-right pr20">
-														<span class="lh_20 pull-right h3 inline">
-															<sup class="fs_18">#</sup>4</span>
-													</div>
-													<div class="list-action-left">
-														<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-													</div>
-													<div class="list-content">
-														<span class="title">Cordis Stanfield</span>
-														<span class="fs_11 text-muted">Senior, Point Guard</span>
-													</div>
-												</a>
-											</li>
-											<li class="divider with-border no-padding no-margin">
-											</li>
-											<li class="has-action-left">
-												<a href="#" class="visible">
-													<div class="pull-right pr20">
-														<span class="lh_20 pull-right h3 inline">
-															<sup class="fs_18">#</sup>24
-														</span>
-													</div>
-													<div class="list-action-left">
-														<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-													</div>
-													<div class="list-content">
-														<span class="title">Maxime Payne</span>
-														<span class="fs_11 text-muted">Junior, Foward</span>
-													</div>
-												</a>
-											</li>
-											<li class="divider with-border no-padding no-margin">
-											</li>
-											<li class="has-action-left">
-												<a href="#" class="visible">
-													<div class="pull-right pr20">
-														<span class="lh_20 pull-right h3 inline">
-															<sup class="fs_18">#</sup>33
-														</span>
-													</div>
-													<div class="list-action-left">
-														<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-													</div>
-													<div class="list-content">
-														<span class="title">Jason Mitchell</span>
-														<span class="fs_11 text-muted">Freshman, Guard</span>
-													</div>
-												</a>
-											</li>
+											<% end %>
 										</ul>
 									</div><!--.card-body-->
 									<hr class="no-margin"/>
 									<div class="card-footer">
 										<ul>
-											<li class="fs_14"><span class="mr5">16 Players</span></li>
+											<li class="fs_14"><span class="mr5"><%= pluralize @members.count, "Player" %> Players</span></li>
 											<li><a href="#" class="fs_14">View Complete Roster</a></li>
 										</ul>
 									</div><!--.card-footer-->
@@ -462,46 +356,15 @@
 									</div><!--.card-heading-->
 									<div class="card-body pl40">
 										<div class="timeline single">
-											<div class="frame">
-												<div class="timeline-badge">
-													<i class="ion-android-calendar"></i>
-												</div><!--.timeline-badge-->
-												<span class="timeline-date bold">Fri, Jul 30th, 2015</span>
-												<div class="timeline-content">
-													<h5  class="semi-bold no-margin">Lacrosse Practice</h5>
-													<p class="fs_12 lh_16 mb5 mt5 text-muted">"Meet on the field near the locker rooms. Remember to bring your pads and be warmed up and ready to go."</p>
-													<p class="fs_11 text-muted mb0">
-														<i class="ion-checkmark-circled text-primary mr5"></i>18 People Attending</p>
-													<p class="fs_11 text-muted">
-														<i class="ion-map text-primary mr5"></i> Woodrow Willson High School Baskebtall Gym, Upper Marlboro, MD
-													</p>
-												</div><!--.timeline-content-->
-											</div><!--.frame-->
-											<div class="frame">
-												<div class="timeline-badge">
-													<i class="ion-android-calendar"></i>
-												</div><!--.timeline-badge-->
-												<span class="timeline-date bold">Wed, Aug 4th, 2015</span>
-												<div class="timeline-content">
-													<h5  class="semi-bold no-margin">Basketball Practice</h5>
-													<p class="fs_12 lh_16 mb5 text-muted">
-														"Be center court ready to got at 5pm"
-													</p>
-													<p class="fs_11 text-muted mb0">
-														<i class="ion-checkmark-circled text-primary mr5"></i>18 People Attending</p>
-													<p class="fs_11 text-muted">
-														<i class="ion-map text-primary mr5"></i> Woodrow Willson High School Baskebtall Gym, Upper Marlboro, MD
-													</p>
-												</div><!--.timeline-content-->
-											</div><!--.frame-->
+											<%= render 'shared/show_view_events', object: @team %>
 										</div>
 									</div>
 									<hr class="no-margin"/>
 									
 									<div class="card-footer">
 										<ul>
-											<li class="fs_14"><span class="mr5">7 Upcoming Events</span></li>
-											<li><a href="#" class="fs_14">View All Events</a></li>
+											<li class="fs_14"><span class="mr5"><%= pluralize @team.upcoming_events.count, "Upcoming Event" %> </span></li>
+											<li><%= link_to "View All Events", "/teams/#{@team.slug}/events", class: "fs_14", disabled: true %></li>
 										</ul>
 									</div><!--.card-footer-->
 								</div><!--.card-->
