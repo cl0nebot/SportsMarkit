@@ -39,6 +39,29 @@ class League < ActiveRecord::Base
     League.pluck(:name)
   end
   
+  def schools
+    school_ids = teams.pluck(:school_id).compact.uniq
+    School.where(id: school_ids)
+  end
+  
+  def athletes
+    array = []
+    teams.each do |team|
+      array << team.accepted_athletes.pluck(:id)
+    end
+    array.uniq
+    User.where(id: array)
+  end
+  
+  def coaches
+    array = []
+    teams.each do |team|
+      array << team.accepted_coaches.pluck(:id)
+    end
+    array.uniq
+    User.where(id: array)
+  end
+  
   def upcoming_events
     team_ids = TeamLeague.where(league_id: id).pluck(:team_id)
     Event.where(eventable_type: "Team", eventable_id: team_ids).where('ends_at >= ?', Time.now)
@@ -59,4 +82,36 @@ class League < ActiveRecord::Base
       "http://www.hsph.harvard.edu/niehs/wp-content/themes/hsph/images/placeholder.jpg"
     end
   end
+  
+  def city_and_state
+    if city.present? && state.present?
+      "#{city}, #{state}"
+    elsif state.present? && !city.present?
+      "#{state}"
+    else
+      ""
+    end
+  end
+  
+  def zip_and_ext
+    if !zip.present?
+      ""
+    elsif zip.present? && zip_ext.present?
+      "#{zip}-#{zip_ext}"
+    elsif !zip_ext.present?
+      "#{zip}"
+    end
+  end
+  
+  def address
+   address = "#{address_1}#{", " if address_2.present? }#{address_2 if address_2.present?}#{"," if (city_and_state.present? && address_1.present?) } #{city_and_state if city_and_state.present?} #{zip_and_ext}"
+   address.strip
+  end
+  
+  def social_media_present?
+    [facebook.present? , linkedin.present? ,  youtube.present?, twitter.present?, instagram.present?, pinterest.present?].include? true
+  end
+  
+  
 end
+
