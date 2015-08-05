@@ -403,6 +403,10 @@ class User < ActiveRecord::Base
   def city_state
     profile.location_description
   end
+  
+  def social_media_present?
+    [profile.facebook.present? , profile.linkedin.present? , profile.youtube.present?, profile.twitter.present?, profile.instagram.present?, profile.pinterest.present?, profile.foursquare.present?].include? true
+  end
 
   
   
