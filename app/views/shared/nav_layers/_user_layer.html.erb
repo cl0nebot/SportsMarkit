@@ -1,29 +1,35 @@
 <script src="//js.pusher.com/2.2/pusher.min.js"></script>
 <script>
   var pusher = new Pusher('<%=ENV["PUSHER_KEY"]%>'); // uses your APP KEY
-  var channel = pusher.subscribe("chat-<%= current_user.chatroom %>");
   var user_id = <%=current_user.id%>;
-  channel.bind('message-push', function (data) {
-    // $("#message-<%#= @team.last_chat_stream_message_id %>").empty();
-    // 	$("#message-<%#= @team.last_chat_stream_message_id %>").append("<%#= j render 'message', message: Message.where(chatroom_id: @team.id).last.beginning_of_stream %>")
-    if (data.user_id == user_id) {
-      data.current_user = true;
-    }
-    else{
-      data.current_user = false;
-    }
-    if (data.user_id != $('.message-wrap:last').data('id')){
-      data.begin_stream = true;
-    }else{
-      data.begin_stream = false;
-    }
-    $("#messages-for-chat").append(JST['chat/message'](data));
-    $('#messages-for-chat').scrollTop($('#messages-for-chat')[0].scrollHeight);
-    $('#chat-message-form')[0].reset()
-  });
   // $('#chat-message-form')[0].reset()
 
 </script>
+
+<% current_user.relationships.each do |rel| %>
+  <script>
+    pusher.subscribe("chat-<%= rel.team_id %>").bind('message-push', function (data) {
+      // $("#message-<%#= @team.last_chat_stream_message_id %>").empty();
+      // 	$("#message-<%#= @team.last_chat_stream_message_id %>").append("<%#= j render 'message', message: Message.where(chatroom_id: @team.id).last.beginning_of_stream %>")
+      if ($("#messages-for-chat").data('room') != <%= rel.team_id %>){return false}
+
+      if (data.user_id == user_id) {
+        data.current_user = true;
+      }
+      else{
+        data.current_user = false;
+      }
+      if (data.user_id != $('.message-wrap:last').data('id')){
+        data.begin_stream = true;
+      }else{
+        data.begin_stream = false;
+      }
+      $("#messages-for-chat").append(JST['chat/message'](data));
+      $('#messages-for-chat').scrollTop($('#messages-for-chat')[0].scrollHeight);
+      $('#chat-message-form')[0].reset()
+    });
+  </script>
+<% end %>
 
 <div id="pusher">
 
@@ -70,7 +76,7 @@
   <div class="col-md-8">
     <div class="message-send-container" id="scroll">
 
-      <div class="messages" id="messages-for-chat">
+      <div class="messages" id="messages-for-chat" data-room="<%=current_user.chatroom%>">
         <%= render 'shared/nav_layers/messages', messages: Message.where(chatroom_id: current_user.chatroom) %>
       </div>
       <!--.messages-->
