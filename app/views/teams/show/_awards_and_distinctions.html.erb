@@ -1,0 +1,76 @@
+                                <hr class="light mt15 mb15"/>
+								<div class="card-body pl40 pr40">
+									<h6 class="upper text-muted bold no-margin">
+										<small>
+											TEAM Record
+										</small>
+									</h6>
+									<!-- these must stay together as an interator -->
+									<div class="clearfix">
+										<table class="table table-hover bgcolor-white box-shadow-ccc">
+											<thead>
+												<th><span class="text-muted semi-bold fs_12">Opponent</span></th>
+												<th><span class="text-muted semi-bold fs_12">Score</span></th>
+												<th><span class="text-muted semi-bold fs_12">Outcome</span></th>
+											</thead>
+											<tbody>
+												<%# @user.measurables.each do |measurable| %>
+													<tr>
+														<td><span class="fs_12">vs. Dunbar High School</span></td>
+														<td><span class="fs_12">89 &#8212; 67</span></td>
+														<td><span class="fs_12">W</span></td>
+													</tr>
+												<%# end %>
+											</tbody>
+										</table>
+									</div>
+									
+									<br/>
+									<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Sports Team Awards & Distinctions</small></h6>
+									<!-- these must stay together as an interator -->
+									<div class="clearfix">
+										<table class="table table-hover bgcolor-white box-shadow-ccc">
+											<thead>
+												<th><span class="text-muted semi-bold fs_12">Team</span></th>
+												<th><span class="text-muted semi-bold fs_12">Award</span></th>
+												<th><span class="text-muted semi-bold fs_12">Year</span></th>
+											</thead>
+											<tbody>
+												<%# @user.measurables.each do |measurable| %>
+													<tr>
+														<td><span class="fs_12"><%#= measurable.measurable %></span></td>
+														<td><span class="fs_12"><%#= measurable.sport %></span></td>
+														<td><span class="fs_12"><%#= measurable.result %></span></td>
+													</tr>
+												<%# end %>
+											</tbody>
+										</table>
+									</div>
+									
+									<br/>
+									<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Individual Athlete Awards & Distinctions</small></h6>
+									<!-- these must stay together as an interator -->
+									<div class="clearfix">
+										<table class="table table-hover bgcolor-white box-shadow-ccc">
+											<thead>
+												<th><span class="text-muted semi-bold fs_12">Athlete</span></th>
+												<th><span class="text-muted semi-bold fs_12">Award</span></th>
+												<th><span class="text-muted semi-bold fs_12">Year</span></th>
+											</thead>
+											<tbody>
+												<%# @user.measurables.each do |measurable| %>
+													<tr>
+														<td><span class="fs_12"><%#= measurable.measurable %></span></td>
+														<td><span class="fs_12"><%#= measurable.sport %></span></td>
+														<td><span class="fs_12"><%#= measurable.result %></span></td>
+													</tr>
+												<%# end %>
+											</tbody>
+										</table>
+									</div>
+									<!-- <h6 class="upper text-muted bold no-margin"><small>My favorites</small></h6> -->
+									<%#= @user.profile.hudl %>
+									<%#= @user.profile.favorite_pro_team %>													
+									<%#= @user.profile.favorite_college_team %>
+									<%#= @user.profile.favorite_pro_athlete %>	
+								</div><!--.card-body-->

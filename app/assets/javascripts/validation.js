@@ -454,7 +454,7 @@ validateRosterForm = function(el){
         maxlength: 50
       },
 	  
-      "classification": {
+      "participant_classification": {
         required: true,
         minlength: 3,
         maxlength: 50
@@ -462,8 +462,6 @@ validateRosterForm = function(el){
 	  
       "position": {
         required: true,
-        minlength: 3,
-        maxlength: 50
       },
 	  // "selection[]": {
 	  //         required: true,

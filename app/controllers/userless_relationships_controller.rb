@@ -21,6 +21,7 @@ class UserlessRelationshipsController < ApplicationController
     trainer = params[:trainer].nil? ? false : true
     manager = params[:manager].nil? ? false : true
     position_ids = params[:position_ids]
+    jersey = params[:jersey_number]
     #if phone number present; remove userless, create real relationship and send invite
     
     if mobile_number.present?
@@ -29,7 +30,7 @@ class UserlessRelationshipsController < ApplicationController
         if user.relationships.exists?(team_id: @team.id)  # check to see if that user already has a relationship with team
           flash[:error] = "User is on roster already" # if so, don't submit.
         else
-          rel = Relationship.create(team_id: @team.id, user_id: user.id, accepted: true, head: head, participant: participant, mobile_phone_number: mobile_number, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager) # if user exists, but relationship does not, create relationship
+          rel = Relationship.create(team_id: @team.id, user_id: user.id, accepted: true, head: head, participant: participant, mobile_phone_number: mobile_number, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager, jersey_number: jersey) # if user exists, but relationship does not, create relationship
           position_ids.each do |i|
             Positioning.create(position_id: i, positionable_id: rel.id, positionable_type: "Relationship")
           end
@@ -39,7 +40,7 @@ class UserlessRelationshipsController < ApplicationController
         @new_user = User.new(first_name: fname, last_name: lname, mobile_phone_number: mobile_number, password: password)
         if @new_user.save
           Profile.create(user_id: @new_user.id, focus: [], specialties: [], skills: [], injuries: [], current_ailments: [])
-          @relationship = Relationship.create(user_id: @new_user.id, team_id: @team.id, accepted: true, mobile_phone_number: mobile_number, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager)
+          @relationship = Relationship.create(user_id: @new_user.id, team_id: @team.id, accepted: true, mobile_phone_number: mobile_number, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager, jersey_number: jersey)
           position_ids.each do |i|
             Positioning.create(position_id: i, positionable_id: @relationship.id, positionable_type: "Relationship")
           end
@@ -86,7 +87,7 @@ class UserlessRelationshipsController < ApplicationController
   protected
   
   def userless_relationship_params
-    params.require(:userless_relationship).permit({:position_ids => []}, :team_id, :first_name, :last_name, :head, :head_title, :participant, :participant_classification, :position, :mobile_phone_number, :age, :nickname, :admin, :trainer, :manager)  
+    params.require(:userless_relationship).permit({:position_ids => []}, :team_id, :first_name, :last_name, :head, :head_title, :jersey_number, :participant, :participant_classification, :position, :mobile_phone_number, :age, :nickname, :admin, :trainer, :manager)  
   end
    
   def send_mobile_invitation(user, password)

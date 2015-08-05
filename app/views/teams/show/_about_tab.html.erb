@@ -10,9 +10,9 @@
 							<div class="card tile card-post" style="border-top: 3px solid #ccc;">
 								<div class="card-heading pl40 pr40">
 									<% if current_user %>
-			              <% if current_user.admin? or current_user == @user %>
+			               <% if current_user.admin? or current_user.can_edit_team?(@team)%>
 			                <button href="" class="pull-right btn bt-xs btn-grey button-striped button-full-striped btn-ripple fs_14">
-			                  <a href="#">
+			                  <a href="<%= edit_team_path(@team)%>">
 	                        <span class="text-muted">
 	                        	<i class="ion-gear-b fs_16 mr5"></i> Edit Profile
 	                        </span>
@@ -20,6 +20,8 @@
 			                  </button>
 			              <% end %>
 			            <% end %>
+						
+				
             			<p class="author">
 										<a href="#">
 										<i class="ion-ionic mr5"></i>
@@ -121,86 +123,13 @@
 									<div class="clearfix">
 										<p class="semi-bold fs_12 text-muted no-margin">
 											<i class="ion-person-stalker fs_20 text-primary mr5"></i>
-											3 Coaches, 16 Players, 1 trainer, 5 Staff Members
+											<%= pluralize @team.accepted_coach_relationships.count, "Coach" %>, 
+											<%= pluralize @team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize @team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize @team.accepted_trainer_relationships.count, "Trainer" %>
 										</p>
 									</div>
 								</div>
-								<hr class="light mt15 mb15"/>
-								<div class="card-body pl40 pr40">
-									<h6 class="upper text-muted bold no-margin">
-										<small>
-											TEAM Record
-										</small>
-									</h6>
-									<!-- these must stay together as an interator -->
-									<div class="clearfix">
-										<table class="table table-hover bgcolor-white box-shadow-ccc">
-											<thead>
-												<th><span class="text-muted semi-bold fs_12">Opponent</span></th>
-												<th><span class="text-muted semi-bold fs_12">Score</span></th>
-												<th><span class="text-muted semi-bold fs_12">Outcome</span></th>
-											</thead>
-											<tbody>
-												<%# @user.measurables.each do |measurable| %>
-													<tr>
-														<td><span class="fs_12">vs. Dunbar High School</span></td>
-														<td><span class="fs_12">89 &#8212; 67</span></td>
-														<td><span class="fs_12">W</span></td>
-													</tr>
-												<%# end %>
-											</tbody>
-										</table>
-									</div>
-									
-									<br/>
-									<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Sports Team Awards & Distinctions</small></h6>
-									<!-- these must stay together as an interator -->
-									<div class="clearfix">
-										<table class="table table-hover bgcolor-white box-shadow-ccc">
-											<thead>
-												<th><span class="text-muted semi-bold fs_12">Team</span></th>
-												<th><span class="text-muted semi-bold fs_12">Award</span></th>
-												<th><span class="text-muted semi-bold fs_12">Year</span></th>
-											</thead>
-											<tbody>
-												<%# @user.measurables.each do |measurable| %>
-													<tr>
-														<td><span class="fs_12"><%#= measurable.measurable %></span></td>
-														<td><span class="fs_12"><%#= measurable.sport %></span></td>
-														<td><span class="fs_12"><%#= measurable.result %></span></td>
-													</tr>
-												<%# end %>
-											</tbody>
-										</table>
-									</div>
-									
-									<br/>
-									<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Individual Athlete Awards & Distinctions</small></h6>
-									<!-- these must stay together as an interator -->
-									<div class="clearfix">
-										<table class="table table-hover bgcolor-white box-shadow-ccc">
-											<thead>
-												<th><span class="text-muted semi-bold fs_12">Athlete</span></th>
-												<th><span class="text-muted semi-bold fs_12">Award</span></th>
-												<th><span class="text-muted semi-bold fs_12">Year</span></th>
-											</thead>
-											<tbody>
-												<%# @user.measurables.each do |measurable| %>
-													<tr>
-														<td><span class="fs_12"><%#= measurable.measurable %></span></td>
-														<td><span class="fs_12"><%#= measurable.sport %></span></td>
-														<td><span class="fs_12"><%#= measurable.result %></span></td>
-													</tr>
-												<%# end %>
-											</tbody>
-										</table>
-									</div>
-									<!-- <h6 class="upper text-muted bold no-margin"><small>My favorites</small></h6> -->
-									<%#= @user.profile.hudl %>
-									<%#= @user.profile.favorite_pro_team %>													
-									<%#= @user.profile.favorite_college_team %>
-									<%#= @user.profile.favorite_pro_athlete %>	
-								</div><!--.card-body-->
+								
+								<%#= render 'teams/show/awards_and_distinctions' %>
 								<div class="card-footer mt20 pl40 pr40">
 									<% if @team.social_media_present? %>
 									<h6 class="upper text-muted bold"><small>social profiles</small></h6>
@@ -278,7 +207,7 @@
 									<div class="card-footer">
 										<ul>
 											<li><span class="mr5 fs_14"><%= pluralize @team.people.count, "Person" %></span></li>
-											<li><a href="#" class="fs_14">View All</a></li>
+											<!-- <li><a href="#" class="fs_14">View All</a></li> -->
 										</ul>
 									</div><!--.card-footer-->
 								</div><!--.card-->
@@ -307,7 +236,12 @@
 												<a href="#" class="visible">
 													<div class="pull-right pr20">
 														<span class="lh_20 pull-right h3 inline">
-															<sup class="fs_18">#</sup>34
+															<% if member.jersey_number.present? %>
+															 <sup class="fs_18">#</sup><%= member.jersey_number %>
+															<% else %>
+															   TBD
+															<% end %>
+															
 														</span>
 													</div>
 
@@ -336,7 +270,7 @@
 									<div class="card-footer">
 										<ul>
 											<li class="fs_14"><span class="mr5"><%= pluralize @members.count, "Player" %> Players</span></li>
-											<li><a href="#" class="fs_14">View Complete Roster</a></li>
+											<li><a href="#roster" data-toggle="tab" class="fs_14">View Complete Roster</a></li>
 										</ul>
 									</div><!--.card-footer-->
 								</div><!--.card-->
@@ -364,7 +298,7 @@
 									<div class="card-footer">
 										<ul>
 											<li class="fs_14"><span class="mr5"><%= pluralize @team.upcoming_events.count, "Upcoming Event" %> </span></li>
-											<li><%= link_to "View All Events", "/teams/#{@team.slug}/events", class: "fs_14", disabled: true %></li>
+											<li><a href="#calendar-tab" data-toggle="tab" class="fs_14">View All Events</a></li>
 										</ul>
 									</div><!--.card-footer-->
 								</div><!--.card-->

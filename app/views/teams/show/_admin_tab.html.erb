@@ -68,7 +68,7 @@
 										<div class="col-md-12">
 											<div class="inputer">
 												<div class="input-wrapper">
-													<%= text_field_tag :participant_classification,"" , placeholder: "", type: "text", class: "form-control", name: "classification" %>
+													<%= text_field_tag :participant_classification,"" , placeholder: "", type: "text", class: "form-control", name: "participant_classification" %>
 												</div>
 											</div>
 										</div><!--.col-md-9-->
@@ -84,7 +84,7 @@
 											<div class="inputer">
 												<div class="input-wrapper">
 													<%#= f.collection_select :position_ids, Position.all, :id, :position, {:selected => nil}, {  :multiple => true, :style => "width:100%", :placeholder => "Add Positions", class: "form-control"  } %>
-													<%= select_tag :position_ids, options_for_select(Position.pluck(:position, :id)), class: "form-control", multiple: true, name: "position" %>
+													<%= select_tag :position_ids, options_for_select(Position.pluck(:position, :id)), class: "form-control", multiple: true, name: "position_ids[]" %>
 												</div>
 											</div>
 										</div><!--.col-md-9-->
@@ -102,6 +102,19 @@
 										</div><!--.col-md-9-->
 									</div><!--.row-->
 								</div>
+								
+								<div class="col-md-4">
+									<div class="row example-row">
+										<div class="col-md-12"><h4>Jersey Number</h4></div><!--.col-md-3-->
+										<div class="col-md-12">
+											<div class="inputer">
+												<div class="input-wrapper">
+													<%= text_field_tag :jersey_number,"" , placeholder: "", type: "text", class: "form-control", name: "jersey_number" %>
+												</div>
+											</div>
+										</div><!--.col-md-9-->
+									</div><!--.row-->
+								</div>
 							</div>
 
 							<div class="row">
@@ -113,14 +126,14 @@
 												<%= hidden_field_tag :team_id,"", value: @team.id %>
 
 												<div class="checkboxer form-inline mb5">
-							                      	<%= check_box_tag :participant, "",false, id: "participant", name: "selection[]" %>
+							                      	<%= check_box_tag :participant, "",false, id: "participant"%>
 							                      	<label for="participant">
 							                      		Athlete?
 							                      	</label>
 							                    </div>
 												
 												<div class="checkboxer form-inline mb5">
-							                      	<%= check_box_tag :head, "",false, id: "head", name: "selection[]" %>
+							                      	<%= check_box_tag :head, "",false, id: "head"%>
 							                      	<label for="head">Coach?
 							                      	</label>
 							                    </div>
