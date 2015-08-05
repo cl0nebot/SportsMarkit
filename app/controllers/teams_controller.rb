@@ -58,6 +58,7 @@ class TeamsController < ApplicationController
     manager = params[:manager].nil? ? false : true
     nickname = params[:nickname]
     position_ids = params[:position_ids]
+    jersey = params[:jersey_number]
     
     if mobile_number.present? # if a phone number is provided in the form
       if user_exists # check to see if a user exists on the site with that phone number
@@ -66,7 +67,7 @@ class TeamsController < ApplicationController
           flash[:error] = "User is on roster already" # if so, don't submit.
           redirect_to :back
         else
-          rel = Relationship.create(team_id: @team.id, user_id: user.id, accepted: true, head: head, participant: participant, mobile_phone_number: mobile_number, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager) # if user exists, but relationship does not, create relationship
+          rel = Relationship.create(team_id: @team.id, user_id: user.id, accepted: true, head: head, participant: participant, mobile_phone_number: mobile_number, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager, jersey_number: jersey) # if user exists, but relationship does not, create relationship
           position_ids.each do |i|
             Positioning.create(position_id: i, positionable_id: rel.id, positionable_type: "Relationship")
           end
@@ -76,7 +77,7 @@ class TeamsController < ApplicationController
         @new_user = User.new(first_name: fname, last_name: lname, mobile_phone_number: mobile_number, password: password)
         if @new_user.save
           Profile.create(user_id: @new_user.id, focus: [], specialties: [], skills: [], injuries: [], current_ailments: [])
-          @relationship = Relationship.create(user_id: @new_user.id, team_id: @team.id, accepted: true, mobile_phone_number: mobile_number, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager)
+          @relationship = Relationship.create(user_id: @new_user.id, team_id: @team.id, accepted: true, mobile_phone_number: mobile_number, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager, jersey_number: jersey)
           position_ids.each do |i|
             Positioning.create(position_id: i, positionable_id: @relationship.id, positionable_type: "Relationship")
           end
@@ -96,7 +97,7 @@ class TeamsController < ApplicationController
         end
       end
     else #mobile not present
-      urel = UserlessRelationship.create(first_name: fname, last_name: lname, team_id: @team.id, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager)
+      urel = UserlessRelationship.create(first_name: fname, last_name: lname, team_id: @team.id, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager, jersey_number: jersey)
       position_ids.each do |i|
         Positioning.create(position_id: i, positionable_id: urel.id, positionable_type: "UserlessRelationship")
       end
@@ -214,7 +215,7 @@ class TeamsController < ApplicationController
   end
   
   def user_params
-    params.require(:user).permit(:prefix, :first_name, :middle_name, :last_name, :suffix, :email, :username,  :password, :password_confirmation, :current_password, :mobile_phone_number, {relationships_attributes: [:id, :user_id, :team_id, :head, :head_title, :mobile_phone_number, :position, :participant, :participant_classification, :username ]})
+    params.require(:user).permit(:prefix, :first_name, :middle_name, :last_name, :suffix, :email, :username,  :password, :password_confirmation, :current_password, :mobile_phone_number, {relationships_attributes: [:id, :user_id, :team_id, :head, :head_title, :mobile_phone_number, :position, :jersey_number, :participant, :participant_classification, :username ]})
   end
   
   def send_mobile_invitation(user, password)

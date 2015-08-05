@@ -69,7 +69,7 @@ class RelationshipsController < ApplicationController
   protected
   
   def relationship_params
-    params.require(:relationship).permit({:position_ids => []}, :user_id, :team_id, :head, :head_title, :participant, :participant_classification, :position, :quote, :username, :mobile_phone_number, :age, :nickname, :admin, :accepted, :trainer, :manager)
+    params.require(:relationship).permit({:position_ids => []}, :user_id, :team_id, :head, :head_title, :participant, :jersey_number, :participant_classification, :position, :quote, :username, :mobile_phone_number, :age, :nickname, :admin, :accepted, :trainer, :manager)
   end
   
   def find_relationship
