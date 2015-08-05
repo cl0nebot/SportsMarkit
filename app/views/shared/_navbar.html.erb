@@ -12,11 +12,11 @@
 		</div><!--.hamburger-->
 	</div><!--.nav-menu-->
 
-	<!-- <div class="nav-search">
+	<div class="nav-search">
 		<span class="search"></span>
-	</div><!--.nav-search--> 
-    <%= link_to user_path(current_user) do %>
-	<div class="nav-user">
+	</div><!--.nav-search -->
+    <%#= link_to user_path(current_user) do %>
+		<div class="nav-user"> 
 		<div class="user">
 			<img src="<%= image_path(current_user.avatar)%>" alt="">
 			<span class="badge"></span>
@@ -26,7 +26,7 @@
 			<span class="line"></span>
 		</div><!--.cross-->
 	</div><!--.nav-user-->
-	<% end %>
+	<%# end %>
 	<!-- END OF ICONS -->
 
 	<div class="nav-bar-border"></div><!--.nav-bar-border-->
@@ -39,7 +39,7 @@
 		<div class="logo"></div><!--.logo-->
 	</div><!--.overlay-->
 
-	<div class="overlay-secondaryx"></div><!--.overlay-secondary-->
+	<div class="overlay-secondary"></div><!--.overlay-secondary-->
 	<!-- END OF OVERLAY HELPERS -->
 	
 	<% else %>
