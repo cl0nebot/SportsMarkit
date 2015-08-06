@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150805190524) do
+ActiveRecord::Schema.define(version: 20150806021547) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -134,7 +134,6 @@ ActiveRecord::Schema.define(version: 20150805190524) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "school_id"
-    t.float    "price",            limit: 24
     t.string   "facebook"
     t.string   "twitter"
     t.string   "linkedin"
@@ -142,6 +141,7 @@ ActiveRecord::Schema.define(version: 20150805190524) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
+    t.float    "price",            limit: 24
   end
 
   add_index "facilities", ["slug"], name: "index_facilities_on_slug", unique: true, using: :btree
@@ -192,7 +192,6 @@ ActiveRecord::Schema.define(version: 20150805190524) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "school_affiliated"
-    t.float    "price",               limit: 24
     t.string   "facebook"
     t.string   "twitter"
     t.string   "linkedin"
@@ -210,6 +209,7 @@ ActiveRecord::Schema.define(version: 20150805190524) do
     t.integer  "zip_ext"
     t.float    "latitude",            limit: 24
     t.float    "longitude",           limit: 24
+    t.float    "price",               limit: 24
   end
 
   add_index "leagues", ["name"], name: "index_leagues_on_name", using: :btree
@@ -408,6 +408,12 @@ ActiveRecord::Schema.define(version: 20150805190524) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
+    t.text     "description"
+    t.string   "colors"
+    t.string   "mascot"
+    t.string   "motto"
+    t.integer  "number_of_teams"
+    t.integer  "number_of_students"
   end
 
   add_index "schools", ["slug"], name: "index_schools_on_slug", unique: true, using: :btree
@@ -472,7 +478,6 @@ ActiveRecord::Schema.define(version: 20150805190524) do
     t.string   "website"
     t.string   "stripe_customer_id"
     t.boolean  "premium"
-    t.float    "price",              limit: 24
     t.string   "facebook"
     t.string   "twitter"
     t.string   "linkedin"
@@ -480,6 +485,7 @@ ActiveRecord::Schema.define(version: 20150805190524) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
+    t.float    "price",              limit: 24
   end
 
   create_table "tournaments", force: true do |t|

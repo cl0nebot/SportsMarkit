@@ -193,5 +193,9 @@ class School < ActiveRecord::Base
   def is_athletic_director?(user)
     AthleticDirector.where(school_id: id, user_id: user.id).present?
   end
+  
+  def social_media_present?
+    [facebook.present? , linkedin.present? ,  youtube.present?, twitter.present?, instagram.present?, pinterest.present?].include? true
+  end
     
 end
