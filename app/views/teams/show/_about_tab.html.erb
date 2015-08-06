@@ -97,7 +97,7 @@
 												</div>
 												<div class="list-content">
 													
-													<% if member.class.to_s == "Relationship" %>
+													<% if head.class.to_s == "Relationship" %>
 													  <span class="title"><%= head.user.full_name %></span>
 													<% else %>
 													  <span class="title"><%= head.first_name %> <%= head.last_name %></span>
