@@ -46,11 +46,11 @@ class League < ActiveRecord::Base
   
   def athletes
     array = []
-    teams.each do |team|
-      array << team.accepted_athletes.pluck(:id)
-    end
-    array.uniq
-    User.where(id: array)
+    # teams.each do |team|
+    #   array << team.accepted_athletes.pluck(:id)
+    # end
+    # array.uniq
+    # User.where(id: array)
   end
   
   def coaches
