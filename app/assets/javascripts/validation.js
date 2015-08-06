@@ -502,7 +502,7 @@ validateNewLeagueForm = function(el){
       "league[description]": {
         required: true,
         minlength: 3,
-        maxlength: 50
+		  maxlength: 1000
       },
     messages: {
       "league[name]": {
