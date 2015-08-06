@@ -96,8 +96,12 @@
 													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
 												</div>
 												<div class="list-content">
-													<span class="title"><%= head.first_name %> <%= head.last_name %></span>
-													<span class="fs_11 text-muted"><%= head.head_title %></span>
+													
+													<% if member.class.to_s == "Relationship" %>
+													  <span class="title"><%= head.user.full_name %></span>
+													<% else %>
+													  <span class="title"><%= head.first_name %> <%= head.last_name %></span>
+													<% end %>
 												</div>
 
 											</a>
