@@ -49,8 +49,7 @@ class League < ActiveRecord::Base
     teams.each do |team|
       array << team.accepted_athletes.pluck(:id)
     end
-    array.flatten.uniq
-    User.where(id: array)
+    User.where(id: array.flatten.uniq)
   end
   
   def coaches
@@ -58,8 +57,7 @@ class League < ActiveRecord::Base
     teams.each do |team|
       array << team.accepted_coaches.pluck(:id)
     end
-    array.uniq
-    User.where(id: array)
+    User.where(id: array.uniq)
   end
   
   def upcoming_events
