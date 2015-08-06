@@ -52,7 +52,7 @@
 
       <li class="has-action-left has-action-right"></li>
 
-      <% current_user.relationships.each do |rel| %>
+      <% current_user.relationships.where.not(id: nil).each do |rel| %>
           <li class="has-action-left has-action-right">
 
             <div class="list-action-left">
