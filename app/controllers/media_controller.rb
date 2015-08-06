@@ -17,7 +17,7 @@ class MediaController < ApplicationController
   end
 
   def create
-    @media = Media.new(media_params
+    @media = Media.new(media_params)
     @media.save
     @mediable = @media.mediable
   end
