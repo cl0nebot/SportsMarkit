@@ -45,11 +45,8 @@
     		<%= render "leagues/show/tab_about" %>
 
 				<!-- teams -->
-				<div id="teams" class="tab-pane">
-				  <% @teams.each do |team| %>
-				  	<%= team.name %>
-				  <% end %>	
-				</div>
+			<!-- teams -->
+			    <%= render "schools/show/teams_tab" %>
 				<!--#teams.tab-pane-->
 
 				<!-- people -->
