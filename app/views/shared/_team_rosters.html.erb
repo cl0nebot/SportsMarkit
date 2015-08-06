@@ -25,11 +25,11 @@
 						<div class="col-md-12">
 							<div class="mr10">
 								<% if current_user %>
-								  <% if current_user.can_edit_school?(@school) %>
+								  <%# if current_user.can_edit_school?(@school) %>
 										<%= link_to edit_team_path(team), class: "btn btn-primary btn-sm mr5" do %>
 											<i class="ion-gear-b"></i>
 										<% end %>
-								  <% end %>
+								  <%# end %>
 								<% end %>
 								
 								<%= link_to team_path(team), class: "btn btn-orange btn-sm" do %>
