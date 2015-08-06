@@ -32,6 +32,8 @@ class LeaguesController < ApplicationController
     @videos = @league.medias.where(category: "Video")
     @articles = @league.medias.where(category: "Article")
     @fans = @league.fans
+    @athletic_directors = @league.athletic_directors
+    @coaches = @league.coaches
   end 
   
   def edit

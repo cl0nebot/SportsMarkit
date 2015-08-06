@@ -57,7 +57,7 @@ class League < ActiveRecord::Base
     teams.each do |team|
       array << team.accepted_coaches.pluck(:id)
     end
-    User.where(id: array.uniq)
+    User.where(id: array.flatten.uniq)
   end
   
   def upcoming_events
@@ -111,7 +111,12 @@ class League < ActiveRecord::Base
   end
   
   def athletic_directors
-    
+    array =[]
+    school_ids = teams.pluck(:school_id).compact.uniq
+    School.where(id: school_ids).each do |school|
+      array << school.athletic_directors.pluck(:user_id)
+    end
+    User.where(id: array.flatten.uniq)
   end
   
   

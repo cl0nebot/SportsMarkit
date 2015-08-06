@@ -241,7 +241,7 @@
 									<div class="card-footer">
 										<ul>
 											<li><span class="mr5 fs_14"><%= pluralize @league.athletes.count, "Athlete" %></span></li>
-											<li><a href="#" class="fs_14">View All</a></li>
+											<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
 										</ul>
 									</div><!--.card-footer-->
 								</div><!--.card-->
@@ -261,19 +261,19 @@
 									</div><!--.card-heading-->
 									<div class="card-body">
 										<ul class="users expanded">
-											<%# @league.coaches.each do |user| %>
+											<% @coaches.each do |user| %>
 											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%#= user.full_name %>">
-													<%#= image_tag user.avatar %>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+													<%= image_tag user.avatar %>
 												</a>
 											</li>
-											<%# end %>
+											<% end %>
 										</ul>
 									</div><!--.card-body-->
 									<div class="card-footer">
 										<ul>
-											<li><span class="mr5 fs_14"><%#= pluralize @league.coaches.count, "Coach" %></span></li>
-											<li><a href="#" class="fs_14">View All</a></li>
+											<li><span class="mr5 fs_14"><%= pluralize @coaches.count, "Coach" %></span></li>
+											<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
 										</ul>
 									</div><!--.card-footer-->
 								</div><!--.card-->
@@ -293,64 +293,19 @@
 									</div><!--.card-heading-->
 									<div class="card-body">
 										<ul class="users expanded">
+											<% @athletic_directors.each do |user| %>
 											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+													<%= image_tag user.avatar %>
 												</a>
 											</li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+											<% end %>
 										</ul>
 									</div><!--.card-body-->
 									<div class="card-footer">
 										<ul>
-											<li><span class="mr5 fs_14">14 Athletic Administrators </span></li>
-											<li><a href="#" class="fs_14">View All</a></li>
+											<li><span class="mr5 fs_14"><%= pluralize @athletic_directors.count, "Athletic Administrator" %>  </span></li>
+											<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
 										</ul>
 									</div><!--.card-footer-->
 								</div><!--.card-->
