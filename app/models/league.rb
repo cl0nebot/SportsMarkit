@@ -112,6 +112,10 @@ class League < ActiveRecord::Base
     [facebook.present? , linkedin.present? ,  youtube.present?, twitter.present?, instagram.present?, pinterest.present?].include? true
   end
   
+  def athletic_directors
+    
+  end
+  
   
 end
 
