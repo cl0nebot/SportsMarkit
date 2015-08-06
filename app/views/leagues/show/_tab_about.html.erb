@@ -229,11 +229,7 @@
 									<div class="card-body">
 										<ul class="users expanded">
 											<% @league.athletes.each do |user| %>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
-													<%= image_tag user.avatar %>
-												</a>
-											</li>
+										
 											<% end %>
 											
 										</ul>
