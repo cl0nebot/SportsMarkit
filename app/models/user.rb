@@ -422,4 +422,5 @@ class User < ActiveRecord::Base
   def chatroom
     relationships.first.team.id
   end
+  
 end
