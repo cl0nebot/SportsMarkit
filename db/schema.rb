@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806021547) do
+ActiveRecord::Schema.define(version: 20150807033343) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -350,6 +350,7 @@ ActiveRecord::Schema.define(version: 20150806021547) do
     t.string   "hobbies"
     t.string   "gyms"
     t.string   "song"
+    t.text     "description"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree

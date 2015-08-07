@@ -35,7 +35,7 @@
 						</p>
 						<h5 class="semi-bold text-black mt15 mb5"><%= @user.classification_list %></h5> 
 						<p class="fs_14 lh_18 text-muted mb20 mt0">
-							I am a young athlete born and raised in the baltimore area with a focus on a D1 program and earning an athletic scholarship. I am a young athlete born and raised in the baltimore area with a focus on a D1 program and earning an athletic scholarship. I am a young athlete born and raised in the baltimore are.
+							<%= @user.profile.description %>
 						</p>
 					</div>
 					<hr class="light mt15 mb15"/>
@@ -93,6 +93,7 @@
 						<div class="clearfix">
 							<div class="pull-left">
 								<p>
+									<% if @user.profile.height_ft.to_i > 0 %>
 									<span class="h3 inline">
 										<strong><%= @user.profile.height_ft %></strong> 
 										<small class="small">ft.</small>
@@ -101,12 +102,15 @@
 										<strong><%= @user.profile.height_in %></strong> 
 										<small class="small"> in.</small>
 									</span>
+									<% end %>
 								</p>
 							</div>
 							<div class="pull-right">
 								<span class="h3 inline">
-									<strong><%= @user.profile.weight %></strong> 
+									<strong><%= @user.profile.weight %></strong>
+									<% if @user.profile.weight.present? %>
 									<small class="small"> lbs.</small>
+									<% end %>
 								</span>
 							</div>
 						</div>
@@ -129,10 +133,12 @@
 											<td><span class="fs_12"><%= measurable.measurable %></span></td>
 											<td><span class="fs_12"><%= measurable.sport %></span></td>
 											<td><span class="fs_12"><%= measurable.result %></span></td>
+											<% if false %>
 											<td><span class="fs_12">
 												<i class="ion-checkmark-circled fs_16 text-primary"></i>
 												</span>
 											</td>
+											<% end %>
 										</tr>
 									<% end %>
 								</tbody>
