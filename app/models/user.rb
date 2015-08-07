@@ -44,7 +44,8 @@ class User < ActiveRecord::Base
   has_many :medias, as: :mediable
 
   def self.user_types
-    ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director", "Tournament Director" ]  
+    ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director"] 
+    # ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director", "Tournament Director" ] 
     #["Athlete", "Coach", "Parent", "Athletic Director", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]  
     
   end
