@@ -34,6 +34,16 @@ class LeaguesController < ApplicationController
     @fans = @league.fans
     @athletic_directors = @league.athletic_directors
     @coaches = @league.coaches
+    @athletes = @league.athletes
+    @userless_athletes = @league.userless_athletes
+    @coaches = @league.coaches_for_league
+    @userless_coaches = @league.userless_coaches_for_league
+    @manager_and_trainers = @league.manager_and_trainers
+    @userless_managers_and_trainers = @league.userless_managers_and_trainers
+    @admins = @league.admins
+    @userless_admins = @league.userless_admins
+    @people = @league.people
+    @userless_people = @league.userless_people
   end 
   
   def edit
