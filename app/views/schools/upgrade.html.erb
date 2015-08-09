@@ -42,7 +42,7 @@
 									<label class="text-primary semi-bold text-center h4 MB0">
 		            		Premium High School Plan
 		            	</label>
-		            	<h1 class="text-center no-margin semi-bold">3,499 <small class="small h6">/year</small></h1>
+		            	<h1 class="text-center no-margin semi-bold"><%= number_to_currency(@school.price, precision: 0) %> <small class="small h6">/year</small></h1>
 									<%#= f.hidden_field :total_price, value: @cart.total_price(current_user)%>
 								</div><!--.col-md-9-->
 							</div><!--.row-->
