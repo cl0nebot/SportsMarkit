@@ -197,5 +197,9 @@ class School < ActiveRecord::Base
   def social_media_present?
     [facebook.present? , linkedin.present? ,  youtube.present?, twitter.present?, instagram.present?, pinterest.present?].include? true
   end
+  
+  def general_information_present?
+    [number_of_students.present? , motto.present? ,  colors.present?, number_of_teams.present?, mascot.present?].include? true
+  end
     
 end

@@ -73,29 +73,41 @@
 								</div>
 								<hr class="light mt15 mb15"/>
 								<div class="card-body pl40 pr40">
+									<% if @school.general_information_present? %>
 									<h6 class="upper text-muted bold mt0"><small>general information</small></h6>
 									<div class="clearfix">
+										<% if @school.number_of_students.present? %>
 										<p class="semi-bold fs_14 text-muted no-margin">
 											<i class="ion-university fs_20 text-primary mr5"></i>
 											Public School - <%= pluralize @school.number_of_students, "Student"  %>
 										</p>
+										<% end %>
+										<% if @school.motto.present? %>
 										<p class="semi-bold small fs_14 text-muted no-margin">
 											<i class="ion-quote fs_20 text-primary mr5"></i>
 											Motto - <%= @school.motto %>
 										</p>
+										<% end %>
+										<% if @school.colors.present? %>
 										<p class="semi-bold small fs_14 text-muted no-margin">
 											<i class="ion-speakerphone fs_20 text-primary mr5"></i>
 											<%= @school.colors %>
 										</p>
+										<% end %>
+										<% if @school.number_of_teams.present? %>
 										<p class="semi-bold small fs_14 text-muted no-margin">
 											<i class="ion-document-text fs_20 text-primary mr5"></i>
 											<%= pluralize @school.number_of_teams, "Sports Team"  %>
 										</p>
+										<% end %>
+										<% if @school.mascot.present? %>
 										<p class="semi-bold small fs_14 text-muted no-margin">
 											<i class="ion-flag fs_20 text-primary mr5"></i>
 											Mascot - <%= @school.mascot %>
 										</p>
+										<% end %>
 									</div>
+									<% end %>
 								</div>
 								<hr class="light mt15 mb15"/>
 									<div class="card-heading pl40 pr40">
