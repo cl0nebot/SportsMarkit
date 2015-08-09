@@ -2,7 +2,7 @@ class CalendarsController < ApplicationController
   before_filter :set_eventable
 
   def show
-    @all_events = @eventable.all_events
+    @all_events = @eventable.upcoming_events
   end
 
   def events
