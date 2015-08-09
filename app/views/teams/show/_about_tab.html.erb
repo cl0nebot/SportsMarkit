@@ -57,7 +57,11 @@
 
 										<span class="inline">
 											<i class="ion-email fs_14 text-primary mr5 v-align-middle"></i>
-											<%= @team.email %> Email
+											<% if @team.email.present? %>
+											<%= mail_to @team.email, "Email" %>
+											<% else %>
+											Email (to be provided)
+											<% end %>
 										</span>
 									</p>
 									<!-- 	
