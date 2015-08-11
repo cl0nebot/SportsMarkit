@@ -1,8 +1,15 @@
 <!-- following -->
 <div id="about" class="tab-pane active">
+<div class="page-header full-content parallax">
+					<%= render "facilities/show/header" %>
+					<%= render "facilities/show/tab_navigation" %>
+				</div><!--.page-header-->
 
+	
+
+				
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-4">
 			<div class="panel box-shadow-ccc">
 				<div class="panel-body transparent">
 				<div class="row margin-top-20">
@@ -69,6 +76,8 @@
 				</div><!--.row-->
 				</div><!--.panel-body-->
 			</div><!--.panel-->
+		</div>
+		<div class="col-md-8">
 			<div class="about-us">
 				<div id="gmaps_10" class="map">
 					<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>

@@ -13,28 +13,55 @@
 
 <div class="content">
 
-	<div class="page-header full-content parallax">
-		
-		<%= render "facilities/show/header" %>
-		<%= render "facilities/show/tab_navigation" %>
-	
+	<div class="page-header full-content bg-primary mb0" style="min-height: 141px;">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1 class="capitalize semi-bold">
+					<%= @facility.name %>
+					<small></small>
+				</h1>
+			</div><!--.col-->
+			<div class="col-sm-6">
+				<ol class="breadcrumb">
+					<li><a href="/"><i class="ion-home"></i></a></li>
+					<li><a href="<%= facilities_path %>">Facilities</a></li>
+					<li><a href="<%= facility_path %>"><%= @facility.name %></a></li>
+					<li><a href="#" class="active">Edit</a></li>
+				</ol>
+			</div><!--.col-->
+		</div><!--.row-->
+
+		<div class="header-tabs scrollable-tabs sticky">
+			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+				<li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">About</a></li>
+    				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
+    				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
+    				<!-- <li><a href="#amenities" data-toggle="tab" class="btn-ripple">Amenities</a></li> -->
+    				<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
+    				<!-- <li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li> -->
+          	<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
+      		  <!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
+            <li>
+            <% if current_user %>
+              <% if current_user.admin? or current_user.can_edit_facility?(@facility)%>
+                <button href="" class="ml10 mt15 btn btn-blue btn-ripple btn-xs">
+                  <%= link_to edit_facility_path(@facility) do %>
+                            <span class=" text-white">
+                              <span class="ion-gear-b mr5"></span> Edit</span>
+                          <% end %>
+                        </button>
+              <% end %>
+            <% end %>
+          </li>
+			</ul>
+		</div>
 	</div><!--.page-header-->
 
 	<!-- main content div -->
-  <div class="container">
-    <div class="user-profile">
-      <div class="row">
-        <%= image_tag("placeholders/users.jpg", class: "col-md-2 img-thumbnail img-responsive b-rad-6", style: "margin-top: -180px; z-index: 99999;  min-width; 195px; min-height: 195px;") %>
-        <div class="col-md-10">
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
+  	<div class="row">
 		<div class="col-md-12">
-			<div class="tab-content without-border  pt40">
-
+			<div class="tab-content without-border">
+				
 				<%= render "facilities/show/about" %>
 
 				<%= render "facilities/show/teams" %>

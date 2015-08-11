@@ -3,10 +3,15 @@
 <div class="bg-overlay"></div><!--.bg-overlay-->
 
 <div class="profile-info">
-	<div class="profile-text light capitalize">
-		
+	<div class="profile-photo">
+		<%= image_tag("placeholders/facility.png", height: "100", width: "100") %>
+	</div><!--.profile-photo-->
+	<div class="profile-text light">
+		Sports Facility
+		<span class="caption"><%= @facility.name %></span>
 	</div><!--.profile-text-->
 </div><!--.profile-info-->
+
 
 <div class="social-buttons">
 	<%= render 'shared/fan' %>

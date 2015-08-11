@@ -310,7 +310,7 @@ input.form-control {font-size: 26px; line-height: 30px;}
 .center {display: table; margin-right: auto; margin-left: auto;}
 
 .page-header.full-content.parallax {
-   height: 400px; overflow: hidden
+   height: 450px; overflow: hidden
 }
 
 .page-header.full-content.parallax .parallax-bg {
@@ -420,7 +420,7 @@ input.form-control {font-size: 26px; line-height: 30px;}
   width: 100%;
   height: 100%;
   z-index: 0;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .padding-bottom-0 {padding-bottom: 0 !important;}
@@ -515,7 +515,17 @@ input.form-control {font-size: 26px; line-height: 30px;}
 }
 
 
-.profile-photo {border: 4px solid #fff;}
+.profile-photo {border: 2px solid #fff;}
+
+.profile-info .profile-photo {
+    border-radius: 4%;
+}
+
+.profile-info .profile-photo img {
+    width: 100%;
+    height: auto;
+    border-radius: 4%;
+}
 
 /*Calendar*/
 .fc-day-grid-container.fc-scroller {height: 700px !important;}
@@ -600,10 +610,19 @@ border-right: 1px solid #ccc;
 padding: 0 10px;
 }
 
-<<<<<<< HEAD
 ul.li-with-divider li:last-child {
 border-right: none;
 }
-=======
 
->>>>>>> origin/master
+.cropit-image-zoom-input.crop-ui {
+  width: 20%; position: absolute; left: 25%; right: 25%;  bottom: 200px !important; z-index: 100;
+}
+
+.tab-top-margin {padding-top: 60px;}
+
+
+/*calendar*/
+
+.fc-basic-view .fc-body .fc-row {
+    min-height: 6em !important;
+}

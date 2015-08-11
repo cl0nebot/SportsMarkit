@@ -8,7 +8,7 @@
     
       <h6 class="semi-bold">Events</h6>
       <% eventable.all_events.pluck(:event_type).uniq.each do |e_type| %>
-        <label class="btn btn-alizarin btn-block fs_16 text-left">
+        <label class="btn btn-alizarin btn-block btn-white fs_16 text-left">
           <%= check_box_tag "q[event_type_in][]", e_type %>
           <span class="mrl5"><%= e_type %></span>
         </label>
@@ -18,9 +18,9 @@
 
      <h6 class="semi-bold">People</h6>
       <% eventable.all_events.includes(:user).map(&:user).uniq.compact.each do |user| %>
-         <label class="btn btn-alizarin btn-block fs_14 text-left capitalize">
+         <label class="btn btn-alizarin btn-block btn-white fs_14 text-left capitalize">
           <%= check_box_tag "q[user_id_in][]", user.id %>
-          <span class="mrl5"><%= creator_name(user) %></span>
+          <span class="ml5"><%= creator_name(user) %></span>
         </label>
       <% end %>
       <br>
