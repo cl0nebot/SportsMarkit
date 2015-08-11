@@ -2,7 +2,7 @@
 	<div class="col-md-6 col-lg-3 col-sm-12 element-item">
     <div class="card card-user card-clickable card-clickable-over-content">
       <div class="card-heading heading-full">
-        <div class="user-image sample-member9" style="background: url('<%= team.image %>');"></div>
+        <div class="user-image sample-member9" style="background: url('<%= team.image %>'); background-position: bottom;"></div>
 
         
         <div class="clickable-button">
@@ -14,7 +14,7 @@
       </div><!--.card-heading-->
 
       <div class="card-body">
-        <h5 class="card-title capitalize fs_20">
+        <h5 class="card-title capitalize semi-bold fs_16">
         	<a href="#"><%= link_to team.proper_name, team_path(team) %></a>
         </h5>
 
@@ -22,7 +22,7 @@
           <span class="text-muted">
             <%= team.sport %>
           </span>
-          <span class="text-muted"><%= team.city_state %></span>
+          <span class="text-muted"><i class="ion-location mr5"></i><%= team.city_state %></span>
           <!-- <span class="text-muted">[school name or Team Type]</span> -->
         </div>
       </div><!--.card-body-->

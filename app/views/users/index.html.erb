@@ -2,12 +2,12 @@
   <div class="page-header full-content bg-primary mb0">
     <div class="row">
       <div class="col-sm-6">
-        <h1>All Users <small><%= User.all.count%></small></h1>
+        <h1>Our Sports Community <small class="ml5"><%= User.all.count%> people</small></h1>
       </div><!--.col-->
       <div class="col-sm-6">
         <ol class="breadcrumb">
           <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="<%= users_path %>" class="active">all users</a></li>
+          <li><a href="<%= users_path %>" class="active">Our Community</a></li>
         </ol>
       </div><!--.col-->
     </div><!--.row-->
@@ -18,15 +18,24 @@
       <div clas="panel panel-default">
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-12">
               <div class="row">
-                <div class="col-md-4 text-center mt10">
+                <div class="col-md-12 text-center mt10">
                   <h4 class="semi-bold">
-                    <span class="ion-search text-primary h4 no-margin"></span>                   
-                    <span class="h5 upper bold ws1 ml10 no-margin">search all users</span>
+                    <span class="ion-search text-primary h3 no-margin"></span>                   
+                    <span class="h3 semi-bold ws1 ml10 no-margin">Search Our Sports Community</span>
+                    <p class="small h6">
+                      <ul class="inline-ul li-with-divider fs_14">
+                        <li>Parents</li>
+                        <li>Athletes</li>
+                        <li>Student-Athletes</li>
+                        <li>Coaches</li>
+                        <li>Athletic Directors</li>
+                        <li>Tournament Directors</li>
+                      </ul> 
                   </h4>
                 </div>
-                <div class="col-md-8 box-shadow-ccc"  style="background: #fff;">
+                <div class="col-md-6 col-md-offset-3 box-shadow-ccc"  style="background: #fff;">
                   <div class="padding-bottom-0">
                     <div class="inputer mt5 mb5 ml10">
                       <input type="text" class=" fs_20 quicksearch-users typeahead typeahead-users form-control" rows="1" placeholder="Enter user name...">
