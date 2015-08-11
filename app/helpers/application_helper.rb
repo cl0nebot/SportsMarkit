@@ -20,15 +20,21 @@ module ApplicationHelper
       when 8
         "#{object.strftime("%l:%M")}"
       when 9
-        "#{object.strftime("%B")}"
+        "#{object.strftime("%l:%M %P")}"
       when 10
-        "#{object.day}"
+        "#{object.strftime("%B")}"
       when 11
-        "#{object.year}"
+        "#{object.day}"
       when 12
+        "#{object.year}"
+      when 13
         "There aren't this many options, use a smaller number."
       end
     end
+  end
+  
+  def am_or_pm(object)
+    
   end
 
   def creator_name(user)

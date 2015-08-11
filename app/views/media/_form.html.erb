@@ -1,7 +1,7 @@
-<div id='media-<%= m.fake_id %>' style='margin-bottom: 20px; display: block; float: left; width: 100%;'>
+<div id='media-<%= m.fake_id %>' style='margin-bottom: 20px; display: block; float: left; width: 100%;' class='media-field'>
   <% url = m.persisted? ? user_medium_path(user_id: u.id, id: m.id) : user_media_path(user_id: u.id) %>
   <% method = m.persisted? ? :put : :post %>
-  <%= form_for m, remote: true, url: url, method: method do |f| %>
+  <%= form_for m, remote: true, url: url, method: method, html: {id: "add-media-form"} do |f| %>
     <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)%>
     <div class="col-md-12">
       
@@ -10,11 +10,11 @@
 
       <div class="">
         <div class="radioer form-inline">
-          <%= f.radio_button :category, 'Article', 'data-label'=>'article_label', type: "radio", id: "media_category_article" %>
+          <%= f.radio_button :category, 'Article', 'data-label'=>'article_label', type: "radio", id: "media_category_article", checked: (params[:object] == 'article' ? true : "" ) %>
           <label for="media_category_article">Article</label>
         </div>
         <div class="radioer form-inline">
-          <%= f.radio_button :category, 'Video', 'data-label'=>'video_label', type: "radio", id: "media_category_video"%>
+          <%= f.radio_button :category, 'Video', 'data-label'=>'video_label', type: "radio", id: "media_category_video", checked: (params[:object] == 'video' ? true : "" ) %>
           <label for="media_category_video">Video</label>
         </div>
       </div>
@@ -24,7 +24,7 @@
         <div class="col-md-12">
           <div class="inputer">
             <div class="input-wrapper">
-              <%= f.text_field :title, class: "form-control", placeholder: "", required: true %>
+              <%= f.text_field :title, class: "form-control media-title", placeholder: "", required: true %>
             </div>
           </div>
         </div><!--.col-md-9-->

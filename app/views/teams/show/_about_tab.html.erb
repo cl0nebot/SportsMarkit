@@ -10,9 +10,9 @@
 							<div class="card tile card-post" style="border-top: 3px solid #ccc;">
 								<div class="card-heading pl40 pr40">
 									<% if current_user %>
-			              <% if current_user.admin? or current_user == @user %>
+			               <% if current_user.admin? or current_user.can_edit_team?(@team)%>
 			                <button href="" class="pull-right btn bt-xs btn-grey button-striped button-full-striped btn-ripple fs_14">
-			                  <a href="#">
+			                  <a href="<%= edit_team_path(@team)%>">
 	                        <span class="text-muted">
 	                        	<i class="ion-gear-b fs_16 mr5"></i> Edit Profile
 	                        </span>
@@ -20,12 +20,16 @@
 			                  </button>
 			              <% end %>
 			            <% end %>
+						
+				
             			<p class="author">
 										<a href="#">
 										<i class="ion-ionic mr5"></i>
-										4 People Online</a> 
+										<%= pluralize @team.number_of_people_online, "Person" %> Online</a> 
 									</p>
-									<p class="fs_11 time">Last online - March 25, 2015 02:33p</p>
+									<% if @team.number_of_people_online > 0 %>
+									<p class="fs_11 time">Last activity: <%= format(@team.last_activity, 4) %>, <%= format(@team.last_activity, 9) %></p>
+									<% end %>
 								</div><!--.card-heading-->
 								<hr class="light mb10 mt0"/>
 								<div class="card-body pl40 pr40">
@@ -41,7 +45,7 @@
 									<p class="semi-bold small text-muted no-margin fs_12">
 										<span class="inline">
 											<i class="ion-ios-telephone fs_14 text-primary mr5"></i>
-											<%= @team.phone_number %> (240) 555-5555
+											<%= @team.phone_number %> 
 										</span>
 
 										<span class="inline mr10 ml10 text-muted">|</span>
@@ -55,7 +59,11 @@
 
 										<span class="inline">
 											<i class="ion-email fs_14 text-primary mr5 v-align-middle"></i>
-											<%= @team.email %> Email
+											<% if @team.email.present? %>
+											<%= mail_to @team.email, "Email" %>
+											<% else %>
+											Email (to be provided)
+											<% end %>
 										</span>
 									</p>
 									<!-- 	
@@ -72,95 +80,21 @@
 								<div class="card-body pr40">
 									<ul class="list-material borderless">
 										
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="pull-right pt20">
-													<span class="text-muted fs_11">
-														<i class="ion-ios-telephone text-primary mr5"></i>
-														<%= @team.phone_number %> (240) 555-5555
-													</span>
-													<span class="text-muted fs_11">
-														<i class="ion-email text-primary mr5"></i>
-														<%= @team.email %> coachgibson@randall.com
-													</span>
-												</div>
-
-												<div class="list-action-left">
-													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-												</div>
-												<div class="list-content">
-													<span class="title">Coach Gibson</span>
-													<span class="fs_11 text-muted">Head Coach</span>
-												</div>
-
-											</a>
-										</li>
-
-										<li class="divider with-border no-padding no-margin">
-										</li>
-
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="pull-right pt20">
-													<span class="text-muted fs_11">
-														<i class="ion-ios-telephone text-primary mr5"></i>
-														<%= @team.phone_number %> (240) 555-5555
-													</span>
-													<span class="text-muted fs_11">
-														<i class="ion-email text-primary mr5"></i>
-														<%= @team.email %> coachgibson@randall.com
-													</span>
-												</div>
-
-												<div class="list-action-left">
-													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-												</div>
-												
-												<div class="list-content">
-													<span class="title">Coach Payton</span>
-													<span class="fs_11 text-muted">Assistant Coach</span>
-												</div>
-											</a>
-										</li>
-										<li class="divider with-border no-padding no-margin">
-										</li>
-
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="pull-right pt20">
-													<span class="text-muted fs_11">
-														<i class="ion-ios-telephone text-primary mr5"></i>
-														<%= @team.phone_number %> (240) 555-5555
-													</span>
-													<span class="text-muted fs_11">
-														<i class="ion-email text-primary mr5"></i>
-														<%= @team.email %> coachgibson@randall.com
-													</span>
-												</div>
-
-												<div class="list-action-left">
-													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-												</div>
-												<div class="list-content">
-													<span class="title">Anisa Coakley</span>
-													<span class="fs_11 text-muted">Team Manager</span>
-												</div>
-											</a>
-										</li>
-
-										<li class="divider with-border no-padding no-margin">
-										</li>
+										<% @heads.each do |head| %>
+										
+										
+										
 										
 										<li class="has-action-left">
 											<a href="#" class="visible">
 												<div class="pull-right pt20">
 													<span class="text-muted fs_11">
 														<i class="ion-ios-telephone text-primary mr5"></i>
-														<%= @team.phone_number %> (240) 555-5555
+														<%= head.mobile_phone_number %> 
 													</span>
 													<span class="text-muted fs_11">
 														<i class="ion-email text-primary mr5"></i>
-														<%= @team.email %> coachgibson@randall.com
+														<%#= head.email %> 
 													</span>
 												</div>
 
@@ -168,37 +102,25 @@
 													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
 												</div>
 												<div class="list-content">
-													<span class="title">Khadijah Coakley</span>
-													<span class="fs_11 text-muted">Team Athletic Trainer</span>
+													
+													<% if head.class.to_s == "Relationship" %>
+													  <span class="title"><%= head.user.full_name %></span>
+													<% else %>
+													  <span class="title"><%= head.first_name %> <%= head.last_name %></span>
+													<% end %>
 												</div>
+
 											</a>
 										</li>
 
 										<li class="divider with-border no-padding no-margin">
 										</li>
+										<% end %>
 
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="pull-right pt20">
-													<span class="text-muted fs_11">
-														<i class="ion-ios-telephone text-primary mr5"></i>
-														<%= @team.phone_number %> (240) 555-5555
-													</span>
-													<span class="text-muted fs_11">
-														<i class="ion-email text-primary mr5"></i>
-														<%= @team.email %> coachgibson@randall.com
-													</span>
-												</div>
+			
 
-												<div class="list-action-left">
-													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-												</div>
-												<div class="list-content">
-													<span class="title">Coach Mitchell</span>
-													<span class="fs_11 text-muted">Strength & Conditioning Coach</span>
-												</div>
-											</a>
-										</li>
+					
+										
 
 									</ul>
 								</div><!--.card-body-->
@@ -211,108 +133,54 @@
 									<div class="clearfix">
 										<p class="semi-bold fs_12 text-muted no-margin">
 											<i class="ion-person-stalker fs_20 text-primary mr5"></i>
-											3 Coaches, 16 Players, 1 trainer, 5 Staff Members
+											<%= pluralize @team.accepted_coach_relationships.count, "Coach" %>, 
+											<%= pluralize @team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize @team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize @team.accepted_trainer_relationships.count, "Trainer" %>
 										</p>
 									</div>
 								</div>
-								<hr class="light mt15 mb15"/>
-								<div class="card-body pl40 pr40">
-									<h6 class="upper text-muted bold no-margin">
-										<small>
-											TEAM Record
-										</small>
-									</h6>
-									<!-- these must stay together as an interator -->
-									<div class="clearfix">
-										<table class="table table-hover bgcolor-white box-shadow-ccc">
-											<thead>
-												<th><span class="text-muted semi-bold fs_12">Opponent</span></th>
-												<th><span class="text-muted semi-bold fs_12">Score</span></th>
-												<th><span class="text-muted semi-bold fs_12">Outcome</span></th>
-											</thead>
-											<tbody>
-												<%# @user.measurables.each do |measurable| %>
-													<tr>
-														<td><span class="fs_12">vs. Dunbar High School</span></td>
-														<td><span class="fs_12">89 &#8212; 67</span></td>
-														<td><span class="fs_12">W</span></td>
-													</tr>
-												<%# end %>
-											</tbody>
-										</table>
-									</div>
-									
-									<br/>
-									<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Sports Team Awards & Distinctions</small></h6>
-									<!-- these must stay together as an interator -->
-									<div class="clearfix">
-										<table class="table table-hover bgcolor-white box-shadow-ccc">
-											<thead>
-												<th><span class="text-muted semi-bold fs_12">Team</span></th>
-												<th><span class="text-muted semi-bold fs_12">Award</span></th>
-												<th><span class="text-muted semi-bold fs_12">Year</span></th>
-											</thead>
-											<tbody>
-												<%# @user.measurables.each do |measurable| %>
-													<tr>
-														<td><span class="fs_12"><%#= measurable.measurable %></span></td>
-														<td><span class="fs_12"><%#= measurable.sport %></span></td>
-														<td><span class="fs_12"><%#= measurable.result %></span></td>
-													</tr>
-												<%# end %>
-											</tbody>
-										</table>
-									</div>
-									
-									<br/>
-									<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Individual Athlete Awards & Distinctions</small></h6>
-									<!-- these must stay together as an interator -->
-									<div class="clearfix">
-										<table class="table table-hover bgcolor-white box-shadow-ccc">
-											<thead>
-												<th><span class="text-muted semi-bold fs_12">Athlete</span></th>
-												<th><span class="text-muted semi-bold fs_12">Award</span></th>
-												<th><span class="text-muted semi-bold fs_12">Year</span></th>
-											</thead>
-											<tbody>
-												<%# @user.measurables.each do |measurable| %>
-													<tr>
-														<td><span class="fs_12"><%#= measurable.measurable %></span></td>
-														<td><span class="fs_12"><%#= measurable.sport %></span></td>
-														<td><span class="fs_12"><%#= measurable.result %></span></td>
-													</tr>
-												<%# end %>
-											</tbody>
-										</table>
-									</div>
-									<!-- <h6 class="upper text-muted bold no-margin"><small>My favorites</small></h6> -->
-									<%#= @user.profile.hudl %>
-									<%#= @user.profile.favorite_pro_team %>													
-									<%#= @user.profile.favorite_college_team %>
-									<%#= @user.profile.favorite_pro_athlete %>	
-								</div><!--.card-body-->
+								
+								<%#= render 'teams/show/awards_and_distinctions' %>
 								<div class="card-footer mt20 pl40 pr40">
+									<% if @team.social_media_present? %>
 									<h6 class="upper text-muted bold"><small>social profiles</small></h6>
-									<p>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-facebook"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-linkedin"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-youtube"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-twitter"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-instagram"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-pinterest"></i>
-										</a>
+  									  <% @team.facebook.present? %>	
+  									    <% if @team.facebook.present? %>	
+  											<%=  link_to @team.facebook, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+  												<i class="ion-social-facebook"></i>
+  											<% end %>
+  										<% end %>
+							
+  										<% if @team.linkedin.present? %>	
+  											<%=  link_to @team.linkedin, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+  												<i class="ion-social-linkedin"></i>
+  											<% end %>
+  										<% end %>
+										
+							            <% if @team.youtube.present? %>
+	  										<%=  link_to @team.youtube, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+	  											<i class="ion-social-youtube"></i>
+	  										<% end %>
+										<% end %>
+										
+										<% if @team.twitter.present? %>
+	  										<%=  link_to @team.twitter, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+	  											<i class="ion-social-twitter"></i>
+	  										<% end %>
+										<% end %>
+										
+										<% if @team.instagram.present? %>
+	  										<%=  link_to @team.instagram, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+	  											<i class="ion-social-instagram"></i>
+	  										<% end %>
+										<% end %>
+										
+										<% if @team.pinterest.present? %>
+	  										<%=  link_to @team.pinterest, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+	  											<i class="ion-social-pinterest"></i>
+	  										<% end %>
+										<% end %>
 									</p>
+									<% end  %>
 								</div><!--.card-footer-->
 							</div><!--.card-->
 						</div><!--.col-md-6-->
@@ -337,64 +205,19 @@
 									</div><!--.card-heading-->
 									<div class="card-body">
 										<ul class="users expanded">
+											<% @team.people.each do |rel|%>
 											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= rel.user.full_name %>">
+													<%= image_tag rel.user.avatar %>
 												</a>
 											</li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+											<% end %>
 										</ul>
 									</div><!--.card-body-->
 									<div class="card-footer">
 										<ul>
-											<li><span class="mr5 fs_14">124 Student-Athletes</span></li>
-											<li><a href="#" class="fs_14">View All</a></li>
+											<li><span class="mr5 fs_14"><%= pluralize @team.people.count, "Person" %></span></li>
+											<!-- <li><a href="#" class="fs_14">View All</a></li> -->
 										</ul>
 									</div><!--.card-footer-->
 								</div><!--.card-->
@@ -418,11 +241,17 @@
 									</div><!--.card-heading-->
 									<div class="card-body">
 										<ul class="list-material borderless">
+											<% @members.each do |member| %>
 											<li class="has-action-left">
 												<a href="#" class="visible">
 													<div class="pull-right pr20">
 														<span class="lh_20 pull-right h3 inline">
-															<sup class="fs_18">#</sup>34
+															<% if member.jersey_number.present? %>
+															 <sup class="fs_18">#</sup><%= member.jersey_number %>
+															<% else %>
+															   TBD
+															<% end %>
+															
 														</span>
 													</div>
 
@@ -430,90 +259,28 @@
 														<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
 													</div>
 													<div class="list-content">
-														<span class="title">David Gibson</span>
-														<span class="fs_11 text-muted">Junior, Center</span>
+													
+														<span class="title"><% if member.class.to_s == "Relationship" %>
+														  <%= member.user.try(:full_name) %>
+														<% else %>
+														  <%= member.first_name  %> <%= member.last_name %>
+														<% end %></span>
+														<span class="fs_11 text-muted"><%= member.participant_classification.capitalize %><%= "#{', ' if (member.participant_classification.present? && member.position_list.present?) }"%> <%= member.position_list %></span>
 													</div>
 
 												</a>
 											</li>
+											
 											<li class="divider with-border no-padding no-margin">
 											</li>
-											<li class="has-action-left">
-												<a href="#" class="visible">
-													<div class="pull-right pr20">
-														<span class="lh_20 pull-right h3 inline">
-															<sup class="fs_18">#</sup>1
-														</span>
-													</div>
-													<div class="list-action-left">
-														<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-													</div>
-													<div class="list-content">
-														<span class="title">Thad Payton</span>
-														<span class="fs_11 text-muted">Sophomore, Shooting Guard</span>
-													</div>
-												</a>
-											</li>
-											<li class="divider with-border no-padding no-margin">
-											</li>
-											<li class="has-action-left">
-												<a href="#" class="visible">
-													<div class="pull-right pr20">
-														<span class="lh_20 pull-right h3 inline">
-															<sup class="fs_18">#</sup>4</span>
-													</div>
-													<div class="list-action-left">
-														<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-													</div>
-													<div class="list-content">
-														<span class="title">Cordis Stanfield</span>
-														<span class="fs_11 text-muted">Senior, Point Guard</span>
-													</div>
-												</a>
-											</li>
-											<li class="divider with-border no-padding no-margin">
-											</li>
-											<li class="has-action-left">
-												<a href="#" class="visible">
-													<div class="pull-right pr20">
-														<span class="lh_20 pull-right h3 inline">
-															<sup class="fs_18">#</sup>24
-														</span>
-													</div>
-													<div class="list-action-left">
-														<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-													</div>
-													<div class="list-content">
-														<span class="title">Maxime Payne</span>
-														<span class="fs_11 text-muted">Junior, Foward</span>
-													</div>
-												</a>
-											</li>
-											<li class="divider with-border no-padding no-margin">
-											</li>
-											<li class="has-action-left">
-												<a href="#" class="visible">
-													<div class="pull-right pr20">
-														<span class="lh_20 pull-right h3 inline">
-															<sup class="fs_18">#</sup>33
-														</span>
-													</div>
-													<div class="list-action-left">
-														<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-													</div>
-													<div class="list-content">
-														<span class="title">Jason Mitchell</span>
-														<span class="fs_11 text-muted">Freshman, Guard</span>
-													</div>
-												</a>
-											</li>
+											<% end %>
 										</ul>
 									</div><!--.card-body-->
 									<hr class="no-margin"/>
 									<div class="card-footer">
 										<ul>
-											<li class="fs_14"><span class="mr5">16 Players</span></li>
-											<li><a href="#" class="fs_14">View Complete Roster</a></li>
+											<li class="fs_14"><span class="mr5"><%= pluralize @members.count, "Player" %> Players</span></li>
+											<li><a href="#roster" data-toggle="tab" class="fs_14">View Complete Roster</a></li>
 										</ul>
 									</div><!--.card-footer-->
 								</div><!--.card-->
@@ -533,46 +300,15 @@
 									</div><!--.card-heading-->
 									<div class="card-body pl40">
 										<div class="timeline single">
-											<div class="frame">
-												<div class="timeline-badge">
-													<i class="ion-android-calendar"></i>
-												</div><!--.timeline-badge-->
-												<span class="timeline-date bold">Fri, Jul 30th, 2015</span>
-												<div class="timeline-content">
-													<h5  class="semi-bold no-margin">Lacrosse Practice</h5>
-													<p class="fs_12 lh_16 mb5 mt5 text-muted">"Meet on the field near the locker rooms. Remember to bring your pads and be warmed up and ready to go."</p>
-													<p class="fs_11 text-muted mb0">
-														<i class="ion-checkmark-circled text-primary mr5"></i>18 People Attending</p>
-													<p class="fs_11 text-muted">
-														<i class="ion-map text-primary mr5"></i> Woodrow Willson High School Baskebtall Gym, Upper Marlboro, MD
-													</p>
-												</div><!--.timeline-content-->
-											</div><!--.frame-->
-											<div class="frame">
-												<div class="timeline-badge">
-													<i class="ion-android-calendar"></i>
-												</div><!--.timeline-badge-->
-												<span class="timeline-date bold">Wed, Aug 4th, 2015</span>
-												<div class="timeline-content">
-													<h5  class="semi-bold no-margin">Basketball Practice</h5>
-													<p class="fs_12 lh_16 mb5 text-muted">
-														"Be center court ready to got at 5pm"
-													</p>
-													<p class="fs_11 text-muted mb0">
-														<i class="ion-checkmark-circled text-primary mr5"></i>18 People Attending</p>
-													<p class="fs_11 text-muted">
-														<i class="ion-map text-primary mr5"></i> Woodrow Willson High School Baskebtall Gym, Upper Marlboro, MD
-													</p>
-												</div><!--.timeline-content-->
-											</div><!--.frame-->
+											<%= render 'shared/show_view_events', object: @team %>
 										</div>
 									</div>
 									<hr class="no-margin"/>
 									
 									<div class="card-footer">
 										<ul>
-											<li class="fs_14"><span class="mr5">7 Upcoming Events</span></li>
-											<li><a href="#" class="fs_14">View All Events</a></li>
+											<li class="fs_14"><span class="mr5"><%= pluralize @team.upcoming_events.count, "Upcoming Event" %> </span></li>
+											<li><a href="#calendar-tab" data-toggle="tab" class="fs_14">View All Events</a></li>
 										</ul>
 									</div><!--.card-footer-->
 								</div><!--.card-->

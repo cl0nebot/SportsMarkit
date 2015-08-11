@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730175553) do
+ActiveRecord::Schema.define(version: 20150810231430) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -124,8 +124,8 @@ ActiveRecord::Schema.define(version: 20150730175553) do
     t.string   "state"
     t.string   "zip"
     t.string   "zip_ext"
-    t.float    "latitude",         limit: 24
-    t.float    "longitude",        limit: 24
+    t.float    "latitude",           limit: 24
+    t.float    "longitude",          limit: 24
     t.boolean  "gmaps"
     t.string   "phone_number"
     t.string   "email"
@@ -134,6 +134,16 @@ ActiveRecord::Schema.define(version: 20150730175553) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "school_id"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "linkedin"
+    t.string   "pinterest"
+    t.string   "instagram"
+    t.string   "foursquare"
+    t.string   "youtube"
+    t.float    "price",              limit: 24
+    t.string   "facilitatable_type"
+    t.integer  "facilitatable_id"
   end
 
   add_index "facilities", ["slug"], name: "index_facilities_on_slug", unique: true, using: :btree
@@ -184,6 +194,24 @@ ActiveRecord::Schema.define(version: 20150730175553) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "school_affiliated"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "linkedin"
+    t.string   "pinterest"
+    t.string   "instagram"
+    t.string   "foursquare"
+    t.string   "youtube"
+    t.string   "email"
+    t.string   "website"
+    t.string   "mobile_phone_number"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.integer  "zip"
+    t.integer  "zip_ext"
+    t.float    "latitude",            limit: 24
+    t.float    "longitude",           limit: 24
+    t.float    "price",               limit: 24
   end
 
   add_index "leagues", ["name"], name: "index_leagues_on_name", using: :btree
@@ -228,6 +256,13 @@ ActiveRecord::Schema.define(version: 20150730175553) do
     t.date     "start_date"
     t.date     "end_date"
     t.boolean  "current_job"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "online_statuses", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "last_seen"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -324,6 +359,7 @@ ActiveRecord::Schema.define(version: 20150730175553) do
     t.string   "hobbies"
     t.string   "gyms"
     t.string   "song"
+    t.text     "description"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
@@ -348,6 +384,7 @@ ActiveRecord::Schema.define(version: 20150730175553) do
     t.string   "nickname"
     t.boolean  "manager"
     t.boolean  "trainer"
+    t.string   "jersey_number"
   end
 
   create_table "schools", force: true do |t|
@@ -374,6 +411,19 @@ ActiveRecord::Schema.define(version: 20150730175553) do
     t.string   "stripe_subscription_id"
     t.boolean  "premium"
     t.float    "price",                  limit: 24
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "linkedin"
+    t.string   "pinterest"
+    t.string   "instagram"
+    t.string   "foursquare"
+    t.string   "youtube"
+    t.text     "description"
+    t.string   "colors"
+    t.string   "mascot"
+    t.string   "motto"
+    t.integer  "number_of_teams"
+    t.integer  "number_of_students"
   end
 
   add_index "schools", ["slug"], name: "index_schools_on_slug", unique: true, using: :btree
@@ -438,6 +488,14 @@ ActiveRecord::Schema.define(version: 20150730175553) do
     t.string   "website"
     t.string   "stripe_customer_id"
     t.boolean  "premium"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "linkedin"
+    t.string   "pinterest"
+    t.string   "instagram"
+    t.string   "foursquare"
+    t.string   "youtube"
+    t.float    "price",              limit: 24
   end
 
   create_table "tournaments", force: true do |t|
@@ -482,6 +540,7 @@ ActiveRecord::Schema.define(version: 20150730175553) do
     t.boolean  "admin"
     t.boolean  "manager"
     t.boolean  "trainer"
+    t.string   "jersey_number"
   end
 
   create_table "users", force: true do |t|

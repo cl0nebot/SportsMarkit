@@ -18,19 +18,15 @@
           <%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg") %>
         </div><!--.image-->
         <ul class="users">
-          <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa"><img src="../../assets/globals/img/faces/1.jpg" alt=""></a></li>
-          <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-          <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-          <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-          <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-          <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-          <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+			<% team.accepted_athletes.each do |user| %>
+          <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>"><%= image_tag user.avatar %></a></li>
+		  <% end %>
         </ul>
       </div><!--.card-body-->
       <div class="card-footer">
         <ul>
-        <li class="fs_14">9 Teammates</li>
-        <li><a href="#" class="fs_14">View Team</a></li>
+        <li class="fs_14"><%= pluralize team.accepted_athletes.count, "Teammate"%></li>
+        <li><a href="<%= team_path(team) %>" class="fs_14">View Team</a></li>
       </ul>
       </div><!--.card-footer-->
     </div><!--.card-->

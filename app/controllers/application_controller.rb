@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   helper_method :xeditable?
+  before_action :track_online_status
 
 
   ALPHABET_ARRAY = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
@@ -14,6 +15,12 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= User.find_by_authentication_token(cookies[:authentication_token]) if cookies[:authentication_token]
+  end
+  
+  def track_online_status
+    if current_user
+      @online_status = OnlineStatus.find_or_create_by(user_id: current_user.id).update(last_seen: Time.now)
+    end
   end
 
   helper_method :new_user, :current_user

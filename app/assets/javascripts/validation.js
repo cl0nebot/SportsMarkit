@@ -16,6 +16,23 @@ $(window).load(function(){
   });
   return return_value;
   });
+  
+  jQuery.validator.addMethod("uniqueUsername", function(value, element, params) {
+  var return_value = true;
+  $.ajax({
+    url: $(element).data('url'),
+    data: {
+      email: $(element).val()
+    },
+    async: false,
+    success: function(data) {
+      if ((data != null) && (data.available != null) && !data.available) {
+        return_value =  false;
+      }
+    }
+  });
+  return return_value;
+  });
 
   jQuery.validator.addMethod("exactLength", function(value, element, params) {
     return this.optional(element) || value.length == params;
@@ -26,11 +43,14 @@ $(window).load(function(){
   }, jQuery.format("Please enter exactly 10 digits."));
 
 
-
-
-
   if($('#signup-form').size()){
     validateSignup($('#signup-form'));
+  }
+  if($('.registration').size()){
+    validateSignup($('.registration'));
+  }
+  if($('.login_widget').size()){
+    validateSignIn($('.login_widget'));
   }
   
   if($('#login-form').size()){
@@ -39,6 +59,9 @@ $(window).load(function(){
   
   if($('#user-edit-form').size()){
     validateUserEditForm($('#user-edit-form'));
+  }
+  if($('#user-password-form').size()){
+    validateUserPasswprdForm($('#user-password-form'));
   }
   
   if($('#new-school-form').size()){
@@ -64,6 +87,15 @@ $(window).load(function(){
   if($('#event-form').size()){
     validateNewEventForm($('#event-form'));
   }
+  
+  if($('#add-media-form').size()){
+    validateAddMediaForm($('#add-media-form'));
+  }
+  
+  if($('#roster-form').size()){
+    validateRosterForm($('#roster-form'));
+  }
+  
   
   
   
@@ -207,6 +239,33 @@ validateLogin = function(el){
   });
 };
 
+validateUserPasswordForm = function(el){
+  $(el).validate({
+    rules: {
+      "user[current_password]": {
+        required: true,
+        minlength: 5,
+        maxlength: 20
+      },
+      "user[password]": {
+        required: true,
+        minlength: 5,
+        maxlength: 20
+      },
+      "user[password_confirmation]": {
+        required: true,
+        minlength: 5,
+        maxlength: 20
+      }
+    },
+    messages: {
+      "user[password_confirmation]": {
+        equalTo: "Password doesn't match"
+      }
+    }
+  });
+};
+
 validateUserEditForm = function(el){
   $(el).validate({
     rules: {
@@ -225,6 +284,25 @@ validateUserEditForm = function(el){
         number: true,
         exactLength: 10
       },
+      "user[username]": {
+        uniqueUsername: true
+      },
+      "height": {
+        number: true,
+		  max: 7,
+		  min: 2
+      },
+      "inches": {
+        number: true,
+		  max: 11,
+		  min: 0
+      },
+      "weight": {
+        number: true,
+		  max: 500,
+		  min: 30
+      },
+	  
       "user[email]": {
         required: true,
         email: true,
@@ -299,6 +377,19 @@ validateNewTeamForm = function(el){
       },
       "team[sport]": {
         required: true
+      },
+      "team[address_1]": {
+        required: true
+      },
+      "team[city]": {
+        required: true
+      },
+      "team[state]": {
+        required: true
+      },
+      "team[zip]": {
+        required: true,
+		number: true
       }
     },
     messages: {
@@ -309,6 +400,26 @@ validateNewTeamForm = function(el){
     }
   });
 };
+
+
+validateAddMediaForm = function(el){
+  $(el).validate({
+    rules: {},
+  });
+  addMediaValidation();
+};
+
+addMediaValidation = function(){
+  $('.media-field:not(.init-validate)').each(function(){
+    $(this).find('.media-title').rules("add", {required: true});
+	$(this).find('.media-url').rules("add", {required: true});
+	$(this).find('.media-publication-date').rules("add", {required: true});
+    $(this).addClass('init-validate');
+  });
+};
+
+
+
 
 validateNewFacilityForm = function(el){
   $(el).validate({
@@ -321,6 +432,45 @@ validateNewFacilityForm = function(el){
     },
     messages: {
       "facility[name]": {
+        minlength: "Name must be at least 3 characters.",
+        maxlength: "Name must not exceed 50 characters."
+      }
+    }
+  });
+};
+
+validateRosterForm = function(el){
+  $(el).validate({
+    rules: {
+      "first_name": {
+        required: true,
+        minlength: 3,
+        maxlength: 50
+      },
+
+      "last_name": {
+        required: true,
+        minlength: 2,
+        maxlength: 50
+      },
+	  
+      "participant_classification": {
+        required: true,
+        minlength: 3,
+        maxlength: 50
+      },
+	  
+      "position": {
+        required: true,
+      },
+	  // "selection[]": {
+	  //         required: true,
+	  //         minlength: 1
+	  //         }
+	  
+    },
+    messages: {
+      "first_name": {
         minlength: "Name must be at least 3 characters.",
         maxlength: "Name must not exceed 50 characters."
       }
@@ -352,7 +502,7 @@ validateNewLeagueForm = function(el){
       "league[description]": {
         required: true,
         minlength: 3,
-        maxlength: 50
+		  maxlength: 1000
       },
     messages: {
       "league[name]": {

@@ -10,9 +10,9 @@
 							<div class="card tile card-post" style="border-top: 3px solid #ccc;">
 								<div class="card-heading pl40 pr40">
 									<% if current_user %>
-			              <% if current_user.admin? or current_user == @user %>
+			             <% if current_user.admin? or current_user.can_edit_school?(@school)%>
 			                <button href="" class="pull-right btn bt-xs btn-grey button-striped button-full-striped btn-ripple fs_14">
-			                  <a href="#">
+			                  <a href="<%= edit_school_path(@school)%>">
 	                        <span class="text-muted">
 	                        	<i class="ion-gear-b fs_16 mr5"></i> Edit Profile
 	                        </span>
@@ -21,12 +21,14 @@
 			              <% end %>
 			            <% end %>
 			            <!-- <img src="../../assets/globals/img/faces/14.jpg" class="user-image" alt=""> -->
-									<p class="author">
+			            			<p class="author">
 										<a href="#">
 										<i class="ion-ionic mr5"></i>
-										4 People Online</a> 
+										<%= pluralize @school.number_of_people_online, "Person" %> Online</a> 
 									</p>
-									<p class="fs_11 time">Last online - March 25, 2015 02:33p</p>
+									<% if @school.number_of_people_online > 0 %>
+									<p class="fs_11 time">Last activity: <%= format(@school.last_activity, 4) %>, <%= format(@school.last_activity, 9) %></p>
+									<% end %>
 								</div><!--.card-heading-->
 								<hr class="light mt0"/>
 								<div class="card-body pl40 pr40">
@@ -36,7 +38,7 @@
 									<p class="semi-bold small text-muted no-margin fs_14">
 										<span class="inline">
 											<i class="ion-ios-telephone fs_16 text-primary mr5"></i>
-											<%= @school.phone_number %> (240) 555-5555
+											<%= @school.phone_number %> 
 										</span>
 
 										<span class="inline mr10 ml10 text-muted">|</span>
@@ -55,7 +57,7 @@
 									</p>
 										
 									<p class="fs_14 lh_18 text-muted mb20 mt10">
-										The mission of Walt Whitman High School is to prepare our students for the rigorous demands of the academic and work worlds so that they may reach their potential as self-directed, creative, and socially responsible individuals. This mission will be accomplished through excellence in teaching and learning, made stronger through active partnerships with parents and the community.
+										<%= @school.description %>
 									</p>
 								</div>
 								<hr class="light mt15 mb15"/>
@@ -73,36 +75,48 @@
 								</div>
 								<hr class="light mt15 mb15"/>
 								<div class="card-body pl40 pr40">
+									<% if @school.general_information_present? %>
 									<h6 class="upper text-muted bold mt0"><small>general information</small></h6>
 									<div class="clearfix">
+										<% if @school.number_of_students.present? %>
 										<p class="semi-bold fs_14 text-muted no-margin">
 											<i class="ion-university fs_20 text-primary mr5"></i>
-											Public School - 2,234 Students
+											Public School - <%= pluralize @school.number_of_students, "Student"  %>
 										</p>
+										<% end %>
+										<% if @school.motto.present? %>
 										<p class="semi-bold small fs_14 text-muted no-margin">
 											<i class="ion-quote fs_20 text-primary mr5"></i>
-											Motto - "Pride + Determination = Success"
+											Motto - <%= @school.motto %>
 										</p>
+										<% end %>
+										<% if @school.colors.present? %>
 										<p class="semi-bold small fs_14 text-muted no-margin">
 											<i class="ion-speakerphone fs_20 text-primary mr5"></i>
-											Blue, Green, Yellow
+											<%= @school.colors %>
 										</p>
+										<% end %>
+										<% if @school.number_of_teams.present? %>
 										<p class="semi-bold small fs_14 text-muted no-margin">
 											<i class="ion-document-text fs_20 text-primary mr5"></i>
-											36 Sports Teams
+											<%= pluralize @school.number_of_teams, "Sports Team"  %>
 										</p>
+										<% end %>
+										<% if @school.mascot.present? %>
 										<p class="semi-bold small fs_14 text-muted no-margin">
 											<i class="ion-flag fs_20 text-primary mr5"></i>
-											Mascot - Vikings
+											Mascot - <%= @school.mascot %>
 										</p>
+										<% end %>
 									</div>
+									<% end %>
 								</div>
 								<hr class="light mt15 mb15"/>
 									<div class="card-heading pl40 pr40">
 										<p class="author">
 											<a href="#">
 											<i class="ion-trophy mr5"></i>
-											Academic and Athletic Achievments</a> 
+											Academic and Athletic Achievements</a> 
 										</p>
 									</div>
 									<div class="card-body pl40 pr40">
@@ -174,27 +188,46 @@
 									<%#= @user.profile.favorite_pro_athlete %>	
 								</div><!--.card-body-->
 								<div class="card-footer mt20 pl40 pr40">
+									<% if @school.social_media_present? %>
 									<h6 class="upper text-muted bold"><small>social profiles</small></h6>
-									<p>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-facebook"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-linkedin"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-youtube"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-twitter"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-instagram"></i>
-										</a>
-										<a href="" class="mr5 btn btn-floating btn-blue btn-ripple">
-											<i class="ion-social-pinterest"></i>
-										</a>
+  									  <% @school.facebook.present? %>	
+  									    <% if @school.facebook.present? %>	
+  											<%=  link_to @school.facebook, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+  												<i class="ion-social-facebook"></i>
+  											<% end %>
+  										<% end %>
+							
+  										<% if @school.linkedin.present? %>	
+  											<%=  link_to @school.linkedin, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+  												<i class="ion-social-linkedin"></i>
+  											<% end %>
+  										<% end %>
+										
+							            <% if @school.youtube.present? %>
+	  										<%=  link_to @school.youtube, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+	  											<i class="ion-social-youtube"></i>
+	  										<% end %>
+										<% end %>
+										
+										<% if @school.twitter.present? %>
+	  										<%=  link_to @school.twitter, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+	  											<i class="ion-social-twitter"></i>
+	  										<% end %>
+										<% end %>
+										
+										<% if @school.instagram.present? %>
+	  										<%=  link_to @school.instagram, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+	  											<i class="ion-social-instagram"></i>
+	  										<% end %>
+										<% end %>
+										
+										<% if @school.pinterest.present? %>
+	  										<%=  link_to @school.pinterest, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+	  											<i class="ion-social-pinterest"></i>
+	  										<% end %>
+										<% end %>
 									</p>
+									<% end  %>
 								</div><!--.card-footer-->
 							</div><!--.card-->
 						</div><!--.col-md-6-->
@@ -213,64 +246,27 @@
 									</div><!--.card-heading-->
 									<div class="card-body">
 										<ul class="users expanded">
+											<% @athletes.each do |user| %>
 											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+													<%= image_tag user.avatar %>
 												</a>
 											</li>
+											<% end %>
+											
+											<% @userless_athletes.each do |user| %>
 											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.first %> <%= user.last %>">
+													<%= image_tag "http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png" %>
 												</a>
 											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa">
-													<img src="../../assets/globals/img/faces/1.jpg" alt="">
-												</a>
-											</li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="../../assets/globals/img/faces/2.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="../../assets/globals/img/faces/3.jpg" alt=""></a></li>
-
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="../../assets/globals/img/faces/4.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="../../assets/globals/img/faces/5.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="../../assets/globals/img/faces/6.jpg" alt=""></a></li>
-											<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="../../assets/globals/img/faces/7.jpg" alt=""></a></li>
+											<% end %>
 										</ul>
 									</div><!--.card-body-->
 									<div class="card-footer">
 										<ul>
-											<li><span class="mr5 fs_14">124 Student-Athletes</span></li>
-											<li><a href="#" class="fs_14">View All</a></li>
+											<li><span class="mr5 fs_14"><%= pluralize [@athletes.count, @userless_athletes.count].sum, "Student-Athlete"  %></span></li>
+											<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
 										</ul>
 									</div><!--.card-footer-->
 								</div><!--.card-->
@@ -294,76 +290,33 @@
 									</div><!--.card-heading-->
 									<div class="card-body">
 										<ul class="list-material borderless">
+											<% @teams.each do |team| %>
 											<li class="has-action-left">
 												<a href="#" class="visible">
 													<div class="list-action-left">
 														<%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg", class: "face-radius")%>
 													</div>
 													<div class="list-content">
-														<span class="title">Girl's JV Basketball Team</span>
-														<span class="fs_11 text-muted">2 Coaches, 15 Athletes, 1 Trainer</span>
+														<span class="title"><%= team.name %></span>
+														<span class="fs_11 text-muted"><%= pluralize team.accepted_coach_relationships.count, "Coach" %>, 
+								<%= pluralize team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize team.accepted_trainer_relationships.count, "Trainer" %></span>
 													</div>
 												</a>
 											</li>
 											<li class="divider with-border no-padding no-margin">
 											</li>
-											<li class="has-action-left">
-												<a href="#" class="visible">
-													<div class="list-action-left">
-														<%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg", class: "face-radius")%>
-													</div>
-													<div class="list-content">
-														<span class="title">Boy's JV Basketball</span>
-														<span class="fs_11 text-muted">2 Coaches, 15 Athletes, 1 Trainer</span>
-													</div>
-												</a>
-											</li>
-											<li class="divider with-border no-padding no-margin">
-											</li>
-											<li class="has-action-left">
-												<a href="#" class="visible">
-													<div class="list-action-left">
-														<%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg", class: "face-radius")%>
-													</div>
-													<div class="list-content">
-														<span class="title">Girl's Varsity Basketball</span>
-														<span class="fs_11 text-muted">2 Coaches, 15 Athletes, 1 Trainer</span>
-													</div>
-												</a>
-											</li>
-											<li class="divider with-border no-padding no-margin">
-											</li>
-											<li class="has-action-left">
-												<a href="#" class="visible">
-													<div class="list-action-left">
-														<%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg", class: "face-radius")%>
-													</div>
-													<div class="list-content">
-														<span class="title">Girl's Varsity Softball</span>
-														<span class="fs_11 text-muted">2 Coaches, 15 Athletes, 1 Trainer</span>
-													</div>
-												</a>
-											</li>
-											<li class="divider with-border no-padding no-margin">
-											</li>
-											<li class="has-action-left">
-												<a href="#" class="visible">
-													<div class="list-action-left">
-														<%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg", class: "face-radius")%>
-													</div>
-													<div class="list-content">
-														<span class="title">Boy's Varsity Soccer</span>
-														<span class="fs_11 text-muted">2 Coaches, 15 Athletes, 1 Trainer</span>
-													</div>
-												</a>
-											</li>
+											<% end %>
+								
+		
 										</ul>
 									</div><!--.card-body-->
 									<hr class="no-margin"/>
 									<div class="card-footer">
 										<ul>
-											<li class="fs_14"><span class="mr5">36 Sports Teams</span></li>
-											<li><a href="#" class="fs_14">View All Teams</a></li>
+											<li class="fs_14"><span class="mr5"><%= pluralize @teams.count, "Sports Team" %></span></li>
+												<li><a href="#teams" data-toggle="tab" class="fs_14">View All Teams</a></li>
+												
+										
 										</ul>
 									</div><!--.card-footer-->
 								</div><!--.card-->
@@ -383,74 +336,16 @@
 									</div><!--.card-heading-->
 									<div class="card-body pl40">
 										<div class="timeline single">
-											<div class="frame">
-												<div class="timeline-badge">
-													<i class="ion-android-calendar"></i>
-												</div><!--.timeline-badge-->
-												<span class="timeline-date bold">Fri, Jul 30th, 2015</span>
-												<div class="timeline-content">
-													<h4  class="semi-bold no-margin">Lacrosse Practice</h4>
-													<p class="fs_14 mb5 text-muted">"Meet on the field near the locker rooms. Remember to bring your pads and be warmed up and ready to go."</p>
-													<p class="fs_11 text-muted mb0">
-														<i class="ion-checkmark-circled text-primary mr5"></i>18 People Attending</p>
-													<p class="fs_11 text-muted">
-														<i class="ion-map text-primary mr5"></i> Woodrow Willson High School Baskebtall Gym, Upper Marlboro, MD
-													</p>
-												</div><!--.timeline-content-->
-											</div><!--.frame-->
-											<div class="frame">
-												<div class="timeline-badge">
-													<i class="ion-android-calendar"></i>
-												</div><!--.timeline-badge-->
-												<span class="timeline-date bold">Wed, Aug 4th, 2015</span>
-												<div class="timeline-content">
-													<h4  class="semi-bold no-margin">Basketball Practice</h4>
-													<p class="fs_14 mb5 text-muted">"Be center court ready to got at 5pm"</p>
-													<p class="fs_11 text-muted mb0">
-														<i class="ion-checkmark-circled text-primary mr5"></i>18 People Attending</p>
-													<p class="fs_11 text-muted">
-														<i class="ion-map text-primary mr5"></i> Woodrow Willson High School Baskebtall Gym, Upper Marlboro, MD
-													</p>
-												</div><!--.timeline-content-->
-											</div><!--.frame-->
-											<div class="frame">
-												<div class="timeline-badge">
-													<i class="ion-android-calendar"></i>
-												</div><!--.timeline-badge-->
-												<span class="timeline-date bold">Fri, Jul 30th, 2015</span>
-												<div class="timeline-content">
-													<h4  class="semi-bold no-margin">Awards Banquet</h4>
-													<p class="fs_14 mb5 text-muted">"Meet on the field near the locker rooms. Remember to bring your pads and be warmed up and ready to go."</p>
-													<p class="fs_11 text-muted mb0">
-														<i class="ion-checkmark-circled text-primary mr5"></i>18 People Attending</p>
-													<p class="fs_11 text-muted">
-														<i class="ion-map text-primary mr5"></i> Woodrow Willson High School Baskebtall Gym, Upper Marlboro, MD
-													</p>
-												</div><!--.timeline-content-->
-											</div><!--.frame-->
-											<div class="frame">
-												<div class="timeline-badge">
-													<i class="ion-android-calendar"></i>
-												</div><!--.timeline-badge-->
-												<span class="timeline-date bold">Wed, Aug 4th, 2015</span>
-												<div class="timeline-content">
-													<h4  class="semi-bold no-margin">Championship Game</h4>
-													<p class="fs_14 mb5 text-muted">"Be center court ready to got at 5pm"</p>
-													<p class="fs_11 text-muted mb0">
-														<i class="ion-checkmark-circled text-primary mr5"></i>18 People Attending</p>
-													<p class="fs_11 text-muted">
-														<i class="ion-map text-primary mr5"></i> Woodrow Willson High School Baskebtall Gym, Upper Marlboro, MD
-													</p>
-												</div><!--.timeline-content-->
-											</div><!--.frame-->
+							              <%= render 'shared/show_view_events', object: @school %>
 										</div>
 									</div>
 									<hr class="no-margin"/>
 									
 									<div class="card-footer">
 										<ul>
-											<li class="fs_14"><span class="mr5">7 Upcoming Events</span></li>
-											<li><a href="#" class="fs_14">View All Events</a></li>
+											<li class="fs_14"><span class="mr5"><%= pluralize @school.upcoming_events.count, "Upcoming Event" %></span></li>
+											<li><a href="#calendar-tab" data-toggle="tab" class="fs_14">View All Events</a></li>
+											
 										</ul>
 									</div><!--.card-footer-->
 								</div><!--.card-->

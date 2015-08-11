@@ -187,5 +187,29 @@ class Team < ActiveRecord::Base
   def people
     relationships.where(accepted: true).uniq
   end
+  
+  def social_media_present?
+    [facebook.present? , linkedin.present? ,  youtube.present?, twitter.present?, instagram.present?, pinterest.present?].include? true
+  end
+  
+  def number_of_people_online
+    array = []
+    people.each do |p|
+       if p.user.online_status.present?
+         array << 1
+       end
+    end
+    array.length
+  end
+  
+  def last_activity
+    array = []
+    people.each do |p|
+       if p.user.online_status.present?
+         array << p.user.online_status.last_seen
+       end
+    end
+    array.max
+  end
 
 end

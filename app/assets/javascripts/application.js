@@ -125,6 +125,8 @@
 //= require validation
 //= require jquery.cropit
 //= require schools
+//= require hamlcoffee
+//= require_tree ./templates
 
 
 

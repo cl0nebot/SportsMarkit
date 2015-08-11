@@ -17,12 +17,14 @@
               <% end %>
             <% end %>
             <!-- <img src="../../assets/globals/img/faces/14.jpg" class="user-image" alt=""> -->
+						<% if @user.online? %>
 						<p class="author">
 							<a href="#">
 							<i class="ion-ionic mr5"></i>
 							Logged In</a> 
 						</p>
-						<p class="time">Last logged in by March 25, 2015 02:33p</p>
+						<p class="time">Last activity: <%= format(@user.online_status.last_seen, 4) %>, <%= format(@user.online_status.last_seen, 9) %> </p>
+						<% end %>
 					</div><!--.card-heading-->
 					<hr class="light mt0"/>
 					<div class="card-body pl40 pr40">
@@ -35,7 +37,7 @@
 						</p>
 						<h5 class="semi-bold text-black mt15 mb5"><%= @user.classification_list %></h5> 
 						<p class="fs_14 lh_18 text-muted mb20 mt0">
-							I am a young athlete born and raised in the baltimore area with a focus on a D1 program and earning an athletic scholarship. I am a young athlete born and raised in the baltimore area with a focus on a D1 program and earning an athletic scholarship. I am a young athlete born and raised in the baltimore are.
+							<%= @user.profile.description %>
 						</p>
 					</div>
 					<hr class="light mt15 mb15"/>
@@ -62,10 +64,12 @@
 								<i class="ion-android-calendar fs_20 text-primary mr5"></i>
 								<%= @user.profile.date_of_birth %>
 							</p>
+							<% if @user.user_schools.present? %>
 							<p class="semi-bold small text-muted no-margin">
 								<i class="ion-university fs_20 text-primary mr5"></i>
-								Woodrow Wilson High School
+								<%= @user.user_schools.first.name  %>
 							</p>
+							<% end %>
 						</div>
 					</div>
 					<hr class="light mt15 mb15"/>
@@ -93,6 +97,7 @@
 						<div class="clearfix">
 							<div class="pull-left">
 								<p>
+									<% if @user.profile.height_ft.to_i > 0 %>
 									<span class="h3 inline">
 										<strong><%= @user.profile.height_ft %></strong> 
 										<small class="small">ft.</small>
@@ -101,12 +106,15 @@
 										<strong><%= @user.profile.height_in %></strong> 
 										<small class="small"> in.</small>
 									</span>
+									<% end %>
 								</p>
 							</div>
 							<div class="pull-right">
 								<span class="h3 inline">
-									<strong><%= @user.profile.weight %></strong> 
+									<strong><%= @user.profile.weight %></strong>
+									<% if @user.profile.weight.present? %>
 									<small class="small"> lbs.</small>
+									<% end %>
 								</span>
 							</div>
 						</div>
@@ -129,10 +137,12 @@
 											<td><span class="fs_12"><%= measurable.measurable %></span></td>
 											<td><span class="fs_12"><%= measurable.sport %></span></td>
 											<td><span class="fs_12"><%= measurable.result %></span></td>
+											<% if false %>
 											<td><span class="fs_12">
 												<i class="ion-checkmark-circled fs_16 text-primary"></i>
 												</span>
 											</td>
+											<% end %>
 										</tr>
 									<% end %>
 								</tbody>
@@ -145,30 +155,51 @@
 						<%#= @user.profile.favorite_pro_athlete %>	
 					</div><!--.card-body-->
 					<div class="card-footer mt20 pl40 pr40">
+						<% if @user.social_media_present? %>
 						<h6 class="upper text-muted bold"><small>social profiles</small></h6>
 						<p>
-							<%=  link_to @user.profile.facebook, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-								<i class="ion-social-facebook"></i>
+						<% @user.profile.facebook.present? %>	
+						   <% if @user.profile.facebook.present? %>	
+								<%=  link_to @user.profile.facebook, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+									<i class="ion-social-facebook"></i>
+								<% end %>
 							<% end %>
-							<%=  link_to @user.profile.linkedin, class: "mr5 btn btn-floating btn-indigo btn-ripple" do %>
-								<i class="ion-social-linkedin"></i>
+							
+							<% if @user.profile.linkedin.present? %>	
+								<%=  link_to @user.profile.linkedin, class: "mr5 btn btn-floating btn-indigo btn-ripple" do %>
+									<i class="ion-social-linkedin"></i>
+								<% end %>
 							<% end %>
-							<%=  link_to @user.profile.youtube, class: "mr5 btn btn-floating btn-red btn-ripple" do %>
-								<i class="ion-social-youtube"></i>
+							
+							<% if @user.profile.youtube.present? %>
+								<%=  link_to @user.profile.youtube, class: "mr5 btn btn-floating btn-red btn-ripple" do %>
+									<i class="ion-social-youtube"></i>
+								<% end %>
 							<% end %>
-							<%=  link_to @user.profile.twitter, class: "mr5 btn btn-floating btn-light-blue btn-ripple" do %>
-								<i class="ion-social-twitter"></i>
+							
+							<% if @user.profile.twitter.present? %>
+								<%=  link_to @user.profile.twitter, class: "mr5 btn btn-floating btn-light-blue btn-ripple" do %>
+									<i class="ion-social-twitter"></i>
+								<% end %>
 							<% end %>
-							<%=  link_to @user.profile.instagram, class: "mr5 btn btn-floating btn-brown btn-ripple" do %>
-								<i class="ion-social-instagram"></i>
+							
+							<% if @user.profile.instagram.present? %>
+								<%=  link_to @user.profile.instagram, class: "mr5 btn btn-floating btn-brown btn-ripple" do %>
+									<i class="ion-social-instagram"></i>
+								<% end %>
 							<% end %>
-							<%=  link_to @user.profile.pinterest, class: "mr5 btn btn-floating btn-pink btn-ripple" do %>
-								<i class="ion-social-pinterest"></i>
+							<% if @user.profile.pinterest.present? %>
+								<%=  link_to @user.profile.pinterest, class: "mr5 btn btn-floating btn-pink btn-ripple" do %>
+									<i class="ion-social-pinterest"></i>
+								<% end %>
 							<% end %>
-							<%=  link_to @user.profile.foursquare, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-								<i class="ion-social-foursquare"></i>
+							<% if @user.profile.foursquare.present? %>
+								<%=  link_to @user.profile.foursquare, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+									<i class="ion-social-foursquare"></i>
+								<% end %>
 							<% end %>
 						</p>
+						<% end %>
 					</div><!--.card-footer-->
 				</div><!--.card-->
 			</div><!--.col-md-6-->
@@ -260,26 +291,7 @@
 						</div><!--.card-heading-->
 						<div class="card-body pl40">
 							<div class="timeline single">
-								<% @user.upcoming_events.each do |event| %>
-								<div class="frame">
-									<div class="timeline-badge">
-										<i class="ion-android-calendar"></i>
-									</div><!--.timeline-badge-->
-									<span class="timeline-date bold"><%=event.starts_at.strftime("%A") %>, <%= event.starts_at.strftime("%B")%> <%= event.starts_at.day.ordinalize %>, <%= event.starts_at.year %></span>
-									<div class="timeline-content">
-										<h4  class="semi-bold no-margin"><%= event.title %></h4>
-										<p class="fs_14 mb5"><%= event.description %></p>
-										<p class="fs_11 text-muted mb0">
-											<i class="ion-checkmark-circled text-primary mr5"></i><%= pluralize event.attendees.where(yes: true).count, "Person" %> Attending</p>
-										<p class="fs_11 text-muted">
-											<i class="ion-map text-primary mr5"></i> <%= event.proper_facility_name_and_location %>
-										</p>
-									</div><!--.timeline-content-->
-								</div><!--.frame-->
-								<% end %>
-								
-				
-								
+								<%= render 'shared/show_view_events', object: @user %>
 							</div>
 						</div>
 						<hr class="no-margin"/>

@@ -1,0 +1,17 @@
+								<% object.upcoming_events.each do |event| %>
+								<div class="frame">
+									<div class="timeline-badge">
+										<i class="ion-android-calendar"></i>
+									</div><!--.timeline-badge-->
+									<span class="timeline-date bold"><%=event.starts_at.strftime("%A") %>, <%= event.starts_at.strftime("%B")%> <%= event.starts_at.day.ordinalize %>, <%= event.starts_at.year %></span>
+									<div class="timeline-content">
+										<h4  class="semi-bold no-margin"><%= event.title %></h4>
+										<p class="fs_14 mb5"><%= event.description %></p>
+										<p class="fs_11 text-muted mb0">
+											<i class="ion-checkmark-circled text-primary mr5"></i><%= pluralize event.attendees.where(yes: true).count, "Person" %> Attending</p>
+										<p class="fs_11 text-muted">
+											<i class="ion-map text-primary mr5"></i> <%= event.proper_facility_name_and_location %>
+										</p>
+									</div><!--.timeline-content-->
+								</div><!--.frame-->
+								<% end %>

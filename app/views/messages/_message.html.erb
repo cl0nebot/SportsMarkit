@@ -1,19 +1,12 @@
-		<% if message.beginning_of_stream? %>
-			<%= message.user_id == current_user.id ? "<div class=\"message right".html_safe : "<div class=\"message left".html_safe %>"> <!-- current user sent messages appear on right  -->
-			  <% message.message_stream.each do |m| %>
-			   <div class="message-text"><%= m.message %></div>
-				  <% if m.file.present? %>
-				  <br><b> <%= User.find(m.user_id).full_name %> has shared a file: <%= link_to "File", m.file.url %></b>
-				  <% end %>
-					<% if m.time_elapsed_is_more_than_3_minutes %>
-					  <p class="media-meta"><%= format(m.created_at, 8)%></p>
-					  
-					<% end %>
-			  <% end %>
-
-			<% if message.beginning_of_stream? %>
-			<img src="<%= image_path(message.user.avatar) %>" class="user-picture" alt="">
-			<% end %>
-			</div>
-		<% end %>
-		
+<%- wrap_class = message.user_id == current_user.id ? "right" : "left" %>
+<%- begin_stream_class = begin_of_stream ? 'begin_stream' : ''%>
+<div class="message <%=wrap_class%> <%= begin_stream_class %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= format(message.created_at, 8)%>">
+   <div class="message-text"><%= message.message %></div>
+   <% if message.file.present? %>
+     <br>
+     <b> <%= User.find(m.user_id).full_name %> has shared a file: <%= link_to "File", m.file.url %></b>
+   <% end %>
+  <% if begin_of_stream %>
+    <img src="<%= image_path(message.user.avatar) %>" class="user-picture" alt="">
+  <% end %>
+</div>

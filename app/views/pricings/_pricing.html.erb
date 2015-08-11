@@ -1,8 +1,8 @@
-<% if school.price.blank? %>
-<%= render 'pricings/form', school: school %>
+<% if object.price.blank? %>
+<%= render 'pricings/form', object: object %>
 <% else %>
-<%= school.name %> 
-<b><%= number_to_currency(school.price) %></b>
-<%= link_to "Edit Price", pricings_path(school_id: school.id, event: "edit"), remote: true, class: "btn" %>
+<%= object.name %> 
+<b><%= number_to_currency(object.price) %></b>
+<%= link_to "Edit Price", pricings_path(object: object.class.to_s, object_id: object.id, event: "edit"), remote: true, class: "btn" %>
 
 <% end %>

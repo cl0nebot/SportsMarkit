@@ -58,7 +58,7 @@
 											<div class="col-md-12">Sport</div><!--.col-md-3-->
 											<div class="col-md-12 margin-top-10">
 												<div class="inputer">
-													<%= f.select :sport, Sport.pluck(:sport), {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
+													<%= f.collection_select :sport_ids, Sport.all, :id, :sport, {:selected => ""}, {:multiple => true, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0" } %>
 
 												</div>
 											</div><!--.col-md-9-->

@@ -24,18 +24,18 @@
 			<%= google_webfonts_link_tag 	:lato        				=> [100, 300, 500, 700],
 	                         					:yanone_kaffeesatz 	=> [300, 400] %>
 
-			
+
 
 			<%= stylesheet_link_tag "main" %>
 			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 			<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-			
+
 			<%= csrf_meta_tags %>
 			<%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLISHABLE_KEY'] %>
 	</head>
-	
+
 	<body class="one-page mt0">
-	    
+
 	  	<%= yield %>
 
 		<%= javascript_include_tag 'main' %>

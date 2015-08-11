@@ -12612,12 +12612,12 @@ ul.action li i {
   color: rgba(0, 0, 0, 0.87);
   float: left;
 }
-.messages .message.left .message-text:before {
+.messages .message.left.begin_stream .message-text:before {
   left: -16px;
   background-color: #f0f0f0;
   border-radius: 0;
 }
-.messages .message.left .message-text:after {
+.messages .message.left.begin_stream .message-text:after {
   top: -1px;
   left: -50px;
   background-color: #fff;
@@ -12640,12 +12640,12 @@ ul.action li i {
   color: #fff;
   float: right;
 }
-.messages .message.right .message-text:before {
+.messages .message.right.begin_stream .message-text:before {
   right: -16px;
   border-radius: 0;
   background-color: #2095f2;
 }
-.messages .message.right .message-text:after {
+.messages .message.right.begin_stream .message-text:after {
   top: -1px;
   right: -49px;
   width: 50px;

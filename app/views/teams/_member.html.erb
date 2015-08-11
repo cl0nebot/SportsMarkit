@@ -51,7 +51,11 @@
 					</div>
 				<div class="col-sm-2">
 					<h5 class="no-margin semi-bold">
-						#44
+						<% if m.jersey_number.present? %>
+						  #<%= m.jersey_number %>
+						<% else %>
+						   TBD
+						<% end %>
 					</h5>
 					<p class="small text-grey">
 						<small>

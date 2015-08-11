@@ -25,7 +25,7 @@
 						<div class="col-md-12">
 							<div class="mr10">
 								<% if current_user %>
-								  <% if current_user.can_edit_school?(@school) %>
+								  <% if current_user.can_edit_team?(team) %>
 										<%= link_to edit_team_path(team), class: "btn btn-primary btn-sm mr5" do %>
 											<i class="ion-gear-b"></i>
 										<% end %>
@@ -134,7 +134,7 @@
 								<% else %>
 								 <span class="title"><%= rel.first_name  %> <%= rel.last_name %></span>
 								<% end %>
-								<span class="caption"><%= rel.participant_classification %>, <%= rel.position %></span>
+								<span class="caption"><%= rel.participant_classification %>, <%= rel.position_list %></span>
 							</div>
 						</a>
 					</li>

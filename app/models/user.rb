@@ -42,9 +42,12 @@ class User < ActiveRecord::Base
   has_many :certificates
   has_many :certifications, through: :certificates
   has_many :medias, as: :mediable
+  
+  has_one :online_status
 
   def self.user_types
-    ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director", "Tournament Director" ]  
+    ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director"] 
+    # ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director", "Tournament Director" ] 
     #["Athlete", "Coach", "Parent", "Athletic Director", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]  
     
   end
@@ -283,6 +286,16 @@ class User < ActiveRecord::Base
     end
   end
   
+  def can_edit_league?(league)
+    if LeagueManager.where(user_id: id, league_id: league.id).present?
+      true
+    elsif admin?
+      true
+    else
+      false
+    end
+  end
+  
   def self.athletes
     relationship_user_ids = Relationship.where(participant: true).pluck(:user_id)
     student_athlete_user_ids = Classification.where(classification: "Student Athlete").pluck(:user_id) 
@@ -403,10 +416,22 @@ class User < ActiveRecord::Base
   def city_state
     profile.location_description
   end
+  
+  def social_media_present?
+    [profile.facebook.present? , profile.linkedin.present? , profile.youtube.present?, profile.twitter.present?, profile.instagram.present?, profile.pinterest.present?, profile.foursquare.present?].include? true
+  end
 
+  def chatroom
+    relationships.first.team.id
+  end
   
   
-    
+  def online?
+    if online_status.present?
+      -(online_status.last_seen - Time.now) < 300
+    else
+      false
+    end
+  end
   
-
 end
