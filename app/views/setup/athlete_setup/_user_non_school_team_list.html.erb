@@ -7,15 +7,15 @@
         <% end %>
       </div>
       <div class="list-content padding-left-30">
-									<span class="title">
-										<%= team.name %>
-									</span>
-									<span class="caption">
-										<i class="ion-location"></i>
-                    <%#= team.city_state %>,
-                    <%#= team.city_state %>,
-                    <%= pluralize team.users.count, "member" %>
-									</span>
+			<span class="title">
+				<%= team.name %>
+			</span>
+			<span class="caption">
+				<i class="ion-location"></i>
+        <%#= team.city_state %>,
+        <%#= team.city_state %>,
+        <%= pluralize team.users.count, "member" %>
+			</span>
       </div>
       <div class="list-action-right">
         <% if current_user.pending_team?(team) %>

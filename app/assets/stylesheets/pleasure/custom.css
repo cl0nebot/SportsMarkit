@@ -593,7 +593,13 @@ ol li {list-style-type: decimal-leading-zero;}
 .no-padding-right {padding-right: 0 !important;}
 
 
+ul.inline-ul li {display: inline-block;}
 
+ul.li-with-divider li {
+border-right: 1px solid #ccc;
+padding: 0 10px;
+}
 
-
-.
+ul.li-with-divider li:last-child {
+border-right: none;
+}
