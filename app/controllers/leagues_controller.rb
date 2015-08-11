@@ -44,6 +44,7 @@ class LeaguesController < ApplicationController
     @userless_admins = @league.userless_admins
     @people = @league.people
     @userless_people = @league.userless_people
+    @facilities = @league.facilities
   end 
   
   def edit

@@ -23,13 +23,14 @@ class FacilitiesController < ApplicationController
   end
   
   def create
-    if request.referrer.split("/")[3] == "schools"
-      @school = School.find_by_slug(request.referrer.split("/")[4])
-      @facility = @school.facilities.build(facility_params)
+    if params[:facility][:facility_owner_type].present? 
+      @object = params[:facility][:facility_owner_type].constantize.find(params[:facility][:facility_owner_id])
+      @facility = @object.facilities.build(facility_params)
       if @facility.save
-        redirect_to "/facilities/#{@facility.slug}"
+        FacilityLink.find_or_create_by(facility_id: @facility.id, facilitatable_type: params[:facility][:facility_owner_type], facilitatable_id: params[:facility][:facility_owner_id])
+        redirect_to "#{request.referrer}#tab_facilities"
       else
-        render 'new'
+        redirect_to :back
       end
     else
       @facility = Facility.new(facility_params)
@@ -74,6 +75,10 @@ class FacilitiesController < ApplicationController
     redirect_to :destroy
   end
   
+  def selection_option
+    
+  end
+  
   protected
   
   def find_facility
@@ -81,6 +86,6 @@ class FacilitiesController < ApplicationController
   end
   
   def facility_params
-    params.require(:facility).permit(:school_id, :team_id, :name, :field_type, :private, :publicly_visible, :address_1, :address_2, :city, :state, :zip, :zip_ext, :latitude, :longitude, :gmaps, :phone_number, :email, :website, :slug )
+    params.require(:facility).permit(:school_id, :team_id, :name, :field_type, :private, :publicly_visible, :address_1, :address_2, :city, :state, :zip, :zip_ext, :latitude, :longitude, :gmaps, :phone_number, :email, :website, :slug, :facility_owner_id, :facility_owner_type)
   end
 end

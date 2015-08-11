@@ -1,0 +1,4 @@
+$('#facility-link-<%= @facility.id %>').empty();
+$('#facility-link-<%= @facility.id %>').append("<%= j render 'facility_links/add', facility: @facility, object: @object %>");
+$('#facility-link-list').empty();
+$('#facility-link-list').append("<%= j render 'shared/facilities', facilities: @facilities %>");

@@ -1,0 +1,2 @@
+$('#facility-link-<%= @facility.id %>').empty();
+$('#facility-link-<%= @facility.id %>').append("<%= j render 'facility_links/remove', facility: @facility, object: params[:facility_link][:facilitatable_type].constantize.find(params[:facility_link][:facilitatable_id]), fl: @facility_link %>");

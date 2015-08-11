@@ -1,0 +1,8 @@
+$('#new-facility-partial').empty()
+<% if params[:selection] == "form" %>
+	$('#new-facility-partial').append("<%= j render 'shared/panels/facility/form', object: params[:object].constantize.find(params[:object_id]) %>")
+<% elsif params[:selection] == "school" %>
+    $('#new-facility-partial').append("<%= j render 'shared/panels/facility/school', object: params[:object].constantize.find(params[:object_id]) %>")
+<% elsif params[:selection] == "search" %>
+   $('#new-facility-partial').append("<%= j render 'shared/panels/facility/search', facilities: Facility.all, object: params[:object].constantize.find(params[:object_id]) %>")
+<% end %>

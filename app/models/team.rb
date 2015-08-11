@@ -1,21 +1,24 @@
 class Team < ActiveRecord::Base
   extend FriendlyId
   include PhotoOwner
+  include Reusable
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   
   has_many :fans, as: :fannable
   belongs_to :school
   has_many :events, as: :eventable
-  has_many :team_facilities
   has_many :team_leagues
   has_many :medias, as: :mediable
+  has_many :facility_links, as: :facilitatable
   
   has_many :relationships
   has_many :userless_relationships
   has_many :users, through: :relationships
   
   validates :sport, presence: true
+  
+  
   
   
   def use_for_slug

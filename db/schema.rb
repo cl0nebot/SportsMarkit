@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810231430) do
+ActiveRecord::Schema.define(version: 20150811075824) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -124,8 +124,8 @@ ActiveRecord::Schema.define(version: 20150810231430) do
     t.string   "state"
     t.string   "zip"
     t.string   "zip_ext"
-    t.float    "latitude",           limit: 24
-    t.float    "longitude",          limit: 24
+    t.float    "latitude",            limit: 24
+    t.float    "longitude",           limit: 24
     t.boolean  "gmaps"
     t.string   "phone_number"
     t.string   "email"
@@ -141,12 +141,20 @@ ActiveRecord::Schema.define(version: 20150810231430) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "price",              limit: 24
-    t.string   "facilitatable_type"
-    t.integer  "facilitatable_id"
+    t.float    "price",               limit: 24
+    t.string   "facility_owner_type"
+    t.integer  "facility_owner_id"
   end
 
   add_index "facilities", ["slug"], name: "index_facilities_on_slug", unique: true, using: :btree
+
+  create_table "facility_links", force: true do |t|
+    t.string   "facilitatable_type"
+    t.integer  "facilitatable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "facility_id"
+  end
 
   create_table "facility_types", force: true do |t|
     t.string   "facility_type"

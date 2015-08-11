@@ -89,6 +89,9 @@ Rails.application.routes.draw do
     end
 
     resources :facilities do
+      collection do
+        get :selection_option
+      end
       resource :calendar do
         get :events, on: :member
       end
@@ -115,7 +118,7 @@ Rails.application.routes.draw do
     resources :positions
     resources :facility_types
     resources :amenities
-    resources :team_facilities
+    resources :facility_links
     resources :pricings
     resources :team_leagues
     resources :classifications

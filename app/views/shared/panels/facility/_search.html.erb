@@ -1,0 +1,138 @@
+<div id="new-facility-partial">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12 pr20 pl20 pt10">
+						<div class="panel">
+							<div class="panel-heading no-border">
+								<div class="panel-title">
+									<h4 class="text-primary">
+										<span class="ion-plus-circled mr5"></span>
+										<%= link_to "Form", selection_option_facilities_path(selection: "form", object: object.class.to_s, object_id: object.id), remote: true, class: "btn"%> | <% unless object.class.to_s == "League" %> <%= link_to "School", selection_option_facilities_path(selection: "school", object: object.class.to_s, object_id: object.id), remote: true, class: "btn"%> <% end %>
+									</h4>
+									<h3 class="modal-title bold mt0 mb0">Add a New Facility</h3>
+								</div>
+							</div><!--.panel-heading-->
+							<div class="panel-body pt20">
+							
+
+	  						
+					 <div class="content">
+				
+
+					 	<div class="page-header full-content"  style="background: #fff; border-bottom: 1px solid #ccc;">
+					 	    <div class="row">
+					 	      <div clas="panel panel-default">
+					 	        <div class="panel-body">
+					 	          <div class="row">
+					 	            <div class="col-md-6 col-md-offset-3">
+					 	              <div class="row">
+					 	                <div class="col-md-4 text-center mt10">
+					 	                  <h4 class="semi-bold">
+					 	                    <span class="ion-search text-primary h4 no-margin"></span>                   
+					 	                    <span class="h5 upper bold ws1 ml10 no-margin">search facilities</span>
+					 	                  </h4>
+					 	                </div>
+					 	                <div class="col-md-8 box-shadow-ccc"  style="background: #fff;">
+					 	                  <div class="padding-bottom-0">
+					 	                    <div class="inputer mt5 mb5 ml10">
+					 	                  		<input type="text" class=" fs_20 quicksearch-facilities typeahead typeahead-facilities form-control" rows="1" placeholder="Enter facility name...">
+					 	                  	</div>
+					 	                </div>
+					 	              </div>
+					 	            </div><!--.col-md-9-->
+					 	          </div><!--.row-->
+					 	        </div>
+					 	      </div>
+					 	    </div>
+					 	  </div>
+					 	</div>
+
+					   <div class="bg-muted" style="background: #F7F7F7;">
+					     <div class="row facilities">
+					     	<div class="col-lg-10 col-lg-offset-1">
+					     		<%= render "find_facility", facilities: facilities %>	
+					     	</div>
+					     </div>
+					   </div>
+      
+					 </div><!--.row-->
+
+
+					 
+
+
+
+
+					 
+
+
+					 
+
+	  				  
+	  		   		    
+				
+
+				
+
+	
+
+						</div><!--.panel-body-->
+					</div><!--.col-md-12-->
+				</div><!--.row-->
+			</div>
+		</div>
+		
+
+			
+						
+		</div>
+	</div>
+</div>
+
+					 <script type="text/javascript">
+	
+					 	// QUICKSEARCH USERS
+
+					 	$( function() {
+					 	  // quick search regex
+					 	  var qsRegex;
+	  
+					 	  // init Isotope
+					 	  var $grid = $('.facilities').isotope({
+					 	    itemSelector: '.element-item',
+					 	    layoutMode: 'fitRows',
+					 	    filter: function() {
+					 	      return qsRegex ? $(this).text().match( qsRegex ) : true;
+					 	    }
+					 	  });
+
+					 	  // use value of search field to filter
+					 	  var $quicksearch = $('.quicksearch-facilities').keyup( debounce( function() {
+					 	    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+					 	    $grid.isotope();
+					 	  }, 200 ) );
+
+					 	});
+
+					 	// debounce so filtering doesn't happen every millisecond
+					 	function debounce( fn, threshold ) {
+					 	  var timeout;
+					 	  return function debounced() {
+					 	    if ( timeout ) {
+					 	      clearTimeout( timeout );
+					 	    }
+					 	    function delayed() {
+					 	      fn();
+					 	      timeout = null;
+					 	    }
+					 	    timeout = setTimeout( delayed, threshold || 100 );
+					 	  }
+					 	}
+
+					 </script>
+	
+					 <h1><%#= format(Date.today, 4)%></h1>
+
+

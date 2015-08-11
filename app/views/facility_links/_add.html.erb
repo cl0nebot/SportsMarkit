@@ -1,0 +1,10 @@
+ <%= form_for FacilityLink.new, html: {id: 'facility-link-form', data: {remote: true}} do |f|   %>
+    <%= f.hidden_field :facilitatable_id, value: object.id %>
+	<%= f.hidden_field :facilitatable_type, value: object.class.to_s %>
+    <%= f.hidden_field :facility_id, value: facility.id %>
+    <%= button_tag class: "btn btn-blue btn-sm pull-right" do %>
+	 Add Facility <i class="ion-plus-circled pull-right margin-left-10"></i>
+	<% end %>
+	<div class="clearfix"></div>
+	<hr/>
+  <% end %>

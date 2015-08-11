@@ -1,3 +1,49 @@
+<script type="text/javascript">
+alert("facilities js loaded")
+	
+	// QUICKSEARCH USERS
+
+	$( function() {
+	  // quick search regex
+	  var qsRegex;
+	  
+	  // init Isotope
+	  var $grid = $('.facilities').isotope({
+	    itemSelector: '.element-item',
+	    layoutMode: 'fitRows',
+	    filter: function() {
+	      return qsRegex ? $(this).text().match( qsRegex ) : true;
+	    }
+	  });
+
+	  // use value of search field to filter
+	  var $quicksearch = $('.quicksearch-facilities').keyup( debounce( function() {
+	    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+	    $grid.isotope();
+	  }, 200 ) );
+
+	});
+
+	// debounce so filtering doesn't happen every millisecond
+	function debounce( fn, threshold ) {
+	  var timeout;
+	  return function debounced() {
+	    if ( timeout ) {
+	      clearTimeout( timeout );
+	    }
+	    function delayed() {
+	      fn();
+	      timeout = null;
+	    }
+	    timeout = setTimeout( delayed, threshold || 100 );
+	  }
+	}
+
+</script>
+	
+<h1><%#= format(Date.today, 4)%></h1>
+
+
 <% if current_user %>
   <% if current_user.admin? or current_user.can_edit_team?(@team)%>
 	<div id="admin" class="tab-pane pt20">
@@ -197,3 +243,4 @@
 <% end %>
 
 <% end %>
+

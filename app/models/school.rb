@@ -6,6 +6,7 @@ class School < ActiveRecord::Base
   acts_as_gmappable
   
   has_many :fans, as: :fannable
+  has_many :facilities, as: :facility_owner
   #has_many :event_facilities, as: :reservable
   has_many :teams
   has_many :facilities

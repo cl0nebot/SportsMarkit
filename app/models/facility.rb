@@ -5,7 +5,7 @@ class Facility < ActiveRecord::Base
   friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable
   
-  belongs_to :team
+  belongs_to :facility_owner, polymorphic: true
   belongs_to :school
   
   has_many :fans, as: :fannable

@@ -4,6 +4,7 @@ class League < ActiveRecord::Base
   friendly_id :use_for_slug, use: [:slugged, :finders]
   
   has_many :fans, as: :fannable
+  has_many :facilities, as: :facility_owner
   has_many :team_leagues, dependent: :destroy
   has_many :medias, as: :mediable
   
