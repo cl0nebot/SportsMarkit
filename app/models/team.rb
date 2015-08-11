@@ -168,7 +168,7 @@ class Team < ActiveRecord::Base
     if Photo.where(photo_owner_id: id, photo_owner_type: "Team").present?
       Photo.where(photo_owner_id: id, photo_owner_type: "Team").last.image
     else
-      "http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg"
+      "http://cache3.asset-cache.net/gc/187840132-soccer-team-celebrates-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=ZQZzMJ8a0ONoFbdvawrO3ZhmEQ83NvPgJ9Rxm5hkoQw%3d"
     end
   end
   
