@@ -42,6 +42,8 @@ class User < ActiveRecord::Base
   has_many :certificates
   has_many :certifications, through: :certificates
   has_many :medias, as: :mediable
+  
+  has_one :online_status
 
   def self.user_types
     ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director"] 
@@ -421,6 +423,15 @@ class User < ActiveRecord::Base
 
   def chatroom
     relationships.first.team.id
+  end
+  
+  
+  def online?
+    if online_status.present?
+      -(online_status.last_seen - Time.now) < 300
+    else
+      false
+    end
   end
   
 end

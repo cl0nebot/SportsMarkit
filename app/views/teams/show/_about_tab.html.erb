@@ -25,9 +25,11 @@
             			<p class="author">
 										<a href="#">
 										<i class="ion-ionic mr5"></i>
-										4 People Online</a> 
+										<%= pluralize @team.number_of_people_online, "Person" %> Online</a> 
 									</p>
-									<p class="fs_11 time">Last online - March 25, 2015 02:33p</p>
+									<% if @team.number_of_people_online > 0 %>
+									<p class="fs_11 time">Last activity: <%= format(@team.last_activity, 4) %>, <%= format(@team.last_activity, 9) %></p>
+									<% end %>
 								</div><!--.card-heading-->
 								<hr class="light mb10 mt0"/>
 								<div class="card-body pl40 pr40">

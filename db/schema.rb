@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150809215319) do
+ActiveRecord::Schema.define(version: 20150810231430) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -256,6 +256,13 @@ ActiveRecord::Schema.define(version: 20150809215319) do
     t.date     "start_date"
     t.date     "end_date"
     t.boolean  "current_job"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "online_statuses", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "last_seen"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

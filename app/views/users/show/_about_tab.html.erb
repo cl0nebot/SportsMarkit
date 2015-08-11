@@ -17,12 +17,14 @@
               <% end %>
             <% end %>
             <!-- <img src="../../assets/globals/img/faces/14.jpg" class="user-image" alt=""> -->
+						<% if @user.online? %>
 						<p class="author">
 							<a href="#">
 							<i class="ion-ionic mr5"></i>
 							Logged In</a> 
 						</p>
-						<p class="time">Last logged in by March 25, 2015 02:33p</p>
+						<p class="time">Last activity: <%= format(@user.online_status.last_seen, 4) %>, <%= format(@user.online_status.last_seen, 9) %> </p>
+						<% end %>
 					</div><!--.card-heading-->
 					<hr class="light mt0"/>
 					<div class="card-body pl40 pr40">

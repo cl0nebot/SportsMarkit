@@ -228,6 +228,26 @@ class League < ActiveRecord::Base
     relationships.pluck(:first_name, :last_name)
   end
   
+  def number_of_people_online
+    array = []
+    people.each do |p|
+       if p.online_status.present?
+         array << 1
+       end
+    end
+    array.length
+  end
+  
+  def last_activity
+    array = []
+    people.each do |p|
+       if p.online_status.present?
+         array << p.online_status.last_seen
+       end
+    end
+    array.max
+  end
+  
 
 
 

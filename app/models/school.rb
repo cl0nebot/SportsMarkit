@@ -201,5 +201,25 @@ class School < ActiveRecord::Base
   def general_information_present?
     [number_of_students.present? , motto.present? ,  colors.present?, number_of_teams.present?, mascot.present?].include? true
   end
+  
+  def number_of_people_online
+    array = []
+    people.each do |p|
+       if p.online_status.present?
+         array << 1
+       end
+    end
+    array.length
+  end
+  
+  def last_activity
+    array = []
+    people.each do |p|
+       if p.online_status.present?
+         array << p.online_status.last_seen
+       end
+    end
+    array.max
+  end
     
 end
