@@ -64,6 +64,11 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 # Pusher Gem
 gem 'pusher'
 
+#for caching
+gem 'memcachier'
+gem 'dalli'
+gem 'actionpack-action_caching'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 

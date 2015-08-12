@@ -26,6 +26,8 @@ GEM
       activesupport (= 4.1.8)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    actionpack-action_caching (1.1.1)
+      actionpack (>= 4.0.0, < 5.0)
     actionview (4.1.8)
       activesupport (= 4.1.8)
       builder (~> 3.1)
@@ -73,6 +75,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    dalli (2.7.2)
     debug_inspector (0.0.2)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
@@ -210,6 +213,7 @@ GEM
     jwt (1.5.0)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    memcachier (0.0.2)
     method_source (0.8.2)
     mime-types (2.5)
     mini_portile (0.6.2)
@@ -343,6 +347,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionpack-action_caching
   american_date
   bcrypt (~> 3.1.7)
   best_in_place (~> 3.0.1)
@@ -351,6 +356,7 @@ DEPENDENCIES
   carrierwave
   carrierwave-crop
   coffee-rails (~> 4.0.0)
+  dalli
   execjs
   figaro!
   fog
@@ -362,6 +368,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails
+  memcachier
   momentjs-rails
   mysql2
   omniauth
