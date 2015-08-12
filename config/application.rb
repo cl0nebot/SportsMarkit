@@ -21,6 +21,6 @@ module Fyesports
     # config.i18n.default_locale = :de
     config.time_zone = 'Eastern Time (US & Canada)'
     config.assets.initialize_on_precompile = false
-    config.exceptions_app = self.routes    
+    # config.exceptions_app = self.routes   
   end
 end
