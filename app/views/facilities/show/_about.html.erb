@@ -1,88 +1,9 @@
 <!-- following -->
-<div id="about" class="tab-pane active">
-<div class="page-header full-content parallax">
-					<%= render "facilities/show/header" %>
-					<%= render "facilities/show/tab_navigation" %>
-				</div><!--.page-header-->
-
-	
-
-				
-	<div class="row">
-		<div class="col-md-4">
-			<div class="panel box-shadow-ccc">
-				<div class="panel-body transparent">
-				<div class="row margin-top-20">
-					<div class="col-md-5">
-						<h3 class="bold no-margin"><%= @facility.name %></h3>
-						<span class="h6 semi-bold">
-							<% if @facility.school.present? %>
-								<%= @facility.school.name %><br>
-					  			<%= @facility.school.address_1 %><br>
-					  			<%= @facility.school.city %>, <%= @facility.school.state %>
-							<% else %>
-					  			<%= @facility.address_1 %><br>
-					  			<%= @facility.city %>, <%= @facility.state %>
-							<% end %>
-						</span>
-					</div><!--.col-md-3-->
-					<div class="col-md-2">
-						<div class="address">
-							<h4>Phone</h4>
-							<span class="fa fa-phone m-r-5"></span>
-							<span class="h4">
-								<%= @facility.phone_number %>
-							</span>
-							<br/>
-							<span class="fa fa-clock-o m-r-5"></span>
-							8am - 5pm<br>
-						</div>
-					</div><!--.col-md-3-->
-					<div class="col-md-2">
-						<div class="address">
-							<h4>Facilities</h4>
-							<ul class="list-material">
-								<li class="">
-									<span class="fa fa-check-circle m-r-5"></span>
-									<span class="h6 semi-bold text-primary">Soccer Field</span>
-								</li>
-								<li class="">
-									<span class="fa fa-check-circle m-r-5"></span>
-									<span class="h6 semi-bold text-primary">Basketball Court</span>
-								</li>
-								<li class="">
-									<span class="fa fa-check-circle m-r-5"></span>
-									<span class="h6 semi-bold text-primary">Tennis Court</span>
-								</li>
-							</ul>
-						</div><!--.panel-->
-					</div>
-					<div class="col-md-3">
-						<div class="address">
-							<h4>Online</h4>
-							<span class="fa fa-desktop m-r-5 gray-text"></span>
-							<span class="text-primary  gray-text semi-bold h6">
-								<%= @facility.website %>
-							</span>
-
-							<br>
-
-							<span class="fa fa-envelope m-r-5"></span>
-							<span class="text-primary  gray-text semi-bold h6">
-								<%= @facility.email %>
-							</span>
-						</div>
-					</div><!--.col-md-3-->
-				</div><!--.row-->
-				</div><!--.panel-body-->
-			</div><!--.panel-->
-		</div>
-		<div class="col-md-8">
-			<div class="about-us">
-				<div id="gmaps_10" class="map">
-					<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
-				</div>
-			</div><!--.row-->
-		</div>
-	</div><!--.row-->
+<div id="about" class="tab-pane active row">
+	<div class="col-md-8">
+		<div class="page-header full-content parallax" style="margin-right: 0;">
+			<%= render "facilities/show/header" %>
+			<%= render "facilities/show/tab_navigation" %>
+		</div><!--.page-header-->
+	</div>
 </div>

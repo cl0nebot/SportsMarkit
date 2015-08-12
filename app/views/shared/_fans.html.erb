@@ -1,6 +1,6 @@
 <% fans.each do |fan| %>
   <%= link_to user_path(fan.user) do %>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="card tile card-friend material-animate">
         <a href="user-profile.html"><img src="<%= fan.user.avatar %>" class="user-photo" alt=""></a>
         <div class="friend-content">

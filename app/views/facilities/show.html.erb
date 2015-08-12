@@ -34,26 +34,25 @@
 		<div class="header-tabs scrollable-tabs sticky">
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
 				<li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">About</a></li>
-    				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
-    				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
-    				<!-- <li><a href="#amenities" data-toggle="tab" class="btn-ripple">Amenities</a></li> -->
-    				<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
-    				<!-- <li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li> -->
-          	<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
-      		  <!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
-            <li>
-            <% if current_user %>
-              <% if current_user.admin? or current_user.can_edit_facility?(@facility)%>
-                <button href="" class="ml10 mt15 btn btn-blue btn-ripple btn-xs">
-                  <%= link_to edit_facility_path(@facility) do %>
-                            <span class=" text-white">
-                              <span class="ion-gear-b mr5"></span> Edit</span>
-                          <% end %>
-                        </button>
-              <% end %>
-            <% end %>
-          </li>
-			</ul>
+				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
+				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
+				<!-- <li><a href="#amenities" data-toggle="tab" class="btn-ripple">Amenities</a></li> -->
+				<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
+				<!-- <li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li> -->
+      	<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
+  		  <!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
+  		  <li><a href="#location" data-toggle="tab" class="btn-ripple">Map</a></li>
+  		</ul>
+      <% if current_user %>
+        <% if current_user.admin? or current_user.can_edit_facility?(@facility)%>
+          <%= link_to edit_facility_path(@facility) do %>
+            <button href="" class="btn btn-floating btn-blue btn-ripple pull-right">
+          		<i class="ion-gear-b"></i>
+          	</button>
+          <% end %>
+        <% end %>
+      <% end %>
+			
 		</div>
 	</div><!--.page-header-->
 
@@ -77,6 +76,8 @@
 				<%#= render "facilities/show/following" %>
 
 				<%= render "facilities/show/fans" %>
+
+				<%= render "facilities/show/map" %>
 		       
 			  
 			</div><!--.tab-content-->

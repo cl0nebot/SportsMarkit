@@ -309,9 +309,14 @@ input.form-control {font-size: 26px; line-height: 30px;}
 
 .center {display: table; margin-right: auto; margin-left: auto;}
 
+
+/*cropping header*/
 .page-header.full-content.parallax {
-   height: 450px; overflow: hidden
+   height: 850px; overflow: hidden
 }
+.cropit-image-preview.cropit-image-loaded {height: 850px !important;}
+
+
 
 .page-header.full-content.parallax .parallax-bg {
   background-size: cover;
@@ -439,8 +444,6 @@ input.form-control {font-size: 26px; line-height: 30px;}
 
 .img-thumbnail {padding: 2px;}
 
-
-.cropit-image-preview.cropit-image-loaded {height: 450px !important;}
 
 
 .gf_oswald {font-family: 'Oswald';}
@@ -626,3 +629,5 @@ border-right: none;
 .fc-basic-view .fc-body .fc-row {
     min-height: 6em !important;
 }
+
+.map_container {height: 100%; min-height: 100%;}
