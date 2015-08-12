@@ -1,7 +1,7 @@
 <div id="image-cropper" class="parallax-bg" src="<%=background_url(photo_owner)%>" data-settings="<%= photo_owner.main_photo.settings.to_json %>">
-  <div class="cropit-image-preview" style="width:100%; height: 350px"></div>
+  <div class="cropit-image-preview" style="width:100%; height: 400px"></div>
   <input type="range" class="cropit-image-zoom-input crop-ui" style="position: absolute; bottom: 60px; z-index: 100; display: none" />
-  <div id="bg-photo" class='crop-ui' style="position: absolute; bottom: 120px; right: 200px; display:none">
+  <div id="bg-photo" class='crop-ui' style="position: absolute; bottom: 200px; right: 0px; display:none">
     <%= form_for [photo_owner, photo_owner.main_photo], html: { multipart: true, id: 'bg_image' } do |f| %>
       <div >
         <div>

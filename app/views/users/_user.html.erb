@@ -1,7 +1,8 @@
 <%= cache user do %>
 	<%= link_to user_path(user) do %>
-	  <div class="col-md-3 col-lg-2 col-sm-4 element-item">
-	    <div class="card card-user card-clickable card-clickable-over-content">
+	<div class="col-lg-2 col-md-6 col-sm-12 element-item">
+	<div class="card card-user card-clickable card-clickable-over-content">
+
 
 	      <div class="card-heading heading-full">
 	        <div class="user-image sample-member9" style="background: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');"></div>
@@ -37,7 +38,7 @@
 
 	      <% if current_user.admin? %>
 	      <!-- <div class="card-footer">
-        
+    
 	        <%#= link_to "Delete", user, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
 	      </div> --><!--.card-footer-->
 		  <% end %>
