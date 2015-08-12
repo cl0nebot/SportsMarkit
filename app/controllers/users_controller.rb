@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :find_user, only: %w[show edit update destroy store]
   
   def index
-    @users = User.all
+    @users = User.includes(:profile, :user_profile_pictures).all
   end
   
   def new

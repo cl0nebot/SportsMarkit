@@ -1,46 +1,48 @@
-<%= link_to user_path(user) do %>
-  <div class="col-md-3 col-lg-2 col-sm-4 element-item">
-    <div class="card card-user card-clickable card-clickable-over-content">
+<%= cache user do %>
+	<%= link_to user_path(user) do %>
+	  <div class="col-md-3 col-lg-2 col-sm-4 element-item">
+	    <div class="card card-user card-clickable card-clickable-over-content">
 
-      <div class="card-heading heading-full">
-        <div class="user-image sample-member9" style="background: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');"></div>
+	      <div class="card-heading heading-full">
+	        <div class="user-image sample-member9" style="background: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');"></div>
 
-          <div class="clickable-button">
-            <%= link_to edit_user_path(user), class: "btn btn-floating btn-orange initial-position floating-open" do %>
-              <i class="ion-gear-b"></i>
-          <% end %>
-          </div>
-      </div><!--.card-heading-->
+	          <div class="clickable-button">
+	            <%= link_to edit_user_path(user), class: "btn btn-floating btn-orange initial-position floating-open" do %>
+	              <i class="ion-gear-b"></i>
+	          <% end %>
+	          </div>
+	      </div><!--.card-heading-->
 
-      <div class="card-body">
-        <h4 class="card-title capitalize fs_20 semi-bold ws-1">
-			<%= link_to user_path(user) do %>
-          <%= user.first_name %> <%= user.last_name %>
-		  <% end %>
-        </h3>
+	      <div class="card-body">
+	        <h4 class="card-title capitalize fs_20 semi-bold ws-1">
+				<%= link_to user_path(user) do %>
+	          <%= user.first_name %> <%= user.last_name %>
+			  <% end %>
+	        </h3>
 
-        <div class="subhead">
-          <!-- <span class="text-muted">
-            Member since: <%= format(user.created_at, 4) %>
-          </span> -->
-          <span class="text-muted fs_11">
-           <!--  <%= user.age %> years old<br/> -->
-            <i class="ion-location text-blue margin-right-5"></i> <%= user.profile.location_description.present? ? user.profile.location_description : "USA" %><br/>
-      		  <% if current_user.admin? %>
-                <i class="ion-email text-blue margin-right-5"></i><%= user.email %><br/>
-                <i class="ion-ios-telephone text-blue margin-right-5"></i> <%= number_to_phone(user.mobile_phone_number) %>
-      		  <% end %>
-          </span>
-        </div>
-      </div><!--.card-body-->
+	        <div class="subhead">
+	          <!-- <span class="text-muted">
+	            Member since: <%= format(user.created_at, 4) %>
+	          </span> -->
+	          <span class="text-muted fs_11">
+	           <!--  <%= user.age %> years old<br/> -->
+	            <i class="ion-location text-blue margin-right-5"></i> <%= user.profile.location_description.present? ? user.profile.location_description : "USA" %><br/>
+	      		  <% if current_user.admin? %>
+	                <i class="ion-email text-blue margin-right-5"></i><%= user.email %><br/>
+	                <i class="ion-ios-telephone text-blue margin-right-5"></i> <%= number_to_phone(user.mobile_phone_number) %>
+	      		  <% end %>
+	          </span>
+	        </div>
+	      </div><!--.card-body-->
 
-      <% if current_user.admin? %>
-      <!-- <div class="card-footer">
+	      <% if current_user.admin? %>
+	      <!-- <div class="card-footer">
         
-        <%#= link_to "Delete", user, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
-      </div> --><!--.card-footer-->
-	  <% end %>
+	        <%#= link_to "Delete", user, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
+	      </div> --><!--.card-footer-->
+		  <% end %>
 
-    </div><!--.card-->
-  </div><!--.col-md-4-->
+	    </div><!--.card-->
+	  </div><!--.col-md-4-->
+	<% end %>
 <% end %>
