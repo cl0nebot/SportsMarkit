@@ -85,18 +85,18 @@
 		</div>
 	</div><!--.col-md-9-->
 </div>
-<br/>
+<hr/>
 
 <div class="row">
 	<% @people.each_with_index do |person, i| %>
-		<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="col-lg-4 col-md-6 col-sm-6">
 			<div class="card tile card-friend material-animate box-shadow-ccc">
 				<a href="user-profile.html">
 					<%= image_tag person.avatar, class: "user-photo" %>
 				</a>
 				<div class="friend-content">
 					<div class="margin-bottom-5">
-						<p class="title"><%= person.name %></p>
+						<h4 class="title"><%= person.name %></h4>
 						<p class="no-margin"><%= %></p>
 						<h6 class="m-t-5">
 							<small><%= pluralize person.teams.count, "Team" %>: <a href="#">team 1</a>, <a href="#">team 2</a>, <a href="#">team 3</a></small>
