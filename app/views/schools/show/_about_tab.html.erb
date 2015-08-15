@@ -281,7 +281,7 @@
 			<!-- My teammates -->
 
 				<!-- My teams -->
-				<div class="col-md-6">
+			<div class="col-md-6">
 				<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
 					<div class="card-heading" style="border-top: 3px solid #ccc;">
 						<h6 class="semi-bold fs_14 mb0"><%= @school.name %></h6>
@@ -339,43 +339,40 @@
 						<ul>
 							<li class="fs_14"><span class="mr5"><%= pluralize @teams.count, "Sports Team" %></span></li>
 								<li><a href="#teams" data-toggle="tab" class="fs_14">View All Teams</a></li>
-								
-						
 						</ul>
 					</div><!--.card-footer-->
 				</div><!--.card-->
-				</div><!--.col-md-12-->
-				<!-- My teams -->
+			</div><!--.col-md-12-->
+			<!-- My teams -->
 
-				<!-- My Schedule -->
-				<div class="col-md-6">
-					<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
-						<div class="card-heading" style="border-top: 3px solid #ccc;">
-							<h6 class="semi-bold fs_14 mb0"><%= @school.name %></h6>
-							<h3 class="card-title">Upcoming Events</h3>
-							<!-- <div class="card-subhead">
-							 <a href="#">7 Upcoming Events</a>
-							</div> -->
-							<!--.card-subhead-->
-						</div><!--.card-heading-->
-						<div class="card-body pl40">
-							<div class="timeline single">
-				              <%= render 'shared/show_view_events', object: @school %>
-							</div>
+			<!-- My Schedule -->
+			<div class="col-md-6">
+				<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
+					<div class="card-heading" style="border-top: 3px solid #ccc;">
+						<h6 class="semi-bold fs_14 mb0"><%= @school.name %></h6>
+						<h3 class="card-title">Upcoming Events</h3>
+						<!-- <div class="card-subhead">
+						 <a href="#">7 Upcoming Events</a>
+						</div> -->
+						<!--.card-subhead-->
+					</div><!--.card-heading-->
+					<div class="card-body pl40">
+						<div class="timeline single">
+			              <%= render 'shared/show_view_events', object: @school %>
 						</div>
-						<hr class="no-margin"/>
-						
-						<div class="card-footer">
-							<ul>
-								<li class="fs_14"><span class="mr5"><%= pluralize @school.upcoming_events.count, "Upcoming Event" %></span></li>
-								<li><a href="#calendar-tab" data-toggle="tab" class="fs_14">View All Events</a></li>
-								
-							</ul>
-						</div><!--.card-footer-->
-					</div><!--.card-->
-				</div><!--.timeline-->
-			</div>
-		</div><!--.col-md-12-->
-		<!-- My Schedule -->
-	</div>
+					</div>
+					<hr class="no-margin"/>
+					
+					<div class="card-footer">
+						<ul>
+							<li class="fs_14"><span class="mr5"><%= pluralize @school.upcoming_events.count, "Upcoming Event" %></span></li>
+							<li><a href="#calendar-tab" data-toggle="tab" class="fs_14">View All Events</a></li>
+							
+						</ul>
+					</div><!--.card-footer-->
+				</div><!--.card-->
+			</div><!--.timeline-->
+		</div>
+	</div><!--.col-md-12-->
+	<!-- My Schedule -->
 </div>
