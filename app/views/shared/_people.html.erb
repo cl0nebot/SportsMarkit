@@ -89,26 +89,31 @@
 
 <div class="row">
 	<% @people.each_with_index do |person, i| %>
-		<div class="col-lg-4 col-md-6 col-sm-6">
-			<div class="card tile card-friend material-animate box-shadow-ccc">
-				<a href="user-profile.html">
-					<%= image_tag person.avatar, class: "user-photo" %>
-				</a>
-				<div class="friend-content">
-					<div class="margin-bottom-5">
-						<h4 class="title"><%= person.name %></h4>
-						<p class="no-margin"><%= %></p>
-						<h6 class="m-t-5">
-							<small><%= pluralize person.teams.count, "Team" %>: <a href="#">team 1</a>, <a href="#">team 2</a>, <a href="#">team 3</a></small>
-						</h6>
-						<div class="ml10">
-							<%= link_to user_path(person), class: "btn btn-orange btn-sm mr10"  do %>
-								<i class="ion-clipboard mr5"></i> View Profile
+		
+			<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="card tile card-friend material-animate box-shadow-ccc">
+					<a href="user-profile.html">
+						<%= image_tag person.avatar, class: "user-photo" %>
+					</a>
+					<div class="friend-content pt10">
+						<div class="margin-bottom-5">
+							<span class="title">
+								<span class="fs_20"><%= person.first_name %> <%= person.last_name %></span>
+							<span>
+							<h6 class="mt0">
+								<small>Student-Athlete, 
+									<%= pluralize person.teams.count, "Team" %>
+								</small>
+							</h6>
+							<div class="ml10">
+								<%= link_to user_path(person), class: "btn btn-primary button-striped button-full-striped btn-ripple btn-xs fs_14" do %>
+								View Profile
 							<% end %>
+
 							<% if current_user %>
 								<% if current_user.admin? or (current_user == person)%>
-									<%= link_to edit_user_path(person), class: "btn btn-primary btn-sm" do %>
-										<i class="ion-gear-b mr5"></i> Edit
+									<%= link_to edit_user_path(person), class: "btn btn-blue-grey button-striped button-full-striped btn-ripple btn-xs ml10 fs_14" do %>
+										<span class="text-blue-grey"><i class="ion-gear-b"></i> Edit</span>
 									<% end %>
 								<% end %>
 							<% end %>
@@ -118,6 +123,7 @@
 				</div><!--.friend-content-->
 			</div><!--.card-->
 		</div><!--.col-->
+	
 	<% end %>
 
 	<% @userless_people.each_with_index do |person, i| %>
