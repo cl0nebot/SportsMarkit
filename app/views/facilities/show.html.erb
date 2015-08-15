@@ -2,7 +2,7 @@
   .card-friend .user-photo {
     float: left;
     width: 160px;
-    height: auto;
+    height: 160px;
     border-radius: 3px 0 0 3px;
   }
   .card-friend .friend-content {
@@ -39,19 +39,19 @@
 				<!-- <li><a href="#amenities" data-toggle="tab" class="btn-ripple">Amenities</a></li> -->
 				<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
 				<!-- <li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li> -->
-      	<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
-  		  <!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
-  		  <li><a href="#location" data-toggle="tab" class="btn-ripple">Map</a></li>
-  		</ul>
-      <% if current_user %>
-        <% if current_user.admin? or current_user.can_edit_facility?(@facility)%>
-          <%= link_to edit_facility_path(@facility) do %>
-            <button href="" class="btn btn-floating btn-blue btn-ripple pull-right">
-          		<i class="ion-gear-b"></i>
-          	</button>
-          <% end %>
-        <% end %>
-      <% end %>
+		      	<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
+		  		  <!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
+		  		  <li><a href="#location" data-toggle="tab" class="btn-ripple">Map</a></li>
+		  		</ul>
+		      <% if current_user %>
+		        <% if current_user.admin? or current_user.can_edit_facility?(@facility)%>
+		          <%= link_to edit_facility_path(@facility) do %>
+		            <button href="" class="btn btn-floating btn-blue btn-ripple pull-right">
+		          		<i class="ion-gear-b"></i>
+		          	</button>
+		          <% end %>
+		        <% end %>
+		      <% end %>
 			
 		</div>
 	</div><!--.page-header-->

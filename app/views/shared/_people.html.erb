@@ -135,20 +135,25 @@
 				</a>
 				<div class="friend-content">
 					<div class="margin-bottom-5">
-						<p class="title">
-							<%= person.first_name %> <%= person.last_name %>
-						</p>
-						<p class="no-margin">[Status], [Title/Level]</p>
-						<h6 class="m-t-5">
-							<small><%#= pluralize person.teams.count, "Team" %>[4 Teams]: <a href="#">team 1</a>, <a href="#">team 2</a>, <a href="#">team 3</a></small>
+						<span class="title">
+							<span class="fs_20"><%= person.first_name %> <%= person.last_name %></span>
+						<span>
+						<h6 class="no-margin">
+							<small>Athletic Director</small>
 						</h6>
+						<hr class="light mt10 mb15"/>
 						<div class="ml10">
-							<%= link_to user_path(person), class: "btn btn-orange btn-sm mr10"  do %>
-								<i class="ion-clipboard mr5"></i> View Profile
+								<%= link_to user_path(person), class: "btn btn-primary button-striped button-full-striped btn-ripple btn-xs fs_14" do %>
+								View Profile
 							<% end %>
-							<a class="btn btn-primary btn-sm">
-								<i class="ion-gear-b mr5"></i> Edit
-							</a>
+
+							<% if current_user %>
+								<% if current_user.admin? or (current_user == person)%>
+									<%= link_to edit_user_path(person), class: "btn btn-blue-grey button-striped button-full-striped btn-ripple btn-xs ml10 fs_14" do %>
+										<span class="text-blue-grey"><i class="ion-gear-b"></i> Edit</span>
+									<% end %>
+								<% end %>
+							<% end %>
 						</div>
 					</div>
 				</div><!--.friend-content-->
