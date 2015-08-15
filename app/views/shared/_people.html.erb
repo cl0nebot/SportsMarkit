@@ -1,13 +1,12 @@
-<div class="row pt40">
-	<div class="well">
-		<h3 class="center">
-			<i class="ion-search margin-right-20 text-blue"></i>	
-			Find anyone in our Athletic Community
-		</h3>
-		<div class="row margin-top-20">
-			<div class="col-md-3">
+<div class="row bgcolor-white box-shadow-ccc pt20 pr20 pl20 pb30">
+	<div class="col-lg-4 col-md-4 col-sm-6">
+		<h2 class="text-indigo no-margin bold">Athletic Directory</h2>
+	</div>
+	<div class="col-lg-2 col-md-4 col-sm-6 text-center">
+		<div class="well bgcolor-light-grey no-margin">
+			<div class="btn-group btn-block">
 				<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-					Find a Student-Athlete <span class="caret"></span>
+					Student-Athletes <span class="ml5 caret"></span>
 				</button>
 				<ul class="dropdown-menu" role="menu">
 					<% @athletes.each do |user| %>
@@ -24,9 +23,13 @@
 					<% end %>
 				</ul>
 			</div><!--.btn-group-->
-			<div class="col-md-3">
+		</div>
+	</div>
+	<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
+		<div class="well bgcolor-light-grey no-margin">
+			<div class="btn-group btn-block">
 				<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-					Find a Coach <span class="caret"></span>
+					Coaches <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu" role="menu">
 					<% @coaches.each do |user| %>
@@ -43,9 +46,13 @@
 					<% end %>
 				</ul>
 			</div><!--.btn-group-->
-			<div class="col-md-3">
+		</div>
+	</div>
+	<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
+		<div class="well bgcolor-light-grey no-margin">
+			<div class="btn-group btn-block">
 				<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-					Find an Staff Member <span class="caret"></span>
+					Staff Members <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu" role="menu">
 					<% @manager_and_trainers.each do |user| %>
@@ -57,15 +64,19 @@
 					<% end %>
 					<% @userless_managers_and_trainers.each do |user| %>
 						<li>
-							<%= user.first %> <%= user.last %>
-					  	</li>
+						<%= user.first %> <%= user.last %>
+				  	</li>
 					<% end %>
 				</ul>
 			</div><!--.btn-group-->
-			<div class="col-md-3">
+		</div>
+	</div>
+	<div class="col-lg-2 col-md-4 col-sm-6 text-center">
+		<div class="well bgcolor-light-grey no-margin">
+			<div class="btn-group btn-block">
 				<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-					Find an Administrator <span class="caret"></span>
-					</button>
+				Administrators <span class="caret"></span>
+				</button>
 				<ul class="dropdown-menu" role="menu">
 					<% @admins.each do |user| %>
 						<li>
@@ -83,50 +94,48 @@
 				</ul>
 			</div><!--.btn-group-->
 		</div>
-	</div><!--.col-md-9-->
+	</div>
 </div>
+
 <hr/>
 
 <div class="row">
 	<% @people.each_with_index do |person, i| %>
-		
 			<div class="col-lg-3 col-md-6 col-sm-6">
-				<div class="card tile card-friend material-animate box-shadow-ccc">
-					<a href="user-profile.html">
-						<%= image_tag person.avatar, class: "user-photo" %>
-					</a>
-					<div class="friend-content pt10">
-						<div class="margin-bottom-5">
-							<span class="title">
-								<span class="fs_20"><%= person.first_name %> <%= person.last_name %></span>
-							<span>
-							<h6 class="no-margin">
-								<small>Student-Athlete, 
-									<%= pluralize person.teams.count, "Team" %>
-								</small>
-							</h6>
-							<hr class="light mt10 mb15"/>
-							<div class="ml10">
-								<%= link_to user_path(person), class: "btn btn-primary button-striped button-full-striped btn-ripple btn-xs fs_14" do %>
-								View Profile
-							<% end %>
+			<div class="card tile card-friend material-animate box-shadow-ccc">
+				<a href="user-profile.html">
+					<%= image_tag person.avatar, class: "user-photo" %>
+				</a>
+				<div class="friend-content pt10">
+					<div class="margin-bottom-5">
+						<span class="title">
+							<span class="fs_20"><%= person.first_name %> <%= person.last_name %></span>
+						<span>
+						<h6 class="no-margin">
+							<small>Student-Athlete, 
+								<%= pluralize person.teams.count, "Team" %>
+							</small>
+						</h6>
+						<hr class="light mt10 mb15"/>
+						<div class="ml10">
+							<%= link_to user_path(person), class: "btn btn-primary button-striped button-full-striped btn-ripple btn-xs fs_14" do %>
+							View Profile
+						<% end %>
 
-							<% if current_user %>
-								<% if current_user.admin? or (current_user == person)%>
-									<%= link_to edit_user_path(person), class: "btn btn-blue-grey button-striped button-full-striped btn-ripple btn-xs ml10 fs_14" do %>
-										<span class="text-blue-grey"><i class="ion-gear-b"></i> Edit</span>
-									<% end %>
+						<% if current_user %>
+							<% if current_user.admin? or (current_user == person)%>
+								<%= link_to edit_user_path(person), class: "btn btn-blue-grey button-striped button-full-striped btn-ripple btn-xs ml10 fs_14" do %>
+									<span class="text-blue-grey"><i class="ion-gear-b"></i> Edit</span>
 								<% end %>
 							<% end %>
-							
-						</div>
+						<% end %>
+						
 					</div>
-				</div><!--.friend-content-->
+				</div>
+			</div><!--.friend-content-->
 			</div><!--.card-->
-		</div><!--.col-->
-	
+			</div><!--.col-->
 	<% end %>
-
 	<% @userless_people.each_with_index do |person, i| %>
 		<div class="col-lg-3 col-md-6 col-sm-6">
 			<div class="card tile card-friend material-animate box-shadow-ccc">
