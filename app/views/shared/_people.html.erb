@@ -100,11 +100,12 @@
 							<span class="title">
 								<span class="fs_20"><%= person.first_name %> <%= person.last_name %></span>
 							<span>
-							<h6 class="mt0">
+							<h6 class="no-margin">
 								<small>Student-Athlete, 
 									<%= pluralize person.teams.count, "Team" %>
 								</small>
 							</h6>
+							<hr class="light mt10 mb15"/>
 							<div class="ml10">
 								<%= link_to user_path(person), class: "btn btn-primary button-striped button-full-striped btn-ripple btn-xs fs_14" do %>
 								View Profile
