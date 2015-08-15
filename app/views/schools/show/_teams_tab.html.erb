@@ -1,32 +1,59 @@
-<div id="teams" class="tab-pane tab-top-margin">
-	<div class="row">
-		<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 well">
-			<h3 class="center">
-				<i class="ion-search margin-right-20 text-blue"></i>	
-				Quickly find a team
-			</h3>
-			<div class="btn-group btn-block">
-				<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-				Select a Team <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<% @teams.each do |team| %>
-						<li>
-							<%= link_to team_path(team) do %>
+<div id="teams" class="tab-pane pt20">
+	
+	<div class="row bgcolor-white box-shadow-ccc padding-20">
+		<div class="col-lg-2 col-md-4 col-sm-6 text-center">
+			<h1 class="text-indigo no-margin bold">4</h1>
+			<h6 class="text-muted semi-bold no-margin ">No. of Teams</h6>
+		</div>
+		<div class="col-lg-2 col-md-4 col-sm-6 text-center">
+			<h1 class="text-indigo no-margin bold">47</h1>
+			<h6 class="text-muted semi-bold no-margin">No. of Athletes</h6>
+		</div>
+		<div class="col-lg-2 col-md-4 col-sm-6 text-center">
+			<h1 class="text-indigo no-margin bold">14</h1>
+			<h6 class="text-muted semi-bold no-margin">No. of Coaches</h6>
+		</div>
+		<div class="col-lg-2 col-md-4 col-sm-6 text-center">
+			<h1 class="text-indigo no-margin bold">4</h1>
+			<h6 class="text-muted semi-bold no-margin">No. of Team Managers</h6>
+		</div>
+		<div class="col-lg-2 col-md-4 col-sm-6 text-center">
+			<h1 class="text-indigo no-margin bold">4</h1>
+			<h6 class="text-muted semi-bold no-margin">No. of Athletic Trainers</h6>
+		</div>
+		<div class="col-lg-2 col-md-4 col-sm-6 mt10">
+			<div class="well bgcolor-light-grey">
+				<div class="btn-group btn-block">
+					<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+					Select a Team <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<% @teams.each do |team| %>
+							<li>
+								<%= link_to team_path(team) do %>
 					  			<%= team.name %>
 					  		<% end %>
 					  	</li>
-					<% end %>
-				</ul>
-			</div><!--.btn-group-->
-		</div><!--.col-md-9-->
-	</div>
-	<br/>
-	<div class="row teams">
-	<%= render 'shared/team_rosters' %>
+						<% end %>
+					</ul>
+				</div><!--.btn-group-->
+			</div>
+		</div>
 		
-
 	</div>
+
+	<hr/>
+
+	<div class="row">
+		<div class="col-lg-12">
+		<div class="row teams">
+			<%= render 'shared/team_rosters' %>
+		</div>
+	</div>
+</div>
+
+
+
 	<!-- <ul class="list-material">
 		<% @teams.each do |team| %>
 			<li class="has-action-left has-action-right">
