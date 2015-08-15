@@ -68,14 +68,14 @@
 					  <% if current_user.admin? or current_user.can_edit_school?(@school)%>
 					    <button href="" class="ml10 mt15 btn btn-blue btn-ripple btn-xs">
 					    	<%= link_to edit_school_path(@school) do %>
-	                	  		<span class=" text-white">
-	                	  			<span class="ion-gear-b mr5"></span> Edit</span>
-	                    	<% end %>
-	                    </button>
+          	  		<span class=" text-white">
+          	  			<span class="ion-gear-b mr5"></span> Edit</span>
+              	<% end %>
+              </button>
 					  <% end %>
 					<% end %>
 				</li>
-				<% end %>
+			<% end %>
 		</div>
 	</div><!--.page-header-->
 
