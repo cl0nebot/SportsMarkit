@@ -372,6 +372,40 @@
 					</div><!--.card-footer-->
 				</div><!--.card-->
 			</div><!--.timeline-->
+
+			<div class="col-md-6">
+				<div class="panel box-shadow-ccc">
+					<div class="panel-heading">
+						<div class="panel-title"><h4> Our Facilities</h4></div>
+					</div><!--.panel-heading-->
+					<div class="panel-body without-padding">	
+						<ul class="list-material borderless">
+							<% @school.facilities.each do |facility| %>
+								<li class="has-action-left has-action-right">
+									<a href="#" class="visible">
+										<div class="list-action-left">
+											<i class="ion-checkmark-circled icon-circle"></i>
+										</div>
+										<div class="list-content">
+											<span class="h6 bold">Facility Name</span>
+										</div>
+										<div class="list-action-right">
+											<%= link_to "View", facility_path(@school.facilities), class: "btn btn-primary pull-right mt10 btn-sm" %>							
+										</div>
+									</a>
+								</li>
+								<li class="divider with-border no-margin no-padding">
+								</li>
+							<% end %>
+						</ul>
+					</div><!--.panel-body-->
+				</div><!--.panel-->
+			</div>
+
+
+				
+
+
 		</div>
 	</div><!--.col-md-12-->
 	<!-- My Schedule -->
