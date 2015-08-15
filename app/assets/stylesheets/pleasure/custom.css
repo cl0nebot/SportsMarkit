@@ -643,3 +643,5 @@ ul.list-material.borderless.bgcolor-light-grey > li.divider {
 .tab-pane .page-header.full-content.parallax {
   border-bottom: 20px solid #fff;
 }
+
+.b-r-ddd {border-right: 1px solid #ddd; }
