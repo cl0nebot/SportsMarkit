@@ -6,8 +6,8 @@
 			</div><!--.page-header-->
 		</div>
 	</div>
-	<div class="row tab-top-margin">
-		<div class="col-md-4" style="margin-top: -249px;">
+	<div class="row ">
+		<div class="col-md-4" style="margin-top: -212px;">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card tile card-post" style="border-top: 3px solid #ccc;">
@@ -24,144 +24,144 @@
 	              <% end %>
 	            <% end %>
 	            <!-- <img src="../../assets/globals/img/faces/14.jpg" class="user-image" alt=""> -->
-	            			<p class="author">
-								<a href="#">
-								<i class="ion-ionic mr5"></i>
-								<%= pluralize @school.number_of_people_online, "Person" %> Online</a> 
-							</p>
-							<% if @school.number_of_people_online > 0 %>
-							<p class="fs_11 time">Last activity: <%= format(@school.last_activity, 4) %>, <%= format(@school.last_activity, 9) %></p>
-							<% end %>
-						</div><!--.card-heading-->
-						<hr class="light mt0"/>
-						<div class="card-body pl40 pr40">
-							<h3 class="semi-bold capitalize text-black no-margin lh_34">
-								<%= @school.name %>
-							</h3>
-							<p class="semi-bold small text-muted no-margin fs_14">
-								<span class="inline">
-									<i class="ion-ios-telephone fs_16 text-primary mr5"></i>
-									<%= @school.phone_number %> 
-								</span>
+	    			<p class="author">
+						<a href="#">
+						<i class="ion-ionic mr5"></i>
+						<%= pluralize @school.number_of_people_online, "Person" %> Online</a> 
+					</p>
+					<% if @school.number_of_people_online > 0 %>
+					<p class="fs_11 time">Last activity: <%= format(@school.last_activity, 4) %>, <%= format(@school.last_activity, 9) %></p>
+					<% end %>
+				</div><!--.card-heading-->
+				<hr class="light mt0"/>
+				<div class="card-body pl40 pr40">
+					<h3 class="semi-bold capitalize text-black no-margin lh_34">
+						<%= @school.name %>
+					</h3>
+					<p class="semi-bold small text-muted no-margin fs_14">
+						<span class="inline">
+							<i class="ion-ios-telephone fs_16 text-primary mr5"></i>
+							<%= @school.phone_number %> 
+						</span>
 
-								<span class="inline mr10 ml10 text-muted">|</span>
+						<span class="inline mr10 ml10 text-muted">|</span>
 
-								<span class="inline">
-									<i class="ion-monitor fs_16 text-primary mr5"></i>
-									<a href="<%= @school.website %>">Website</a>
-								</span>
+						<span class="inline">
+							<i class="ion-monitor fs_16 text-primary mr5"></i>
+							<a href="<%= @school.website %>">Website</a>
+						</span>
 
-								<span class="inline mr10 ml10 text-muted">|</span>
+						<span class="inline mr10 ml10 text-muted">|</span>
 
-								<span class="inline">
-									<i class="ion-email fs_20 text-primary mr5 v-align-middle"></i>
-									<%= @school.email %> Email
-								</span>
-							</p>
-								
-							<p class="fs_14 lh_18 text-muted mb20 mt10">
-								<%= @school.description %>
-							</p>
-						</div>
-						<hr class="light mt15 mb15"/>
-						<div class="card-heading pl40 pr40">
-							<p class="author lh_26">
-								<a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a> 
-							</p>
-							<p class="no-margin fs_14 text-muted">
-								<i class="ion-location"></i> <%= @school.address_1 %>, <%= @school.city %>, <%= @school.state %>, <%= @school.zip %>
-							</p>
-							<hr class="light mt10 mb5"/>
-						</div>
-						<div class="card-body pl40 pr40">
-							<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
-						</div>
-						<hr class="light mt15 mb15"/>
-						<div class="card-body pl40 pr40">
-							<% if @school.general_information_present? %>
-							<h6 class="upper text-muted bold mt0"><small>general information</small></h6>
-							<div class="clearfix">
-								<% if @school.number_of_students.present? %>
-								<p class="semi-bold fs_14 text-muted no-margin">
-									<i class="ion-university fs_20 text-primary mr5"></i>
-									Public School - <%= pluralize @school.number_of_students, "Student"  %>
-								</p>
-								<% end %>
-								<% if @school.motto.present? %>
-								<p class="semi-bold small fs_14 text-muted no-margin">
-									<i class="ion-quote fs_20 text-primary mr5"></i>
-									Motto - <%= @school.motto %>
-								</p>
-								<% end %>
-								<% if @school.colors.present? %>
-								<p class="semi-bold small fs_14 text-muted no-margin">
-									<i class="ion-speakerphone fs_20 text-primary mr5"></i>
-									<%= @school.colors %>
-								</p>
-								<% end %>
-								<% if @school.number_of_teams.present? %>
-								<p class="semi-bold small fs_14 text-muted no-margin">
-									<i class="ion-document-text fs_20 text-primary mr5"></i>
-									<%= pluralize @school.number_of_teams, "Sports Team"  %>
-								</p>
-								<% end %>
-								<% if @school.mascot.present? %>
-								<p class="semi-bold small fs_14 text-muted no-margin">
-									<i class="ion-flag fs_20 text-primary mr5"></i>
-									Mascot - <%= @school.mascot %>
-								</p>
-								<% end %>
-							</div>
-							<% end %>
-						</div>
-						<hr class="light mt15 mb15"/>
-							<div class="card-heading pl40 pr40">
-								<p class="author">
-									<a href="#">
-									<i class="ion-trophy mr5"></i>
-									Academic and Athletic Achievements</a> 
-								</p>
-							</div>
-							<div class="card-body pl40 pr40">
-							<h6 class="upper text-muted bold mt0"><small>School Awards</small></h6>
-							<!-- these must stay together as an interator -->
-							<table class="table table-hover bgcolor-white box-shadow-ccc">
-								<thead>
-									<th><span class="text-muted semi-bold fs_12">Award/Distinction</span></th>
-									<th><span class="text-muted semi-bold fs_12">Year</span></th>
-								</thead>
-								<tbody>
-									<%# @user.certificates.each do |certificate| %>
-										<tr>
-											<td><span class="fs_12"><%#= certificate.certification.name %></span></td>
-											<td><span class="fs_12"><%#= certificate.expiration %></span></td>
-										</tr>
-									<%# end %>
-								</tbody>
-							</table>
-						</div>
-						<hr class="light mt15 mb15"/>
-						<div class="card-body pl40 pr40">
-							<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Sports Team Awards & Distinctions</small></h6>
-							<!-- these must stay together as an interator -->
-							<div class="clearfix">
-								<table class="table table-hover bgcolor-white box-shadow-ccc">
-									<thead>
-										<th><span class="text-muted semi-bold fs_12">Team</span></th>
-										<th><span class="text-muted semi-bold fs_12">Award</span></th>
-										<th><span class="text-muted semi-bold fs_12">Year</span></th>
-									</thead>
-									<tbody>
-										<%# @user.measurables.each do |measurable| %>
-											<tr>
-												<td><span class="fs_12"><%#= measurable.measurable %></span></td>
-												<td><span class="fs_12"><%#= measurable.sport %></span></td>
-												<td><span class="fs_12"><%#= measurable.result %></span></td>
-											</tr>
-										<%# end %>
-									</tbody>
-								</table>
-							</div>
+						<span class="inline">
+							<i class="ion-email fs_20 text-primary mr5 v-align-middle"></i>
+							<%= @school.email %> Email
+						</span>
+					</p>
+						
+					<p class="fs_14 lh_18 text-muted mb20 mt10">
+						<%= @school.description %>
+					</p>
+				</div>
+				<hr class="light mt15 mb15"/>
+				<div class="card-heading pl40 pr40">
+					<p class="author lh_26">
+						<a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a> 
+					</p>
+					<p class="no-margin fs_14 text-muted">
+						<i class="ion-location"></i> <%= @school.address_1 %>, <%= @school.city %>, <%= @school.state %>, <%= @school.zip %>
+					</p>
+					<hr class="light mt10 mb5"/>
+				</div>
+				<div class="card-body pl40 pr40">
+					<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
+				</div>
+				<hr class="light mt15 mb15"/>
+				<div class="card-body pl40 pr40">
+					<% if @school.general_information_present? %>
+					<h6 class="upper text-muted bold mt0"><small>general information</small></h6>
+					<div class="clearfix">
+						<% if @school.number_of_students.present? %>
+						<p class="semi-bold fs_14 text-muted no-margin">
+							<i class="ion-university fs_20 text-primary mr5"></i>
+							Public School - <%= pluralize @school.number_of_students, "Student"  %>
+						</p>
+						<% end %>
+						<% if @school.motto.present? %>
+						<p class="semi-bold small fs_14 text-muted no-margin">
+							<i class="ion-quote fs_20 text-primary mr5"></i>
+							Motto - <%= @school.motto %>
+						</p>
+						<% end %>
+						<% if @school.colors.present? %>
+						<p class="semi-bold small fs_14 text-muted no-margin">
+							<i class="ion-speakerphone fs_20 text-primary mr5"></i>
+							<%= @school.colors %>
+						</p>
+						<% end %>
+						<% if @school.number_of_teams.present? %>
+						<p class="semi-bold small fs_14 text-muted no-margin">
+							<i class="ion-document-text fs_20 text-primary mr5"></i>
+							<%= pluralize @school.number_of_teams, "Sports Team"  %>
+						</p>
+						<% end %>
+						<% if @school.mascot.present? %>
+						<p class="semi-bold small fs_14 text-muted no-margin">
+							<i class="ion-flag fs_20 text-primary mr5"></i>
+							Mascot - <%= @school.mascot %>
+						</p>
+						<% end %>
+					</div>
+					<% end %>
+				</div>
+				<hr class="light mt15 mb15"/>
+					<div class="card-heading pl40 pr40">
+						<p class="author">
+							<a href="#">
+							<i class="ion-trophy mr5"></i>
+							Academic and Athletic Achievements</a> 
+						</p>
+					</div>
+					<div class="card-body pl40 pr40">
+					<h6 class="upper text-muted bold mt0"><small>School Awards</small></h6>
+					<!-- these must stay together as an interator -->
+					<table class="table table-hover bgcolor-white box-shadow-ccc">
+						<thead>
+							<th><span class="text-muted semi-bold fs_12">Award/Distinction</span></th>
+							<th><span class="text-muted semi-bold fs_12">Year</span></th>
+						</thead>
+						<tbody>
+							<%# @user.certificates.each do |certificate| %>
+								<tr>
+									<td><span class="fs_12"><%#= certificate.certification.name %></span></td>
+									<td><span class="fs_12"><%#= certificate.expiration %></span></td>
+								</tr>
+							<%# end %>
+						</tbody>
+					</table>
+				</div>
+				<hr class="light mt15 mb15"/>
+				<div class="card-body pl40 pr40">
+					<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Sports Team Awards & Distinctions</small></h6>
+					<!-- these must stay together as an interator -->
+					<div class="clearfix">
+						<table class="table table-hover bgcolor-white box-shadow-ccc">
+							<thead>
+								<th><span class="text-muted semi-bold fs_12">Team</span></th>
+								<th><span class="text-muted semi-bold fs_12">Award</span></th>
+								<th><span class="text-muted semi-bold fs_12">Year</span></th>
+							</thead>
+							<tbody>
+								<%# @user.measurables.each do |measurable| %>
+									<tr>
+										<td><span class="fs_12"><%#= measurable.measurable %></span></td>
+										<td><span class="fs_12"><%#= measurable.sport %></span></td>
+										<td><span class="fs_12"><%#= measurable.result %></span></td>
+									</tr>
+								<%# end %>
+							</tbody>
+						</table>
+					</div>
 
 							<br/>
 							<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Individual Athlete Awards & Distinctions</small></h6>
@@ -239,7 +239,7 @@
 				<!-- My Schedule -->
 			</div>
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-8 pt20">
 			<!-- My teammates -->
 			<div class="col-md-12">
 				<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >

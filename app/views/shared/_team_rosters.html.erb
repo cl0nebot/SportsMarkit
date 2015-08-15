@@ -28,7 +28,7 @@
 					</div>
 
 					<div class="margin-left-10">
-							<h3 class="fs_26 no-margin"><%= team.name %></h3>
+							<h3 class="fs_24 no-margin text-black semi-bold"><%= team.name %></h3>
 							<p class="text-muted no-margin">
 							<small>
 								<%= pluralize team.accepted_coach_relationships.count, "Coach" %>, 
@@ -56,16 +56,16 @@
 							<div class="list-content">
 								<% if rel.class.to_s == "Relationship" %>
 								<span class="title">
-									<span class="fs_24 thin"><%= rel.user.full_name %></span>
+									<span class="fs_18 thin"><%= rel.user.full_name %></span>
 								</span>
 								<% else %>
 								 <span class="title">
-								 	<span class="fs_24 thin">
+								 	<span class="fs_18 thin">
 								 		<%= rel.first_name  %> <%= rel.last_name %>
 								 	</span>
 								 </span>
 								<% end %>
-								<span class="caption ">
+								<span class="caption lh_12">
 									<span class="text-muted small lh_12">
 										<%= rel.head_title %>
 									</span>
@@ -90,17 +90,21 @@
 							<div class="list-content">
 								<% if rel.class.to_s == "Relationship" %>
 								<span class="title">
-									<span class="fs_24 thin"><%= rel.user.full_name %>
+									<span class="fs_18 thin"><%= rel.user.full_name %>
 									</span>
 								</span>
 								<% else %>
 								 <span class="title">
-								 	<span class="fs_24 thin">
+								 	<span class="fs_18 thin">
 								 		<%= rel.first_name  %> <%= rel.last_name %>
 								 	</span>
 								 </span>
 								<% end %>
-								<span class="caption text-muted h7"><%= rel.head_title %></span>
+								<span class="caption lh_12">
+									<span class="text-muted small lh_12">
+										<%= rel.head_title %>
+									</span>
+								</span>
 							</div>
 						</a>
 					</li>
@@ -121,18 +125,22 @@
 							<div class="list-content">
 								<% if rel.class.to_s == "Relationship" %>
 								<span class="title">
-									<span class="fs_24 thin">
+									<span class="fs_18 thin">
 										<%= rel.user.full_name %>
 									</span>
 								</span>
 								<% else %>
 								 <span class="title">
-								 	<span class="fs_24 thin">
+								 	<span class="fs_18 thin">
 								 		<%= rel.first_name  %> <%= rel.last_name %>
 								 	</span>
 								 </span>
 								<% end %>
-								<span class="caption text-muted h7"><%= rel.head_title %></span>
+								<span class="caption lh_12">
+									<span class="text-muted small lh_12">
+										<%= rel.head_title %>
+									</span>
+								</span>
 							</div>
 						</a>
 					</li>
@@ -154,17 +162,21 @@
 							<div class="list-content">
 								<% if rel.class.to_s == "Relationship" %>
 								<span class="title">
-									<span class="fs_24 thin">
+									<span class="fs_18 thin">
 										<%= rel.user.full_name %>
 									</span>
 								</span>
 								<% else %>
 								 <span class="title">
-								 	<span class="fs_24 thin"><%= rel.first_name  %> <%= rel.last_name %>
+								 	<span class="fs_18 thin"><%= rel.first_name  %> <%= rel.last_name %>
 								 	</span>
 								 </span>
 								<% end %>
-								<span class="caption text-muted h7"><%= rel.participant_classification %>, <%= rel.position_list %></span>
+								<span class="caption lh_12">
+									<span class="text-muted small lh_12">
+										<%= rel.participant_classification %>, <%= rel.position_list %>
+									</span>
+								</span>
 							</div>
 						</a>
 					</li>
