@@ -310,6 +310,23 @@
 									</div>
 								</a>
 							</li>
+							<ul class="users" style="border-bottom: 1px solid #ddd;">
+								<% @coaches.each do |user| %>
+									<li>
+										<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+											<%= image_tag user.avatar %>
+										</a>
+									</li>
+								<% end %>
+								<% @athletes.each do |user| %>
+									<li>
+										<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+											<%= image_tag user.avatar %>
+										</a>
+									</li>
+								<% end %>
+							</ul>
+
 							<li class="divider with-border no-padding no-margin">
 							</li>
 							<% end %>
@@ -357,6 +374,7 @@
 						</div><!--.card-footer-->
 					</div><!--.card-->
 				</div><!--.timeline-->
+			</div>
 		</div><!--.col-md-12-->
 		<!-- My Schedule -->
 	</div>
