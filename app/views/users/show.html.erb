@@ -41,27 +41,71 @@
 
 <div class="content">
 
-  <!--.page-header-->
-  <div class="page-header full-content parallax">
-    <%= render "users/show/header" %>
-    <%= render "users/show/tab_navigation" %>
-  </div>
-  <!--.page-header-->
+  <div class="page-header full-content bg-primary mb0" style="min-height: 141px;">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1 class="capitalize semi-bold">
+          <%= @user.name %>
+          <small></small>
+        </h1>
+      </div><!--.col-->
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="<%= facilities_path %>">Facilities</a></li>
+          <li><a href="<%= facility_path %>"><%= @user.name %></a></li>
+          <li><a href="#" class="active">Edit</a></li>
+        </ol>
+      </div><!--.col-->
+    </div><!--.row-->
 
-
-  <!-- main content div -->
-  <div class="container">
-    <div class="user-profile">
-      <div class="row">
-        <%= image_tag(@user.avatar, class: "col-md-2 img-thumbnail img-responsive b-rad-6", style: "margin-top: -180px; z-index: 99999;  min-width; 195px; min-height: 195px;") %>
-        <div class="col-md-10">
-        </div>
-      </div>
+    <div class="header-tabs scrollable-tabs sticky">
+      <ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+        <li class="active">
+              <a href="#about" data-toggle="tab" class="btn-ripple">About</a>
+            </li>
+            <li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
+            <li><a href="#teammates" data-toggle="tab" class="btn-ripple">Teammates</a></li>
+            <li>
+              <a href="#media" data-toggle="tab" class="btn-ripple">Photos & Videos</a>
+            </li>
+            <% if ParentChild.where(child_id: @user.id).present? %>
+              <li>
+                <a href="#parent-child" data-toggle="tab" class="btn-ripple">Parents</a>
+              </li>
+            <% end %>
+            <li>
+              <a href="#calendar-tab" data-toggle="tab" class="btn-ripple">
+                Calendar
+              </a>
+            </li>
+            <li>
+              <a href="#following" data-toggle="tab" class="btn-ripple">Following</a>
+            </li>
+            <li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
+            <%# if ParentChild.where(parent_id: @user.id).present? %>
+              <!-- <li><a href="#parent-child" data-toggle="tab" class="btn-ripple">Children</a></li> -->
+            <%# end %>
+            <!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
+      </ul>
+      <% if current_user %>
+        <% if current_user.admin? or current_user.can_edit_user?(@user)%>
+          <%= link_to edit_user_path(@user) do %>
+            <button href="" class="btn btn-floating btn-blue btn-ripple pull-right">
+              <i class="ion-gear-b"></i>
+            </button>
+          <% end %>
+        <% end %>
+      <% end %>
+      
     </div>
-  </div>
+  </div><!--.page-header-->
+
+
+   <!-- main content div -->
   <div class="row">
     <div class="col-md-12">
-      <div class="tab-content without-border pt40">
+      <div class="tab-content without-border">
         <!-- teams -->
         <%= render 'users/show/about_tab' %>
 
@@ -73,7 +117,6 @@
 
         <!-- calendar -->
         <%= render 'users/show/calendar_tab' %>
-
         
         <!-- facilities -->
         <%= render 'users/show/facilities_tab' %>

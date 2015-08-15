@@ -21,15 +21,15 @@
 			              <% end %>
 			            <% end %>
 			            <!-- <img src="../../assets/globals/img/faces/14.jpg" class="user-image" alt=""> -->
-			            			<p class="author">
-													<a href="#">
-													<i class="ion-ionic mr5"></i>
-													<%= pluralize @league.number_of_people_online, "Person" %> Online</a> 
-												</p>
-												<% if @league.number_of_people_online > 0 %>
-												<p class="fs_11 time">Last activity: <%= format(@league.last_activity, 4) %>, <%= format(@league.last_activity, 9) %></p>
-												<% end %>
-											</div><!--.card-heading-->
+            			<p class="author">
+										<a href="#">
+										<i class="ion-ionic mr5"></i>
+										<%= pluralize @league.number_of_people_online, "Person" %> Online</a> 
+									</p>
+									<% if @league.number_of_people_online > 0 %>
+									<p class="fs_11 time">Last activity: <%= format(@league.last_activity, 4) %>, <%= format(@league.last_activity, 9) %></p>
+									<% end %>
+								</div><!--.card-heading-->
 								<hr class="light no-margin"/>
 								<div class="card-body pl40 pr40">
 									<h4 class="bold"><%= @league.sport_list %></h4>

@@ -312,9 +312,13 @@ input.form-control {font-size: 26px; line-height: 30px;}
 
 /*cropping header*/
 .page-header.full-content.parallax {
-   height: 850px; overflow: hidden
+   height: 600px; overflow: hidden
 }
-.cropit-image-preview.cropit-image-loaded {height: 850px !important;}
+.cropit-image-preview.cropit-image-loaded {height: 600px !important;}
+.cropit-image-zoom-input.crop-ui {
+  width: 20%; position: absolute; left: 25%; right: 25%;  bottom: 200px !important; z-index: 100;
+}
+
 
 
 
@@ -615,10 +619,6 @@ padding: 0 10px;
 
 ul.li-with-divider li:last-child {
 border-right: none;
-}
-
-.cropit-image-zoom-input.crop-ui {
-  width: 20%; position: absolute; left: 25%; right: 25%;  bottom: 200px !important; z-index: 100;
 }
 
 .tab-top-margin {padding-top: 60px;}
