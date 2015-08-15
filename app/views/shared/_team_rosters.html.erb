@@ -1,52 +1,50 @@
 <% @teams.each do |team| %>
 	<div class="col-md-6 col-lg-4 col-sm-6">
 		<div class="panel box-shadow-ccc">
-			<div class="panel-heading">
+			<div class="panel-heading b-b-ccc" style="border-bottom: 5px solid #eee;">
 				<div class="panel-title">
-					<div class="pull-left">
-						<% if Sport.find_by_sport(team.sport).present? %>
-						<%= image_tag(Sport.find_by_sport(team.sport).try(:default_photo), height: "30", width: "30") %>
-						<% else %>
-						<%= image_tag(team.image, height: "30", width: "30") %>
+					<!-- <div class="pull-left">
+						<%# if Sport.find_by_sport(team.sport).present? %>
+						<%#= image_tag(Sport.find_by_sport(team.sport).try(:default_photo), height: "30", width: "30") %>
+						<%# else %>
+						<%#= image_tag(team.image, height: "30", width: "30") %>
+						<%# end %>
+					</div>
+					 -->
+					 
+
+					 <div class="pull-right">
+						<% if current_user %>
+						  <% if current_user.can_edit_team?(team) %>
+								<%= link_to edit_team_path(team), class: "btn btn-primary btn-sm mr5" do %>
+									<i class="ion-gear-b"></i>
+								<% end %>
+						  <% end %>
+						<% end %>
+
+						<%= link_to team_path(team), class: "btn btn-orange btn-sm" do %>
+							<i class="ion-clipboard"></i>
 						<% end %>
 					</div>
-					<div class="pull-left margin-left-10">
-						<h4 class="normal fs_18">	
-							<%= team.name %>
-						</h4>
-						<p class="text-muted mb5">
+
+					<div class="margin-left-10">
+							<h3 class="fs_26 no-margin"><%= team.name %></h3>
+							<p class="text-muted no-margin">
 							<small>
 								<%= pluralize team.accepted_coach_relationships.count, "Coach" %>, 
 								<%= pluralize team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize team.accepted_trainer_relationships.count, "Trainer" %>
 							</small>
 						</p>
 					</div>
-					<div class="row mt5 pl40">
-						<div class="col-md-12">
-							<div class="mr10">
-								<% if current_user %>
-								  <% if current_user.can_edit_team?(team) %>
-										<%= link_to edit_team_path(team), class: "btn btn-primary btn-sm mr5" do %>
-											<i class="ion-gear-b"></i>
-										<% end %>
-								  <% end %>
-								<% end %>
-								
-								<%= link_to team_path(team), class: "btn btn-orange btn-sm" do %>
-									<i class="ion-clipboard"></i>
-								<% end %>
-							</div>
-						</div>
-					</div>
 				</div>
-			</div><!--.panel-heading-->
-			<div class="panel-body without-padding">
-				<ul class="list-material borderless">
-					<li class="divider with-border">
+			</div>
+			<div class="panel-body without-padding bgcolor-light-grey">
+				<ul class="list-material borderless bgcolor-light-grey">
+					<li class="divider text-muted no-margin">
 						Coaching Staff
 					</li>
 					<% team.accepted_coach_relationships.each do |rel| %>
-					<li class="has-action-left">
+					<li class="has-action-left b-b-eee">
 						<a href="#" class="visible">
 							<div class="list-action-left">
 								<% if rel.class.to_s == "Relationship" %>
@@ -57,16 +55,26 @@
 							</div>
 							<div class="list-content">
 								<% if rel.class.to_s == "Relationship" %>
-								<span class="title"><%= rel.user.full_name %></span>
+								<span class="title">
+									<span class="fs_24 thin"><%= rel.user.full_name %></span>
+								</span>
 								<% else %>
-								 <span class="title"><%= rel.first_name  %> <%= rel.last_name %></span>
+								 <span class="title">
+								 	<span class="fs_24 thin">
+								 		<%= rel.first_name  %> <%= rel.last_name %>
+								 	</span>
+								 </span>
 								<% end %>
-								<span class="caption"><%= rel.head_title %></span>
+								<span class="caption ">
+									<span class="text-muted small lh_12">
+										<%= rel.head_title %>
+									</span>
+								</span>
 							</div>
 						</a>
 					</li>
 					<% end %>
-					<li class="divider with-border">
+					<li class="divider with-border no-margin text-muted">
 						Management & Support Staff
 					</li>
 					<% team.accepted_manager_relationships.each do |rel| %>
@@ -81,20 +89,27 @@
 							</div>
 							<div class="list-content">
 								<% if rel.class.to_s == "Relationship" %>
-								<span class="title"><%= rel.user.full_name %></span>
+								<span class="title">
+									<span class="fs_24 thin"><%= rel.user.full_name %>
+									</span>
+								</span>
 								<% else %>
-								 <span class="title"><%= rel.first_name  %> <%= rel.last_name %></span>
+								 <span class="title">
+								 	<span class="fs_24 thin">
+								 		<%= rel.first_name  %> <%= rel.last_name %>
+								 	</span>
+								 </span>
 								<% end %>
-								<span class="caption"><%= rel.head_title %></span>
+								<span class="caption text-muted h7"><%= rel.head_title %></span>
 							</div>
 						</a>
 					</li>
 					<% end %>
-					<li class="divider with-border">
+					<li class="divider with-border no-margin text-muted">
 						Team Trainer
 					</li>
 					<% team.accepted_trainer_relationships.each do |rel| %>
-					<li class="has-action-left">
+					<li class="has-action-left b-b-eee">
 						<a href="#" class="visible">
 							<div class="list-action-left">
 								<% if rel.class.to_s == "Relationship" %>
@@ -105,20 +120,28 @@
 							</div>
 							<div class="list-content">
 								<% if rel.class.to_s == "Relationship" %>
-								<span class="title"><%= rel.user.full_name %></span>
+								<span class="title">
+									<span class="fs_24 thin">
+										<%= rel.user.full_name %>
+									</span>
+								</span>
 								<% else %>
-								 <span class="title"><%= rel.first_name  %> <%= rel.last_name %></span>
+								 <span class="title">
+								 	<span class="fs_24 thin">
+								 		<%= rel.first_name  %> <%= rel.last_name %>
+								 	</span>
+								 </span>
 								<% end %>
-								<span class="caption"><%= rel.head_title %></span>
+								<span class="caption text-muted h7"><%= rel.head_title %></span>
 							</div>
 						</a>
 					</li>
 					<% end %>
-					<li class="divider with-border">
+					<li class="divider with-border no-margin text-muted">
 						Team Roster
 					</li>
 					<% team.accepted_athlete_relationships.each do |rel| %>
-					<li class="has-action-left">
+					<li class="has-action-left b-b-eee">
 						<a href="#" class="visible">
 							<div class="list-action-left">
 								<% if rel.class.to_s == "Relationship" %>
@@ -130,11 +153,18 @@
 							</div>
 							<div class="list-content">
 								<% if rel.class.to_s == "Relationship" %>
-								<span class="title"><%= rel.user.full_name %></span>
+								<span class="title">
+									<span class="fs_24 thin">
+										<%= rel.user.full_name %>
+									</span>
+								</span>
 								<% else %>
-								 <span class="title"><%= rel.first_name  %> <%= rel.last_name %></span>
+								 <span class="title">
+								 	<span class="fs_24 thin"><%= rel.first_name  %> <%= rel.last_name %>
+								 	</span>
+								 </span>
 								<% end %>
-								<span class="caption"><%= rel.participant_classification %>, <%= rel.position_list %></span>
+								<span class="caption text-muted h7"><%= rel.participant_classification %>, <%= rel.position_list %></span>
 							</div>
 						</a>
 					</li>

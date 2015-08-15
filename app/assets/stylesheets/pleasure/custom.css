@@ -631,3 +631,10 @@ border-right: none;
 }
 
 .map_container {height: 100%; min-height: 100%;}
+
+
+.has-action-left.b-b-eee {border-bottom: 1px solid #eee;}
+
+ul.list-material.borderless.bgcolor-light-grey > li.divider {
+  border-bottom: 1px solid #ddd;
+}
