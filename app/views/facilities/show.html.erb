@@ -26,7 +26,6 @@
 					<li><a href="/"><i class="ion-home"></i></a></li>
 					<li><a href="<%= facilities_path %>">Facilities</a></li>
 					<li><a href="<%= facility_path %>"><%= @facility.name %></a></li>
-					<li><a href="#" class="active">Edit</a></li>
 				</ol>
 			</div><!--.col-->
 		</div><!--.row-->
@@ -40,7 +39,7 @@
 				<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
 				<!-- <li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li> -->
 		      	<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
-		  		  
+		  		  <!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
 		  		</ul>
 		      <% if current_user %>
 		        <% if current_user.admin? or current_user.can_edit_facility?(@facility)%>
