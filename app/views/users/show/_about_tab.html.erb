@@ -229,7 +229,7 @@
 
 			<div class="col-md-8">
 				<!-- My teammates -->
-				<div class="col-md-12">
+				<div class="col-md-12 clearfix">
 					<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
 						<div class="card-heading" style="border-top: 3px solid #ccc;">
 							<h3 class="card-title">My Teammates</h3>
@@ -259,74 +259,144 @@
 				</div><!--.col-md-12-->
 				<!-- My teammates -->
 
-				<!-- My teams -->
-				<div class="col-md-6">
-					<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
-						<div class="card-heading" style="border-top: 3px solid #ccc;">
-							<h3 class="card-title">My Teams</h3>
-							<div class="card-subhead">
-							 <!-- <a href="#">8 Teams</a> -->
-							</div><!--.card-subhead-->
-						</div><!--.card-heading-->
-						<div class="card-body">
-							<ul class="list-material borderless">
-			                  <% @user.user_teams.each do |team| %>
-								<li class="has-action-left">
-									<a href="#" class="visible">
-										<div class="list-action-left">
-											<%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg", class: "face-radius")%>
-										</div>
-										<div class="list-content">
-											<span class="title"><%= team.name %></span>
-											<span class="fs_11 text-muted">
-												<%= pluralize team.people.count, "Person" %>,
-												<i class="ion-location text-primary ml5"></i> <%= team.city_state %>
-											</span>
-										</div>
-									</a>
-								</li>
-								<li class="divider with-border no-padding no-margin">
-								</li>
-								<% end %>
-	
-							</ul>
-						</div><!--.card-body-->
-						<hr class="no-margin"/>
-						<div class="card-footer">
-							<ul>
-								<li class="fs_14"><span class="mr5"><%= pluralize @user.user_teams.count, "Team"%></span></li>
-								<li><%= link_to "View All Teams", "/users/#{@user.slug}/#tab_teams", class: "fs_14" %></li>
-							</ul>
-						</div><!--.card-footer-->
-					</div><!--.card-->
-				</div><!--.col-md-12-->
-				<!-- My teams -->
 
-				<!-- My Schedule -->
-				<div class="col-md-6">
-					<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
-						<div class="card-heading" style="border-top: 3px solid #ccc;">
-							<h3 class="card-title">My Schedule</h3>
-							<div class="card-subhead">
-							 <!-- <a href="#">7 Upcoming Events</a> -->
-							</div><!--.card-subhead-->
-						</div><!--.card-heading-->
-						<div class="card-body pl40">
-							<div class="timeline single">
-								<%= render 'shared/show_view_events', object: @user %>
-							</div>
-						</div>
-						<hr class="no-margin"/>
-						
-						<div class="card-footer">
-							<ul>
-								<li class="fs_14"><span class="mr5"><%= pluralize @user.upcoming_events.count, "Upcoming Event" %> </span></li>
-								<li><%= link_to "View All Events", "/users/#{@user.slug}/events", class: "fs_14" %></li>
-							
-							</ul>
-						</div><!--.card-footer-->
-					</div><!--.card-->
-				</div><!--.timeline-->
+				<div class="col-md-6">	
+					<div class="row">	
+						<!-- My teams -->
+						<div class="col-md-12">
+							<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
+								<div class="card-heading" style="border-top: 3px solid #ccc;">
+									<h3 class="card-title">My Teams</h3>
+									<div class="card-subhead">
+									 <!-- <a href="#">8 Teams</a> -->
+									</div><!--.card-subhead-->
+								</div><!--.card-heading-->
+								<div class="card-body">
+									<ul class="list-material borderless">
+					                  <% @user.user_teams.each do |team| %>
+										<li class="has-action-left">
+											<a href="#" class="visible">
+												<div class="list-action-left">
+													<%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg", class: "face-radius")%>
+												</div>
+												<div class="list-content">
+													<span class="title"><%= team.name %></span>
+													<span class="fs_11 text-muted">
+														<%= pluralize team.people.count, "Person" %>,
+														<i class="ion-location text-primary ml5"></i> <%= team.city_state %>
+													</span>
+												</div>
+											</a>
+										</li>
+										<li class="divider with-border no-padding no-margin">
+										</li>
+										<% end %>
+			
+									</ul>
+								</div><!--.card-body-->
+								<hr class="no-margin"/>
+								<div class="card-footer">
+									<ul>
+										<li class="fs_14"><span class="mr5"><%= pluralize @user.user_teams.count, "Team"%></span></li>
+										<li><%= link_to "View All Teams", "/users/#{@user.slug}/#tab_teams", class: "fs_14" %></li>
+									</ul>
+								</div><!--.card-footer-->
+							</div><!--.card-->
+						</div><!--.col-md-12-->
+						<!-- My teams -->
+
+						<!-- My Schedule -->
+						<div class="col-md-12">
+							<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
+								<div class="card-heading" style="border-top: 3px solid #ccc;">
+									<h3 class="card-title">My Schedule</h3>
+									<div class="card-subhead">
+									 <!-- <a href="#">7 Upcoming Events</a> -->
+									</div><!--.card-subhead-->
+								</div><!--.card-heading-->
+								<div class="card-body pl40">
+									<div class="timeline single">
+										<%= render 'shared/show_view_events', object: @user %>
+									</div>
+								</div>
+								<hr class="no-margin"/>
+								
+								<div class="card-footer">
+									<ul>
+										<li class="fs_14"><span class="mr5"><%= pluralize @user.upcoming_events.count, "Upcoming Event" %> </span></li>
+										<li><%= link_to "View All Events", "/users/#{@user.slug}/events", class: "fs_14" %></li>
+									
+									</ul>
+								</div><!--.card-footer-->
+							</div><!--.card-->
+						</div><!--.timeline-->
+					</div>
+				</div>
+
+				<div class="col-md-6">	
+					<!-- My teammates -->
+					<div class="col-md-12">
+						<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+							<div class="card-heading" style="border-top: 3px solid #ccc;">
+								<h3 class="card-title">My Fans</h3>
+								<div class="card-subhead">
+								 <!-- <a href="#">24 Teammates</a> -->
+								</div><!--.card-subhead-->
+							</div><!--.card-heading-->
+							<div class="card-body">
+								<ul class="users">
+									<% @teammates.each do |teammate| %>
+									<li>
+										<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= teammate.full_name %>">
+											<%= image_tag teammate.avatar %>
+										</a>
+									</li>
+						           <% end %>
+								</ul>
+							</div><!--.card-body-->
+							<div class="card-footer">
+								<ul>
+									<li><span class="mr5 fs_14"><%= pluralize @teammates.count, "Person" %></span></li>
+									<li><%= link_to "View All Fans", "/users/#{@user.slug}/#tab_teammates", class: "fs_14" %></li>
+									
+								</ul>
+							</div><!--.card-footer-->
+						</div><!--.card-->
+					</div><!--.col-md-12-->
+
+					<!-- My teammates -->
+					<div class="col-md-12">
+						<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+							<div class="card-heading" style="border-top: 3px solid #ccc;">
+								<h3 class="card-title">My Followers</h3>
+								<div class="card-subhead">
+								 <!-- <a href="#">24 Teammates</a> -->
+								</div><!--.card-subhead-->
+							</div><!--.card-heading-->
+							<div class="card-body">
+								<ul class="users">
+									<% @teammates.each do |teammate| %>
+									<li>
+										<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= teammate.full_name %>">
+											<%= image_tag teammate.avatar %>
+										</a>
+									</li>
+						           <% end %>
+								</ul>
+							</div><!--.card-body-->
+							<div class="card-footer">
+								<ul>
+									<li><span class="mr5 fs_14"><%= pluralize @teammates.count, "Person" %></span></li>
+									<li><%= link_to "View All Followers", "/users/#{@user.slug}/#tab_teammates", class: "fs_14" %></li>
+									
+								</ul>
+							</div><!--.card-footer-->
+						</div><!--.card-->
+					</div><!--.col-md-12-->
+					<!-- My teammates -->
+				</div>
+
+
 			</div><!--.col-md-12-->
 			<!-- My Schedule -->
 		</div>
