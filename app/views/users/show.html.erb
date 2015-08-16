@@ -54,13 +54,23 @@
           <li><a href="/"><i class="ion-home"></i></a></li>
           <li><a href="<%= facilities_path %>">Facilities</a></li>
           <li><a href="<%= facility_path %>"><%= @user.name %></a></li>
-          <li><a href="#" class="active">Edit</a></li>
         </ol>
       </div><!--.col-->
     </div><!--.row-->
 
     <div class="header-tabs scrollable-tabs sticky">
-      <ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+       <% if current_user %>
+        <% if current_user.admin? or current_user == @user %>
+          <button href="" class="pull-right mt10 btn btn-lg btn-blue-grey button-striped button-full-striped btn-ripple fs_14 mr20">
+            <%= link_to edit_user_path(@user) do %>
+                  <span class="text-blue-grey">
+                    <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
+                  </span>
+              <% end %>
+            </button>
+        <% end %>
+      <% end %>
+     <ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
         <li class="active">
               <a href="#about" data-toggle="tab" class="btn-ripple">About</a>
             </li>
@@ -88,16 +98,6 @@
             <%# end %>
             <!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
       </ul>
-      <% if current_user %>
-        <% if current_user.admin? or current_user.can_edit_user?(@user)%>
-          <%= link_to edit_user_path(@user) do %>
-            <button href="" class="btn btn-floating btn-blue btn-ripple pull-right">
-              <i class="ion-gear-b"></i>
-            </button>
-          <% end %>
-        <% end %>
-      <% end %>
-      
     </div>
   </div><!--.page-header-->
 
