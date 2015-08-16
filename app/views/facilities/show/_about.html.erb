@@ -1,9 +1,61 @@
 <!-- following -->
-<div id="about" class="tab-pane active row">
-	<div class="col-md-8">
-		<div class="page-header full-content parallax" style="margin-right: 0;">
-			<%= render "facilities/show/header" %>
-			<%= render "facilities/show/tab_navigation" %>
-		</div><!--.page-header-->
+<div id="about" class="tab-pane active">
+	<div class="page-header full-content parallax">
+		<%= render "facilities/show/header" %>
+	</div><!--.page-header-->
+	<div class="col-md-3" style="margin-top: -223px;">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card tile card-post" style="border-top: 3px solid #ccc;">
+					<!-- <div class="card-heading pl40 pr40">
+						<% if current_user %>
+             <% if current_user.admin? or current_user.can_edit_facility?(@facility)%>
+                <button href="" class="pull-right btn bt-xs btn-grey button-striped button-full-striped btn-ripple fs_14">
+	                <a href="<%= edit_facility_path(@facility)%>">
+	                  <span class="text-muted">
+	                  	<i class="ion-gear-b fs_16 mr5"></i> Edit Profile
+	                  </span>
+	                </a>
+                </button>
+              <% end %>
+            <% end %>
+					</div> -->
+					<!--.card-heading-->
+					<div class="card-heading pl40 pr40">
+						<h3 class="semi-bold capitalize text-black no-margin">
+							<%= @facility.name %>
+						</h3>
+						<p class="author lh_26 mt5">
+							<a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a> 
+						</p>
+						<p class="no-margin fs_14 text-muted">
+							<i class="ion-location"></i> <%= @facility.address_1 %><br/>
+							 <%= @facility.city %>, <%= @facility.state %>, <%= @facility.zip %>
+						</p>
+					</div>
+					<hr class="light mt10 mb10"/>
+					<div class="card-body pl40 pr40">
+		    		<div id="gmaps_10" class="map" style="min-height: 100%;">
+		      			<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
+		    		</div>
+					</div>
+					<hr class="light mt10 mb10"/>
+					<div class="card-body pl40 pr40 pb40">
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div id="calendar-tab" class="row">
+		  <div class="col-md-12">
+		    <div class="panel box-shadow-ccc">
+		      <div class="panel-body transparent">
+		        <div id="calendar" data-root="<%= request.url %>"></div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 	</div>
 </div>
