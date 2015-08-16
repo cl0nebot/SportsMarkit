@@ -1,120 +1,128 @@
-<div class="row bgcolor-white box-shadow-ccc pt30 pr20 pl20 pb30">
-	<div class="col-lg-4 col-md-4 col-sm-6">
-		<h4 class="text-indigo bold mb10">
-			<span class="ion-person mr10"></span> Athletic Directory
-		</h4>
-		<div class="row example-row no-margin">
-			<div class="inputer floating-labe no-margin">
-				<div class="input-wrapper">
-					<input type="text" class="form-control" id="exampleInput1">
-					<label for="exampleInput1">
-						<span class="ion-search mr5"></span>
-						Enter name...
-					</label>
+<div class="col-md-3">
+	<div class="bgcolor-white box-shadow-ccc pt30 pr20 pl20 pb30">
+		<div class="row">
+			<div class="col-lg-12 col-md-4 col-sm-6">
+				<h4 class="text-indigo bold mb5 fs_26">
+					<span class="ion-person mr10"></span> School Athletic Directory
+				</h4>
+				<div class="row example-row no-margin">
+					<div class="inputer floating-labe no-margin">
+						<div class="input-wrapper">
+							<input type="text" class="form-control" id="exampleInput1">
+							<label for="exampleInput1">
+								<span class="ion-search mr5"></span>
+								Search name...
+							</label>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
-		<div class="well bgcolor-light-grey no-margin">
-			<div class="btn-group btn-block">
-				<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-					Student-Athletes <span class="ml5 caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<% @athletes.each do |user| %>
-						<li>
-							<%= link_to user_path(user) do %>
-					  			<%= user.full_name %>
-					  		<% end %>
-					  	</li>
-					<% end %>
-					<% @userless_athletes.each do |user| %>
-						<li>
+		<br/>
+
+		<div class="text-center">
+			<div class="well bgcolor-light-grey no-margin">
+				<div class="btn-group btn-block">
+					<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+						Student-Athletes <span class="ml5 caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<% @athletes.each do |user| %>
+							<li>
+								<%= link_to user_path(user) do %>
+						  			<%= user.full_name %>
+						  		<% end %>
+						  	</li>
+						<% end %>
+						<% @userless_athletes.each do |user| %>
+							<li>
+								<%= user.first %> <%= user.last %>
+						  	</li>
+						<% end %>
+					</ul>
+				</div><!--.btn-group-->
+			</div>
+		</div>
+		<br/>
+		<div class="text-center">
+			<div class="well bgcolor-light-grey no-margin">
+				<div class="btn-group btn-block">
+					<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+						Coaches <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<% @coaches.each do |user| %>
+							<li>
+								<%= link_to user_path(user) do %>
+						  			<%= user.full_name %>
+						  		<% end %>
+						  	</li>
+						<% end %>
+						<% @userless_coaches.each do |user| %>
+							<li>
+								<%= user.first %> <%= user.last %>
+						  	</li>
+						<% end %>
+					</ul>
+				</div><!--.btn-group-->
+			</div>
+		</div>
+		<br/>
+		<div class="text-center">
+			<div class="well bgcolor-light-grey no-margin">
+				<div class="btn-group btn-block">
+					<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+						Staff Members <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<% @manager_and_trainers.each do |user| %>
+							<li>
+								<%= link_to user_path(user) do %>
+						  			<%= user.full_name %>
+						  		<% end %>
+						  	</li>
+						<% end %>
+						<% @userless_managers_and_trainers.each do |user| %>
+							<li>
 							<%= user.first %> <%= user.last %>
 					  	</li>
-					<% end %>
-				</ul>
-			</div><!--.btn-group-->
+						<% end %>
+					</ul>
+				</div><!--.btn-group-->
+			</div>
 		</div>
-	</div>
-	<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
-		<div class="well bgcolor-light-grey no-margin">
-			<div class="btn-group btn-block">
-				<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-					Coaches <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<% @coaches.each do |user| %>
-						<li>
-							<%= link_to user_path(user) do %>
-					  			<%= user.full_name %>
-					  		<% end %>
-					  	</li>
-					<% end %>
-					<% @userless_coaches.each do |user| %>
-						<li>
-							<%= user.first %> <%= user.last %>
-					  	</li>
-					<% end %>
-				</ul>
-			</div><!--.btn-group-->
-		</div>
-	</div>
-	<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
-		<div class="well bgcolor-light-grey no-margin">
-			<div class="btn-group btn-block">
-				<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-					Staff Members <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<% @manager_and_trainers.each do |user| %>
-						<li>
-							<%= link_to user_path(user) do %>
-					  			<%= user.full_name %>
-					  		<% end %>
-					  	</li>
-					<% end %>
-					<% @userless_managers_and_trainers.each do |user| %>
-						<li>
-						<%= user.first %> <%= user.last %>
-				  	</li>
-					<% end %>
-				</ul>
-			</div><!--.btn-group-->
-		</div>
-	</div>
-	<div class="col-lg-2 col-md-4 col-sm-6 text-center">
-		<div class="well bgcolor-light-grey no-margin">
-			<div class="btn-group btn-block">
-				<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-				Administrators <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<% @admins.each do |user| %>
-						<li>
-							<%= link_to user_path(user) do %>
-					  			<%= user.full_name %>
-					  		<% end %>
-					  	</li>
-					<% end %>
-					
-					<% @userless_admins.each do |user| %>
-						<li>
-							<%= user.first %> <%= user.last %>
-					  	</li>
-					<% end %>
-				</ul>
-			</div><!--.btn-group-->
+		<br/>
+		<div class="text-center">
+			<div class="well bgcolor-light-grey no-margin">
+				<div class="btn-group btn-block">
+					<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+					Administrators <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<% @admins.each do |user| %>
+							<li>
+								<%= link_to user_path(user) do %>
+						  			<%= user.full_name %>
+						  		<% end %>
+						  	</li>
+						<% end %>
+						
+						<% @userless_admins.each do |user| %>
+							<li>
+								<%= user.first %> <%= user.last %>
+						  	</li>
+						<% end %>
+					</ul>
+				</div><!--.btn-group-->
+			</div>
 		</div>
 	</div>
 </div>
 
-<hr/>
-
-<div class="row">
+<div class="col-md-9">
+	<div class="">
 	<% @people.each_with_index do |person, i| %>
-			<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="col-lg-4 col-md-6 col-sm-6">
 			<div class="card tile card-friend material-animate box-shadow-ccc">
 				<a href="user-profile.html">
 					<%= image_tag person.avatar, class: "user-photo" %>
@@ -150,7 +158,7 @@
 			</div><!--.col-->
 	<% end %>
 	<% @userless_people.each_with_index do |person, i| %>
-		<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="col-lg-4 col-md-6 col-sm-6">
 			<div class="card tile card-friend material-animate box-shadow-ccc">
 				<a href="user-profile.html">
 					<%= image_tag "http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "user-photo" %>
@@ -182,4 +190,5 @@
 			</div><!--.card-->
 		</div><!--.col-->
 	<% end %>
+	</div>
 </div>
