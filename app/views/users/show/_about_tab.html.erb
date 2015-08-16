@@ -229,7 +229,7 @@
 
 			<div class="col-md-8">
 				<!-- My teammates -->
-				<div class="col-md-12 clearfix">
+				<div class="col-md-6 clearfix">
 					<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
 						<div class="card-heading" style="border-top: 3px solid #ccc;">
 							<h3 class="card-title">My Teammates</h3>
@@ -258,6 +258,41 @@
 					</div><!--.card-->
 				</div><!--.col-md-12-->
 				<!-- My teammates -->
+
+
+				<div class="col-md-6 clearfix">
+					<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+						<div class="card-heading pb0" style="border-top: 3px solid #ccc;">
+							<ul class="nav nav-tabs tabs-right-aligned pull-right fs_14 no-border" role="tablist">
+								<li><a href="#tab2_3" data-toggle="tab">Articles</a></li>
+								<li><a href="#tab2_2" data-toggle="tab">Videos</a></li>
+								<li class="active"><a href="#tab2_1" data-toggle="tab">Photos</a></li>
+							</ul>
+							<h3 class="card-title">My Sports Media</h3>
+						</div><!--.card-heading-->
+						<div class="card-body">
+						
+
+							<div class="tab-content">
+								<div class="tab-pane active" id="tab2_1">
+									<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that.</p>
+								</div><!--.tab-pane-->
+								<div class="tab-pane" id="tab2_2">
+									<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+								</div><!--.tab-pane-->
+								<div class="tab-pane" id="tab2_3">
+									<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+								</div><!--.tab-pane-->
+							</div>
+						</div>
+						<div class="card-footer">
+							<ul>
+								<li><span class="mr5 fs_14"><%= pluralize @teammates.count, "Person" %></span></li>
+								<li><%= link_to "View All Teammates", "/users/#{@user.slug}/#tab_teammates", class: "fs_14" %></li>
+							</ul>
+						</div><!--.card-footer-->
+					</div><!--.card-->
+				</div>
 
 
 				<div class="col-md-6">	
