@@ -6,9 +6,9 @@
   </div>
   <!--.page-header-->
 
-	<div class="container">
+	<div class="">
 		<div class="row">		
-			<div class="col-md-6">
+			<div class="col-md-4" style="margin-top: -296px;">
 				<div class="card tile card-post" style="border-top: 3px solid #ccc;">
 					<div class="card-heading pl40 pr40">
 						<% if current_user %>
@@ -30,18 +30,35 @@
 							Logged In</a> 
 						</p>
 						<p class="time">Last activity: <%= format(@user.online_status.last_seen, 4) %>, <%= format(@user.online_status.last_seen, 9) %> </p>
+						<% else %>
+						<p class="author">
+							<a href="#" class="text-orange"> 
+								<i class="ion-ionic mr5"></i>
+								Logged Out</a> 
+							</a>
+						</p>
+						<p class="time">Last activity: [Time]</p>
 						<% end %>
 					</div><!--.card-heading-->
 					<hr class="light mt0"/>
 					<div class="card-body pl40 pr40">
-						<h3 class="semi-bold capitalize text-black no-margin lh_34">
-							<%= @user.first_name %> <%= @user.middle_name %>
-							<%= @user.last_name %>
-						</h3>
-						<p class="no-margin fs_14 text-muted">
-							<%= @user.profile.sex %> | <%= @user.age %>
-						</p>
-						<h5 class="semi-bold text-black mt15 mb5"><%= @user.classification_list %></h5> 
+						<div class="clearfix row">
+						  <div class="col-md-3">
+						  	<div class="profile-photo">
+						    	<%= image_tag(@user.avatar, class: "img-thumbnail") %>
+						  	</div><!--.profile-photo-->
+						  </div>
+							<div class="col-md-9">
+								<h3 class="semi-bold capitalize text-black no-margin lh_34">
+									<%= @user.first_name %> <%#= @user.middle_name %>
+									<%= @user.last_name %>
+								</h3>
+								<h6 class="semi-bold text-muted mb5 mt5"><%= @user.classification_list %></h6> 
+								<p class="no-margin fs_14 text-muted">
+									<%= @user.profile.sex %> | <%= @user.age %>
+								</p>
+							</div>
+						</div>
 						<p class="fs_14 lh_18 text-muted mb20 mt0">
 							<%= @user.profile.description %>
 						</p>
@@ -50,28 +67,28 @@
 					<div class="card-body pl40 pr40">
 						<h6 class="upper text-muted bold mt0"><small>contact information</small></h6>
 						<div class="clearfix">
-							<p class="semi-bold small text-muted no-margin">
+							<p class="semi-bold fs_14 text-muted no-margin">
 								<i class="ion-location fs_20 text-primary mr5"></i>
 								<%= @user.profile.location_description %>
 							</p>
-							<p class="semi-bold small text-muted no-margin">
+							<p class="semi-bold fs_14 text-muted no-margin">
 								<i class="ion-person-add fs_20 text-primary mr5"></i>
 								<%= @user.username %>
 							</p>
-							<p class="semi-bold small text-muted no-margin">
+							<p class="semi-bold fs_14 text-muted no-margin">
 								<i class="ion-email fs_20 text-primary mr5"></i>
 								<%= @user.email %>
 							</p>
-							<p class="semi-bold small text-muted no-margin">
+							<p class="semi-bold fs_14 text-muted no-margin">
 								<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
 								<%= @user.mobile_phone_number %>
 							</p>
-							<p class="semi-bold small text-muted no-margin">
+							<p class="semi-bold fs_14 text-muted no-margin">
 								<i class="ion-android-calendar fs_20 text-primary mr5"></i>
 								<%= @user.profile.date_of_birth %>
 							</p>
 							<% if @user.user_schools.present? %>
-							<p class="semi-bold small text-muted no-margin">
+							<p class="semi-bold fs_14 text-muted no-margin">
 								<i class="ion-university fs_20 text-primary mr5"></i>
 								<%= @user.user_schools.first.name  %>
 							</p>
@@ -210,8 +227,7 @@
 				</div><!--.card-->
 			</div><!--.col-md-6-->
 
-			<div class="col-md-6">
-
+			<div class="col-md-8">
 				<!-- My teammates -->
 				<div class="col-md-12">
 					<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
@@ -244,7 +260,7 @@
 				<!-- My teammates -->
 
 				<!-- My teams -->
-				<div class="col-md-12">
+				<div class="col-md-6">
 					<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
 						<div class="card-heading" style="border-top: 3px solid #ccc;">
 							<h3 class="card-title">My Teams</h3>
@@ -287,7 +303,7 @@
 				<!-- My teams -->
 
 				<!-- My Schedule -->
-				<div class="col-md-12">
+				<div class="col-md-6">
 					<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
 						<div class="card-heading" style="border-top: 3px solid #ccc;">
 							<h3 class="card-title">My Schedule</h3>
