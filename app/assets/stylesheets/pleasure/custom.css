@@ -648,3 +648,9 @@ ul.list-material.borderless.bgcolor-light-grey > li.divider {
 .b-l-ddd {border-left: 1px solid #ddd; }
 
 .no-border {border: none !important;}
+
+.image-row img {width: 100%; height: auto;}
+
+.video-js.video-js-responsive.vjs-default-skin { width: 100% !important;}
+
+
