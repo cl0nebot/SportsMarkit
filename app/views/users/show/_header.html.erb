@@ -19,31 +19,5 @@
     <div class="col-sm-5">
        <%= render 'shared/upcoming_event', object: @user %>
     </div>
-    <!--.col-->
-    <div class="col-sm-6">
-      <ol class="breadcrumb">
-        <li><a href="/"><i class="ion-home"></i></a></li>
-        <li><a href="<%= users_path %>">users</a></li>
-        <% if current_user %>
-          <% if current_user.id == User.find(params[:id]).id %>
-            <li><a href="#" class="active">My Profile</a></li>
-          <% else %>
-            <li><a href="#" class="active"><%= @user.full_name %></a></li>
-          <% end %>
-        <% else %>
-           <li><a href="#" class="active"><%= @user.full_name %></a></li>
-        <% end %>
-      </ol>
-    </div>
-    <!--.col-->
-    <% if current_user %>
-    <% if current_user == @user %>
-      <div class="col-sm-1 text-right">
-        <a href="<%= edit_user_path(@user) %>" class="btn btn-floating btn-light-blue">
-          <i class="ion-android-settings"></i>
-        </a>
-      </div>
-    <% end %>
-    <% end %>
   </div>
   <!--.row-->
