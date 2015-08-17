@@ -1,323 +1,300 @@
 <div id="about" class="tab-pane active">
-	<div class="row pt40">
-		<div class="col-lg-12">
+	<!--.page-header-->
+  <div class="page-header full-content parallax">
+    <%= render "teams/show/header" %>
+    <%#= render "users/show/tab_navigation" %>
+  </div>
+  <!--.page-header-->
 
-			<div id="about" class="tab-pane active">
-				<div class="container">
-					<div class="row">
-
-						<div class="col-md-6">
-							<div class="card tile card-post" style="border-top: 3px solid #ccc;">
-								<div class="card-heading pl40 pr40">
-									<% if current_user %>
-			               <% if current_user.admin? or current_user.can_edit_team?(@team)%>
-			                <button href="" class="pull-right btn bt-xs btn-grey button-striped button-full-striped btn-ripple fs_14">
-			                  <a href="<%= edit_team_path(@team)%>">
-	                        <span class="text-muted">
-	                        	<i class="ion-gear-b fs_16 mr5"></i> Edit Profile
-	                        </span>
-		                    </a>
-			                  </button>
-			              <% end %>
-			            <% end %>
+	<div class="">
+		<div class="row">		
+			<div class="col-md-4" style="margin-top: -241px;">
+				<div class="card tile card-post" style="border-top: 3px solid #ccc;">
+					<div class="card-heading pl40 pr40">
+						<%= render "shared/fan" %>
+						<p class="author">
+							<a href="#">
+							<i class="ion-ionic mr5"></i>
+							<%= pluralize @team.number_of_people_online, "Person" %> Online</a> 
+						</p>
+						<% if @team.number_of_people_online > 0 %>
+						<p class="fs_11 time">Last activity: <%= format(@team.last_activity, 4) %>, <%= format(@team.last_activity, 9) %></p>
+						<% end %>
+						<p class="time">Last activity: [Time]</p>
+					</div><!--.card-heading-->
+					<hr class="light mb10 mt0"/>
+					<div class="card-body pl40 pr40">
+						<h3 class="semi-bold capitalize text-black mb0">
+							<%= @team.name %>
+						</h3>
+						<% if @team.school.present? %>
+					  	<h5 class="semi-bold no-margin lh_30">
+					  		<%= link_to @team.school.name, school_path(@team.school) %>
+					  	</h5>
+						<% end %>
 						
-				
-            			<p class="author">
-										<a href="#">
-										<i class="ion-ionic mr5"></i>
-										<%= pluralize @team.number_of_people_online, "Person" %> Online</a> 
-									</p>
-									<% if @team.number_of_people_online > 0 %>
-									<p class="fs_11 time">Last activity: <%= format(@team.last_activity, 4) %>, <%= format(@team.last_activity, 9) %></p>
-									<% end %>
-								</div><!--.card-heading-->
-								<hr class="light mb10 mt0"/>
-								<div class="card-body pl40 pr40">
-									<% if @team.school.present? %>
-								  	<h6 class="semi-bold no-margin fs_14 lh_22">
-								  		<%= link_to @team.school.name, school_path(@team.school) %>
-								  	</h6>
-									<% end %>
-								
-									<h3 class="semi-bold capitalize text-black no-margin lh_34">
-										<%= @team.name %>
-									</h3>
-									<p class="semi-bold small text-muted no-margin fs_12">
-										<span class="inline">
-											<i class="ion-ios-telephone fs_14 text-primary mr5"></i>
-											<%= @team.phone_number %> 
-										</span>
-
-										<span class="inline mr10 ml10 text-muted">|</span>
-
-										<span class="inline">
-											<i class="ion-monitor fs_14 text-primary mr5"></i>
-											<a href="<%= @team.website %>">Website</a>
-										</span>
-
-										<span class="inline mr10 ml10 text-muted">|</span>
-
-										<span class="inline">
-											<i class="ion-email fs_14 text-primary mr5 v-align-middle"></i>
-											<% if @team.email.present? %>
-											<%= mail_to @team.email, "Email" %>
-											<% else %>
-											Email (to be provided)
-											<% end %>
-										</span>
-									</p>
-									<!-- 	
-									<p class="fs_14 lh_18 text-muted mb20 mt10">
-										The mission of Walt Whitman High School is to prepare our students for the rigorous demands of the academic and work worlds so that they may reach their potential as self-directed, creative, and socially responsible individuals.
-									</p> -->
-								</div>
-								
-								<hr class="light mt15 mb0"/>
-								<div class="card-heading pl40 p40">
-									<h6 class="semi-bold mb0 fs_14"><%= @team.name %></h6>
-									<h5 class="semi-bold mt0 mb0 text-black">Coaches and Management</h3>
-								</div><!--.card-heading-->
-								<div class="card-body pr40">
-									<ul class="list-material borderless">
-										
-										<% @heads.each do |head| %>
-										
-										
-										
-										
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="pull-right pt20">
-													<span class="text-muted fs_11">
-														<i class="ion-ios-telephone text-primary mr5"></i>
-														<%= head.mobile_phone_number %> 
-													</span>
-													<span class="text-muted fs_11">
-														<i class="ion-email text-primary mr5"></i>
-														<%#= head.email %> 
-													</span>
-												</div>
-
-												<div class="list-action-left">
-													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-												</div>
-												<div class="list-content">
-													
-													<% if head.class.to_s == "Relationship" %>
-													  <span class="title"><%= head.user.full_name %></span>
-													<% else %>
-													  <span class="title"><%= head.first_name %> <%= head.last_name %></span>
-													<% end %>
-												</div>
-
-											</a>
-										</li>
-
-										<li class="divider with-border no-padding no-margin">
-										</li>
-										<% end %>
-
-			
-
-					
-										
-
-									</ul>
-								</div><!--.card-body-->
-									
-								<br/>
-								<hr class="light mt15 mb15"/>
-								<!-- My teams -->
-								<div class="card-body pl40 pr40">
-									<h6 class="upper text-muted bold mt0"><small>general information</small></h6>
-									<div class="clearfix">
-										<p class="semi-bold fs_12 text-muted no-margin">
-											<i class="ion-person-stalker fs_20 text-primary mr5"></i>
-											<%= pluralize @team.accepted_coach_relationships.count, "Coach" %>, 
-											<%= pluralize @team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize @team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize @team.accepted_trainer_relationships.count, "Trainer" %>
-										</p>
-									</div>
-								</div>
-								
-								<%#= render 'teams/show/awards_and_distinctions' %>
-								<div class="card-footer mt20 pl40 pr40">
-									<% if @team.social_media_present? %>
-									<h6 class="upper text-muted bold"><small>social profiles</small></h6>
-  									  <% @team.facebook.present? %>	
-  									    <% if @team.facebook.present? %>	
-  											<%=  link_to @team.facebook, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-  												<i class="ion-social-facebook"></i>
-  											<% end %>
-  										<% end %>
-							
-  										<% if @team.linkedin.present? %>	
-  											<%=  link_to @team.linkedin, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-  												<i class="ion-social-linkedin"></i>
-  											<% end %>
-  										<% end %>
-										
-							            <% if @team.youtube.present? %>
-	  										<%=  link_to @team.youtube, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-	  											<i class="ion-social-youtube"></i>
-	  										<% end %>
-										<% end %>
-										
-										<% if @team.twitter.present? %>
-	  										<%=  link_to @team.twitter, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-	  											<i class="ion-social-twitter"></i>
-	  										<% end %>
-										<% end %>
-										
-										<% if @team.instagram.present? %>
-	  										<%=  link_to @team.instagram, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-	  											<i class="ion-social-instagram"></i>
-	  										<% end %>
-										<% end %>
-										
-										<% if @team.pinterest.present? %>
-	  										<%=  link_to @team.pinterest, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-	  											<i class="ion-social-pinterest"></i>
-	  										<% end %>
-										<% end %>
-									</p>
-									<% end  %>
-								</div><!--.card-footer-->
-							</div><!--.card-->
-						</div><!--.col-md-6-->
-
-						<div class="col-md-6">
-							<!-- My teammates -->
-							<div class="col-md-12">
-								<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-									<div class="card-heading" style="border-top: 3px solid #ccc;">
-										<% if @team.school.present? %>
-									  	<h6 class="semi-bold no-margin fs_14 lh_22">
-									  		<%= link_to @team.school.name, school_path(@team.school) %>
-									  	</h6>
-									  	<% else %>
-									  	<h6 class="semi-bold fs_14 mb0"><%= @team.name %></h6>
-										<% end %>
-										<h3 class="card-title">Team Staff, Athletes, and Parents</h3>
-										<!-- <div class="card-subhead">
-										 <a href="#">124 Students</a>
-										</div> -->
-										<!--.card-subhead-->
-									</div><!--.card-heading-->
-									<div class="card-body">
-										<ul class="users expanded">
-											<% @team.people.each do |rel|%>
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= rel.user.full_name %>">
-													<%= image_tag rel.user.avatar %>
-												</a>
-											</li>
-											<% end %>
-										</ul>
-									</div><!--.card-body-->
-									<div class="card-footer">
-										<ul>
-											<li><span class="mr5 fs_14"><%= pluralize @team.people.count, "Person" %></span></li>
-											<!-- <li><a href="#" class="fs_14">View All</a></li> -->
-										</ul>
-									</div><!--.card-footer-->
-								</div><!--.card-->
-							</div><!--.col-md-12-->
-							<!-- My teammates -->
-
-							<!-- My teams -->
-							<div class="col-md-12">
-								<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
-									<div class="card-heading" style="border-top: 3px solid #ccc;">
-										<h6 class="semi-bold fs_14 mb0"><%= @team.name %></h6>
-										<h3 class="card-title">Player Roster</h3>
-										<!-- <div class="card-subhead">
-										 <a href="#">
-										 	<span class="text-muted">
-										 		36 Teams - 10 Freshman, 10 Junior Varsity, 10 Varsity
-										 	</span>
-										 	</a>
-										</div> -->
-										<!--.card-subhead-->
-									</div><!--.card-heading-->
-									<div class="card-body">
-										<ul class="list-material borderless">
-											<% @members.each do |member| %>
-											<li class="has-action-left">
-												<a href="#" class="visible">
-													<div class="pull-right pr20">
-														<span class="lh_20 pull-right h3 inline">
-															<% if member.jersey_number.present? %>
-															 <sup class="fs_18">#</sup><%= member.jersey_number %>
-															<% else %>
-															   TBD
-															<% end %>
-															
-														</span>
-													</div>
-
-													<div class="list-action-left">
-														<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-													</div>
-													<div class="list-content">
-													
-														<span class="title"><% if member.class.to_s == "Relationship" %>
-														  <%= member.user.try(:full_name) %>
-														<% else %>
-														  <%= member.first_name  %> <%= member.last_name %>
-														<% end %></span>
-														<span class="fs_11 text-muted"><%= member.participant_classification.capitalize %><%= "#{', ' if (member.participant_classification.present? && member.position_list.present?) }"%> <%= member.position_list %></span>
-													</div>
-
-												</a>
-											</li>
-											
-											<li class="divider with-border no-padding no-margin">
-											</li>
-											<% end %>
-										</ul>
-									</div><!--.card-body-->
-									<hr class="no-margin"/>
-									<div class="card-footer">
-										<ul>
-											<li class="fs_14"><span class="mr5"><%= pluralize @members.count, "Player" %> Players</span></li>
-											<li><a href="#roster" data-toggle="tab" class="fs_14">View Complete Roster</a></li>
-										</ul>
-									</div><!--.card-footer-->
-								</div><!--.card-->
-							</div><!--.col-md-12-->
-							<!-- My teams -->
-
-							<!-- My Schedule -->
-							<div class="col-md-12">
-								<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
-									<div class="card-heading" style="border-top: 3px solid #ccc;">
-										<h6 class="semi-bold fs_14 mb0"><%= @team.name %></h6>
-										<h3 class="card-title">Upcoming Events</h3>
-										<!-- <div class="card-subhead">
-										 <a href="#">7 Upcoming Events</a>
-										</div> -->
-										<!--.card-subhead-->
-									</div><!--.card-heading-->
-									<div class="card-body pl40">
-										<div class="timeline single">
-											<%= render 'shared/show_view_events', object: @team %>
-										</div>
-									</div>
-									<hr class="no-margin"/>
-									
-									<div class="card-footer">
-										<ul>
-											<li class="fs_14"><span class="mr5"><%= pluralize @team.upcoming_events.count, "Upcoming Event" %> </span></li>
-											<li><a href="#calendar-tab" data-toggle="tab" class="fs_14">View All Events</a></li>
-										</ul>
-									</div><!--.card-footer-->
-								</div><!--.card-->
-							</div><!--.timeline-->
-						</div><!--.col-md-12-->
-						<!-- My Schedule -->
+						<p class="semi-bold fs_12 text-muted no-margin">
+							<i class="ion-person-stalker fs_20 text-primary mr5"></i>
+							<%= pluralize @team.accepted_coach_relationships.count, "Coach" %>, 
+							<%= pluralize @team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize @team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize @team.accepted_trainer_relationships.count, "Trainer" %>
+						</p>
+								<!-- 	
+						<p class="fs_14 lh_18 text-muted mb20 mt10">
+							The mission of Walt Whitman High School is to prepare our students for the rigorous demands of the academic and work worlds so that they may reach their potential as self-directed, creative, and socially responsible individuals.
+						</p> -->
 					</div>
-				</div>
+					
+					<hr class="light mt15 mb0"/>
+					<div class="card-heading pl40 p40">
+						<h6 class="semi-bold mb0 fs_14"><%= @team.name %></h6>
+						<h5 class="semi-bold mt0 mb0 text-black">Coaches and Management</h3>
+					</div><!--.card-heading-->
+					<div class="card-body pr40">
+						<ul class="list-material borderless">
+							<% @heads.each do |head| %>
+								<li class="has-action-left">
+								<a href="#" class="visible">
+									<div class="pull-right pt20">
+										<span class="text-muted fs_11">
+											<i class="ion-ios-telephone text-primary mr5"></i>
+											<%= head.mobile_phone_number %> 
+										</span>
+										<span class="text-muted fs_11">
+											<i class="ion-email text-primary mr5"></i>
+											<%#= head.email %> 
+										</span>
+									</div>
+
+									<div class="list-action-left">
+										<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
+									</div>
+									<div class="list-content">
+										
+										<% if head.class.to_s == "Relationship" %>
+										  <span class="title"><%= head.user.full_name %></span>
+										<% else %>
+										  <span class="title"><%= head.first_name %> <%= head.last_name %></span>
+										<% end %>
+									</div>
+
+								</a>
+								</li>
+								<li class="divider with-border no-padding no-margin">
+								</li>
+							<% end %>
+						</ul>
+					</div><!--.card-body-->
+						
+					<br/>
+					<hr class="light mt15 mb15"/>
+					<!-- My teams -->
+					<div class="card-body pl40 pr40">
+						<h6 class="upper text-muted bold mt0"><small>general information</small></h6>
+						<div class="clearfix">
+							<p class="semi-bold fs_12 text-muted no-margin">
+								<i class="ion-person-stalker fs_20 text-primary mr5"></i>
+								<%= pluralize @team.accepted_coach_relationships.count, "Coach" %>, 
+								<%= pluralize @team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize @team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize @team.accepted_trainer_relationships.count, "Trainer" %>
+							</p>
+
+							<p class="semi-bold fs_14 text-muted no-margin">
+								<i class="ion-monitor fs_20 text-primary mr5"></i>
+								<%= @team.website %>
+							</p>
+								<p class="semi-bold fs_14 text-muted no-margin">
+								<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
+								<%= @team.phone_number %> 
+							</p>
+							<p class="semi-bold fs_14 text-muted no-margin">
+								<i class="ion-email fs_20 text-primary mr5"></i>
+								<% if @team.email.present? %>
+									<%= mail_to @team.email, "Email" %>
+								<% else %>
+									Email (to be provided)
+								<% end %>
+							</p>	
+						</div>
+					</div>
+					
+					<%#= render 'teams/show/awards_and_distinctions' %>
+					<div class="card-footer mt20 pl40 pr40">
+						<% if @team.social_media_present? %>
+						<h6 class="upper text-muted bold"><small>social profiles</small></h6>
+							  <% @team.facebook.present? %>	
+							    <% if @team.facebook.present? %>	
+									<%=  link_to @team.facebook, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+										<i class="ion-social-facebook"></i>
+									<% end %>
+								<% end %>
+				
+								<% if @team.linkedin.present? %>	
+									<%=  link_to @team.linkedin, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+										<i class="ion-social-linkedin"></i>
+									<% end %>
+								<% end %>
+							
+				            <% if @team.youtube.present? %>
+									<%=  link_to @team.youtube, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+										<i class="ion-social-youtube"></i>
+									<% end %>
+							<% end %>
+							
+							<% if @team.twitter.present? %>
+									<%=  link_to @team.twitter, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+										<i class="ion-social-twitter"></i>
+									<% end %>
+							<% end %>
+							
+							<% if @team.instagram.present? %>
+									<%=  link_to @team.instagram, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+										<i class="ion-social-instagram"></i>
+									<% end %>
+							<% end %>
+							
+							<% if @team.pinterest.present? %>
+									<%=  link_to @team.pinterest, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+										<i class="ion-social-pinterest"></i>
+									<% end %>
+							<% end %>
+						</p>
+						<% end  %>
+					</div><!--.card-footer-->
+				</div><!--.card-->
 			</div>
+
+			<div class="col-md-8">
+
+				<!-- Roster -->
+				<div class="col-md-6">
+					<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
+						<div class="card-heading" style="border-top: 3px solid #ccc;">
+							<h6 class="semi-bold fs_14 mb0"><%= @team.name %></h6>
+							<h3 class="card-title">Player Roster</h3>
+							<!-- <div class="card-subhead">
+							 <a href="#">
+							 	<span class="text-muted">
+							 		36 Teams - 10 Freshman, 10 Junior Varsity, 10 Varsity
+							 	</span>
+							 	</a>
+							</div> -->
+							<!--.card-subhead-->
+						</div><!--.card-heading-->
+						<div class="card-body">
+							<ul class="list-material borderless">
+								<% @members.each do |member| %>
+								<li class="has-action-left">
+									<a href="#" class="visible">
+										<div class="pull-right pr20">
+											<span class="lh_20 pull-right h3 inline">
+												<% if member.jersey_number.present? %>
+												 <sup class="fs_18">#</sup><%= member.jersey_number %>
+												<% else %>
+												   TBD
+												<% end %>
+												
+											</span>
+										</div>
+
+										<div class="list-action-left">
+											<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
+										</div>
+										<div class="list-content">
+										
+											<span class="title"><% if member.class.to_s == "Relationship" %>
+											  <%= member.user.try(:full_name) %>
+											<% else %>
+											  <%= member.first_name  %> <%= member.last_name %>
+											<% end %></span>
+											<span class="fs_11 text-muted"><%= member.participant_classification.capitalize %><%= "#{', ' if (member.participant_classification.present? && member.position_list.present?) }"%> <%= member.position_list %></span>
+										</div>
+
+									</a>
+								</li>
+								
+								<li class="divider with-border no-padding no-margin">
+								</li>
+								<% end %>
+							</ul>
+						</div><!--.card-body-->
+						<hr class="no-margin"/>
+						<div class="card-footer">
+							<ul>
+								<li class="fs_14"><span class="mr5"><%= pluralize @members.count, "Player" %> Players</span></li>
+								<li><a href="#roster" data-toggle="tab" class="fs_14">View Complete Roster</a></li>
+							</ul>
+						</div><!--.card-footer-->
+					</div><!--.card-->
+				</div><!--.col-md-12-->
+				<!-- Roster -->
+
+				
+
+				<!-- My teammates -->
+				<div class="col-md-6">
+					<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+						<div class="card-heading" style="border-top: 3px solid #ccc;">
+							<% if @team.school.present? %>
+						  	<h6 class="semi-bold no-margin fs_14 lh_22">
+						  		<%= link_to @team.school.name, school_path(@team.school) %>
+						  	</h6>
+						  	<% else %>
+						  	<h6 class="semi-bold fs_14 mb0"><%= @team.name %></h6>
+							<% end %>
+							<h3 class="card-title">Team Staff, Athletes, and Parents</h3>
+							<!-- <div class="card-subhead">
+							 <a href="#">124 Students</a>
+							</div> -->
+							<!--.card-subhead-->
+						</div><!--.card-heading-->
+						<div class="card-body">
+							<ul class="users bgcolor-light-grey">
+								<% @team.people.each do |rel|%>
+								<li>
+									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= rel.user.full_name %>">
+										<%= image_tag rel.user.avatar %>
+									</a>
+								</li>
+								<% end %>
+							</ul>
+						</div><!--.card-body-->
+						<div class="card-footer">
+							<ul>
+								<li><span class="mr5 fs_14"><%= pluralize @team.people.count, "Person" %></span></li>
+								<!-- <li><a href="#" class="fs_14">View All</a></li> -->
+							</ul>
+						</div><!--.card-footer-->
+					</div><!--.card-->
+				</div><!--.col-md-12-->
+				<!-- My teammates -->
+
+				<!-- My Schedule -->
+				<div class="col-md-6">
+					<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
+						<div class="card-heading" style="border-top: 3px solid #ccc;">
+							<h6 class="semi-bold fs_14 mb0"><%= @team.name %></h6>
+							<h3 class="card-title">Upcoming Events</h3>
+							<!-- <div class="card-subhead">
+							 <a href="#">7 Upcoming Events</a>
+							</div> -->
+							<!--.card-subhead-->
+						</div><!--.card-heading-->
+						<div class="card-body pl40">
+							<div class="timeline single">
+								<%= render 'shared/show_view_events', object: @team %>
+							</div>
+						</div>
+						<hr class="no-margin"/>
+						
+						<div class="card-footer">
+							<ul>
+								<li class="fs_14"><span class="mr5"><%= pluralize @team.upcoming_events.count, "Upcoming Event" %> </span></li>
+								<li><a href="#calendar-tab" data-toggle="tab" class="fs_14">View All Events</a></li>
+							</ul>
+						</div><!--.card-footer-->
+					</div><!--.card-->
+				</div><!--.timeline-->
+			</div><!--.col-md-12-->
+
 		</div>
 	</div>
 </div>

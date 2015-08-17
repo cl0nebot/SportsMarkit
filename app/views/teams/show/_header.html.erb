@@ -2,10 +2,6 @@
 
 <div class="bg-overlay"></div><!--.bg-overlay-->
 
-<div class="social-buttons">
-	<%= render 'shared/fan' %>
-</div>
-
 <div class="team-buttons" id="team-button">
 	<% if current_user.relationships.where(team_id: @team.id).empty? %>
 	  <%= render 'relationships/relationship'%>
@@ -21,17 +17,6 @@
 <div class="row">
 	<div class="col-sm-6">
       <%= render 'shared/upcoming_event', object: @team %>
-	</div><!--.col-->
-	<div class="col-sm-6">
-		<ol class="breadcrumb">
-			<li><a href="/"><i class="ion-home"></i></a></li>
-			<li><a href="<%= teams_path %>">Teams</a></li>
-			<% if @team.school.present? %>
-		  		<li><a href="#"><%= @team.school.name %></a></li>
-		  		<!-- add path for linking -->
-			<% end %>
-			<li><a href="#" class="active"><%= @team.name %></a></li>
-		</ol>
 	</div><!--.col-->
 </div><!--.row-->
 

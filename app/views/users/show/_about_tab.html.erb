@@ -1,5 +1,6 @@
 <div id="about" class="tab-pane active">
-	 <!--.page-header-->
+	
+	<!--.page-header-->
   <div class="page-header full-content parallax">
     <%= render "users/show/header" %>
     <%#= render "users/show/tab_navigation" %>
@@ -11,17 +12,7 @@
 			<div class="col-md-4" style="margin-top: -296px;">
 				<div class="card tile card-post" style="border-top: 3px solid #ccc;">
 					<div class="card-heading pl40 pr40">
-						 <% if current_user %>
-							<div class="pull-right">
-								<div id="fan-button">
-									<% if current_user.follows.where(fannable_id: @object.id, fannable_type: @class).empty? %>
-									<%= render 'fans/fan', object: @object %>
-									<% else %>
-									<%= render 'fans/unfan', object: @object %>
-									<% end %>
-								</div>
-							</div>
-						<% end %>
+						<%= render "shared/fan" %>
 					  <% if @user.online? %>
 						<p class="author">
 							<a href="#">
@@ -52,9 +43,11 @@
 									<%= @user.first_name %> <%#= @user.middle_name %>
 									<%= @user.last_name %>
 								</h3>
-								<h6 class="semi-bold text-muted mb5 mt5"><%= @user.classification_list %></h6> 
+								<p class="fs_14 semi-bold text-muted mb5 mt5"><%= @user.classification_list %></p> 
 								<p class="no-margin fs_14 text-muted">
-									<%= @user.profile.sex %> | <%= @user.age %>
+									<span class="label label-primary inline">
+										<%= @user.profile.sex %>[GENDER]
+									</span>
 								</p>
 							</div>
 						</div>
@@ -230,9 +223,10 @@
 
 				<div class="col-md-6">	
 					<div class="row">	
+						
 						<!-- My teammates -->
-							<div class="col-md-12 clearfix">
-					<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+						<div class="col-md-12 clearfix">
+							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
 						<div class="card-heading" style="border-top: 3px solid #ccc;">
 							<h3 class="card-title">My Teammates</h3>
 							<div class="card-subhead">
@@ -257,8 +251,8 @@
 								
 							</ul>
 						</div><!--.card-footer-->
-					</div><!--.card-->
-							</div><!--.col-md-12-->
+							</div><!--.card-->
+						</div><!--.col-md-12-->
 						<!-- My teammates -->
 
 						<!-- My teams -->
@@ -272,23 +266,25 @@
 								</div><!--.card-heading-->
 								<div class="card-body">
 									<ul class="list-material borderless">
-					                  <% @user.user_teams.each do |team| %>
-										<li class="has-action-left">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg", class: "face-radius")%>
-												</div>
-												<div class="list-content">
-													<span class="title"><%= team.name %></span>
-													<span class="fs_11 text-muted">
-														<%= pluralize team.people.count, "Person" %>,
-														<i class="ion-location text-primary ml5"></i> <%= team.city_state %>
-													</span>
-												</div>
-											</a>
-										</li>
-										<li class="divider with-border no-padding no-margin">
-										</li>
+										
+										
+					          <% @user.user_teams.each do |team| %>
+											<li class="has-action-left">
+												<a href="#" class="visible">
+													<div class="list-action-left">
+														<%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg", class: "face-radius")%>
+													</div>
+													<div class="list-content">
+														<span class="title"><%= team.name %></span>
+														<span class="fs_11 text-muted">
+															<%= pluralize team.people.count, "Person" %>,
+															<i class="ion-location text-primary ml5"></i> <%= team.city_state %>
+														</span>
+													</div>
+												</a>
+											</li>
+											<li class="divider with-border no-padding no-margin">
+											</li>
 										<% end %>
 			
 									</ul>

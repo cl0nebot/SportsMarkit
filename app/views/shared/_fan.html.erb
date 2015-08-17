@@ -1,4 +1,4 @@
-<% if current_user %>
+ <% if current_user %>
 	<div class="pull-right">
 		<div id="fan-button">
 			<% if current_user.follows.where(fannable_id: @object.id, fannable_type: @class).empty? %>

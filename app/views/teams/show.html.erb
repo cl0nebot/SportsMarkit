@@ -21,29 +21,69 @@
 
 </style>
 
-
 <div class="content">
-	<div class="page-header full-content parallax">
-   	<%= render "teams/show/header" %>
-   	<%= render "teams/show/tab_navigation" %>
-	</div><!--.page-header-->
+	<div class="page-header full-content bg-primary mb0" style="min-height: 141px;">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1 class="capitalize semi-bold">
+          <%= @team.name %>
+          <small></small>
+        </h1>
+      </div><!--.col-->
+      <div class="col-sm-6">
+       	<ol class="breadcrumb">
+					<li><a href="/"><i class="ion-home"></i></a></li>
+					<li><a href="<%= teams_path %>">Teams</a></li>
+					<% if @team.school.present? %>
+				  		<li><a href="#"><%= @team.school.name %></a></li>
+				  		<!-- add path for linking -->
+					<% end %>
+					<li><a href="#" class="active"><%= @team.name %></a></li>
+				</ol>
+      </div>
+    </div><!--.row-->
 
-	<div class="container">
-		<div class="user-profile">
-	    <div class="row">
-		  	<% if Sport.where(sport: @team.sport).present? %>
-		      	<img src="<%= image_path(Sport.find_by_sport(@team.sport).try(:default_photo)) %>" alt="" class="col-md-2 img-thumbnail img-responsive b-rad-6" style="margin-top: -180px; z-index: 99999;  min-width; 195px; min-height: 195px;">
-			<% else %>
-		 		<img src="http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg" alt="" class="col-md-2 img-thumbnail img-responsive b-rad-6" style="margin-top: -180px; z-index: 99999;  min-width; 195px; min-height: 195px;">
-			<% end %>
-		    <div class="col-md-10">
-		    </div>
-		  </div>
-		</div>
-	</div>
-  <div class="row">
+    <div class="header-tabs scrollable-tabs sticky">
+       <% if current_user %>
+        <% if current_user.admin? or current_user == @user %>
+          <button href="" class="pull-right mt10 btn btn-lg btn-blue-grey button-striped button-full-striped btn-ripple fs_14 mr20">
+            <%= link_to edit_team_path(@team) do %>
+              <span class="text-blue-grey">
+                <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
+              </span>
+            <% end %>
+          </button>
+        <% end %>
+      <% end %>
+     <ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+        <li class="active">
+          <a href="#about" data-toggle="tab" class="btn-ripple">About</a>
+        </li>
+        <li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
+        <li><a href="#teammates" data-toggle="tab" class="btn-ripple">Teammates</a></li>
+        <li>
+          <a href="#media" data-toggle="tab" class="btn-ripple">Photos & Videos</a>
+        </li>
+        <li>
+          <a href="#calendar-tab" data-toggle="tab" class="btn-ripple">
+            Calendar
+          </a>
+        </li>
+        <li>
+          <a href="#following" data-toggle="tab" class="btn-ripple">Following</a>
+        </li>
+        <li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
+        <%# if ParentChild.where(parent_id: @user.id).present? %>
+          <!-- <li><a href="#parent-child" data-toggle="tab" class="btn-ripple">Children</a></li> -->
+        <%# end %>
+        <!-- <li><a href="#photo" data-toggle="tab" class="btn-ripple">Photo</a></li> -->
+      </ul>
+    </div>
+  </div><!--.page-header-->
+	
+	<div class="row">
     <div class="col-md-12">
-      <div class="tab-content without-border  pt40">
+      <div class="tab-content without-border">
 							
 				<!-- about -->
 				<%= render "teams/show/about_tab" %>
