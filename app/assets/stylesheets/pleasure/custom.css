@@ -319,6 +319,9 @@ input.form-control {font-size: 26px; line-height: 30px;}
   width: 20%; position: absolute; left: 25%; right: 25%;  bottom: 200px !important; z-index: 100;
 }
 
+#image-cropper.parallax-bg {
+  opacity: 1 !important;
+}
 
 
 
