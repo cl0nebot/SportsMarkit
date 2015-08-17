@@ -44,18 +44,29 @@
     </div><!--.row-->
 
     <div class="header-tabs scrollable-tabs sticky">
-       <% if current_user %>
+      
+      <% if current_user %>
         <% if current_user.admin? or current_user == @user %>
-          <button href="" class="pull-right mt10 btn btn-lg btn-blue-grey button-striped button-full-striped btn-ripple fs_14 mr20">
-            <%= link_to edit_team_path(@team) do %>
-              <span class="text-blue-grey">
-                <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
-              </span>
-            <% end %>
-          </button>
+          <%= link_to edit_team_path(@team), class: "mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
+              <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
+          <% end %>
         <% end %>
       <% end %>
-     <ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+
+      <div class="pull-right mr10 mt10" id="team-button">
+				<% if current_user.relationships.where(team_id: @team.id).empty? %>
+				  <%= render 'relationships/relationship'%>
+				<% elsif current_user.relationships.where(team_id: @team.id, accepted: nil, rejected: nil).present? %>
+				  <%= render 'relationships/pending'%>
+				<% elsif current_user.relationships.where(team_id: @team.id, accepted: true).present? %>
+					<%= render 'relationships/member'%>
+					
+				<% end %>
+			</div>
+
+
+
+     	<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
         <li class="active">
           <a href="#about" data-toggle="tab" class="btn-ripple">About</a>
         </li>
@@ -103,11 +114,11 @@
 			 	<!-- following -->
 			 	<%= render "teams/show/following_tab" %>
 				      
-		      	<!-- fans -->
-		      	<%= render "teams/show/fans_tab" %>
+      	<!-- fans -->
+      	<%= render "teams/show/fans_tab" %>
 
-		      	<!-- admin -->
-		      	<%= render "teams/show/admin_tab" %>
+      	<!-- admin -->
+      	<%= render "teams/show/admin_tab" %>
 
 	      		<!-- payments -->
 				<!-- <div id="payments" class="tab-pane">

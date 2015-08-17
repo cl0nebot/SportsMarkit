@@ -2,18 +2,6 @@
 
 <div class="bg-overlay"></div><!--.bg-overlay-->
 
-<div class="team-buttons" id="team-button">
-	<% if current_user.relationships.where(team_id: @team.id).empty? %>
-	  <%= render 'relationships/relationship'%>
-	<% elsif current_user.relationships.where(team_id: @team.id, accepted: nil, rejected: nil).present? %>
-	  <%= render 'relationships/pending'%>
-	<% elsif current_user.relationships.where(team_id: @team.id, accepted: true).present? %>
-		<%= render 'relationships/member'%>
-		
-	<% end %>
-</div>
-
-
 <div class="row">
 	<div class="col-sm-6">
       <%= render 'shared/upcoming_event', object: @team %>

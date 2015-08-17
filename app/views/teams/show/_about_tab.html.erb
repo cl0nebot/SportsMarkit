@@ -8,7 +8,7 @@
 
 	<div class="">
 		<div class="row">		
-			<div class="col-md-4" style="margin-top: -241px;">
+			<div class="col-md-4" style="margin-top: -272px;">
 				<div class="card tile card-post" style="border-top: 3px solid #ccc;">
 					<div class="card-heading pl40 pr40">
 						<%= render "shared/fan" %>
@@ -32,16 +32,12 @@
 					  		<%= link_to @team.school.name, school_path(@team.school) %>
 					  	</h5>
 						<% end %>
-						
+
 						<p class="semi-bold fs_12 text-muted no-margin">
 							<i class="ion-person-stalker fs_20 text-primary mr5"></i>
 							<%= pluralize @team.accepted_coach_relationships.count, "Coach" %>, 
 							<%= pluralize @team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize @team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize @team.accepted_trainer_relationships.count, "Trainer" %>
 						</p>
-								<!-- 	
-						<p class="fs_14 lh_18 text-muted mb20 mt10">
-							The mission of Walt Whitman High School is to prepare our students for the rigorous demands of the academic and work worlds so that they may reach their potential as self-directed, creative, and socially responsible individuals.
-						</p> -->
 					</div>
 					
 					<hr class="light mt15 mb0"/>
@@ -53,34 +49,33 @@
 						<ul class="list-material borderless">
 							<% @heads.each do |head| %>
 								<li class="has-action-left">
-								<a href="#" class="visible">
-									<div class="pull-right pt20">
-										<span class="text-muted fs_11">
-											<i class="ion-ios-telephone text-primary mr5"></i>
-											<%= head.mobile_phone_number %> 
-										</span>
-										<span class="text-muted fs_11">
-											<i class="ion-email text-primary mr5"></i>
-											<%#= head.email %> 
-										</span>
-									</div>
+									<a href="#" class="visible">
+										<div class="pull-right pt20">
+											<span class="text-muted fs_11">
+												<i class="ion-ios-telephone text-primary mr5"></i>
+												<%= head.mobile_phone_number %> 
+											</span>
+											<span class="text-muted fs_11">
+												<i class="ion-email text-primary mr5"></i>
+												<%#= head.email %> 
+											</span>
+										</div>
 
-									<div class="list-action-left">
-										<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-									</div>
-									<div class="list-content">
-										
-										<% if head.class.to_s == "Relationship" %>
-										  <span class="title"><%= head.user.full_name %></span>
-										<% else %>
-										  <span class="title"><%= head.first_name %> <%= head.last_name %></span>
-										<% end %>
-									</div>
+										<div class="list-action-left">
+											<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
+										</div>
+										<div class="list-content">
+											
+											<% if head.class.to_s == "Relationship" %>
+											  <span class="title"><%= head.user.full_name %></span>
+											<% else %>
+											  <span class="title"><%= head.first_name %> <%= head.last_name %></span>
+											<% end %>
+										</div>
 
-								</a>
+									</a>
 								</li>
-								<li class="divider with-border no-padding no-margin">
-								</li>
+								<li class="divider with-border no-padding no-margin"></li>
 							<% end %>
 						</ul>
 					</div><!--.card-body-->
@@ -172,19 +167,11 @@
 								<div class="card-heading" style="border-top: 3px solid #ccc;">
 									<h6 class="semi-bold fs_14 mb0"><%= @team.name %></h6>
 									<h3 class="card-title">Player Roster</h3>
-									<!-- <div class="card-subhead">
-									 <a href="#">
-									 	<span class="text-muted">
-									 		36 Teams - 10 Freshman, 10 Junior Varsity, 10 Varsity
-									 	</span>
-									 	</a>
-									</div> -->
-									<!--.card-subhead-->
-								</div><!--.card-heading-->
-								<div class="card-body">
-									<p class="mt10 center">
+								</div>
+								<div class="card-body bgcolor-light-grey">
+									<p class="mb0 mt0 center padding-20">
 										<button class="btn btn-blue-grey button-striped button-full-striped btn-ripple">
-											<i class="ion-person-add mr5"></i> Add Players to Update Roster
+											<i class="ion-person-add mr5"></i> Add Players to Roster
 										</button>
 									</p>
 									<ul class="list-material borderless">
@@ -311,8 +298,6 @@
 									<h3 class="card-title">Our Sports Media</h3>
 								</div><!--.card-heading-->
 								<div class="card-body">
-							
-
 									<div class="tab-content">
 										<div class="tab-pane active" id="photos">
 											<%= render 'shared/gallery' %>

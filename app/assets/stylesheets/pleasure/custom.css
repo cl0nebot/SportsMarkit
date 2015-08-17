@@ -393,13 +393,6 @@ input.form-control {font-size: 26px; line-height: 30px;}
   clear: both;
 }
 
-.team-buttons, .edit-buttons {
-  position: absolute;
-  right: 40px;
-  top: 110px;
-  clear: both;
-}
-
 .box-shadow-ccc {box-shadow: 1px 1px 1px #ccc; border-left: 1px solid #ddd; border-top: 1px solid #ddd;}
 
 
@@ -653,4 +646,4 @@ ul.list-material.borderless.bgcolor-light-grey > li.divider {
 
 .video-js.video-js-responsive.vjs-default-skin { width: 100% !important;}
 
-
+.btn-blue-grey[disabled] {background: transparent;}
