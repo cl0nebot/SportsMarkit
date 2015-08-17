@@ -42,11 +42,23 @@
 
     <%= render 'shared/navbar' %>
 	
-  <%= javascript_include_tag 'application' %>
+  	<%= javascript_include_tag 'application' %>
   
-  <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key %>"><%= value %></div>
-        <% end %>
+	<% flash.each do |key, value| %>
+      	<div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+
+	<div class="page-header full-content mb0 pt0 pb5" style="min-height: 0px; background: #ddd; 	border-bottom: 1px solid #666; padding: 0 40px; z-index: -1;">
+	    <div class="row">
+	      <ol class="breadcrumb site-wide-nav">
+	        <li><a href="" class="">people</a></li>
+	        <li><a href="" class="">facilities</a></li>
+	        <li><a href="" class="">leagues</a></li>
+	        <li><a href="" class="">teams</a></li>
+	        <li><a href="" class="">schools</a></li>
+	      </ol>
+	    </div><!--.row-->
+	  </div>
 
 	<%= yield %>
 	
