@@ -650,3 +650,16 @@ ul.list-material.borderless.bgcolor-light-grey > li.divider {
 .video-js.video-js-responsive.vjs-default-skin { width: 100% !important;}
 
 .btn-blue-grey[disabled] {background: transparent;}
+
+
+.page-header .breadcrumb.site-wide-nav > li a {
+  font-family: 'Roboto Condensed';
+  color: #777777;
+  text-transform: uppercase;
+
+}
+
+.page-header .breadcrumb.site-wide-nav > li + li:before {
+  content: "";
+  margin-right: 7px;
+}
