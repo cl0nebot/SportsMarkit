@@ -84,7 +84,7 @@
 
 			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
 				<div class="panel-body padding-right-40 padding-left-40">
-					<% unless request.original_url.split("/").include? "schools" %>
+					<%#request.original_url.split("/").include? "schools" %>
 
 						<br/>
 						<h4 class="text-blue semi-bold">
@@ -96,7 +96,7 @@
 							<div class="col-md-12">
 								<div class="inputer">
 									<div class="input-wrapper">
-										<%= f.text_field :address_1, type: "text", class: "form-control", placeholder: "" %>
+										<%= f.text_field :address_1, class: "form-control", placeholder: "", value: @school.address_1 if @school.present? %>
 									</div>
 								</div>
 							</div><!--.col-md-9-->
@@ -107,7 +107,7 @@
 							<div class="col-md-12">
 								<div class="inputer">
 									<div class="input-wrapper">
-										<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "" %>
+										<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "", value: @school.address_2 if @school.present? %>
 									</div>
 								</div>
 							</div><!--.col-md-9-->
@@ -120,7 +120,7 @@
 									<div class="col-md-12">
 										<div class="inputer">
 											<div class="input-wrapper">
-												<%= f.text_field :city, type: "text", class: "form-control", placeholder: "" %>
+												<%= f.text_field :city, type: "text", class: "form-control", placeholder: "", value: @school.city if @school.present? %>
 											</div>
 										</div>
 									</div><!--.col-md-9-->
@@ -130,7 +130,7 @@
 									<div class="col-md-12">
 										<div class="inputer">
 											<div class="input-wrapper">
-												<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %>
+												<%= f.text_field :state, type: "text", class: "form-control", placeholder: "", value: @school.state if @school.present? %>
 											</div>
 										</div>
 									</div><!--.col-md-9-->
@@ -140,7 +140,7 @@
 									<div class="col-md-12">
 										<div class="inputer">
 											<div class="input-wrapper">
-												<%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true %>
+												<%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true, value: @school.zip if @school.present? %>
 											</div>
 										</div>
 									</div><!--.col-md-9-->
@@ -150,7 +150,7 @@
 									<div class="col-md-12">
 										<div class="inputer">
 											<div class="input-wrapper">
-												<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true %>
+												<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true, value: @school.zip_ext if @school.present? %>
 											</div>
 										</div>
 									</div><!--.col-md-9-->
@@ -172,7 +172,7 @@
 						<div class="col-md-12">
 							<div class="inputer">
 								<div class="input-wrapper">
-									<%= f.text_field :website, type: "text", class: "form-control", placeholder: ""  %>
+									<%= f.text_field :website, type: "text", class: "form-control", placeholder: "", value: @school.website if @school.present? %>
 								</div>
 							</div>
 						</div><!--.col-md-9-->
@@ -183,7 +183,7 @@
 						<div class="col-md-12">
 							<div class="inputer">
 								<div class="input-wrapper">
-									<%= f.text_field :email, type: "text", class: "form-control" %>
+									<%= f.text_field :email, type: "text", class: "form-control", value: @school.email if @school.present? %>
 								</div>
 							</div>
 						</div><!--.col-md-9-->
@@ -201,6 +201,83 @@
 					</div><!--.row-->
 				</div>
 			</div>
+			
+			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+				<div class="panel-body padding-right-40 padding-left-40">
+					<br/>
+					<h4 class="text-blue semi-bold">
+						<i class="ion-email margin-right-10"></i> Social Media
+					</h4>
+					<br/>
+
+					<div class="row example-row">
+						<div class="col-md-12"><h4>Facebook</h4></div><!--.col-md-3-->
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :facebook, type: "text", class: "form-control", placeholder: "" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+					<div class="row example-row">
+						<div class="col-md-12"><h4>Twitter</h4></div><!--.col-md-3-->
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :twitter, type: "text", class: "form-control" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+
+					<div class="row example-row">
+						<div class="col-md-12"><h4>LinkedIn</h4></div><!--.col-md-3-->
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :linkedin, type: "text", class: "form-control" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+					
+					<div class="row example-row">
+						<div class="col-md-12"><h4>Youtube</h4></div><!--.col-md-3-->
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :youtube, type: "text", class: "form-control" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+					
+					<div class="row example-row">
+						<div class="col-md-12"><h4>Pinterest</h4></div><!--.col-md-3-->
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :pinterest, type: "text", class: "form-control" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+					
+					<div class="row example-row">
+						<div class="col-md-12"><h4>Instagram</h4></div><!--.col-md-3-->
+						<div class="col-md-12">
+							<div class="inputer">
+								<div class="input-wrapper">
+									<%= f.text_field :instagram, type: "text", class: "form-control" %>
+								</div>
+							</div>
+						</div><!--.col-md-9-->
+					</div><!--.row-->
+					
+				</div>
+			</div>
 
 				<div class="panel-body padding-right-40 padding-left-40 bg-cyan">
 					<div class="row example-row margin-bottom-0">
@@ -214,7 +291,7 @@
 						</div>
 					</div><!--.row-->
 				</div>
-<% end %>
+
 				<div class="form-buttons no-margin">
 					<div class="row">
 						<div class="col-lg-8 col-lg-offset-2">

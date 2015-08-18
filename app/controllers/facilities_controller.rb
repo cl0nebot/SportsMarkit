@@ -86,6 +86,6 @@ class FacilitiesController < ApplicationController
   end
   
   def facility_params
-    params.require(:facility).permit(:school_id, :team_id, :name, :field_type, :private, :publicly_visible, :address_1, :address_2, :city, :state, :zip, :zip_ext, :latitude, :longitude, :gmaps, :phone_number, :email, :website, :slug, :facility_owner_id, :facility_owner_type)
+    params.require(:facility).permit(:school_id, :team_id, :name, :field_type, :private, :publicly_visible, :address_1, :address_2, :city, :state, :zip, :zip_ext, :latitude, :longitude, :gmaps, :phone_number, :email, :website, :slug, :facility_owner_id, :facility_owner_type, :facebook, :twitter, :linkedin, :pinterest, :instagram, :foursquare, :youtube)  
   end
 end
