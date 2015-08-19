@@ -19,7 +19,7 @@
         </div><!--.image-->
         <ul class="users">
 			<% team.accepted_athletes.each do |user| %>
-          <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>"><%= image_tag user.avatar %></a></li>
+          <li><a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>"><%= image_tag user.avatar %></a></li>
 		  <% end %>
         </ul>
       </div><!--.card-body-->
