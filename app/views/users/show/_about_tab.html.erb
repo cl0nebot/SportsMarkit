@@ -13,22 +13,7 @@
 				<div class="card tile card-post" style="border-top: 3px solid #ccc;">
 					<div class="card-heading pl40 pr40">
 						<%= render "shared/fan" %>
-					  <% if @user.online? %>
-						<p class="author">
-							<a href="#">
-							<i class="ion-ionic mr5"></i>
-							Logged In</a> 
-						</p>
-						<p class="time">Last activity: <%= format(@user.online_status.last_seen, 4) %>, <%= format(@user.online_status.last_seen, 9) %> </p>
-						<% else %>
-						<p class="author">
-							<a href="#" class="text-orange"> 
-								<i class="ion-ionic mr5"></i>
-								Logged Out</a> 
-							</a>
-						</p>
-						<p class="time">Last activity: [Time]</p>
-						<% end %>
+					    <%= render 'shared/online' %>
 					</div><!--.card-heading-->
 					<hr class="light mt0"/>
 					<div class="card-body pl40 pr40">
@@ -46,7 +31,7 @@
 								<p class="fs_14 semi-bold text-muted mb5 mt5"><%= @user.classification_list %></p> 
 								<p class="no-margin fs_14 text-muted">
 									<span class="label label-primary inline">
-										<%= @user.profile.sex %>[GENDER]
+										<%= @user.profile.sex %>
 									</span>
 								</p>
 							</div>
@@ -344,63 +329,13 @@
 
 							<div class="tab-content">
 								<div class="tab-pane active" id="photos">
-									<%= render 'shared/gallery' %>
+									<%#= render 'shared/gallery' %>
 									<div class="row image-row">
+									<% @pictures.each do |picture| %>
 									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/1.jpg" title="Some title goes here" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/1.jpg" alt=""></a>
+										<a href="../../assets/globals/img/picjumbo/1.jpg" title="Some title goes here" data-gallery="#user-gallery"><img src="<%= picture.image %>" alt=""></a>
 									</div><!--.col-->
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/2.jpg" title="Another title goes here" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/2.jpg" alt=""></a>
-									</div><!--.col-->
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/3.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/3.jpg" alt=""></a>
-									</div><!--.col-->
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/4.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/4.jpg" alt=""></a>
-									</div><!--.col-->
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/5.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/5.jpg" alt=""></a>
-									</div><!--.col-->
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/6.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/6.jpg" alt=""></a>
-									</div><!--.col-->
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/7.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/7.jpg" alt=""></a>
-									</div><!--.col-->
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/8.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/8.jpg" alt=""></a>
-									</div><!--.col-->
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/9.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/9.jpg" alt=""></a>
-									</div><!--.col-->
-
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/10.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/10.jpg" alt=""></a>
-									</div><!--.col-->
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/11.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/11.jpg" alt=""></a>
-									</div><!--.col-->
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/12.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/12.jpg" alt=""></a>
-									</div><!--.col-->
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/13.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/13.jpg" alt=""></a>
-									</div><!--.col-->
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/14.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/14.jpg" alt=""></a>
-									</div><!--.col-->
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/15.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/15.jpg" alt=""></a>
-									</div><!--.col-->
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/16.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/16.jpg" alt=""></a>
-									</div><!--.col-->
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/17.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/17.jpg" alt=""></a>
-									</div><!--.col-->
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/18.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/18.jpg" alt=""></a>
-									</div><!--.col-->
+									<% end %>
 									</div><!--.row-->
 								</div><!--.tab-pane-->
 								
@@ -445,8 +380,8 @@
 						</div>
 						<div class="card-footer">
 							<ul>
-								<li><span class="mr5 fs_14"><%= pluralize @teammates.count, "Video" %>, 12 Photos, 1 Article </span></li>
-								<li><%= link_to "View All Media", "/users/#{@user.slug}/#tab_teammates", class: "fs_14" %></li>
+								<li><span class="mr5 fs_14"><%= pluralize @videos.count, "Video" %>, <%= pluralize @pictures.count, "Photo" %>, <%= pluralize @articles.count, "Article" %> </span></li>
+								<li><%= link_to "View All Media", "/users/#{@user.slug}/#media", class: "fs_14" %></li>
 							</ul>
 						</div><!--.card-footer-->
 						</div><!--.card-->
@@ -464,10 +399,10 @@
 							</div><!--.card-heading-->
 							<div class="card-body">
 								<ul class="users">
-									<% @teammates.each do |teammate| %>
+									<% @fans.each do |fan| %>
 									<li>
-										<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= teammate.full_name %>">
-											<%= image_tag teammate.avatar %>
+										<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= fan.user.full_name %>">
+											<%= image_tag fan.user.avatar %>
 										</a>
 									</li>
 						           <% end %>
@@ -475,8 +410,8 @@
 							</div><!--.card-body-->
 							<div class="card-footer">
 								<ul>
-									<li><span class="mr5 fs_14"><%= pluralize @teammates.count, "Person" %></span></li>
-									<li><%= link_to "View All Fans", "/users/#{@user.slug}/#tab_teammates", class: "fs_14" %></li>
+									<li><span class="mr5 fs_14"><%= pluralize @fans.count, "Person" %></span></li>
+									<li><%= link_to "View All Fans", "/users/#{@user.slug}/#tab_fans", class: "fs_14" %></li>
 									
 								</ul>
 							</div><!--.card-footer-->
@@ -487,17 +422,17 @@
 					<div class="col-md-12">
 						<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
 							<div class="card-heading" style="border-top: 3px solid #ccc;">
-								<h3 class="card-title">My Followers</h3>
+								<h3 class="card-title">I'm Following</h3>
 								<div class="card-subhead">
 								 <!-- <a href="#">24 Teammates</a> -->
 								</div><!--.card-subhead-->
 							</div><!--.card-heading-->
 							<div class="card-body">
 								<ul class="users">
-									<% @teammates.each do |teammate| %>
+									<% @follows.each do |follow| %>
 									<li>
-										<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= teammate.full_name %>">
-											<%= image_tag teammate.avatar %>
+										<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= follow.fannable.name %>">
+											<%= image_tag follow.fannable.image %>
 										</a>
 									</li>
 						           <% end %>
@@ -505,8 +440,8 @@
 							</div><!--.card-body-->
 							<div class="card-footer">
 								<ul>
-									<li><span class="mr5 fs_14"><%= pluralize @teammates.count, "Person" %></span></li>
-									<li><%= link_to "View All Followers", "/users/#{@user.slug}/#tab_teammates", class: "fs_14" %></li>
+									<li><span class="mr5 fs_14"><%= pluralize @follows.count, "Person" %></span></li>
+									<li><%= link_to "View Following", "/users/#{@user.slug}/#tab_following", class: "fs_14" %></li>
 									
 								</ul>
 							</div><!--.card-footer-->

@@ -230,7 +230,7 @@
 									</div><!--.card-heading-->
 									<div class="card-body">
 										<ul class="users expanded">
-											<% @league.athletes.each do |user| %>
+											<% @accepted_athletes.each do |user| %>
 											<li>
 												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
 													<%= image_tag user.avatar %>
@@ -242,7 +242,7 @@
 									</div><!--.card-body-->
 									<div class="card-footer">
 										<ul>
-											<li><span class="mr5 fs_14"><%= pluralize @league.athletes.count, "Athlete" %></span></li>
+											<li><span class="mr5 fs_14"><%= pluralize @accepted_athletes.count, "Athlete" %></span></li>
 											<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
 										</ul>
 									</div><!--.card-footer-->
@@ -263,7 +263,7 @@
 									</div><!--.card-heading-->
 									<div class="card-body">
 										<ul class="users expanded">
-											<% @coaches.each do |user| %>
+											<% @accepted_coaches.each do |user| %>
 											<li>
 												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
 													<%= image_tag user.avatar %>
@@ -274,7 +274,7 @@
 									</div><!--.card-body-->
 									<div class="card-footer">
 										<ul>
-											<li><span class="mr5 fs_14"><%= pluralize @coaches.count, "Coach" %></span></li>
+											<li><span class="mr5 fs_14"><%= pluralize @accepted_coaches.count, "Coach" %></span></li>
 											<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
 										</ul>
 									</div><!--.card-footer-->

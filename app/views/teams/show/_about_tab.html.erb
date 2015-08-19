@@ -12,15 +12,7 @@
 				<div class="card tile card-post" style="border-top: 3px solid #ccc;">
 					<div class="card-heading pl40 pr40">
 						<%= render "shared/fan" %>
-						<p class="author">
-							<a href="#">
-							<i class="ion-ionic mr5"></i>
-							<%= pluralize @team.number_of_people_online, "Person" %> Online</a> 
-						</p>
-						<% if @team.number_of_people_online > 0 %>
-						<p class="fs_11 time">Last activity: <%= format(@team.last_activity, 4) %>, <%= format(@team.last_activity, 9) %></p>
-						<% end %>
-						<p class="time">Last activity: [Time]</p>
+						<%= render 'shared/online' %>
 					</div><!--.card-heading-->
 					<hr class="light mb10 mt0"/>
 					<div class="card-body pl40 pr40">

@@ -12,26 +12,10 @@
 				<div class="col-md-12">
 					<div class="card tile card-post" style="border-top: 3px solid #ccc;">
 						<div class="card-heading pl40 pr40">
-							<% if current_user %>
-	             <% if current_user.admin? or current_user.can_edit_school?(@school)%>
-	                <button href="" class="pull-right btn bt-xs btn-grey button-striped button-full-striped btn-ripple fs_14">
-	                  <a href="<%= edit_school_path(@school)%>">
-	                    <span class="text-muted">
-	                    	<i class="ion-gear-b fs_16 mr5"></i> Edit Profile
-	                    </span>
-	                  </a>
-	                  </button>
-	              <% end %>
-	            <% end %>
+							
 	            <!-- <img src="../../assets/globals/img/faces/14.jpg" class="user-image" alt=""> -->
-	    			<p class="author">
-						<a href="#">
-						<i class="ion-ionic mr5"></i>
-						<%= pluralize @school.number_of_people_online, "Person" %> Online</a> 
-					</p>
-					<% if @school.number_of_people_online > 0 %>
-					<p class="fs_11 time">Last activity: <%= format(@school.last_activity, 4) %>, <%= format(@school.last_activity, 9) %></p>
-					<% end %>
+	    			<%= render "shared/fan" %>
+					    <%= render 'shared/online' %>
 				</div><!--.card-heading-->
 				<hr class="light mt0"/>
 				<div class="card-body pl40 pr40">
@@ -255,7 +239,7 @@
 						<ul class="users">
 							<% @athletes.each do |user| %>
 							<li>
-								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+								<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
 									<%= image_tag user.avatar %>
 								</a>
 							</li>
@@ -263,8 +247,8 @@
 							
 							<% @userless_athletes.each do |user| %>
 							<li>
-								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.first %> <%= user.last %>">
-									<%= image_tag "http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png" %>
+								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.first_name %> <%= user.last_name %>">
+									<%= image_tag user.avatar %>
 								</a>
 							</li>
 							<% end %>
@@ -311,19 +295,26 @@
 								</a>
 							</li>
 							<ul class="users" style="border-bottom: 1px solid #ddd;">
-								<% @coaches.each do |user| %>
+								<% team.accepted_coaches.each do |user| %>
 									<li>
-										<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+										<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
 											<%= image_tag user.avatar %>
 										</a>
 									</li>
 								<% end %>
-								<% @athletes.each do |user| %>
+								<% team.accepted_athletes.each do |user| %>
 									<li>
-										<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+										<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
 											<%= image_tag user.avatar %>
 										</a>
 									</li>
+								<% end %>
+								<% team.userless_athletes.each do |user| %>
+								<li>
+									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.first_name %> <%= user.last_name %>">
+										<%= image_tag user.avatar %>
+									</a>
+								</li>
 								<% end %>
 							</ul>
 
@@ -380,17 +371,17 @@
 					</div><!--.panel-heading-->
 					<div class="panel-body without-padding">	
 						<ul class="list-material borderless">
-							<% @school.facilities.each do |facility| %>
+							<% @facilities.each do |facility| %>
 								<li class="has-action-left has-action-right">
 									<a href="#" class="visible">
 										<div class="list-action-left">
 											<i class="ion-checkmark-circled icon-circle"></i>
 										</div>
 										<div class="list-content">
-											<span class="h6 bold">Facility Name</span>
+											<span class="h6 bold"><%= facility.name %></span>
 										</div>
 										<div class="list-action-right">
-											<%= link_to "View", facility_path(@school.facilities), class: "btn btn-primary pull-right mt10 btn-sm" %>							
+											<%= link_to "View", facility_path(facility), class: "btn btn-primary pull-right mt10 btn-sm" %>							
 										</div>
 									</a>
 								</li>
