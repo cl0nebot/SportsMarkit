@@ -2,13 +2,17 @@ class League < ActiveRecord::Base
   extend FriendlyId
   include PhotoOwner
   include Reusable
+  include Roster
+  
   friendly_id :use_for_slug, use: [:slugged, :finders]
+  acts_as_gmappable
   
   has_many :fans, as: :fannable
   has_many :facilities, as: :facility_owner
   has_many :team_leagues, dependent: :destroy
   has_many :medias, as: :mediable
   has_many :facility_links, as: :facilitatable
+  has_many :events, as: :eventable
   
   has_many :league_sports, :dependent => :destroy
   has_many :sports, :through => :league_sports
@@ -30,18 +34,8 @@ class League < ActiveRecord::Base
     end
   end
   
-  def team_ids
-    team_ids = TeamLeague.where(league_id: id).pluck(:team_id)
-  end
-  
   def teams
     teams = Team.where(id: team_ids)
-  end
-  
-  def userless_athletes
-    team_ids = teams.pluck(:id)
-    relationships = UserlessRelationship.where(team_id: team_ids, participant: true)
-    relationships.pluck(:first_name, :last_name)
   end
   
   def userless_people
@@ -69,25 +63,11 @@ class League < ActiveRecord::Base
     School.where(id: school_ids)
   end
   
-  def athletes
-    array = []
-    teams.each do |team|
-      array << team.accepted_athletes.pluck(:id)
-    end
-    User.where(id: array.flatten.uniq)
-  end
-  
-  def coaches
-    array = []
-    teams.each do |team|
-      array << team.accepted_coaches.pluck(:id)
-    end
-    User.where(id: array.flatten.uniq)
-  end
-  
   def upcoming_events
     team_ids = TeamLeague.where(league_id: id).pluck(:team_id)
-    Event.where(eventable_type: "Team", eventable_id: team_ids).where('ends_at >= ?', Time.now)
+    team_events_ids = Event.where(eventable_type: "Team", eventable_id: team_ids).where('ends_at >= ?', Time.now).pluck(:id)
+    league_events_ids = Event.where(eventable_type: "League", eventable_id: id).where('ends_at >= ?', Time.now).pluck(:id)
+    events = Event.where(id: team_events_ids + league_events_ids ).uniq
   end
   
   def next_event
@@ -129,10 +109,6 @@ class League < ActiveRecord::Base
   def address
    address = "#{address_1}#{", " if address_2.present? }#{address_2 if address_2.present?}#{"," if (city_and_state.present? && address_1.present?) } #{city_and_state if city_and_state.present?} #{zip_and_ext}"
    address.strip
-  end
-  
-  def social_media_present?
-    [facebook.present? , linkedin.present? ,  youtube.present?, twitter.present?, instagram.present?, pinterest.present?].include? true
   end
   
   def athletic_directors

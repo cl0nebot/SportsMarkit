@@ -2,6 +2,8 @@ class Team < ActiveRecord::Base
   extend FriendlyId
   include PhotoOwner
   include Reusable
+  include Roster
+  include EventDetail
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   
@@ -62,9 +64,7 @@ class Team < ActiveRecord::Base
     end
   end
   
-  def next_event
-    upcoming_events.first.nil? ? "No upcoming events" : upcoming_events.first.title
-  end
+
   
   def facilities
     team_facilities = TeamFacility.where(team_id: id)
@@ -82,15 +82,6 @@ class Team < ActiveRecord::Base
     relationships.where(accepted: nil, rejected: nil)
   end
   
-  def accepted_athletes
-    user_ids = Relationship.where(team_id: id, participant: true, accepted: true).pluck(:user_id)
-    User.where(id: user_ids )
-  end
-  
-  def accepted_coaches
-    user_ids = Relationship.where(team_id: id, head: true, accepted: true).pluck(:user_id)
-    User.where(id: user_ids )
-  end
   
   def accepted_athlete_relationships
     rels = Relationship.where(team_id: id, participant: true, accepted: true)
@@ -189,10 +180,6 @@ class Team < ActiveRecord::Base
   
   def people
     relationships.where(accepted: true).uniq
-  end
-  
-  def social_media_present?
-    [facebook.present? , linkedin.present? ,  youtube.present?, twitter.present?, instagram.present?, pinterest.present?].include? true
   end
   
   def number_of_people_online

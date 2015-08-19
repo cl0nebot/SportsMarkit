@@ -1,6 +1,7 @@
 class Facility < ActiveRecord::Base
   extend FriendlyId
   include PhotoOwner
+  include EventDetail
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable
@@ -11,6 +12,7 @@ class Facility < ActiveRecord::Base
   has_many :fans, as: :fannable
   has_many :event_facilities
   has_many :events, through: :event_facilities
+  #has_many :events, as: :eventable
   has_many :team_facilities
   has_many :medias, as: :mediable
   
@@ -74,10 +76,6 @@ class Facility < ActiveRecord::Base
   def upcoming_events
     event_ids = EventFacility.where(facility_id: id).pluck(:event_id)
     events = Event.where(id: event_ids ).where('ends_at >= ?', Time.now)
-  end
-  
-  def next_event
-    upcoming_events.first.nil? ? "No upcoming events" : upcoming_events.first.title
   end
   
   def image

@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   include Location
   include PhotoOwner
+  include Access
+  include Avatar
+  include Reusable
 
   extend FriendlyId
   friendly_id :use_for_slug, use: [:slugged, :finders]
@@ -133,14 +136,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def avatar
-    if user_profile_pictures.last.try(:id).blank?
-      "http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif"
-    else
-      user_profile_pictures.last.photo
-    end
-  end
-
   def encrypt_password
     unless self.password.nil?
       self.password_digest = BCrypt::Password.create(self.password)
@@ -163,15 +158,6 @@ class User < ActiveRecord::Base
   
   def formatted_mobile_phone_number
     "#{self.profile.mobile_phone_number}"
-  end
-  
-  def index_position
-    array = []
-    users = User.all
-    users.each do |u|
-      array << u.id
-    end
-    array.uniq.find_index(id) + 1
   end
   
   def generate_token(column)
@@ -264,37 +250,6 @@ class User < ActiveRecord::Base
     user_team_ids & teammate_team_ids
   end
   
-  def can_edit_team?(team)
-    if Relationship.where(user_id: id, head: true, team_id: team.id).present?
-      true
-    elsif AthleticDirector.where(user_id: id, school_id: team.school_id).present?
-      true
-    elsif admin?
-      true
-    else
-      false
-    end
-  end
-  
-  def can_edit_school?(school)
-    if AthleticDirector.where(user_id: id, school_id: school.id).present?
-      true
-    elsif admin?
-      true
-    else
-      false
-    end
-  end
-  
-  def can_edit_league?(league)
-    if LeagueManager.where(user_id: id, league_id: league.id).present?
-      true
-    elsif admin?
-      true
-    else
-      false
-    end
-  end
   
   def self.athletes
     relationship_user_ids = Relationship.where(participant: true).pluck(:user_id)
@@ -413,13 +368,8 @@ class User < ActiveRecord::Base
     full_name
   end
   
-  def city_state
-    profile.location_description
-  end
   
-  def social_media_present?
-    [profile.facebook.present? , profile.linkedin.present? , profile.youtube.present?, profile.twitter.present?, profile.instagram.present?, profile.pinterest.present?, profile.foursquare.present?].include? true
-  end
+  
 
   def chatroom
     relationships.first.team.id
@@ -432,6 +382,18 @@ class User < ActiveRecord::Base
     else
       false
     end
+  end
+  
+  def athlete_relationships
+    
+  end
+  
+  def parent_relationships
+    
+  end
+  
+  def coach_relationships
+    
   end
   
 end
