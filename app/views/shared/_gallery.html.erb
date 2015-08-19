@@ -1,5 +1,9 @@
-<% @pictures.each do |p| %>
-	<div class="col-md-3">
-		<%= image_tag p.image, class: "thumbnail img-responsive" %>
-	</div>
-<% end %>
+<div class="row image-row">
+	<% @pictures.each do |p| %>
+		<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+			<a href="<%= p.image %>" title="Some title goes here" data-gallery="#user-gallery">
+				<img src="<%= p.image %>" alt="" class="img-responsive">
+			</a>
+		</div><!--.col-->
+	<% end %>
+</div><!--.row-->
