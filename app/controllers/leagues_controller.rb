@@ -24,20 +24,11 @@ class LeaguesController < ApplicationController
   end
   
   def show
-    @class = @league.class
     @object = @league
+    shared_variables
     @picture =  @object.photos.build
-    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
     @teams = @league.teams
-    @videos = @league.medias.where(category: "Video")
-    @articles = @league.medias.where(category: "Article")
-    @fans = @league.fans
     @athletic_directors = @league.athletic_directors
-    @coaches = @league.coaches
-    @athletes = @league.athletes
-    @userless_athletes = @league.userless_athletes
-    @coaches = @league.coaches_for_league
-    @userless_coaches = @league.userless_coaches_for_league
     @manager_and_trainers = @league.manager_and_trainers
     @userless_managers_and_trainers = @league.userless_managers_and_trainers
     @admins = @league.admins
@@ -45,7 +36,8 @@ class LeaguesController < ApplicationController
     @people = @league.people
     @userless_people = @league.userless_people
     @facilities = @league.used_facilities
-  end 
+  end
+  
   
   def edit
     @object = @league
