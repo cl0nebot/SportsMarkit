@@ -60,6 +60,7 @@ Rails.application.routes.draw do
       resources :media
       resources :teams
       resources :photos
+      resources :events
       resource :calendar do
         get :events, on: :member
       end
@@ -92,6 +93,7 @@ Rails.application.routes.draw do
       collection do
         get :selection_option
       end
+      resources :events
       resource :calendar do
         get :events, on: :member
       end
@@ -101,6 +103,7 @@ Rails.application.routes.draw do
 
     resources :tournaments
     resources :leagues do
+      resources :events
       resource :calendar do
         get :events, on: :member
       end
