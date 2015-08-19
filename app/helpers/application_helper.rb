@@ -20,7 +20,7 @@ module ApplicationHelper
       when 8
         "#{object.strftime("%l:%M")}"
       when 9
-        "#{object.strftime("%l:%M %P")}"
+        "#{object.strftime("%l:%M %p")}"
       when 10
         "#{object.strftime("%B")}"
       when 11
