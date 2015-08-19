@@ -1,0 +1,36 @@
+<% if @object.class.to_s == "User" %>
+
+	<% if @object.online? %>
+
+	<p class="author"><a href="#"><i class="ion-ionic mr5"></i>Logged In</a> </p>
+	<p class="time">Last activity: <%= format(@object.online_status.last_seen, 4) %>, <%= format(@object.online_status.last_seen, 9) %> </p>
+
+	<% else %>
+
+	<p class="author"><a href="#" class="text-orange"><i class="ion-ionic mr5"></i>Logged Out</a> </a></p>
+	  <% if @object.online_status.present? %>
+	    <p class="time">Last activity: <%= format(@object.online_status.last_seen, 4) %>, <%= format(@object.online_status.last_seen, 9) %> </p>
+	  <% else %>
+	    <p class="time">Last activity: <%= format(@object.updated_at, 4) %>, <%= format(@object.updated_at, 9) %> </p>
+	  <% end %>
+
+	<% end %>
+	
+<% else %>
+
+	<p class="author">
+		<a href="#">
+		<i class="ion-ionic mr5"></i>
+		<%= pluralize @object.number_of_people_online, "Person" %> Online</a> 
+	</p>
+	<% if @object.number_of_people_online > 0 %>
+	  <p class="time">Last activity: <%= format(@object.last_activity, 4) %>, <%= format(@object.last_activity, 9) %></p>
+	<% else %>
+	  <% if @object.last_activity.present? %>
+	    <p class="time">Last activity: <%= format(@object.last_activity, 4) %>, <%= format(@object.last_activity, 9) %></p>
+	  <% else%>
+	    <p class="time">Last activity: <%= format(@object.updated_at, 4) %>, <%= format(@object.updated_at, 9) %></p>
+	  <% end %>	
+	<% end %>
+						
+<% end %>
