@@ -37,6 +37,7 @@
 			  	<li>
 			  		<a href="#certifications" data-toggle="tab" class="btn-ripple">Certifications</a>
 			  	</li>
+				<% end %>
 			  	<li>
 					<% if current_user %>
 					  <% if current_user.admin? or current_user.can_edit_school?(@school)%>
@@ -49,7 +50,7 @@
 					  <% end %>
 					<% end %>
 				</li>
-				<% end %>
+				
 			</ul>
 		</div>
 	</div>
