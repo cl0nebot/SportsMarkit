@@ -1,12 +1,17 @@
 class School < ActiveRecord::Base
   extend FriendlyId
   include PhotoOwner
+  include EventDetail
+  include Roster
+  include Reusable
+  include Geo
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable
   
   has_many :fans, as: :fannable
   has_many :facilities, as: :facility_owner
+  has_many :events, as: :eventable
   #has_many :event_facilities, as: :reservable
   has_many :teams
   has_many :facilities
@@ -16,11 +21,6 @@ class School < ActiveRecord::Base
   has_many :medias, as: :mediable
   
   attr_accessor :stripe_token
-
-  def gmaps4rails_address
-  #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
-    "#{self.address_1}, #{self.city}, #{self.state}" 
-  end
 
 
   def use_for_slug
@@ -43,15 +43,6 @@ class School < ActiveRecord::Base
     users = User.where(id: user_ids)
   end
   
-  def userless_athletes
-    team_ids = teams.pluck(:id)
-    relationships = UserlessRelationship.where(team_id: team_ids, participant: true)
-    relationships.pluck(:first_name, :last_name)
-  end
-  
-  def team_ids
-     teams.pluck(:id)
-  end
   
   def user_ids
     rels = Relationship.where(team_id: team_ids, accepted: true)
@@ -72,33 +63,6 @@ class School < ActiveRecord::Base
     else
       Event.where(eventable_type: "Team", eventable_id: team_ids).where('starts_at <= ?', Date.today + 2.weeks).uniq
     end
-  end
-
-  def all_events
-    upcoming_events
-  end
-
-  
-  def next_event
-    upcoming_events.first.nil? ? "No upcoming events" : upcoming_events.first.title
-  end
-  
-  #coaches
-  
-  def coach_ids_for_school
-    team_ids = teams.pluck(:id)
-    relationships = Relationship.where(team_id: team_ids, head: true, accepted: true)
-    coach_ids = relationships.pluck(:user_id)
-  end
-  
-  def coaches_for_school
-    coaches = User.where(id: coach_ids_for_school)
-  end
-  
-  def userless_coaches_for_school
-    team_ids = teams.pluck(:id)
-    relationships = UserlessRelationship.where(team_id: team_ids, head: true)
-    relationships.pluck(:first_name, :last_name)
   end
   
   # managers
@@ -164,7 +128,7 @@ class School < ActiveRecord::Base
   end
   
   def school_certifications
-    Certificate.where(user_id: coach_ids_for_school)
+    Certificate.where(user_id: accepted_coaches.pluck(:id))
   end
 
   def self.school_names
@@ -193,10 +157,6 @@ class School < ActiveRecord::Base
   
   def is_athletic_director?(user)
     AthleticDirector.where(school_id: id, user_id: user.id).present?
-  end
-  
-  def social_media_present?
-    [facebook.present? , linkedin.present? ,  youtube.present?, twitter.present?, instagram.present?, pinterest.present?].include? true
   end
   
   def general_information_present?
