@@ -27,7 +27,7 @@
 						Student-Athletes <span class="ml5 caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
-						<% @athletes.each do |user| %>
+						<% @accepted_athletes.each do |user| %>
 							<li>
 								<%= link_to user_path(user) do %>
 						  			<%= user.full_name %>
@@ -36,7 +36,7 @@
 						<% end %>
 						<% @userless_athletes.each do |user| %>
 							<li>
-								<%= user.first %> <%= user.last %>
+								<%= user.first_name %> <%= user.last_name %>
 						  	</li>
 						<% end %>
 					</ul>
@@ -51,7 +51,7 @@
 						Coaches <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
-						<% @coaches.each do |user| %>
+						<% @accepted_coaches.each do |user| %>
 							<li>
 								<%= link_to user_path(user) do %>
 						  			<%= user.full_name %>
@@ -60,7 +60,7 @@
 						<% end %>
 						<% @userless_coaches.each do |user| %>
 							<li>
-								<%= user.first %> <%= user.last %>
+								<%= user.first_name %> <%= user.last_name %>
 						  	</li>
 						<% end %>
 					</ul>
@@ -133,7 +133,7 @@
 							<span class="fs_20"><%= person.first_name %> <%= person.last_name %></span>
 						<span>
 						<h6 class="no-margin">
-							<small>Student-Athlete, 
+							<small><%= person.classification_list %><%= ', ' if person.classification_list.present? %> 
 								<%= pluralize person.teams.count, "Team" %>
 							</small>
 						</h6>
@@ -169,21 +169,13 @@
 							<span class="fs_20"><%= person.first_name %> <%= person.last_name %></span>
 						<span>
 						<h6 class="no-margin">
-							<small>Athletic Director</small>
+							<small><%= person.titles_list %></small>
 						</h6>
 						<hr class="light mt10 mb15"/>
 						<div class="ml10">
-								<%= link_to user_path(person), class: "btn btn-primary button-striped button-full-striped btn-ripple btn-xs fs_14" do %>
-								View Profile
-							<% end %>
+								
 
-							<% if current_user %>
-								<% if current_user.admin? or (current_user == person)%>
-									<%= link_to edit_user_path(person), class: "btn btn-blue-grey button-striped button-full-striped btn-ripple btn-xs ml10 fs_14" do %>
-										<span class="text-blue-grey"><i class="ion-gear-b"></i> Edit</span>
-									<% end %>
-								<% end %>
-							<% end %>
+						
 						</div>
 					</div>
 				</div><!--.friend-content-->
