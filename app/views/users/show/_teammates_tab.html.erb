@@ -12,9 +12,11 @@
                 </a>
                 <div class="friend-content">
                   <p class="title mt15"><%= teammate.first_name %> <%= teammate.last_name %></p>
-                  <p><a href="user-profile.html">Title/Classification</a></p>
+                  <p><a href="user-profile.html"><%= teammate.classification_list %></a></p>
+				  <% if true %>
                   <p><i class="ion-ios-telephone text-primary mr5"></i> xxx-xxx-xxxx</p>
-                  <p><i class="ion-email text-primary mr5"></i> hello@sportsmarkit.com</p>
+				  <% end %>
+                  <p><i class="ion-email text-primary mr5"></i> <%= teammate.email %></p>
 
                   <hr class="light mt5 mb0"/>
                   
@@ -27,9 +29,10 @@
                           <%= link_to team.name, team_path(team) %>
                             <%= count == teammate.teams.count ? "" : "," %>
                         </span> 
-                        <span class="ml5 fs_10 text-muted inline label label-primary">
+                        <!-- <span class="ml5 fs_10 text-muted inline label label-primary">
+							<%= %>
                           Shooting Guard
-                        </span>
+                        </span> -->
                       <% end %>
                     <% end %>
                   </p>
