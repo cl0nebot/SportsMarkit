@@ -1,3 +1,20 @@
+<%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'video')"), method: :get ,remote: true, class: 'mr10 btn btn-large btn-blue' do %>
+		New Video <i class="ion-plus-circled margin-left-10"></i>
+	<% end %>
+<%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'article')"), method: :get ,remote: true, class: 'mr10 btn btn-large btn-blue' do %>
+		New Article <i class="ion-plus-circled margin-left-10"></i>
+<% end %>
+<br/>
+<div id="user-profile-picture">
+  <%= render 'shared/add_photo' %>
+</div>
+</div>
+<div class="col-lg-12">
+
+<div id="user-profile-picture">
+  <%= render 'shared/gallery' %>
+</div>
+										        
 <div class="panel-body">
 	<div id="medias">
       <% @object.medias.each do |m| %>
