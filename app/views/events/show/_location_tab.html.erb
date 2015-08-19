@@ -3,7 +3,7 @@
 	<br>
 	<div class="row contact-us">
 		<div class="col-md-12">
-				<%= gmaps4rails(@json) %>
+				<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
 		</div><!--.col-->
 	</div>
 </div>
