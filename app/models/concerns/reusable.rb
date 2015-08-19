@@ -10,4 +10,12 @@ module Reusable
     Facility.where(id: facility_ids)
   end
   
+  def social_media_present?
+    if self.class.to_s == "User"
+      [profile.facebook.present? , profile.linkedin.present? , profile.youtube.present?, profile.twitter.present?, profile.instagram.present?, profile.pinterest.present?, profile.foursquare.present?].include? true
+    else
+      [facebook.present? , linkedin.present? , youtube.present?, twitter.present?, instagram.present?, pinterest.present?].include? true
+    end
+  end
+  
 end
