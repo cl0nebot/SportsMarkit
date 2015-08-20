@@ -37,6 +37,7 @@ class UsersController < ApplicationController
     @follows = @user.follows
     @videos = @user.medias.where(category: "Video")
     @articles = @user.medias.where(category: "Article")
+    @cache_key = [@user.id, @team_ids, @teammate_ids]
   end
   
   def edit

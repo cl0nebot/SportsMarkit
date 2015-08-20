@@ -1,3 +1,4 @@
+<% cache ["v1", "v1", @cache_key] do %>
 <style>
   .sample-bg-image13:before {
     background-image: url('<%=background_url(@user) %>');
@@ -151,3 +152,4 @@
 </div><!--.content-->
 
 <%#= render "shared/panels/new_event"%>
+<% end %>
