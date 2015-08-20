@@ -47,19 +47,7 @@
 	<% flash.each do |key, value| %>
       	<div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
-
-	<div class="page-header full-content mb0 pt0 pb5" style="min-height: 0px; background: #ddd; 	border-bottom: 1px solid #666; padding: 0 40px; z-index: -1;">
-	    <div class="row">
-	      <ol class="breadcrumb site-wide-nav">
-	        <li><a href="<%= users_path %>" class="">people</a></li>
-	        <li><a href="<%= facilities_path %>" class="">facilities</a></li>
-	        <li><a href="<%= leagues_path %>" class="">leagues</a></li>
-	        <li><a href="<%= teams_path %>" class="">teams</a></li>
-	        <li><a href="<%= schools_path %>" class="">schools</a></li>
-	      </ol>
-	    </div><!--.row-->
-	 </div>
-
+    
 	<%= yield %>
 	
 
@@ -74,7 +62,7 @@
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 
 	
-		<%= render "shared/sidebar_nav" %>
+	<%= render "shared/sidebar_nav" %>
 	
 
 

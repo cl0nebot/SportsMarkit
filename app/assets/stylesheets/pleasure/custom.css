@@ -663,3 +663,31 @@ ul.list-material.borderless.bgcolor-light-grey > li.divider {
   content: "";
   margin-right: 7px;
 }
+
+.nav-schools {
+    position: fixed;
+    z-index: 4;
+    font-size: 34px;
+    top: 120px;
+    left: 0;
+    width: 80px;
+    padding: 27px;
+    cursor: pointer;
+}
+
+.nav-pages {
+    position: fixed;
+    z-index: 4;
+    font-size: 28px;
+    top: 120px;
+    left: 0;
+    width: 80px;
+    padding: 27px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.nav-pages a span {
+    margin-bottom: 15px;
+    display: block;
+}
