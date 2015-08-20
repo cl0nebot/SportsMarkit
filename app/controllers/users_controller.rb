@@ -26,18 +26,24 @@ class UsersController < ApplicationController
   
   def show
     @user = User.friendly.find(params[:id])
-    @class = @user.class
-    @object = @user
-    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
     @team_ids = @user.relationships.where(accepted: true).pluck(:team_id)
     @teammate_ids = Relationship.where(team_id: @team_ids, accepted: true).pluck(:user_id)
-    @teammates = User.where(id: @teammate_ids).uniq - [@user]
-    @teams = Team.where(id: @team_ids)
-    @fans = @user.fans
-    @follows = @user.follows
-    @videos = @user.medias.where(category: "Video")
-    @articles = @user.medias.where(category: "Article")
-    @cache_key = [@user.id, @team_ids, @teammate_ids]
+    @time_updated = [@user.relationships.where(accepted: true).maximum(:updated_at), Relationship.where(team_id: @team_ids, accepted: true).maximum(:updated_at), @user.created_at].max
+    
+    if stale?(:etag => @user, :last_modified => @time_updated)
+      @class = @user.class
+      @object = @user
+      @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
+      @team_ids = @user.relationships.where(accepted: true).pluck(:team_id)
+      @teammate_ids = Relationship.where(team_id: @team_ids, accepted: true).pluck(:user_id)
+      @teammates = User.where(id: @teammate_ids).uniq - [@user]
+      @teams = Team.where(id: @team_ids)
+      @fans = @user.fans
+      @follows = @user.follows
+      @videos = @user.medias.where(category: "Video")
+      @articles = @user.medias.where(category: "Article")
+      @cache_key = [@user.id, @team_ids, @teammate_ids]
+    end
   end
   
   def edit
