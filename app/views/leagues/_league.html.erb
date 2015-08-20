@@ -2,8 +2,8 @@
 
 <% @leagues.each do |league| %>
 	<%= link_to league_path(league) do %>
-		<div class="col-md-6 col-lg-3 col-sm-12 element-item">
-		    <div class="card card-user card-clickable card-clickable-over-content">
+		<div class="col-md-3 col-lg-2 col-sm-12 element-item">
+		    <div class="card card-user card-clickable card-clickable-over-content" style="height: 340px;">
 		      <div class="card-heading heading-full">
 		        <div class="user-image sample-member9" style="background: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');"></div>
 
@@ -15,16 +15,25 @@
 		      </div><!--.card-heading-->
 
 		      <div class="card-body">
-		        <h5 class="card-title capitalize fs_20">
+		        <div class="title" style="height: 55px; vertical-align: bottom; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-bottom: 10px;">
+		        	<h4 class="card-title capitalize fs_18 lh_24">
 		        	<a href="#"><%= truncate(league.name, length: 41) %></a>
-		        </h5>
+		        	</h4>
+		        </div>
 
-		        <div class="subhead">
+		        <div class="subhead mt5">
 		          <span class="text-muted inline">
-		            <%= league.sport_list %> |
+		          	<i class="ion-location mr5"></i>
+		          	<%= league.state %>
+		      	  </span>
+		          <span class="text-muted inline">
+		            <%= league.sport_list %>
 		          </span>
-		          <span class="text-muted inline"><span class="ion-location inline mr5"></span><%= league.state %> |</span>
-		          <span class="text-muted inline"><%= truncate(league.description, length: 150) %></span>
+		          <br/>
+		          <span class="text-muted inline">
+		          	<i class="ion-information-circled mr5"></i>
+		          	<%= truncate(league.description, length: 150) %>
+		          </span>
 		        </div>
 		      </div><!--.card-body-->
 
