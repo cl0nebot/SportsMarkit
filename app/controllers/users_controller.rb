@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     @team_ids = @user.relationships.where(accepted: true).pluck(:team_id)
     @teammate_ids = Relationship.where(team_id: @team_ids, accepted: true).pluck(:user_id)
-    @time_updated = [@user.relationships.where(accepted: true).maximum(:updated_at), Relationship.where(team_id: @team_ids, accepted: true).maximum(:updated_at), @user.created_at].max
+    @time_updated = [@user.relationships.where(accepted: true).maximum(:updated_at), Relationship.where(team_id: @team_ids, accepted: true).maximum(:updated_at), @user.created_at].compact.max
     
     if stale?(:etag => @user, :last_modified => @time_updated)
       @class = @user.class
