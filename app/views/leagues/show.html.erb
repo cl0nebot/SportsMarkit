@@ -72,30 +72,30 @@
     		<%= render "leagues/show/tab_about" %>
 				
 				<!-- teams -->
-			    <%= render "leagues/show/teams_tab" %>
-				<!--#teams.tab-pane-->
+		    <%= render "leagues/show/teams_tab" %>
+			<!--#teams.tab-pane-->
 
-				<!-- people -->
-				<div id="people" class="tab-pane tab-top-margin">
-					<%= render 'shared/people' %>				
-				</div>
-				<!--#people.tab-pane-->
+			<!-- people -->
+			<div id="people" class="tab-pane tab-top-margin">
+				<%= render 'shared/people' %>				
+			</div>
+			<!--#people.tab-pane-->
 
-				<!-- events -->
-				<div id="events" class="tab-pane">
-				</div>
-				<!--#events.tab-pane-->
+			<!-- events -->
+			<div id="events" class="tab-pane">
+			</div>
+			<!--#events.tab-pane-->
 
-				<!-- facilities -->
-				<div id="facilities" class="tab-pane tab-top-margin">
-					<div class="col-lg-8 col-lg-offset-2">
-						<p class="text-right">
-							<button class="btn btn-blue" data-toggle="modal" data-target="#panel-new-facility">New Facility</button>
-						</p>
-					
-						<%= render 'shared/facilities', facilities: @facilities %>
-					</div>
+			<!-- facilities -->
+			<div id="facilities" class="tab-pane tab-top-margin">
+				<div class="col-lg-8 col-lg-offset-2">
+					<p class="text-right">
+						<button class="btn btn-blue" data-toggle="modal" data-target="#panel-new-facility">New Facility</button>
+					</p>
+				
+					<%= render 'shared/facilities', facilities: @facilities %>
 				</div>
+			</div>
 
         <div id="calendar-tab" class="tab-pane">
             <div class="row">
