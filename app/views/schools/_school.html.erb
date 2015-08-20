@@ -1,5 +1,5 @@
 <%= link_to school_path(school) do %>
-	<div class="col-md-6 col-lg-3 col-sm-12 element-item">
+	<div class="col-md-3 col-lg-2 col-sm-6 element-item">
 	    <div class="card card-user card-clickable card-clickable-over-content">
 	      <div class="card-heading heading-full">
 			  <%#= image_tag school.main_photo, size: "428x150" %>
@@ -9,38 +9,51 @@
 		        <div class="clickable-button">
 		          <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-gear-b"></i></a>
 		        </div>
-		    <% end %>
+		    	<% end %>
 
 	      </div><!--.card-heading-->
 
 	      <div class="card-body">
-	        <p class="pull-right pt10">
-          	<% if current_user %>
-	  		  		<% if current_user.admin? %>
-	  		    		<%= link_to new_school_team_path(school), class: "btn btn-primary button-striped button-full-striped btn-ripple btn-xs" do %>
-	  		    			<i class="ion-plus-circled"></i> Add Team
-	  		    			<span class="ripple _22 animate"></span>
-	  		    		<% end %>
-	  		  		<% end %>
-  		  		<% end %>
-          </p>
 
+	        
 
-	        <h5 class="card-title semi-bold fs_16">
+	        <h4 class="card-title fs_18">
 		        <%= link_to school.name, school_path(school) %>
-	        </h5>
+	        </h4>
+
+	        <hr class="light no-margin mb5 mt5"/>
 
 	        <div class="subhead">
-
-	          <p><span class="text-muted">
-	            <i class="ion-location mr5"></i> <%= school.city %>, <%= school.state %>
-	          </span>
+	          <p class="mb0">
+		          <span class="text-muted">
+		            <i class="ion-location mr5 ml5"></i> <%= school.city %>, <%= school.state %>
+		          </span>
+		          <span class="text-muted">
+		            <i class="ion-email mr5"></i> Email Address
+		          </span>
+		          <span class="text-muted">
+		            <i class="ion-ios-telephone mr5"></i> 415-333-0909
+		          </span>
+		          <span class="text-muted">
+		            <i class="ion-android-desktop mr5"></i> www.schoolwebsite.com
+		          </span>
+		        </p>
+		        <hr class="light no-margin mb5 mt5"/>
 	          <!-- <p class="text-muted no-margin">
 	          	<%#= link_to school.website do %>
 	          		Website
 	          	<%# end %>
 	          	<%#= school.phone_number %>
 	          </p> -->
+	          <% if current_user %>
+	  		  		<% if current_user.admin? %>
+	  		    		<%= link_to new_school_team_path(school), class: "btn btn-primary button-striped button-full-striped btn-ripple btn-xs fs_12 mt10" do %>
+	  		    			<i class="ion-plus-circled"></i> Add Team
+	  		    			<span class="ripple animate"></span>
+	  		    		<% end %>
+	  		  		<% end %>
+  		  		<% end %>
+
 	         
 	        </div>
 	      </div><!--.card-body-->
