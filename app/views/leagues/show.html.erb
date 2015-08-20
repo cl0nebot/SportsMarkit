@@ -22,30 +22,56 @@
 
 <div class="content">
 
-	<div class="page-header full-content parallax">
+	<div class="page-header full-content bg-primary mb0" style="min-height: 141px;">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1 class="capitalize semi-bold">
+					<%= @league.name %>
+					<small></small>
+				</h1>
+			</div><!--.col-->
+			<div class="col-sm-6">
+				<ol class="breadcrumb">
+					<li><a href="/"><i class="ion-home"></i></a></li>
+					<li><a href="<%= facilities_path %>">Facilities</a></li>
+					<li><a href="<%= facility_path %>"><%= @league.name %></a></li>
+					<li><a href="#" class="active">Edit</a></li>
+				</ol>
+			</div><!--.col-->
+		</div><!--.row-->
 
-		<%= render "leagues/show/header" %>
-		<%= render "leagues/show/tab_navigation" %>
-
+		<div class="header-tabs scrollable-tabs sticky">
+			
+      <% if current_user %>
+        <% if current_user.can_edit_league?(@league)%>
+          <%= link_to edit_league_path(@league), class: "mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
+              <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
+          <% end %>
+        <% end %>
+      <% end %>
+		
+			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+				<li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">About</a></li>
+      	<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
+				<li><a href="#people" data-toggle="tab" class="btn-ripple">People</a></li>
+				<!-- <li><a href="#events" data-toggle="tab" class="btn-ripple">Events</a></li> -->
+				<li><a href="#facilities" data-toggle="tab" class="btn-ripple">Facilties</a></li>
+				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
+				<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
+				<!--<li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li>-->
+				<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
+			</ul>
+		</div>
 	</div><!--.page-header-->
-	
 
-  <!-- main content div -->
-  <div class="container">
-    <div class="user-profile">
-      <div class="row">
-				<img src="<%= image_path("placeholders/league.jpg") %>" alt="" class="col-md-2 img-thumbnail img-responsive b-rad-6"style="margin-top: -180px; z-index: 99999;  min-width; 195px; min-height: 195px;"/>
-			</div>
-    </div>
-  </div>
-  <div class="row">
+ 	<!-- main content div -->
+   <div class="row">
     <div class="col-md-12">
-      <div class="tab-content without-border pt40">
+      <div class="tab-content without-border">
 
     		<%= render "leagues/show/tab_about" %>
-
+				
 				<!-- teams -->
-			<!-- teams -->
 			    <%= render "leagues/show/teams_tab" %>
 				<!--#teams.tab-pane-->
 
