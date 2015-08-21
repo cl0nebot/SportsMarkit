@@ -31,41 +31,41 @@
             </h6>
             <ul id="filters" class="index-filters text-muted mt20">
                <li>
-                <button data-filter=".transition" class="btn btn-white b-rad-4 btn-sm btn-block">
+                <button data-filter=".student-athlete" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">Student-Athletes</span> 
-                  <span class="count">2,462</span>
+                  <span class="count"><%= User.student_athlete_count %></span>
                 </button>
               </li>
               <li>
-                <button data-filter=".metal" class="btn btn-white b-rad-4 btn-sm btn-block">
+                <button data-filter=".athlete" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">Athletes</span> 
-                  <span class="count">1,112</span>
+                  <span class="count"><%= User.athlete_count %></span>
                 </button>
               </li>
                <li>
-                <button data-filter=".alkali, .alkaline-earth" class="btn btn-white b-rad-4 btn-sm btn-block">
+                <button data-filter=".coach, .alkaline-earth" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">Coaches</span> 
-                  <span class="count">512</span>
+                  <span class="count"><%= User.coach_count %></span>
                 </button>
               </li>
               <li>
-                <button data-filter="*" class="button is-checked btn btn-white b-rad-4 btn-sm btn-block">
+                <button data-filter=".parent" class="button is-checked btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">Parents</span> 
-                  <span class="count">919</span>
+                  <span class="count"><%= User.parent_count %></span>
                 </button>
               </li>
               <li>
-                <button data-filter=":not(.transition)" class="btn btn-white b-rad-4 btn-sm btn-block">
+                <button data-filter=".athletic-director" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">Athletic Directors</span> 
-                  <span class="count">72</span>
+                  <span class="count"><%= User.athletic_director_count %></span>
                 </button>
               </li>
-              <li>
+              <!-- <li>
                 <button data-filter=".metal:not(.transition)" class="btn btn-white b-rad-4 btn-sm btn-block">
-                  <span class="filter">Tournament Directors</span> 
+                  <span class="filter">Tournament Directors</span>
                   <span class="count">412</span>
                 </buton>
-              </li>
+              </li> -->
             </ul> 
         </div>
         

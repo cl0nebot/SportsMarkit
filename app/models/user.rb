@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   include Access
   include Avatar
   include Reusable
+  include ClassificationCount
 
   extend FriendlyId
   friendly_id :use_for_slug, use: [:slugged, :finders]
@@ -307,6 +308,14 @@ class User < ActiveRecord::Base
      classifications.pluck(:classification).join(", ")
    else
      classifications.pluck(:classification).first(count).join(", ")
+   end
+  end
+  
+  def classification_list_with_space(count=0)
+    if count == 0
+     classifications.pluck(:classification).join(",").gsub(" ", "-").gsub(","," ").downcase
+   else
+     classifications.pluck(:classification).first(count).join(" ")
    end
   end
   
