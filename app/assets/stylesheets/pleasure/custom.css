@@ -679,7 +679,7 @@ ul.list-material.borderless.bgcolor-light-grey > li.divider {
     position: fixed;
     z-index: 4;
     font-size: 28px;
-    top: 120px;
+    top: 50px;
     left: 0;
     width: 80px;
     padding: 27px;
@@ -690,4 +690,26 @@ ul.list-material.borderless.bgcolor-light-grey > li.divider {
 .nav-pages a span {
     margin-bottom: 15px;
     display: block;
+}
+
+.logo {font-family: 'Black Ops One';}
+
+
+/*index-filters*/
+
+ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
+
+.filter {
+  
+}
+
+.count {
+  float: right;
+  font-weight: bold;
+}
+
+.dropdown-menu.directory {
+  overflow: scroll;
+  height: 300px;
+  width: 100%;
 }
