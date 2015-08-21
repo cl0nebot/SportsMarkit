@@ -5,6 +5,7 @@ class School < ActiveRecord::Base
   include Roster
   include Reusable
   include Geo
+  include Avatar
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable

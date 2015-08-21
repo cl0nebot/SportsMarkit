@@ -3,6 +3,7 @@ class League < ActiveRecord::Base
   include PhotoOwner
   include Reusable
   include Roster
+  include Avatar
   
   friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable

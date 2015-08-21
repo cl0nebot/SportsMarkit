@@ -95,6 +95,11 @@ class ApplicationController < ActionController::Base
     
   end
   
+  def profile_picture_insert
+    @profile_picture =  ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s).empty? ? @object.profile_pictures.build : ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s).last
+    @profile_pictures = ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s)
+  end
+  
   
   
 end

@@ -4,6 +4,7 @@ class Team < ActiveRecord::Base
   include Reusable
   include Roster
   include EventDetail
+  include Avatar
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   

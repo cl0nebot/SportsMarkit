@@ -60,6 +60,7 @@ Rails.application.routes.draw do
       resources :media
       resources :teams
       resources :photos
+      resources :profile_pictures, only: %w[create update destroy]
       resources :events
       resource :calendar do
         get :events, on: :member
@@ -73,6 +74,7 @@ Rails.application.routes.draw do
       get :edit_roster_view
       get :close_roster_view
       resources :photos
+      resources :profile_pictures, only: %w[create update destroy]
       resources :events
       resources :media
       resources :chat
@@ -90,6 +92,7 @@ Rails.application.routes.draw do
     end
 
     resources :facilities do
+      resources :profile_pictures, only: %w[create update destroy]
       collection do
         get :selection_option
       end
@@ -103,6 +106,7 @@ Rails.application.routes.draw do
 
     resources :tournaments
     resources :leagues do
+      resources :profile_pictures, only: %w[create update destroy]
       resources :events
       resource :calendar do
         get :events, on: :member

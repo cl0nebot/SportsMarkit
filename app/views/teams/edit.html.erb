@@ -24,6 +24,12 @@
 			</ul>
 		</div>
 	</div><!--.page-header-->
+	
+	<div class="col-md-3">
+        <div id="user-profile-picture">
+          <%= render 'shared/profile_picture' %>
+        </div>
+	</div>
 
 <%= form_for @team do |f| %>
 	<div class="row">
@@ -171,6 +177,7 @@
 <!--.content-->
                 
 			<%= render 'shared/picture_modal' %>
+			<%= render 'shared/profile_picture_modal' %>
 
 
 

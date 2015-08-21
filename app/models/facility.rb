@@ -2,6 +2,7 @@ class Facility < ActiveRecord::Base
   extend FriendlyId
   include PhotoOwner
   include EventDetail
+  include Avatar
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable
