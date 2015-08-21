@@ -7,3 +7,8 @@ $('#edit-member-<%= @class %><%= @id %>').append('<%= j render 'admin_view_membe
 $('#edit-head-<%= @class %><%= @id %>').empty()
 $('#edit-head-<%= @class %><%= @id %>').append('<%= j render 'head', m: @object %>')
 <% end %>
+
+<% if params[:status] == "admin" %>
+$('#edit-admin-<%= @class %><%= @id %>').empty()
+$('#edit-admin-<%= @class %><%= @id %>').append('<%= j render 'admin', m: @object %>')
+<% end %>

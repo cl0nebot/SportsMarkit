@@ -7,3 +7,8 @@
   $('#head-<%= @class %><%= @id %>').empty()
   $('#head-<%= @class %><%= @id %>').append('<%= j render 'edit_head', m: @object, team: @team %>')
 <% end %>
+
+<% if params[:status] == "admin" %>
+  $('#admin-<%= @class %><%= @id %>').empty()
+  $('#admin-<%= @class %><%= @id %>').append('<%= j render 'edit_admin', m: @object, team: @team %>')
+<% end %>
