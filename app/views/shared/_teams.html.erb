@@ -1,36 +1,38 @@
 <div class="row ">
   <% @teams.each do |team| %>
-
-  <div class="col-md-4">
-    <div class="card card-meal card-meal-indigo card-square card-hover-shadow">
-      <div class="card-heading">
-        <h3 class="card-title">
-          <span class="text-black lh_22"><%= team.proper_name %></span>
-        </h3>
-        <div class="card-subhead">
-         <%= team.sport %> Team, 
-         <i class="ion-location text-primary ml5"></i> 
-         <%= team.city_state %>
-        </div><!--.card-subhead-->
-      </div><!--.card-heading-->
-      <div class="card-body">
-        <div class="image">
-          <%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg") %>
-        </div><!--.image-->
-        <ul class="users">
-			<% team.accepted_athletes.each do |user| %>
-          <li><a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>"><%= image_tag user.avatar %></a></li>
-		  <% end %>
+    <div class="col-md-2">
+      <div class="card card-meal card-meal-indigo card-square card-hover-shadow">
+        <div class="card-heading">
+          <div style="height: 45px; position: relative;">
+            <h4 class="card-title capitalize fs_18 lh_20 absolute bottom bold">
+              <span class="text-black lh_22"><%= team.proper_name %></span>
+            </h4>
+          </div>
+          <hr class="light mb5 mt5" />
+          <div class="card-subhead">
+           <%= team.sport %> Team
+           <br/>
+           <i class="ion-location text-primary"></i> 
+           <%= team.city_state %>
+          </div><!--.card-subhead-->
+        </div><!--.card-heading-->
+        <div class="card-body">
+          <div class="image">
+            <%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg") %>
+          </div><!--.image-->
+          <ul class="users">
+      			<% team.accepted_athletes.each do |user| %>
+              <li><a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>"><%= image_tag user.avatar %></a></li>
+      		  <% end %>
+          </ul>
+        </div><!--.card-body-->
+        <div class="card-footer">
+          <ul>
+          <li class="fs_14"><%= pluralize team.accepted_athletes.count, "Teammate"%></li>
+          <li><a href="<%= team_path(team) %>" class="fs_14">View Team</a></li>
         </ul>
-      </div><!--.card-body-->
-      <div class="card-footer">
-        <ul>
-        <li class="fs_14"><%= pluralize team.accepted_athletes.count, "Teammate"%></li>
-        <li><a href="<%= team_path(team) %>" class="fs_14">View Team</a></li>
-      </ul>
-      </div><!--.card-footer-->
-    </div><!--.card-->
-  </div><!--.col-md-12-->
+        </div><!--.card-footer-->
+      </div><!--.card-->
+    </div><!--.col-md-12-->
   <% end %>
 </div>
-<!--.row-->

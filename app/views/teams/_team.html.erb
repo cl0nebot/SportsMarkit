@@ -4,23 +4,22 @@
       <div class="card card-user card-clickable card-clickable-over-content">
         <div class="card-heading heading-full">
           <div class="user-image sample-member9" style="background: url('<%= team.image %>'); background-position: bottom;"></div>
-
-          
+        
           <div class="clickable-button">
-              <%= link_to edit_team_path(team), class: "btn btn-floating btn-orange initial-position floating-open" do %>
-                <i class="ion-gear-b"></i>
+            <%= link_to edit_team_path(team), class: "btn btn-floating btn-orange initial-position floating-open" do %>
+              <i class="ion-gear-b"></i>
             <% end %>
           </div>
 
         </div><!--.card-heading-->
 
         <div class="card-body relative">
-          <div style="height: 30px; position: relative;">
-            <h4 class="card-title capitalize fs_14 lh_18 absolute bottom bold">
-            	<%= truncate(team.proper_name, length: 43) %>
+          <div style="height: 40px; position: relative;">
+            <h4 class="card-title capitalize fs_16 lh_20 absolute bottom bold">
+              <%= truncate(team.proper_name, length: 43) %>
             </h4>
           </div>
-
+          
           <hr class="light mt5 mb5"/>
 
           <div class="subhead fs_12">
