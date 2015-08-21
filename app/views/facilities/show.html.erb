@@ -31,6 +31,15 @@
 		</div><!--.row-->
 
 		<div class="header-tabs scrollable-tabs sticky">
+
+			 <% if current_user %>
+		        <% if current_user.can_edit_facility?(@facility)%>
+		          <%= link_to edit_facility_path(@facility), class: "mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
+		              <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
+		          <% end %>
+		        <% end %>
+		      <% end %>
+
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
 				<li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">About</a></li>
 				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>

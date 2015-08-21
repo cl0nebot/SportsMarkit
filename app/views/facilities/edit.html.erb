@@ -26,16 +26,18 @@
 		</div>
 	</div><!--.page-header-->
 	
-	<div class="col-md-3">
-        <div id="user-profile-picture">
-          <%= render 'shared/profile_picture' %>
-        </div>
-	</div>
-	
-
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-			<div class="panel box-shadow-ccc">
+
+			<div class="row">
+				<div class="col-md-3">
+	        <div id="school-profile-picture">
+	          <%= render 'shared/profile_picture' %>
+	        </div>
+				</div>
+
+				<div class="col-md-9">
+					<div class="panel box-shadow-ccc">
 				<div class="panel-body no-padding form-layout">
 
 					<%= form_for @facility do |f| %>
@@ -225,7 +227,9 @@
 					</p>
 				</div><!--.panel-body-->
 				<% end %>
-			</div><!--.panel-->
+					</div><!--.panel-->
+				</div>
+			</div>
 		</div><!--.col-md-12-->
 	</div><!--.row-->
 </div>
