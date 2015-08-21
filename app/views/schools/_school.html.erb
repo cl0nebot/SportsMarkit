@@ -1,5 +1,5 @@
 <%= link_to school_path(school) do %>
-	<div class="col-md-4 col-lg-3 col-sm-6 element-item">
+	<div class="col-md-3 col-lg-2 col-sm-6 element-item">
 	    <div class="card card-user card-clickable card-clickable-over-content">
 	      <div class="card-heading heading-full">
 			  <%#= image_tag school.main_photo, size: "428x150" %>
@@ -15,26 +15,26 @@
 
 	      <div class="card-body">
 
-	        <h4 class="card-title fs_18">
-		        <%= link_to school.name, school_path(school) %>
-	        </h4>
+	        <div style="height: 35px; position: relative;">
+	        	<h4 class="card-title capitalize fs_14 lh_18 absolute bottom bold">
+			        <%= truncate(school.name, length: 43) %>
+		        </h4>
+		      </div>
 
 	        <%= school.description	 %>
 	        <hr class="light no-margin mb5 mt5"/>
 
 	        <div class="subhead">
-	          <p class="mb0">
+	          <p class="mb0 fs_12">
 		          <span class="text-muted">
-		            <i class="ion-location mr5 ml5"></i> <%= school.city %>, <%= school.state %>
-		          </span>
-		          <span class="text-muted">
-		            <i class="ion-email mr5"></i> <%= school.email %>
+		            <i class="ion-map mr5"></i> <%= school.city %>, <%= school.state %>
 		          </span>
 		          <span class="text-muted">
 		            <i class="ion-ios-telephone mr5"></i> <%= school.phone_number %>
 		          </span>
 		          <span class="text-muted">
-		            <i class="ion-android-desktop mr5"></i> <%= school.website %>
+		            <i class="ion-android-desktop mr5"></i> 
+		            <a href="<%= school.website %>" class="text-muted">School Website</a>
 		          </span>
 		        </p>
 		        <hr class="light no-margin mb5 mt5"/>

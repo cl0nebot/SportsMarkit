@@ -1,38 +1,44 @@
 <% @teams.each do |team| %>
-	<div class="col-md-6 col-lg-3 col-sm-12 element-item">
-    <div class="card card-user card-clickable card-clickable-over-content">
-      <div class="card-heading heading-full">
-        <div class="user-image sample-member9" style="background: url('<%= team.image %>'); background-position: bottom;"></div>
+  <%= link_to team_path(team) do %>
+  	<div class="col-md-4 col-lg-2 col-sm-12 element-item">
+      <div class="card card-user card-clickable card-clickable-over-content">
+        <div class="card-heading heading-full">
+          <div class="user-image sample-member9" style="background: url('<%= team.image %>'); background-position: bottom;"></div>
 
-        
-        <div class="clickable-button">
-            <%= link_to edit_team_path(team), class: "btn btn-floating btn-orange initial-position floating-open" do %>
-              <i class="ion-gear-b"></i>
-          <% end %>
+          
+          <div class="clickable-button">
+              <%= link_to edit_team_path(team), class: "btn btn-floating btn-orange initial-position floating-open" do %>
+                <i class="ion-gear-b"></i>
+            <% end %>
           </div>
 
-      </div><!--.card-heading-->
+        </div><!--.card-heading-->
 
-      <div class="card-body">
-        <h5 class="card-title capitalize semi-bold fs_16">
-        	<a href="#"><%= link_to team.proper_name, team_path(team) %></a>
-        </h5>
+        <div class="card-body relative">
+          <div style="height: 30px; position: relative;">
+            <h4 class="card-title capitalize fs_14 lh_18 absolute bottom bold">
+            	<%= truncate(team.proper_name, length: 43) %>
+            </h4>
+          </div>
 
-        <div class="subhead">
-          <span class="text-muted">
-            <%= team.sport %>
-          </span>
-          <span class="text-muted"><i class="ion-location mr5"></i><%= team.city_state %></span>
-          <!-- <span class="text-muted">[school name or Team Type]</span> -->
-        </div>
-      </div><!--.card-body-->
+          <hr class="light mt5 mb5"/>
 
-        <!-- <div class="card-footer">
-          <%#= link_to "Edit", edit_team_path(user), class: "btn btn-sm btn-message" %>
-          <%#= link_to "Delete", team, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
-        </div> --><!--.card-footer-->
+          <div class="subhead fs_12">
+            <span class="text-muted">
+              <i class="ion-information-circled mr5"></i> <%= team.sport %>
+            </span>
+            <span class="text-muted"><i class="ion-map mr5"></i> <%= team.city_state %></span>
+            <!-- <span class="text-muted">[school name or Team Type]</span> -->
+          </div>
+        </div><!--.card-body-->
 
-    </div><!--.card-->
-  </div><!--.col-md-4-->
+          <!-- <div class="card-footer">
+            <%#= link_to "Edit", edit_team_path(user), class: "btn btn-sm btn-message" %>
+            <%#= link_to "Delete", team, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
+          </div> --><!--.card-footer-->
+
+      </div><!--.card-->
+    </div><!--.col-md-4-->
+  <% end %>
 <% end %>
 
