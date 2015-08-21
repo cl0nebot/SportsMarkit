@@ -8,22 +8,24 @@
 		        <div class="user-image sample-member9" style="background: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');"></div>
 
 		          <div class="clickable-button">
-			            <%= link_to edit_league_path(league), class: "btn btn-floating btn-orange initial-position floating-open" do %>
-			              <i class="ion-gear-b"></i>
-			          	<% end %>
+		            <%= link_to edit_league_path(league), class: "btn btn-floating btn-orange initial-position floating-open" do %>
+		              <i class="ion-gear-b"></i>
+		          	<% end %>
 			      </div>
 		      </div><!--.card-heading-->
 
 		      <div class="card-body">
-		        <div class="title" style="height: 55px; vertical-align: bottom; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-bottom: 10px;">
-		        	<h4 class="card-title capitalize fs_18 lh_24">
-		        	<a href="#"><%= truncate(league.name, length: 41) %></a>
+		        <div style="height: 40px; position: relative;">
+	        		<h4 class="card-title capitalize fs_16 lh_20 absolute bottom bold">
+		        		<%= truncate(league.name, length: 41) %>
 		        	</h4>
 		        </div>
 
+		        <hr class="light mt5 mb5" />
+
 		        <div class="subhead mt5">
 		          <span class="text-muted inline">
-		          	<i class="ion-location mr5"></i>
+		          	<i class="ion-map mr5"></i>
 		          	<%= league.state %>
 		      	  </span>
 		          <span class="text-muted inline">
