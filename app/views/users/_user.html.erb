@@ -14,11 +14,11 @@
 	      </div><!--.card-heading-->
 
 	      <div class="card-body">
-	        <h4 class="card-title capitalize fs_18 ws-1">
-				<%= link_to user_path(user) do %>
-	          <%= user.first_name %> <%= user.last_name %>
-			  <% end %>
-	        </h4>
+	        <div style="height: 30px; position: relative;">
+	        	<h4 class="card-title capitalize fs_16 lh_20 absolute bottom bold">
+				      <%= user.first_name %> <%= user.last_name %>
+	        	</h4>
+	        </div>
 
 	        <hr class="light no-margin mt5 mb10"/>
 
