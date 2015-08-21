@@ -1,4 +1,4 @@
-<% cache ["v1", "v1", @cache_key] do %>
+<%# cache ["v1", "v1", @cache_key] do %>
 <style>
   .sample-bg-image13:before {
     background-image: url('<%=background_url(@user) %>');
@@ -67,18 +67,16 @@
     </div><!--.row-->
 
     <div class="header-tabs scrollable-tabs sticky">
-       <% if current_user %>
-        <% if current_user.admin? or current_user == @user %>
-          <button href="" class="pull-right mt10 btn btn-lg btn-blue-grey button-striped button-full-striped btn-ripple fs_14 mr20">
-            <%= link_to edit_user_path(@user) do %>
-              <span class="text-blue-grey">
-                <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
-              </span>
-            <% end %>
-          </button>
+
+      <% if current_user %>
+        <% if current_user.can_edit_user?(@user) %>
+          <%= link_to edit_user_path(@user), class: "mt10 pull-right btn button-striped button-full-striped btn-ripple mr20" do %>
+              <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
+          <% end %>
         <% end %>
       <% end %>
-     <ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+
+      <ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
         <li class="active">
           <a href="#about" data-toggle="tab" class="btn-ripple">About</a>
         </li>
@@ -152,4 +150,4 @@
 </div><!--.content-->
 
 <%#= render "shared/panels/new_event"%>
-<% end %>
+<%# end %>
