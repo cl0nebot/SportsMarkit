@@ -2,7 +2,11 @@
 	<div class="page-header full-content mb0">
 		<div class="row">
 			<div class="col-sm-5">
-				<h1>All Teams <small>(<%= Team.count %>)</small></h1>
+				<div class="logo text-white">
+          <%= image_tag("icons/flag.png", height: "15", class: "margin-right-5", style: "margin-top: -5px; width: 15px;") %>
+          SportsMarkit
+        </div><!--.logo-->
+        <h1>All Teams <small>(<%= Team.count %>)</small></h1>
 			</div><!--.col-->
 			<div class="col-sm-6">
 				<ol class="breadcrumb">
@@ -18,40 +22,98 @@
 		</div><!--.row-->
 	</div><!--.page-header-->
 
-  <div class="page-header full-content"  style="background: #fff; border-bottom: 1px solid #ccc;">
-    <div class="row">
-      <div clas="panel panel-default">
-        <div class="panel-body">
-        	<div class="row">
-            <div class="col-md-12 text-center mt10">
-              <h4 class="semi-bold">
-                <span class="ion-search text-primary h3 no-margin"></span>                   
-                <span class="h3 semi-bold ws1 ml10 no-margin">Search Our Sports Community</span>
-                <ul class="inline-ul li-with-divider fs_14 mt10">
-                  <li>Youth Teams</li>
-                  <li>High School Teams</li>
-                  <li>Recreational Teams</li>
-                  <li>Adult Teaams</li>
-                </ul> 
-              </h4>
-            </div>
-            <div class="col-md-6 col-md-offset-3 box-shadow-ccc"  style="background: #fff;">
-              <div class="padding-bottom-0">
-                <div class="inputer mt5 mb5 ml10">
-            			<input type="text" class=" fs_20 quicksearch-teams typeahead typeahead-teams form-control" rows="1" placeholder="Enter team name">
-          			</div>
-              </div>
+  	<div class="col-md-2 pt60">
+      <div class="row">
+        <div class="col-md-11 button-group filters-button-group">
+            <h6 class="bold text-muted no-margin">
+              <span class="ion-funnel text-indigo mr5"></span>
+              View by Type
+            </h6>
+            <ul id="filters" class="index-filters text-muted mt20">
+               <li>
+                <button data-filter=".transition" class="btn btn-white b-rad-4 btn-sm btn-block">
+                  <span class="filter">High-Schools</span> 
+                  <span class="count">2,462</span>
+                </button>
+              </li>
+              <li>
+                <button data-filter=".metal" class="btn btn-white b-rad-4 btn-sm btn-block">
+                  <span class="filter">Middle Schools</span> 
+                  <span class="count">1,112</span>
+                </button>
+              </li>
+               <li>
+                <button data-filter=".alkali, .alkaline-earth" class="btn btn-white b-rad-4 btn-sm btn-block">
+                  <span class="filter">Elementary Schools</span> 
+                  <span class="count">512</span>
+                </button>
+              </li>
+              <li>
+                <button data-filter="*" class="button is-checked btn btn-white b-rad-4 btn-sm btn-block">
+                  <span class="filter">Private Schools</span> 
+                  <span class="count">919</span>
+                </button>
+              </li>
+              <li>
+                <button data-filter=":not(.transition)" class="btn btn-white b-rad-4 btn-sm btn-block">
+                  <span class="filter">Public Schools</span> 
+                  <span class="count">72</span>
+                </button>
+              </li>
+              <li>
+                <button data-filter=".metal:not(.transition)" class="btn btn-white b-rad-4 btn-sm btn-block">
+                  <span class="filter">Charter Schools</span> 
+                  <span class="count">412</span>
+                </buton>
+              </li>
+            </ul> 
+        </div>
+        
+      </div>
+    </div>
+    <div class="bg-muted col-md-10" style="background: #fff; margin-left: 0px; border-left: 1px solid #eee; padding: 20px 30px; min-height: 1000px;">
+
+      <div class="row">
+        
+        <div class="col-md-6 pt40">
+          <div class="inputer">
+            <div class="input-wrapper">
+              <!-- <h6 class="text-indigo bold mb10">
+                <span class="ion-search text-indigo mr5"></span> Search Our Sports Community
+              </h6> -->
+              <input type="text" class="pb20 quicksearch-teams typeahead typeahead-teams  form-control input-sm" placeholder="Search teams..."  />
             </div>
           </div>
-	      </div><!--.row-->
-	    </div>
-	  </div>
-	</div>
+        </div>
 
-  <div class="bg-muted" style="background: #F7F7F7;">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-3">
+          <div class="well bgcolor-light-grey no-margin">
+            <div class="btn-group btn-block">
+              <button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+                <span class="text-muted">
+                  Team Directory
+                  <span class="ml10 caret"></span>
+                </span>
+              </button>
+              <ul class="dropdown-menu directory" role="menu">
+                <% @teams.each do |team| %>
+                  <li>
+                    <%= link_to teams_path(team) do %>
+                        <%= team.name %>
+                      <% end %>
+                    </li>
+                <% end %>
+              </ul>
+            </div><!--.btn-group-->
+          </div>
+        </div>
+      </div>
+
+      <br/>
     
-    <div class="row teams">
-      <div class="col-lg-12">
+    	<div class="teams grid">
       	<%= render "team" %>	
       </div>
     </div>

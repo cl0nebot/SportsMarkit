@@ -2,7 +2,11 @@
 	<div class="page-header full-content mb0">
 		<div class="row">
 			<div class="col-sm-5">
-				<h1>All Facilities <small>(<%= Facility.count %>)</small></h1>
+				<div class="logo text-white">
+	          <%= image_tag("icons/flag.png", height: "15", class: "margin-right-5", style: "margin-top: -5px; width: 15px;") %>
+	          SportsMarkit
+	        </div><!--.logo-->
+	        <h1>All Facilities <small>(<%= Facility.count %>)</small></h1>
 			</div><!--.col-->
 			<div class="col-sm-6">
 				<ol class="breadcrumb">
@@ -18,44 +22,98 @@
 		</div><!--.row-->
 	</div><!--.page-header-->
 
-	<div class="page-header full-content"  style="background: #fff; border-bottom: 1px solid #ccc;">
-	    <div class="row">
-	      <div clas="panel panel-default">
-	        <div class="panel-body">
-	          <div class="row">
-	            <div class="col-md-6 col-md-offset-3">
-	              <div class="row">
-	                <div class="col-md-4 text-center mt10">
-	                  <h4 class="semi-bold">
-	                    <span class="ion-search text-primary h4 no-margin"></span>                   
-	                    <span class="h5 upper bold ws1 ml10 no-margin">search facilities</span>
-	                  </h4>
-	                </div>
-	                <div class="col-md-8 box-shadow-ccc"  style="background: #fff;">
-	                  <div class="padding-bottom-0">
-	                    <div class="inputer mt5 mb5 ml10">
-	                  		<input type="text" class=" fs_20 quicksearch-facilities typeahead typeahead-facilities form-control" rows="1" placeholder="Enter facility name...">
-	                  	</div>
-	                </div>
-	              </div>
-	            </div><!--.col-md-9-->
-	          </div><!--.row-->
-	        </div>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-
-  <div class="bg-muted" style="background: #F7F7F7;">
-    <div class="row facilities">
-    	<div class="col-lg-10 col-lg-offset-1">
-    		<%= render "facility", facilities: @facilities %>	
-    	</div>
+<div class="col-md-2 pt60">
+  <div class="row">
+    <div class="col-md-11 button-group filters-button-group">
+        <h6 class="bold text-muted no-margin">
+          <span class="ion-funnel text-indigo mr5"></span>
+          View by Type
+        </h6>
+        <ul id="filters" class="index-filters text-muted mt20">
+           <li>
+            <button data-filter=".transition" class="btn btn-white b-rad-4 btn-sm btn-block">
+              <span class="filter">Baseketball Gyms</span> 
+              <span class="count">2,462</span>
+            </button>
+          </li>
+          <li>
+            <button data-filter=".metal" class="btn btn-white b-rad-4 btn-sm btn-block">
+              <span class="filter">Tracks</span> 
+              <span class="count">1,112</span>
+            </button>
+          </li>
+           <li>
+            <button data-filter=".alkali, .alkaline-earth" class="btn btn-white b-rad-4 btn-sm btn-block">
+              <span class="filter">Tennis Courts</span> 
+              <span class="count">512</span>
+            </button>
+          </li>
+          <li>
+            <button data-filter="*" class="button is-checked btn btn-white b-rad-4 btn-sm btn-block">
+              <span class="filter">Recreation Center</span> 
+              <span class="count">919</span>
+            </button>
+          </li>
+          <li>
+            <button data-filter=":not(.transition)" class="btn btn-white b-rad-4 btn-sm btn-block">
+              <span class="filter">Football Field</span> 
+              <span class="count">72</span>
+            </button>
+          </li>
+          <li>
+            <button data-filter=".metal:not(.transition)" class="btn btn-white b-rad-4 btn-sm btn-block">
+              <span class="filter">Soccer Field</span> 
+              <span class="count">412</span>
+            </buton>
+          </li>
+        </ul> 
     </div>
   </div>
-      
-</div><!--.row-->
+</div>
 
+  <div class="bg-muted col-md-10" style="background: #fff; margin-left: 0px; border-left: 1px solid #eee; padding: 20px 30px; min-height: 1000px;">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="inputer pt40">
+          <div class="input-wrapper">
+            <input type="text" class="pb20 quicksearch-facilities typeahead typeahead-facilities form-control input-sm" placeholder="Search facilities..."  />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+      </div>
+
+      <div class="col-md-3">
+        <div class="well bgcolor-light-grey no-margin">
+          <div class="btn-group btn-block">
+            <button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+              <span class="text-muted">
+                Facility Directory
+                <span class="ml10 caret"></span>
+              </span>
+            </button>
+            <ul class="dropdown-menu directory" role="menu">
+              <% @facilities.each do |facility| %>
+                <li>
+                  <%= link_to facilities_path(facility) do %>
+                      <%= facility.name %>
+                    <% end %>
+                  </li>
+              <% end %>
+            </ul>
+          </div><!--.btn-group-->
+        </div>
+      </div>
+    </div>
+
+    <br/>
+  
+  	<div class="facilities grid">
+  		<%= render "facility", facilities: @facilities %>	
+  	</div>
+  </div>
+</div>
 
 <script type="text/javascript">
 	
