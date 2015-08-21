@@ -38,7 +38,7 @@ module Access
   end
   
   def can_edit_user?(user)
-    
+    id == user.id
   end
 
 end
