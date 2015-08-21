@@ -1,6 +1,6 @@
 <% facilities.each do |facility| %>
 	<%= link_to facility_path(facility) do %>
-		<div class="col-md-3 col-lg-3 col-sm-12 element-item">
+		<div class="col-md-3 col-lg-2 col-sm-12 element-item">
 		    <div class="card card-user card-clickable card-clickable-over-content">
 		      <div class="card-heading heading-full">
 		        <div class="user-image sample-member9" style="background: url(<%= image_path("placeholders/facility.png")%>;">
@@ -15,13 +15,13 @@
 		      </div><!--.card-heading-->
 
 		      <div class="card-body">
-		        <div style="height: 50px; position: relative;">
-		        	<h4 class="card-title capitalize fs_18 lh_24 absolute bottom" style="bottom: 0;">
+		        <div style="height: 40px; position: relative;">
+	        		<h4 class="card-title capitalize fs_16 lh_20 absolute bottom bold">
 			        	<a href="#">
 				        	<% if facility.school.present? %>
-							  	<%= "#{facility.school.name} #{facility.name}" %>
+							  	<%= truncate("#{facility.school.name} #{facility.name}", length: 40) %>
 							<% else %>
-							   	<%= facility.name %>
+							   	<%= truncate(facility.name, length: 40) %>
 							<% end %>
 							<br/>
 						</a>
