@@ -1,5 +1,5 @@
 <div id="new-facility-partial">
-	<div class="modal-dialog">
+	<div class="modal-dialog expanded">
 		<div class="modal-content">
 			<div class="modal-body">
 				<div class="row">
@@ -15,124 +15,79 @@
 								</div>
 							</div><!--.panel-heading-->
 							<div class="panel-body pt20">
-							
+	 	            <div class="row">
+	                <div class=""  style="background: #fff;">
+	                  <div class="padding-bottom-0">
+	                    <div class="inputer mt5 mb5 ml10">
+	                  		<input type="text" class=" fs_20 quicksearch-facilities typeahead typeahead-facilities form-control" rows="1" placeholder="Enter facility name...">
+	                  	</div>
+		                </div>
+		              </div>
+						 	  </div>
 
-	  						
-					 <div class="content">
-				
+						 	  <br/>
 
-					 	<div class="page-header full-content"  style="background: #fff; border-bottom: 1px solid #ccc;">
-					 	    <div class="row">
-					 	      <div clas="panel panel-default">
-					 	        <div class="panel-body">
-					 	          <div class="row">
-					 	            <div class="col-md-6 col-md-offset-3">
-					 	              <div class="row">
-					 	                <div class="col-md-4 text-center mt10">
-					 	                  <h4 class="semi-bold">
-					 	                    <span class="ion-search text-primary h4 no-margin"></span>                   
-					 	                    <span class="h5 upper bold ws1 ml10 no-margin">search facilities</span>
-					 	                  </h4>
-					 	                </div>
-					 	                <div class="col-md-8 box-shadow-ccc"  style="background: #fff;">
-					 	                  <div class="padding-bottom-0">
-					 	                    <div class="inputer mt5 mb5 ml10">
-					 	                  		<input type="text" class=" fs_20 quicksearch-facilities typeahead typeahead-facilities form-control" rows="1" placeholder="Enter facility name...">
-					 	                  	</div>
-					 	                </div>
-					 	              </div>
-					 	            </div><!--.col-md-9-->
-					 	          </div><!--.row-->
-					 	        </div>
-					 	      </div>
-					 	    </div>
-					 	  </div>
-					 	</div>
-
-					   <div class="bg-muted" style="background: #F7F7F7;">
-					     <div class="row facilities">
-					     	<div class="col-lg-10 col-lg-offset-1">
-					     		<%= render "find_facility", facilities: facilities %>	
-					     	</div>
-					     </div>
-					   </div>
-      
-					 </div><!--.row-->
-
-
-					 
-
-
-
-
-					 
-
-
-					 
-
-	  				  
-	  		   		    
-				
-
-				
-
-	
+							  <div class="bg-muted" style="background: #F7F7F7;">
+							    <div class="facilities">
+							     	<div class="col-lg-12">
+							     		<%= render "find_facility", facilities: facilities %>	
+							     	</div>
+							     </div>
+							   </div>
+							</div><!--.row-->
 
 						</div><!--.panel-body-->
 					</div><!--.col-md-12-->
 				</div><!--.row-->
 			</div>
-		</div>
-		
-
-			
-						
-		</div>
+		</div>	
 	</div>
 </div>
 
-					 <script type="text/javascript">
-	
-					 	// QUICKSEARCH USERS
+ <script type="text/javascript">
 
-					 	$( function() {
-					 	  // quick search regex
-					 	  var qsRegex;
-	  
-					 	  // init Isotope
-					 	  var $grid = $('.facilities').isotope({
-					 	    itemSelector: '.element-item',
-					 	    layoutMode: 'fitRows',
-					 	    filter: function() {
-					 	      return qsRegex ? $(this).text().match( qsRegex ) : true;
-					 	    }
-					 	  });
+ 
 
-					 	  // use value of search field to filter
-					 	  var $quicksearch = $('.quicksearch-facilities').keyup( debounce( function() {
-					 	    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
-					 	    $grid.isotope();
-					 	  }, 200 ) );
+ 	// QUICKSEARCH USERS
 
-					 	});
+ 	$( function() {
+ 	  // quick search regex
+ 	  var qsRegex;
 
-					 	// debounce so filtering doesn't happen every millisecond
-					 	function debounce( fn, threshold ) {
-					 	  var timeout;
-					 	  return function debounced() {
-					 	    if ( timeout ) {
-					 	      clearTimeout( timeout );
-					 	    }
-					 	    function delayed() {
-					 	      fn();
-					 	      timeout = null;
-					 	    }
-					 	    timeout = setTimeout( delayed, threshold || 100 );
-					 	  }
-					 	}
+ 	  // init Isotope
+ 	  var $grid = $('.facilities').isotope({
+ 	    itemSelector: '.element-item',
+ 	    layoutMode: 'fitRows',
+ 	    filter: function() {
+ 	      return qsRegex ? $(this).text().match( qsRegex ) : true;
+ 	    }
+ 	  });
 
-					 </script>
-	
-					 <h1><%#= format(Date.today, 4)%></h1>
+ 	  // use value of search field to filter
+ 	  var $quicksearch = $('.quicksearch-facilities').keyup( debounce( function() {
+ 	    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+ 	    $grid.isotope();
+ 	  }, 200 ) );
+
+ 	});
+
+ 	// debounce so filtering doesn't happen every millisecond
+ 	function debounce( fn, threshold ) {
+ 	  var timeout;
+ 	  return function debounced() {
+ 	    if ( timeout ) {
+ 	      clearTimeout( timeout );
+ 	    }
+ 	    function delayed() {
+ 	      fn();
+ 	      timeout = null;
+ 	    }
+ 	    timeout = setTimeout( delayed, threshold || 100 );
+ 	  }
+ 	}
+
+ </script>
+
+ <h1><%#= format(Date.today, 4)%></h1>
 
 

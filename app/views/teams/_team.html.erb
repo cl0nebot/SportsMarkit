@@ -14,12 +14,13 @@
         </div><!--.card-heading-->
 
         <div class="card-body relative">
+
           <div style="height: 40px; position: relative;">
             <h4 class="card-title capitalize fs_16 lh_20 absolute bottom bold">
               <%= truncate(team.proper_name, length: 43) %>
             </h4>
           </div>
-          
+
           <hr class="light mt5 mb5"/>
 
           <div class="subhead fs_12">
@@ -29,12 +30,14 @@
             <span class="text-muted"><i class="ion-map mr5"></i> <%= team.city_state %></span>
             <!-- <span class="text-muted">[school name or Team Type]</span> -->
           </div>
+          
         </div><!--.card-body-->
 
-          <!-- <div class="card-footer">
-            <%#= link_to "Edit", edit_team_path(user), class: "btn btn-sm btn-message" %>
-            <%#= link_to "Delete", team, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
-          </div> --><!--.card-footer-->
+        <!-- <div class="card-footer">
+          <%#= link_to "Edit", edit_team_path(user), class: "btn btn-sm btn-message" %>
+          <%#= link_to "Delete", team, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
+        </div> -->
+        <!--.card-footer-->
 
       </div><!--.card-->
     </div><!--.col-md-4-->

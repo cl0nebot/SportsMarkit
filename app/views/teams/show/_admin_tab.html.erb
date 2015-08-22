@@ -47,205 +47,206 @@ alert("facilities js loaded")
 <% if current_user %>
   <% if current_user.admin? or current_user.can_edit_team?(@team)%>
 
-		<div class="row pt40">
-			<div class="col-md-8 col-md-offset-2">
-				<div class="pull-right">
-					<a href="#add_user" class="mr10 btn btn-primary" data-toggle="collapse">
-						<i class="ion-person-add mr5"></i> Add User
-					</a>
-					<a href="#panel-new-facility" class="btn btn-primary mr10" data-toggle="modal">
-						<i class="ion-plus-circled mr5"></i> Add Facility
-					</a>
-					<a href="#panel-new-team-league" class="btn btn-primary" data-toggle="modal">
-						<i class="ion-plus-circled mr5"></i> Add League
-					</a>
-				</div>
-			</div>
-		</div>
+		<div id="admin" class="tab-pane tab-top-margin">
 
-		<br/>
-
-		<div id="admin" class="tab-pane pt20">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
-					<!-- coaches and staff -->
-					<div class="panel panel-transparent box-shadow-ccc">
-						<div class="panel-heading no-margin">
-							<div class="panel-title" id="coach-count">
-					      <%= render 'admin_count', admins: @admins %>
-					      <h3 class="semi-bold fs_20 mb0">
-										Administrative Users
-								</h3>
-							</div>
-						</div><!--.panel-heading-->
-						<hr class="no-margin"/>
-						<div class="panel-body no-padding" id="admins-of-team">
-							<%= render 'admins_of_team', admins: @admins %>
-						</div><!--.panel-body-->
-					</div><!--.panel-->
-					<br/>
-					<!-- coaches and staff -->
-					
-					<div id="add_user" class="collapse">
-						<div class="panel box-shadow-ccc">
-							<div class="panel-body padding-40">
-
-								<%= form_for @new_user, url: create_roster_spot_team_path, html: {id: "roster-form"} do |f| %>
-
-									<div class="row">
-										<div class="col-md-4">
-											<div class="row example-row">
-												<div class="col-md-12"><h4>First Name</h4></div><!--.col-md-3-->
-												<div class="col-md-12">
-													<div class="inputer">
-														<div class="input-wrapper">
-															<%= text_field_tag :first_name, "", type: "text", class: "form-control", placeholder: "", name: "first_name" %>
-														</div>
-													</div>
-												</div><!--.col-md-9-->
-											</div><!--.row-->
-										</div>
-
-										<div class="col-md-4">
-											<div class="row example-row">
-												<div class="col-md-12"><h4>Last Name</h4></div><!--.col-md-3-->
-												<div class="col-md-12">
-													<div class="inputer">
-														<div class="input-wrapper">
-															<%= text_field_tag :last_name,"", type: "text", class: "form-control", placeholder: "", name: "last_name" %>
-														</div>
-													</div>
-												</div><!--.col-md-9-->
-											</div><!--.row-->
-										</div>
-										<div class="col-md-4">
-											<div class="row example-row">
-												<div class="col-md-12"><h4>Classification</h4></div><!--.col-md-3-->
-												<div class="col-md-12">
-													<div class="inputer">
-														<div class="input-wrapper">
-															<%= text_field_tag :participant_classification,"" , placeholder: "", type: "text", class: "form-control", name: "participant_classification" %>
-														</div>
-													</div>
-												</div><!--.col-md-9-->
-											</div><!--.row-->
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-md-4">
-											<div class="row example-row">
-												<div class="col-md-12"><h4>Position</h4></div><!--.col-md-3-->
-												<div class="col-md-12">
-													<div class="inputer">
-														<div class="input-wrapper">
-															<%#= f.collection_select :position_ids, Position.all, :id, :position, {:selected => nil}, {  :multiple => true, :style => "width:100%", :placeholder => "Add Positions", class: "form-control"  } %>
-															<%= select_tag :position_ids, options_for_select(Position.pluck(:position, :id)), class: "form-control", multiple: true, name: "position_ids[]" %>
-														</div>
-													</div>
-												</div><!--.col-md-9-->
-											</div><!--.row-->
-										</div>
-										<div class="col-md-4">
-											<div class="row example-row">
-												<div class="col-md-12"><h4>Cell Phone</h4></div><!--.col-md-3-->
-												<div class="col-md-12">
-													<div class="inputer">
-														<div class="input-wrapper">
-															<%= text_field_tag :mobile_phone_number,"", type: "text", class: "form-control", placeholder: "" %>
-														</div>
-													</div>
-												</div><!--.col-md-9-->
-											</div><!--.row-->
-										</div>
-										
-										<div class="col-md-4">
-											<div class="row example-row">
-												<div class="col-md-12"><h4>Jersey Number</h4></div><!--.col-md-3-->
-												<div class="col-md-12">
-													<div class="inputer">
-														<div class="input-wrapper">
-															<%= text_field_tag :jersey_number,"" , placeholder: "", type: "text", class: "form-control", name: "jersey_number" %>
-														</div>
-													</div>
-												</div><!--.col-md-9-->
-											</div><!--.row-->
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-md-12">
-											<div class="row example-row">
-												<div class="col-md-12"><h4>Assignments</h4></div><!--.col-md-3-->
-												<div class="col-md-12">
-												
-														<%= hidden_field_tag :team_id,"", value: @team.id %>
-
-														<div class="checkboxer form-inline mb5">
-									                      	<%= check_box_tag :participant, "",false, id: "participant"%>
-									                      	<label for="participant">
-									                      		Athlete?
-									                      	</label>
-									                    </div>
-														
-														<div class="checkboxer form-inline mb5">
-									                      	<%= check_box_tag :head, "",false, id: "head"%>
-									                      	<label for="head">Coach?
-									                      	</label>
-									                    </div>
-
-														<div class="checkboxer form-inline mb5">
-									                      	<%= check_box_tag :trainer, "",false, id: "trainer"  %>
-									                      	<label for="trainer">Trainer?</label>
-									                    </div>
-
-														<div class="checkboxer form-inline mb5">
-									                      	<%= check_box_tag :manager, "",false, id: "manager"  %>
-									                      	<label for="manager">Manager?</label>
-									                    </div>
-														
-														<div class="checkboxer form-inline mb5">
-									                      	<%= check_box_tag :admin, "",false, id: "access"  %>
-									                      	<label for="access">Admin?</label>
-									                    </div>
-													
-												</div><!--.col-md-9-->
-											</div><!--.row-->
-										</div>
-									</div>
-				
-
-									<hr class="mt0" />
-
-									<%= f.submit "Add New Team Member", class: "btn btn-primary pull-right" %>
-							</div><!--.panel-body-->
-						</div><!--.panel-->
+					<div class="pull-right">
+						<a href="#add_user" class="mr10 btn btn-primary" data-toggle="collapse">
+							<i class="ion-person-add mr5"></i> Add User
+						</a>
+						<a href="#panel-new-facility" class="btn btn-primary mr10" data-toggle="modal">
+							<i class="ion-plus-circled mr5"></i> Add Facility
+						</a>
+						<a href="#panel-new-team-league" class="btn btn-primary" data-toggle="modal">
+							<i class="ion-plus-circled mr5"></i> Add League
+						</a>
 					</div>
 				</div>
 			</div>
-		</div>
+			
+			<div class="pt40">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<!-- coaches and staff -->
+						<div class="panel panel-transparent box-shadow-ccc">
+							<div class="panel-heading no-margin">
+								<div class="panel-title" id="coach-count">
+						      <%= render 'admin_count', admins: @admins %>
+						      <h3 class="semi-bold fs_20 mb0">
+											Administrative Users
+									</h3>
+								</div>
+							</div><!--.panel-heading-->
+							<hr class="no-margin"/>
+							<div class="panel-body no-padding" id="admins-of-team">
+								<%= render 'admins_of_team', admins: @admins %>
+							</div><!--.panel-body-->
+						</div><!--.panel-->
+						<br/>
+						<!-- coaches and staff -->
+					
+						<div id="add_user" class="collapse">
+							<div class="panel box-shadow-ccc">
+								<div class="panel-body padding-40">
 
-		<br/>
+									<%= form_for @new_user, url: create_roster_spot_team_path, html: {id: "roster-form"} do |f| %>
 
-		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-				<div class="panel panel-transparent box-shadow-ccc">
-					<div class="panel-heading no-margin">
-						<div class="panel-title" id="coach-count">
-				      <span class="ion-clipboard mr5 pull-right"></span>
-			       	<h3 class="semi-bold fs_20 mb0">
-								Pending Users
-							</h3>
+										<div class="row">
+											<div class="col-md-4">
+												<div class="row example-row">
+													<div class="col-md-12"><h4>First Name</h4></div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= text_field_tag :first_name, "", type: "text", class: "form-control", placeholder: "", name: "first_name" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+
+											<div class="col-md-4">
+												<div class="row example-row">
+													<div class="col-md-12"><h4>Last Name</h4></div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= text_field_tag :last_name,"", type: "text", class: "form-control", placeholder: "", name: "last_name" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+											<div class="col-md-4">
+												<div class="row example-row">
+													<div class="col-md-12"><h4>Classification</h4></div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= text_field_tag :participant_classification,"" , placeholder: "", type: "text", class: "form-control", name: "participant_classification" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-4">
+												<div class="row example-row">
+													<div class="col-md-12"><h4>Position</h4></div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%#= f.collection_select :position_ids, Position.all, :id, :position, {:selected => nil}, {  :multiple => true, :style => "width:100%", :placeholder => "Add Positions", class: "form-control"  } %>
+																<%= select_tag :position_ids, options_for_select(Position.pluck(:position, :id)), class: "form-control", multiple: true, name: "position_ids[]" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+											<div class="col-md-4">
+												<div class="row example-row">
+													<div class="col-md-12"><h4>Cell Phone</h4></div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= text_field_tag :mobile_phone_number,"", type: "text", class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+											
+											<div class="col-md-4">
+												<div class="row example-row">
+													<div class="col-md-12"><h4>Jersey Number</h4></div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= text_field_tag :jersey_number,"" , placeholder: "", type: "text", class: "form-control", name: "jersey_number" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12">
+												<div class="row example-row">
+													<div class="col-md-12"><h4>Assignments</h4></div><!--.col-md-3-->
+													<div class="col-md-12">
+													
+															<%= hidden_field_tag :team_id,"", value: @team.id %>
+
+															<div class="checkboxer form-inline mb5">
+										                      	<%= check_box_tag :participant, "",false, id: "participant"%>
+										                      	<label for="participant">
+										                      		Athlete?
+										                      	</label>
+										                    </div>
+															
+															<div class="checkboxer form-inline mb5">
+										                      	<%= check_box_tag :head, "",false, id: "head"%>
+										                      	<label for="head">Coach?
+										                      	</label>
+										                    </div>
+
+															<div class="checkboxer form-inline mb5">
+										                      	<%= check_box_tag :trainer, "",false, id: "trainer"  %>
+										                      	<label for="trainer">Trainer?</label>
+										                    </div>
+
+															<div class="checkboxer form-inline mb5">
+										                      	<%= check_box_tag :manager, "",false, id: "manager"  %>
+										                      	<label for="manager">Manager?</label>
+										                    </div>
+															
+															<div class="checkboxer form-inline mb5">
+										                      	<%= check_box_tag :admin, "",false, id: "access"  %>
+										                      	<label for="access">Admin?</label>
+										                    </div>
+														
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+										</div>
+					
+
+										<hr class="mt0" />
+
+										<%= f.submit "Add New Team Member", class: "btn btn-primary pull-right" %>
+								</div><!--.panel-body-->
+							</div><!--.panel-->
 						</div>
-					</div><!--.panel-heading-->
-					<div class="panel-body no-padding">
-						<ul class="list-material has-hidden pending-members">
-							<% @pending_members.each do |m| %>
-						    	<%= render 'pending', m: m%>
-						  	<% end %>
-						</ul>
-					</div><!--.panel-body-->
-				</div><!--.panel-->
+					</div>
+				</div>
+			</div>
+
+			<br/>
+
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="panel panel-transparent box-shadow-ccc">
+						<div class="panel-heading no-margin">
+							<div class="panel-title" id="coach-count">
+					      <span class="ion-clipboard mr5 pull-right"></span>
+				       	<h3 class="semi-bold fs_20 mb0">
+									Pending Users
+								</h3>
+							</div>
+						</div><!--.panel-heading-->
+						<div class="panel-body no-padding">
+							<ul class="list-material has-hidden pending-members">
+								<% @pending_members.each do |m| %>
+							    	<%= render 'pending', m: m%>
+							  	<% end %>
+							</ul>
+						</div><!--.panel-body-->
+					</div><!--.panel-->
+				</div>
 			</div>
 		</div>
 	</div>

@@ -715,3 +715,10 @@ ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
 }
 
 .card.card-post .card-heading .time {font-size: 12px; margin-top: 5px;}
+
+
+@media (min-width: 768px) {
+  .modal-dialog.expanded {
+      width: 1000px;
+  }
+}
