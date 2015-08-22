@@ -223,37 +223,7 @@
 							</div><!--.card-->
 						</div><!--.col-md-12-->
 						<!-- Roster -->
-						<!-- My Schedule -->
-						<div class="col-md-12">
-							<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
-								<div class="card-heading" style="border-top: 3px solid #ccc;">
-									<h6 class="semi-bold fs_14 mb0"><%= @team.name %></h6>
-									<h3 class="card-title">Upcoming Events</h3>
-									<!-- <div class="card-subhead">
-									 <a href="#">7 Upcoming Events</a>
-									</div> -->
-									<!--.card-subhead-->
-								</div><!--.card-heading-->
-								<div class="card-body pl40 bgcolor-light-grey">
-									<div class="timeline single">
-										<%= render 'shared/show_view_events', object: @team %>
-									</div>
-								</div>
-								<hr class="no-margin"/>
-								
-								<div class="card-footer">
-									<ul>
-										<li class="fs_14"><span class="mr5"><%= pluralize @team.upcoming_events.count, "Upcoming Event" %> </span></li>
-										<li><a href="#calendar-tab" data-toggle="tab" class="fs_14">View All Events</a></li>
-									</ul>
-								</div><!--.card-footer-->
-							</div><!--.card-->
-						</div><!--.timeline-->
-					</div>
-				</div>
 
-				<div class="col-md-6">
-					<div class="row">
 						<!-- My teammates -->
 						<div class="col-md-12">
 							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
@@ -287,6 +257,49 @@
 								</div><!--.card-footer-->
 							</div><!--.card-->
 						</div><!--.col-md-12-->
+
+						<!-- Followers -->
+						<div class="col-md-12">
+							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+								<div class="card-heading" style="border-top: 3px solid #ccc;">
+									<h6 class="semi-bold fs_14 mb0"><%= @team.name %></h6>
+									<h3 class="card-title">Our Fans</h3>
+									<!-- <div class="card-subhead">
+									 <a href="#">124 Students</a>
+									</div> -->
+									<!--.card-subhead-->
+								</div><!--.card-heading-->
+								<div class="card-body">
+									<ul class="users bgcolor-light-grey">
+										<p class="center padding-10 text-grey">
+											<i class="ion-person-add mr10"></i> Invite Fans to Follow your Team.
+										</p>
+										<% @team.people.each do |rel|%>
+										<li>
+											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= rel.user.full_name %>">
+												<%= image_tag rel.user.avatar %>
+											</a>
+										</li>
+										<% end %>
+									</ul>
+								</div><!--.card-body-->
+								<div class="card-footer">
+									<ul>
+										<li><span class="mr5 fs_14"><%= pluralize @team.people.count, "Fan" %></span></li>
+										<!-- <li><a href="#" class="fs_14">View All</a></li> -->
+									</ul>
+								</div><!--.card-footer-->
+							</div><!--.card-->
+						</div><!--.col-md-12-->
+					
+						<!-- Followers -->
+						
+						
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="row">
 						<div class="col-md-12 clearfix">
 							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
 								<div class="card-heading" style="border-top: 3px solid #ccc;">
@@ -409,41 +422,34 @@
 							</div><!--.card-->
 						</div>
 
-						<!-- Followers -->
+						<!-- My Schedule -->
 						<div class="col-md-12">
-							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+							<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
 								<div class="card-heading" style="border-top: 3px solid #ccc;">
 									<h6 class="semi-bold fs_14 mb0"><%= @team.name %></h6>
-									<h3 class="card-title">Our Fans</h3>
+									<h3 class="card-title">Upcoming Events</h3>
 									<!-- <div class="card-subhead">
-									 <a href="#">124 Students</a>
+									 <a href="#">7 Upcoming Events</a>
 									</div> -->
 									<!--.card-subhead-->
 								</div><!--.card-heading-->
-								<div class="card-body">
-									<ul class="users bgcolor-light-grey">
-										<p class="center padding-10 text-grey">
-											<i class="ion-person-add mr10"></i> Invite Fans to Follow your Team.
-										</p>
-										<% @team.people.each do |rel|%>
-										<li>
-											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= rel.user.full_name %>">
-												<%= image_tag rel.user.avatar %>
-											</a>
-										</li>
-										<% end %>
-									</ul>
-								</div><!--.card-body-->
+								<div class="card-body pl40 bgcolor-light-grey">
+									<div class="timeline single">
+										<%= render 'shared/show_view_events', object: @team %>
+									</div>
+								</div>
+								<hr class="no-margin"/>
+								
 								<div class="card-footer">
 									<ul>
-										<li><span class="mr5 fs_14"><%= pluralize @team.people.count, "Fan" %></span></li>
-										<!-- <li><a href="#" class="fs_14">View All</a></li> -->
+										<li class="fs_14"><span class="mr5"><%= pluralize @team.upcoming_events.count, "Upcoming Event" %> </span></li>
+										<li><a href="#calendar-tab" data-toggle="tab" class="fs_14">View All Events</a></li>
 									</ul>
 								</div><!--.card-footer-->
 							</div><!--.card-->
-						</div><!--.col-md-12-->
-					
-						<!-- Followers -->
+						</div><!--.timeline-->
+
+						
 					</div>
 				</div>
 
