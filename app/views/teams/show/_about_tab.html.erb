@@ -33,11 +33,12 @@
 									<%= pluralize @team.accepted_coach_relationships.count, "Coach" %>, 
 									<%= pluralize @team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize @team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize @team.accepted_trainer_relationships.count, "Trainer" %>
 								</p> 
-								<p class="semi-bold fs_12 text-muted no-margin">
-									<% if @team.school.present? %>
-								  	<%= link_to @team.school.name, school_path(@team.school) %>
-									<% end %>
-								</p>
+								<% if @team.school.present? %>
+									<p class="semi-bold fs_14 text-muted no-margin">
+										<i class="ion-university fs_20 text-primary mr5"></i>
+										<%= link_to @team.school.name, school_path(@team.school) %>
+									</p>
+								<% end %>
 							</div>
 						</div>
 						<p class="fs_14 lh_18 text-muted mb20 mt0">
