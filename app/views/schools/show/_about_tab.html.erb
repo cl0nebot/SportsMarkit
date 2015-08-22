@@ -2,9 +2,7 @@
 
 	
 	<div class="page-header full-content parallax">
-
 		<%= render "schools/show/header" %>
-
 	</div><!--.page-header-->
 	
 
@@ -22,32 +20,58 @@
 								<hr class="light mt0"/>
 								<div class="card-body pl40 pr40">
 									<h3 class="semi-bold capitalize text-black no-margin lh_34">
-										<%= @school.name %>
-									</h3>
-									<p class="semi-bold small text-muted no-margin fs_14">
-										<span class="inline">
-											<i class="ion-ios-telephone fs_16 text-primary mr5"></i>
-											<%= @school.phone_number %> 
-										</span>
-
-										<span class="inline mr10 ml10 text-muted">|</span>
-
-										<span class="inline">
-											<i class="ion-monitor fs_16 text-primary mr5"></i>
-											<a href="<%= @school.website %>">Website</a>
-										</span>
-
-										<span class="inline mr10 ml10 text-muted">|</span>
-
-										<span class="inline">
-											<i class="ion-email fs_20 text-primary mr5 v-align-middle"></i>
-											<%= @school.email %> Email
-										</span>
-									</p>
-										
-									<p class="fs_14 lh_18 text-muted mb20 mt10">
+									<div class="clearfix row">
+									  <div class="col-md-3">
+									  	<div class="profile-photo">
+									    	<div class="profile-photo-wrapper" style="height: 100px; overflow: hidden;">
+													<%= image_tag(@object.avatar, class: "img-thumbnail img-responsive", style: "height: 100%; width: 100%:") %>
+												</div>
+									  	</div><!--.profile-photo-->
+									  </div>
+										<div class="col-md-9">
+											<h4 class="semi-bold capitalize text-black no-margin lh_20 mt10 mb0">
+												<%= @school.name %>
+											</h4>
+											<p class="fs_12 semi-bold text-muted mb5 mt5">Founded,: 1989, Enrollment: 1233, Faculty: 92 </p> 
+											<p class="semi-bold fs_14 text-muted no-margin">
+												<i class="ion-university fs_20 text-primary mr5"></i>
+												Baltimore School District
+											</p>
+										</div>
+									</div>
+									<p class="fs_14 lh_18 text-muted mb20 mt0">
 										<%= @school.description %>
 									</p>
+								</div>
+								<hr class="light mt15 mb15"/>
+								<div class="card-body pl40 pr40">
+									<h6 class="upper mt0">
+										<small class="text-grey bold">contact information</small>
+									</h6>
+									<div class="clearfix">
+										<div class="row">
+											<div class="col-md-6">
+												<p class="semi-bold fs_14 text-muted no-margin">
+												<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
+													<%= @school.phone_number %> 
+												</p>
+												<p class="semi-bold fs_14 text-muted no-margin">
+													<i class="ion-monitor fs_20 text-primary mr5"></i>
+													<a href="<%= @school.website %>">Website</a>
+												</p>
+											</div>
+											<div class="col-md-6">
+												<p class="semi-bold fs_14 text-muted no-margin">
+													<i class="ion-email fs_20 text-primary mr5"></i>
+													<%= @school.email %>
+												</p>
+												<p class="semi-bold fs_14 text-muted no-margin">
+													<i class="ion-android-time fs_20 text-primary mr5"></i>
+													7:30AM - 5:00PM, M-F
+												</p>
+											</div>
+										</div>
+									</div>
 								</div>
 								<hr class="light mt15 mb15"/>
 								<div class="card-heading pl40 pr40">
@@ -109,7 +133,7 @@
 										</p>
 									</div>
 									<div class="card-body pl40 pr40">
-									<h6 class="upper text-muted bold mt0"><small>School Awards</small></h6>
+									<h6 class="upper text-muted bold mt0"><small class="text-grey bold">School Awards</small></h6>
 									<!-- these must stay together as an interator -->
 									<table class="table table-hover bgcolor-white box-shadow-ccc">
 										<thead>
@@ -128,7 +152,7 @@
 								</div>
 								<hr class="light mt15 mb15"/>
 								<div class="card-body pl40 pr40">
-									<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Sports Team Awards & Distinctions</small></h6>
+									<h6 class="upper text-muted bold no-margin"><small class="text-grey bold">Sports Team Awards & Distinctions</small></h6>
 									<!-- these must stay together as an interator -->
 									<div class="clearfix">
 										<table class="table table-hover bgcolor-white box-shadow-ccc">
@@ -150,7 +174,7 @@
 									</div>
 
 											<br/>
-											<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Individual Athlete Awards & Distinctions</small></h6>
+											<h6 class="upper text-muted bold no-margin"><small class="text-grey bold">Individual Athlete Awards & Distinctions</small></h6>
 											<!-- these must stay together as an interator -->
 											<div class="clearfix">
 												<table class="table table-hover bgcolor-white box-shadow-ccc">
@@ -329,7 +353,7 @@
 									<div class="card-footer">
 										<ul>
 											<li class="fs_14"><span class="mr5"><%= pluralize @teams.count, "Sports Team" %></span></li>
-												<li><a href="#teams" data-toggle="tab" class="fs_14">View All Teams</a></li>
+											<li><a href="#teams" data-toggle="tab" class="fs_14">View All Teams</a></li>
 										</ul>
 									</div><!--.card-footer-->
 								</div><!--.card-->
