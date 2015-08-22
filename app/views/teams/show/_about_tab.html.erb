@@ -16,22 +16,35 @@
 					</div><!--.card-heading-->
 					<hr class="light mb10 mt0"/>
 					<div class="card-body pl40 pr40">
-						<h3 class="semi-bold capitalize text-black mb0">
-							<%= @team.name %>
-						</h3>
-						<% if @team.school.present? %>
-					  	<h5 class="semi-bold no-margin lh_30">
-					  		<%= link_to @team.school.name, school_path(@team.school) %>
-					  	</h5>
-						<% end %>
-
-						<p class="semi-bold fs_12 text-muted no-margin">
-							<i class="ion-person-stalker fs_20 text-primary mr5"></i>
-							<%= pluralize @team.accepted_coach_relationships.count, "Coach" %>, 
-							<%= pluralize @team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize @team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize @team.accepted_trainer_relationships.count, "Trainer" %>
+						<div class="clearfix row">
+						  <div class="col-md-3">
+						  	<div class="profile-photo">
+						    	<div class="profile-photo-wrapper" style="height: 100px; overflow: hidden;">
+										<%= image_tag(@object.avatar, class: "img-thumbnail img-responsive", style: "height: 100%; width: 100%:") %>
+									</div>
+						  	</div><!--.profile-photo-->
+						  </div>
+							<div class="col-md-9">
+								<h4 class="semi-bold capitalize text-black no-margin lh_28 mt10 mb0">
+									<%= @team.name %>
+								</h4>
+								<p class="fs_12 semi-bold text-muted mb5 mt5">
+									<i class="ion-person-stalker fs_16 text-primary mr5"></i>
+									<%= pluralize @team.accepted_coach_relationships.count, "Coach" %>, 
+									<%= pluralize @team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize @team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize @team.accepted_trainer_relationships.count, "Trainer" %>
+								</p> 
+								<p class="semi-bold fs_12 text-muted no-margin">
+									<% if @team.school.present? %>
+								  	<%= link_to @team.school.name, school_path(@team.school) %>
+									<% end %>
+								</p>
+							</div>
+						</div>
+						<p class="fs_14 lh_18 text-muted mb20 mt0">
+							<%#= @team.description %>
 						</p>
 					</div>
-					
+
 					<hr class="light mt15 mb0"/>
 					<div class="card-heading pl40 p40">
 						<h6 class="semi-bold mb0 fs_14"><%= @team.name %></h6>
@@ -161,10 +174,8 @@
 									<h3 class="card-title">Player Roster</h3>
 								</div>
 								<div class="card-body bgcolor-light-grey">
-									<p class="mb0 mt0 center padding-20">
-										<button class="btn btn-blue-grey button-striped button-full-striped btn-ripple">
-											<i class="ion-person-add mr5"></i> Add Players to Roster
-										</button>
+									<p class="mb0 mt0 center padding-20 text-grey">
+											<i class="ion-person-add mr10"></i> Add Players to Roster
 									</p>
 									<ul class="list-material borderless">
 										<% @members.each do |member| %>
@@ -223,7 +234,7 @@
 									</div> -->
 									<!--.card-subhead-->
 								</div><!--.card-heading-->
-								<div class="card-body pl40">
+								<div class="card-body pl40 bgcolor-light-grey">
 									<div class="timeline single">
 										<%= render 'shared/show_view_events', object: @team %>
 									</div>
@@ -256,10 +267,8 @@
 								</div><!--.card-heading-->
 								<div class="card-body">
 									<ul class="users bgcolor-light-grey">
-										<p class="mt10">
-											<button class="btn btn-blue-grey button-striped button-full-striped btn-ripple">
-												<i class="ion-person mr5"></i> No Users Added
-											</button>
+										<p class="mb0 mt0 center padding-10 text-grey">
+											<i class="ion-person-add mr10"></i> Build your sports Community.
 										</p>
 										<% @team.people.each do |rel|%>
 										<li>
@@ -413,10 +422,8 @@
 								</div><!--.card-heading-->
 								<div class="card-body">
 									<ul class="users bgcolor-light-grey">
-										<p class="mt10">
-											<button class="btn btn-blue-grey button-striped button-full-striped btn-ripple">
-												No Fans
-											</button>
+										<p class="center padding-10 text-grey">
+											<i class="ion-person-add mr10"></i> Invite Fans to Follow your Team.
 										</p>
 										<% @team.people.each do |rel|%>
 										<li>
