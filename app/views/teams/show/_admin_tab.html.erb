@@ -129,8 +129,7 @@ alert("facilities js loaded")
 										<div class="col-md-12">
 											<div class="inputer">
 												<div class="input-wrapper">
-													<%#= f.collection_select :position_ids, Position.all, :id, :position, {:selected => nil}, {  :multiple => true, :style => "width:100%", :placeholder => "Add Positions", class: "form-control"  } %>
-													<%= select_tag :position_ids, options_for_select(Position.pluck(:position, :id)), class: "form-control", multiple: true, name: "position_ids[]" %>
+													<%= select_tag :position_ids, options_for_select(Position.pluck(:position, :id)), class: "selecter bg-white margin-bottom-0", multiple: true, "data-live-search" =>  true, name: "position_ids[]" %>
 												</div>
 											</div>
 										</div><!--.col-md-9-->
