@@ -19,68 +19,83 @@
 					<div class="card-body pl40 pr40">
 						<div class="clearfix row">
 						  <div class="col-md-3">
-						  	<div class="profile-photo">
-						    	<%= image_tag(@user.avatar, class: "img-thumbnail") %>
-						  	</div><!--.profile-photo-->
+						  	<div class="profile-photo-wrapper" style="height: 100px; width: 100px; overflow: hidden; border: 1px solid #ddd;">
+									<%= image_tag(@user.avatar, class: "img-responsive", style: "height: auto; width: 100%; min-width: 100px; min-height: 100px;") %>
+								</div>
 						  </div>
 							<div class="col-md-9">
-								<h3 class="semi-bold capitalize text-black no-margin lh_34">
+								<h3 class="semi-bold capitalize text-black no-margin lh_34 mt10">
 									<%= @user.first_name %> <%#= @user.middle_name %>
 									<%= @user.last_name %>
 								</h3>
-								<p class="fs_14 semi-bold text-muted mb5 mt5"><%= @user.classification_list %></p> 
-								<p class="no-margin fs_14 text-muted">
-									<span class="label label-primary inline">
-										<%= @user.profile.sex %>
-									</span>
-								</p>
+								<p class="fs_12 semi-bold text-muted mb5 mt5"><%= @user.classification_list %></p> 
+								<% if @user.user_schools.present? %>
+									<p class="semi-bold fs_14 text-muted no-margin">
+										<i class="ion-university fs_20 text-primary mr5"></i>
+										<%= @user.user_schools.first.name  %>
+									</p>
+								<% end %>
 							</div>
 						</div>
-						<p class="fs_14 lh_18 text-muted mb20 mt0">
-							<%= @user.profile.description %>
-						</p>
 					</div>
 					<hr class="light mt15 mb15"/>
 					<div class="card-body pl40 pr40">
-						<h6 class="upper text-muted bold mt0"><small>contact information</small></h6>
+						<h6 class="semi-bold capitalize">
+							<i class="ion-information-circled text-indigo mr5"></i> About <%= @user.name %>
+						</h6>
+						<p class="fs_14 lh_18 text-muted mb20 mt10">
+							No user description.
+						</p>
+						<hr clas="light"/>
+
+						<h6 class="upper mt0">
+							<small class="text-grey bold">contact information</small>
+						</h6>
 						<div class="clearfix">
-							<% if @user.profile.location_description.present? %>
-								<p class="semi-bold fs_14 text-muted no-margin">
-									<i class="ion-location fs_20 text-primary mr5"></i>
-									<%= @user.profile.location_description %>
-								</p>
-							<% end %>
-							<% if @user.username %>
-								<p class="semi-bold fs_14 text-muted no-margin">
-									<i class="ion-person-add fs_20 text-primary mr5"></i>
-									<%= @user.username %>
-								</p>
-							<% end %>
-							<p class="semi-bold fs_14 text-muted no-margin">
-								<i class="ion-email fs_20 text-primary mr5"></i>
-								<%= @user.email %>
-							</p>
-							<% if current_user.can_edit_user?(@user) %>
-								<p class="semi-bold fs_14 text-muted no-margin">
-									<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
-									<%= @user.mobile_phone_number %>
-								</p>
-							<% end %>
-							<p class="semi-bold fs_14 text-muted no-margin">
-								<i class="ion-android-calendar fs_20 text-primary mr5"></i>
-								<%= @user.profile.date_of_birth %>
-							</p>
-							<% if @user.user_schools.present? %>
-							<p class="semi-bold fs_14 text-muted no-margin">
-								<i class="ion-university fs_20 text-primary mr5"></i>
-								<%= @user.user_schools.first.name  %>
-							</p>
-							<% end %>
+
+							<div class="row">
+								<div class="col-md-6">
+					<% if @user.profile.location_description.present? %>
+						<p class="semi-bold fs_14 text-muted no-margin">
+							<i class="ion-location fs_20 text-primary mr5"></i>
+							<%= @user.profile.location_description %>
+						</p>
+					<% end %>
+					<% if @user.username %>
+						<p class="semi-bold fs_14 text-muted no-margin">
+							<i class="ion-person-add fs_20 text-primary mr5"></i>
+							<%= @user.username %>
+						</p>
+					<% end %>
+					<p class="semi-bold fs_14 text-muted no-margin">
+						<i class="ion-email fs_20 text-primary mr5"></i>
+						<%= @user.email %>
+					</p>
+					<% if current_user.can_edit_user?(@user) %>
+						<p class="semi-bold fs_14 text-muted no-margin">
+							<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
+							<%= @user.mobile_phone_number %>
+						</p>
+					<% end %>
+					<p class="semi-bold fs_14 text-muted no-margin">
+						<i class="ion-android-calendar fs_20 text-primary mr5"></i>
+						<%= @user.profile.date_of_birth %>
+					</p>
+					<% if @user.user_schools.present? %>
+					<p class="semi-bold fs_14 text-muted no-margin">
+						<i class="ion-university fs_20 text-primary mr5"></i>
+						<%= @user.user_schools.first.name  %>
+					</p>
+					<% end %>
+								</div>
+							</div>
+
 						</div>
 					</div>
 					<hr class="light mt15 mb15"/>
 					<div class="card-body pl40 pr40">
-						<h6 class="upper text-muted bold mt0"><small>certifications</small></h6>
+						<h6 class="upper text-muted bold mt0">
+							<small class="text-grey bold">certifications</small></h6>
 						<!-- these must stay together as an interator -->
 						<table class="table table-hover bgcolor-white box-shadow-ccc">
 							<thead>
@@ -99,7 +114,9 @@
 					</div>
 					<hr class="light mt15 mb15"/>
 					<div class="card-body pl40 pr40">
-						<h6 class="upper text-muted bold"><small>athletic profile</small></h6>
+						<h6 class="upper text-muted bold">
+							<small class="text-grey bold">athletic profile</small>
+						</h6>
 						<div class="clearfix">
 							<div class="pull-left">
 								<p>
@@ -127,7 +144,9 @@
 					</div>
 					<hr class="light mt15 mb15"/>
 					<div class="card-body pl40 pr40">
-						<h6 class="upper text-muted bold no-margin"><small>measurements</small></h6>
+						<h6 class="upper text-muted bold no-margin">
+							<small class="text-grey bold">measurements</small>
+						</h6>
 						<!-- these must stay together as an interator -->
 						<div class="clearfix">
 							<table class="table table-hover bgcolor-white box-shadow-ccc">
@@ -162,7 +181,9 @@
 					</div><!--.card-body-->
 					<div class="card-footer mt20 pl40 pr40">
 						<% if @user.social_media_present? %>
-						<h6 class="upper text-muted bold"><small>social profiles</small></h6>
+						<h6 class="upper text-muted bold">
+							<small class="text-grey bold">social profiles</small>
+						</h6>
 						<p>
 						<% @user.profile.facebook.present? %>	
 						   <% if @user.profile.facebook.present? %>	
@@ -263,7 +284,7 @@
 											<li class="has-action-left">
 												<a href="#" class="visible">
 													<div class="list-action-left">
-														<%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg", class: "face-radius")%>
+														<%= image_tag  @object.avatar, class: "face-radius" %>
 													</div>
 													<div class="list-content">
 														<span class="title"><%= team.name %></span>

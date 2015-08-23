@@ -201,6 +201,35 @@ var FormsTools = {
 
 	typeahead: function () {
 
+		var facilities = <%= Facility.pluck(:name) %>;
+
+		// instantiate the bloodhound suggestion engine
+		var facilities = new Bloodhound({
+		    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+		    queryTokenizer: Bloodhound.tokenizers.whitespace,
+		    local: $.map(facilities, function(facilities) { return { value: facility }; })
+		});
+
+		// initialize the bloodhound suggestion engine
+		facilities.initialize();
+
+		// Typeahead example 1
+		$('.typeahead-facilities')
+		    .typeahead({
+		        hint: true,
+		        highlight: true,
+		        minLength: 1
+		    }, {
+		        name: 'facilities',
+		        displayKey: 'value',
+		        source: schools.ttAdapter()
+		    })
+		    .on('typeahead:selected', function(object, datum) {
+		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
+		        update_the_source_with(datum.value);
+		});
+		    
+
 		var schools = <%= School.pluck(:name) %>;
 
 		// instantiate the bloodhound suggestion engine

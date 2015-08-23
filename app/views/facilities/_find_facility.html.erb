@@ -1,46 +1,44 @@
 <% facilities.each do |facility| %>
 	<%= link_to facility_path(facility) do %>
 		<div class="col-md-3 col-lg-3 col-sm-12 element-item">
-		    <div class="card card-user card-clickable card-clickable-over-content">
-		      <div class="card-heading heading-full">
-		        <div class="user-image sample-member9" style="background: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');"></div>
+		  <div class="card card-user card-clickable card-clickable-over-content" style="height: 250px;">
+	      <div class="card-heading heading-full">
+	        <div class="user-image sample-member9" style="background: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif'); height: 150px;"></div>
+	        <div class="clickable-button">
+	        	<%= link_to edit_facility_path(facility), class: "btn btn-floating btn-orange initial-position floating-open" do %>
+	          	<i class="ion-gear-b"></i>
+	        	<% end %>
+	    		</div>
+	      </div><!--.card-heading-->
 
-	            <div class="clickable-button">
-	            	<%= link_to edit_facility_path(facility), class: "btn btn-floating btn-orange initial-position floating-open" do %>
-			          	<i class="ion-gear-b"></i>
-			        <% end %>
-			    </div>
-			    
+	      <div class="card-body">
+	        <h4 class="card-title capitalize fs_14 semi-bold">
+	        	<a href="#">
+		        	<% if facility.school.present? %>
+						  	<%= truncate("#{facility.school.name} #{facility.name}", length: 40) %>
+							<% else %>
+					   		<%= truncate(facility.name, length: 40) %>
+							<% end %>
+						</a>
+	        </h4>
+	        <hr class="light mt5 mb5"/>
 
-		      </div><!--.card-heading-->
+	        <div class="subhead">
+	          <span class="text-muted">
+	            <%= facility.email %>
+	          </span>
+	          <%= facility.website %>
+	          <%= facility.phone_number %>
+	        </div>
+	      </div><!--.card-body-->
 
-		      <div class="card-body">
-		        <h4 class="card-title capitalize fs_20">
-		        	<a href="#">
-			        	<% if facility.school.present? %>
-						  	<%= "#{facility.school.name} #{facility.name}" %>
-						<% else %>
-						   	<%= facility.name %>
-						<% end %>
-					</a>
-		        </h4>
+	      <!-- <div class="card-footer">
+	        <%#= link_to "Delete", facility, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-orange btn-xs" %>
+			
+	      </div> --><!--.card-footer-->
 
-		        <div class="subhead">
-		          <span class="text-muted">
-		            <%= facility.email %>
-		          </span>
-		          <%= facility.website %>
-		          <%= facility.phone_number %>
-		        </div>
-		      </div><!--.card-body-->
-
-		      <!-- <div class="card-footer">
-		        <%#= link_to "Delete", facility, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-orange btn-xs" %>
-				
-		      </div> --><!--.card-footer-->
-
-		    </div><!--.card-->
-	  	</div><!--.col-md-4-->
+	    </div><!--.card-->
+		</div><!--.col-md-4-->
 	<% end %>
 <% end %>
 

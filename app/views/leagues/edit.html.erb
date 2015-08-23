@@ -1,12 +1,22 @@
 <div class="content">
 	<div class="page-header full-content bg-primary" style="min-height: 141px;">
 		<div class="row">
-			<div class="col-sm-6">
-				<h1 class="capitalize">
-					<%= @league.name %>
-					<small></small>
-				</h1>
-			</div><!--.col-->
+
+			<div class="col-md-6">
+				<div class="pull-left margin-right-20">
+					<div class="profile-photo-wrapper" style="height: 85px; overflow: hidden;">
+						<%= image_tag(@object.avatar, class: "img-thumbnail img-responsive", style: "height: 100%; width: 100%:") %>
+					</div>	
+				</div>
+				<div class="pull-left">
+					<h3 class="capitalize text-white mb5">
+						<%= @league.name %> 
+					</h3>
+					<h6 class="capitalize text-white">
+						<i class="ion-map mr5"></i> <%= @league.city %>, <%= @league.state %> 
+					</h6>
+				</div>
+			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb">
 					<li><a href="/"><i class="ion-home"></i></a></li>
@@ -16,6 +26,12 @@
 				</ol>
 			</div><!--.col-->
 		</div><!--.row-->
+
+		<br/>
+		<br/>
+
+		<div class="clearfix"></div>
+
 
 		<div class="header-tabs scrollable-tabs sticky">
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">

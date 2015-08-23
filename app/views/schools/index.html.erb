@@ -30,8 +30,15 @@
               View by Type
             </h6>
             <ul id="filters" class="index-filters text-muted mt20">
-               <li>
-                <button data-filter=".high-school" class="btn btn-white b-rad-4 btn-sm btn-block">
+
+              <li>
+                <button data-filter=".all" class="btn btn-white b-rad-4 btn-sm btn-block">
+                  <span class="filter">All</span> 
+                  <span class="count">5,462</span>
+                </button>
+              </li>
+              <li>
+               <button data-filter=".high-school" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">High-Schools</span> 
                   <span class="count"><%= School.high_school_count %></span>
                 </button>

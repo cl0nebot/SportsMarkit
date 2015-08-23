@@ -316,7 +316,7 @@ input.form-control {font-size: 26px; line-height: 30px;}
 }
 .cropit-image-preview.cropit-image-loaded {height: 500px !important;}
 .cropit-image-zoom-input.crop-ui {
-  width: 20%; position: absolute; left: 25%; right: 25%;  bottom: 200px !important; z-index: 100;
+  width: 80%; z-index: 100; margin-left: 6.5%; 
 }
 
 #image-cropper.parallax-bg {
@@ -713,3 +713,14 @@ ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
   height: 300px;
   width: 100%;
 }
+
+.card.card-post .card-heading .time {font-size: 12px; margin-top: 5px;}
+
+
+@media (min-width: 768px) {
+  .modal-dialog.expanded {
+      width: 1000px;
+  }
+}
+
+.element-item:hover > div {border: 1px solid #08c;}

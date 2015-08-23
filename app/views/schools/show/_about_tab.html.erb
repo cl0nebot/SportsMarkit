@@ -2,9 +2,7 @@
 
 	
 	<div class="page-header full-content parallax">
-
 		<%= render "schools/show/header" %>
-
 	</div><!--.page-header-->
 	
 
@@ -15,392 +13,419 @@
 				<div class="col-md-12">
 					<div class="card tile card-post" style="border-top: 3px solid #ccc;">
 						<div class="card-heading pl40 pr40">
-							
 	            <!-- <img src="../../assets/globals/img/faces/14.jpg" class="user-image" alt=""> -->
-	    			<%= render "shared/fan" %>
+	    				<%= render "shared/fan" %>
 					    <%= render 'shared/online' %>
-				</div><!--.card-heading-->
-				<hr class="light mt0"/>
-				<div class="card-body pl40 pr40">
-					<h3 class="semi-bold capitalize text-black no-margin lh_34">
-						<%= @school.name %>
-					</h3>
-					<p class="semi-bold small text-muted no-margin fs_14">
-						<span class="inline">
-							<i class="ion-ios-telephone fs_16 text-primary mr5"></i>
-							<%= @school.phone_number %> 
-						</span>
+								</div><!--.card-heading-->
+								<hr class="light mt0"/>
+								<div class="card-body pl40 pr40">
+									<div class="clearfix row">
+									  <div class="col-md-3">
+									  	<div class="profile-photo">
+									  		<div class="profile-photo-wrapper" style="height: 100px; width: 100px; overflow: hidden; border: 1px solid #ddd;">
+													<%= image_tag(@object.avatar, class: "img-responsive", style: "height: auto; width: 100%; min-width: 100px; min-height: 100px;") %>
+												</div>
+									  	</div><!--.profile-photo-->
+									  </div>
+										<div class="col-md-9">
+											<h4 class="semi-bold capitalize text-black no-margin lh_28 mt10 mb0">
+												<%= @school.name %>
+											</h4>
+											<p class="fs_12 semi-bold text-muted mb5 mt5">Founded,: 1989, Enrollment: 1233, Faculty: 92 </p> 
+											<p class="semi-bold fs_14 text-muted no-margin">
+												<i class="ion-university fs_20 text-primary mr5"></i>
+												Baltimore School District
+											</p>
+										</div>
+									</div>
+								</div>
+								<hr class="light mt15 mb15"/>
+								<div class="card-body pl40 pr40">
+									<h6 class="semi-bold">
+										<i class="ion-information-circled text-indigo mr5"></i> About <%= @school.name %>
+									</h6>
+									<p class="fs_14 lh_18 text-muted mb20 mt10">
+										<%= @school.description %> No school description.
+									</p>
+									<hr clas="light"/>
+									<h6 class="upper mt0">
+										<small class="text-grey bold">contact information</small>
+									</h6>
+									<div class="clearfix">
+										<div class="row">
+											<div class="col-md-6">
+												<p class="semi-bold fs_14 text-muted no-margin">
+												<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
+													<%= @school.phone_number %> 
+												</p>
+												<p class="semi-bold fs_14 text-muted no-margin">
+													<i class="ion-monitor fs_20 text-primary mr5"></i>
+													<a href="<%= @school.website %>">Website</a>
+												</p>
+											</div>
+											<div class="col-md-6">
+												<p class="semi-bold fs_14 text-muted no-margin">
+													<i class="ion-email fs_20 text-primary mr5"></i>
+													<%= @school.email %>
+												</p>
+												<p class="semi-bold fs_14 text-muted no-margin">
+													<i class="ion-android-time fs_20 text-primary mr5"></i>
+													7:30AM - 5:00PM, M-F
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<hr class="light mt15 mb15"/>
+								<div class="card-heading pl40 pr40">
+									<p class="author lh_26">
+										<a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a> 
+									</p>
+									<p class="no-margin fs_14 text-muted">
+										<i class="ion-location"></i> <%= @school.address_1 %>, <%= @school.city %>, <%= @school.state %>, <%= @school.zip %>
+									</p>
+									<hr class="light mt10 mb5"/>
+								</div>
+								<div class="card-body pl40 pr40">
+									<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
+								</div>
+								<hr class="light mt15 mb15"/>
+								<div class="card-body pl40 pr40">
+									<% if @school.general_information_present? %>
+									<h6 class="upper text-muted bold mt0"><small>general information</small></h6>
+									<div class="clearfix">
+										<% if @school.number_of_students.present? %>
+										<p class="semi-bold fs_14 text-muted no-margin">
+											<i class="ion-university fs_20 text-primary mr5"></i>
+											Public School - <%= pluralize @school.number_of_students, "Student"  %>
+										</p>
+										<% end %>
+										<% if @school.motto.present? %>
+										<p class="semi-bold small fs_14 text-muted no-margin">
+											<i class="ion-quote fs_20 text-primary mr5"></i>
+											Motto - <%= @school.motto %>
+										</p>
+										<% end %>
+										<% if @school.colors.present? %>
+										<p class="semi-bold small fs_14 text-muted no-margin">
+											<i class="ion-speakerphone fs_20 text-primary mr5"></i>
+											<%= @school.colors %>
+										</p>
+										<% end %>
+										<% if @school.number_of_teams.present? %>
+										<p class="semi-bold small fs_14 text-muted no-margin">
+											<i class="ion-document-text fs_20 text-primary mr5"></i>
+											<%= pluralize @school.number_of_teams, "Sports Team"  %>
+										</p>
+										<% end %>
+										<% if @school.mascot.present? %>
+										<p class="semi-bold small fs_14 text-muted no-margin">
+											<i class="ion-flag fs_20 text-primary mr5"></i>
+											Mascot - <%= @school.mascot %>
+										</p>
+										<% end %>
+									</div>
+									<% end %>
+								</div>
+								<hr class="light mt15 mb15"/>
+									<div class="card-heading pl40 pr40">
+										<p class="author">
+											<a href="#">
+											<i class="ion-trophy mr5"></i>
+											Academic and Athletic Achievements</a> 
+										</p>
+									</div>
+									<div class="card-body pl40 pr40">
+									<h6 class="upper text-muted bold mt0"><small class="text-grey bold">School Awards</small></h6>
+									<!-- these must stay together as an interator -->
+									<table class="table table-hover bgcolor-white box-shadow-ccc">
+										<thead>
+											<th><span class="text-muted semi-bold fs_12">Award/Distinction</span></th>
+											<th><span class="text-muted semi-bold fs_12">Year</span></th>
+										</thead>
+										<tbody>
+											<%# @user.certificates.each do |certificate| %>
+												<tr>
+													<td><span class="fs_12"><%#= certificate.certification.name %></span></td>
+													<td><span class="fs_12"><%#= certificate.expiration %></span></td>
+												</tr>
+											<%# end %>
+										</tbody>
+									</table>
+								</div>
+								<hr class="light mt15 mb15"/>
+								<div class="card-body pl40 pr40">
+									<h6 class="upper text-muted bold no-margin"><small class="text-grey bold">Sports Team Awards & Distinctions</small></h6>
+									<!-- these must stay together as an interator -->
+									<div class="clearfix">
+										<table class="table table-hover bgcolor-white box-shadow-ccc">
+											<thead>
+												<th><span class="text-muted semi-bold fs_12">Team</span></th>
+												<th><span class="text-muted semi-bold fs_12">Award</span></th>
+												<th><span class="text-muted semi-bold fs_12">Year</span></th>
+											</thead>
+											<tbody>
+												<%# @user.measurables.each do |measurable| %>
+													<tr>
+														<td><span class="fs_12"><%#= measurable.measurable %></span></td>
+														<td><span class="fs_12"><%#= measurable.sport %></span></td>
+														<td><span class="fs_12"><%#= measurable.result %></span></td>
+													</tr>
+												<%# end %>
+											</tbody>
+										</table>
+									</div>
 
-						<span class="inline mr10 ml10 text-muted">|</span>
-
-						<span class="inline">
-							<i class="ion-monitor fs_16 text-primary mr5"></i>
-							<a href="<%= @school.website %>">Website</a>
-						</span>
-
-						<span class="inline mr10 ml10 text-muted">|</span>
-
-						<span class="inline">
-							<i class="ion-email fs_20 text-primary mr5 v-align-middle"></i>
-							<%= @school.email %> Email
-						</span>
-					</p>
-						
-					<p class="fs_14 lh_18 text-muted mb20 mt10">
-						<%= @school.description %>
-					</p>
-				</div>
-				<hr class="light mt15 mb15"/>
-				<div class="card-heading pl40 pr40">
-					<p class="author lh_26">
-						<a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a> 
-					</p>
-					<p class="no-margin fs_14 text-muted">
-						<i class="ion-location"></i> <%= @school.address_1 %>, <%= @school.city %>, <%= @school.state %>, <%= @school.zip %>
-					</p>
-					<hr class="light mt10 mb5"/>
-				</div>
-				<div class="card-body pl40 pr40">
-					<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
-				</div>
-				<hr class="light mt15 mb15"/>
-				<div class="card-body pl40 pr40">
-					<% if @school.general_information_present? %>
-					<h6 class="upper text-muted bold mt0"><small>general information</small></h6>
-					<div class="clearfix">
-						<% if @school.number_of_students.present? %>
-						<p class="semi-bold fs_14 text-muted no-margin">
-							<i class="ion-university fs_20 text-primary mr5"></i>
-							Public School - <%= pluralize @school.number_of_students, "Student"  %>
-						</p>
-						<% end %>
-						<% if @school.motto.present? %>
-						<p class="semi-bold small fs_14 text-muted no-margin">
-							<i class="ion-quote fs_20 text-primary mr5"></i>
-							Motto - <%= @school.motto %>
-						</p>
-						<% end %>
-						<% if @school.colors.present? %>
-						<p class="semi-bold small fs_14 text-muted no-margin">
-							<i class="ion-speakerphone fs_20 text-primary mr5"></i>
-							<%= @school.colors %>
-						</p>
-						<% end %>
-						<% if @school.number_of_teams.present? %>
-						<p class="semi-bold small fs_14 text-muted no-margin">
-							<i class="ion-document-text fs_20 text-primary mr5"></i>
-							<%= pluralize @school.number_of_teams, "Sports Team"  %>
-						</p>
-						<% end %>
-						<% if @school.mascot.present? %>
-						<p class="semi-bold small fs_14 text-muted no-margin">
-							<i class="ion-flag fs_20 text-primary mr5"></i>
-							Mascot - <%= @school.mascot %>
-						</p>
-						<% end %>
-					</div>
-					<% end %>
-				</div>
-				<hr class="light mt15 mb15"/>
-					<div class="card-heading pl40 pr40">
-						<p class="author">
-							<a href="#">
-							<i class="ion-trophy mr5"></i>
-							Academic and Athletic Achievements</a> 
-						</p>
-					</div>
-					<div class="card-body pl40 pr40">
-					<h6 class="upper text-muted bold mt0"><small>School Awards</small></h6>
-					<!-- these must stay together as an interator -->
-					<table class="table table-hover bgcolor-white box-shadow-ccc">
-						<thead>
-							<th><span class="text-muted semi-bold fs_12">Award/Distinction</span></th>
-							<th><span class="text-muted semi-bold fs_12">Year</span></th>
-						</thead>
-						<tbody>
-							<%# @user.certificates.each do |certificate| %>
-								<tr>
-									<td><span class="fs_12"><%#= certificate.certification.name %></span></td>
-									<td><span class="fs_12"><%#= certificate.expiration %></span></td>
-								</tr>
-							<%# end %>
-						</tbody>
-					</table>
-				</div>
-				<hr class="light mt15 mb15"/>
-				<div class="card-body pl40 pr40">
-					<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Sports Team Awards & Distinctions</small></h6>
-					<!-- these must stay together as an interator -->
-					<div class="clearfix">
-						<table class="table table-hover bgcolor-white box-shadow-ccc">
-							<thead>
-								<th><span class="text-muted semi-bold fs_12">Team</span></th>
-								<th><span class="text-muted semi-bold fs_12">Award</span></th>
-								<th><span class="text-muted semi-bold fs_12">Year</span></th>
-							</thead>
-							<tbody>
-								<%# @user.measurables.each do |measurable| %>
-									<tr>
-										<td><span class="fs_12"><%#= measurable.measurable %></span></td>
-										<td><span class="fs_12"><%#= measurable.sport %></span></td>
-										<td><span class="fs_12"><%#= measurable.result %></span></td>
-									</tr>
-								<%# end %>
-							</tbody>
-						</table>
-					</div>
-
-							<br/>
-							<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Individual Athlete Awards & Distinctions</small></h6>
-							<!-- these must stay together as an interator -->
-							<div class="clearfix">
-								<table class="table table-hover bgcolor-white box-shadow-ccc">
-									<thead>
-										<th><span class="text-muted semi-bold fs_12">Athlete</span></th>
-										<th><span class="text-muted semi-bold fs_12">Award</span></th>
-										<th><span class="text-muted semi-bold fs_12">Year</span></th>
-									</thead>
-									<tbody>
-										<%# @user.measurables.each do |measurable| %>
-											<tr>
-												<td><span class="fs_12"><%#= measurable.measurable %></span></td>
-												<td><span class="fs_12"><%#= measurable.sport %></span></td>
-												<td><span class="fs_12"><%#= measurable.result %></span></td>
-											</tr>
-										<%# end %>
-									</tbody>
-								</table>
+											<br/>
+											<h6 class="upper text-muted bold no-margin"><small class="text-grey bold">Individual Athlete Awards & Distinctions</small></h6>
+											<!-- these must stay together as an interator -->
+											<div class="clearfix">
+												<table class="table table-hover bgcolor-white box-shadow-ccc">
+													<thead>
+														<th><span class="text-muted semi-bold fs_12">Athlete</span></th>
+														<th><span class="text-muted semi-bold fs_12">Award</span></th>
+														<th><span class="text-muted semi-bold fs_12">Year</span></th>
+													</thead>
+													<tbody>
+														<%# @user.measurables.each do |measurable| %>
+															<tr>
+																<td><span class="fs_12"><%#= measurable.measurable %></span></td>
+																<td><span class="fs_12"><%#= measurable.sport %></span></td>
+																<td><span class="fs_12"><%#= measurable.result %></span></td>
+															</tr>
+														<%# end %>
+													</tbody>
+												</table>
+											</div>
+											<!-- <h6 class="upper text-muted bold no-margin"><small>My favorites</small></h6> -->
+											<%#= @user.profile.hudl %>
+											<%#= @user.profile.favorite_pro_team %>													
+											<%#= @user.profile.favorite_college_team %>
+											<%#= @user.profile.favorite_pro_athlete %>	
+										</div><!--.card-body-->
+										<div class="card-footer mt20 pl40 pr40">
+											<% if @school.social_media_present? %>
+											<h6 class="upper text-muted bold"><small>social profiles</small></h6>
+												  <% @school.facebook.present? %>	
+												    <% if @school.facebook.present? %>	
+														<%=  link_to @school.facebook, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+															<i class="ion-social-facebook"></i>
+														<% end %>
+													<% end %>
+									
+													<% if @school.linkedin.present? %>	
+														<%=  link_to @school.linkedin, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+															<i class="ion-social-linkedin"></i>
+														<% end %>
+													<% end %>
+												
+									            <% if @school.youtube.present? %>
+														<%=  link_to @school.youtube, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+															<i class="ion-social-youtube"></i>
+														<% end %>
+												<% end %>
+												
+												<% if @school.twitter.present? %>
+														<%=  link_to @school.twitter, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+															<i class="ion-social-twitter"></i>
+														<% end %>
+												<% end %>
+												
+												<% if @school.instagram.present? %>
+														<%=  link_to @school.instagram, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+															<i class="ion-social-instagram"></i>
+														<% end %>
+												<% end %>
+												
+												<% if @school.pinterest.present? %>
+														<%=  link_to @school.pinterest, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
+															<i class="ion-social-pinterest"></i>
+														<% end %>
+												<% end %>
+											</p>
+											<% end  %>
+										</div><!--.card-footer-->
+									</div><!--.card-->
+								</div><!--.col-md-6-->
+								<!-- My Schedule -->
 							</div>
-							<!-- <h6 class="upper text-muted bold no-margin"><small>My favorites</small></h6> -->
-							<%#= @user.profile.hudl %>
-							<%#= @user.profile.favorite_pro_team %>													
-							<%#= @user.profile.favorite_college_team %>
-							<%#= @user.profile.favorite_pro_athlete %>	
-						</div><!--.card-body-->
-						<div class="card-footer mt20 pl40 pr40">
-							<% if @school.social_media_present? %>
-							<h6 class="upper text-muted bold"><small>social profiles</small></h6>
-								  <% @school.facebook.present? %>	
-								    <% if @school.facebook.present? %>	
-										<%=  link_to @school.facebook, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-											<i class="ion-social-facebook"></i>
-										<% end %>
-									<% end %>
-					
-									<% if @school.linkedin.present? %>	
-										<%=  link_to @school.linkedin, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-											<i class="ion-social-linkedin"></i>
-										<% end %>
-									<% end %>
-								
-					            <% if @school.youtube.present? %>
-										<%=  link_to @school.youtube, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-											<i class="ion-social-youtube"></i>
-										<% end %>
-								<% end %>
-								
-								<% if @school.twitter.present? %>
-										<%=  link_to @school.twitter, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-											<i class="ion-social-twitter"></i>
-										<% end %>
-								<% end %>
-								
-								<% if @school.instagram.present? %>
-										<%=  link_to @school.instagram, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-											<i class="ion-social-instagram"></i>
-										<% end %>
-								<% end %>
-								
-								<% if @school.pinterest.present? %>
-										<%=  link_to @school.pinterest, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-											<i class="ion-social-pinterest"></i>
-										<% end %>
-								<% end %>
-							</p>
-							<% end  %>
-						</div><!--.card-footer-->
-					</div><!--.card-->
-				</div><!--.col-md-6-->
-
-				
-				<!-- My Schedule -->
-			</div>
-		</div>
-		<div class="col-md-8 pt20">
-			<!-- My teammates -->
-			<div class="col-md-12">
-				<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-					<div class="card-heading" style="border-top: 3px solid #ccc;">
-						<h6 class="semi-bold fs_14 mb0"><%= @school.name %></h6>
-						<h3 class="card-title">Student-Athletes</h3>
-						<!-- <div class="card-subhead">
-						 <a href="#">124 Students</a>
-						</div> -->
-						<!--.card-subhead-->
-					</div><!--.card-heading-->
-					<div class="card-body">
-						<ul class="users">
-							<% @athletes.each do |user| %>
-							<li>
-								<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
-									<%= image_tag user.avatar %>
-								</a>
-							</li>
-							<% end %>
-							
-							<% @userless_athletes.each do |user| %>
-							<li>
-								<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.first_name %> <%= user.last_name %>">
-									<%= image_tag user.avatar %>
-								</a>
-							</li>
-							<% end %>
-						</ul>
-					</div><!--.card-body-->
-					<div class="card-footer">
-						<ul>
-							<li><span class="mr5 fs_14"><%= pluralize [@athletes.count, @userless_athletes.count].sum, "Student-Athlete"  %></span></li>
-							<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
-						</ul>
-					</div><!--.card-footer-->
-				</div><!--.card-->
-			</div><!--.col-md-12-->
-			<!-- My teammates -->
-
-				<!-- My teams -->
-			<div class="col-md-6">
-				<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
-					<div class="card-heading" style="border-top: 3px solid #ccc;">
-						<h6 class="semi-bold fs_14 mb0"><%= @school.name %></h6>
-						<h3 class="card-title">Our Sports Teams</h3>
-						<!-- <div class="card-subhead">
-						 <a href="#">
-						 	<span class="text-muted">
-						 		36 Teams - 10 Freshman, 10 Junior Varsity, 10 Varsity
-						 	</span>
-						 	</a>
-						</div> -->
-						<!--.card-subhead-->
-					</div><!--.card-heading-->
-					<div class="card-body">
-						<ul class="list-material borderless">
-							<% @teams.each do |team| %>
-							<li class="has-action-left">
-								<a href="#" class="visible">
-									<div class="list-action-left">
-										<%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg", class: "face-radius")%>
-									</div>
-									<div class="list-content">
-										<span class="title"><%= team.name %></span>
-										<span class="fs_11 text-muted"><%= pluralize team.accepted_coach_relationships.count, "Coach" %>, 
-											<%= pluralize team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize team.accepted_trainer_relationships.count, "Trainer" %></span>
-									</div>
-								</a>
-							</li>
-							<ul class="users" style="border-bottom: 1px solid #ddd;">
-								<% team.accepted_coaches.each do |user| %>
-									<li>
-										<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
-											<%= image_tag user.avatar %>
-										</a>
-									</li>
-								<% end %>
-								<% team.accepted_athletes.each do |user| %>
-									<li>
-										<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
-											<%= image_tag user.avatar %>
-										</a>
-									</li>
-								<% end %>
-								<% team.userless_athletes.each do |user| %>
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.first_name %> <%= user.last_name %>">
-										<%= image_tag user.avatar %>
-									</a>
-								</li>
-								<% end %>
-							</ul>
-
-							<li class="divider with-border no-padding no-margin">
-							</li>
-							<% end %>
-				
-
-						</ul>
-					</div><!--.card-body-->
-					<hr class="no-margin"/>
-					<div class="card-footer">
-						<ul>
-							<li class="fs_14"><span class="mr5"><%= pluralize @teams.count, "Sports Team" %></span></li>
-								<li><a href="#teams" data-toggle="tab" class="fs_14">View All Teams</a></li>
-						</ul>
-					</div><!--.card-footer-->
-				</div><!--.card-->
-			</div><!--.col-md-12-->
-			<!-- My teams -->
-
-			<!-- My Schedule -->
-			<div class="col-md-6">
-				<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
-					<div class="card-heading" style="border-top: 3px solid #ccc;">
-						<h6 class="semi-bold fs_14 mb0"><%= @school.name %></h6>
-						<h3 class="card-title">Upcoming Events</h3>
-						<!-- <div class="card-subhead">
-						 <a href="#">7 Upcoming Events</a>
-						</div> -->
-						<!--.card-subhead-->
-					</div><!--.card-heading-->
-					<div class="card-body pl40">
-						<div class="timeline single">
-			              <%= render 'shared/show_view_events', object: @school %>
 						</div>
-					</div>
-					<hr class="no-margin"/>
-					
-					<div class="card-footer">
-						<ul>
-							<li class="fs_14"><span class="mr5"><%= pluralize @school.upcoming_events.count, "Upcoming Event" %></span></li>
-							<li><a href="#calendar-tab" data-toggle="tab" class="fs_14">View All Events</a></li>
-							
-						</ul>
-					</div><!--.card-footer-->
-				</div><!--.card-->
-			</div><!--.timeline-->
+						<div class="col-md-8 pt20">
+							<!-- My teammates -->
+							<div class="col-md-12">
+								<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+									<div class="card-heading" style="border-top: 3px solid #ccc;">
+										<h6 class="semi-bold fs_14 mb0"><%= @school.name %></h6>
+										<h3 class="card-title">Student-Athletes</h3>
+										<!-- <div class="card-subhead">
+										 <a href="#">124 Students</a>
+										</div> -->
+										<!--.card-subhead-->
+									</div><!--.card-heading-->
+									<div class="card-body bgcolor-light-grey">
+										<ul class="users">
+											<% @athletes.each do |user| %>
+											<li>
+												<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+													<%= image_tag user.avatar %>
+												</a>
+											</li>
+											<% end %>
+											
+											<% @userless_athletes.each do |user| %>
+											<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.first_name %> <%= user.last_name %>">
+													<%= image_tag user.avatar %>
+												</a>
+											</li>
+											<% end %>
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<ul>
+											<li><span class="mr5 fs_14"><%= pluralize [@athletes.count, @userless_athletes.count].sum, "Student-Athlete"  %></span></li>
+											<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
+										</ul>
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-12-->
+							<!-- My teammates -->
 
-			<div class="col-md-6">
-				<div class="panel box-shadow-ccc">
-					<div class="panel-heading">
-						<div class="panel-title"><h4> Our Facilities</h4></div>
-					</div><!--.panel-heading-->
-					<div class="panel-body without-padding">	
-						<ul class="list-material borderless">
-							<% @facilities.each do |facility| %>
-								<li class="has-action-left has-action-right">
-									<a href="#" class="visible">
-										<div class="list-action-left">
-											<i class="ion-checkmark-circled icon-circle"></i>
+								<!-- My teams -->
+							<div class="col-md-6">
+								<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
+									<div class="card-heading" style="border-top: 3px solid #ccc;">
+										<h6 class="semi-bold fs_14 mb0"><%= @school.name %></h6>
+										<h3 class="card-title">Our Sports Teams</h3>
+										<!-- <div class="card-subhead">
+										 <a href="#">
+										 	<span class="text-muted">
+										 		36 Teams - 10 Freshman, 10 Junior Varsity, 10 Varsity
+										 	</span>
+										 	</a>
+										</div> -->
+										<!--.card-subhead-->
+									</div><!--.card-heading-->
+									<div class="card-body">
+										<ul class="list-material borderless">
+											<% @teams.each do |team| %>
+											<li class="has-action-left">
+												<a href="#" class="visible">
+													<div class="list-action-left">
+														<%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg", class: "face-radius")%>
+													</div>
+													<div class="list-content">
+														<span class="title">
+															<span class="bold"><%= team.name %></span>
+														</span>
+														<span class="fs_11 text-muted"><%= pluralize team.accepted_coach_relationships.count, "Coach" %>, 
+															<%= pluralize team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize team.accepted_trainer_relationships.count, "Trainer" %>
+														</span>
+													</div>
+												</a>
+											</li>
+											<ul class="users bgcolor-light-grey" style="border-bottom: 1px solid #ddd;">
+												<% team.accepted_coaches.each do |user| %>
+													<li>
+														<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+															<%= image_tag user.avatar %>
+														</a>
+													</li>
+												<% end %>
+												<% team.accepted_athletes.each do |user| %>
+													<li>
+														<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+															<%= image_tag user.avatar %>
+														</a>
+													</li>
+												<% end %>
+												<% team.userless_athletes.each do |user| %>
+												<li>
+													<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.first_name %> <%= user.last_name %>">
+														<%= image_tag user.avatar %>
+													</a>
+												</li>
+												<% end %>
+											</ul>
+											<% end %>
+								
+
+										</ul>
+									</div><!--.card-body-->
+									<hr class="no-margin"/>
+									<div class="card-footer">
+										<ul>
+											<li class="fs_14"><span class="mr5"><%= pluralize @teams.count, "Sports Team" %></span></li>
+											<li><a href="#teams" data-toggle="tab" class="fs_14">View All Teams</a></li>
+										</ul>
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-12-->
+							<!-- My teams -->
+
+							<!-- My Schedule -->
+							<div class="col-md-6">
+								<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
+									<div class="card-heading" style="border-top: 3px solid #ccc;">
+										<h6 class="semi-bold fs_14 mb0"><%= @school.name %></h6>
+										<h3 class="card-title">Upcoming Events</h3>
+										<!-- <div class="card-subhead">
+										 <a href="#">7 Upcoming Events</a>
+										</div> -->
+										<!--.card-subhead-->
+									</div><!--.card-heading-->
+									<div class="card-body pl40 bgcolor-light-grey">
+										<div class="timeline single">
+							        <%= render 'shared/show_view_events', object: @school %>
 										</div>
-										<div class="list-content">
-											<span class="h6 bold"><%= facility.name %></span>
-										</div>
-										<div class="list-action-right">
-											<%= link_to "View", facility_path(facility), class: "btn btn-primary pull-right mt10 btn-sm" %>							
-										</div>
-									</a>
-								</li>
-								<li class="divider with-border no-margin no-padding">
-								</li>
-							<% end %>
-						</ul>
-					</div><!--.panel-body-->
-				</div><!--.panel-->
-			</div>
+									</div>
+									<hr class="no-margin"/>
+									
+									<div class="card-footer">
+										<ul>
+											<li class="fs_14"><span class="mr5"><%= pluralize @school.upcoming_events.count, "Upcoming Event" %></span></li>
+											<li>
+												<a href="#calendar-tab" data-toggle="tab" class="fs_14">View All Events</a>
+											</li>
+										</ul>
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.timeline-->
+
+							<div class="col-md-6">
+								<div class="panel box-shadow-ccc">
+									<div class="panel-heading">
+										<div class="panel-title"><h4> Our Facilities</h4></div>
+									</div><!--.panel-heading-->
+									<div class="panel-body without-padding">	
+										<ul class="list-material borderless">
+											<% @facilities.each do |facility| %>
+												<li class="has-action-left has-action-right">
+													<a href="#" class="visible">
+														<div class="list-action-left">
+															<i class="ion-checkmark-circled icon-circle"></i>
+														</div>
+														<div class="list-content">
+															<span class="h6 bold"><%= facility.name %></span>
+														</div>
+														<div class="list-action-right">
+															<%= link_to "View", facility_path(facility), class: "btn btn-primary pull-right mt10 btn-sm" %>							
+														</div>
+													</a>
+												</li>
+												<li class="divider with-border no-margin no-padding">
+												</li>
+											<% end %>
+										</ul>
+									</div><!--.panel-body-->
+								</div><!--.panel-->
+							</div>
 
 
-				
+								
 
 
-		</div>
-	</div><!--.col-md-12-->
-	<!-- My Schedule -->
-</div>
+						</div>
+					</div><!--.col-md-12-->
+					<!-- My Schedule -->
+				</div>

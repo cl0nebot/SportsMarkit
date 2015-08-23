@@ -12,44 +12,45 @@
 			        <% end %>
 			    </div>
 
-		      </div><!--.card-heading-->
+	      </div><!--.card-heading-->
 
-		      <div class="card-body">
-		        <div style="height: 40px; position: relative;">
-	        		<h4 class="card-title capitalize fs_16 lh_20 absolute bottom bold">
-			        	<a href="#">
-				        	<% if facility.school.present? %>
-							  	<%= truncate("#{facility.school.name} #{facility.name}", length: 40) %>
-							<% else %>
-							   	<%= truncate(facility.name, length: 40) %>
-							<% end %>
-							<br/>
-						</a>
-					</h4>
-				</div>
-				<hr class="light mt5 mb10"/>
-				<p class="lh_16 text-muted fs_12">
-					<%= facility.address_1 %><br/>
-					<%= facility.city %>, <%= facility.state %> 
-				</p>
-	        
+	      <div class="card-body">
+	        <div style="height: 40px; position: relative;">
+        		<h4 class="card-title capitalize fs_16 lh_20 absolute bottom bold">
+		        	<a href="#">
+			        	<% if facility.school.present? %>
+						  	<%= truncate("#{facility.school.name} #{facility.name}", length: 40) %>
+						<% else %>
+						   	<%= truncate(facility.name, length: 40) %>
+						<% end %>
+						<br/>
+					</a>
+				</h4>
+			</div>
+			<hr class="light mt5 mb10"/>
+			<p class="lh_16 text-muted fs_12">
+				<%= facility.address_1 %><br/>
+				<%= facility.city %>, <%= facility.state %> 
+			</p>
+        
 
-		        <div class="subhead">
-		          <span class="text-muted">
-		            <%= facility.email %>
-		          </span>
-		          <%= facility.website %>
-		          <%= facility.phone_number %>
-		        </div>
-		      </div><!--.card-body-->
+      <div class="subhead">
+        <span class="text-muted">
+          <%= facility.email %>
+        </span>
+        <%= facility.website %>
+        <%= facility.phone_number %>
+      </div>
+    </div>
+    	<!--.card-body-->
 
-		      <!-- <div class="card-footer">
-		        <%#= link_to "Delete", facility, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-orange btn-xs" %>
-				
-		      </div> --><!--.card-footer-->
+	      <!-- <div class="card-footer">
+	        <%#= link_to "Delete", facility, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-orange btn-xs" %>
+			
+	      </div> --><!--.card-footer-->
 
-		    </div><!--.card-->
-	  	</div><!--.col-md-4-->
+	    </div><!--.card-->
+  	</div><!--.col-md-4-->
 	<% end %>
 <% end %>
 
