@@ -3,6 +3,8 @@ module ClassificationCount
   
   module ClassMethods
     
+    #Users
+    
     def student_athlete_count
       count = 0
       User.all.each do |user|
@@ -51,7 +53,22 @@ module ClassificationCount
         end
       end
       count
-    end 
+    end
+    
+    #Schools
+    
+    def high_school_count
+      where(classification: "High School").count
+    end
+    
+    def middle_school_count 
+      where(classification: "Middle School").count
+    end
+    
+    def elementary_school_count
+      where(classification: "Elementary School").count
+    end
+    
         
   end
 end
