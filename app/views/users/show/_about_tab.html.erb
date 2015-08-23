@@ -19,9 +19,9 @@
 					<div class="card-body pl40 pr40">
 						<div class="clearfix row">
 						  <div class="col-md-3">
-						  	<div class="profile-photo">
-						    	<%= image_tag(@user.avatar, class: "img-thumbnail") %>
-						  	</div><!--.profile-photo-->
+						  	<div class="profile-photo-wrapper" style="height: 100px; width: 100px; overflow: hidden; border: 1px solid #ddd;">
+									<%= image_tag(@user.avatar, class: "img-responsive", style: "height: auto; width: 100%; min-width: 100px; min-height: 100px;") %>
+								</div>
 						  </div>
 							<div class="col-md-9">
 								<h3 class="semi-bold capitalize text-black no-margin lh_34 mt10">
@@ -37,12 +37,17 @@
 								<% end %>
 							</div>
 						</div>
-						<p class="fs_14 lh_18 text-muted mb20 mt0">
-							<%= @user.profile.description %>
-						</p>
 					</div>
 					<hr class="light mt15 mb15"/>
 					<div class="card-body pl40 pr40">
+						<h6 class="semi-bold capitalize">
+							<i class="ion-information-circled text-indigo mr5"></i> About <%= @user.name %>
+						</h6>
+						<p class="fs_14 lh_18 text-muted mb20 mt10">
+							No user description.
+						</p>
+						<hr clas="light"/>
+
 						<h6 class="upper mt0">
 							<small class="text-grey bold">contact information</small>
 						</h6>

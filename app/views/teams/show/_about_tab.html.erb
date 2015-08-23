@@ -19,8 +19,8 @@
 						<div class="clearfix row">
 						  <div class="col-md-3">
 						  	<div class="profile-photo">
-						    	<div class="profile-photo-wrapper" style="height: 100px; overflow: hidden;">
-										<%= image_tag(@object.avatar, class: "img-thumbnail img-responsive", style: "height: 100%; width: 100%:") %>
+						    	<div class="profile-photo-wrapper" style="height: 100px; width: 100px; overflow: hidden; border: 1px solid #ddd;">
+										<%= image_tag(@object.avatar, class: "img-responsive", style: "height: auto; width: 100%; min-width: 100px; min-height: 100px;") %>
 									</div>
 						  	</div><!--.profile-photo-->
 						  </div>
@@ -48,6 +48,13 @@
 
 					<hr class="light mt15 mb0"/>
 					<div class="card-heading pl40 p40">
+						<h6 class="semi-bold">
+							<i class="ion-information-circled text-indigo mr5"></i> About <%= @team.name %>
+						</h6>
+						<p class="fs_14 lh_18 text-muted mb20 mt10">
+							No team description.
+						</p>
+						<hr clas="light"/>
 						<h6 class="semi-bold mb0 fs_14"><%= @team.name %></h6>
 						<h5 class="semi-bold mt0 mb0 text-black">Coaches and Management</h3>
 					</div><!--.card-heading-->
