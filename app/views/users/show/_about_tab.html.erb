@@ -44,22 +44,28 @@
 					<div class="card-body pl40 pr40">
 						<h6 class="upper text-muted bold mt0"><small>contact information</small></h6>
 						<div class="clearfix">
-							<p class="semi-bold fs_14 text-muted no-margin">
-								<i class="ion-location fs_20 text-primary mr5"></i>
-								<%= @user.profile.location_description %>
-							</p>
-							<p class="semi-bold fs_14 text-muted no-margin">
-								<i class="ion-person-add fs_20 text-primary mr5"></i>
-								<%= @user.username %>
-							</p>
+							<% if @user.profile.location_description.present? %>
+								<p class="semi-bold fs_14 text-muted no-margin">
+									<i class="ion-location fs_20 text-primary mr5"></i>
+									<%= @user.profile.location_description %>
+								</p>
+							<% end %>
+							<% if @user.username %>
+								<p class="semi-bold fs_14 text-muted no-margin">
+									<i class="ion-person-add fs_20 text-primary mr5"></i>
+									<%= @user.username %>
+								</p>
+							<% end %>
 							<p class="semi-bold fs_14 text-muted no-margin">
 								<i class="ion-email fs_20 text-primary mr5"></i>
 								<%= @user.email %>
 							</p>
-							<p class="semi-bold fs_14 text-muted no-margin">
-								<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
-								<%= @user.mobile_phone_number %>
-							</p>
+							<% if current_user.can_edit_user?(@user) %>
+								<p class="semi-bold fs_14 text-muted no-margin">
+									<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
+									<%= @user.mobile_phone_number %>
+								</p>
+							<% end %>
 							<p class="semi-bold fs_14 text-muted no-margin">
 								<i class="ion-android-calendar fs_20 text-primary mr5"></i>
 								<%= @user.profile.date_of_birth %>
