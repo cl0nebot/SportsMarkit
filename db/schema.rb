@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823203044) do
+ActiveRecord::Schema.define(version: 20150823212428) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -228,6 +228,8 @@ ActiveRecord::Schema.define(version: 20150823203044) do
     t.float    "longitude",           limit: 24
     t.float    "price",               limit: 24
     t.boolean  "gmaps"
+    t.string   "classification"
+    t.string   "category"
   end
 
   add_index "leagues", ["name"], name: "index_leagues_on_name", using: :btree

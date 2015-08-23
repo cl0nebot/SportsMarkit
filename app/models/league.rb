@@ -4,6 +4,8 @@ class League < ActiveRecord::Base
   include Reusable
   include Roster
   include Avatar
+  include Geo
+  include ClassificationCount
   
   friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable
@@ -226,6 +228,14 @@ class League < ActiveRecord::Base
        end
     end
     array.max
+  end
+  
+  def classification_with_hyphen
+    classification.downcase.gsub("recreational: ","").gsub(" ","-")
+  end
+  
+  def category_and_classification
+    "#{classification_with_hyphen} #{category.downcase}"
   end
   
 

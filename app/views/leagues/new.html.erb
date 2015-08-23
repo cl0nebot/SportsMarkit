@@ -1,7 +1,7 @@
 <div class="content">
 
 	<br/>
-
+<%= form_for League.new, url: leagues_path, html: {id: 'new-league-form', method: :post} do |f| %>
 	<div class="row">
 		<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 			<div class="panel box-shadow-ccc">
@@ -23,17 +23,11 @@
 									<h4>What type of league?</h4>
 								</div>
 							</div>
-							<div class="row margin-bottom-0">
-								<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 well">
-									<select class="selecter bg-white margin-bottom-0" data-width="100%" data-live-search="true">
-										<option>Receational</option>
-										<option>School</option>
-										<option>School District</option>
-										<option>Youth</option>
-										<option>Adult</option>
-									</select>
-								</div><!--.col-md-9-->
-							</div><!--.row-->
+						<div class="row example-row">
+							<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 well margin-bottom-0">
+								<%= f.select :classification, [ 'School District', 'Recreational: Adult', 'Recreational: Youth'], {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
+							</div><!--.col-md-9-->
+						</div><!--.row-->
 						</div>
 					</div>
 				</div>
@@ -41,7 +35,7 @@
 
 				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
 					
-					<%= form_for League.new, url: leagues_path, html: {id: 'new-league-form', method: :post} do |f| %>
+					
 
 					<div class="panel-body padding-right-40 padding-left-40">
 

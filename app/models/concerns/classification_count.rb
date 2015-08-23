@@ -81,6 +81,26 @@ module ClassificationCount
       where(category: "Charter").count
     end
     
+     #Leagues
+     
+     def school_district_count
+       where(classification: "School").count
+     end
+     
+     def recreational_count
+       youth_count + adult_count
+       
+     end
+     
+     def youth_count
+       where(classification: "Recreational: Youth").count
+     end
+     
+     def adult_count
+       where(classification: "Recreational: Adult").count
+     end
+     
+    
         
   end
 end
