@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823192407) do
+ActiveRecord::Schema.define(version: 20150823203044) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -521,6 +521,7 @@ ActiveRecord::Schema.define(version: 20150823192407) do
     t.string   "foursquare"
     t.string   "youtube"
     t.float    "price",              limit: 24
+    t.text     "description"
   end
 
   create_table "tournaments", force: true do |t|

@@ -19,6 +19,8 @@ class Team < ActiveRecord::Base
   has_many :userless_relationships
   has_many :users, through: :relationships
   
+  has_many :chatrooms
+  
   validates :sport, presence: true
   
   

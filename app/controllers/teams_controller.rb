@@ -212,7 +212,7 @@ class TeamsController < ApplicationController
   end
   
   def team_params
-    params.require(:team).permit(:name, :sport, :school_id, :league_id, :classification, :abbreviation, :address_1, :address_2, :city, :state, :zip, :zip_ext, :latitude, :longitude, :gmaps, :phone_number, :email, :website, :slug)
+    params.require(:team).permit(:name, :sport, :school_id, :league_id, :classification, :description, :abbreviation, :address_1, :address_2, :city, :state, :zip, :zip_ext, :latitude, :longitude, :gmaps, :phone_number, :email, :website, :slug)
   end
   
   def user_params

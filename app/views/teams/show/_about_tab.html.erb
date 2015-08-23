@@ -42,7 +42,7 @@
 							</div>
 						</div>
 						<p class="fs_14 lh_18 text-muted mb20 mt0">
-							<%#= @team.description %>
+							
 						</p>
 					</div>
 
@@ -52,7 +52,11 @@
 							<i class="ion-information-circled text-indigo mr5"></i> About <%= @team.name %>
 						</h6>
 						<p class="fs_14 lh_18 text-muted mb20 mt10">
-							No team description.
+							<% if @team.description.present? %>
+							  <%= @team.description %>
+							<% else %>
+							  No team description.
+							<% end %>
 						</p>
 						<hr clas="light"/>
 						<h6 class="semi-bold mb0 fs_14"><%= @team.name %></h6>
@@ -64,14 +68,18 @@
 								<li class="has-action-left">
 									<a href="#" class="visible">
 										<div class="pull-right pt20">
+											<% if head.mobile_phone_number.present? %>
 											<span class="text-muted fs_11">
 												<i class="ion-ios-telephone text-primary mr5"></i>
 												<%= head.mobile_phone_number %> 
 											</span>
+											<% end %>
+											<% unless head.class.to_s == "UserlessRelationship"%>
 											<span class="text-muted fs_11">
 												<i class="ion-email text-primary mr5"></i>
-												<%#= head.email %> 
+												<%= head.user.email %> 
 											</span>
+											<% end %>
 										</div>
 
 										<div class="list-action-left">
@@ -104,15 +112,18 @@
 								<%= pluralize @team.accepted_coach_relationships.count, "Coach" %>, 
 								<%= pluralize @team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize @team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize @team.accepted_trainer_relationships.count, "Trainer" %>
 							</p>
-
+                            <% if @team.website.present? %>
 							<p class="semi-bold fs_14 text-muted no-margin">
 								<i class="ion-monitor fs_20 text-primary mr5"></i>
 								<%= @team.website %>
 							</p>
+							<% end %>
+							<% if @team.phone_number.present? %>
 								<p class="semi-bold fs_14 text-muted no-margin">
 								<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
 								<%= @team.phone_number %> 
 							</p>
+							<% end %>
 							<p class="semi-bold fs_14 text-muted no-margin">
 								<i class="ion-email fs_20 text-primary mr5"></i>
 								<% if @team.email.present? %>
@@ -182,9 +193,20 @@
 									<h3 class="card-title">Player Roster</h3>
 								</div>
 								<div class="card-body bgcolor-light-grey">
+								<% unless @members.present? %>
+								<% if current_user.can_edit_team?(@team)%>
+								  <%= link_to "/teams/#{@team.slug}/#tab_admin" do %>
 									<p class="mb0 mt0 center padding-20 text-grey">
 											<i class="ion-person-add mr10"></i> Add Players to Roster
 									</p>
+									<% end %>
+									<% else %>
+									<p class="mb0 mt0 center padding-20 text-grey">
+											<i class="ion-person-add mr10"></i> No Players on Roster
+									</p>
+									
+									<% end %>
+								<% else %>
 									<ul class="list-material borderless">
 										<% @members.each do |member| %>
 										<li class="has-action-left">
@@ -220,6 +242,7 @@
 										</li>
 										<% end %>
 									</ul>
+									<% end %>
 								</div><!--.card-body-->
 								<hr class="no-margin"/>
 								<div class="card-footer">
@@ -245,15 +268,18 @@
 								</div><!--.card-heading-->
 								<div class="card-body">
 									<ul class="users bgcolor-light-grey">
+										<% unless @team.people.present? %>
 										<p class="mb0 mt0 center padding-10 text-grey">
 											<i class="ion-person-add mr10"></i> Build your sports Community.
 										</p>
+										<% else %>
 										<% @team.people.each do |rel|%>
 										<li>
 											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= rel.user.full_name %>">
 												<%= image_tag rel.user.avatar %>
 											</a>
 										</li>
+										<% end %>
 										<% end %>
 									</ul>
 								</div><!--.card-body-->
@@ -279,15 +305,18 @@
 								</div><!--.card-heading-->
 								<div class="card-body">
 									<ul class="users bgcolor-light-grey">
+										<% unless @fans.present? %>
 										<p class="center padding-10 text-grey">
-											<i class="ion-person-add mr10"></i> Invite Fans to Follow your Team.
+											<i class="ion-person-add mr10"></i> No fans Follow your Team.
 										</p>
+										<% else %>
 										<% @team.people.each do |rel|%>
 										<li>
 											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= rel.user.full_name %>">
 												<%= image_tag rel.user.avatar %>
 											</a>
 										</li>
+										<% end %>
 										<% end %>
 									</ul>
 								</div><!--.card-body-->
@@ -322,63 +351,12 @@
 								<div class="card-body">
 									<div class="tab-content">
 										<div class="tab-pane active" id="photos">
-											<%= render 'shared/gallery' %>
 											<div class="row image-row">
+											<% @pictures.each do |picture| %>
 											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/1.jpg" title="Some title goes here" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/1.jpg" alt=""></a>
+												<a href="../../assets/globals/img/picjumbo/1.jpg" title="Some title goes here" data-gallery="#user-gallery"><img src="<%= picture.image %>" alt=""></a>
 											</div><!--.col-->
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/2.jpg" title="Another title goes here" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/2.jpg" alt=""></a>
-											</div><!--.col-->
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/3.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/3.jpg" alt=""></a>
-											</div><!--.col-->
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/4.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/4.jpg" alt=""></a>
-											</div><!--.col-->
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/5.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/5.jpg" alt=""></a>
-											</div><!--.col-->
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/6.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/6.jpg" alt=""></a>
-											</div><!--.col-->
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/7.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/7.jpg" alt=""></a>
-											</div><!--.col-->
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/8.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/8.jpg" alt=""></a>
-											</div><!--.col-->
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/9.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/9.jpg" alt=""></a>
-											</div><!--.col-->
-
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/10.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/10.jpg" alt=""></a>
-											</div><!--.col-->
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/11.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/11.jpg" alt=""></a>
-											</div><!--.col-->
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/12.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/12.jpg" alt=""></a>
-											</div><!--.col-->
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/13.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/13.jpg" alt=""></a>
-											</div><!--.col-->
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/14.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/14.jpg" alt=""></a>
-											</div><!--.col-->
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/15.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/15.jpg" alt=""></a>
-											</div><!--.col-->
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/16.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/16.jpg" alt=""></a>
-											</div><!--.col-->
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/17.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/17.jpg" alt=""></a>
-											</div><!--.col-->
-											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-												<a href="../../assets/globals/img/picjumbo/18.jpg" title="" data-gallery="#user-gallery"><img src="../../assets/globals/img/picjumbo/18.jpg" alt=""></a>
-											</div><!--.col-->
+											<% end %>
 											</div><!--.row-->
 										</div><!--.tab-pane-->
 										
@@ -423,8 +401,8 @@
 								</div>
 								<div class="card-footer">
 									<ul>
-										<li><span class="mr5 fs_14"><%= pluralize @fans.count, "Video" %>, 12 Photos, 1 Article </span></li>
-										<li><%= link_to "View All Media", "", class: "fs_14" %></li>
+										<li><span class="mr5 fs_14"><%= pluralize @videos.count, "Video" %>, <%= pluralize @pictures.count, "Photo" %>, <%= pluralize @articles.count, "Article" %> </span></li>
+										<li><%= link_to "View All Media", "/teams/#{@team.slug}/#tab_media", class: "fs_14" %></li>
 									</ul>
 								</div><!--.card-footer-->
 							</div><!--.card-->
