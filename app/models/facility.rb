@@ -87,4 +87,12 @@ class Facility < ActiveRecord::Base
     end
   end
   
+  def self.type_with_hyphen(type)
+    type.downcase.gsub(" ","-")
+  end
+  
+  def type_with_hyphen
+    facility_type.downcase.gsub(" ","-")
+  end
+  
 end
