@@ -6,6 +6,7 @@ class School < ActiveRecord::Base
   include Reusable
   include Geo
   include Avatar
+  include ClassificationCount
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable
@@ -182,6 +183,14 @@ class School < ActiveRecord::Base
        end
     end
     array.max
+  end
+  
+  def classification_with_hyphen
+    classification.downcase.gsub(" ","-")
+  end
+  
+  def category_and_classification
+    "#{classification_with_hyphen} #{category.downcase}"
   end
     
 end

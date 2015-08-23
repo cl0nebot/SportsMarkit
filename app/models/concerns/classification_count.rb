@@ -69,6 +69,18 @@ module ClassificationCount
       where(classification: "Elementary School").count
     end
     
+    def public_school_count
+      where(category: "Public").count
+    end
+    
+    def private_school_count
+      where(category: "Private").count
+    end
+    
+    def charter_school_count
+      where(category: "Charter").count
+    end
+    
         
   end
 end

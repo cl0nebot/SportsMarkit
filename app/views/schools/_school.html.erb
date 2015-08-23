@@ -1,5 +1,6 @@
 <%= link_to school_path(school) do %>
-	<div class="col-md-3 col-lg-2 col-sm-6 element-item">
+
+	<div class="col-md-3 col-lg-2 col-sm-6 element-item <%= school.category_and_classification %>" data-category="<%= school.category_and_classification %>">
 	    <div class="card card-user card-clickable card-clickable-over-content">
 	      <div class="card-heading heading-full">
 			  <%#= image_tag school.main_photo, size: "428x150" %>
