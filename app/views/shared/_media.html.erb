@@ -1,5 +1,5 @@
 <% @videos.each do |vid| %>
-	<div class="col-md-3">
+	<div class="col-md-2">
 		<div class="card card-video card-player-orange">
 			<div class="card-heading">
 				<video id="youtube1" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" data-width="640" data-height="360" data-setup='{ "techOrder": ["youtube"], "src": "<%= vid.url %>" }'></video>
