@@ -722,3 +722,5 @@ ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
       width: 1000px;
   }
 }
+
+.element-item:hover > div {border: 1px solid #08c;}
