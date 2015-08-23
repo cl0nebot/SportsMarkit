@@ -14,6 +14,8 @@
 					<div class="card-heading pl40 pr40">
 						<%= render "shared/fan" %>
 					    <%= render 'shared/online' %>
+
+
 					</div><!--.card-heading-->
 					<hr class="light mt0"/>
 					<div class="card-body pl40 pr40">
@@ -247,6 +249,9 @@
 						</div><!--.card-heading-->
 						<div class="card-body">
 							<ul class="users">
+								<p class="mb0 mt0 center padding-10 text-grey">
+									<i class="ion-person-add mr10"></i> Add teams to your profile
+								</p>
 								<% @teammates.each do |teammate| %>
 								<li>
 									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= teammate.full_name %>">
@@ -277,9 +282,10 @@
 									</div><!--.card-subhead-->
 								</div><!--.card-heading-->
 								<div class="card-body">
-									<ul class="list-material borderless">
-										
-										
+									<ul class="list-material borderless bgcolor-light-grey">
+										<p class="mb0 mt0 center padding-10 text-grey">
+											<i class="ion-person-add mr10"></i> Add teams to your profile
+										</p>
 					          <% @user.user_teams.each do |team| %>
 											<li class="has-action-left">
 												<a href="#" class="visible">
@@ -321,7 +327,10 @@
 									 <!-- <a href="#">7 Upcoming Events</a> -->
 									</div><!--.card-subhead-->
 								</div><!--.card-heading-->
-								<div class="card-body pl40">
+								<div class="card-body pl40 bgcolor-light-grey">
+									<p class="mb0 mt0 center padding-10 text-grey">
+										<i class="ion-person-add mr10"></i> Add events to your sport schedule
+									</p>
 									<div class="timeline single">
 										<%= render 'shared/show_view_events', object: @user %>
 									</div>
@@ -351,10 +360,11 @@
 							</ul>
 							<h3 class="card-title">My Sports Media</h3>
 						</div><!--.card-heading-->
-						<div class="card-body">
-						
-
+						<div class="card-body bgcolor-light-grey">
 							<div class="tab-content">
+								<p class="mb0 mt0 center padding-10 text-grey">
+									<i class="ion-person-add mr10"></i> Add photos, videos, and articles
+								</p>
 								<div class="tab-pane active" id="photos">
 									<%#= render 'shared/gallery' %>
 									<div class="row image-row">
@@ -426,6 +436,9 @@
 							</div><!--.card-heading-->
 							<div class="card-body">
 								<ul class="users">
+									<p class="mb0 mt0 center padding-10 text-grey">
+										<i class="ion-person-add mr10"></i> Build your sport community
+									</p>
 									<% @fans.each do |fan| %>
 									<li>
 										<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= fan.user.full_name %>">
@@ -456,6 +469,9 @@
 							</div><!--.card-heading-->
 							<div class="card-body">
 								<ul class="users">
+									<p class="mb0 mt0 center padding-10 text-grey">
+										<i class="ion-person-add mr10"></i> Build your sport community
+									</p>
 									<% @follows.each do |follow| %>
 									<li>
 										<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= follow.fannable.name %>">

@@ -1,11 +1,9 @@
 <ul class="nav nav-pills" role="tablist">
   <li class="active"><a href="#photos" data-toggle="tab">Photos</a></li>
-  <li><a href="#videos" data-toggle="tab">Videos</a></li>
-  <li><a href="#articles" data-toggle="tab">Articles</a></li>
+  <li><a href="#videos-and-articles" data-toggle="tab">Videos & Articles</a></li>
 </ul>
 
 <hr/>
-
 <div class="tab-content well bgcolor-light-grey">
   <div class="tab-pane active" id="photos">
     <div id="user-profile-picture">
@@ -16,21 +14,11 @@
       <%= render 'shared/gallery' %>
     </div>
   </div><!--.tab-pane-->
-  <div class="tab-pane" id="videos">
+  <div class="tab-pane" id="videos-and-articles">
     <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'video')"), method: :get ,remote: true, class: 'mr10 btn btn-large btn-blue' do %>
       New Video <i class="ion-plus-circled margin-left-10"></i>
     <% end %>
-    <hr/>
-    <div class="clearfix">
-      <div id="medias">
-        <% @object.medias.each do |m| %>
-          <%= render 'media/form', m: m, u: @object %>
-        <% end %>
-      </div>
-    </div>
-  </div><!--.tab-pane-->
-  <div class="tab-pane" id="articles">
-    <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'article')"), method: :get ,remote: true, class: 'mr10 btn btn-large btn-blue' do %>
+     <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'article')"), method: :get ,remote: true, class: 'mr10 btn btn-large btn-blue' do %>
         New Article <i class="ion-plus-circled margin-left-10"></i>
     <% end %>
     <hr/>
