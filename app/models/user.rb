@@ -384,6 +384,10 @@ class User < ActiveRecord::Base
     relationships.first.team.id
   end
   
+  def chatroom_group 
+    #relationships.first.athlete? ? "Athlete"
+  end
+  
   
   def online?
     if online_status.present?
@@ -397,12 +401,23 @@ class User < ActiveRecord::Base
     
   end
   
-  def parent_relationships
-    
-  end
   
   def coach_relationships
     
+  end
+  
+  def parent_relationships
+    child_ids = ParentChild.where(parent_id: id, accepted: true).pluck(:child_id)
+    relationships = Relationship.where(user_id: child_ids, accepted: true)
+  end
+  
+  def parent_relationship_with_team?(team)
+    if parent_relationships.present?
+      array = parent_relationships.pluck(:team_id).uniq
+      array.include? team.id
+    else
+      false
+    end
   end
   
 end

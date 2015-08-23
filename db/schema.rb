@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821001201) do
+ActiveRecord::Schema.define(version: 20150821190730) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -67,6 +67,13 @@ ActiveRecord::Schema.define(version: 20150821001201) do
   create_table "certifications", force: true do |t|
     t.string   "name"
     t.string   "issuer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "chatrooms", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "specific_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

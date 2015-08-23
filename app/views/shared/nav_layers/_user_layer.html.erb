@@ -7,28 +7,30 @@
 </script>
 
 <% current_user.relationships.each do |rel| %>
-  <script>
-    pusher.subscribe("chat-<%= rel.team_id %>").bind('message-push', function (data) {
-      // $("#message-<%#= @team.last_chat_stream_message_id %>").empty();
-      // 	$("#message-<%#= @team.last_chat_stream_message_id %>").append("<%#= j render 'message', message: Message.where(chatroom_id: @team.id).last.beginning_of_stream %>")
-      if ($("#messages-for-chat").data('room') != <%= rel.team_id %>){return false}
+  <% rel.team.chatrooms.each do |chatroom| %>
+	  <script>
+	    pusher.subscribe("chat-<%= chatroom.id %>").bind('message-push', function (data) {
+	      // $("#message-<%#= @team.last_chat_stream_message_id %>").empty();
+	      // 	$("#message-<%#= @team.last_chat_stream_message_id %>").append("<%#= j render 'message', message: Message.where(chatroom_id: @team.id).last.beginning_of_stream %>")
+	      if ($("#messages-for-chat").data('room') != <%= chatroom.id %>){return false}
 
-      if (data.user_id == user_id) {
-        data.current_user = true;
-      }
-      else{
-        data.current_user = false;
-      }
-      if (data.user_id != $('.message-wrap:last').data('id')){
-        data.begin_stream = true;
-      }else{
-        data.begin_stream = false;
-      }
-      $("#messages-for-chat").append(JST['chat/message'](data));
-      $('#messages-for-chat').scrollTop($('#messages-for-chat')[0].scrollHeight);
+	      if (data.user_id == user_id) {
+	        data.current_user = true;
+	      }
+	      else{
+	        data.current_user = false;
+	      }
+	      if (data.user_id != $('.message-wrap:last').data('id')){
+	        data.begin_stream = true;
+	      }else{
+	        data.begin_stream = false;
+	      }
+	      $("#messages-for-chat").append(JST['chat/message'](data));
+	      $('#messages-for-chat').scrollTop($('#messages-for-chat')[0].scrollHeight);
       
-    });
-  </script>
+	    });
+	  </script>
+  <% end %>
 <% end %>
 
 <div id="pusher">
@@ -58,10 +60,26 @@
             <div class="list-action-left">
               <!-- <img src="<%= image_path("placeholders/user.jpg") %>" class="face-radius" alt=""> -->
             </div>
-            <div class="list-content">
-              <span class="title"><%= link_to rel.team.proper_name, chatroom_messages_path(status: "Athlete", team_id: rel.team.id), remote: true %></span>
-              <!-- <span class="caption">Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.</span> -->
-            </div>
+			<% rel.team.chatrooms.each do |chatroom| %>
+				<% if rel.athlete? && chatroom.specific_id == 1  %>
+		            <div class="list-content">
+		                  <span class="title"><%= link_to "#{rel.team.proper_name} - #{chatroom.specific_id}", chatroom_messages_path(chatroom_id: chatroom.id), remote: true %></span>
+		              <!-- <span class="caption">Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.</span> -->
+		            </div>
+				<% end %>
+				<% if rel.coach? && chatroom.specific_id == 2  %>
+		            <div class="list-content">
+		                  <span class="title"><%= link_to "#{rel.team.proper_name} - #{chatroom.specific_id}", chatroom_messages_path(chatroom_id: chatroom.id), remote: true %></span>
+		              <!-- <span class="caption">Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.</span> -->
+		            </div>
+				<% end %>
+				<% if current_user.parent_relationship_with_team?(rel.team) && chatroom.specific_id == 3  %>
+		            <div class="list-content">
+		                  <span class="title"><%= link_to "#{rel.team.proper_name} - #{chatroom.specific_id}", chatroom_messages_path(chatroom_id: chatroom.id), remote: true %></span>
+		              <!-- <span class="caption">Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.</span> -->
+		            </div>
+				<% end %>
+			<% end %>
             <div class="list-action-right">
               <!-- <span class="top">15 min</span>
               <i class="ion-android-done bottom"></i> -->

@@ -30,6 +30,14 @@ class Relationship < ActiveRecord::Base
     "#{'Athlete' if participant?}#{', ' if(participant? &&(trainer? || head? || manager? ))}#{'Coach' if head?}#{', ' if (head? && (trainer? || manager? ))}#{'Trainer' if trainer?}#{', ' if (manager? && trainer?)}#{'Manager' if manager?}"
   end
   
+  def athlete?
+    (participant? && accepted == true) ? true : false 
+  end
+  
+  def coach?
+    (head? && accepted == true) ? true : false 
+  end
+  
 end
 
 
