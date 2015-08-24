@@ -2,31 +2,53 @@
     <li class="active"><a href="#photos" data-toggle="tab">Photos</a></li>
     <li><a href="#videos-and-articles" data-toggle="tab">Videos & Articles</a></li>
 </ul>
-
-<hr/>
-<div class="tab-content well bgcolor-light-grey">
+<br/>
+<div class="tab-content">
   <div class="tab-pane active" id="photos">
-    <div id="user-profile-picture">
-      <%= render 'shared/add_photo' %>
-    </div>
-
-    <div id="user-profile-picture">
-      <%= render 'shared/gallery' %>
+    <div class="row">
+      <div class="col-md-3">
+        <div id="user-profile-picture">
+          <%= render 'shared/add_photo' %>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="well bgcolor-light-grey">
+          <div class="row image-row masonry">
+            <% @pictures.each do |p| %>
+              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <a href="<%= p.image %>" title="Some title goes here" data-gallery="#user-gallery">
+                  <img src="<%= p.image %>" alt="" class="img-responsive img-thumbnail">
+                </a>
+              </div><!--.col-->
+            <% end %>
+            <div class="clearfix"></div>
+          </div>
+        </div><!--.row-->
+      </div>
     </div>
   </div><!--.tab-pane-->
   <div class="tab-pane" id="videos-and-articles">
-    <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'video')"), method: :get ,remote: true, class: 'mr10 btn btn-large btn-blue' do %>
-      New Video <i class="ion-plus-circled margin-left-10"></i>
-    <% end %>
-     <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'article')"), method: :get ,remote: true, class: 'mr10 btn btn-large btn-blue' do %>
-        New Article <i class="ion-plus-circled margin-left-10"></i>
-    <% end %>
-    <hr/>
-    <div class="clearfix">
-      <div id="medias">
-        <% @object.medias.each do |m| %>
-          <%= render 'media/form', m: m, u: @object %>
-        <% end %>
+    <div class="row">
+      <div class="col-md-3">
+        <p>
+          <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'video')"), method: :get ,remote: true, class: 'mr10 btn btn-block btn-blue' do %>
+            New Video <i class="ion-plus-circled margin-left-10"></i>
+          <% end %>
+        </p>
+        <p>
+          <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'article')"), method: :get ,remote: true, class: 'mr10 btn btn-block btn-blue' do %>
+            New Article <i class="ion-plus-circled margin-left-10"></i>
+          <% end %>
+        </p>
+      </div>
+      <div class="col-md-9">
+        <div class="clearfix">
+          <div id="medias">
+            <% @object.medias.each do |m| %>
+              <%= render 'media/form', m: m, u: @object %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div><!--.tab-pane-->

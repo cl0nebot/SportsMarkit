@@ -388,14 +388,7 @@
 									<i class="ion-person-add mr10"></i> Add photos, videos, and articles
 								</p>
 								<div class="tab-pane active" id="photos">
-									<%#= render 'shared/gallery' %>
-									<div class="row image-row">
-									<% @pictures.each do |picture| %>
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/1.jpg" title="Some title goes here" data-gallery="#user-gallery"><img src="<%= picture.image %>" alt=""></a>
-									</div><!--.col-->
-									<% end %>
-									</div><!--.row-->
+									<%= render 'shared/gallery' %>
 								</div><!--.tab-pane-->
 								
 								<div class="tab-pane" id="videos">

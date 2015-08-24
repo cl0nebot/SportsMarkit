@@ -448,11 +448,11 @@
 													<h5 class="bold text-primary">My Certifications</h5>
 													<br/>
 
-								                  	<div id="certificates">
-								                    	<% @user.certificates.each do |m| %>
-								                      		<%= render 'certificates/form', m: m, u: @user %>
-								                    	<% end %>
-								                  	</div>
+			                  	<div id="certificates">
+			                    	<% @user.certificates.each do |m| %>
+			                      		<%= render 'certificates/form', m: m, u: @user %>
+			                    	<% end %>
+			                  	</div>
 												</div>
 												<div class="form-buttons">
 													<div class="row">
@@ -580,9 +580,9 @@
 												<hr class="margin-top-0"/>
 												<h5 class="bold text-primary">Upload Photos, Videos, and Articles</h4>
 												<br/>
-
-
+		                  	
 		                  	<%= render 'shared/edit_media'%>
+
 		                  </div>
 										</div><!--.tab-pane-->
 
