@@ -36,7 +36,7 @@
               <span class="count"><%= Facility.all.count %></span>
             </button>
           </li>
-		  <% Facility.pluck(:facility_type).uniq.each do |type|%>
+		  <% Facility.pluck(:facility_type).compact.uniq.each do |type|%>
           <li>
             <button data-filter=".<%= Facility.type_with_hyphen(type) %>" class="btn btn-white b-rad-4 btn-sm btn-block">
               <span class="filter"><%= type %></span> 
