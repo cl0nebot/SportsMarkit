@@ -32,6 +32,21 @@
 							<i class="ion-location"></i> <%= @facility.address_1 %><br/>
 							 <%= @facility.city %>, <%= @facility.state %>, <%= @facility.zip %>
 						</p>
+						<hr class="light mb0 mt10"/>
+						<ul class="fs_12 mt10">
+							<li>
+								<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
+								<%= @facility.phone_number %> 
+							</li>
+							<li>
+								<i class="ion-monitor fs_20 text-primary mr5"></i>
+								<a href="<%= @facility.website %>"><%= @facility.website %></a>
+							</li>
+							<li>
+								<i class="ion-email fs_20 text-primary mr5"></i>
+								<%= @facility.email %>
+							</li>
+						</ul>
 					</div>
 					<hr class="light mt10 mb10"/>
 					<div class="card-body pl40 pr40">
@@ -41,6 +56,21 @@
 					</div>
 					<hr class="light mt10 mb10"/>
 					<div class="card-body pl40 pr40 pb40">
+						<h5 class="mt10">Facility Features and Amenities</h5>
+							<ul class="list-material fs_14">
+								<li class="">
+									<i class="fa fa-check-circle m-r-5 text-indigo"></i>
+									Soccer Field
+								</li>
+								<li class="">
+									<i class="fa fa-check-circle m-r-5 text-indigo"></i>
+									Basketball Court
+								</li>
+								<li class="">
+									<i class="fa fa-check-circle m-r-5 text-indigo"></i>
+									Tennis Court
+								</li>
+							</ul>
 					</div>
 
 				</div>

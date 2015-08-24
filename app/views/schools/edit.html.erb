@@ -2,19 +2,21 @@
 	<div class="page-header full-content bg-primary" style="min-height: 141px;">
 		<div class="row">
 			<div class="col-md-6">
-				<div class="pull-left margin-right-20">
-					<div class="profile-photo-wrapper" style="height: 85px; overflow: hidden;">
-						<%= image_tag(@object.avatar, class: "img-thumbnail img-responsive", style: "height: 100%; width: 100%:") %>
+				<%= link_to school_path(@school) do %>
+					<div class="pull-left margin-right-20">
+						<div class="profile-photo-wrapper" style="height: 85px; overflow: hidden;">
+							<%= image_tag(@object.avatar, class: "img-thumbnail img-responsive", style: "height: 100%; width: 100%:") %>
+						</div>
 					</div>
-				</div>
-				<div class="pull-left">
-					<h1 class="capitalize h1-xlarge">
-						<%= @school.name %> 
-					</h1>
-					<h6 class="capitalize h1-xlarge text-white">
-						<i class="ion-map mr5"></i> <%= @school.address_1 %>, <%= @school.city %>, <%= @school.state %> 
-					</h6>
-				</div>
+					<div class="pull-left">
+						<h1 class="capitalize h1-xlarge">
+							<%= @school.name %> 
+						</h1>
+						<h6 class="capitalize h1-xlarge text-white">
+							<i class="ion-map mr5"></i> <%= @school.address_1 %>, <%= @school.city %>, <%= @school.state %> 
+						</h6>
+					</div>
+				<% end %>
 			</div><!--.col-->
 			<div class="col-sm-6">
 				<ol class="breadcrumb">
@@ -36,7 +38,7 @@
 				<li><a href="#location" data-toggle="tab">Location</a></li>
 				<li><a href="#contact" data-toggle="tab">Contact</a></li>
 				<li><a href="#admin" data-toggle="tab">Admin</a></li>
-				<li><a href="#media" data-toggle="tab">Photos and Videos</a></li>
+				<li><a href="#media" data-toggle="tab">Media</a></li>
 			</ul>
 		</div>
 	</div><!--.page-header-->

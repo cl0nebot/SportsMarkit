@@ -323,6 +323,7 @@ input.form-control {font-size: 26px; line-height: 30px;}
   opacity: 1 !important;
 }
 
+.parallax-bg {top: 0 !important;}
 
 
 .page-header.full-content.parallax .parallax-bg {
