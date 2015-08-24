@@ -2,19 +2,21 @@
 	<div class="page-header full-content bg-primary" style="min-height: 141px;">
 		<div class="row">
 			<div class="col-md-6">
-				<div class="pull-left margin-right-20">
-					<div class="profile-photo-wrapper" style="height: 85px; overflow: hidden;">
-						<%= image_tag(@object.avatar, class: "img-thumbnail img-responsive", style: "height: 100%; width: 100%:") %>
+				<%= link_to team_path(@team) do %>
+					<div class="pull-left margin-right-20">
+						<div class="profile-photo-wrapper" style="height: 85px; overflow: hidden;">
+							<%= image_tag(@object.avatar, class: "img-thumbnail img-responsive", style: "height: 100%; width: 100%:") %>
+						</div>
 					</div>
-				</div>
-				<div class="pull-left">
-					<h3 class="capitalize text-white mb5">
-						<%= @team.name %> 
-					</h3>
-					<h6 class="capitalize text-white">
-						<i class="ion-map mr5"></i> <%= @team.city %>, <%= @team.state %> 
-					</h6>
-				</div>
+					<div class="pull-left">
+						<h3 class="capitalize text-white mb5">
+							<%= @team.name %> 
+						</h3>
+						<h6 class="capitalize text-white">
+							<i class="ion-map mr5"></i> <%= @team.city %>, <%= @team.state %> 
+						</h6>
+					</div>
+				<% end %>
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb">

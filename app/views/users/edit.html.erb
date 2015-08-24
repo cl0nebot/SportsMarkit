@@ -2,17 +2,19 @@
 	<div class="page-header full-content bg-primary" style="min-height: 141px;">
 		<div class="row">
 			<div class="col-md-6">
-				<div class="pull-left margin-right-20">
-					<%= image_tag(@user.avatar, class: "img-thumbnail img-responsive", height: "", width: "100") %>
-				</div>
-				<div class="pull-left">
-					<h1 class="capitalize h1-xlarge">
-						<%= @user.full_name %> 
-					</h1>
-					<h6 class="capitalize h1-xlarge text-white">
-						<%= @user.classification_list %>
-					</h6>
-				</div>
+				<%= link_to user_path(@user) do %>
+					<div class="pull-left margin-right-20">
+						<%= image_tag(@user.avatar, class: "img-thumbnail img-responsive", height: "", width: "100") %>
+					</div>
+					<div class="pull-left">
+						<h1 class="capitalize h1-xlarge">
+							<%= @user.full_name %> 
+						</h1>
+						<h6 class="capitalize h1-xlarge text-white">
+							<%= @user.classification_list %>
+						</h6>
+					</div>
+				<% end %>
 			</div><!--.col-->
 			<div class="col-md-6">
 				<ol class="breadcrumb">
