@@ -29,6 +29,8 @@
 									<%#= f.select :sport, Sport.pluck(:sport), {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => true, data:{live_search: 'true', width: '100%'}} %>
 									<%= f.select :sport, Sport.pluck(:sport), { :include_blank => 'Select Sport' }, {:class => 'selecter bg-white margin-bottom-0', :required => true, data:{ live_search: 'true', width: '100%'}} %>
 								</div><!--.col-md-9-->
+								
+								<%= f.select :classification, [ 'School District', 'Recreational: Adult', 'Recreational: Youth'], {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
 							</div><!--.row-->
 						</div>
 					</div>

@@ -204,5 +204,45 @@ class Team < ActiveRecord::Base
     end
     array.max
   end
+  
+  def classification_and_category
+    if school_id.present?
+      school_class = school.category_and_classification
+    end
+    
+    if classification.present?
+      self_class = classification.downcase.gsub("recreational: ","").gsub(" ","-")
+    end
+    
+    if school_class.nil? 
+      self_class
+    elsif self_class.nil?
+      school_class
+    else
+      school_class + self_class
+    end
+  end
+  
+  def self.type_with_hyphen(type)
+    type.downcase.gsub("recreational: ","").gsub(" ","-")
+  end
+  
+  def self.classifications
+    school_ids = Team.all.pluck(:school_id).compact.uniq
+    classifications = School.where(id: school_ids).pluck(:classification).compact.uniq
+    categories = School.where(id: school_ids).pluck(:category).compact.uniq
+    more = Team.all.pluck(:classification).compact.uniq
+    classifications + categories + more
+  end
+  
+  def self.count_for_classification(classification)
+    if Team.all.pluck(:classification).include? classification
+      Team.where(classification: classification).count
+    elsif School.pluck(:classification).include? classification
+      Team.joins(:school).merge(School.where(:classification => classification)).count
+    else
+      Team.joins(:school).merge(School.where(:category => classification)).count
+    end
+  end
 
 end
