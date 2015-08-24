@@ -231,11 +231,13 @@ class League < ActiveRecord::Base
   end
   
   def classification_with_hyphen
-    classification.downcase.gsub("recreational: ","").gsub(" ","-")
+    if classification.present?
+      classification.downcase.gsub("recreational: ","").gsub(" ","-")
+    end
   end
   
   def category_and_classification
-    "#{classification_with_hyphen} #{category.downcase}"
+    "#{classification_with_hyphen} #{category.try(:downcase)}"
   end
   
 
