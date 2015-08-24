@@ -1,4 +1,4 @@
-<div id='media-<%= m.fake_id %>' style='margin-bottom: 20px; display: block; float: left; width: 100%;' class='media-field'>
+<div id='media-<%= m.fake_id %>' style='margin-bottom: 20px; display: block; float: left; width: 100%;' class='media-field well bgcolor-light-grey'>
   <% url = m.persisted? ? user_medium_path(user_id: u.id, id: m.id) : user_media_path(user_id: u.id) %>
   <% method = m.persisted? ? :put : :post %>
   <%= form_for m, remote: true, url: url, method: method, html: {id: "add-media-form"} do |f| %>

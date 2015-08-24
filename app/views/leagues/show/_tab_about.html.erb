@@ -8,7 +8,7 @@
 		<div class="col-lg-12">
 			<div class="row">
 				<div class="col-md-4" style="margin-top: -212px;">
-					<div class="card tile card-post" style="border-top: 3px solid #ccc;">
+					<div class="card tile card-post" style="border-top: 3px solid #3e50b4;">
 						<div class="card-heading pl40 pr40">
 
 							<%= render "shared/fan" %>
@@ -77,47 +77,6 @@
 								</span>
 							</p>
 						</div>
-						<hr class="light mt15 mb15"/>
-						<div class="card-heading pl40 p40">
-							<h6 class="semi-bold mb0 fs_14"><%= @league.name %></h6>
-							<h5 class="semi-bold mt0 mb0 text-black">Schools/Teams</h3>
-						</div><!--.card-heading-->
-						
-						<div class="card-body pr40">
-							<ul class="list-material borderless">
-								
-							<% @league.schools.each do |school| %>	
-								<li class="has-action-left">
-									<a href="#" class="visible">
-										<div class="pull-right pt20">
-											
-										</div>
-
-										<div class="list-action-left">
-											<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-										</div>
-										<div class="list-content">
-											<span class="title"><%= school.name %></span>
-											<span class="text-muted fs_11 inline mr10">
-												<i class="ion-ios-telephone text-primary mr5"></i>
-												<%= school.phone_number %>
-											</span>
-											<span class="text-muted fs_11 inline mr10">
-												<i class="ion-email text-primary mr5"></i>
-												<%#= mail_to school.email, "Email" %>
-											</span>
-											<span class="text-muted fs_11 inline mr10">
-												<i class="ion-android-desktop text-primary mr5"></i>
-												<%#= link_to "Website", "#{school.website}" %>
-											</span>
-										</div>
-
-									</a>
-								</li>
-								<% end %>
-
-							</ul>
-						</div><!--.card-body-->
 							
 						<br/>
 							<hr class="light mt15 mb15"/>
@@ -239,12 +198,79 @@
 
 				<div class="row">
 					<div class="col-md-6 masonry">
+
+						<!-- My teams -->
+						<div class="col-md-12">
+							<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
+								<div class="card-heading">
+									<h3 class="card-title">Our Teams</h3>
+									<div class="card-subhead">
+									 <!-- <a href="#">8 Teams</a> -->
+									</div><!--.card-subhead-->
+								</div><!--.card-heading-->
+								<div class="card-body">
+									<ul class="list-material borderless bgcolor-light-grey">
+										<p class="mb0 mt0 center padding-10 text-grey">
+											<i class="ion-person-add mr10"></i> Add teams to your profile
+										</p>
+					          			<% @league.schools.each do |team| %>	
+											<li class="has-action-left">
+										<a href="#" class="visible">
+											<div class="list-action-left">
+												<i class="ion-flag icon-circle"></i>
+											</div>
+											<div class="list-content">
+												<span class="title">
+													<span class="bold"><%= team.name %></span>
+												</span>
+												<span class="fs_11 text-muted">
+												</span>
+											</div>
+										</a>
+									</li>
+									<ul class="users bgcolor-light-grey" style="border-bottom: 1px solid #ddd;">
+										<% team.accepted_coaches.each do |user| %>
+											<li>
+												<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+													<%= image_tag user.avatar %>
+												</a>
+											</li>
+										<% end %>
+										<% team.accepted_athletes.each do |user| %>
+											<li>
+												<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+													<%= image_tag user.avatar %>
+												</a>
+											</li>
+										<% end %>
+										<% team.userless_athletes.each do |user| %>
+										<li>
+											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.first_name %> <%= user.last_name %>">
+												<%= image_tag user.avatar %>
+											</a>
+										</li>
+										<% end %>
+									</ul>
+										<% end %>
+			
+									</ul>
+								</div><!--.card-body-->
+								<hr class="no-margin"/>
+								<div class="card-footer">
+									<ul>
+										<li class="fs_14"><span class="mr5"><%= pluralize @league.teams.count, "Team"%></span></li>
+										<li><%= link_to "View All Teams", "/leagues/#{@league.slug}/#tab_teams", class: "fs_14" %></li>
+									</ul>
+								</div><!--.card-footer-->
+							</div><!--.card-->
+						</div><!--.col-md-12-->
+						<!-- My teams -->
 						
 
 						<!-- Coaches -->
 						<div class="col-md-12">
 							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-								<div class="card-heading" style="border-top: 3px solid #ccc;">
+								<div class="card-heading">
 									<h6 class="semi-bold fs_14 mb0"><%= @league.name %></h6>
 									<h3 class="card-title">Coaches</h3>
 									<!-- <div class="card-subhead">
@@ -277,10 +303,10 @@
 						</div><!--.col-md-12-->
 						<!-- Coaches -->
 
-						<!-- Coaches -->
+						<!-- Athletic Administrators -->
 						<div class="col-md-12">
 							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-								<div class="card-heading" style="border-top: 3px solid #ccc;">
+								<div class="card-heading">
 									<h6 class="semi-bold fs_14 mb0"><%= @league.name %></h6>
 									<h3 class="card-title">Athletic Administrators</h3>
 									<!-- <div class="card-subhead">
@@ -312,82 +338,13 @@
 						</div><!--.col-md-12-->
 						<!-- Coaches -->
 
-
-						<!-- Followers -->
-						<div class="col-md-12">
-							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-								<div class="card-heading" style="border-top: 3px solid #ccc;">
-									<h6 class="semi-bold fs_14 mb0"><%= @league.name %></h6>
-									<h3 class="card-title">Our Fans</h3>
-									<!-- <div class="card-subhead">
-									 <a href="#">124 Students</a>
-									</div> -->
-									<!--.card-subhead-->
-								</div><!--.card-heading-->
-								<div class="card-body">
-									<ul class="users bgcolor-light-grey">
-										<p class="mb0 mt0 center padding-10 text-grey">
-											<i class="ion-person-add mr10"></i> Build your sport community
-										</p>
-										<% @league.people.each do |rel|%>
-										<li>
-											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= rel.user.full_name %>">
-												<%= image_tag rel.user.avatar %>
-											</a>
-										</li>
-										<% end %>
-									</ul>
-								</div><!--.card-body-->
-								<div class="card-footer">
-									<ul>
-										<li><span class="mr5 fs_14"><%= pluralize @league.people.count, "Fan" %></span></li>
-										<!-- <li><a href="#" class="fs_14">View All</a></li> -->
-									</ul>
-								</div><!--.card-footer-->
-							</div><!--.card-->
-						</div><!--.col-md-12-->
-
-						<!-- Athletes -->
-						<div class="col-md-12">
-							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-								<div class="card-heading" style="border-top: 3px solid #ccc;">
-									<h6 class="semi-bold fs_14 mb0"><%= @league.name %></h6>
-									<h3 class="card-title">Athletes</h3>
-									<!-- <div class="card-subhead">
-									 <a href="#">124 Students</a>
-									</div> -->
-									<!--.card-subhead-->
-								</div><!--.card-heading-->
-								<div class="card-body bgcolor-light-grey">
-									<ul class="users">
-										<p class="mb0 mt0 center padding-10 text-grey">
-											<i class="ion-person-add mr10"></i> Add Players to Roster
-										</p>
-										<% @accepted_athletes.each do |user| %>
-										<li>
-											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
-												<%= image_tag user.avatar %>
-											</a>
-										</li>
-										<% end %>
-									</ul>
-								</div><!--.card-body-->
-								<div class="card-footer">
-									<ul>
-										<li><span class="mr5 fs_14"><%= pluralize @accepted_athletes.count, "Athlete" %></span></li>
-										<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
-									</ul>
-								</div><!--.card-footer-->
-							</div><!--.card-->
-						</div>
-						<!-- Athletes -->
 					</div>
 
 					<div class="col-md-6 masonry">
 
 						<div class="col-md-12 clearfix">
 							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-								<div class="card-heading" style="border-top: 3px solid #ccc;">
+								<div class="card-heading">
 									<ul class="nav nav-tabs tabs-right-aligned pull-right fs_14 no-border" role="tablist">
 										<li><a href="#articles" data-toggle="tab">Articles</a></li>
 										<li><a href="#videos" data-toggle="tab">Videos</a></li>
@@ -453,7 +410,7 @@
 						<!-- My Schedule -->
 						<div class="col-md-12">
 							<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
-								<div class="card-heading" style="border-top: 3px solid #ccc;">
+								<div class="card-heading">
 									<h6 class="semi-bold fs_14 mb0"><%= @league.name %></h6>
 									<h3 class="card-title">Upcoming Events</h3>
 									<!-- <div class="card-subhead">
@@ -480,6 +437,77 @@
 								</div><!--.card-footer-->
 							</div><!--.card-->
 						</div><!--.timeline-->
+
+						
+
+						<!-- Fans -->
+						<div class="col-md-12">
+							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+								<div class="card-heading">
+									<h6 class="semi-bold fs_14 mb0"><%= @league.name %></h6>
+									<h3 class="card-title">Our Fans</h3>
+									<!-- <div class="card-subhead">
+									 <a href="#">124 Students</a>
+									</div> -->
+									<!--.card-subhead-->
+								</div><!--.card-heading-->
+								<div class="card-body">
+									<ul class="users bgcolor-light-grey">
+										<p class="mb0 mt0 center padding-10 text-grey">
+											<i class="ion-person-add mr10"></i> Build your sport community
+										</p>
+										<% @league.people.each do |rel|%>
+										<li>
+											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= rel.user.full_name %>">
+												<%= image_tag rel.user.avatar %>
+											</a>
+										</li>
+										<% end %>
+									</ul>
+								</div><!--.card-body-->
+								<div class="card-footer">
+									<ul>
+										<li><span class="mr5 fs_14"><%= pluralize @league.people.count, "Fan" %></span></li>
+										<!-- <li><a href="#" class="fs_14">View All</a></li> -->
+									</ul>
+								</div><!--.card-footer-->
+							</div><!--.card-->
+						</div><!--.col-md-12-->
+
+						<!-- Athletes -->
+						<div class="col-md-12">
+							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+								<div class="card-heading">
+									<h6 class="semi-bold fs_14 mb0"><%= @league.name %></h6>
+									<h3 class="card-title">Athletes</h3>
+									<!-- <div class="card-subhead">
+									 <a href="#">124 Students</a>
+									</div> -->
+									<!--.card-subhead-->
+								</div><!--.card-heading-->
+								<div class="card-body bgcolor-light-grey">
+									<ul class="users">
+										<p class="mb0 mt0 center padding-10 text-grey">
+											<i class="ion-person-add mr10"></i> Add Players to Roster
+										</p>
+										<% @accepted_athletes.each do |user| %>
+										<li>
+											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+												<%= image_tag user.avatar %>
+											</a>
+										</li>
+										<% end %>
+									</ul>
+								</div><!--.card-body-->
+								<div class="card-footer">
+									<ul>
+										<li><span class="mr5 fs_14"><%= pluralize @accepted_athletes.count, "Athlete" %></span></li>
+										<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
+									</ul>
+								</div><!--.card-footer-->
+							</div><!--.card-->
+						</div>
+						<!-- Athletes -->
 					</div>
 
 				</div>

@@ -10,7 +10,7 @@
 	<div class="">
 		<div class="row">		
 			<div class="col-md-4" style="margin-top: -296px;">
-				<div class="card tile card-post" style="border-top: 3px solid #ccc;">
+				<div class="card tile card-post" style="border-top: 3px solid #3e50b4;">
 					<div class="card-heading pl40 pr40">
 						<%= render "shared/fan" %>
 					    <%= render 'shared/online' %>
@@ -241,7 +241,7 @@
 						<!-- My teammates -->
 						<div class="col-md-12 clearfix">
 							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-						<div class="card-heading" style="border-top: 3px solid #ccc;">
+						<div class="card-heading">
 							<h3 class="card-title">My Teammates</h3>
 							<div class="card-subhead">
 							 <!-- <a href="#">24 Teammates</a> -->
@@ -275,7 +275,7 @@
 						<!-- My teams -->
 						<div class="col-md-12">
 							<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
-								<div class="card-heading" style="border-top: 3px solid #ccc;">
+								<div class="card-heading">
 									<h3 class="card-title">My Teams</h3>
 									<div class="card-subhead">
 									 <!-- <a href="#">8 Teams</a> -->
@@ -286,23 +286,45 @@
 										<p class="mb0 mt0 center padding-10 text-grey">
 											<i class="ion-person-add mr10"></i> Add teams to your profile
 										</p>
-					          <% @user.user_teams.each do |team| %>
+					          			<% @user.user_teams.each do |team| %>
 											<li class="has-action-left">
-												<a href="#" class="visible">
-													<div class="list-action-left">
-														<%= image_tag  @object.avatar, class: "face-radius" %>
-													</div>
-													<div class="list-content">
-														<span class="title"><%= team.name %></span>
-														<span class="fs_11 text-muted">
-															<%= pluralize team.people.count, "Person" %>,
-															<i class="ion-location text-primary ml5"></i> <%= team.city_state %>
-														</span>
-													</div>
+										<a href="#" class="visible">
+											<div class="list-action-left">
+												<i class="ion-flag icon-circle"></i>
+											</div>
+											<div class="list-content">
+												<span class="title">
+													<span class="bold"><%= team.name %></span>
+												</span>
+												<span class="fs_11 text-muted"><%= pluralize team.accepted_coach_relationships.count, "Coach" %>, 
+													<%= pluralize team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize team.accepted_trainer_relationships.count, "Trainer" %>
+												</span>
+											</div>
+										</a>
+									</li>
+									<ul class="users bgcolor-light-grey" style="border-bottom: 1px solid #ddd;">
+										<% team.accepted_coaches.each do |user| %>
+											<li>
+												<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+													<%= image_tag user.avatar %>
 												</a>
 											</li>
-											<li class="divider with-border no-padding no-margin">
+										<% end %>
+										<% team.accepted_athletes.each do |user| %>
+											<li>
+												<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+													<%= image_tag user.avatar %>
+												</a>
 											</li>
+										<% end %>
+										<% team.userless_athletes.each do |user| %>
+										<li>
+											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.first_name %> <%= user.last_name %>">
+												<%= image_tag user.avatar %>
+											</a>
+										</li>
+										<% end %>
+									</ul>
 										<% end %>
 			
 									</ul>
@@ -321,7 +343,7 @@
 						<!-- My Schedule -->
 						<div class="col-md-12">
 							<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
-								<div class="card-heading" style="border-top: 3px solid #ccc;">
+								<div class="card-heading">
 									<h3 class="card-title">My Schedule</h3>
 									<div class="card-subhead">
 									 <!-- <a href="#">7 Upcoming Events</a> -->
@@ -352,7 +374,7 @@
 				<div class="col-md-6">	
 					<div class="col-md-12 clearfix">
 						<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-						<div class="card-heading pb0" style="border-top: 3px solid #ccc;">
+						<div class="card-heading pb0">
 							<ul class="nav nav-tabs tabs-right-aligned pull-right fs_14 no-border" role="tablist">
 								<li><a href="#articles" data-toggle="tab">Articles</a></li>
 								<li><a href="#videos" data-toggle="tab">Videos</a></li>
@@ -366,14 +388,7 @@
 									<i class="ion-person-add mr10"></i> Add photos, videos, and articles
 								</p>
 								<div class="tab-pane active" id="photos">
-									<%#= render 'shared/gallery' %>
-									<div class="row image-row">
-									<% @pictures.each do |picture| %>
-									<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-										<a href="../../assets/globals/img/picjumbo/1.jpg" title="Some title goes here" data-gallery="#user-gallery"><img src="<%= picture.image %>" alt=""></a>
-									</div><!--.col-->
-									<% end %>
-									</div><!--.row-->
+									<%= render 'shared/gallery' %>
 								</div><!--.tab-pane-->
 								
 								<div class="tab-pane" id="videos">
@@ -428,7 +443,7 @@
 					<!-- My teammates -->
 					<div class="col-md-12">
 						<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-							<div class="card-heading" style="border-top: 3px solid #ccc;">
+							<div class="card-heading">
 								<h3 class="card-title">My Fans</h3>
 								<div class="card-subhead">
 								 <!-- <a href="#">24 Teammates</a> -->
@@ -461,7 +476,7 @@
 					<!-- My teammates -->
 					<div class="col-md-12">
 						<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-							<div class="card-heading" style="border-top: 3px solid #ccc;">
+							<div class="card-heading">
 								<h3 class="card-title">I'm Following</h3>
 								<div class="card-subhead">
 								 <!-- <a href="#">24 Teammates</a> -->

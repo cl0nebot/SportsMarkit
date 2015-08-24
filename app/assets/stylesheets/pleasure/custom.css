@@ -725,3 +725,20 @@ ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
 }
 
 .element-item:hover > div {border: 1px solid #08c;}
+
+
+.card.card-post, 
+.card.tile {
+  box-shadow: none !important;
+  border: 1px solid #ddd;
+}
+
+.card {
+  box-shadow: none !important;
+  border: 1px solid #ddd;
+}
+
+
+.panel.border-indigo:before {
+     background: #3e50b4; 
+}
