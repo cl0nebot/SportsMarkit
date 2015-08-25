@@ -22,7 +22,9 @@ module Reusable
     array = []
     people.uniq.each do |p|
        if p.online_status.present?
-         array << 1
+         if p.online_status.last_seen > Time.now - 10.minutes
+           array << 1
+         end
        end
     end
     array.length
