@@ -45,9 +45,15 @@
 						<h6 class="semi-bold capitalize">
 							<i class="ion-information-circled text-indigo mr5"></i> About <%= @user.name %>
 						</h6>
-						<p class="fs_14 lh_18 text-muted mb20 mt10">
-							No user description.
-						</p>
+						<% if @user.profile.description.present? %>
+						
+						  <%= @user.profile.description %> 
+						
+						<% else %>
+							<p class="fs_14 lh_18 text-muted mb20 mt10">
+								No user description.
+							</p>
+						<% end %>
 						<hr clas="light"/>
 
 						<h6 class="upper mt0">
@@ -79,10 +85,12 @@
 							<%= @user.mobile_phone_number %>
 						</p>
 					<% end %>
+					<% if @user.profile.date_of_birth.present? %>
 					<p class="semi-bold fs_14 text-muted no-margin">
 						<i class="ion-android-calendar fs_20 text-primary mr5"></i>
 						<%= @user.profile.date_of_birth %>
 					</p>
+					<% end %>
 					<% if @user.user_schools.present? %>
 					<p class="semi-bold fs_14 text-muted no-margin">
 						<i class="ion-university fs_20 text-primary mr5"></i>
@@ -201,16 +209,23 @@
 						</div><!--.card-heading-->
 						<div class="card-body">
 							<ul class="users">
-								<p class="mb0 mt0 center padding-10 text-grey">
-									<i class="ion-person-add mr10"></i> Add teams to your profile
-								</p>
-								<% @teammates.each do |teammate| %>
-								<li>
-									<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= teammate.full_name %>">
-										<%= image_tag teammate.avatar %>
-									</a>
-								</li>
-					           <% end %>
+								<% if @teammates.present? %>
+									<% @teammates.each do |teammate| %>
+										<li>
+											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= teammate.full_name %>">
+												<%= image_tag teammate.avatar %>
+											</a>
+										</li>
+							         <% end %>
+									
+								<% else %>
+								
+									<p class="mb0 mt0 center padding-10 text-grey">
+										<!-- <i class="ion-person-add mr10"></i> Add teams to your profile -->
+										No teammates for user
+									</p>
+								
+							   <% end %>
 							</ul>
 						</div><!--.card-body-->
 						<div class="card-footer">
@@ -250,16 +265,22 @@
 							</div><!--.card-heading-->
 							<div class="card-body">
 								<ul class="users">
-									<p class="mb0 mt0 center padding-10 text-grey">
-										<i class="ion-person-add mr10"></i> Build your sport community
-									</p>
-									<% @follows.each do |follow| %>
-									<li>
-										<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= follow.fannable.name %>">
-											<%= image_tag follow.fannable.image %>
-										</a>
-									</li>
-						           <% end %>
+									<% if @follows.present? %>
+	 									<% @follows.each do |follow| %>
+	 									<li>
+	 										<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= follow.fannable.name %>">
+	 											<%= image_tag follow.fannable.image %>
+	 										</a>
+	 									</li>
+	 						           <% end %>
+									
+									<% else %>
+										<p class="mb0 mt0 center padding-10 text-grey">
+											<!-- <i class="ion-person-add mr10"></i> Build your sport community -->
+											Not following anything yet
+										</p>
+									
+								   <% end %>
 								</ul>
 							</div><!--.card-body-->
 							<div class="card-footer">
