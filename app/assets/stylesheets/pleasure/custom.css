@@ -693,6 +693,12 @@ ul.list-material.borderless.bgcolor-light-grey > li.divider {
     display: block;
 }
 
+.nav-pages .tooltip {
+    display: block;
+    z-index: 999999;
+    min-width: 100px;
+}
+
 .logo {font-family: 'Black Ops One';}
 
 
