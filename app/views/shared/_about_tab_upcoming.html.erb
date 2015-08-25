@@ -1,0 +1,40 @@
+						<div class="col-md-12">
+							<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
+								<div class="card-heading">
+									<% if @object.class.to_s == "User" %>
+									  <h3 class="card-title">My Schedule</h3>
+									<% else %>
+									  <h6 class="semi-bold fs_14 mb0"><%= @object.name %></h6>
+									  <h3 class="card-title">Upcoming Events</h3>
+									<% end %>
+									<!-- <div class="card-subhead">
+									 <a href="#">7 Upcoming Events</a>
+									</div> -->
+									<!--.card-subhead-->
+								</div><!--.card-heading-->
+								<div class="card-body pl40 bgcolor-light-grey">
+								   <% if @object.upcoming_events.present? %>
+									  <div class="timeline single">
+										  <%= render 'shared/show_view_events', object: @object %>
+									  </div>
+									
+									<% else %>
+									 <p class="mb0 mt0 center padding-10 text-grey">
+									  <% if true %>
+	  									     <i class="ion-calendar mr10"></i> Add Events to your Calendar
+									   <% else %>
+	   									     <!-- <i class="ion-calendar mr10"></i> --> No Upcoming Events
+									   <% end %>
+									   </p>
+									<% end %>
+								</div>
+								<hr class="no-margin"/>
+								
+								<div class="card-footer">
+									<ul>
+										<li class="fs_14"><span class="mr5"><%= pluralize @object.upcoming_events.count, "Upcoming Event" %> </span></li>
+										<li><a href="#calendar-tab" data-toggle="tab" class="fs_14">View All Events</a></li>
+									</ul>
+								</div><!--.card-footer-->
+							</div><!--.card-->
+						</div><!--.timeline-->

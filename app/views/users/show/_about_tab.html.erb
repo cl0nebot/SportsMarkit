@@ -341,33 +341,7 @@
 						<!-- My teams -->
 
 						<!-- My Schedule -->
-						<div class="col-md-12">
-							<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
-								<div class="card-heading">
-									<h3 class="card-title">My Schedule</h3>
-									<div class="card-subhead">
-									 <!-- <a href="#">7 Upcoming Events</a> -->
-									</div><!--.card-subhead-->
-								</div><!--.card-heading-->
-								<div class="card-body pl40 bgcolor-light-grey">
-									<p class="mb0 mt0 center padding-10 text-grey">
-										<i class="ion-person-add mr10"></i> Add events to your sport schedule
-									</p>
-									<div class="timeline single">
-										<%= render 'shared/show_view_events', object: @user %>
-									</div>
-								</div>
-								<hr class="no-margin"/>
-								
-								<div class="card-footer">
-									<ul>
-										<li class="fs_14"><span class="mr5"><%= pluralize @user.upcoming_events.count, "Upcoming Event" %> </span></li>
-										<li><%= link_to "View All Events", "/users/#{@user.slug}/events", class: "fs_14" %></li>
-									
-									</ul>
-								</div><!--.card-footer-->
-							</div><!--.card-->
-						</div><!--.timeline-->
+                        <%= render 'shared/about_tab_upcoming'%>
 					</div>
 				</div>
 
