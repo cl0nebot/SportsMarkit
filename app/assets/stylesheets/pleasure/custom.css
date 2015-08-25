@@ -748,3 +748,5 @@ ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
 .panel.border-indigo:before {
      background: #3e50b4; 
 }
+
+.show-on-hover ul li img {z-index: 999999999;}
