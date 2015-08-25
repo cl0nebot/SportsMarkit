@@ -456,10 +456,10 @@
 										<p class="mb0 mt0 center padding-10 text-grey">
 											<i class="ion-person-add mr10"></i> Build your sport community
 										</p>
-										<% @league.people.each do |rel|%>
+										<% @league.people.each do |user|%>
 										<li>
-											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= rel.user.full_name %>">
-												<%= image_tag rel.user.avatar %>
+											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+												<%= image_tag user.avatar %>
 											</a>
 										</li>
 										<% end %>
