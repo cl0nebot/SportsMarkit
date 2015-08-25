@@ -325,8 +325,7 @@ ActiveRecord::Schema.define(version: 20150823212428) do
 
   create_table "profile_pictures", force: true do |t|
     t.integer  "profile_picture_owner_id"
-    t.string   "profile_picture_owner_type"
-    t.string   "photo",                      null: false
+    t.string   "photo",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
