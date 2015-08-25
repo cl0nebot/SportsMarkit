@@ -182,7 +182,8 @@ class Team < ActiveRecord::Base
   end
   
   def people
-    relationships.where(accepted: true).uniq
+    user_ids = relationships.where(accepted: true).pluck(:user_id).uniq
+    User.where(id: user_ids)
   end
   
 
