@@ -52,29 +52,29 @@
 				</div>
 				<div class="col-md-12">
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-12">
 							<%= f.text_field :head_title, type: "text", class: "form-control" %> 
 							<p class="small">
 								<small>
 									Head Title
 								</small>
 							</p>
-						</div>
+						</div><!-- 
 						<div class="col-md-6">
-							<% if false %>
+							<%# if false %>
 							  	<%= f.text_field :position, type: "text", class: "form-control"  %>
 								<p class="small">
 									<small>
 										Position
 									</small>
 								</p>
-							<% end %>
-						</div>
+							<%# end %>
+						</div> -->
 					</div>
 				</div>
 				<div class="col-md-12">
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-12">
 						  	<%= f.text_field :mobile_phone_number, type: "text", class: "form-control"  %>
 							<p class="small">
 								<small>
@@ -82,7 +82,7 @@
 								</small>
 							</p>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-3">
 							<%= f.check_box :head %> 
 							<p class="small">
 								<small>
@@ -90,7 +90,7 @@
 								</small>
 							</p>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-3">
 							<%= f.check_box :trainer %> 
 							<p class="small">
 								<small>
@@ -98,7 +98,7 @@
 								</small>
 							</p>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-3">
 							<%= f.check_box :manager %> 
 							<p class="small">
 								<small>
