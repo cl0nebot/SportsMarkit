@@ -4,7 +4,7 @@
 	    <div class="card card-user card-clickable card-clickable-over-content">
 	      <div class="card-heading heading-full">
 			  <%#= image_tag school.main_photo, size: "428x150" %>
-	        <div class="user-image sample-member9" style="background: url(<%= image_path("thumbs/school.jpg")%>);"></div>
+	        <div class="user-image sample-member9" style="background: url(<%= image_path(school.avatar)%>);"></div>
 
 	        <%= link_to edit_school_path(school) do %>
 		        <div class="clickable-button">
