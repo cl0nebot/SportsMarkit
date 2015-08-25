@@ -695,7 +695,7 @@ ul.list-material.borderless.bgcolor-light-grey > li.divider {
 
 .nav-pages .tooltip {
     display: block;
-    z-index: 999999;
+    z-index: 999999999999;
     min-width: 100px;
 }
 
@@ -750,3 +750,8 @@ ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
 }
 
 .show-on-hover ul li img {z-index: 999999999;}
+
+
+.scrollable-tabs {
+    z-index: 1;
+}

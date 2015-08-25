@@ -29,9 +29,17 @@
 				</li> -->
 				
 					<% current_user.relationships.where.not(id: nil).each do |relationship| %>
-					<li><%= link_to "#{relationship.team.proper_name} #{relationship.accepted? ? '' : '(Pending)'}", team_path(relationship.team.friendly_id)%> </li>
+					<li>
+						<%= link_to team_path(relationship.team.friendly_id) do %>
+								<i class="ion-flag mr5"></i> <%= "#{relationship.team.proper_name} #{relationship.accepted? ? '' : '(Pending)'}" %>
+							<% end %>
+					</li>
 						<% if relationship.head? or relationship.admin? or relationship.team.is_athletic_director?(current_user) %>
-						<li><%= link_to "Edit #{relationship.team.proper_name} Information", edit_team_path(relationship.team.friendly_id)%> </li>
+						<li>
+							<%= link_to edit_team_path(relationship.team.friendly_id) do %>
+								<i class="ion-gear-b mr5"></i> <%= "Edit #{relationship.team.proper_name} Information" %>
+							<% end %>
+						</li>
 						<% end %>
 					<% end %>
 				
