@@ -293,49 +293,84 @@
 						</div><!--.col-md-12-->
 
 						<!-- Followers -->
-						<div class="col-md-12">
-							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-								<div class="card-heading">
-									<h6 class="semi-bold fs_14 mb0"><%= @team.name %></h6>
-									<h3 class="card-title">Our Fans</h3>
-									<!-- <div class="card-subhead">
-									 <a href="#">124 Students</a>
-									</div> -->
-									<!--.card-subhead-->
-								</div><!--.card-heading-->
-								<div class="card-body">
-									<ul class="users bgcolor-light-grey">
-										<% unless @fans.present? %>
-										<p class="center padding-10 text-grey">
-											<i class="ion-person-add mr10"></i> No fans Follow your Team.
-										</p>
-										<% else %>
-										<% @team.people.each do |rel|%>
-										<li>
-											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= rel.user.full_name %>">
-												<%= image_tag rel.user.avatar %>
-											</a>
-										</li>
-										<% end %>
-										<% end %>
-									</ul>
-								</div><!--.card-body-->
-								<div class="card-footer">
-									<ul>
-										<li><span class="mr5 fs_14"><%= pluralize @team.people.count, "Fan" %></span></li>
-										<!-- <li><a href="#" class="fs_14">View All</a></li> -->
-									</ul>
-								</div><!--.card-footer-->
-							</div><!--.card-->
-						</div><!--.col-md-12-->
+                       <%= render 'shared/about_tab_fans' %>
 					
 						<!-- Followers -->
-						
-						
 					</div>
 				</div>
 
-			    <%= render 'shared/about_tab_media' %>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-12 clearfix">
+							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+								<div class="card-heading">
+									<ul class="nav nav-tabs tabs-right-aligned pull-right fs_14 no-border" role="tablist">
+										<li><a href="#articles" data-toggle="tab">Articles</a></li>
+										<li><a href="#videos" data-toggle="tab">Videos</a></li>
+										<li class="active"><a href="#photos" data-toggle="tab">Photos</a></li>
+									</ul>
+									<h6 class="semi-bold fs_14 mb0"><%= @team.name %></h6>
+									<h3 class="card-title">Our Sports Media</h3>
+								</div><!--.card-heading-->
+								<div class="card-body">
+									<div class="tab-content">
+										<div class="tab-pane active" id="photos">
+											<div class="row image-row">
+											<% @pictures.each do |picture| %>
+											<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+												<a href="../../assets/globals/img/picjumbo/1.jpg" title="Some title goes here" data-gallery="#user-gallery"><img src="<%= picture.image %>" alt=""></a>
+											</div><!--.col-->
+											<% end %>
+											</div><!--.row-->
+										</div><!--.tab-pane-->
+										
+										<div class="tab-pane" id="videos">
+											<div class="row">
+												<% @videos.each do |vid| %>
+													<div class="col-md-6">
+														<div class="card card-video card-player-orange">
+															<div class="card-heading">
+																<video id="youtube1" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" data-width="100%" data-height="200" data-setup='{ "techOrder": ["youtube"], "src": "<%= vid.url %>" }' ></video>
+															</div><!--.card-heading-->
+															<div class="card-body padding-10">
+																<p class="fs_12 lh_16 no-margin"><%= vid.title%></h5>
+																<p class="text-muted fs_12">
+																	<em>Uploaded on <%= format(vid.publish_date, 2)%></em>
+																</p>
+															</div><!--.card-body-->
+
+														</div><!--.card-->
+													</div><!--.col-md-6-->
+												<% end %>
+											</div>
+										</div><!--.tab-pane-->
+										<div class="tab-pane" id="articles">
+											<div class="row">
+												<% @articles.each do |art| %>
+													<div class="col-md-12">
+														<div class="pull-left">
+															<i class="ion-android-document h1 mr20"></i>
+														</div>
+														<div class="pull-left">
+															<h5 class="semi-bold mb0 mt5"><%= link_to art.title, art.url %></h5>
+															<p class="text-muted fs_14 no-margin">
+																<small>Published on <%= format(art.publish_date, 2)%></small>
+															</p>
+														</div>
+													</div>
+												<% end %>
+											</div>
+										</div><!--.tab-pane-->
+									</div>
+								</div>
+								<div class="card-footer">
+									<ul>
+										<li><span class="mr5 fs_14"><%= pluralize @videos.count, "Video" %>, <%= pluralize @pictures.count, "Photo" %>, <%= pluralize @articles.count, "Article" %> </span></li>
+										<li><%= link_to "View All Media", "/teams/#{@team.slug}/#tab_media", class: "fs_14" %></li>
+									</ul>
+								</div><!--.card-footer-->
+							</div><!--.card-->
+						</div>
 
 						<!-- My Schedule -->
 						<div class="col-md-12">

@@ -386,38 +386,7 @@
 						
 
 						<!-- Fans -->
-						<div class="col-md-12">
-							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-								<div class="card-heading">
-									<h6 class="semi-bold fs_14 mb0"><%= @league.name %></h6>
-									<h3 class="card-title">Our Fans</h3>
-									<!-- <div class="card-subhead">
-									 <a href="#">124 Students</a>
-									</div> -->
-									<!--.card-subhead-->
-								</div><!--.card-heading-->
-								<div class="card-body">
-									<ul class="users bgcolor-light-grey">
-										<p class="mb0 mt0 center padding-10 text-grey">
-											<i class="ion-person-add mr10"></i> Build your sport community
-										</p>
-										<% @league.people.each do |user|%>
-										<li>
-											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
-												<%= image_tag user.avatar %>
-											</a>
-										</li>
-										<% end %>
-									</ul>
-								</div><!--.card-body-->
-								<div class="card-footer">
-									<ul>
-										<li><span class="mr5 fs_14"><%= pluralize @league.people.count, "Fan" %></span></li>
-										<!-- <li><a href="#" class="fs_14">View All</a></li> -->
-									</ul>
-								</div><!--.card-footer-->
-							</div><!--.card-->
-						</div><!--.col-md-12-->
+			           <%= render 'shared/about_tab_fans' %>
 
 						<!-- Athletes -->
 						<div class="col-md-12">

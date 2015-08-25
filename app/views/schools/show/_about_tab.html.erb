@@ -368,37 +368,8 @@
 					<!-- My teams -->
 
 						<!-- My teammates -->
-					<div class="col-md-12">
-						<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-							<div class="card-heading">
-								<h3 class="card-title">My Fans</h3>
-								<div class="card-subhead">
-								 <!-- <a href="#">24 Teammates</a> -->
-								</div><!--.card-subhead-->
-							</div><!--.card-heading-->
-							<div class="card-body bgcolor-light-grey">
-								<ul class="users">
-									<p class="mb0 mt0 center padding-10 text-grey">
-										<i class="ion-person-add mr10"></i> Build your sport community
-									</p>
-									<% @fans.each do |fan| %>
-									<li>
-										<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= fan.user.full_name %>">
-											<%= image_tag fan.user.avatar %>
-										</a>
-									</li>
-						           <% end %>
-								</ul>
-							</div><!--.card-body-->
-							<div class="card-footer">
-								<ul>
-									<li><span class="mr5 fs_14"><%= pluralize @fans.count, "Person" %></span></li>
-									<li><%= link_to "View All Fans", "/schools/#{@school.slug}/#tab_fans", class: "fs_14" %></li>
-									
-								</ul>
-							</div><!--.card-footer-->
-						</div><!--.card-->
-					</div><!--.col-md-12-->
+						<%= render 'shared/about_tab_fans' %>
+					
 				</div>
 
 	            <%= render 'shared/about_tab_media' %>
