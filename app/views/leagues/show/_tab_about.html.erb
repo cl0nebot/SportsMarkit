@@ -149,48 +149,7 @@
 						<%#= @user.profile.favorite_college_team %>
 						<%#= @user.profile.favorite_pro_athlete %>	
 					</div><!--.card-body-->
-					<div class="card-footer mt20 pl40 pr40">
-						<% if @league.social_media_present? %>
-						<h6 class="upper text-muted bold"><small>social profiles</small></h6>
-						  <% @league.facebook.present? %>	
-						    <% if @league.facebook.present? %>	
-								<%=  link_to @league.facebook, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-									<i class="ion-social-facebook"></i>
-								<% end %>
-							<% end %>
-	
-							<% if @league.linkedin.present? %>	
-								<%=  link_to @league.linkedin, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-									<i class="ion-social-linkedin"></i>
-								<% end %>
-							<% end %>
-				
-				            <% if @league.youtube.present? %>
-								<%=  link_to @league.youtube, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-									<i class="ion-social-youtube"></i>
-								<% end %>
-							<% end %>
-				
-							<% if @league.twitter.present? %>
-								<%=  link_to @league.twitter, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-									<i class="ion-social-twitter"></i>
-								<% end %>
-							<% end %>
-				
-							<% if @league.instagram.present? %>
-								<%=  link_to @league.instagram, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-									<i class="ion-social-instagram"></i>
-								<% end %>
-							<% end %>
-				
-							<% if @league.pinterest.present? %>
-								<%=  link_to @league.pinterest, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-									<i class="ion-social-pinterest"></i>
-								<% end %>
-							<% end %>
-						</p>
-						<% end  %>
-					</div><!--.card-footer-->
+	                  <%= render 'shared/about_tab_social_media'%>
 				</div><!--.card-->
 			</div><!--.col-md-6-->
 

@@ -203,48 +203,7 @@
 								<%#= @user.profile.favorite_college_team %>
 								<%#= @user.profile.favorite_pro_athlete %>	
 							</div><!--.card-body-->
-							<div class="card-footer mt20 pl40 pr40">
-								<% if @school.social_media_present? %>
-								<h6 class="upper text-muted bold"><small>social profiles</small></h6>
-									  <% @school.facebook.present? %>	
-									    <% if @school.facebook.present? %>	
-											<%=  link_to @school.facebook, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-												<i class="ion-social-facebook"></i>
-											<% end %>
-										<% end %>
-						
-										<% if @school.linkedin.present? %>	
-											<%=  link_to @school.linkedin, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-												<i class="ion-social-linkedin"></i>
-											<% end %>
-										<% end %>
-									
-						            <% if @school.youtube.present? %>
-											<%=  link_to @school.youtube, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-												<i class="ion-social-youtube"></i>
-											<% end %>
-									<% end %>
-									
-									<% if @school.twitter.present? %>
-											<%=  link_to @school.twitter, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-												<i class="ion-social-twitter"></i>
-											<% end %>
-									<% end %>
-									
-									<% if @school.instagram.present? %>
-											<%=  link_to @school.instagram, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-												<i class="ion-social-instagram"></i>
-											<% end %>
-									<% end %>
-									
-									<% if @school.pinterest.present? %>
-											<%=  link_to @school.pinterest, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-												<i class="ion-social-pinterest"></i>
-											<% end %>
-									<% end %>
-								</p>
-								<% end  %>
-							</div><!--.card-footer-->
+			                <%= render 'shared/about_tab_social_media'%>
 						</div><!--.card-->
 					</div><!--.col-md-6-->
 					<!-- My Schedule -->

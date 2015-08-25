@@ -181,55 +181,7 @@
 						<%#= @user.profile.favorite_college_team %>
 						<%#= @user.profile.favorite_pro_athlete %>	
 					</div><!--.card-body-->
-					<div class="card-footer mt20 pl40 pr40">
-						<% if @user.social_media_present? %>
-						<h6 class="upper text-muted bold">
-							<small class="text-grey bold">social profiles</small>
-						</h6>
-						<p>
-						<% @user.profile.facebook.present? %>	
-						   <% if @user.profile.facebook.present? %>	
-								<%=  link_to @user.profile.facebook, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-									<i class="ion-social-facebook"></i>
-								<% end %>
-							<% end %>
-							
-							<% if @user.profile.linkedin.present? %>	
-								<%=  link_to @user.profile.linkedin, class: "mr5 btn btn-floating btn-indigo btn-ripple" do %>
-									<i class="ion-social-linkedin"></i>
-								<% end %>
-							<% end %>
-							
-							<% if @user.profile.youtube.present? %>
-								<%=  link_to @user.profile.youtube, class: "mr5 btn btn-floating btn-red btn-ripple" do %>
-									<i class="ion-social-youtube"></i>
-								<% end %>
-							<% end %>
-							
-							<% if @user.profile.twitter.present? %>
-								<%=  link_to @user.profile.twitter, class: "mr5 btn btn-floating btn-light-blue btn-ripple" do %>
-									<i class="ion-social-twitter"></i>
-								<% end %>
-							<% end %>
-							
-							<% if @user.profile.instagram.present? %>
-								<%=  link_to @user.profile.instagram, class: "mr5 btn btn-floating btn-brown btn-ripple" do %>
-									<i class="ion-social-instagram"></i>
-								<% end %>
-							<% end %>
-							<% if @user.profile.pinterest.present? %>
-								<%=  link_to @user.profile.pinterest, class: "mr5 btn btn-floating btn-pink btn-ripple" do %>
-									<i class="ion-social-pinterest"></i>
-								<% end %>
-							<% end %>
-							<% if @user.profile.foursquare.present? %>
-								<%=  link_to @user.profile.foursquare, class: "mr5 btn btn-floating btn-blue btn-ripple" do %>
-									<i class="ion-social-foursquare"></i>
-								<% end %>
-							<% end %>
-						</p>
-						<% end %>
-					</div><!--.card-footer-->
+					<%= render 'shared/about_tab_social_media'%>
 				</div><!--.card-->
 			</div><!--.col-md-6-->
 
