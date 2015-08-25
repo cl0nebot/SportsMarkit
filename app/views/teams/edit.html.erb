@@ -37,6 +37,7 @@
 		<div class="header-tabs scrollable-tabs sticky">
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
 				<li class="active"><a href="#general" data-toggle="tab">General</a></li>
+				<li><a href="#social-media" data-toggle="tab">Social Media</a></li>
 				<li><a href="#media" data-toggle="tab">Upload Media</a></li>
 			</ul>
 		</div>
@@ -157,6 +158,28 @@
 											</div>
 
 										</div><!--.panel-body-->
+									</div>
+								</div><!--tab-pane-->
+								
+								<div class="tab-pane text-style" id="social-media">
+									<div class="panel-body ">
+										<h4 class="text-right">Social Media Profiles</h4>
+										<hr class="margin-top-0"/>
+										<h5 class="bold text-primary">Add Social Media Accounts</h5>
+										<br/>
+
+
+									
+											<%= render 'shared/social_edit', f: f %>
+											    
+										
+									</div>
+									<div class="form-buttons">
+										<div class="row">
+											<div class="col-lg-8 col-lg-offset-2">
+												<%= f.submit "Update Profile", class: "btn btn-large btn-blue btn-block" %>
+											</div>
+										</div>
 									</div>
 								</div><!--tab-pane-->
 

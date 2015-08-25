@@ -70,7 +70,8 @@ class LeaguesController < ApplicationController
   end
   
   def league_params
-    params.require(:league).permit({:sport_ids => []}, :name, :description, :sport, :state, :slug, :classification, :category)
+    params.require(:league).permit({:sport_ids => []}, :name, :description, :sport, :state, :slug, :classification, :category, :facebook, :twitter, :linkedin, :pinterest, :instagram, :foursquare, :youtube)  
+  end
   end
   
   
