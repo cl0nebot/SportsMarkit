@@ -31,11 +31,15 @@
 									</h4>
 									<p class="fs_12 semi-bold text-muted mb5 mt5">
 										<i class="ion-person-stalker fs_16 text-primary mr5"></i>
-										2 Coaches, 0 Players, 0 Managers, 0 Trainers<%= @league.sport_list %>
+										<%= pluralize @accepted_coaches.count, "Player" %>, <%= pluralize @accepted_athletes.count, "Player" %>,  <%= pluralize @athletic_directors.count, "Athletic Director" %>
 									</p> 
-									<p class="semi-bold fs_14 text-muted no-margin">
-										<i class="ion-university fs_20 text-primary mr5"></i>
-									</p>
+									<!-- <p class="semi-bold fs_14 text-muted no-margin">
+										<i class="ion-university fs_20 text-primary mr5"></i><%#= pluralize @league.schools.count, "School" %>
+									</p> -->
+									 <p class="fs_12 semi-bold text-muted mb5 mt5">
+											<i class="ion-university fs_20 text-primary mr5"></i><%= pluralize @league.schools.count, "School" %>
+										</p> 
+										
 								</div>
 							</div>
 						</div>
@@ -47,27 +51,35 @@
 							<p class="fs_14 lh_18 text-muted mb20 mt10">
 								<%= @league.description %>
 							</p>
+							<% if @league.mobile_phone_number.present? || @league.website.present? || @league.email.present? %>
 							<hr clas="light"/>
 							<p class="semi-bold small text-muted no-margin fs_14">
+								<% if @league.mobile_phone_number.present? %>
 								<span class="inline">
 									<i class="ion-ios-telephone fs_16 text-primary mr5"></i>
 									<%= @league.mobile_phone_number %>
 								</span>
-
 								<br/>
+								<% end %>
 
+                                <% if @league.website.present? %>
 								<span class="inline">
 									<i class="ion-monitor fs_16 text-primary mr5"></i>
 									<%= link_to "#{@league.website}", "#{@league.website}" %>
 								</span>
 
 								<br/>
+								<% end %>
+								
+								<% if @league.email.present? %>
 
 								<span class="inline">
 									<i class="ion-email fs_20 text-primary mr5 v-align-middle"></i>
 									<%= @league.email %>
 								</span>
+								<% end %>
 							</p>
+							<% end %>
 						</div>
 							
 						<br/>
