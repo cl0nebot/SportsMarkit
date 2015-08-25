@@ -78,14 +78,11 @@
 		</div>
 	</div>
 	<div class="col-md-9">
-		<div id="calendar-tab" class="row">
-		  <div class="col-md-12">
-		    <div class="panel box-shadow-ccc">
-		      <div class="panel-body transparent">
-		        <div id="calendar" data-root="<%= request.url %>"></div>
-		      </div>
-		    </div>
-		  </div>
-		</div>
+	  <%= render 'shared/calendar_filters_horizontal', eventable: @facility %>
+	  <div class="panel box-shadow-ccc">
+      <div class="panel-body transparent">
+        <div id="calendar" data-root="<%= request.url %>"></div>
+      </div>
+    </div>  
 	</div>
 </div>

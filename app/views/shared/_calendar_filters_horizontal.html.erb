@@ -1,0 +1,46 @@
+<p>
+	<a href="#filters" data-toggle="collapse" class="btn btn-white">View Filters</a>
+</p>
+<div id="filters" class="row collapse">
+	<% if current_user.can_edit_user?(@object) %>
+		<p class="text-right">
+			<%= link_to "New Event", eval("new_#{@object.class.to_s.downcase}_event_path(@object.friendly_id)"), class: "btn btn-pink" %>
+		</p>
+	<% end %>
+  <div class="col-md-12">
+    <div class="filters">
+	    <%= form_tag "", method: :get, id: "calendar_filter", remote: true do %>
+	    <%= button_tag "Clear all Filters", id: "reset_filters", class: "btn btn-white pull-right mr20 mt10" %>
+
+	      <div class="well bgcolor-light-grey">
+		      <h6 class="semi-bold">Events</h6>
+		      <% eventable.all_events.pluck(:event_type).uniq.each do |e_type| %>
+		        <label class="btn btn-alizarin  btn-white fs_16 text-left">
+		          <%= check_box_tag "q[event_type_in][]", e_type %>
+		          <span class="mrl5"><%= e_type %></span>
+		        </label>
+		      <% end %>
+
+		      <hr class="mt10 mb10"/>
+
+		     <h6 class="semi-bold">People</h6>
+		      <% eventable.all_events.includes(:user).map(&:user).uniq.compact.each do |user| %>
+		         <label class="btn btn-alizarin btn-white fs_14 text-left capitalize">
+		          <%= check_box_tag "q[user_id_in][]", user.id %>
+		          <span class="ml5"><%= creator_name(user) %></span>
+		        </label>
+		      <% end %>
+		    </div>
+	  	<% end %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel box-shadow-ccc">
+      <div class="panel-body transparent">
+        <div id="calendar" data-root="<%= request.url %>"></div>
+      </div>
+    </div>
+  </div>
+</div>
