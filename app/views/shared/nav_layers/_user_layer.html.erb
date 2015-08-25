@@ -6,7 +6,7 @@
 
 </script>
 
-<% current_user.relationships.each do |rel| %>
+<% current_user.relationships.where.not(id: nil).each do |rel| %>
   <% rel.team.chatrooms.each do |chatroom| %>
 	  <script>
 	    pusher.subscribe("chat-<%= chatroom.id %>").bind('message-push', function (data) {

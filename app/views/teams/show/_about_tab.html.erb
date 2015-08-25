@@ -232,7 +232,7 @@
 													<% else %>
 													  <%= member.first_name  %> <%= member.last_name %>
 													<% end %></span>
-													<span class="fs_11 text-muted"><%= member.participant_classification.capitalize %><%= "#{', ' if (member.participant_classification.present? && member.position_list.present?) }"%> <%= member.position_list %></span>
+													<span class="fs_11 text-muted"><%= member.participant_classification.try(:capitalize) %><%= "#{', ' if (member.participant_classification.present? && member.position_list.present?) }"%> <%= member.position_list %></span>
 												</div>
 
 											</a>
