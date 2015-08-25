@@ -1,7 +1,8 @@
 class CreateProfilePictures < ActiveRecord::Migration
   def change
     create_table :profile_pictures do |t|
-      t.references :profile_picture_owner, polymorphic: true
+      t.integer :profile_picture_owner_id
+      t.string :profile_picture_owner_type
       t.string :photo, :null => false
       t.timestamps
     end
