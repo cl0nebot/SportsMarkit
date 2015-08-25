@@ -264,9 +264,11 @@
 								</div><!--.card-heading-->
 								<div class="card-body bgcolor-light-grey">
 									<ul class="users">
+										<% unless @accepted_athletes.present? %>
 										<p class="mb0 mt0 center padding-10 text-grey">
-											<i class="ion-person-add mr10"></i> Add Players to Roster
+											<i class="ion-person-add mr10"></i> No Athletes for League
 										</p>
+										<% else %>
 										<% @accepted_athletes.each do |user| %>
 										<li>
 											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
@@ -275,6 +277,7 @@
 										</li>
 										<% end %>
 									</ul>
+									<% end %>
 								</div><!--.card-body-->
 								<div class="card-footer">
 									<ul>
