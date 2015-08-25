@@ -13,15 +13,7 @@
 
 							<%= render "shared/fan" %>
 
-							<p class="author">
-								<a href="#">
-								<i class="ion-ionic mr5"></i>
-								<%= pluralize @league.number_of_people_online, "Person" %> Online</a> 
-							</p>
-							<p class="time">Last activity: April 17, 2015, 11:23 PM</p>
-							<% if @league.number_of_people_online > 0 %>
-							<p class="fs_11 time">Last activity: <%= format(@league.last_activity, 4) %>, <%= format(@league.last_activity, 9) %></p>
-							<% end %>
+							<%= render 'shared/online' %>
 						</div><!--.card-heading-->
 						<hr class="light mt0 mb20"/>
 						<div class="card-body pl40 pr40">

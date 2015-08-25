@@ -18,4 +18,25 @@ module Reusable
     end
   end
   
+  def number_of_people_online
+    array = []
+    people.uniq.each do |p|
+       if p.online_status.present?
+         array << 1
+       end
+    end
+    array.length
+  end
+  
+  def last_activity
+    array = []
+    people.uniq.each do |p|
+       if p.online_status.present?
+         array << p.online_status.last_seen
+       end
+    end
+    array.max
+  end
+
+  
 end
