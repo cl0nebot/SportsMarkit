@@ -124,7 +124,6 @@ class SchoolsController < ApplicationController
   def school_params
     params.require(:school).permit(:name, :classification, :category, :abbreviation, :address_1, :address_2, :city, :state, :zip, :zip_ext, :latitude, :longitude, :gmaps, :phone_number, :email, :website, :slug, :stripe_token, :facebook, :twitter, :linkedin, :pinterest, :instagram, :foursquare, :youtube)  
   end
-  end
   
   def find_school
     @school = School.friendly.find(params[:id])

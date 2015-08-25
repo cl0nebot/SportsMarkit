@@ -214,7 +214,6 @@ class TeamsController < ApplicationController
   def team_params
     params.require(:team).permit(:name, :sport, :school_id, :league_id, :classification, :description, :abbreviation, :address_1, :address_2, :city, :state, :zip, :zip_ext, :latitude, :longitude, :gmaps, :phone_number, :email, :website, :slug, :facebook, :twitter, :linkedin, :pinterest, :instagram, :foursquare, :youtube)  
   end
-  end
   
   def user_params
     params.require(:user).permit(:prefix, :first_name, :middle_name, :last_name, :suffix, :email, :username,  :password, :password_confirmation, :current_password, :mobile_phone_number, {relationships_attributes: [:id, :user_id, :team_id, :head, :head_title, :mobile_phone_number, :position, :jersey_number, :participant, :participant_classification, :username ]})
