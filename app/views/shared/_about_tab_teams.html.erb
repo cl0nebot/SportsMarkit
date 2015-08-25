@@ -48,7 +48,7 @@
 												</a>
 											</li>
 										<% end %>
-										<% team.accepted_athletes.each do |user| %>
+										<% (team.accepted_athletes - team.accepted_coaches).each do |user| %>
 											<li>
 												<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
 													<%= image_tag user.avatar %>
