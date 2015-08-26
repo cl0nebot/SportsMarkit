@@ -34,7 +34,7 @@
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
 				<li class="active"><a href="#general" data-toggle="tab">General</a></li>
 				<li><a href="#social-media" data-toggle="tab">Social Media</a></li>
-				<li><a href="#media" data-toggle="tab">Media</a></li>
+				<li><a href="#media" data-toggle="tab">Photos</a></li>
 				<li><a href="#stats" data-toggle="tab">Sports Resume</a></li>
 				<% if @user.is_coach? %>
 				<li><a href="#certifications" data-toggle="tab">Certifications</a></li>
@@ -471,10 +471,8 @@
 		              	<div class="tab-pane text-style" id="media">
 
 		              		<div class="panel-body">
-												<h4 class="text-right">Media</h4>
+												<h4 class="text-right">Upload Media</h4>
 												<hr class="margin-top-0"/>
-												<h5 class="bold text-primary">Upload Photos, Videos, and Articles</h4>
-												<br/>
 		                  	
 		                  	<%= render 'shared/edit_media'%>
 

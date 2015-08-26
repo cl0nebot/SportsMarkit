@@ -1,59 +1,38 @@
-<ul class="nav nav-pills center" role="tablist">
-    <li class="active"><a href="#photos" data-toggle="tab">Photos</a></li>
-    <li><a href="#videos-and-articles" data-toggle="tab">Videos & Articles</a></li>
-</ul>
-<br/>
-<div class="tab-content">
-  <div class="tab-pane active" id="photos">
+<div class="row">
+  <div id="user-profile-picture" class="inline-block mr10">
+    <%= render 'shared/add_photo' %>
+  </div>
+  <span class="mr10 inline-block">
+    <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'video')"), method: :get ,remote: true, class: 'btn btn-floating btn-indigo btn-ripple' do %>
+      <i class="ion-ios-videocam"></i>
+    <% end %>
+  </span>
+  <span class="mr10 inline-block">
+    <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'article')"), method: :get ,remote: true, class: 'btn btn-floating btn-indigo btn-ripple' do %>
+      <i class="ion-document-text"></i>
+    <% end %>
+  </span>
+  <br/>
+  <br/>
+  <div class="well bgcolor-light-grey">
     <div class="row">
-      <div class="col-md-3">
-        <div id="user-profile-picture">
-          <%= render 'shared/add_photo' %>
-        </div>
-      </div>
-      <div class="col-md-9">
-        <div class="well bgcolor-light-grey">
-          <div class="row">
-            <div class="masonry">
-				
-              <% @pictures.each do |p| %>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                  <img src="<%= p.image %>" alt="" class="img-responsive img-thumbnail mb20">
-                </div><!--.col-->
-              <% end %>
-              <div class="clearfix"></div>
-            </div>
-          </div>
-        </div><!--.row-->
+      <div class="">
+	
+        <% @pictures.each do |p| %>
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            <img src="<%= p.image %>" alt="" class="img-responsive img-thumbnail mb20">
+          </div><!--.col-->
+        <% end %>
+        <div class="clearfix"></div>
       </div>
     </div>
-  </div><!--.tab-pane-->
-  <div class="tab-pane" id="videos-and-articles">
-    <div class="row">
-      <div class="col-md-3">
-        <p>
-          <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'video')"), method: :get ,remote: true, class: 'mr10 btn btn-block btn-blue' do %>
-            New Video <i class="ion-plus-circled margin-left-10"></i>
-          <% end %>
-        </p>
-        <p>
-          <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'article')"), method: :get ,remote: true, class: 'mr10 btn btn-block btn-blue' do %>
-            New Article <i class="ion-plus-circled margin-left-10"></i>
-          <% end %>
-        </p>
-      </div>
-      <div class="col-md-9">
-        <div class="clearfix">
-          <div id="medias">
-            <% @object.medias.each do |m| %>
-              <%= render 'media/form', m: m, u: @object %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div><!--.tab-pane-->
-</div><!--.tab-content-->
-
-
-
+  </div><!--.row-->
+</div>
+<hr/>
+<div class="clearfix">
+  <div id="medias">
+    <% @object.medias.each do |m| %>
+      <%= render 'media/form', m: m, u: @object %>
+    <% end %>
+  </div>
+</div>
