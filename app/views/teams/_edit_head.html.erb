@@ -9,11 +9,13 @@
 					<% end %>
 				</div>
 				<div class="pull-left mr20">
-					<% if m.class.to_s == "Relationship" %>
-					  <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 75px; height: 75px; border: 2px solid #ddd;" %>
-					<% else %>
-					  <%= image_tag "http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "face-radius", alt: "", style: "width: 75px; height: 75px; border: 2px solid #ddd;" %>
-					<% end %>
+					<div class="center">
+						<% if m.class.to_s == "Relationship" %>
+						  <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 75px; height: 75px; border: 2px solid #ddd;" %>
+						<% else %>
+						  <%= image_tag "http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "face-radius", alt: "", style: "width: 75px; height: 75px; border: 2px solid #ddd;" %>
+						<% end %>
+					</div>
 				</div>
 				<div class="pull-left">
 					<% if m.class.to_s == "Relationship" %>
