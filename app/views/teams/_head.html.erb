@@ -11,18 +11,38 @@
                         <% end %>
                     </div>
                     <div class="pull-left">
-                        <h5 class="no-margin capitalize text-black semi-bold">
+                        <h4 class="no-margin capitalize text-black semi-bold">
                             <% if m.class.to_s == "Relationship" %>
                               <%= m.user.full_name %>
                             <% else %>
                               <%= m.first_name  %> <%= m.last_name %>
                             <% end %>
-                        </h5>
+                        </h4>
                         <p class="small text-grey">
                             <small>
-                                Name
+                                <%= m.head_title.blank? ? "TBD" : m.head_title %>
                             </small>
                         </p>
+                        <% if m.class.to_s == "Relationship" %>
+                            <h5 class="no-margin capitalize semi-bold">
+                                <%= m.user.certification_list.blank? ? "TBD" : m.user.certification_list %>
+                            </h5>
+                            <p class="small text-grey">
+                                <small>
+                                    Certifications
+                                </small>
+                            </p>
+                        <% end %>
+                        <% if m.class.to_s == "Relationship" %>
+                            <h5 class="no-margin semi-bold">
+                                <%= m.user.mobile_phone_number.blank? ? "TBD" : number_to_phone(m.user.mobile_phone_number) %>
+                            </h5>
+                            <p class="small text-grey">
+                                <small>
+                                    Phone
+                                </small>
+                            </p>
+                        <% end %>
                     </div>
 					<% if current_user.can_edit_team?(@team) %>
                         <div class="pull-right mr10">
@@ -36,40 +56,7 @@
                             <% end %>
                         </div>
 					<% end %>
-                    <div class="col-sm-2">
-                        <h5 class="no-margin semi-bold">
-                            <%= m.head_title.blank? ? "TBD" : m.head_title %>
-                        </h5>
-                        <p class="small text-grey">
-                            <small>
-                                <%= m.head_position_list %>
-                            </small>
-                        </p>
-                    </div>
-                    <div class="col-sm-4">
-    					<% if m.class.to_s == "Relationship" %>
-                        <h5 class="no-margin capitalize semi-bold">
-                            <%= m.user.certification_list.blank? ? "TBD" : m.user.certification_list %>
-                        </h5>
-                        <p class="small text-grey">
-                            <small>
-                                Certifications
-                            </small>
-                        </p>
-    					<% end %>
-                        </div>
-                    <div class="col-sm-2">
-    					<% if m.class.to_s == "Relationship" %>
-                        <h5 class="no-margin semi-bold">
-                            <%= m.user.mobile_phone_number.blank? ? "TBD" : number_to_phone(m.user.mobile_phone_number) %>
-                        </h5>
-                        <p class="small text-grey">
-                            <small>
-                                Phone
-                            </small>
-                        </p>
-    					<% end %>
-                    </div>
+                   
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 <div id="roster" class="tab-pane pt40">
-	<div class="row bgcolor-white box-shadow-ccc pt20 pr20 pl20 pb30">
+	<div class="row bgcolor-white box-shadow-ccc pt20 pr20 pl20 mb20 pb30">
 		<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
 			<h1 class="text-indigo no-margin bold"><%= @heads.count %></h1>
 			<h6 class="text-grey semi-bold no-margin "><%= (@heads.count > 1 or @heads.count == 0) ? "Coaches" : "Coach" %></h6>
@@ -54,51 +54,51 @@
 		</div>
 	</div>
 
-	<hr/>
 
 
-	<div class="row">
-		<div class="col-lg-4">
+	<div class="row mt20" style="min-height: 800px;">
+		<div class="row">
+			
+			<div class="col-lg-4">
+				<!-- coaches and staff -->
+				<div class="panel panel-transparent border-ddd">
+					<div class="panel-heading no-margin">
+						<div class="panel-title" id="coach-count">
+					       <h3 class="semi-bold fs_20 mb0 text-black">
+								Coaches and Administrative Staff Members
+							</h3>
+							<%= render 'coach_count', heads: @heads %>
+						</div>
+					</div><!--.panel-heading-->
+					<hr class="no-margin"/>
+					<div class="panel-body no-padding" id="heads-of-team">
+						<%= render 'heads_of_team', heads: @heads %>
+					</div><!--.panel-body-->
+				</div><!--.panel-->
+				<br/>
+				<!-- coaches and staff -->
+			</div>
 
-			<!-- coaches and staff -->
-			<div class="panel panel-transparent box-shadow-ccc">
-				<div class="panel-heading no-margin">
-					<div class="panel-title" id="coach-count">
-				       <%= render 'coach_count', heads: @heads %>
-				       <h3 class="semi-bold fs_20 mb0">
-							Coaches and Administrative Staff Members
-						</h3>
-					</div>
-				</div><!--.panel-heading-->
-				<hr class="no-margin"/>
-				<div class="panel-body no-padding" id="heads-of-team">
-					<%= render 'heads_of_team', heads: @heads %>
-				</div><!--.panel-body-->
-			</div><!--.panel-->
-			<br/>
-			<!-- coaches and staff -->
+			<div class="col-lg-8" style="">
 
-		</div>
+				<!-- team roster -->
+				<div class="panel panel-transparent box-shadow-ccc">
+					<div class="panel-heading no-margin">
+						<div class="panel-title" id="athlete-count">
+						  	<h3 class="semi-bold fs_20 mb0 text-black">
+							Active and Inactive Athletes
+							</h3>
+							<%= render 'athlete_count', members: @members%>
+						</div>
+					</div><!--.panel-heading-->
+					<hr class="no-margin"/>
+					<div class="panel-body no-padding" id="athletes-of-team">
+			         <%= render 'athletes_of_team', members: @members, team: @team %>
+					</div><!--.panel-body-->
+				</div><!--.panel-->
+				<!-- team roster -->
 
-		<div class="col-lg-8">
-
-			<!-- team roster -->
-			<div class="panel panel-transparent box-shadow-ccc">
-				<div class="panel-heading no-margin">
-					<div class="panel-title" id="athlete-count">
-					  	<%= render 'athlete_count', members: @members%>
-					  	<h3 class="semi-bold fs_20 mb0">
-							Active Athletes
-						</h3>
-					</div>
-				</div><!--.panel-heading-->
-				<hr class="no-margin"/>
-				<div class="panel-body no-padding" id="athletes-of-team">
-		         <%= render 'athletes_of_team', members: @members, team: @team %>
-				</div><!--.panel-body-->
-			</div><!--.panel-->
-			<!-- team roster -->
-
+			</div>
 		</div>
 	</div>
 </div>

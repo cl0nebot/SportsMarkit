@@ -39,6 +39,14 @@ ul.no-style li {padding-left: 0;}
 
 .no-border-bottom {border-bottom: none;}
 
+/*borders*/
+.border-ddd {border: 1px solid #ddd;}
+.border-eee {border: 1px solid #eee;}
+
+
+.b-t-eee {border-top: 1px solid #eee;}
+.b-t-ddd {border-top: 1px solid #ddd;}
+
 ul.no-padding-li li {padding: 0;}
 ul.no-margin-li li {margin: 0;}
 
@@ -764,3 +772,6 @@ ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
   background-size: cover !important;
 
 }
+
+
+
