@@ -4,15 +4,15 @@ module Avatar
   def avatar
     if self.class.to_s == "User"
       if user_profile_pictures.last.try(:id).blank?
-        "http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif"
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Color_icon_gray_v2.svg/2000px-Color_icon_gray_v2.svg.png"
       else
         user_profile_pictures.last.photo
       end
     elsif self.class.to_s == "UserlessRelationship"
-      "http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Color_icon_gray_v2.svg/2000px-Color_icon_gray_v2.svg.png"
     elsif self.class.to_s == "School"
       if profile_pictures.last.try(:id).blank?
-        "thumbs/school.jpg"
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Color_icon_gray_v2.svg/2000px-Color_icon_gray_v2.svg.png"
       else
         profile_pictures.last.photo
       end
@@ -24,7 +24,7 @@ module Avatar
       end
     elsif self.class.to_s == "Team"
       if profile_pictures.last.try(:id).blank?
-        "placeholders/team-placeholder.png"
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Color_icon_gray_v2.svg/2000px-Color_icon_gray_v2.svg.png"
       else
         profile_pictures.last.photo
       end
