@@ -5,7 +5,7 @@
 	<div class="col-md-3 col-lg-2 col-sm-12 element-item <%= league.classification_with_hyphen %> all" data-category="<%= league.classification_with_hyphen %> all">
 		    <div class="card card-user card-clickable card-clickable-over-content" style="height: 330px;">
 		      <div class="card-heading heading-full">
-		        <div class="user-image sample-member9" style="background: url(<%= league.avatar %>);"></div>
+		        <div class="user-image sample-member9" style="background: url('<%= league.avatar %>');"></div>
 
 		          <div class="clickable-button">
 		            <%= link_to edit_league_path(league), class: "btn btn-floating btn-orange initial-position floating-open" do %>

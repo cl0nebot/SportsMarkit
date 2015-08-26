@@ -4,7 +4,8 @@
 		<div class="card card-user card-clickable card-clickable-over-content">
 
 	      <div class="card-heading heading-full">
-	        <div class="user-image sample-member9" style="background: url(<%= user.avatar %>);"></div>
+	        <div class="user-image sample-member9" style="background: url('<%= user.avatar %>');"></div>
+			
 
 	          <div class="clickable-button">
 	            <%= link_to edit_user_path(user), class: "btn btn-floating btn-orange initial-position floating-open" do %>
