@@ -377,12 +377,45 @@ class User < ActiveRecord::Base
     full_name
   end
   
+  def chatroom_ids
+    array = []
+    rels = relationships.each do |rel|
+      rel.team.chatrooms.each do |chatroom|
+        if rel.athlete? && chatroom.specific_id == 1
+          array << chatroom.id
+        end
+      
+        if rel.coach? && chatroom.specific_id == 2
+          array << chatroom.id
+        end
+      
+        if parent_relationship_with_team?(chatroom.team) && chatroom.specific_id == 3
+          array << chatroom.id
+        end
+      end
+    end
+    array
+  end
   
   
 
   def chatroom
-    relationships.first.team.id
+    rel = relationships.first
+    rel.team.chatrooms.each do |chatroom|
+      if rel.athlete? && chatroom.specific_id == 1
+        return chatroom.id
+      end
+      
+      if rel.coach? && chatroom.specific_id == 2
+        return chatroom.id
+      end
+      
+      if parent_relationship_with_team?(chatroom.team) && chatroom.specific_id == 3
+        return chatroom.id
+      end
+    end
   end
+  
   
   def chatroom_group 
     #relationships.first.athlete? ? "Athlete"

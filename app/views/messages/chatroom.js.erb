@@ -1,3 +1,9 @@
+<% (current_user.chatroom_ids - [params[:chatroom_id]]).each do |id| %>
+$('#chatroom-label-<%= id %>').empty()
+$('#chatroom-label-<%= id %>').append("<%= j render 'shared/nav_layers/chatroom', chatroom: Chatroom.find(id) %>")
+<% end %>
+$('#chatroom-label-<%= params[:chatroom_id] %>').empty()
+$('#chatroom-label-<%= params[:chatroom_id] %>').append("<%= j render 'shared/nav_layers/room', chatroom: Chatroom.find(params[:chatroom_id]) %>")
 $('#messages-for-chat').empty()
 $('#messages-for-chat').append("<%= j render 'shared/nav_layers/messages', messages: Message.where(chatroom_id: params[:chatroom_id]) %>")
 $('#messages-for-chat').data('room', <%= params[:chatroom_id] %>)

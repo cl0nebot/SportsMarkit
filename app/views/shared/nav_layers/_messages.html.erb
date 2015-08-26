@@ -1,11 +1,4 @@
-<% prev_id = 0 %>
-<% messages.each do |message| %>
-  <% begin_of_stream = prev_id != message.user_id %>
-  <% prev_id = message.user_id %>
-	<div class="message-wrap" data-id="<%= message.user_id %> ">
-		<%= render 'messages/message', message: message, begin_of_stream: begin_of_stream %>
-	</div>
-<% end %>
+<%= params %>
 
 						
 						

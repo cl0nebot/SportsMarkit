@@ -53,6 +53,7 @@
 
 
       <li class="has-action-left has-action-right"></li>
+	  
 
       <% current_user.relationships.where.not(id: nil).each do |rel| %>
           <li class="has-action-left has-action-right">
@@ -62,24 +63,22 @@
             </div>
 			<% rel.team.chatrooms.each do |chatroom| %>
 				<% if rel.athlete? && chatroom.specific_id == 1  %>
-		            <div class="list-content">
-		                  <span class="title"><%= link_to "#{rel.team.proper_name} - #{chatroom.specific_id}", chatroom_messages_path(chatroom_id: chatroom.id), remote: true %></span>
-		              <!-- <span class="caption">Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.</span> -->
+		            <div class="list-content" id="chatroom-label-<%= chatroom.id %>">
+						<%= render 'shared/nav_layers/chatroom',rel: rel, chatroom: chatroom %>  
 		            </div>
 				<% end %>
 				<% if rel.coach? && chatroom.specific_id == 2  %>
-		            <div class="list-content">
-		                  <span class="title"><%= link_to "#{rel.team.proper_name} - #{chatroom.specific_id}", chatroom_messages_path(chatroom_id: chatroom.id), remote: true %></span>
-		              <!-- <span class="caption">Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.</span> -->
+		            <div class="list-content" id="chatroom-label-<%= chatroom.id %>">
+						 <%= render 'shared/nav_layers/chatroom',rel: rel, chatroom: chatroom %>
 		            </div>
 				<% end %>
 				<% if current_user.parent_relationship_with_team?(rel.team) && chatroom.specific_id == 3  %>
-		            <div class="list-content">
-		                  <span class="title"><%= link_to "#{rel.team.proper_name} - #{chatroom.specific_id}", chatroom_messages_path(chatroom_id: chatroom.id), remote: true %></span>
-		              <!-- <span class="caption">Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.</span> -->
+		            <div class="list-content" id="chatroom-label-<%= chatroom.id %>">
+						<%= render 'shared/nav_layers/chatroom',rel: rel, chatroom: chatroom %>
 		            </div>
 				<% end %>
 			<% end %>
+			
             <div class="list-action-right">
               <!-- <span class="top">15 min</span>
               <i class="ion-android-done bottom"></i> -->
