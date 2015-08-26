@@ -13,9 +13,7 @@
 				<div class="card tile card-post" style="border-top: 3px solid #3e50b4;">
 					<div class="card-heading pl40 pr40">
 						<%= render "shared/fan" %>
-					    <%= render 'shared/online' %>
-
-
+					  <%= render 'shared/online' %>
 					</div><!--.card-heading-->
 					<hr class="light mt0"/>
 					<div class="card-body pl40 pr40">
@@ -63,40 +61,40 @@
 
 							<div class="row">
 								<div class="col-md-6">
-					<% if @user.profile.location_description.present? %>
-						<p class="semi-bold fs_14 text-muted no-margin">
-							<i class="ion-location fs_20 text-primary mr5"></i>
-							<%= @user.profile.location_description %>
-						</p>
-					<% end %>
-					<% if @user.username %>
-						<p class="semi-bold fs_14 text-muted no-margin">
-							<i class="ion-person-add fs_20 text-primary mr5"></i>
-							<%= @user.username %>
-						</p>
-					<% end %>
-					<p class="semi-bold fs_14 text-muted no-margin">
-						<i class="ion-email fs_20 text-primary mr5"></i>
-						<%= @user.email %>
-					</p>
-					<% if current_user.can_edit_user?(@user) %>
-						<p class="semi-bold fs_14 text-muted no-margin">
-							<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
-							<%= @user.mobile_phone_number %>
-						</p>
-					<% end %>
-					<% if @user.profile.date_of_birth.present? %>
-					<p class="semi-bold fs_14 text-muted no-margin">
-						<i class="ion-android-calendar fs_20 text-primary mr5"></i>
-						<%= @user.profile.date_of_birth %>
-					</p>
-					<% end %>
-					<% if @user.user_schools.present? %>
-					<p class="semi-bold fs_14 text-muted no-margin">
-						<i class="ion-university fs_20 text-primary mr5"></i>
-						<%= @user.user_schools.first.name  %>
-					</p>
-					<% end %>
+									<% if @user.profile.location_description.present? %>
+										<p class="semi-bold fs_14 text-muted no-margin">
+											<i class="ion-location fs_20 text-primary mr5"></i>
+											<%= @user.profile.location_description %>
+										</p>
+									<% end %>
+									<% if @user.username %>
+										<p class="semi-bold fs_14 text-muted no-margin">
+											<i class="ion-person-add fs_20 text-primary mr5"></i>
+											<%= @user.username %>
+										</p>
+									<% end %>
+									<p class="semi-bold fs_14 text-muted no-margin">
+										<i class="ion-email fs_20 text-primary mr5"></i>
+										<%= @user.email %>
+									</p>
+									<% if current_user.can_edit_user?(@user) %>
+										<p class="semi-bold fs_14 text-muted no-margin">
+											<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
+											<%= @user.mobile_phone_number %>
+										</p>
+									<% end %>
+									<% if @user.profile.date_of_birth.present? %>
+									<p class="semi-bold fs_14 text-muted no-margin">
+										<i class="ion-android-calendar fs_20 text-primary mr5"></i>
+										<%= @user.profile.date_of_birth %>
+									</p>
+									<% end %>
+									<% if @user.user_schools.present? %>
+									<p class="semi-bold fs_14 text-muted no-margin">
+										<i class="ion-university fs_20 text-primary mr5"></i>
+										<%= @user.user_schools.first.name  %>
+									</p>
+									<% end %>
 								</div>
 							</div>
 
@@ -197,62 +195,56 @@
 
 				<div class="col-md-6">	
 					<div class="row">	
-						
 						<!-- My teammates -->
 						<div class="col-md-12 clearfix">
 							<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-						<div class="card-heading">
-							<h3 class="card-title">My Teammates</h3>
-							<div class="card-subhead">
-							 <!-- <a href="#">24 Teammates</a> -->
-							</div><!--.card-subhead-->
-						</div><!--.card-heading-->
-						<div class="card-body">
-							<ul class="users">
-								<% if @teammates.present? %>
-									<% @teammates.each do |teammate| %>
-										<li>
-											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= teammate.full_name %>">
-												<%= image_tag teammate.avatar %>
-											</a>
-										</li>
-							         <% end %>
-									
-								<% else %>
-								
-									<p class="mb0 mt0 center padding-10 text-grey">
-										<!-- <i class="ion-person-add mr10"></i> Add teams to your profile -->
-										No teammates for user
-									</p>
-								
-							   <% end %>
-							</ul>
-						</div><!--.card-body-->
-						<div class="card-footer">
-							<ul>
-								<li><span class="mr5 fs_14"><%= pluralize @teammates.count, "Person" %></span></li>
-								<li><%= link_to "View All Teammates", "/users/#{@user.slug}/#tab_teammates", class: "fs_14" %></li>
-								
-							</ul>
-						</div><!--.card-footer-->
+								<div class="card-heading">
+									<h3 class="card-title">My Teammates</h3>
+									<div class="card-subhead">
+									 <!-- <a href="#">24 Teammates</a> -->
+									</div><!--.card-subhead-->
+								</div><!--.card-heading-->
+								<div class="card-body">
+									<ul class="users">
+										<% if @teammates.present? %>
+											<% @teammates.each do |teammate| %>
+												<li>
+													<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= teammate.full_name %>">
+														<%= image_tag teammate.avatar %>
+													</a>
+												</li>
+									    <% end %>
+										<% else %>
+											<p class="mb0 mt0 center padding-10 text-grey">
+												<!-- <i class="ion-person-add mr10"></i> Add teams to your profile -->
+												No teammates for user
+											</p>
+									   <% end %>
+									</ul>
+								</div><!--.card-body-->
+								<div class="card-footer">
+									<ul>
+										<li><span class="mr5 fs_14"><%= pluralize @teammates.count, "Person" %></span></li>
+										<li><%= link_to "View All Teammates", "/users/#{@user.slug}/#tab_teammates", class: "fs_14" %></li>
+									</ul>
+								</div><!--.card-footer-->
 							</div><!--.card-->
 						</div><!--.col-md-12-->
 						<!-- My teammates -->
 
-                        <%= render 'shared/about_tab_teams', teams: @user.user_teams %>
-						
+           	<%= render 'shared/about_tab_teams', teams: @user.user_teams %>
 						<!-- My teams -->
 
 						<!-- My Schedule -->
-                        <%= render 'shared/about_tab_upcoming'%>
+            <%= render 'shared/about_tab_upcoming'%>
 					</div>
 				</div>
-                  <div class="col-md-6">	
-                  <%= render 'shared/about_tab_media' %>
+        <div class="col-md-6">	
+	        <%= render 'shared/about_tab_media' %>
 
-					
+
 					<!-- My teammates -->
-                    <%= render 'shared/about_tab_fans' %>
+          <%= render 'shared/about_tab_fans' %>
 
 					<!-- My teammates -->
 					<div class="col-md-12">
