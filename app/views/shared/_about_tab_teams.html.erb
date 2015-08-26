@@ -1,80 +1,80 @@
-							<div class="col-md-12">
-								<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
-									<div class="card-heading">
-										<% if @object.class.to_s == "User" %>
-										  <h3 class="card-title">My Teams</h3>
-										<% else %>
-										<h6 class="semi-bold fs_14 mb0"><%= @object.name %></h6>
-										<h3 class="card-title">Our Sports Teams</h3>
-										<% end %>
-										<!-- <div class="card-subhead">
-										 <a href="#">
-										 	<span class="text-muted">
-										 		36 Teams - 10 Freshman, 10 Junior Varsity, 10 Varsity
-										 	</span>
-										 	</a>
-										</div> -->
-										<!--.card-subhead-->
-									</div><!--.card-heading-->
-							<div class="card-body">
-								<ul class="list-material borderless">
-									<% unless teams.present? %>
-									<p class="mb0 mt0 center padding-10 text-grey">
-										 <!-- <i class="ion-person-add mr10"></i>  -->No teams for profile
-									</p>
-									<% else %>
-									
-									<% teams.each do |team| %>
-									<li class="has-action-left">
-										<a href="#" class="visible">
-											<div class="list-action-left">
-												<i class="ion-flag icon-circle"></i>
-											</div>
-											<div class="list-content">
-												<span class="title">
-													<span class="bold"><%= team.name %></span>
-												</span>
-												<span class="fs_11 text-muted"><%= pluralize team.accepted_coach_relationships.count, "Coach" %>, 
-													<%= pluralize team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize team.accepted_trainer_relationships.count, "Trainer" %>
-												</span>
-											</div>
-										</a>
-									</li>
-									<ul class="users bgcolor-light-grey" style="border-bottom: 1px solid #ddd;">
-										<% team.accepted_coaches.each do |user| %>
-											<li>
-												<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
-													<%= image_tag user.avatar %>
-												</a>
-											</li>
-										<% end %>
-										<% (team.accepted_athletes - team.accepted_coaches).each do |user| %>
-											<li>
-												<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
-													<%= image_tag user.avatar %>
-												</a>
-											</li>
-										<% end %>
-										<% team.userless_athletes.each do |user| %>
-										<li>
-											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.first_name %> <%= user.last_name %>">
-												<%= image_tag user.avatar %>
-											</a>
-										</li>
-										<% end %>
-									</ul>
-									<% end %>
-						
+		<div class="col-md-12">
+			<div class="card card-meal card-meal-indigo card-square card-hover-shadow">
+				<div class="card-heading">
+					<% if @object.class.to_s == "User" %>
+					  <h3 class="card-title">My Teams</h3>
+					<% else %>
+					<h6 class="semi-bold fs_14 mb0"><%= @object.name %></h6>
+					<h3 class="card-title">Our Sports Teams</h3>
+					<% end %>
+					<!-- <div class="card-subhead">
+					 <a href="#">
+					 	<span class="text-muted">
+					 		36 Teams - 10 Freshman, 10 Junior Varsity, 10 Varsity
+					 	</span>
+					 	</a>
+					</div> -->
+					<!--.card-subhead-->
+				</div><!--.card-heading-->
+		<div class="card-body">
+			<ul class="list-material borderless">
+				<% unless teams.present? %>
+				<p class="mb0 mt0 center padding-10 text-grey">
+					 <!-- <i class="ion-person-add mr10"></i>  -->No teams for profile
+				</p>
+				<% else %>
+				
+				<% teams.each do |team| %>
+				<li class="has-action-left">
+					<a href="#" class="visible">
+						<div class="list-action-left">
+							<i class="ion-flag icon-circle"></i>
+						</div>
+						<div class="list-content">
+							<span class="title">
+								<span class="bold"><%= team.name %></span>
+							</span>
+							<span class="fs_11 text-muted"><%= pluralize team.accepted_coach_relationships.count, "Coach" %>, 
+								<%= pluralize team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize team.accepted_trainer_relationships.count, "Trainer" %>
+							</span>
+						</div>
+					</a>
+				</li>
+				<ul class="users bgcolor-light-grey" style="border-bottom: 1px solid #ddd;">
+					<% team.accepted_coaches.each do |user| %>
+						<li>
+							<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+								<%= image_tag user.avatar %>
+							</a>
+						</li>
+					<% end %>
+					<% (team.accepted_athletes - team.accepted_coaches).each do |user| %>
+						<li>
+							<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+								<%= image_tag user.avatar %>
+							</a>
+						</li>
+					<% end %>
+					<% team.userless_athletes.each do |user| %>
+					<li>
+						<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.first_name %> <%= user.last_name %>">
+							<%= image_tag user.avatar %>
+						</a>
+					</li>
+					<% end %>
+				</ul>
+				<% end %>
+	
 
-								</ul>
-								<% end %>
-							</div><!--.card-body-->
-							<hr class="no-margin"/>
-							<div class="card-footer">
-								<ul>
-									<li class="fs_14"><span class="mr5"><%= pluralize teams.count, "Sports Team" %></span></li>
-									<li><a href="#teams" data-toggle="tab" class="fs_14">View All Teams</a></li>
-								</ul>
-							</div><!--.card-footer-->
-						</div><!--.card-->
-					</div><!--.col-md-12-->
+			</ul>
+			<% end %>
+		</div><!--.card-body-->
+		<hr class="no-margin"/>
+		<div class="card-footer">
+			<ul>
+				<li class="fs_14"><span class="mr5"><%= pluralize teams.count, "Sports Team" %></span></li>
+				<li><a href="#teams" data-toggle="tab" class="fs_14">View All Teams</a></li>
+			</ul>
+		</div><!--.card-footer-->
+	</div><!--.card-->
+</div><!--.col-md-12-->

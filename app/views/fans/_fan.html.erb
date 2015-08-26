@@ -1,4 +1,5 @@
 <%= form_for current_user.fans.build, html: {method: :post, remote: true } do |f| %>
+
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :fannable_id, value: object.id %>
   <%= f.hidden_field :fannable_type, value: @class %>
