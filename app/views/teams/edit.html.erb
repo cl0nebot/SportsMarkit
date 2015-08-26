@@ -43,19 +43,21 @@
 		</div>
 	</div><!--.page-header-->
 	
-	<%= form_for @team do |f| %>
-		<div class="row">
-			<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-				<div class="row">
-					<div class="col-md-3">
-		        <div id="school-profile-picture">
-		          <%= render 'shared/profile_picture' %>
-		        </div>
-					</div>
-					<div class="col-md-9">
-						<div class="panel box-shadow-ccc">
-						<div class="panel-body no-padding form-layout">
-
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+			<div class="row">
+				<div class="col-md-3">
+	        <div id="school-profile-picture">
+	          <%= render 'shared/profile_picture' %>
+	        </div>
+				</div>
+				<div class="col-md-9">
+					<div class="panel box-shadow-ccc">
+					<div class="panel-body no-padding form-layout">
+	
+	
+	                         <%= form_for @team do |f| %>
+	
 							<div class="tab-content with-panel">
 
 								<div class="tab-pane active text-style" id="general">
