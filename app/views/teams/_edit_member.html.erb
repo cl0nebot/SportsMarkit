@@ -1,58 +1,46 @@
 <%= form_for m, html: {data: {remote: true}} do |f| %>
-<li id="edit-member-<%= m.class.to_s %><%= m.id%>" class="">
-	<div class="list-content pb40">
-		<div class="row">
-			<div class="col-sm-12">
-				<%= link_to team_close_roster_view_path(team_id: team.id, class: m.class, id: m.id, status: "member"), remote: true, class: "btn btn-floating btn-default btn-ripple pull-right mr20" do %>
-					<i class="ion-close-round"></i>
-				<% end %>
-			</div>
-		</div>
-
-		<div class="row">
-
-			<div class="col-sm-2">
-			<div class="center">
-				<% if m.class.to_s == "Relationship" %>
-				  <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 100px; height: 100px; border: 3px solid #ddd;" %>
-				<% else %>
-				  <%= image_tag "http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "face-radius", alt: "", style: "width: 100px; height: 100px; border: 3px solid #ddd;" %>
-				<% end %>
-			</div>
-			</div>
-
-			<div class="col-sm-6">
+	<li id="edit-member-<%= m.class.to_s %><%= m.id%>" class="">
+		<div class="list-content no-padding">
 			<div class="row">
-				<div class="col-md-12">
-					<% if m.class.to_s == "Relationship" %>
-						<h3 class="semi-bold capitalize">
-						  <%= m.user.try(:full_name) %>
-					    </h3>
-					<% else %>
-						<div class="row">
-							<div class="col-md-6">
-								<%= f.text_field :first_name, type: "text", class: "form-control" %> 
-								<p class="small">
-									<small>
-										First Name
-									</small>
-								</p>
-							</div>
-							<div class="col-md-6">
-								<%= f.text_field :last_name, type: "text", class: "form-control" %>
-
-								<p class="small">
-									<small>
-										Last Name
-									</small>
-								</p>
-							</div>
-						</div>
-					<% end %>
+				<div class="col-sm-2">
+					<div class="center">
+						<% if m.class.to_s == "Relationship" %>
+						  <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 150px; height: 150px; border: 2px solid #ddd;" %>
+						<% else %>
+						  <%= image_tag "http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "face-radius", alt: "", style: "width: 150px; height: 150px; border: 2px solid #ddd;" %>
+						<% end %>
+					</div>
 				</div>
-				<div class="col-md-12">
+				<div class="col-sm-9">
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-12">
+							<% if m.class.to_s == "Relationship" %>
+								<h3 class="semi-bold capitalize">
+								  <%= m.user.try(:full_name) %>
+							    </h3>
+							<% else %>
+								<div class="row">
+									<div class="col-md-6">
+										<%= f.text_field :first_name, type: "text", class: "form-control" %> 
+										<p class="small">
+											<small>
+												First Name
+											</small>
+										</p>
+									</div>
+									<div class="col-md-6">
+										<%= f.text_field :last_name, type: "text", class: "form-control" %>
+
+										<p class="small">
+											<small>
+												Last Name
+											</small>
+										</p>
+									</div>
+								</div>
+							<% end %>
+						</div>
+						<div class="col-md-12">
 							<%= f.text_field :participant_classification, type: "text", class: "form-control" %> 
 							<p class="small">
 								<small>
@@ -60,7 +48,7 @@
 								</small>
 							</p>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-12">
 						  	<%= f.collection_select :position_ids, Position.all, :id, :position, {:selected => m.positions.pluck(:id)}, {  :multiple => true, :style => "width:100%", :placeholder => "Add Positions", class: "form-control"  } %>
 							<p class="small">
 								<small>
@@ -68,63 +56,42 @@
 								</small>
 							</p>
 						</div>
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-4">
+								  	<%= f.text_field :mobile_phone_number, type: "text", class: "form-control"  %>
+									<p class="small">
+										<small>
+											Mobile Phone Number
+										</small>
+									</p>
+								</div>
+								<div class="col-md-1 col-md-offset-1">
+									<%= f.check_box :participant %> 
+									<p class="small inline">
+										<small>
+											Athlete?
+										</small>
+									</p>
+								</div>
+								
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="col-md-12">
-					<div class="row">
-						<div class="col-md-6">
-						  	<%= f.text_field :mobile_phone_number, type: "text", class: "form-control"  %>
-							<p class="small">
-								<small>
-									Mobile Phone Number
-								</small>
-							</p>
-						</div>
-						<div class="col-md-6">
-							<%= f.check_box :participant %> 
-							<p class="small">
-								<small>
-									Is Athlete?
-								</small>
-							</p>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-			</div>
-		
-			<div class="col-sm-4">
+				<div class="col-sm-1">
+				<%= link_to team_close_roster_view_path(team_id: team.id, class: m.class, id: m.id, status: "member"), remote: true, class: "btn btn-floating btn-default btn-ripple mr20" do %>
+					<i class="ion-close-round"></i>
+				<% end %>
+			</div>			
 			
-			<div class="col-md-12">
-				<div class="pull-left">
-					<h4>
-						<i class="ion-person-add text-primary margin-right-10 h4"></i>Updating team members
-					</h4>
-				</div>
 			</div>
-
-			<div class="col-md-12">
-				<div class="note note-warning note-left-striped">
-					<h4>Awesome Guidance Text</h4>
-					<p class="small text-grey">
-						<small>
-							Once added, the team member will be notified of your request to join that team. 
-						</small>
-					</p>
-				</div>
-
-				<hr class="no-margin"/>
-
-				<div class="row">
-					<div class="col-md-12">
-						<%= f.submit "Update Team Member", class: "btn btn-primary pull-right btn-block" %>
-					</div>
+			<div class="row bgcolor-light-grey padding-20">
+				<div class="col-md-12">
+					<%= f.submit "Update", class: "btn btn-primary pull-right" %>
 				</div>
 			</div>
 
 		</div>
-	</div>
-</li>
-
+	</li>
 <% end %>

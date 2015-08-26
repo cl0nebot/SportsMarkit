@@ -1,4 +1,4 @@
-<ul class="list-material has-hidden pt20 pl20">
+<ul class="list-material has-hidden">
 	<% members.each do |m| %>
 	<% if current_user.can_edit_team?(team) %>
    		<%= render 'teams/admin_view_member', m: m%>

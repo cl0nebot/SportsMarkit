@@ -2,7 +2,7 @@
 	<div class="list-content">
 		<div class="row">
 			<div class="col-sm-2">
-				<div class="">
+				<div class="center">
 					<% if m.class.to_s == "Relationship" %>
 					  <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 150px; height: 150px; border: 2px solid #ddd;" %>
 					<% else %>
@@ -11,22 +11,18 @@
 				</div>
 			</div>
 			<div class="col-sm-10">
-				<div class="row">
-					<div class="col-md-8">
-						<h3 class="no-margin capitalize text-black semi-bold">
-							<% if m.class.to_s == "Relationship" %>
-							  <%= m.user.try(:full_name) %>
-							<% else %>
-							  <%= m.first_name  %> <%= m.last_name %>
-							<% end %>
-						</h3>
-						<p class="small text-grey">
-							<small>
-								Name
-							</small>
-						</p>
-					</div>
-				</div>
+				<h3 class="no-margin capitalize text-black semi-bold">
+					<% if m.class.to_s == "Relationship" %>
+					  <%= m.user.try(:full_name) %>
+					<% else %>
+					  <%= m.first_name  %> <%= m.last_name %>
+					<% end %>
+				</h3>
+				<p class="small text-grey">
+					<small>
+						Name
+					</small>
+				</p>
 			</div>
 			<div class="row">
 				<div class="col-sm-2">
