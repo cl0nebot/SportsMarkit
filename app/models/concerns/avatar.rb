@@ -24,13 +24,13 @@ module Avatar
       end
     elsif self.class.to_s == "Team"
       if profile_pictures.last.try(:id).blank?
-        "http://cache3.asset-cache.net/gc/187840132-soccer-team-celebrates-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=ZQZzMJ8a0ONoFbdvawrO3ZhmEQ83NvPgJ9Rxm5hkoQw%3d"
+        "placeholders/team-placeholder.png"
       else
         profile_pictures.last.photo
       end
     elsif self.class.to_s == "Facility" 
       if profile_pictures.last.try(:id).blank?
-        "placeholders/facility.png"
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Color_icon_gray_v2.svg/2000px-Color_icon_gray_v2.svg.png"
       else
         profile_pictures.last.photo
       end
