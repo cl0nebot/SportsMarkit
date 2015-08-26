@@ -1,23 +1,23 @@
-    <li id="head-<%= m.class.to_s %><%= m.id%>" class="">
+<li id="head-<%= m.class.to_s %><%= m.id%>" class="">
     <div class="list-content">
         <div class="row">
             <div class="col-sm-12">
-                <div class="row">
-                    <div class="pull-left">
+                <div class="col-md-12">
+                    <div class="pull-left mr20">
                         <% if m.class.to_s == "Relationship" %>
                           <%= image_tag m.user.avatar, class: "face-radius", alt: "", style: "width: 75px; height: 75px; border: 2px solid #ddd;" %>
                         <% else %>
                           <%= image_tag "http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png", class: "face-radius pl", alt: "", style: "width: 75px; height: 75px; border: 2px solid #ddd;" %>
                         <% end %>
                     </div>
-                    <div class="pull-left ml20">
-                        <h4 class="no-margin capitalize text-black semi-bold">
+                    <div class="pull-left">
+                        <h5 class="no-margin capitalize text-black semi-bold">
                             <% if m.class.to_s == "Relationship" %>
                               <%= m.user.full_name %>
                             <% else %>
                               <%= m.first_name  %> <%= m.last_name %>
                             <% end %>
-                        </h4>
+                        </h5>
                         <p class="small text-grey">
                             <small>
                                 Name
@@ -25,53 +25,51 @@
                         </p>
                     </div>
 					<% if current_user.can_edit_team?(@team) %>
-                    <div class="pull-right mr10">
+                        <div class="pull-right mr10">
 
-                        <%= link_to m, method: :delete, remote: true,  class: "pull-right btn btn-orange"  do %>
-                                <span class="ion-trash-b"></span>
-                        <% end %>
+                            <%= link_to m, method: :delete, remote: true,  class: "pull-right btn btn-orange"  do %>
+                                    <span class="ion-trash-b"></span>
+                            <% end %>
 
-                        <%= link_to team_edit_roster_view_path(team_id: @team.id, class: m.class, id: m.id, status: "head"), remote: true, class: "btn btn-primary pull-right mr10" do %>
-                                <span class="ion-ios-gear"></span>
-                        <% end %>
+                            <%= link_to team_edit_roster_view_path(team_id: @team.id, class: m.class, id: m.id, status: "head"), remote: true, class: "btn btn-primary pull-right mr10" do %>
+                                    <span class="ion-ios-gear"></span>
+                            <% end %>
+                        </div>
+					<% end %>
+                    <div class="col-sm-2">
+                        <h5 class="no-margin semi-bold">
+                            <%= m.head_title.blank? ? "TBD" : m.head_title %>
+                        </h5>
+                        <p class="small text-grey">
+                            <small>
+                                <%= m.head_position_list %>
+                            </small>
+                        </p>
                     </div>
-					<% end %>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2">
-                    <h5 class="no-margin semi-bold">
-                        <%= m.head_title.blank? ? "TBD" : m.head_title %>
-                    </h5>
-                    <p class="small text-grey">
-                        <small>
-                            <%= m.head_position_list %>
-                        </small>
-                    </p>
-                </div>
-                <div class="col-sm-4">
-					<% if m.class.to_s == "Relationship" %>
-                    <h5 class="no-margin capitalize semi-bold">
-                        <%= m.user.certification_list.blank? ? "TBD" : m.user.certification_list %>
-                    </h5>
-                    <p class="small text-grey">
-                        <small>
-                            certifications
-                        </small>
-                    </p>
-					<% end %>
+                    <div class="col-sm-4">
+    					<% if m.class.to_s == "Relationship" %>
+                        <h5 class="no-margin capitalize semi-bold">
+                            <%= m.user.certification_list.blank? ? "TBD" : m.user.certification_list %>
+                        </h5>
+                        <p class="small text-grey">
+                            <small>
+                                Certifications
+                            </small>
+                        </p>
+    					<% end %>
+                        </div>
+                    <div class="col-sm-2">
+    					<% if m.class.to_s == "Relationship" %>
+                        <h5 class="no-margin semi-bold">
+                            <%= m.user.mobile_phone_number.blank? ? "TBD" : number_to_phone(m.user.mobile_phone_number) %>
+                        </h5>
+                        <p class="small text-grey">
+                            <small>
+                                Phone
+                            </small>
+                        </p>
+    					<% end %>
                     </div>
-                <div class="col-sm-2">
-					<% if m.class.to_s == "Relationship" %>
-                    <h5 class="no-margin semi-bold">
-                        <%= m.user.mobile_phone_number.blank? ? "TBD" : number_to_phone(m.user.mobile_phone_number) %>
-                    </h5>
-                    <p class="small text-grey">
-                        <small>
-                            phone
-                        </small>
-                    </p>
-					<% end %>
                 </div>
             </div>
         </div>
