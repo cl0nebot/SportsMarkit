@@ -755,3 +755,12 @@ ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
 .scrollable-tabs {
     z-index: 1;
 }
+
+
+
+/*image photo for thumbnails*/
+
+.card.card-user .card-heading.heading-full .user-image {
+  background-size: cover !important;
+
+}
