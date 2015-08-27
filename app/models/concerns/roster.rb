@@ -96,6 +96,10 @@ module Roster
       UserlessRelationship.where(team_id: team_ids, trainer: true)
     end
   end
+  
+  def accepted_staff_members
+    (accepted_coaches + accepted_trainers + accepted_managers).uniq
+  end
 
 
 
