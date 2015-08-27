@@ -23,10 +23,10 @@
 					Find an Athlete <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
-						<% @team.accepted_athletes.each do |team| %>
+						<% @team.accepted_athletes.each do |user| %>
 							<li>
-								<%= link_to user_path(@team.accepted_athletes) do %>
-					  			<%= @team.accepted_athletes.name %>
+								<%= link_to user_path(user) do %>
+					  			<%= user.full_name %>
 					  		<% end %>
 					  	</li>
 						<% end %>
@@ -41,10 +41,10 @@
 					Find a Staff Member <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
-						<% @team.accepted_athletes.each do |team| %>
+						<% @team.accepted_athletes.each do |user| %>
 							<li>
-								<%= link_to user_path(@team.accepted_athletes) do %>
-					  			<%= @team.accepted_athletes.name %>
+								<%= link_to user_path(user) do %>
+					  			<%= user.full_name %>
 					  		<% end %>
 					  	</li>
 						<% end %>
