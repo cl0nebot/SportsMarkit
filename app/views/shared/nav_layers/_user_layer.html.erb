@@ -64,17 +64,29 @@
 			<% rel.team.chatrooms.each do |chatroom| %>
 				<% if rel.athlete? && chatroom.specific_id == 1  %>
 		            <div class="list-content" id="chatroom-label-<%= chatroom.id %>">
-						<%= render 'shared/nav_layers/chatroom',rel: rel, chatroom: chatroom %>  
+						<% if chatroom.id == current_user.chatroom_ids.first %>
+						  <%= render 'shared/nav_layers/room',rel: rel, chatroom: chatroom %> 
+						<% else %>
+						  <%= render 'shared/nav_layers/chatroom',rel: rel, chatroom: chatroom %> 
+						<% end %>
 		            </div>
 				<% end %>
 				<% if rel.coach? && chatroom.specific_id == 2  %>
 		            <div class="list-content" id="chatroom-label-<%= chatroom.id %>">
-						 <%= render 'shared/nav_layers/chatroom',rel: rel, chatroom: chatroom %>
+						<% if chatroom.id == current_user.chatroom_ids.first %>
+						  <%= render 'shared/nav_layers/room',rel: rel, chatroom: chatroom %> 
+						<% else %>
+						  <%= render 'shared/nav_layers/chatroom',rel: rel, chatroom: chatroom %> 
+						<% end %>
 		            </div>
 				<% end %>
 				<% if current_user.parent_relationship_with_team?(rel.team) && chatroom.specific_id == 3  %>
 		            <div class="list-content" id="chatroom-label-<%= chatroom.id %>">
-						<%= render 'shared/nav_layers/chatroom',rel: rel, chatroom: chatroom %>
+						<% if chatroom.id == current_user.chatroom_ids.first %>
+						  <%= render 'shared/nav_layers/room',rel: rel, chatroom: chatroom %> 
+						<% else %>
+						  <%= render 'shared/nav_layers/chatroom',rel: rel, chatroom: chatroom %> 
+						<% end %>
 		            </div>
 				<% end %>
 			<% end %>
