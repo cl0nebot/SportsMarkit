@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823212428) do
+ActiveRecord::Schema.define(version: 20150828165922) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -214,19 +214,18 @@ ActiveRecord::Schema.define(version: 20150823212428) do
     t.string   "linkedin"
     t.string   "pinterest"
     t.string   "instagram"
-    t.string   "foursquare"
     t.string   "youtube"
     t.string   "email"
     t.string   "website"
-    t.string   "mobile_phone_number"
+    t.string   "phone_number"
     t.string   "address_1"
     t.string   "address_2"
     t.string   "city"
     t.integer  "zip"
     t.integer  "zip_ext"
-    t.float    "latitude",            limit: 24
-    t.float    "longitude",           limit: 24
-    t.float    "price",               limit: 24
+    t.float    "latitude",          limit: 24
+    t.float    "longitude",         limit: 24
+    t.float    "price",             limit: 24
     t.boolean  "gmaps"
     t.string   "classification"
     t.string   "category"

@@ -51,13 +51,13 @@
 							<p class="fs_14 lh_18 text-muted mb20 mt10">
 								<%= @league.description %>
 							</p>
-							<% if @league.mobile_phone_number.present? || @league.website.present? || @league.email.present? %>
+							<% if @league.phone_number.present? || @league.website.present? || @league.email.present? %>
 							<hr clas="light"/>
 							<p class="semi-bold small text-muted no-margin fs_14">
-								<% if @league.mobile_phone_number.present? %>
+								<% if @league.phone_number.present? %>
 								<span class="inline">
 									<i class="ion-ios-telephone fs_16 text-primary mr5"></i>
-									<%= @league.mobile_phone_number %>
+									<%= @league.phone_number %>
 								</span>
 								<br/>
 								<% end %>

@@ -78,6 +78,7 @@
 		</div><!--.col-md-9-->
 	</div><!--.row-->
 
+<% if @object.class.to_s == "User" %>
 	<div class="row example-row">
 		<div class="col-md-12">
 			<a class="btn btn-social-icon btn-foursquare btn-ripple margin-right-10">
@@ -93,3 +94,4 @@
 			</div>
 		</div><!--.col-md-9-->
 	</div><!--.row-->
+<% end %>

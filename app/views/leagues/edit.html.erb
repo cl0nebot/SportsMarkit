@@ -39,6 +39,7 @@
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
 				<li class="active"><a href="#general" data-toggle="tab">General</a></li>
 				<li><a href="#social-media" data-toggle="tab">Social Media</a></li>
+				<li><a href="#location" data-toggle="tab">Location</a></li>
 				<li><a href="#media" data-toggle="tab">Upload Media</a></li>
 			</ul>
 		</div>
@@ -81,12 +82,23 @@
 														</div>
 													</div><!--.col-md-9-->
 												</div><!--.row-->
+												
+												<div class="row example-row">
+													<div class="col-md-12">Classification</div><!--.col-md-3-->
+													<div class="col-md-12 margin-top-10">
+														<div class="inputer">
+															<%= f.select :classification, [ 'School District', 'Recreational: Adult', 'Recreational: Youth'], {:selected => @league.classification }, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
+															
+
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
 
 												<div class="row example-row">
 													<div class="col-md-12">Sport</div><!--.col-md-3-->
 													<div class="col-md-12 margin-top-10">
 														<div class="inputer">
-															<%= f.collection_select :sport_ids, Sport.all, :id, :sport, {:selected => ""}, {:multiple => true, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0" } %>
+															<%= f.collection_select :sport_ids, Sport.all, :id, :sport, {:selected => @league.sports.pluck(:id)}, {:multiple => true, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0" } %>
 
 														</div>
 													</div><!--.col-md-9-->
@@ -104,27 +116,14 @@
 												</div><!--.row-->
 
 												<div class="row">
-													<div class="col-md-8">
-														<div class="row example-row">
-															<div class="col-md-12">City</div><!--.col-md-3-->
-															<div class="col-md-12">
-																<div class="inputer">
-																	<div class="input-wrapper">
-																		<input class="form-control" placeholder="City"/>
-
-																	</div>
-																</div>
-															</div><!--.col-md-9-->
-														</div><!--.row-->
-													</div>
 
 													<div class="col-md-4">
 														<div class="row example-row">
-															<div class="col-md-12">State</div><!--.col-md-3-->
+															<div class="col-md-12">Phone Number</div><!--.col-md-3-->
 															<div class="col-md-12">
 																<div class="inputer">
 																	<div class="input-wrapper">
-																		<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %>
+																		<%= f.text_field :phone_number, type: "text", class: "form-control", placeholder: "" %>
 																	</div>
 																</div>
 															</div><!--.col-md-9-->
@@ -148,6 +147,88 @@
 										<%= render 'shared/social_edit', f: f %>
 									</div>
 								</div><!--tab-pane-->
+								
+								<div class="tab-pane text-style" id="location">
+									<div class="panel-header">
+										<h4 class="text-right semi-bold text-primary">Location</h4>
+									</div>
+									<hr class="margin-top-0"/>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-8 col-md-offset-2 col-sm-12">
+												<div class="row example-row">
+													<div class="col-md-12">Address</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :address_1, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+
+
+												<div class="row example-row">
+													<div class="col-md-12">Address Line 2</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :address_2, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+
+												<div class="row example-row">
+													<div class="col-md-12">City</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :city, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+
+												<div class="row example-row">
+													<div class="col-md-12">State</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :state, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+
+
+												<div class="row example-row">
+													<div class="col-md-12">Zipcode</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :zip, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+
+												<div class="row example-row">
+													<div class="col-md-12">Zipcode Ext.</div><!--.col-md-3-->
+													<div class="col-md-12">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<%= f.text_field :zip_ext, class: "form-control", placeholder: "" %>
+															</div>
+														</div>
+													</div><!--.col-md-9-->
+												</div><!--.row-->
+											</div>
+										</div>
+									</div>
+								</div><!--tab-pane-->
+								
+								
 
               	<div class="tab-pane text-style" id="media">
                   <div class="panel-header">
