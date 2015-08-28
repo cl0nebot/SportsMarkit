@@ -10,6 +10,16 @@ class PhotosController < ApplicationController
     Photo.find(params[:id]).update_attributes(photo_params)
     redirect_to :back
   end
+  
+  def destroy
+    @photo = Photo.find(params[:id])
+    @photo.destroy
+    respond_to do |format|
+      format.html{redirect_to :back}
+      format.js
+    end
+    
+  end
 
   private
     def set_photo_owner
