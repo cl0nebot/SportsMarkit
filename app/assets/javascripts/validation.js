@@ -96,6 +96,10 @@ $(window).load(function(){
     validateRosterForm($('#roster-form'));
   }
   
+  if($('#sport-new-form').size()){
+    validateNewSportForm($('#sport-new-form'));
+  }
+  
   
   
   
@@ -514,23 +518,60 @@ validateNewLeagueForm = function(el){
  });
 };
 
-validateCertificationForm = function(el){
+validateNewLeagueForm = function(el){
   $(el).validate({
     rules: {
-      "certification[name]": {
+      "league[name]": {
         required: true,
         minlength: 3,
         maxlength: 50
       },
-
-      "certification[issuer]": {
+	  
+      "league[sport]": {
         required: true,
         minlength: 3,
         maxlength: 50
+      },
+	  
+      "league[state]": {
+        required: true,
+        minlength: 3,
+        maxlength: 50
+      },
+	  
+      "league[description]": {
+        required: true,
+        minlength: 3,
+		  maxlength: 1000
+      },
+    messages: {
+      "league[name]": {
+        minlength: "Name must be at least 3 characters.",
+        maxlength: "Name must not exceed 50 characters."
       }
+    }
+  }
+ });
+};
+
+
+validateNewSportForm = function(el){
+  $(el).validate({
+    rules: {
+      "sport[sport]": {
+        required: true,
+        minlength: 3,
+        maxlength: 50
+      },
+      "sport[sport_icons_attributes][0][icon]": {
+        required: true
+      },
+      "sport[sport_photos_attributes][0][photo]": {
+        required: true
+      }	  
     },
     messages: {
-      "certification[name]": {
+      "sport[sport]": {
         minlength: "Name must be at least 3 characters.",
         maxlength: "Name must not exceed 50 characters."
       }

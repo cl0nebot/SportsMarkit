@@ -14,7 +14,7 @@
   </div><!--.page-header-->
 
 <div class="row">
-	<%= form_for @sport, url: sports_path, method: :post do |f| %>
+	<%= form_for @sport, url: sports_path, html: {id: "sport-new-form", method: :post} do |f| %>
 	
 		<div class="col-md-4">
 			<div class="panel box-shadow-ccc">
