@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828165922) do
+ActiveRecord::Schema.define(version: 20150828201334) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -450,6 +450,9 @@ ActiveRecord::Schema.define(version: 20150828165922) do
     t.integer  "number_of_teams"
     t.integer  "number_of_students"
     t.string   "category"
+    t.integer  "founded"
+    t.integer  "enrollment"
+    t.integer  "faculty"
   end
 
   add_index "schools", ["slug"], name: "index_schools_on_slug", unique: true, using: :btree

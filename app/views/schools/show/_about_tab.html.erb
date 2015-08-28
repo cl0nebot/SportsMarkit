@@ -31,10 +31,38 @@
 									<h4 class="semi-bold capitalize text-black no-margin lh_28 mt10 mb0">
 										<%= @school.name %>
 									</h4>
-									<p class="fs_12 semi-bold text-muted mb5 mt5">Founded,: 1989, Enrollment: 1233, Faculty: 92 </p> 
+									<p class="fs_12 semi-bold text-muted mb5 mt5">
+										<% if @school.founded.present? %> 
+										Founded: <%= @school.founded %> 
+										<% end %>
+										
+										<% if @school.founded.present? %> 
+										","
+										<% end %>
+										
+										<% if @school.enrollment.present? %> 
+										Enrollment: <%= @school.enrollment %> 
+										<% end %>
+										
+										<% if @school.enrollment.present? %> 
+										","
+										<% end %>
+										
+										<% if @school.faculty.present? %> 
+										Faculty: <%= @school.faculty %> 
+										<% end %>
+										
+										<% if @school.faculty.present? %> 
+										"," 
+										<% end %>
+										
+										
+									</p> 
 									<p class="semi-bold fs_14 text-muted no-margin">
-										<i class="ion-university fs_20 text-primary mr5"></i>
-										Baltimore School District
+										<% if @school.league_names.present? %>
+										  <i class="ion-university fs_20 text-primary mr5"></i>
+										  <%= @school.league_names %>
+										<% end %>
 									</p>
 								</div>
 							</div>

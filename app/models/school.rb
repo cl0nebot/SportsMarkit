@@ -176,5 +176,16 @@ class School < ActiveRecord::Base
   def category_and_classification
     "#{classification_with_hyphen} #{category.try(:downcase)}"
   end
+  
+  def league_names
+    array = [] 
+    teams.pluck(:id).each do |id|
+      Team.find(id).leagues.each do |league|
+        array << league.name  
+      end
+    end
+    array.uniq.join(", ")
+  end
+  
     
 end
