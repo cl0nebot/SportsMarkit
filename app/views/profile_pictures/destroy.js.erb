@@ -1,0 +1,7 @@
+$('.modal#<%= @profile_picture.id %>').modal('hide');
+$("#profile-picture").replaceWith("<%= j render "shared/profile_picture", object: @owner %>");
+$('.modal-backdrop').css({
+     'position': 'relative'
+ });
+$('.fileinput-new.thumbnail img').attr('src','');
+$('.fileinput-new.thumbnail img').attr('alt','');
