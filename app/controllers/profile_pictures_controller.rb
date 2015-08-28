@@ -22,10 +22,11 @@ class ProfilePicturesController < ApplicationController
   end
   
   def update
-    @profile_picture = @user.profile_pictures.last #instead of finding by :id, always finds last; updates
-    @profile_pictures = @user.profile_pictures.to_a
-    #@profile_picture.user_id = User.friendly.find(params[:user_id]).id
-    #@profile_picture.update_attributes(user_id: @user.id, photo: params[:user_profile_picture][:photo])
+    @profile_picture = @owner.profile_pictures.last #instead of finding by :id, always finds last; updates
+    @profile_pictures = @owner.profile_pictures.to_a
+    @profile_picture.profile_picture_owner_type = @owner.class.to_s
+    @profile_picture.profile_picture_owner_id = @owner.id
+    @profile_picture.update_attributes(profile_picture_owner_id: @owner.id, profile_picture_owner_type: @owner.class.to_s, photo: params[:profile_picture][:photo])
     redirect_to :back
   end
   
