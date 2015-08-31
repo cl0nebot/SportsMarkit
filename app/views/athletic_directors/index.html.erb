@@ -1,0 +1,10 @@
+<% @directors.each do |director| %>
+<div id="director-<%= director.id %>">
+
+<%= director.user.full_name %>,
+<%= director.school.name %>
+<%= link_to "Delete", director, method: :delete, remote: true, data: { confirm: 'Are you sure?', remote: true } %>
+
+
+</div>
+<br><% end %>
