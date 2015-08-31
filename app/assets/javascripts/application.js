@@ -127,6 +127,11 @@
 //= require schools
 //= require hamlcoffee
 //= require_tree ./templates
+	
 
+	
 
+	window.onload = function () {
+		$('#media-page').load(document.URL +  ' #media-page');
+	}
 
