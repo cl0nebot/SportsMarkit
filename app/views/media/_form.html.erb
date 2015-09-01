@@ -10,12 +10,24 @@
 
       <div class="">
         <div class="radioer form-inline">
-          <%= f.radio_button :category, 'Article', 'data-label'=>'article_label', type: "radio", id: "media_category_article", checked: (params[:object] == 'article' ? true : "" ) %>
-          <label for="media_category_article">Article</label>
+		 <% if m.new_record? %>
+          <%= f.radio_button :category, 'Article', 'data-label'=>'article_label', type: "radio", id: "article-#{m.fake_id}", checked: (params[:object] == 'article' ? true : "" ) %>
+          <label for="article-<%= m.fake_id%>">Article</label>
+		  <% else %>
+          <%= f.radio_button :category, 'Article', 'data-label'=>'article_label', type: "radio", id: "article-#{m.id}" %>
+          <label for="article-<%= m.id%>">Article</label>
+		  
+		  <% end %>
         </div>
         <div class="radioer form-inline">
-          <%= f.radio_button :category, 'Video', 'data-label'=>'video_label', type: "radio", id: "media_category_video", checked: (params[:object] == 'video' ? true : "" ) %>
-          <label for="media_category_video">Video</label>
+		  <% if m.new_record? %>
+          <%= f.radio_button :category, 'Video', 'data-label'=>'video_label', type: "radio", id: "video-#{m.fake_id}", checked: (params[:object] == 'video' ? true : "" ) %>
+          <label for="video-<%= m.fake_id%>">Video</label>
+		  <% else %>
+          <%= f.radio_button :category, 'Video', 'data-label'=>'video_label', type: "radio", id: "video-#{m.id}" %>
+          <label for="video-<%= m.id%>">Video</label>
+		  
+		  <% end %>
         </div>
       </div>
       <br/>
