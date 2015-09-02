@@ -26,6 +26,9 @@ class TeamsController < ApplicationController
       @team = @school.teams.build(team_params)
       if @team.save
         Relationship.create(team_id: @team.id, user_id: current_user.id, accepted: true, admin: true)
+        Chatroom.create(team_id: @team.id, specific_id: 1)
+        Chatroom.create(team_id: @team.id, specific_id: 2)
+        Chatroom.create(team_id: @team.id, specific_id: 3)
         redirect_to "/teams/#{@team.slug}"
       else
         flash[:error] = "Oops."
@@ -34,6 +37,9 @@ class TeamsController < ApplicationController
     else
       @team = Team.new(team_params)
       if @team.save
+        Chatroom.create(team_id: @team.id, specific_id: 1)
+        Chatroom.create(team_id: @team.id, specific_id: 2)
+        Chatroom.create(team_id: @team.id, specific_id: 3)
         redirect_to teams_path
       else
         flash[:error] = "Oops."
