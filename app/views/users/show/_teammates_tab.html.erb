@@ -7,14 +7,14 @@
 
             <div class="col-md-4">
               <div class="card tile card-friend material-animate">
-                <a href="user-profile.html">
+                <a href="<%= user_path(teammate)%>">
                   <img src="<%= teammate.avatar %>" class="user-photo" alt="">
                 </a>
                 <div class="friend-content">
                   <p class="title mt15"><%= teammate.first_name %> <%= teammate.last_name %></p>
                   <p><a href="user-profile.html"><%= teammate.classification_list %></a></p>
-				  <% if true %>
-                  <p><i class="ion-ios-telephone text-primary mr5"></i> xxx-xxx-xxxx</p>
+				  <% if teammate.mobile_phone_number.present? %>
+                  <p><i class="ion-ios-telephone text-primary mr5"></i> <%= teammate.mobile_phone_number %></p>
 				  <% end %>
                   <p><i class="ion-email text-primary mr5"></i> <%= teammate.email %></p>
 
