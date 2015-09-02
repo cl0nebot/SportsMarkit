@@ -1,5 +1,5 @@
 <div class="row">
-	<% if current_user.can_edit_user?(@object) %>
+	<% if current_user.can_edit_object?(@object) %>
 	<p class="text-right">
 		<%= link_to "New Event", eval("new_#{@object.class.to_s.downcase}_event_path(@object.friendly_id)"), class: "btn btn-pink" %>
 	</p>
