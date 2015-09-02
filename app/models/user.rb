@@ -379,7 +379,7 @@ class User < ActiveRecord::Base
   
   def chatroom_ids
     array = []
-    rels = relationships.each do |rel|
+    rels = relationships.where.not(id: nil).each do |rel|
       rel.team.chatrooms.each do |chatroom|
         if rel.athlete? && chatroom.specific_id == 1
           array << chatroom.id
