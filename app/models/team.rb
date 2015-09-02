@@ -23,6 +23,8 @@ class Team < ActiveRecord::Base
   
   validates :sport, presence: true
   
+  has_many :leagues, through: :team_leagues
+  
   
   
   
