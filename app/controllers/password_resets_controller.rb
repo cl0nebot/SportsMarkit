@@ -7,12 +7,10 @@ class PasswordResetsController < ApplicationController
   def create
     user = User.find_by_email(params[:email])
     user.send_password_reset if user
-    flash[:success] = "Email send with password reset instructions."
-    if current_user
-      cookies.delete(:authentication_token)
-      redirect_to root_url
-    else
-      redirect_to root_url
+    cookies.delete(:authentication_token)
+    respond_to do |format|
+      format.js
+      format.html { redirect_to :back }
     end
   end
   
