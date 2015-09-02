@@ -32,20 +32,28 @@
 							<i class="ion-location"></i> <%= @facility.address_1 %><br/>
 							 <%= @facility.city %>, <%= @facility.state %>, <%= @facility.zip %>
 						</p>
-						<hr class="light mb0 mt10"/>
+						<% if @facility.phone_number.present? || @facility.website.present? || @facility.email.present?  %>
+						  <hr class="light mb0 mt10"/>
+						<% end %>
 						<ul class="fs_12 mt10">
+							<% if @facility.phone_number.present? %>
 							<li>
 								<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
 								<%= @facility.phone_number %> 
 							</li>
+							<% end %>
+							<% if @facility.website.present? %>
 							<li>
 								<i class="ion-monitor fs_20 text-primary mr5"></i>
 								<a href="<%= @facility.website %>"><%= @facility.website %></a>
 							</li>
+							<% end %>
+							<% if @facility.email.present? %>
 							<li>
 								<i class="ion-email fs_20 text-primary mr5"></i>
 								<%= @facility.email %>
 							</li>
+							<% end %>
 						</ul>
 					</div>
 					<hr class="light mt10 mb10"/>
