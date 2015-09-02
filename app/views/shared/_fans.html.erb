@@ -2,10 +2,10 @@
   <%= link_to user_path(fan.user) do %>
     <div class="col-md-4">
       <div class="card tile card-friend material-animate">
-        <a href="user-profile.html"><img src="<%= fan.user.avatar %>" class="user-photo" alt=""></a>
+        <a href="<%= user_path(fan.user) %>"><img src="<%= fan.user.avatar %>" class="user-photo" alt=""></a>
         <div class="friend-content">
           <p class="title pt20 mb0"><%= fan.user.full_name %></p>
-          <p><a href="user-profile.html"><%= fan.user.classification_list(3) %></a></p>
+          <p><a href="<%= user_path(fan.user) %>"><%= fan.user.classification_list(3) %></a></p>
           <hr class="light mt5 mb0"/>
           <small class="small mr10 text-muted fs_11">
             Following 
