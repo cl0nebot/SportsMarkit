@@ -207,7 +207,7 @@ var FormsTools = {
 		var facilities = new Bloodhound({
 		    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 		    queryTokenizer: Bloodhound.tokenizers.whitespace,
-		    local: $.map(facilities, function(facilities) { return { value: facility }; })
+		    local: $.map(facilities, function(facility) { return { value: facility }; })
 		});
 
 		// initialize the bloodhound suggestion engine
@@ -222,7 +222,7 @@ var FormsTools = {
 		    }, {
 		        name: 'facilities',
 		        displayKey: 'value',
-		        source: schools.ttAdapter()
+		        source: facilities.ttAdapter()
 		    })
 		    .on('typeahead:selected', function(object, datum) {
 		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
