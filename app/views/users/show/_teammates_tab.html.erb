@@ -12,7 +12,7 @@
                 </a>
                 <div class="friend-content">
                   <p class="title mt15"><%= teammate.first_name %> <%= teammate.last_name %></p>
-                  <p><a href="user-profile.html"><%= teammate.classification_list %></a></p>
+                  <p><a href="<%= user_path(teammate)%>"><%= teammate.classification_list %></a></p>
 				  <% if teammate.mobile_phone_number.present? %>
                   <p><i class="ion-ios-telephone text-primary mr5"></i> <%= teammate.mobile_phone_number %></p>
 				  <% end %>
