@@ -66,7 +66,7 @@
 						<ul class="list-material borderless">
 							<% @heads.each do |head| %>
 								<li class="has-action-left">
-									<a href="#" class="visible">
+									<a href="<%= head.class.to_s == "Relationship" ? user_path(head.user) : "javascript: void(0)" %>" class="visible">
 										<div class="pull-right pt20">
 											<% if head.mobile_phone_number.present? %>
 											<span class="text-muted fs_11">
@@ -169,7 +169,7 @@
 									<ul class="list-material borderless">
 										<% @members.each do |member| %>
 										<li class="has-action-left">
-											<a href="#" class="visible">
+											<a href="<%= member.class.to_s == "Relationship" ? user_path(member.user) : "javascript: void(0)" %>" class="visible">
 												<div class="pull-right pr20">
 													<span class="lh_20 pull-right h3 inline">
 														<% if member.jersey_number.present? %>
@@ -187,7 +187,9 @@
 												<div class="list-content">
 												
 													<span class="title"><% if member.class.to_s == "Relationship" %>
+														
 													  <%= member.user.try(:full_name) %>
+													 
 													<% else %>
 													  <%= member.first_name  %> <%= member.last_name %>
 													<% end %></span>
