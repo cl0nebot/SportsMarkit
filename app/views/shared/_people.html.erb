@@ -111,13 +111,14 @@
 				<a href="user-profile.html">
 					<%= image_tag person.avatar, class: "user-photo" %>
 				</a>
-				<div class="friend-content pt10">
+				<div class="friend-content">
 					<div class="margin-bottom-5">
 						<span class="title">
 							<span class="fs_20"><%= person.first_name %> <%= person.last_name %></span>
 						<span>
 						<h6 class="no-margin">
-							<small><%= person.classification_list %><%= ', ' if person.classification_list.present? %> 
+							<small><%= truncate(person.classification_list, length: 38) %>
+								<br/>
 								<%= pluralize person.teams.count, "Team" %>
 							</small>
 						</h6>
