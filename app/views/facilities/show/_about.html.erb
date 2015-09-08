@@ -22,6 +22,16 @@
 					</div> -->
 					<!--.card-heading-->
 					<div class="card-heading pl40 pr40">
+						<div class="row">
+							<div class="pull-right">
+								<%= render "shared/fan" %>
+							</div>
+						</div>
+					</div>
+					
+					<hr class="light mt10 mb10"/>
+					<div class="card-body pl40 pr40 pb0">
+
 						<h3 class="semi-bold capitalize text-black no-margin">
 							<%= @facility.name %>
 						</h3>
@@ -58,9 +68,9 @@
 					</div>
 					<hr class="light mt10 mb10"/>
 					<div class="card-body pl40 pr40 pb40">
-		    		<div id="gmaps_10" class="map" style="min-height: 100%;">
-		      			<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
-		    		</div>
+			    		<div id="gmaps_10" class="map" style="min-height: 100%;">
+			      			<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
+			    		</div>
 					</div>
 					<!-- <hr class="light mt10 mb10"/>
 					<div class="card-body pl40 pr40 pb40">
