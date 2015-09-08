@@ -83,7 +83,7 @@
 						</div>
 							
 						<br/>
-							<hr class="light mt15 mb15"/>
+						<hr class="light mt15 mb15"/>
 						<div class="card-heading pl40 pr40">
 							<p class="author lh_26">
 								<a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a> 
@@ -96,63 +96,11 @@
 							<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
 						</div>
 
-						<hr class="light mt15 mb0"/>
-						<div class="card-heading pl40 pr40">
-							<p class="author">
-								<a href="#">
-								<i class="ion-trophy mr5"></i>
-								Athletic Achievements</a> 
-							</p>
-						</div>
-						<div class="card-body pl40 pr40">
-						<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Sports Team Awards & Distinctions</small></h6>
-						<!-- these must stay together as an interator -->
-						<div class="clearfix">
-							<table class="table table-hover bgcolor-white box-shadow-ccc">
-								<thead>
-									<th><span class="text-muted semi-bold fs_12">Team</span></th>
-									<th><span class="text-muted semi-bold fs_12">Award</span></th>
-									<th><span class="text-muted semi-bold fs_12">Year</span></th>
-								</thead>
-								<tbody>
-									<%# @user.measurables.each do |measurable| %>
-										<tr>
-											<td><span class="fs_12"><%#= measurable.measurable %></span></td>
-											<td><span class="fs_12"><%#= measurable.sport %></span></td>
-											<td><span class="fs_12"><%#= measurable.result %></span></td>
-										</tr>
-									<%# end %>
-								</tbody>
-							</table>
-						</div>
-
-						<br/>
-						<h6 class="upper text-muted bold no-margin"><small><SPAN></SPAN>Individual Athlete Awards & Distinctions</small></h6>
-						<!-- these must stay together as an interator -->
-						<div class="clearfix">
-							<table class="table table-hover bgcolor-white box-shadow-ccc">
-								<thead>
-									<th><span class="text-muted semi-bold fs_12">Athlete</span></th>
-									<th><span class="text-muted semi-bold fs_12">Award</span></th>
-									<th><span class="text-muted semi-bold fs_12">Year</span></th>
-								</thead>
-								<tbody>
-									<%# @user.measurables.each do |measurable| %>
-										<tr>
-											<td><span class="fs_12"><%#= measurable.measurable %></span></td>
-											<td><span class="fs_12"><%#= measurable.sport %></span></td>
-											<td><span class="fs_12"><%#= measurable.result %></span></td>
-										</tr>
-									<%# end %>
-								</tbody>
-							</table>
-						</div>
 						<!-- <h6 class="upper text-muted bold no-margin"><small>My favorites</small></h6> -->
 						<%#= @user.profile.hudl %>
 						<%#= @user.profile.favorite_pro_team %>													
 						<%#= @user.profile.favorite_college_team %>
 						<%#= @user.profile.favorite_pro_athlete %>	
-					</div><!--.card-body-->
 	                  <%= render 'shared/about_tab_social_media'%>
 				</div><!--.card-->
 			</div><!--.col-md-6-->
