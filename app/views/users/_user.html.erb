@@ -23,18 +23,29 @@
 
 	        <hr class="light no-margin mt5 mb10"/>
 
-	        <div class="subhead">
-	          <!-- <span class="text-muted">
-	            Member since: <%= format(user.created_at, 4) %>
-	          </span> -->
-	          <span class="text-muted fs_11">
-	           <!--  <%= user.age %> years old<br/> -->
-	            <i class="ion-location text-blue margin-right-5"></i> <%= user.profile.location_description.present? ? user.profile.location_description : "USA" %><br/>
-	      		  <% if current_user.admin? %>
-	                <i class="ion-email text-blue margin-right-5"></i><%= user.email %><br/>
-	                <i class="ion-ios-telephone text-blue margin-right-5"></i> <%= number_to_phone(user.mobile_phone_number) %>
-	      		  <% end %>
-	          </span>
+            <!-- <span class="text-muted">
+            	Member since: <%= format(user.created_at, 4) %>
+         	</span> -->
+            
+          <div class="subhead">
+	          <p class="mb0 fs_12">
+		          <span class="text-muted">
+		            <i class="ion-location mr5"></i> 
+		            <%= user.profile.location_description.present? ? user.profile.location_description : "USA" %>
+		        	</span>
+
+		        	<% if current_user.admin? %>
+			        	<span class="text-muted">
+			            <i class="ion-email margin-right-5"></i>
+			            <%= user.email.present? ? user.email : "NA" %>
+			        	</span>
+
+			        	<span class="text-muted">
+			            <i class="ion-ios-telephone margin-right-5"></i>
+			           	<%= user.mobile_phone_number.present? ? number_to_phone(user.mobile_phone_number) : "NA" %>
+			        	</span>
+		      		<% end %>
+		      	</p>
 	        </div>
 	      </div><!--.card-body-->
 

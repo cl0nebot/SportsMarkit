@@ -29,12 +29,12 @@
 		          	<%= league.state %>
 		      	  </span>
 		          <span class="text-muted inline">
-		            <%= league.sport_list %>
+		            <%= league.sport_list.present? ? league.sport_list : "NA" %>
 		          </span>
 		          <br/>
 		          <span class="text-muted inline">
 		          	<i class="ion-information-circled mr5"></i>
-		          	<%#= truncate(league.description, length: 150) %>
+		          	<%= truncate(league.description, length: 38) %>
 		          </span>
 		        </div>
 		      </div><!--.card-body-->

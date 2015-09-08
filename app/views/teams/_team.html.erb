@@ -27,7 +27,9 @@
             <span class="text-muted">
               <i class="ion-information-circled mr5"></i> <%= team.sport %>
             </span>
-            <span class="text-muted"><i class="ion-map mr5"></i> <%= team.city_state %></span>
+            <span class="text-muted"><i class="ion-map mr5"></i> 
+              <%= team.city_state.present? ? team.city_state : "NA" %>
+            </span>
             <!-- <span class="text-muted">[school name or Team Type]</span> -->
           </div>
           

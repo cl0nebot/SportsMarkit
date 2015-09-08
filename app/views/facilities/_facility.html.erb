@@ -1,7 +1,7 @@
 <% facilities.each do |facility| %>
 	<%= link_to facility_path(facility) do %>
 	<div class="col-md-3 col-lg-2 col-sm-12 element-item <%= facility.type_with_hyphen %> all" data-category="<%= facility.type_with_hyphen %> all">
-    <div class="card card-user card-clickable card-clickable-over-content">
+    <div class="card card-user card-clickable card-clickable-over-content"  style="height: 328px;">
       <div class="card-heading heading-full">
        <div class="user-image sample-member9" style="background: url('<%= facility.avatar %>');"></div>
 
@@ -26,20 +26,24 @@
 			</h4>
 		</div>
 		<hr class="light mt5 mb10"/>
-		<p class="lh_16 text-muted fs_12">
-			<%= facility.address_1 %><br/>
-			<%= facility.city %>, <%= facility.state %> 
+		<p class="lh_16 text-muted fs_12 no-margin">
+			<% if facility.city.present? %>
+				<%= facility.address_1 %><br/>
+				<%= facility.city %>, <%= facility.state %> 
+			<% else %>
+			Address not available.
+			<% end %>
 		</p>
       
 
-    <div class="subhead">
-      <span class="text-muted">
-        <%= facility.email %>
-      </span>
-      <%= facility.website %>
-      <%= facility.phone_number %>
-    </div>
-  </div>
+	    <div class="subhead">
+	      <span class="text-muted">
+	        <%= facility.email %>
+	      </span>
+	      <%= facility.website %>
+	      <%= facility.phone_number %>
+	    </div>
+	  </div>
     	<!--.card-body-->
 
 	      <!-- <div class="card-footer">

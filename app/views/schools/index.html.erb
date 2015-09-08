@@ -3,10 +3,10 @@
 		<div class="row">
 			<div class="col-sm-5">
 				 <div class="logo text-white">
-	          <%= image_tag("icons/flag.png", height: "15", class: "margin-right-5", style: "margin-top: -5px; width: 15px;") %>
-	          SportsMarkit
-	        </div><!--.logo-->
-        <h1>Schools <small>(<%= School.count %>)</small></h1>
+			          <%= image_tag("icons/flag.png", height: "15", class: "margin-right-5", style: "margin-top: -5px; width: 15px;") %>
+			          SportsMarkit
+		        </div><!--.logo-->
+	        	<h1>Schools <small>(<%= School.count %>)</small></h1>
 			</div><!--.col-->
 			<div class="col-sm-6">
 				<ol class="breadcrumb">
@@ -109,8 +109,8 @@
                   <li>
                     <%= link_to school_path(school) do %>
                         <%= school.name %>
-                      <% end %>
-                    </li>
+                 	<% end %>
+                </li>
                 <% end %>
               </ul>
             </div><!--.btn-group-->
