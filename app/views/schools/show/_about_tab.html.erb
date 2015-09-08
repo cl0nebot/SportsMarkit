@@ -287,43 +287,42 @@
 			       <%= render 'shared/about_tab_teams', teams: @teams %>
 					<!-- My teams -->
 
-						<!-- My teammates -->
-						<%= render 'shared/about_tab_fans' %>
+					<!-- My teammates -->
+					<%= render 'shared/about_tab_fans' %>
 					
 				</div>
-                <div class="col-md-6">	
-	            <%= render 'shared/about_tab_media' %>
-					
-                 <%= render 'shared/about_tab_upcoming'%>
+        <div class="col-md-6">	
+      	<%= render 'shared/about_tab_media' %>
+        <%= render 'shared/about_tab_upcoming'%>
 
-					<div class="col-md-12">
-						<div class="panel border-indigo box-shadow-ccc">
-							<div class="panel-heading">
-								<div class="panel-title"><h4> Our Facilities</h4></div>
-							</div><!--.panel-heading-->
-							<div class="panel-body without-padding">	
-								<ul class="list-material borderless">
-									<% @facilities.each do |facility| %>
-										<li class="has-action-left has-action-right">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<i class="ion-checkmark-circled icon-circle"></i>
-												</div>
-												<div class="list-content">
-													<span class="h6 bold"><%= facility.name %></span>
-												</div>
-												<div class="list-action-right">
-													<%= link_to "View", facility_path(facility), class: "btn btn-primary pull-right mt10 btn-sm" %>							
-												</div>
-											</a>
-										</li>
-										<li class="divider with-border no-margin no-padding">
-										</li>
-									<% end %>
-								</ul>
-							</div><!--.panel-body-->
-						</div><!--.panel-->
-					</div>
+				<div class="col-md-12">
+					<div class="panel border-indigo box-shadow-ccc">
+						<div class="panel-heading">
+							<div class="panel-title"><h4> Our Facilities</h4></div>
+						</div><!--.panel-heading-->
+						<div class="panel-body without-padding">	
+							<ul class="list-material borderless">
+								<% @facilities.each do |facility| %>
+									<li class="has-action-left has-action-right">
+										<a href="#" class="visible">
+											<div class="list-action-left">
+												<i class="ion-checkmark-circled icon-circle"></i>
+											</div>
+											<div class="list-content">
+												<span class="h6 bold"><%= facility.name %></span>
+											</div>
+											<div class="list-action-right">
+												<%= link_to "View", facility_path(facility), class: "btn btn-primary pull-right mt10 btn-sm" %>							
+											</div>
+										</a>
+									</li>
+									<li class="divider with-border no-margin no-padding">
+									</li>
+								<% end %>
+							</ul>
+						</div><!--.panel-body-->
+					</div><!--.panel-->
+				</div>
 
 
 				

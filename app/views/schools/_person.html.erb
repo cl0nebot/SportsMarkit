@@ -4,11 +4,11 @@
 		<div class="friend-content">
 			<p class="title"><%= link_to person.full_name, user_path(person) %></p>
 			<p>
-			<% person.teams.each_with_index do |team, i| %>
-			<% count = i + 1 %>
-			<%= link_to team.name, team_path(team) %><%= count == person.teams.count ? "" : ","%>
-			<% end %>
-		</p>
+				<% person.teams.each_with_index do |team, i| %>
+					<% count = i + 1 %>
+				<%= link_to team.name, team_path(team) %><%= count == person.teams.count ? "" : ","%>
+				<% end %>
+			</p>
 			<a class="btn btn-flat btn-primary btn-xs">Add as a Friend</a>
 		</div><!--.friend-content-->
 	</div><!--.card-->
