@@ -1,16 +1,22 @@
 <div class="row" id="media-page">
   <div id="user-profile-picture" class="inline-block mr10">
-    <%= render 'shared/add_photo' %>
+    <div data-toggle="tooltip" data-placement="top" title="Add a Photo">
+      <%= render 'shared/add_photo' %>
+    </div>
   </div>
   <span class="mr10 inline-block">
-    <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'video')"), method: :get ,remote: true, class: 'btn btn-floating btn-indigo btn-ripple' do %>
-      <i class="ion-ios-videocam"></i>
-    <% end %>
+    <div data-toggle="tooltip" data-placement="top" title="Add a Video">
+        <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'video')"), method: :get ,remote: true, class: 'btn btn-floating btn-indigo btn-ripple' do %>
+        <i class="ion-ios-videocam"></i>
+      <% end %>
+    </div>
   </span>
   <span class="mr10 inline-block">
-    <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'article')"), method: :get ,remote: true, class: 'btn btn-floating btn-indigo btn-ripple' do %>
-      <i class="ion-document-text"></i>
-    <% end %>
+    <div data-toggle="tooltip" data-placement="top" title="Add an Article">
+      <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'article')"), method: :get ,remote: true, class: 'btn btn-floating btn-indigo btn-ripple' do %>
+        <i class="ion-document-text"></i>
+      <% end %>
+    </div>
   </span>
   <br/>
   <br/>
