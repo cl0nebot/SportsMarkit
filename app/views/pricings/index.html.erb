@@ -1,5 +1,51 @@
-<%= link_to "Schools", pricings_path(view: "schools"), remote: true %> | <%= link_to "Teams", pricings_path(view: "teams"), remote: true %> | <%= link_to "Leagues", pricings_path(view: "leagues"), remote: true %>
+<div class="content">
+  <div class="page-header full-content bg-primary mb0">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="logo text-white">
+          <%= image_tag("icons/flag.png", height: "15", class: "margin-right-5", style: "margin-top: -5px; width: 15px;") %>
+          SportsMarkit
+        </div><!--.logo-->
+        <h1>Our Sports Community <small class="ml5"><%= User.all.count%> people</small></h1>
+      </div><!--.col-->
+      <div class="col-sm-4">
+          
+      </div>
+      <div class="col-sm-4">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="<%= users_path %>" class="active">Our Community</a></li>
+        </ol>
+      </div><!--.col-->
+    </div><!--.row-->
+  </div><!--.page-header-->
 
-<div id="objects">
-  <%= render 'pricings/list', objects: @schools %>
+
+    <div class="row pt60">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="panel">
+				<div class="panel-heading">
+					<div class="panel-title"><h4>SET PRICING</h4></div><!--.panel-title-->
+					<ul id="objects" class="nav nav-tabs with-panel">
+						<li class="active">
+							<%= link_to "Schools", pricings_path(view: "schools"), remote: true %> 
+						</li>
+						<li>
+							<%= link_to "Teams", pricings_path(view: "teams"), remote: true %>
+						</li>
+						<li>
+							<%= link_to "Leagues", pricings_path(view: "leagues"), remote: true %>
+						</li>
+					</ul>
+				</div><!--.panel-heading-->
+				<div class="panel-body">
+					<%= render 'pricings/list', objects: @schools %>
+				</div><!--.panel-body-->
+			</div><!--.panel-->
+		</div><!--.col-->
+
+		<div id="objects">
+		  
+		</div>
+	</div>
 </div>

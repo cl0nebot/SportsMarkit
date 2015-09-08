@@ -1,8 +1,19 @@
-<%= form_for pricing_path(object), remote: true do |f| %>
-	<%= object.name %> 
-	<%= hidden_field_tag :object, "#{object.class.to_s}"%>
-	<%= hidden_field_tag :id, object.id %>
-	<%= text_field_tag :price, object.price %>
-
-<%= f.submit "Add Price" %>
-<% end %>
+<table class="table table table-bordered table-striped table-condensed">
+	<tbody>
+		<%= form_for pricing_path(object), remote: true do |f| %>
+			<tr>
+				<td width="60%">
+					<%= object.name %> 
+					<%= hidden_field_tag :object, "#{object.class.to_s}"%>
+					<%= hidden_field_tag :id, object.id %>
+				</td>
+				<td width="20%">
+					<%= text_field_tag :price, object.price, class: "form-control input-sm", placeholder: "$0.00"	 %>
+				</td>
+				<td width="20%">
+					<%= f.submit "Add Price", class: "btn btn-primary btn-block pull-right btn-sm" %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

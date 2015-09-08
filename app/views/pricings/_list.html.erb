@@ -1,9 +1,5 @@
 <% objects.each do |object| %>
-
-
-<div id="price-<%= object.class.to_s %>-<%= object.id %>">
-<%= render 'pricings/pricing', object: object %>
-</div>
-
-
+	<div id="price-<%= object.class.to_s %>-<%= object.id %>" class="tab-pane">
+		<%= render 'pricings/pricing', object: object %>
+	</div>
 <% end %>
