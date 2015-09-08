@@ -187,5 +187,15 @@ class School < ActiveRecord::Base
     array.uniq.join(", ")
   end
   
+  def all_leagues
+    array = [] 
+    teams.pluck(:id).each do |id|
+      Team.find(id).leagues.each do |league|
+        array << league.id  
+      end
+    end
+    League.where(id: array.uniq.join(", "))
+  end
+  
     
 end
