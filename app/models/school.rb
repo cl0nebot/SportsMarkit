@@ -194,7 +194,7 @@ class School < ActiveRecord::Base
         array << league.id  
       end
     end
-    League.where(id: array.uniq.join(", "))
+     League.where(id: array.uniq)
   end
   
     
