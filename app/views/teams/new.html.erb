@@ -18,19 +18,25 @@
 				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
 					<div class="row">
 						<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
-						 	<div class="row text-center">
+						 	<div class="row text-center mb20">
 								<div class="col-md-12">
 									<h3 class="semi-bold text-primary">Setup a new team</h3>
 									<h4>What sport?</h4>
 								</div>
 							</div>
 							<div class="row example-row">
-								<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 well margin-bottom-0">
-									<%#= f.select :sport, Sport.pluck(:sport), {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => true, data:{live_search: 'true', width: '100%'}} %>
-									<%= f.select :sport, Sport.pluck(:sport), { :include_blank => 'Select Sport' }, {:class => 'selecter bg-white margin-bottom-0', :required => true, data:{ live_search: 'true', width: '100%'}} %>
-								</div><!--.col-md-9-->
-								
-								<%= f.select :classification, [ 'School District', 'Recreational: Adult', 'Recreational: Youth'], {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
+								<div class="col-sm-12 well margin-bottom-0">
+									<div class="row">
+										<%#= f.select :sport, Sport.pluck(:sport), {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => true, data:{live_search: 'true', width: '100%'}} %>
+										
+										<div class="col-md-6">
+											<%= f.select :sport, Sport.pluck(:sport), { :include_blank => 'Select Sport' }, {:class => 'selecter bg-white margin-bottom-0', :required => true, data:{ live_search: 'true', width: '100%'}} %>
+										</div>
+										<div class="col-md-6">
+											<%= f.select :classification, [ 'School District', 'Recreational: Adult', 'Recreational: Youth'], {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
+										</div>
+									</div>
+								</div>
 							</div><!--.row-->
 						</div>
 					</div>
