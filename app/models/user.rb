@@ -400,18 +400,20 @@ class User < ActiveRecord::Base
   
 
   def chatroom
-    rel = relationships.first
-    rel.team.chatrooms.each do |chatroom|
-      if rel.athlete? && chatroom.specific_id == 1
-        return chatroom.id
-      end
+    if relationships.where(accepted: true).present?
+      rel = relationships.first
+      rel.team.chatrooms.each do |chatroom|
+        if rel.athlete? && chatroom.specific_id == 1
+          return chatroom.id
+        end
       
-      if rel.coach? && chatroom.specific_id == 2
-        return chatroom.id
-      end
+        if rel.coach? && chatroom.specific_id == 2
+          return chatroom.id
+        end
       
-      if parent_relationship_with_team?(chatroom.team) && chatroom.specific_id == 3
-        return chatroom.id
+        if parent_relationship_with_team?(chatroom.team) && chatroom.specific_id == 3
+          return chatroom.id
+        end
       end
     end
   end
