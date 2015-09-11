@@ -34,6 +34,7 @@
 		            <%= user.profile.location_description.present? ? user.profile.location_description : "USA" %>
 		        	</span>
 
+                    <% if current_user %>
 		        	<% if current_user.admin? %>
 			        	<span class="text-muted">
 			            <i class="ion-email margin-right-5"></i>
@@ -45,15 +46,18 @@
 			           	<%= user.mobile_phone_number.present? ? number_to_phone(user.mobile_phone_number) : "NA" %>
 			        	</span>
 		      		<% end %>
+					<% end %>
 		      	</p>
 	        </div>
 	      </div><!--.card-body-->
-
+		  
+          <% if current_user %>
 	      <% if current_user.admin? %>
 	      <!-- <div class="card-footer">
     
 	        <%#= link_to "Delete", user, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
 	      </div> --><!--.card-footer-->
+		  <% end %>
 		  <% end %>
 
 	    </div><!--.card-->
