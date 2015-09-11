@@ -36,29 +36,6 @@
 </div><!--.row-->
 
 
-<div class="profile-info">
-	<!--.profile-photo-->
-	<div class="profile-text light capitalize">
-		<span class="h6 text-amber bold">
-			<%= format(@event.starts_at, 4) %>
-			<%= format(@event.starts_at, 9) %>
-			- 
-			<%= format(@event.ends_at, 4) %>
-			<%= format(@event.ends_at, 9) %>
-		</span>
-		<br/>
-		<%= @event.title %> 
-		<h4 class="text-grey">
-			<%= @event.event_type %>
-		</h4>
-		<span class="caption">
-			<%= @event.description %>
-		</span>
-		<span class="caption">
-			Created By: <%= link_to @event.eventable.name, eval("#{@event.eventable_type.downcase}_path(@event.eventable.friendly_id)") %>
-		</span>
-	</div><!--.profile-text-->
-</div><!--.profile-info-->
 
 
 

@@ -1,42 +1,223 @@
 <style>
-
-.layout-device .profile-info .profile-text,
-.profile-info .profile-text {
-  margin: 0 0 0 0;
-  font-size: 24px;
-}
-
+  .card-friend .user-photo {
+    float: left;
+    width: 160px;
+    height: 160px;
+    border-radius: 3px 0 0 3px;
+  }
+  .card-friend .friend-content {
+    margin-left: 180px;
+  }
 </style>
 
+
 <div class="content">
-	<div class="page-header full-content parallax">
-		<%= render "events/show/header" %>
-		<%= render "events/show/tab_navigation" %>
-	</div>
-</div>
 
-<!-- main content div -->
-<div class="container">
-  <div class="user-profile">
-    <div class="row">
-      <%= image_tag("http://www.parnavsports.com/images/sport-symbols.png", class: "col-md-2 img-thumbnail img-responsive b-rad-6", style: "margin-top: -180px; z-index: 99999;  min-width; 195px; min-height: 195px;") %>
-      <div class="col-md-10">
-      </div>
-    </div>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-12">
-		<div class="tab-content without-border pt40">
+	<div class="page-header full-content bg-primary mb0" style="min-height: 141px;">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1 class="capitalize semi-bold">
+					<%= @event.title %>
+					<small></small>
+				</h1>
+			</div><!--.col-->
+			<div class="col-sm-6">
+				<ol class="breadcrumb">
+					<li><a href="/"><i class="ion-home"></i></a></li>
+					<li><a href="<%= facilities_path %>">Facilities</a></li>
+					<li><a href="<%= facility_path %>"><%= @event.title %></a></li>
+				</ol>
+			</div><!--.col-->
+		</div><!--.row-->
 
-			<%= render "events/show/location_tab" %>
-			<%= render "events/show/attending_tab" %>
-			<%= render "events/show/maybe_tab" %>
-			<%= render "events/show/no_tab" %>
-		 
-		</div><!--.tab-content-->
-	</div><!--.col-->
-</div><!--.row-->
+		<div class="header-tabs scrollable-tabs sticky">
+
+			 <% if current_user %>
+		        <% if current_user.can_edit_facility?(@facility)%>
+		          <%= link_to edit_facility_path(@facility), class: "mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
+		              <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
+		          <% end %>
+		        <% end %>
+		      <% end %>
+
+			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+				<li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">Location</a></li>
+				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Attending</a></li>
+				<li><a href="#media" data-toggle="tab" class="btn-ripple">Edit</a></li>
+		  	</ul>
+	      	<% if current_user %>
+	        	<% if current_user.admin? or current_user.can_edit_facility?(@facility)%>
+	          		<%= link_to edit_event_path(@event) do %>
+		            <button href="" class="btn btn-floating btn-blue btn-ripple pull-right">
+		          		<i class="ion-gear-b"></i>
+		          	</button>
+	          	<% end %>
+	        	<% end %>
+	      	<% end %>
+		</div>
+	</div><!--.page-header-->
+
+	<!-- main content div -->
+  	<div class="row">
+		<div class="col-md-12">
+			<div class="tab-content without-border">
+
+				<div id="about" class="tab-pane active">
+					<div class="page-header full-content parallax">
+						<%= render "events/show/header" %>
+					</div><!--.page-header-->
+					<div class="col-md-6" style="margin-top: -223px;">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card tile card-post" style="border-top: 3px solid #ccc;">
+									<!--.card-heading-->
+									<div class="card-body pl40 pr40 pb0">
+										<div class="profile-text light capitalize">
+											<span class="h3 bold">
+												<%= format(@event.starts_at, 4) %>
+												<%= format(@event.starts_at, 9) %>
+												- <br/>
+												<%= format(@event.ends_at, 4) %>
+												<%= format(@event.ends_at, 9) %>
+											</span>
+											<br/>
+											<%= @event.title %> 
+											<h4 class="text-grey">
+												<%= @event.event_type %>
+											</h4>
+											<span class="caption">
+												<%= @event.description %>
+											</span>
+											<span class="caption">
+												Created By: <%= link_to @event.eventable.name, eval("#{@event.eventable_type.downcase}_path(@event.eventable.friendly_id)") %>
+											</span>
+										</div><!--.profile-text-->
+
+
+
+										<h3 class="semi-bold capitalize text-black no-margin">
+											<%= @event.title %>
+										</h3>
+										<p class="author lh_26 mt5">
+											<a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a> 
+										</p>
+										
+										</ul>
+									</div>
+									<hr class="light mt10 mb10"/>
+									<div class="card-body pl40 pr40 pb40">
+
+										<h4 class="bold"><%= @event.facility.name %></h4>
+										<div class="row contact-us">
+											<div class="col-md-12">
+												<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
+											</div><!--.col-->
+										</div>
+										    		
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+					  <div class="row">
+					  	<div class="col-md-12">
+					  		<!-- Attending -->
+							<div class="col-md-12">
+								<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+									<div class="card-heading">
+										<h6 class="semi-bold fs_14 mb0"><%= @event.title %></h6>
+										<h3 class="card-title">Attending</h3>
+										<!-- <div class="card-subhead">
+										 <a href="#">124 Students</a>
+										</div> -->
+										<!--.card-subhead-->
+									</div><!--.card-heading-->
+									<div class="card-body bgcolor-light-grey">
+										<ul class="users">
+											<%= render 'events/rsvp_list', people: @attendees %> 		
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<ul>
+											<li><span class="mr5 fs_14">People</span></li>
+											<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
+										</ul>
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-12-->
+
+							<!-- Maybe -->
+							<div class="col-md-12">
+								<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+									<div class="card-heading">
+										<h6 class="semi-bold fs_14 mb0"><%= @event.title %></h6>
+										<h3 class="card-title">Attending</h3>
+										<!-- <div class="card-subhead">
+										 <a href="#">124 Students</a>
+										</div> -->
+										<!--.card-subhead-->
+									</div><!--.card-heading-->
+									<div class="card-body bgcolor-light-grey">
+										<ul class="users">
+											<%= render 'events/rsvp_list', people: @nos %>	
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<ul>
+											<li><span class="mr5 fs_14">People</span></li>
+											<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
+										</ul>
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-12-->
+
+
+							<!-- Maybe -->
+							<div class="col-md-12">
+								<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+									<div class="card-heading">
+										<h6 class="semi-bold fs_14 mb0"><%= @event.title %></h6>
+										<h3 class="card-title">Attending</h3>
+										<!-- <div class="card-subhead">
+										 <a href="#">124 Students</a>
+										</div> -->
+										<!--.card-subhead-->
+									</div><!--.card-heading-->
+									<div class="card-body bgcolor-light-grey">
+										<ul class="users">
+											<%= render 'events/rsvp_list', people: @maybes %>	
+										</ul>
+									</div><!--.card-body-->
+									<div class="card-footer">
+										<ul>
+											<li><span class="mr5 fs_14">People</span></li>
+											<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
+										</ul>
+									</div><!--.card-footer-->
+								</div><!--.card-->
+							</div><!--.col-md-12-->
+					  	</div>
+					  </div>
+					</div>
+				</div>
+			  
+			</div><!--.tab-content-->
+		</div><!--.col-->
+	</div><!--.row-->
+
+	
+
+</div><!--.content-->
+
+
+
+
+
+
+
+
+
 
 
 
