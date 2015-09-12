@@ -76,7 +76,7 @@ class Facility < ActiveRecord::Base
   
   def upcoming_events
     event_ids = EventFacility.where(facility_id: id).pluck(:event_id)
-    events = Event.where(id: event_ids ).where('ends_at >= ?', Time.now)
+    events = Event.where(id: event_ids ).where('ends_at >= ?', Time.now).sort_by(&:starts_at)
   end
   
   def image

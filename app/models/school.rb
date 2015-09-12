@@ -60,11 +60,7 @@ class School < ActiveRecord::Base
   end
   
   def upcoming_events
-    if premium?
-      Event.where(eventable_type: "Team", eventable_id: team_ids).where('ends_at >= ?', Time.now)
-    else
-      Event.where(eventable_type: "Team", eventable_id: team_ids).where('starts_at <= ?', Date.today + 2.weeks).uniq
-    end
+    Event.where(eventable_type: "Team", eventable_id: team_ids).where('ends_at >= ?', Time.now).sort_by(&:starts_at)
   end
   
   # managers
