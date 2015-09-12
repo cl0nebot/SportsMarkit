@@ -2,6 +2,7 @@ class Relationship < ActiveRecord::Base
   #extend FriendlyId
   #friendly_id :use_for_slug, use: :slugged
   serialize :position, Array
+  validates :team_id, presence: true, uniqueness: {scope: [:user_id]}
   
   has_many :positionings, :as => :positionable, :dependent => :destroy
   has_many :positions, :through => :positionings
