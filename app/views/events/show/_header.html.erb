@@ -10,7 +10,7 @@
 			<small>
 				<%= @event.title %>
 				<% if current_user %>
-					<% if @event.user == current_user %>
+					<% if (@event.user == current_user) || current_user.admin? %>
 					  <%= link_to "Cancel", @event, method: :delete, class: "ml20 btn btn-danger btn-xs" %>
 					  <%= link_to "Reschedule", edit_event_path(@event), class: "btn btn-white btn-xs" %>
 					<% end %>
@@ -27,10 +27,12 @@
 		</ol>
 	</div><!--.col-->
 	<div class="col-sm-1 text-right">
-		<% if current_user %>
+		<% if false %>
+		
 			<%= link_to edit_event_path(@event), class:"btn btn-floating btn-light-blue" do %>
 			  <i class="ion-android-settings"></i>
 			<% end %>
+			
 		<% end %>
 	</div>
 </div><!--.row-->
