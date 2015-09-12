@@ -1,23 +1,13 @@
-<% if object.price.blank? %>
-	<%= render 'pricings/form', object: object %>
-<% else %>
-
-	<table class="table table table-bordered table-striped table-condensed">
-		<tbody>
-			<%= form_for pricing_path(object), remote: true do |f| %>
-				<tr>
-					<td width="60%">
-						<%= object.name %> 
-					</td>
-					<td width="20%">
-						<%= number_to_currency(object.price) %>
-					</td>
-					<td width="20%">
-						<%= link_to "Edit Price", pricings_path(object: object.class.to_s, object_id: object.id, event: "edit"), remote: true, class: "btn btn-sm btn-block btn-white pull-right" %>
-					</td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
+<td width="60%">
+	<%= object.name %> 
+</td>
+<td width="20%">
+	<%= number_to_currency(object.price) %>
+</td>
+<td width="20%">
+	<%= link_to "Edit Price", pricings_path(object: object.class.to_s, object_id: object.id, event: "edit", view: object.class.to_s.downcase.pluralize), remote: true, class: "btn btn-sm btn-block btn-white pull-right" %>
+</td>
 	
-<% end %>
+
+
+	

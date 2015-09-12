@@ -1,3 +1,5 @@
+$("#object-labels").empty();
+$("#object-labels").append("<%= j render 'labels' %>")
 <% if params[:view] == "teams" %>
   $('#objects').empty()
   $('#objects').append("<%= j render 'pricings/list', objects: Team.without_schools %>")
@@ -9,6 +11,6 @@
   $('#objects').append("<%= j render 'pricings/list', objects: League.all %>")
 <% end %>
 <% if params[:event] == "edit" %>
-$('#price-<%= params[:object] %>-<%= params[:object_id] %>').empty()
-$('#price-<%= params[:object] %>-<%= params[:object_id] %>').append("<%= j render 'pricings/form', object: params[:object].constantize.find(params[:object_id]) %>")
+$('#<%= params[:object] %>-<%= params[:object_id] %>-tr').empty()
+$('#<%= params[:object] %>-<%= params[:object_id] %>-tr').append("<%= j render 'pricings/form', object: params[:object].constantize.find(params[:object_id]) %>")
 <% end %>

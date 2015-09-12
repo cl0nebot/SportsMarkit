@@ -26,26 +26,16 @@
 			<div class="panel">
 				<div class="panel-heading">
 					<div class="panel-title"><h4>SET PRICING</h4></div><!--.panel-title-->
-					<ul id="objects" class="nav nav-tabs with-panel">
-						<li class="active">
-							<%= link_to "Schools", pricings_path(view: "schools"), remote: true %> 
-						</li>
-						<li>
-							<%= link_to "Teams", pricings_path(view: "teams"), remote: true %>
-						</li>
-						<li>
-							<%= link_to "Leagues", pricings_path(view: "leagues"), remote: true %>
-						</li>
+					<ul class="nav nav-tabs with-panel" id="object-labels">
+						<%= render 'labels' %>
 					</ul>
 				</div><!--.panel-heading-->
-				<div class="panel-body">
+				<div class="panel-body" id="objects">
 					<%= render 'pricings/list', objects: @schools %>
 				</div><!--.panel-body-->
 			</div><!--.panel-->
 		</div><!--.col-->
 
-		<div id="objects">
-		  
-		</div>
 	</div>
 </div>
+
