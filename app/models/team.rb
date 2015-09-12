@@ -60,12 +60,6 @@ class Team < ActiveRecord::Base
       events.where('starts_at <= ?', Date.today + 2.weeks).uniq
     end
   end
-
-  def upcoming_events
-    Event.where(eventable_type: "Team", eventable_id: id).where('ends_at >= ?', Time.now).sort_by(&:starts_at)
-  end
-  
-
   
   def facilities
     team_facilities = TeamFacility.where(team_id: id)

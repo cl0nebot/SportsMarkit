@@ -59,10 +59,6 @@ class School < ActiveRecord::Base
     rels = UserlessRelationship.where(team_id: team_ids)
   end
   
-  def upcoming_events
-    Event.where(eventable_type: "Team", eventable_id: team_ids).where('ends_at >= ?', Time.now).sort_by(&:starts_at)
-  end
-  
   # managers
   
   def manager_ids_for_school

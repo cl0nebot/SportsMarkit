@@ -66,13 +66,6 @@ class League < ActiveRecord::Base
     School.where(id: school_ids)
   end
   
-  def upcoming_events
-    team_ids = TeamLeague.where(league_id: id).pluck(:team_id)
-    team_events_ids = Event.where(eventable_type: "Team", eventable_id: team_ids).where('ends_at >= ?', Time.now).pluck(:id)
-    league_events_ids = Event.where(eventable_type: "League", eventable_id: id).where('ends_at >= ?', Time.now).pluck(:id)
-    events = Event.where(id: team_events_ids + league_events_ids ).uniq.sort_by(&:starts_at)
-  end
-  
   def next_event
     upcoming_events.first.nil? ? "No upcoming events" : upcoming_events.first.title
   end

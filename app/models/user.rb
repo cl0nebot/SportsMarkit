@@ -72,10 +72,6 @@ class User < ActiveRecord::Base
     Event.where("(eventable_id = ? AND eventable_type = 'User') OR (id in (?))", id, attending_events)
   end
   
-  def upcoming_events
-    all_events.where('ends_at >= ?', Time.now).sort_by(&:starts_at)
-  end
-  
   def next_event
     all_events.first.nil? ? "No upcoming events" : all_events.first.title
   end

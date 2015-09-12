@@ -74,11 +74,6 @@ class Facility < ActiveRecord::Base
     Facility.pluck(:name)
   end
   
-  def upcoming_events
-    event_ids = EventFacility.where(facility_id: id).pluck(:event_id)
-    events = Event.where(id: event_ids ).where('ends_at >= ?', Time.now).sort_by(&:starts_at)
-  end
-  
   def image
     if Photo.where(photo_owner_id: id, photo_owner_type: "Facility").present?
       Photo.where(photo_owner_id: id, photo_owner_type: "Facility").last.image
