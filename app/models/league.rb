@@ -6,6 +6,7 @@ class League < ActiveRecord::Base
   include Avatar
   include Geo
   include ClassificationCount
+  include EventDetail
   
   friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable

@@ -32,9 +32,22 @@ class Event < ActiveRecord::Base
         :end => ends_at.localtime.strftime('%Y-%m-%d %H:%M'),
         :allDay => self.all_day,
         :recurring => false,
-        :url => Rails.application.routes.url_helpers.event_path(id),
-        #:color => "red"
+        #:url => Rails.application.routes.url_helpers.event_path(),
+        :url => "/events/#{self.slug}",
+        :color => self.color
     }
+  end
+  
+  def color
+    if ["Game", "Track Meet"].include? event_type 
+      "red"
+    elsif ["Practice"].include? event_type
+      "blue"
+    elsif ["Scrimmage"].include? event_type
+      "grey"
+    elsif ["Meeting", "Banquet"].include? event_type
+      "purple"
+    end
   end
 
   def self.format_date(date_time)

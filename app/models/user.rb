@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   include Avatar
   include Reusable
   include ClassificationCount
+  include EventDetail
 
   extend FriendlyId
   friendly_id :use_for_slug, use: [:slugged, :finders]

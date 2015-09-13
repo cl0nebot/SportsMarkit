@@ -15,7 +15,7 @@ $(document).ready ->
       url: currentSource,
     }],
 
-    timeFormat: 'h:mm t{ - h:mm t} ',
+    timeFormat: 'h:mmt',
     dragOpacity: "0.5"
 
     eventDrop: (event, dayDelta, minuteDelta, allDay, revertFunc) ->
