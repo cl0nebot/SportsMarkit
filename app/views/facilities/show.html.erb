@@ -40,14 +40,8 @@
 		        <% end %>
 		      <% end %>
 
-			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
-				<li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">About</a></li>
-				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Teams</a></li>
-				<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
-				<!-- <li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li> -->
-				<!-- <li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li> -->
-		      	<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
-		  	</ul>
+	    <%= render 'shared/show_navigations'%>
+	
 	      	<% if current_user %>
 	        	<% if current_user.admin? or current_user.can_edit_facility?(@facility)%>
 	          		<%= link_to edit_facility_path(@facility) do %>

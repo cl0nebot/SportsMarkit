@@ -131,7 +131,25 @@
 
 	
 
-	window.onload = function () {
-		$('#media-page').load(document.URL +  ' #media-page');
-	}
+	$(document).click(function(event) {
+		var ClickedVariable = $(event.target).text();
+		if (ClickedVariable == "Media") {
+			$('#media-page').load(document.URL +  ' #media-page');
+		}		
+	});
+	
+	$(document).click(function(event) {
+		var ClickedVariable = $(event.target).text();
+		if (ClickedVariable == "Media") {
+			$('#load-masonry').load(document.URL +  ' #load-masonry');
+		}		
+	});
+	
+	$(document).click(function(event) {
+		var ClickedVariable = $(event.target).text();
+		if (ClickedVariable == "Media") {
+			$('#masonry-about-tab').load(document.URL +  ' #masonry-about-tab');
+		}		
+	});
+	
 
