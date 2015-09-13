@@ -73,36 +73,35 @@
 									<!--.card-heading-->
 									<div class="card-body pl40 pr40 pb0">
 										<div class="profile-text light capitalize">
-											<span class="h3 bold">
+											<span class="h5 bold">
 												<%= format(@event.starts_at, 4) %>
 												<%= format(@event.starts_at, 9) %>
 												- <br/>
 												<%= format(@event.ends_at, 4) %>
 												<%= format(@event.ends_at, 9) %>
 											</span>
-											<br/>
-											<%= @event.title %> 
 											<h4 class="text-grey">
 												<%= @event.event_type %>
 											</h4>
+										</div><!--.profile-text-->
+
+										<h4 class="semi-bold capitalize text-black no-margin">
+											<%= @event.title %>
+										</h4>
+										<p class="no-margin">
+											<span class="caption fs_12">
+												Created By: <%= link_to @event.eventable.name, eval("#{@event.eventable_type.downcase}_path(@event.eventable.friendly_id)") %>
+											</span>
+										</p>
+										<p class="fs_12 mt10">
 											<span class="caption">
 												<%= @event.description %>
 											</span>
-											<span class="caption">
-												Created By: <%= link_to @event.eventable.name, eval("#{@event.eventable_type.downcase}_path(@event.eventable.friendly_id)") %>
-											</span>
-										</div><!--.profile-text-->
-
-
-
-										<h3 class="semi-bold capitalize text-black no-margin">
-											<%= @event.title %>
-										</h3>
-										<p class="author lh_26 mt5">
-											<a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a> 
 										</p>
 										
-										</ul>
+										<p class="author lh_26 mt5 fs_14">
+											<a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a> 
+										</p>
 									</div>
 									<hr class="light mt10 mb10"/>
 									<div class="card-body pl40 pr40 pb40">
