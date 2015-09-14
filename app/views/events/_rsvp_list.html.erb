@@ -1,23 +1,12 @@
-	<% people.each do |person| %>
+<% people.each do |person| %>
 
-		<div class="panel">
-			<div class="panel-body without-padding">
-				<ul class="list-material">
-					<li class="has-action-left">
-						<a href="#" class="visible">
-							<div class="list-action-left">
-								<img src="<%= image_path(person.user.avatar, class: "face-radius") %>">
-							</div>
-							<div class="list-content">
-								<span class="title">
-									<%= person.user.full_name %>
-								</span>
-							</div>
-						</a>
-					</li>
-				</ul>
-			</div><!--.panel-body-->
-		</div><!--.panel-->
+	<ul class="users">
+		<li>
+			<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= person.user.full_name %>">
+				<%= image_tag person.user.avatar %>
+			</a>
+		</li>
+	</ul>
 
-	<% end %>  
-		
+<% end %>  
+	

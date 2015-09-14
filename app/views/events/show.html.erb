@@ -41,8 +41,8 @@
 		      <% end %>
 
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
-				<li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">Location</a></li>
-				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Attending</a></li>
+				<li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">Location</a></li><!-- 
+				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Attending</a></li> -->
 				<li><a href="#media" data-toggle="tab" class="btn-ripple">Edit</a></li>
 		  	</ul>
 	      	<% if current_user %>
@@ -163,7 +163,7 @@
 								<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
 									<div class="card-heading">
 										<h6 class="semi-bold fs_14 mb0"><%= @event.title %></h6>
-										<h3 class="card-title">Attending</h3>
+										<h3 class="card-title">Not Attending</h3>
 										<!-- <div class="card-subhead">
 										 <a href="#">124 Students</a>
 										</div> -->
@@ -189,7 +189,7 @@
 								<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
 									<div class="card-heading">
 										<h6 class="semi-bold fs_14 mb0"><%= @event.title %></h6>
-										<h3 class="card-title">Attending</h3>
+										<h3 class="card-title">Possibly Attending</h3>
 										<!-- <div class="card-subhead">
 										 <a href="#">124 Students</a>
 										</div> -->
