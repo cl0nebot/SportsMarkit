@@ -20,11 +20,8 @@
 			
 			<% else %>
 			 <p class="mb0 mt0 center padding-10 text-grey">
-			  <% if true %>
-					     <i class="ion-calendar mr10"></i> Add Events to your Calendar
-			   <% else %>
-						     <!-- <i class="ion-calendar mr10"></i> --> No Upcoming Events
-			   <% end %>
+				   <i class="ion-calendar mr10"></i>No Upcoming Events
+			  
 			   </p>
 			<% end %>
 		</div>
@@ -33,7 +30,21 @@
 		<div class="card-footer">
 			<ul>
 				<li class="fs_14"><span class="mr5"><%= pluralize @object.upcoming_events.count, "Upcoming Event" %> </span></li>
+				<% if (@object.upcoming_events.count == 0) && (current_user.can_edit_object?(@object)) %>
+				  
+				  <%= link_to eval("new_#{@object.class.to_s.downcase}_event_path(@object.friendly_id)"), class: "fs_14" do %>
+				  <li>Add Events to Calendar</li>
+				  <% end %>
+				
+				<% elsif (@object.upcoming_events.count == 0) %>
+				
+				
+				<% else %>
 				<li><a href="#calendar-tab" data-toggle="tab" class="fs_14">View All Events</a></li>
+				
+				<% end %>
+							     
+				
 			</ul>
 		</div><!--.card-footer-->
 	</div><!--.card-->

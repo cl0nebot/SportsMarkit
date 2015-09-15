@@ -1,10 +1,12 @@
 <% object.upcoming_events.each do |event| %>
+<%= link_to event_path(event.friendly_id) do %>
 	<div class="frame">
 		<div class="timeline-badge">
 			<i class="ion-android-calendar"></i>
 		</div><!--.timeline-badge-->
 		<span class="timeline-date bold"><%=event.starts_at.strftime("%A") %>, <%= event.starts_at.strftime("%B")%> <%= event.starts_at.day.ordinalize %>, <%= event.starts_at.year %></span>
 		<div class="timeline-content">
+			
 			<h5  class="semi-bold no-margin"><%= event.title %></h5>
 			<p class="fs_14 mb5"><%= event.description %></p>
 			<p class="fs_11 text-muted mb0">
@@ -16,4 +18,6 @@
 			</p>
 		</div><!--.timeline-content-->
 	</div><!--.frame-->
+	<% end %>
+	
 <% end %>
