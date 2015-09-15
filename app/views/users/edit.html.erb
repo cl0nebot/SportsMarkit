@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<%= link_to user_path(@user) do %>
-					<div class="pull-left margin-right-20">
+					<div class="pull-left margin-right-20" id="edit-header-avatar">
 						<%= image_tag(@user.avatar, class: "img-thumbnail img-responsive", height: "", width: "100") %>
 					</div>
 					<div class="pull-left">
@@ -490,7 +490,9 @@
 <!--.content-->
 </div>
 
-<%= render 'user_profile_picture_modal' %>
+<div id="user-profile-picture-modal">
+<%= render 'user_profile_picture_modal', user_profile_picture: @user_profile_picture %>
+</div>
 <%= render 'shared/picture_modal' %>
                         
 
