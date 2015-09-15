@@ -11,7 +11,7 @@ class School < ActiveRecord::Base
   friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable
   
-  has_many :fans, as: :fannable
+  has_many :fans, as: :fannable, dependent: :destroy
   has_many :facilities, as: :facility_owner
   has_many :events, as: :eventable
   #has_many :event_facilities, as: :reservable

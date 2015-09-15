@@ -10,7 +10,7 @@ class Facility < ActiveRecord::Base
   belongs_to :facility_owner, polymorphic: true
   belongs_to :school
   
-  has_many :fans, as: :fannable
+  has_many :fans, as: :fannable, dependent: :destroy
   has_many :event_facilities
   has_many :events, through: :event_facilities
   #has_many :events, as: :eventable

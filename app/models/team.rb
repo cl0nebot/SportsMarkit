@@ -8,7 +8,7 @@ class Team < ActiveRecord::Base
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   
-  has_many :fans, as: :fannable
+  has_many :fans, as: :fannable, dependent: :destroy
   belongs_to :school
   has_many :events, as: :eventable
   has_many :team_leagues

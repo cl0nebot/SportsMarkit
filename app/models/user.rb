@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   has_many :user_profile_pictures, dependent: :destroy
   accepts_nested_attributes_for :user_profile_pictures, :reject_if => :all_blank, :allow_destroy => true
 
-  has_many :fans, as: :fannable
+  has_many :fans, as: :fannable, dependent: :destroy
   has_many :events, as: :eventable
   
   has_many :relationships, dependent: :destroy
