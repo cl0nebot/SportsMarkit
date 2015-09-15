@@ -1,0 +1,10 @@
+						<li class="<%= params[:view].present? ? (params[:view] == "schools" ? "active" : "") : "active"  %>">
+						
+							<%= link_to "Schools", pricings_path(view: "schools"), remote: true %> 
+						</li>
+						<li class="<%= params[:view].present? ? (params[:view] == "teams" ? "active" : "") : ""  %>">
+							<%= link_to "Teams", pricings_path(view: "teams"), remote: true %>
+						</li>
+						<li class="<%= params[:view].present? ? (params[:view] == "leagues" ? "active" : "") : ""  %>">
+							<%= link_to "Leagues", pricings_path(view: "leagues"), remote: true %>
+						</li>
