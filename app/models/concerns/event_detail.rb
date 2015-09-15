@@ -15,7 +15,8 @@ module EventDetail
       team_ids = user_teams.pluck(:id)
       school_events = Event.where(eventable_type: "School", eventable_id: school_ids).where('ends_at >= ?', Time.now).order('starts_at ASC')
       team_events = Event.where(eventable_type: "Team", eventable_id: team_ids).where('ends_at >= ?', Time.now).order('starts_at ASC')
-      events = (school_events + team_events).uniq
+      user_events = self.events.where('ends_at >= ?', Time.now).order('starts_at ASC')
+      events = (school_events + team_events + user_events).uniq
     elsif self.class.to_s == "School"
       Event.where(eventable_type: "Team", eventable_id: team_ids).where('ends_at >= ?', Time.now).order('starts_at ASC')
     elsif self.class.to_s == "League"
