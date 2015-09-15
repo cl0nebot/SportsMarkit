@@ -133,7 +133,7 @@
 
 	$(document).click(function(event) {
 		var ClickedVariable = $(event.target).text();
-		if (ClickedVariable == "Media") {
+		if (ClickedVariable == "Upload Media") {
 			$('#media-page').load(document.URL +  ' #media-page');
 		}		
 	});
@@ -147,7 +147,7 @@
 	
 	$(document).click(function(event) {
 		var ClickedVariable = $(event.target).text();
-		if (ClickedVariable == "Media") {
+		if (ClickedVariable == "About") {
 			$('#masonry-about-tab').load(document.URL +  ' #masonry-about-tab');
 		}		
 	});
