@@ -4,22 +4,24 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-md-12 pr20 pl20 pt10">
+						<p class="text-primary">
+							<%= link_to "Create a New Facility", selection_option_facilities_path(selection: "form", object: object.class.to_s, object_id: object.id), remote: true, class: "btn btn-sm btn-primary button-striped button-full-striped btn-ripple"%> <% unless object.class.to_s == "League" %> 
+							<%= link_to "Add a School Facilities", selection_option_facilities_path(selection: "school", object: object.class.to_s, object_id: object.id), remote: true, class: "btn btn-sm btn-primary button-striped button-full-striped btn-ripple" %> <% end %>
+						</p>
 						<div class="panel">
 							<div class="panel-heading no-border">
-								<div class="panel-title">
-									<h4 class="text-primary">
-										<span class="ion-plus-circled mr5"></span>
-										<%= link_to "Form", selection_option_facilities_path(selection: "form", object: object.class.to_s, object_id: object.id), remote: true, class: "btn"%> | <% unless object.class.to_s == "League" %> <%= link_to "School", selection_option_facilities_path(selection: "school", object: object.class.to_s, object_id: object.id), remote: true, class: "btn"%> <% end %>
-									</h4>
-									<h3 class="modal-title bold mt0 mb0">Add a New Facility</h3>
+								<div class="panel-title ">
+									<h3 class="modal-title bold mt10 mb0">Search and Add an Existing Facility</h3>
 								</div>
 							</div><!--.panel-heading-->
-							<div class="panel-body pt20">
+							<div class="panel-body pt0">
 	 	            <div class="row">
 	                <div class=""  style="background: #fff;">
 	                  <div class="padding-bottom-0">
 	                    <div class="inputer mt5 mb5 ml10">
-	                  		<input type="text" class=" fs_20 quicksearch-facilities typeahead typeahead-facilities form-control" rows="1" placeholder="Enter facility name...">
+                    		<div class="input-wrapper">
+                  				<input type="text" class="fs_20 quicksearch-facilities typeahead typeahead-facilities form-control" rows="1" placeholder="Enter facility name...">
+                  			</div>
 	                  	</div>
 		                </div>
 		              </div>

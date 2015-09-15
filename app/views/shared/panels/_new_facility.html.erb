@@ -8,44 +8,46 @@
 							<div class="panel">
 								<div class="panel-heading no-border">
 									<div class="panel-title">
-									    <%= link_to selection_option_facilities_path(selection: "form", object: @object.class.to_s, object_id: @object.try(:id)), remote: true, class: "btn btn-primary mr10" do %>
-										  <h3><i class="ion-plus-circled mr5"></i>Add a New Facility</h3>
+										<h3 class="bold">Adding a New Facility</h3>
+										<!-- <hr class="light mb10"/> -->
+										<br/>
+									    <p class="mb10 small upper fs_12 bold text-muted">Option: 1</p>
+										<%= link_to selection_option_facilities_path(selection: "form", object: @object.class.to_s, object_id: @object.try(:id)), remote: true, class: "btn btn-primary button-striped button-full-striped btn-ripple" do %>
+										  	Create and Add a New Facility
 										<% end %>
-										<% if @object.present? %>
-										<br><br>
+										
+										<hr class="light mb10"/>
+									    <p class="mb10 small upper fs_12 bold text-muted">Option: 2</p>
+									    <% if @object.present? %>
 										<% unless @object.class.to_s == "League" %>
-										    <%= link_to selection_option_facilities_path(selection: "school", object: @object.class.to_s, object_id: @object.id), remote: true, class: "btn btn-primary mr10" do %>
-											  <h3><i class="ion-plus-circled mr5"></i>Select from School</h3>
+										    <%= link_to selection_option_facilities_path(selection: "school", object: @object.class.to_s, object_id: @object.id), remote: true, class: "btn btn-primary button-striped button-full-striped btn-ripple" do %>
+											  Add a School Facility
 											<% end %>
 										<% end %>
 										
-										<br><br>
-									    <%= link_to selection_option_facilities_path(selection: "search", object: @object.class.to_s, object_id: @object.id), remote: true, class: "btn btn-primary mr10" do %>
-										  <h3><i class="ion-plus-circled mr5"></i>Search</h3>
-										<% end %>
-										<br><br>
+										<hr class="light mb10"/>
+									    <p class="mb10 small upper fs_12 bold text-muted">Option: 3</p>
+
+									    <!-- MAKE THIS WORK WITH ADDITION FORM CODE ************************************* -->
+
+									    <%#= f.collection_select :facility_ids, Facility.all, :id, :name, {:selected => ""}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", placeholder: "Select a Facility"} %>
+
+									    <!-- MAKE THIS WORK WITH ADDITION FORM CODE ************************************* -->
+
+										<%#= link_to selection_option_facilities_path(selection: "search", object: @object.class.to_s, object_id: @object.id), remote: true, class: "btn btn-primary button-striped button-full-striped btn-ripple" do %>
+										  <!-- Search Existing Facilities -->
+										<%# end %>
+										<hr class="light mb10"/>
 										<% end %>
 									</div>
+
 								</div><!--.panel-heading-->
 								<div class="panel-body pt20">
-							
-
-							
-				
-
-					
-
-
-
 							</div><!--.panel-body-->
 						</div><!--.col-md-12-->
 					</div><!--.row-->
 				</div>
 			</div>
-			
-			
-
-			
 						
 			</div>
 		</div>
