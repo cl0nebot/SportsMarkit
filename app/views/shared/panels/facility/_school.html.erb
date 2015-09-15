@@ -4,20 +4,20 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-md-12 pr20 pl20 pt10">
+						<p>
+							<%= link_to "Create a New Facility", selection_option_facilities_path(selection: "form", object: object.class.to_s, object_id: object.id), remote: true, class: "btn btn-xs btn-primary button-striped button-full-striped btn-ripple"%>
+							<%= link_to "Add an Existing Facility",  selection_option_facilities_path(selection: "search", object: object.class.to_s, object_id: object.id), remote: true, class: "btn btn-xs btn-primary button-striped button-full-striped btn-ripple" %>
+						</p>
 						<div class="panel">
 							<div class="panel-heading no-border">
 								<div class="panel-title">
-									<h4 class="text-primary">
-										<span class="ion-plus-circled mr5"></span>
-										<%= link_to "Form", selection_option_facilities_path(selection: "form", object: object.class.to_s, object_id: object.id), remote: true, class: "btn"%> | <%= link_to "Search",  selection_option_facilities_path(selection: "search", object: object.class.to_s, object_id: object.id), remote: true, class: "btn" %>
-									</h4>
 									<h3 class="modal-title bold mt0 mb0">Add a New Facility</h3>
 								</div>
 							</div><!--.panel-heading-->
 							<div class="panel-body pt20">
 				   		  <% object.school.facilities.each do |facility| %>
 				   		    <div class="pull-left"><%= facility.name %></div>
-						   			<div id="facility-link-<%= facility.id %>">
+					   			<div id="facility-link-<%= facility.id %>">
 					   			     <% unless object.facility_links.where(facility_id: facility.id).present? %>
 					   				   <%= render 'facility_links/add', facility: facility, object: object %>
 					   				 <% else %>
@@ -25,8 +25,8 @@
 					   				   <%= render 'facility_links/remove', fl: fl%>
 					   				   <% end %>
 					   				<% end %>
-		   		          </div>
-			     	    <% end %>
+		   		          		</div>
+			     	    	<% end %>
 							</div><!--.panel-body-->
 						</div><!--.col-md-12-->
 					</div><!--.row-->

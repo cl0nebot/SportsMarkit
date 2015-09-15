@@ -4,23 +4,22 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-md-12 pr20 pl20 pt10">
+						<p>
+							<% unless object.class.to_s == "League" %>
+							<%= link_to "Add a School Facility", selection_option_facilities_path(selection: "school", object: object.class.to_s, object_id: object.id), remote: true, class: "btn btn-xs btn-primary button-striped button-full-striped btn-ripple" %> <% end %>
+							<%= link_to "Search Existing Facilities",  selection_option_facilities_path(selection: "search", object: object.class.to_s, object_id: object.id), remote: true, class: "btn btn-xs btn-primary button-striped button-full-striped btn-ripple" %>
+						</p>
 						<div class="panel">
 							<div class="panel-heading no-border">
 								<div class="panel-title">
-									<h4 class="text-primary">
-										<span class="ion-plus-circled mr5"></span>
-										<% unless object.class.to_s == "League" %>
-										<%= link_to "School", selection_option_facilities_path(selection: "school", object: object.class.to_s, object_id: object.id), remote: true, class: "btn"%> <% end %> | <%= link_to "Search",  selection_option_facilities_path(selection: "search", object: object.class.to_s, object_id: object.id), remote: true, class: "btn" %>
-									</h4>
 									<h3 class="modal-title bold mt0 mb0">Add a New Facility</h3>
 								</div>
 							</div><!--.panel-heading-->
 							<div class="panel-body pt20">
-							
 
-							<%= form_for Facility.new, html: {id: 'facility-form'} do |f|   %>
-							<%= f.hidden_field :facility_owner_id, value: object.id %>
-							<%= f.hidden_field :facility_owner_type, value: object.class.to_s %>
+								<%= form_for Facility.new, html: {id: 'facility-form'} do |f|   %>
+								<%= f.hidden_field :facility_owner_id, value: object.id %>
+								<%= f.hidden_field :facility_owner_type, value: object.class.to_s %>
 				
 
 								<div class="row example-row">
