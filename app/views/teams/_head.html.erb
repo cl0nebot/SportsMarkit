@@ -47,7 +47,7 @@
 					<% if current_user.can_edit_team?(@team) %>
                         <div class="pull-right mr10">
 
-                            <%= link_to m, method: :delete, remote: true,  class: "pull-right btn btn-orange"  do %>
+                            <%= link_to m, method: :delete, remote: true,  class: "pull-right btn btn-orange", data: {confirm: "Are you sure?"} do %>
                                     <span class="ion-trash-b"></span>
                             <% end %>
 

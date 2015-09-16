@@ -30,11 +30,11 @@
 						
 						<%#= link_to "Edit", params.merge(partial: "edit_member", m: m.id, class: m.class), remote: true  %>
 						<% if m.class.to_s == "Relationship" %>
-						  <%= link_to relationship_path(id: m, class: "Relationship"), method: :delete, remote: true, class: "pull-right btn btn-orange"  do %>
+						  <%= link_to relationship_path(id: m, class: "Relationship"), method: :delete, remote: true, class: "pull-right btn btn-orange", data: {confirm: "Are you sure?"}  do %>
 						  		<span class="ion-trash-b"></span>
 						  	<% end %>
 						<% else %>
-						  	<%= link_to userless_relationship_path(id: m, class: "UserlessRelationship"), method: :delete, remote: true, class: "btn btn-orange pull-right" do %>
+						  	<%= link_to userless_relationship_path(id: m, class: "UserlessRelationship"), method: :delete, remote: true, class: "btn btn-orange pull-right", data: {confirm: "Are you sure?"} do %>
 						  		<span class="ion-trash-b"></span>
 						  	<% end %>
 						<% end %>
