@@ -46,6 +46,7 @@ class RelationshipsController < ApplicationController
     staff_relationships = @team.relationships.where(accepted: true, head: true) + @team.relationships.where(accepted: true, trainer: true) + @team.relationships.where(accepted: true, manager: true)
     staff_userless_relationships = UserlessRelationship.where(team_id: @team.id, head: true) + UserlessRelationship.where(team_id: @team.id, trainer: true) + UserlessRelationship.where(team_id: @team.id, manager: true)
     @heads = staff_relationships.uniq + staff_userless_relationships.uniq
+    @admins = @team.relationships.where(accepted: true, admin: true) + UserlessRelationship.where(team_id: @team.id, admin: true)
     respond_to do |format|
       format.js
       format.html { redirect_to :back }

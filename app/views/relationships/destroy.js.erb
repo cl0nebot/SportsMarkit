@@ -1,5 +1,8 @@
   $('#member-<%= params[:controller].classify %><%= params[:id] %>').empty()
   $('#head-<%= params[:controller].classify %><%= params[:id] %>').empty()
+  $('#admin-<%= params[:controller].classify %><%= params[:id] %>').empty()
+  $('#admin-count').empty()
+  $('#admin-count').append("<%= j render 'teams/admin_count', admins: @admins %>")
   $('#coach-count').empty()
   $('#coach-count').append("<%= j render 'teams/coach_count', heads: @heads %>")
   $('#athlete-count').empty()
