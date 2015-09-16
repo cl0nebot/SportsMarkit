@@ -48,9 +48,23 @@
 						  <%= @user.profile.description %> 
 						
 						<% else %>
-							<p class="fs_14 lh_18 text-muted mb20 mt10">
-								No user description.
-							</p>
+						  <% if current_user %>
+						    <% if current_user.can_edit_user?(@object) %>
+							  <%= link_to edit_user_path(@object) do %>
+					            <p class="fs_14 lh_18 text-muted mb20 mt10">
+						          Add description to your profile.
+					            </p>
+							   <% end %>
+						    <% else %>
+						      <p class="fs_14 lh_18 text-muted mb20 mt10">
+							     No user description.
+						      </p>
+						    <% end %>
+						  <% else %>
+						    <p class="fs_14 lh_18 text-muted mb20 mt10">
+							  No user description.
+						   </p>
+						  <% end %>
 						<% end %>
 						<hr clas="light"/>
 
