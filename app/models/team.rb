@@ -130,6 +130,14 @@ class Team < ActiveRecord::Base
     self.school_team_names + self.non_school_team_names
   end
   
+  def self.team_json
+    array = []
+    Team.all.each do |team|
+      array << {name: team.proper_name, link: Rails.env.production? ? "http://www.sportsmarkit.com/teams/#{team.slug}" : "http://localhost:3000/teams/#{team.slug}"}
+    end
+    array
+  end
+  
   
   def city_state
     if school_id.present?

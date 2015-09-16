@@ -55,6 +55,7 @@ class League < ActiveRecord::Base
     users = User.where(id: user_ids)
   end
   
+  
   def self.league_names
     League.pluck(:name)
   end
@@ -73,6 +74,14 @@ class League < ActiveRecord::Base
 
   def all_events
     upcoming_events
+  end
+  
+  def self.league_json
+    array = []
+    League.all.each do |league|
+      array << {name: league.name, link: Rails.env.production? ? "http://www.sportsmarkit.com/leagues/#{league.slug}" : "http://localhost:3000/leagues/#{league.slug}"}
+    end
+    array
   end
   
   def image

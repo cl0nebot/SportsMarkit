@@ -201,13 +201,13 @@ var FormsTools = {
 
 	typeahead: function () {
 
-		var facilities = <%= Facility.pluck(:name) %>;
+		var facilities = <%= Facility.facility_json.to_json %>;
 
 		// instantiate the bloodhound suggestion engine
 		var facilities = new Bloodhound({
 		    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 		    queryTokenizer: Bloodhound.tokenizers.whitespace,
-		    local: $.map(facilities, function(facility) { return { value: facility }; })
+		    local: $.map(facilities, function(facility) { return { value: facility.name, link: facility.link }; })
 		});
 
 		// initialize the bloodhound suggestion engine
@@ -226,17 +226,18 @@ var FormsTools = {
 		    })
 		    .on('typeahead:selected', function(object, datum) {
 		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
-		        update_the_source_with(datum.value);
+				window.location.href = datum.link
+		        // update_the_source_with(datum.value);
 		});
 		    
 
-		var schools = <%= School.pluck(:name) %>;
+		var schools = <%= School.school_json.to_json %>;
 
 		// instantiate the bloodhound suggestion engine
 		var schools = new Bloodhound({
 		    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 		    queryTokenizer: Bloodhound.tokenizers.whitespace,
-		    local: $.map(schools, function(school) { return { value: school }; })
+		    local: $.map(schools, function(school) { return { value: school.name, link: school.link }; })
 		});
 
 		// initialize the bloodhound suggestion engine
@@ -255,17 +256,18 @@ var FormsTools = {
 		    })
 		    .on('typeahead:selected', function(object, datum) {
 		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
-		        update_the_source_with(datum.value);
+				window.location.href = datum.link
+		        // update_the_source_with(datum.value);
 		});
 
 
-		var teams = <%= Team.team_names %>;
+		var teams = <%= Team.team_json.to_json %>;
 
 		// instantiate the bloodhound suggestion engine
 		var teams = new Bloodhound({
 		    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 		    queryTokenizer: Bloodhound.tokenizers.whitespace,
-		    local: $.map(teams, function(team) { return { value: team }; })
+		    local: $.map(teams, function(team) { return { value: team.name, link: team.link }; })
 		});
 
 		// initialize the bloodhound suggestion engine
@@ -284,17 +286,18 @@ var FormsTools = {
 		    })
 		    .on('typeahead:selected', function(object, datum) {
 		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
-		        update_the_source_with(datum.value);
+				window.location.href = datum.link
+		        // update_the_source_with(datum.value);
 		});
 
 
-		var users = <%= User.user_names %>;
+		var users = <%= User.user_json.to_json %>;
 
 		// instantiate the bloodhound suggestion engine
 		var users = new Bloodhound({
 		    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 		    queryTokenizer: Bloodhound.tokenizers.whitespace,
-		    local: $.map(users, function(user) { return { value: user }; })
+		    local: $.map(users, function(user) { return { value: user.name, link: user.link }; })
 		});
 
 		// initialize the bloodhound suggestion engine
@@ -305,7 +308,7 @@ var FormsTools = {
 		    .typeahead({
 		        hint: true,
 		        highlight: true,
-		        minLength: 1
+		        minLength: 1,
 		    }, {
 		        name: 'users',
 		        displayKey: 'value',
@@ -313,7 +316,8 @@ var FormsTools = {
 		    })
 		    .on('typeahead:selected', function(object, datum) {
 		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
-		        update_the_source_with(datum.value);
+				window.location.href = datum.link
+		        // update_the_source_with(datum.value);
 		});
 
 
@@ -439,13 +443,13 @@ var FormsTools = {
 
 
 
-		var leagues = <%= League.league_names %>;
+		var leagues = <%= League.league_json.to_json %>;
 
 		// instantiate the bloodhound suggestion engine
 		var leagues = new Bloodhound({
 		    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 		    queryTokenizer: Bloodhound.tokenizers.whitespace,
-		    local: $.map(leagues, function(league) { return { value: league }; })
+		    local: $.map(leagues, function(league) { return { value: league.name, link: league.link }; })
 		});
 
 		// initialize the bloodhound suggestion engine
@@ -464,7 +468,8 @@ var FormsTools = {
 		    })
 		    .on('typeahead:selected', function(object, datum) {
 		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
-		        update_the_source_with(datum.value);
+				window.location.href = datum.link
+		        // update_the_source_with(datum.value);
 		});
 
 

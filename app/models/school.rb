@@ -141,6 +141,14 @@ class School < ActiveRecord::Base
     name
   end
   
+  def self.school_json
+    array = []
+    School.all.each do |school|
+      array << {name: school.name, link: Rails.env.production? ? "http://www.sportsmarkit.com/schools/#{school.slug}" : "http://localhost:3000/schools/#{school.slug}"}
+    end
+    array
+  end
+  
   def image
     if Photo.where(photo_owner_id: id, photo_owner_type: "School").present?
       Photo.where(photo_owner_id: id, photo_owner_type: "School").last.image

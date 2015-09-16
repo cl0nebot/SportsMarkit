@@ -74,6 +74,22 @@ class Facility < ActiveRecord::Base
     Facility.pluck(:name)
   end
   
+  def proper_name
+    if facility_owner_id.nil?
+      name
+    else
+      "#{facility_owner_type.constantize.find(facility_owner_id).name} #{name}"
+    end
+  end
+  
+  def self.facility_json
+    array = []
+    Facility.all.each do |facility|
+      array << {name: facility.proper_name, link: Rails.env.production? ? "http://www.sportsmarkit.com/facilities/#{facility.slug}" : "http://localhost:3000/facilities/#{facility.slug}"}
+    end
+    array
+  end
+  
   def image
     if Photo.where(photo_owner_id: id, photo_owner_type: "Facility").present?
       Photo.where(photo_owner_id: id, photo_owner_type: "Facility").last.image

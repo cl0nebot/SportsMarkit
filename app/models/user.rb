@@ -265,6 +265,14 @@ class User < ActiveRecord::Base
     array
   end
   
+  def self.user_json
+    array = []
+    User.all.each do |user|
+      array << {id: user.id, name: user.full_name, link: Rails.env.production? ? "http://www.sportsmarkit.com/users/#{user.slug}" : "http://localhost:3000/users/#{user.slug}"}
+    end
+    array
+  end
+  
   def self.athlete_names
     array = []
     User.athletes.each do |user|
