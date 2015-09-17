@@ -21,8 +21,8 @@ module EventDetail
       Event.where(eventable_type: "Team", eventable_id: team_ids).where('ends_at >= ?', Time.now).order('starts_at ASC')
     elsif self.class.to_s == "League"
       team_ids = TeamLeague.where(league_id: id).pluck(:team_id)
-      team_events_ids = Event.where(eventable_type: "Team", eventable_id: team_ids).where('ends_at >= ?', Time.now).pluck(:id)
-      league_events_ids = Event.where(eventable_type: "League", eventable_id: id).where('ends_at >= ?', Time.now).pluck(:id)
+      team_events_ids = Event.where(eventable_type: "Team", eventable_id: team_ids).pluck(:id)
+      league_events_ids = Event.where(eventable_type: "League", eventable_id: id).pluck(:id)
       events = Event.where(id: team_events_ids + league_events_ids ).uniq.order('starts_at ASC')
     elsif self.class.to_s == "Team"
       Event.where(eventable_type: "Team", eventable_id: id).where('ends_at >= ?', Time.now).order('starts_at ASC')
