@@ -17,6 +17,8 @@ class School < ActiveRecord::Base
   #has_many :event_facilities, as: :reservable
   has_many :teams
   has_many :facilities
+  
+  has_many :facility_links, as: :facilitatable
 
   has_many :athletic_directors, dependent: :destroy
   has_many :users, through: :athletic_directors
