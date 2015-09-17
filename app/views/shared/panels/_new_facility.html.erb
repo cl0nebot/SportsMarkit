@@ -29,8 +29,20 @@
 									    <p class="mb10 small upper fs_12 bold text-muted">Option: 3</p>
 
 									    <!-- MAKE THIS WORK WITH ADDITION FORM CODE ************************************* -->
+										<%= form_tag add_multiple_facility_links_path, remote: true do |f| %>
 
-									    <%#= f.collection_select :facility_ids, Facility.all, :id, :name, {:selected => ""}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", placeholder: "Select a Facility"} %>
+									    <%= select_tag :facility_ids, options_for_select(Facility.pluck(:name, :id), :selected=> @object.facility_links.pluck(:facility_id)), class: "selecter bg-white margin-bottom-0", multiple: true, "data-live-search" =>  true %>
+										<%= hidden_field_tag :facility_owner_type, @object.class.to_s %>
+										<%= hidden_field_tag :facility_owner_id, @object.id %>
+										
+										
+										
+										<br>
+										<%= submit_tag %>
+										
+										<% end %>
+										
+										
 
 									    <!-- MAKE THIS WORK WITH ADDITION FORM CODE ************************************* -->
 

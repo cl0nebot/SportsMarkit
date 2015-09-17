@@ -12,6 +12,19 @@ class FacilityLinksController < ApplicationController
     end
   end
   
+  def add_multiple
+    object = params[:facility_owner_type]
+    object_id = params[:facility_owner_id]
+    object.constantize.find(object_id).facility_links.destroy_all
+    params[:facility_ids].each do |id|
+      FacilityLink.create(facilitatable_type: object, facilitatable_id: object_id, facility_id: id)
+    end
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
+  
   def destroy
     @facility_link = FacilityLink.find(params[:id])
     @object = @facility_link.facilitatable_type.constantize.find(@facility_link.facilitatable_id)

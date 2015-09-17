@@ -126,7 +126,11 @@ Rails.application.routes.draw do
     resources :positions
     resources :facility_types
     resources :amenities
-    resources :facility_links
+    resources :facility_links do
+      collection do
+        post :add_multiple
+      end
+    end
     resources :pricings
     resources :team_leagues
     resources :classifications
