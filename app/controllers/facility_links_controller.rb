@@ -38,3 +38,4 @@ class FacilityLinksController < ApplicationController
   end
   
 end
+
