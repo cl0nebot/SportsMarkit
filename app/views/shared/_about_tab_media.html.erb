@@ -91,7 +91,7 @@ window.onload = function () {
 		<div class="card-footer">
 			<ul>
 				<li><span class="mr5 fs_14"><%= pluralize @videos.count, "Video" %>, <%= pluralize @pictures.count, "Photo" %>, <%= pluralize @articles.count, "Article" %> </span></li>
-				<li><%= link_to "View All Media", "/#{@object.class.to_s.pluralize}/#{@object.slug}/#media", class: "fs_14" %></li>
+				<li><%= link_to "View All Media", "/#{@object.class.to_s.pluralize.downcase}/#{@object.slug}/#tab_media", class: "fs_14" %></li>
 			</ul>
 		</div><!--.card-footer-->
 	</div><!--.card-->
