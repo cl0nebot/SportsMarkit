@@ -1,5 +1,5 @@
 <li class="has-action-left" id="pending-<%= m.id %>">
-	<%= form_for m, html: {data: {remote: true}} do |f| %>
+	<%= form_for m, url: accept_user_team_path(@team, relationship_id: m.id), html: {data: {remote: true}} do |f| %>
 		<%= f.hidden_field :accepted, value: true %>
 		<div class="hidden pt30">
 			<p class="text-center mb5">
@@ -8,9 +8,10 @@
 				<% end %>
 			</p>
 			<p class="text-center">
-		    <%= link_to accept_user_team_path(m), method: :patch, remote: true, class: "btn btn-success"  do %> 
+		    <%= f.button class: "btn btn-success" do %>  
 					<i class="ion-checkmark-circled"></i> 
 				<% end %>
+						
 			</p>
 		</div>
 		<a href="#" class="visible">

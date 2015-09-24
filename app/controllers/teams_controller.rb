@@ -134,11 +134,17 @@ class TeamsController < ApplicationController
   end
   
   def accept_user
-    @relationship = Relationship.find(params[:id])
-    @relationship.update_attributes(accepted: true)
+    admin = params[:relationship][:admin] == "1" ? true : false
+    head = params[:relationship][:head] == "1" ? true : false
+    participant = params[:relationship][:participant] == "1" ? true : false
+    @relationship = Relationship.find(params[:relationship_id])
+    @relationship.update_attributes(accepted: true, admin: admin, head: head, participant: participant)
     @team = Team.find(@relationship.team_id)
+    staff_relationships = @team.relationships.where(accepted: true, head: true) + @team.relationships.where(accepted: true, trainer: true) + @team.relationships.where(accepted: true, manager: true)
+    staff_userless_relationships = UserlessRelationship.where(team_id: @team.id, head: true) + UserlessRelationship.where(team_id: @team.id, trainer: true) + UserlessRelationship.where(team_id: @team.id, manager: true)
     @heads = staff_relationships.uniq + staff_userless_relationships.uniq
     @members = @team.relationships.where(accepted: true, participant: true) + UserlessRelationship.where(team_id: @team.id, participant: true)
+    @admins = @team.relationships.where(accepted: true, admin: true) + UserlessRelationship.where(team_id: @team.id, admin: true)
     if @team.school.present?
       Classification.create(user_id: @relationship.user_id, classification: "Student Athlete")
     else
@@ -150,14 +156,14 @@ class TeamsController < ApplicationController
     # @pending_relationships = Relationship.where(team_id: @relationship.team_id, accepted: nil, rejected: nil)
     # @relationships = Relationship.where(team_id: @relationship.team_id, accepted: true)
     respond_to do |format|
-      format.js 
+      format.js
       format.html { redirect_to :back }
     end
   end
 
   def reject_user
     @relationship = Relationship.find(params[:id])
-    @relationship.update_attribute(:rejected, true)
+    @relationship.destroy
     # @pending_relationships = Relationship.where(team_id: @relationship.team_id, accepted: nil, rejected: nil)
     # @relationships = Relationship.where(team_id: @relationship.team_id, accepted: true)
     respond_to do |format|
