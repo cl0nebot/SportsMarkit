@@ -8,7 +8,7 @@
 				<% end %>
 			</p>
 			<p class="text-center">
-			<%= f.button class: "btn btn-success" do %> 
+		    <%= link_to accept_user_team_path(m), method: :patch, remote: true, class: "btn btn-success"  do %> 
 					<i class="ion-checkmark-circled"></i> 
 				<% end %>
 			</p>
