@@ -25,7 +25,7 @@
 				<% else %>
 					<% teams.each do |team| %>
 						<li class="has-action-left">
-							<a href="#" class="visible">
+							<a href="<%= team_path(team) %>" class="visible">
 								<div class="list-action-left">
 									<i class="ion-flag icon-circle"></i>
 								</div>
