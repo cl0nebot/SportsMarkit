@@ -33,8 +33,8 @@
 					</div>
 					<div class="col-md-2">
 						<div class="checkboxer form-inline mb5">
-	                      	<%= f.check_box :admin, id: "relationship_admin"  %>
-	                      	<label for="relationship_admin"></label>
+	                      	<%= f.check_box :admin, id: "#{m.id}-relationship_admin"  %>
+	                      	<label for="<%= "#{m.id}" %>-relationship_admin"></label>
 	                    </div>
 						<p class="small">
 							<small>
@@ -44,8 +44,8 @@
 					</div>
 					<div class="col-md-2">
 						<div class="checkboxer form-inline mb5">
-	                      	<%= f.check_box :head, id: "relationship_head"  %>
-	                      	<label for="relationship_head"></label>
+	                      	<%= f.check_box :head, id: "#{m.id}-relationship_head"  %>
+	                      	<label for="<%= "#{m.id}" %>-relationship_head"></label>
 	                    </div>
 						<p class="small">
 							<small>
@@ -55,8 +55,8 @@
 					</div>
 					<div class="col-md-2">
 						<div class="checkboxer form-inline mb5">
-	                      	<%= f.check_box :participant, id: "relationship_participant"  %>
-	                      	<label for="relationship_participant"></label>
+	                      	<%= f.check_box :participant, id: "#{m.id}-relationship_participant"  %>
+	                      	<label for="<%= "#{m.id}" %>-relationship_participant"></label>
 	                    </div>
 						<p class="small">
 							<small>
