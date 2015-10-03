@@ -17,6 +17,7 @@ gem 'jquery-ui-rails'
 gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'sdoc', '~> 0.4.0',          group: :doc # bundle exec rake doc:rails generates the API under doc/api.
 gem 'spring',        group: :development # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+gem "letter_opener", :group => :development
 
 #maps and geocoding
 gem 'gmaps4rails', "~> 1.5.6" # For google maps view, geocoding, etc
@@ -51,8 +52,6 @@ gem 'ransack'
 gem 'best_in_place', '~> 3.0.1'
 gem 'carrierwave-crop'
 
-#google web font library
-gem 'google-webfonts'
 
 gem 'american_date'
 
