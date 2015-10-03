@@ -88,7 +88,7 @@
 							<div class="col-md-12">
 								<div class="inputer">
 									<div class="input-wrapper">
-										<%= f.text_field :address_1, class: "form-control", placeholder: "", value: @school.address_1 if @school.present? %>
+										<%= f.text_field :address_1, class: "form-control", placeholder: "", value: (@school.address_1 if @school.present?) %>
 									</div>
 								</div>
 							</div><!--.col-md-9-->
@@ -99,7 +99,7 @@
 							<div class="col-md-12">
 								<div class="inputer">
 									<div class="input-wrapper">
-										<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "", value: @school.address_2 if @school.present? %>
+										<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "", value: (@school.address_2 if @school.present?) %>
 									</div>
 								</div>
 							</div><!--.col-md-9-->
@@ -112,7 +112,7 @@
 									<div class="col-md-12">
 										<div class="inputer">
 											<div class="input-wrapper">
-												<%= f.text_field :city, type: "text", class: "form-control", placeholder: "", value: @school.city if @school.present? %>
+												<%= f.text_field :city, type: "text", class: "form-control", placeholder: "", value: (@school.city if @school.present?) %>
 											</div>
 										</div>
 									</div><!--.col-md-9-->
@@ -122,7 +122,7 @@
 									<div class="col-md-12">
 										<div class="inputer">
 											<div class="input-wrapper">
-												<%= f.text_field :state, type: "text", class: "form-control", placeholder: "", value: @school.state if @school.present? %>
+												<%= f.text_field :state, type: "text", class: "form-control", placeholder: "", value: (@school.state if @school.present?) %>
 											</div>
 										</div>
 									</div><!--.col-md-9-->
@@ -132,7 +132,7 @@
 									<div class="col-md-12">
 										<div class="inputer">
 											<div class="input-wrapper">
-												<%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true, value: @school.zip if @school.present? %>
+												<%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true, value: (@school.zip if @school.present?) %>
 											</div>
 										</div>
 									</div><!--.col-md-9-->
@@ -142,7 +142,7 @@
 									<div class="col-md-12">
 										<div class="inputer">
 											<div class="input-wrapper">
-												<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true, value: @school.zip_ext if @school.present? %>
+												<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true, value: (@school.zip_ext if @school.present?) %>
 											</div>
 										</div>
 									</div><!--.col-md-9-->
@@ -164,7 +164,7 @@
 						<div class="col-md-12">
 							<div class="inputer">
 								<div class="input-wrapper">
-									<%= f.text_field :website, type: "text", class: "form-control", placeholder: "", value: @school.website if @school.present? %>
+									<%= f.text_field :website, type: "text", class: "form-control", placeholder: "", value: (@school.website if @school.present?) %>
 								</div>
 							</div>
 						</div><!--.col-md-9-->
@@ -175,7 +175,7 @@
 						<div class="col-md-12">
 							<div class="inputer">
 								<div class="input-wrapper">
-									<%= f.text_field :email, type: "text", class: "form-control", value: @school.email if @school.present? %>
+									<%= f.text_field :email, type: "text", class: "form-control", value: (@school.email if @school.present?) %>
 								</div>
 							</div>
 						</div><!--.col-md-9-->
