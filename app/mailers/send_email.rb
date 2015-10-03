@@ -1,12 +1,12 @@
 class SendEmail < ActionMailer::Base
-  default from: "from@example.com"
+ 
   
   
   # reset password
   
   def password_reset(user)
     @user = user
-    mail(to: @user.email, subject: "Password Reset")
+    mail(from: "donotreply@sportsmarkit.com", to: @user.email, subject: "SportsMarkit Password Reset")
   end
   
   
