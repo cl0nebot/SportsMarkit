@@ -91,11 +91,13 @@
 										<i class="ion-email fs_20 text-primary mr5"></i>
 										<%= @user.email %>
 									</p>
+									<% if current_user %>
 									<% if current_user.can_edit_user?(@user) %>
 										<p class="semi-bold fs_14 text-muted no-margin">
 											<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
 											<%= @user.mobile_phone_number %>
 										</p>
+									<% end %>
 									<% end %>
 									<% if @user.profile.date_of_birth.present? %>
 									<p class="semi-bold fs_14 text-muted no-margin">
