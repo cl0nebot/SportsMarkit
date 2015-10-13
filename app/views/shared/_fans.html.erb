@@ -1,8 +1,10 @@
 <% fans.each do |fan| %>
   <%= link_to user_path(fan.user) do %>
-    <div class="col-md-4">
-      <div class="card tile card-friend material-animate">
-        <a href="<%= user_path(fan.user) %>"><img src="<%= fan.user.avatar %>" class="user-photo" alt=""></a>
+    <div class="col-md-4 col-lg-2 col-sm-12">
+      <div class="card tile card-friend horizontal material-animate" height: "150px;"> 
+        <a href="<%= user_path(fan.user) %>">
+          <img src="<%= fan.user.avatar %>" class="user-photo" alt="">
+        </a>
         <div class="friend-content">
           <p class="title pt20 mb0"><%= fan.user.full_name %></p>
           <p><a href="<%= user_path(fan.user) %>"><%= fan.user.classification_list(3) %></a></p>

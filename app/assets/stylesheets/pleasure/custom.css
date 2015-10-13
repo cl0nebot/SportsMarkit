@@ -785,3 +785,14 @@ ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
 .card {
     overflow: visible;
 }
+
+.card.tile.card-friend.horizontal a {
+  width: 161px;
+  overflow: hidden;
+}
+
+.card-friend.tile.horizontal .user-photo {
+    border-radius: 0;
+    height: auto;
+    width: auto; 
+    min-width: 160px;
