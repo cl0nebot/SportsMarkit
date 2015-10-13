@@ -776,3 +776,12 @@ ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
 .dropdown-menu {
     font-size: 14px;
 }
+
+
+.tooltip, .tooltip-inner {
+  max-width: none !important;
+}
+
+.card {
+    overflow: visible;
+}

@@ -1,7 +1,7 @@
 <% facilities.each do |facility| %>
 	<%= link_to facility_path(facility) do %>
-	<div class="col-md-3 col-lg-2 col-sm-12 element-item <%= facility.type_with_hyphen %> all" data-category="<%= facility.type_with_hyphen %> all">
-    <div class="card card-user card-clickable card-clickable-over-content"  style="height: 328px;">
+	<div class="col-md-4 col-lg-2 col-sm-12 element-item <%= facility.type_with_hyphen %> all" data-category="<%= facility.type_with_hyphen %> all">
+    <div class="card card-user card-clickable card-clickable-over-content"  style="height: 380px;">
       <div class="card-heading heading-full">
        <div class="user-image sample-member9" style="background: url('<%= facility.avatar %>');"></div>
 
@@ -17,39 +17,51 @@
       		<h4 class="card-title capitalize fs_16 lh_20 absolute bottom bold">
 	        	<a href="#">
 		        	<% if facility.school.present? %>
-					  	<%= truncate("#{facility.school.name} #{facility.name}", length: 40) %>
-					<% else %>
-					   	<%= truncate(facility.name, length: 40) %>
-					<% end %>
+					  		<%= truncate("#{facility.school.name} #{facility.name}", length: 35) %>
+							<% else %>
+					   		<%= truncate(facility.name, length: 31) %>
+							<% end %>
+						</a>
 					<br/>
-				</a>
-			</h4>
-		</div>
-		<hr class="light mt5 mb10"/>
-		<p class="lh_16 text-muted fs_12 no-margin">
-			<% if facility.city.present? %>
-				<%= facility.address_1 %><br/>
-				<%= facility.city %>, <%= facility.state %> 
-			<% else %>
-			Address not available.
-			<% end %>
+				</h4>
+			</div>
+			<hr class="light mt5 mb10"/>
+			<p class="lh_16 text-muted fs_12 no-margin">
+			<!-- <i class="ion-location pull-left mr10"></i>  -->
+			<span class="pull-left">
+				<% if facility.city.present? %>
+					<%= facility.address_1 %><br/>
+					<%= facility.city %>, <%= facility.state %> 
+				<% else %>
+					Address not available.
+				<% end %>
+				<% if facility.email.present? %>
+					<br/>
+					<span class="text-muted pull-left">
+	        	<a type="button" class="" data-toggle="tooltip" data-placement="top" title="<%= facility.email %>">
+	        		Email
+	        	</a>
+	      	</span>
+	      <% else %>
+	      <% end %>
+
+      	<br/>
+      	<span class="text-muted pull-left">
+        	<a href="<%= facility.website %>" target="_blank">Visit Website</a>
+      	</span>
+      	<br/>
+      	<span class="text-muted pull-left">
+        	<%= facility.phone_number %>
+      	</span>
+			</span>
 		</p>
-      
+  </div>
+  	<!--.card-body-->
 
-	    <div class="subhead">
-	      <span class="text-muted">
-	        <%= facility.email %>
-	      </span>
-	      <%= facility.website %>
-	      <%= facility.phone_number %>
-	    </div>
-	  </div>
-    	<!--.card-body-->
-
-	      <!-- <div class="card-footer">
-	        <%#= link_to "Delete", facility, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-orange btn-xs" %>
-			
-	      </div> --><!--.card-footer-->
+      <!-- <div class="card-footer">
+        <%#= link_to "Delete", facility, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-orange btn-xs" %>
+		
+      </div> --><!--.card-footer-->
 
 	    </div><!--.card-->
   	</div><!--.col-md-4-->
