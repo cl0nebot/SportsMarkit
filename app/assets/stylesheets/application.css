@@ -15,6 +15,7 @@
  * <!-- BEGIN CORE CSS -->
  *= require pleasure/admin/css/admin
  *= require pleasure/globals/css/elements
+ *= require parsley
 
  * <!-- BEGIN PLUGINS CSS -->
  *= require pleasure/globals/plugins/blueimp-gallery/css/blueimp-gallery.min
