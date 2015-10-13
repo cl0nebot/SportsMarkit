@@ -782,17 +782,20 @@ ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
   max-width: none !important;
 }
 
-.card {
+.card.visible {
     overflow: visible;
 }
 
 .card.tile.card-friend.horizontal a {
   width: 161px;
   overflow: hidden;
+  display: inline-block;
+  float: left;
 }
 
 .card-friend.tile.horizontal .user-photo {
     border-radius: 0;
     height: auto;
-    width: auto; 
+    min-height: 150px;
+    width: 100%; 
     min-width: 160px;

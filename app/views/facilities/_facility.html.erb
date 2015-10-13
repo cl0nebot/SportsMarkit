@@ -1,7 +1,7 @@
 <% facilities.each do |facility| %>
 	<%= link_to facility_path(facility) do %>
 	<div class="col-md-4 col-lg-2 col-sm-12 element-item <%= facility.type_with_hyphen %> all" data-category="<%= facility.type_with_hyphen %> all">
-    <div class="card card-user card-clickable card-clickable-over-content"  style="height: 380px;">
+    <div class="card card-user card-clickable card-clickable-over-content visible"  style="height: 380px;">
       <div class="card-heading heading-full">
        <div class="user-image sample-member9" style="background: url('<%= facility.avatar %>');"></div>
 

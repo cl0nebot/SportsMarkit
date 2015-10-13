@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @teammate_ids = Relationship.where(team_id: @team_ids, accepted: true).pluck(:user_id)
     @time_updated = [@user.relationships.where(accepted: true).maximum(:updated_at), Relationship.where(team_id: @team_ids, accepted: true).maximum(:updated_at), @user.created_at, Date.today.midnight].compact.max
     
-    if stale?(:etag => @user, :last_modified => @time_updated)
+    #if stale?(:etag => @user, :last_modified => @time_updated)
       @class = @user.class
       @object = @user
       @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
       @videos = @user.medias.where(category: "Video")
       @articles = @user.medias.where(category: "Article")
       @cache_key = [@user.id, @team_ids, @teammate_ids]
-    end
+    #end
   end
   
   def edit

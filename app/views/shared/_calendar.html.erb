@@ -6,7 +6,7 @@
 		</p>
 		<% end %>
 	<% end %>
-  <div class="col-md-2">
+  <div class="col-md-3">
     <div class="filters">
     <%= form_tag "", method: :get, id: "calendar_filter", remote: true do %>
 
@@ -35,7 +35,7 @@
   <% end %>
     </div>
   </div>
-  <div class="col-md-10">
+  <div class="col-md-9">
     <div class="panel box-shadow-ccc">
       <div class="panel-body transparent">
         <div id="calendar" data-root="<%= request.url %>"></div>
