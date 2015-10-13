@@ -1,6 +1,6 @@
 <% @teams.each do |team| %>
   <%= link_to team_path(team) do %>
-  <div class="col-md-4 col-lg-2 col-sm-12 element-item <%= team.classification_and_category %> all" data-category="<%= team.classification_and_category %> all">
+  <div class="col-md-4 col-lg-2 col-sm-6 element-item <%= team.classification_and_category %> all" data-category="<%= team.classification_and_category %> all">
       <div class="card card-user card-clickable card-clickable-over-content">
         <div class="card-heading heading-full">
           <div class="user-image sample-member9" style="background: url('<%= team.avatar %>'); background-position: bottom;"></div>
@@ -17,7 +17,7 @@
 
           <div style="height: 40px; position: relative;">
             <h4 class="card-title capitalize fs_16 lh_20 absolute bottom bold">
-              <%= truncate(team.proper_name, length: 40) %>
+              <%= truncate(team.proper_name, length: 37) %>
             </h4>
           </div>
 
@@ -28,7 +28,7 @@
               <i class="ion-information-circled mr5"></i> <%= team.sport %>
             </span>
             <span class="text-muted"><i class="ion-map mr5"></i> 
-              <%= team.city_state.present? ? team.city_state : "NA" %>
+              <%= truncate(team.city_state.present? ? team.city_state : "NA", length: 30) %>
             </span>
             <!-- <span class="text-muted">[school name or Team Type]</span> -->
           </div>
