@@ -3,7 +3,7 @@
 <% @leagues.each do |league| %>
 	<%= link_to league_path(league) do %>
 	<div class="col-md-3 col-lg-2 col-sm-12 element-item <%= league.classification_with_hyphen %> all" data-category="<%= league.classification_with_hyphen %> all">
-		    <div class="card card-user card-clickable card-clickable-over-content" style="height: 330px;">
+		    <div class="card card-user card-clickable card-clickable-over-content" style="height: 385px;">
 		      <div class="card-heading heading-full">
 		        <div class="user-image sample-member9" style="background: url('<%= league.avatar %>');"></div>
 
@@ -17,7 +17,7 @@
 		      <div class="card-body">
 		        <div style="height: 40px; position: relative;">
 	        		<h4 class="card-title capitalize fs_16 lh_20 absolute bottom bold">
-		        		<%= truncate(league.name, length: 41) %>
+		        		<%= truncate(league.name, length: 33) %>
 		        	</h4>
 		        </div>
 
@@ -25,16 +25,14 @@
 
 		        <div class="subhead mt5">
 		          <span class="text-muted inline">
-		          	<i class="ion-map mr5"></i>
-		          	<%= league.state %>
+		          	<i class="ion-location mr5"></i>
+		          	<%= league.city %>, <%= league.state %>
 		      	  </span>
 		          <span class="text-muted inline">
-		            <%= league.sport_list.present? ? league.sport_list : "NA" %>
+		            
 		          </span>
-		          <br/>
-		          <span class="text-muted inline">
-		          	<i class="ion-information-circled mr5"></i>
-		          	<%= truncate(league.description, length: 38) %>
+		          <span class="text-muted lh_16 block mt5">
+		          	<small class=""><%= truncate(league.description, length: 115) %></small>
 		          </span>
 		        </div>
 		      </div><!--.card-body-->
