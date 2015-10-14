@@ -786,7 +786,7 @@ ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
     overflow: visible;
 }
 
-.card.tile.card-friend.horizontal a {
+.card.tile.card-friend.horizontal  > a {
   width: 161px;
   overflow: hidden;
   display: inline-block;
@@ -796,6 +796,6 @@ ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
 .card-friend.tile.horizontal .user-photo {
     border-radius: 0;
     height: auto;
-    min-height: 150px;
+    min-height: 170px;
     width: 100%; 
     min-width: 160px;
