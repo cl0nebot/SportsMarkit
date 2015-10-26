@@ -82,7 +82,7 @@
                 <% @teams.each do |team| %>
                   <li>
                     <%= link_to teams_path(team) do %>
-                        <%= team.name %>
+                        <%= team.proper_name %>
                       <% end %>
                     </li>
                 <% end %>
