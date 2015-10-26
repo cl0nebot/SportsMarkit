@@ -27,12 +27,14 @@
 	  <% end %>
 	<% end %>
 	<% end %>
-	<% if ["User"].include? @object.class.to_s %>
-    <% if ParentChild.where(child_id: @user.id).present? %>
-      <li>
-        <a href="#parent-child" data-toggle="tab" class="btn-ripple">Parents</a>
-      </li>
-    <% end %>
+	<% if current_user %>
+		<% if ["User"].include? @object.class.to_s %>
+		    <% if ParentChild.where(child_id: @user.id).present? %>
+		      <li>
+		        <a href="#parent-child" data-toggle="tab" class="btn-ripple">Parents</a>
+		      </li>
+		    <% end %>
+		<% end %>
 	<% end %>
 	<% unless ["Facility"].include? @object.class.to_s %>
 	<li><a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Calendar</a></li>
@@ -41,12 +43,14 @@
     <li><a href="#following" data-toggle="tab" class="btn-ripple">Following</a></li>
 	<% end %>
 	<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
-	<% if ["School"].include? @object.class.to_s %>
-	<% if AthleticDirector.where(user_id: current_user.id, school_id: @school.id).present? %>
-  	<li>
-  		<a href="#certifications" data-toggle="tab" class="btn-ripple">Certifications</a>
-  	</li>
-	<% end %>
+	<% if current_user %>
+		<% if ["School"].include? @object.class.to_s %>
+			<% if AthleticDirector.where(user_id: current_user.id, school_id: @school.id).present? %>
+		  	<li>
+		  		<a href="#certifications" data-toggle="tab" class="btn-ripple">Certifications</a>
+		  	</li>
+			<% end %>
+		<% end %>
 	<% end %>
 </ul>
 
