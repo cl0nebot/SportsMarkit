@@ -64,19 +64,23 @@ class ApplicationController < ActionController::Base
   
   def authenticate_pending_athletic_director!
     authenticate_user!
-    unless current_user.admin? or AthleticDirector.where(user_id: current_user.id, school_id: params[:school_id]).present?
-      flash[:message] = "This is your account."
-      redirect_to edit_user_path(current_user)
-      #render :file => "public/401.html", :status => :unauthorized
+    if current_user
+      unless current_user.admin? or AthleticDirector.where(user_id: current_user.id, school_id: params[:school_id]).present?
+        flash[:message] = "This is your account."
+        redirect_to edit_user_path(current_user)
+        #render :file => "public/401.html", :status => :unauthorized
+      end
     end
   end
   
   def authenticate_athletic_director!
     authenticate_user!
-    unless current_user.admin? or AthleticDirector.where(user_id: current_user.id, school_id: params[:school_id], accepted: true).present?
-      flash[:message] = "This is your account."
-      redirect_to edit_user_path(current_user)
-      #render :file => "public/401.html", :status => :unauthorized
+    if current_user
+      unless current_user.admin? or AthleticDirector.where(user_id: current_user.id, school_id: params[:school_id], accepted: true).present?
+        flash[:message] = "This is your account."
+        redirect_to edit_user_path(current_user)
+        #render :file => "public/401.html", :status => :unauthorized
+      end
     end
   end
   
