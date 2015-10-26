@@ -1,21 +1,23 @@
-<!--#events.tab-pane-->
-<% if AthleticDirector.where(user_id: current_user.id, school_id: @school.id).present? %>
-	<!-- certifications -->
-	<div id="certifications" class="tab-pane">
+<% if current_user %>
+	<!--#events.tab-pane-->
+	<% if AthleticDirector.where(user_id: current_user.id, school_id: @school.id).present? %>
+		<!-- certifications -->
+		<div id="certifications" class="tab-pane">
 		
-		<% @certifications.each do |cert| %>
+			<% @certifications.each do |cert| %>
 		
-			certification: <%= cert.certification.name %><br>
-			issuer: <%= cert.certification.issuer %><br>
-			user: <%= cert.user.full_name %><br>
-			expiration: <%= cert.expiration %><br>
-			<div id="notification-link">
-			 <%= render 'notifications/notification_link', cert: cert %>
-		    </div>
-			<br><br>
+				certification: <%= cert.certification.name %><br>
+				issuer: <%= cert.certification.issuer %><br>
+				user: <%= cert.user.full_name %><br>
+				expiration: <%= cert.expiration %><br>
+				<div id="notification-link">
+				 <%= render 'notifications/notification_link', cert: cert %>
+			    </div>
+				<br><br>
 
-		<% end %>
+			<% end %>
 		
-	</div>
-	<!--#certfications.tab-pane-->
+		</div>
+		<!--#certfications.tab-pane-->
+	<% end %>
 <% end %>
