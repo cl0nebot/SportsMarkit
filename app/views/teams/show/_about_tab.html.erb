@@ -153,16 +153,18 @@
 								</div>
 								<div class="card-body bgcolor-light-grey">
 								<% unless @members.present? %>
-								<% if current_user.can_edit_team?(@team)%>
-								  <%= link_to "/teams/#{@team.slug}/#tab_admin" do %>
-									<p class="mb0 mt0 center padding-20 text-grey">
-											<i class="ion-person-add mr10"></i> Add Players to Roster
-									</p>
-									<% end %>
+								   <% if current_user %>
+									   <% if current_user.can_edit_team?(@team)%>
+										    <%= link_to "/teams/#{@team.slug}/#tab_admin" do %>
+											<p class="mb0 mt0 center padding-20 text-grey">
+													<i class="ion-person-add mr10"></i> Add Players to Roster
+											</p>
+											<% end %>
+										<% end %>
 									<% else %>
-									<p class="mb0 mt0 center padding-20 text-grey">
-											<i class="ion-person-add mr10"></i> No Players on Roster
-									</p>
+										<p class="mb0 mt0 center padding-20 text-grey">
+												<i class="ion-person-add mr10"></i> No Players on Roster
+										</p>
 									
 									<% end %>
 								<% else %>
