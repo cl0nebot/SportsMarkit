@@ -54,6 +54,7 @@
     <% end %>
 
       <div class="pull-right mr10 mt10" id="team-button">
+		  <% if current_user %>
 				<% if current_user.relationships.where(team_id: @team.id).empty? %>
 				  <%= render 'relationships/relationship'%>
 				<% elsif current_user.relationships.where(team_id: @team.id, accepted: nil, rejected: nil).present? %>
@@ -62,6 +63,7 @@
 					<%= render 'relationships/member'%>
 					
 				<% end %>
+		<% end %>
 			</div>
 
 
