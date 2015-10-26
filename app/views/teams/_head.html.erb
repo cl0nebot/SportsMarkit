@@ -44,6 +44,7 @@
                             </p>
                         <% end %>
                     </div>
+					<% if current_user %>
 					<% if current_user.can_edit_team?(@team) %>
                         <div class="pull-right mr10">
 
@@ -55,6 +56,7 @@
                                     <span class="ion-ios-gear"></span>
                             <% end %>
                         </div>
+					<% end %>
 					<% end %>
                    
                 </div>
