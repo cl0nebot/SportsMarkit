@@ -52,14 +52,6 @@ class Team < ActiveRecord::Base
       end
     end
   end
-
-  def all_events
-    if is_premium?
-      events
-    else
-      events.where('starts_at <= ?', Date.today + 2.weeks).uniq
-    end
-  end
   
   def facilities
     team_facilities = TeamFacility.where(team_id: id)
