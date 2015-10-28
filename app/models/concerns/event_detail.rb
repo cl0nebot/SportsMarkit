@@ -2,7 +2,11 @@ module EventDetail
   extend ActiveSupport::Concern
   
   def all_events
-    upcoming_events
+    if self.class.to_s == "Team"
+      Event.where(eventable_type: "Team", eventable_id: id)
+    else
+      upcoming_events
+    end
   end
   
   def next_event

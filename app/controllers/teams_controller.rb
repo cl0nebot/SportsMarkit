@@ -126,7 +126,7 @@ class TeamsController < ApplicationController
     @object = @team
     @picture =  @object.photos.build
     @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
-    @events = @team.upcoming_events
+    @events = @team.all_events
     @facilities = @team.used_facilities
     @new_user = User.new
     @relationship = @new_user.relationships.build
