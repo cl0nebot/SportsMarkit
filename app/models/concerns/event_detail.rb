@@ -3,7 +3,7 @@ module EventDetail
   
   def all_events
     if self.class.to_s == "Team"
-      Event.where(eventable_type: "Team", eventable_id: id)
+      events
     else
       upcoming_events
     end
