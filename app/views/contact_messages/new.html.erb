@@ -1,49 +1,77 @@
-<body class="error-body no-top lazy"  data-original="http://xyer.co/wallpaper/6/8/black-background-2-free-desktop.jpg"  style="background-image: url('http://xyer.co/wallpaper/6/8/black-background-2-free-desktop.jpg')"> 
+<body class="error-body no-top lazy" data-original="http://xyer.co/wallpaper/6/8/black-background-2-free-desktop.jpg"  style=""> 
 <div class="container">
-  <div class="row login-container animated fadeInUp">
+  <div class="row login-container animated fadeInUp pt60">
+
     <%= form_for ContactMessage.new, html: {id: "contact-message-form", data: {remote: true}} do |f| %>
-      <div class="col-md-10 col-md-offset-1">
-        <div class="row">
-          <div class="col-md-12">
-            <h2 class="text-center no-margin text-white">We'll get back to you shortly.
-            </h2>
-            <h4 class="text-center muted">Feedback. Questions. Inquiries. Complaints.</h4>
-          </div>
-        </div>
-        <div class="row m-t-15">
-          <div class="col-md-10 col-md-offset-1">
-          	<div class="clearfix row">
-    	        <div class="col-md-6">
-    	          <div class="input-with-icon right">
-    	            <i class=""></i>
-    	            <%= f.text_field :name, placeholder: "Your name", class: "form-control", :required => true %>
-    	          </div>
-    	        </div>
-    		      <div class="col-md-6">
-    		       	<span class="help"></span>
-    		        <div class="input-with-icon right">
-    		          <i class=""></i>
-					  <% if current_user %>
-    		            <%= f.email_field :email, value: current_user.email, placeholder: "Your email", class: "form-control", :readonly => true %>
-					  <% else %>
-					    <%= f.email_field :email, placeholder: "Your email", class: "form-control", :required => true %>
-					  <% end %>
-    		        </div>
-    		      </div>
-    		    </div>
-    		    <div class="clearfix m-t-20 m-b-20">
-    					<%= f.text_area :message, rows: "10", placeholder: "Message", class: "form-control", :required => true %>
-    		    </div>
-            <div class="clearfix">
-              <%= f.submit "Submit Message", :class => "btn btn-primary btn-cons pull-right", type: "submit" %>
-            </div>
-          </div><!-- col-md-4 -->
-        </div>
-      </div>
+
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="panel box-shadow-ccc pb60">
+          <div class="panel-heading">
+            <div class="panel-title"><h4>CONTACT US</h4></div>
+          </div><!--.panel-heading-->
+          <div class="panel-body">
+            <h2 class="text-center no-margin bold text-orange">We'll get back to you shortly.</h2>
+            <h5 class="text-center semi-bold muted">Feedback. Questions. Inquiries. Complaints.</h5>
+
+            <br/><br/>
+
+            
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="control-label">Name</label>
+                      <div class="inputer">
+                        <div class="input-wrapper">
+                          <%= f.text_field :name, placeholder: "Fullname", type: "text", class: "form-control", :required => true %>
+                        </div><!--.input-wrapper-->
+                      </div><!--.inputer-->
+                    </div><!--.form-group-->
+                  </div><!--.col-md-6-->
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="control-label">Email</label>
+                      <div class="inputer">
+                        <div class="input-wrapper">
+                          <% if current_user %>
+                            <%= f.email_field :email, value: current_user.email, placeholder: "Email", class: "form-control", :readonly => true, type: "text" %>
+                          <% else %>
+                            <%= f.email_field :email, placeholder: "Email", class: "form-control", :required => true, type: "text" %>
+                          <% end %>
+                        </div><!--.input-wrapper-->
+                      </div><!--.inputer-->
+                    </div><!--.form-group-->
+                  </div><!--.col-md-6-->
+                </div><!--.row-->
+
+                <div class="row pt20">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="control-label">Your Message</label>
+                      <div class="inputer">
+                        <div class="input-wrapper">
+                          <%= f.text_area :message, rows: "1", placeholder: "Message", class: "form-control js-auto-size", :required => true %>
+                        </div>
+                      </div>
+                    </div><!--.form-group-->
+                  </div><!--.col-md-12-->
+                </div><!--.row-->
+
+                <%= f.submit "Submit Message", :class => "btn btn-primary btn-cons pull-right", type: "submit" %>
+
+              </div><!--col-->
+            </div><!--.row-->
+
+          </div><!--.panel-body-->
+        </div><!--.panel-->
+      </div><!--.col-md-12-->
+    </div><!--.row-->
+
     <% end %>
 	
 	<h2 class="text-center no-margin text-white"><div id="message-wrapper"><div id="message"></div></div></h2>
   </div>
   
   
-
