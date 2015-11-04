@@ -87,7 +87,7 @@ class ApplicationController < ActionController::Base
   def authenticate_team_athletic_director!
     authenticate_user!
     if current_user
-      school = Team.find(params[:team_id]).school
+      school = Team.friendly.(params[:id]).school
       unless current_user.admin? or AthleticDirector.where(user_id: current_user.id, school_id: school.id, accepted: true).present?
         flash[:message] = "This is your account."
         redirect_to edit_user_path(current_user)
@@ -99,7 +99,7 @@ class ApplicationController < ActionController::Base
   def authenticate_team_admin!
     authenticate_user!
     if current_user
-      school = Team.find(params[:team_id]).school
+      school = Team.friendly.find(params[:id]).school
       unless current_user.admin? or AthleticDirector.where(user_id: current_user.id, school_id: school.id, accepted: true).present? or Relationship.where(user_id: current_user.id, admin: true).present? or Relationship.where(user_id: current_user.id, head: true).present?
         flash[:message] = "This is your account."
         redirect_to edit_user_path(current_user)
