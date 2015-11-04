@@ -69,9 +69,11 @@ For ex: <div class="header header-red"> or <div class="header header-teal">
 
 			</div><!--.container-->
 		</div><!--.header-->
+		<%= cache ["homepage", Date.today] do %>
 
 		<div class="tab-content no-padding no-border">
 			<div class="tab-pane active fade in" id="schools">
+				
 				<div class="slide bg-image" style="background-image: url('http://www1.pgcps.org/uploadedImages/Offices/Communications/Press_Releases/2011_-_2012/June/Potomac%20Track%20Team.JPG');">
 
 					<div class="container z1">
@@ -291,5 +293,5 @@ For ex: <div class="header header-red"> or <div class="header header-teal">
 		</div><!--.footer-->
 	</div>
 
-
+<% end %>
 
