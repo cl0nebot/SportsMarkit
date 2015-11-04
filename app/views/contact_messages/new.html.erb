@@ -1,0 +1,49 @@
+<body class="error-body no-top lazy"  data-original="http://xyer.co/wallpaper/6/8/black-background-2-free-desktop.jpg"  style="background-image: url('http://xyer.co/wallpaper/6/8/black-background-2-free-desktop.jpg')"> 
+<div class="container">
+  <div class="row login-container animated fadeInUp">
+    <%= form_for ContactMessage.new, html: {id: "contact-message-form", data: {remote: true}} do |f| %>
+      <div class="col-md-10 col-md-offset-1">
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="text-center no-margin text-white">We'll get back to you shortly.
+            </h2>
+            <h4 class="text-center muted">Feedback. Questions. Inquiries. Complaints.</h4>
+          </div>
+        </div>
+        <div class="row m-t-15">
+          <div class="col-md-10 col-md-offset-1">
+          	<div class="clearfix row">
+    	        <div class="col-md-6">
+    	          <div class="input-with-icon right">
+    	            <i class=""></i>
+    	            <%= f.text_field :name, placeholder: "Your name", class: "form-control", :required => true %>
+    	          </div>
+    	        </div>
+    		      <div class="col-md-6">
+    		       	<span class="help"></span>
+    		        <div class="input-with-icon right">
+    		          <i class=""></i>
+					  <% if current_user %>
+    		            <%= f.email_field :email, value: current_user.email, placeholder: "Your email", class: "form-control", :readonly => true %>
+					  <% else %>
+					    <%= f.email_field :email, placeholder: "Your email", class: "form-control", :required => true %>
+					  <% end %>
+    		        </div>
+    		      </div>
+    		    </div>
+    		    <div class="clearfix m-t-20 m-b-20">
+    					<%= f.text_area :message, rows: "10", placeholder: "Message", class: "form-control", :required => true %>
+    		    </div>
+            <div class="clearfix">
+              <%= f.submit "Submit Message", :class => "btn btn-primary btn-cons pull-right", type: "submit" %>
+            </div>
+          </div><!-- col-md-4 -->
+        </div>
+      </div>
+    <% end %>
+	
+	<h2 class="text-center no-margin text-white"><div id="message-wrapper"><div id="message"></div></div></h2>
+  </div>
+  
+  
+
