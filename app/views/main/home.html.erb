@@ -69,11 +69,11 @@ For ex: <div class="header header-red"> or <div class="header header-teal">
 
 			</div><!--.container-->
 		</div><!--.header-->
+		
 		<%= cache ["homepage", Date.today] do %>
 
 		<div class="tab-content no-padding no-border">
 			<div class="tab-pane active fade in" id="schools">
-				
 				<div class="slide bg-image" style="background-image: url('http://www1.pgcps.org/uploadedImages/Offices/Communications/Press_Releases/2011_-_2012/June/Potomac%20Track%20Team.JPG');">
 
 					<div class="container z1">
@@ -278,20 +278,27 @@ For ex: <div class="header header-red"> or <div class="header header-teal">
 		</div>
 
 		<div class="container">
-			<div class="footer" style="background: transparent; margin-top: -100px; z-index: 999999999; position: absolute;">
+			<div class="footer" style="background: transparent; margin-top: -100px; z-index: 999999999; position: absolute; width: 100%;">
 				<ul class="social-list">
 					<li><a href="http://www.facebook.com/sportsmarkit" class="facebook"><i class="ion-social-facebook"></i></a></li>
 					<li><a href="http://www.twitter.com/sportsmarkit" class="twitter"><i class="ion-social-twitter"></i></a></li>
 					<li><a href="http://www.linkedin.com/company/sportsmarkit-llc" class="linkedin"><i class="ion-social-linkedin"></i></a></li>
 					<li><a href="https://www.youtube.com/channel/UCqUJWPlVMlspYN-xumCHIqw" class="youtube"><i class="ion-social-youtube"></i></a></li>
 				</ul>
+				<div class="copyright v-text semi-bold gf_oswald upper pull-right">
 
-				<div class="copyright v-text semi-bold gf_oswald upper"><span class="muted">sportsmarkit &copy; 2015</span></div>
-				<span class="muted"><small><%= link_to "TERMS", "/SportsMarkit-Terms.pdf" %> | <%= link_to "CONTACT", "/contact" %> <small></span>
+					<span class="text-white fs_14">sportsmarkit &copy; 2015</span>
+					<span class="muted ml10 fs_14">|</span>
+					<span class="ml20 fs_14">
+						<%= link_to "terms and agreements", "/SportsMarkit-Terms.pdf", class: "text-white" %> 
+					</span>
+					<span class="muted ml10 fs_14">|</span>
+					<span class="muted ml20 fs_14">
+						<%= link_to "contact us", "/contact", class: "text-white" %> 
+					</span>
+				</div>
 				
 			</div><!--.container-->
 		</div><!--.footer-->
 	</div>
-
-<% end %>
-
+	<% end %>

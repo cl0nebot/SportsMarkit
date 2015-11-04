@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20151104134217) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "amenities", force: true do |t|
     t.string   "amenity"
     t.datetime "created_at"
@@ -140,8 +143,8 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.string   "state"
     t.string   "zip"
     t.string   "zip_ext"
-    t.float    "latitude",            limit: 24
-    t.float    "longitude",           limit: 24
+    t.float    "latitude"
+    t.float    "longitude"
     t.boolean  "gmaps"
     t.string   "phone_number"
     t.string   "email"
@@ -157,7 +160,7 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "price",               limit: 24
+    t.float    "price"
     t.string   "facility_owner_type"
     t.integer  "facility_owner_id"
   end
@@ -187,11 +190,6 @@ ActiveRecord::Schema.define(version: 20151104134217) do
   end
 
   add_index "fans", ["fannable_id", "fannable_type"], name: "index_fans_on_fannable_id_and_fannable_type", using: :btree
-
-  create_table "identity_checks", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "league_managers", force: true do |t|
     t.integer  "user_id"
@@ -232,9 +230,9 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.string   "city"
     t.integer  "zip"
     t.integer  "zip_ext"
-    t.float    "latitude",          limit: 24
-    t.float    "longitude",         limit: 24
-    t.float    "price",             limit: 24
+    t.float    "latitude"
+    t.float    "longitude"
+    t.float    "price"
     t.boolean  "gmaps"
     t.string   "classification"
     t.string   "category"
@@ -421,6 +419,8 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.string   "jersey_number"
   end
 
+  add_index "relationships", ["slug"], name: "index_relationships_on_slug", unique: true, using: :btree
+
   create_table "schools", force: true do |t|
     t.string   "name"
     t.string   "classification"
@@ -431,8 +431,8 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.string   "state"
     t.string   "zip"
     t.string   "zip_ext"
-    t.float    "latitude",               limit: 24
-    t.float    "longitude",              limit: 24
+    t.float    "latitude"
+    t.float    "longitude"
     t.boolean  "gmaps"
     t.string   "phone_number"
     t.string   "email"
@@ -444,7 +444,7 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.date     "last_payment"
     t.string   "stripe_subscription_id"
     t.boolean  "premium"
-    t.float    "price",                  limit: 24
+    t.float    "price"
     t.string   "facebook"
     t.string   "twitter"
     t.string   "linkedin"
@@ -518,8 +518,8 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.string   "state"
     t.string   "zip"
     t.string   "zip_ext"
-    t.float    "latitude",           limit: 24
-    t.float    "longitude",          limit: 24
+    t.float    "latitude"
+    t.float    "longitude"
     t.boolean  "gmaps"
     t.string   "phone_number"
     t.string   "email"
@@ -533,7 +533,7 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "price",              limit: 24
+    t.float    "price"
     t.text     "description"
   end
 
@@ -607,7 +607,6 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.string   "provider"
     t.string   "uid"
     t.string   "mobile_phone_number"
-    t.integer  "temporary_school_ids"
     t.integer  "signin_count",            default: 0
   end
 
