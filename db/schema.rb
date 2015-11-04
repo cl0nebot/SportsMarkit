@@ -403,7 +403,6 @@ ActiveRecord::Schema.define(version: 20150828201334) do
     t.datetime "updated_at"
     t.string   "mobile_phone_number"
     t.boolean  "admin",                      default: false
-    t.integer  "school_id"
     t.integer  "age"
     t.string   "nickname"
     t.boolean  "manager"
@@ -599,7 +598,6 @@ ActiveRecord::Schema.define(version: 20150828201334) do
     t.string   "provider"
     t.string   "uid"
     t.string   "mobile_phone_number"
-    t.integer  "temporary_school_ids"
     t.integer  "signin_count",            default: 0
   end
 
