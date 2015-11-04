@@ -143,6 +143,10 @@ Rails.application.routes.draw do
       end
     end
     
+    #contact_messages
+    resources :contact_messages
+    get "contact" => "contact_messages#new", as: :contact_us
+    
     get 'auth/:provider/callback', to: "omniauth_callbacks#facebook"
     get 'auth/failure', to: redirect('/')
     
