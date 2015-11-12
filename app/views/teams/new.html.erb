@@ -85,7 +85,7 @@
 								<div class="col-md-12">
 									<div class="inputer">
 										<div class="input-wrapper">
-											<%= f.text_field :address_1, value: @school.address_1, class: "form-control", readonly: true %>
+											<%= f.text_field :address_1, value: @school.address_1, class: "form-control" %>
 										</div>
 									</div>
 								</div><!--.col-md-9-->
@@ -96,7 +96,7 @@
 								<div class="col-md-12">
 									<div class="inputer">
 										<div class="input-wrapper">
-											<%= f.text_field :address_2, value: @school.address_2, class: "form-control", readonly: true %>
+											<%= f.text_field :address_2, value: @school.address_2, class: "form-control" %>
 										</div>
 									</div>
 								</div><!--.col-md-9-->
@@ -109,7 +109,7 @@
 										<div class="col-md-12">
 											<div class="inputer">
 												<div class="input-wrapper">
-													<%= f.text_field :city, value: @school.city, class: "form-control", readonly: true %>
+													<%= f.text_field :city, value: @school.city, class: "form-control"  %>
 												</div>
 											</div>
 										</div><!--.col-md-9-->
@@ -119,7 +119,7 @@
 										<div class="col-md-12">
 											<div class="inputer">
 												<div class="input-wrapper">
-													<%= f.text_field :state, value: @school.state, class: "form-control", readonly: true %>
+													<%= f.text_field :state, value: @school.state, class: "form-control"  %>
 												</div>
 											</div>
 										</div><!--.col-md-9-->
@@ -129,7 +129,7 @@
 										<div class="col-md-12">
 											<div class="inputer">
 												<div class="input-wrapper">
-													<%= f.text_field :zip, value: @school.zip, class: "form-control payment-restrict", :restrict => true, readonly: true %>
+													<%= f.text_field :zip, value: @school.zip, class: "form-control payment-restrict", :restrict => true %>
 												</div>
 											</div>
 										</div><!--.col-md-9-->
@@ -139,7 +139,7 @@
 										<div class="col-md-12">
 											<div class="inputer">
 												<div class="input-wrapper">
-													<%= f.text_field :zip_ext, value: @school.zip_ext, class: "form-control payment-restrict", :restrict => true, readonly: true %>
+													<%= f.text_field :zip_ext, value: @school.zip_ext, class: "form-control payment-restrict", :restrict => true  %>
 												</div>
 											</div>
 										</div><!--.col-md-9-->
