@@ -45,12 +45,12 @@ class UserlessRelationshipsController < ApplicationController
             Positioning.create(position_id: i, positionable_id: @relationship.id, positionable_type: "Relationship")
           end
           if @team.school.present?
-            Classification.create(user_id: @new_user.id, classification: "Student Athlete")
+            Classification.where(user_id: @new_user.id, classification: "Student Athlete").first_or_create
           else
-            Classification.create(user_id: @new_user.id, classification: "Athlete")
+            Classification.where(user_id: @new_user.id, classification: "Athlete").first_or_create
           end
           if @relationship.head?
-            Classification.create(user_id: @new_user.id, classification: "Coach")
+            Classification.where(user_id: @new_user.id, classification: "Coach").first_or_create
           end
           send_mobile_invitation(@new_user, password)
           @userless_relationship.delete

@@ -1,7 +1,7 @@
 class ClassificationsController < ApplicationController
   
   def create
-    @classification = Classification.create(user_id: params[:classification][:user_id], classification: params[:classification][:classification])
+    @classification = Classification.where(user_id: params[:classification][:user_id], classification: params[:classification][:classification]).first_or_create
     @type = params[:classification][:classification]
     @user = User.friendly.find(params[:classification][:user_id])
     @classification.save

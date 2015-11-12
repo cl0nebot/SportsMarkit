@@ -91,12 +91,12 @@ class TeamsController < ApplicationController
             Positioning.create(position_id: i, positionable_id: @relationship.id, positionable_type: "Relationship")
           end
           if @team.school.present?
-            Classification.create(user_id: @new_user.id, classification: "Student Athlete")
+            Classification.where(user_id: @new_user.id, classification: "Student Athlete").first_or_create
           else
-            Classification.create(user_id: @new_user.id, classification: "Athlete")
+            Classification.where(user_id: @new_user.id, classification: "Athlete").first_or_create
           end
           if @relationship.head?
-            Classification.create(user_id: @new_user.id, classification: "Coach")
+            Classification.where(user_id: @new_user.id, classification: "Coach").first_or_create
           end
           send_mobile_invitation(@new_user, password)
           redirect_to :back
@@ -149,12 +149,12 @@ class TeamsController < ApplicationController
     @members = @team.relationships.where(accepted: true, participant: true) + UserlessRelationship.where(team_id: @team.id, participant: true)
     @admins = @team.relationships.where(accepted: true, admin: true) + UserlessRelationship.where(team_id: @team.id, admin: true)
     if @team.school.present?
-      Classification.create(user_id: @relationship.user_id, classification: "Student Athlete")
+      Classification.where(user_id: @relationship.user_id, classification: "Student Athlete").first_or_create
     else
-      Classification.create(user_id: @relationship.user_id, classification: "Athlete")
+      Classification.where(user_id: @relationship.user_id, classification: "Athlete").first_or_create
     end
     if @relationship.head?
-      Classification.create(user_id: @relationship.user_id, classification: "Coach")
+      Classification.where(user_id: @relationship.user_id, classification: "Coach").first_or_create
     end
     # @pending_relationships = Relationship.where(team_id: @relationship.team_id, accepted: nil, rejected: nil)
     # @relationships = Relationship.where(team_id: @relationship.team_id, accepted: true)
