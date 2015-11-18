@@ -20,19 +20,19 @@
 						<div class="clearfix row">
 						  <div class="col-md-3">
 						  	<div class="profile-photo-wrapper" style="height: 100px; width: 100px; overflow: hidden; border: 1px solid #ddd;">
-									<%= image_tag(@user.avatar, class: "img-responsive", style: "height: auto; width: 100%; min-width: 100px; min-height: 100px;") %>
+									<%= image_tag(@object.avatar, class: "img-responsive", style: "height: auto; width: 100%; min-width: 100px; min-height: 100px;") %>
 								</div>
 						  </div>
 							<div class="col-md-9">
 								<h3 class="semi-bold capitalize text-black no-margin lh_34 mt10">
-									<%= @user.first_name %> <%#= @user.middle_name %>
-									<%= @user.last_name %>
+									<%= @object.first_name %> <%#= @user.middle_name %>
+									<%= @object.last_name %>
 								</h3>
-								<p class="fs_12 semi-bold text-muted mb5 mt5"><%= @user.classification_list %></p> 
-								<% if @user.user_schools.present? %>
+								<p class="fs_12 semi-bold text-muted mb5 mt5"><%= @object.classification_list %></p> 
+								<% if @object.user_schools.present? %>
 									<p class="semi-bold fs_14 text-muted no-margin">
 										<i class="ion-university fs_20 text-primary mr5"></i>
-										<%= @user.user_schools.first.name  %>
+										<%= @object.user_schools.first.name  %>
 									</p>
 								<% end %>
 							</div>
@@ -41,11 +41,11 @@
 					<hr class="light mt15 mb15"/>
 					<div class="card-body pl40 pr40">
 						<h6 class="semi-bold capitalize">
-							<i class="ion-information-circled text-indigo mr5"></i> About <%= @user.name %>
+							<i class="ion-information-circled text-indigo mr5"></i> About <%= @object.name %>
 						</h6>
-						<% if @user.profile.description.present? %>
+						<% if @object.profile.description.present? %>
 						
-						  <p class="fs_14 lh_18 text-muted mb20 mt10"><%= @user.profile.description %></p>
+						  <p class="fs_14 lh_18 text-muted mb20 mt10"><%= @object.profile.description %></p>
 						
 						<% else %>
 						  <% if current_user %>
@@ -75,40 +75,40 @@
 
 							<div class="row">
 								<div class="col-md-6">
-									<% if @user.profile.location_description.present? %>
+									<% if @object.profile.location_description.present? %>
 										<p class="semi-bold fs_14 text-muted no-margin">
 											<i class="ion-location fs_20 text-primary mr5"></i>
-											<%= @user.profile.location_description %>
+											<%= @object.profile.location_description %>
 										</p>
 									<% end %>
-									<% if @user.username %>
+									<% if @object.username %>
 										<p class="semi-bold fs_14 text-muted no-margin">
 											<i class="ion-person-add fs_20 text-primary mr5"></i>
-											<%= @user.username %>
+											<%= @object.username %>
 										</p>
 									<% end %>
 									<p class="semi-bold fs_14 text-muted no-margin">
 										<i class="ion-email fs_20 text-primary mr5"></i>
-										<%= @user.email %>
+										<%= @object.email %>
 									</p>
 									<% if current_user %>
 									<% if current_user.can_edit_user?(@user) %>
 										<p class="semi-bold fs_14 text-muted no-margin">
 											<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
-											<%= @user.mobile_phone_number %>
+											<%= @object.mobile_phone_number %>
 										</p>
 									<% end %>
 									<% end %>
-									<% if @user.profile.date_of_birth.present? %>
+									<% if @object.profile.date_of_birth.present? %>
 									<p class="semi-bold fs_14 text-muted no-margin">
 										<i class="ion-android-calendar fs_20 text-primary mr5"></i>
-										<%= @user.profile.date_of_birth %>
+										<%= @object.profile.date_of_birth %>
 									</p>
 									<% end %>
-									<% if @user.user_schools.present? %>
+									<% if @object.user_schools.present? %>
 									<p class="semi-bold fs_14 text-muted no-margin">
 										<i class="ion-university fs_20 text-primary mr5"></i>
-										<%= @user.user_schools.first.name  %>
+										<%= @object.user_schools.first.name  %>
 									</p>
 									<% end %>
 								</div>
@@ -127,7 +127,7 @@
 								<th><span class="text-muted semi-bold fs_12">Exp.</span></th>
 							</thead>
 							<tbody>
-								<% @user.certificates.each do |certificate| %>
+								<% @object.certificates.each do |certificate| %>
 									<tr>
 										<td><span class="fs_12"><%= certificate.certification.name %></span></td>
 										<td><span class="fs_12"><%= certificate.expiration %></span></td>
@@ -144,13 +144,13 @@
 						<div class="clearfix">
 							<div class="pull-left">
 								<p>
-									<% if @user.profile.height_ft.to_i > 0 %>
+									<% if @object.profile.height_ft.to_i > 0 %>
 									<span class="h3 inline">
-										<strong><%= @user.profile.height_ft %></strong> 
+										<strong><%= @object.profile.height_ft %></strong> 
 										<small class="small">ft.</small>
 									</span>
 									<span class="h3 inline">
-										<strong><%= @user.profile.height_in %></strong> 
+										<strong><%= @object.profile.height_in %></strong> 
 										<small class="small"> in.</small>
 									</span>
 									<% end %>
@@ -158,8 +158,8 @@
 							</div>
 							<div class="pull-right">
 								<span class="h3 inline">
-									<strong><%= @user.profile.weight %></strong>
-									<% if @user.profile.weight.present? %>
+									<strong><%= @object.profile.weight %></strong>
+									<% if @object.profile.weight.present? %>
 									<small class="small"> lbs.</small>
 									<% end %>
 								</span>
@@ -181,7 +181,7 @@
 									<th><span class="text-muted semi-bold fs_12">Verified</span></th>
 								</thead>
 								<tbody>
-									<% @user.measurables.each do |measurable| %>
+									<% @object.measurables.each do |measurable| %>
 										<tr>
 											<td><span class="fs_12"><%= measurable.measurable %></span></td>
 											<td><span class="fs_12"><%= measurable.sport %></span></td>
@@ -241,14 +241,14 @@
 								<div class="card-footer">
 									<ul>
 										<li><span class="mr5 fs_14"><%= pluralize @teammates.count, "Person" %></span></li>
-										<li><%= link_to "View All Teammates", "/users/#{@user.slug}/#tab_teammates", class: "fs_14" %></li>
+										<li><%= link_to "View All Teammates", "/users/#{@object.slug}/#tab_teammates", class: "fs_14" %></li>
 									</ul>
 								</div><!--.card-footer-->
 							</div><!--.card-->
 						</div><!--.col-md-12-->
 						<!-- My teammates -->
 
-           	<%= render 'shared/about_tab_teams', teams: @user.user_teams %>
+           	<%= render 'shared/about_tab_teams', teams: @object.user_teams %>
 						<!-- My teams -->
 
 						<!-- My Schedule -->
@@ -294,7 +294,7 @@
 							<div class="card-footer">
 								<ul>
 									<li><span class="mr5 fs_14"><%= pluralize @follows.count, "Person" %></span></li>
-									<li><%= link_to "View Following", "/users/#{@user.slug}/#tab_following", class: "fs_14" %></li>
+									<li><%= link_to "View Following", "/users/#{@object.slug}/#tab_following", class: "fs_14" %></li>
 									
 								</ul>
 							</div><!--.card-footer-->
