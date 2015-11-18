@@ -64,8 +64,8 @@ class ApplicationController < ActionController::Base
   
   def authenticate_pending_athletic_director!
     authenticate_user!
-    if current_user
-      unless current_user.admin? or AthleticDirector.where(user_id: current_user.id, school_id: params[:school_id]).present?
+    if 
+      unless current_user.admin? || Role.where(user_id: current_user.id, role: "Athletic Director", roleable_type: "School", status: "Pending", roleable_id: params[:school_id]).present?
         flash[:message] = "This is your account."
         redirect_to edit_user_path(current_user)
         #render :file => "public/401.html", :status => :unauthorized
@@ -76,7 +76,7 @@ class ApplicationController < ActionController::Base
   def authenticate_athletic_director!
     authenticate_user!
     if current_user
-      unless current_user.admin? or AthleticDirector.where(user_id: current_user.id, school_id: params[:school_id], accepted: true).present?
+      unless current_user.admin? || Role.where(user_id: current_user.id, role: "Athletic Director", roleable_type: "School", status: "Active", roleable_id: params[:school_id]).present?
         flash[:message] = "This is your account."
         redirect_to edit_user_path(current_user)
         #render :file => "public/401.html", :status => :unauthorized
@@ -88,7 +88,8 @@ class ApplicationController < ActionController::Base
     authenticate_user!
     if current_user
       school = Team.friendly.(params[:id]).school
-      unless current_user.admin? or AthleticDirector.where(user_id: current_user.id, school_id: school.id, accepted: true).present?
+      
+      unless current_user.admin? || Role.where(user_id: current_user.id, role: "Athletic Director", roleable_type: "School", status: "Active", roleable_id: school.id).present?
         flash[:message] = "This is your account."
         redirect_to edit_user_path(current_user)
         #render :file => "public/401.html", :status => :unauthorized
@@ -100,7 +101,7 @@ class ApplicationController < ActionController::Base
     authenticate_user!
     if current_user
       school = Team.friendly.find(params[:id]).school
-      unless current_user.admin? or AthleticDirector.where(user_id: current_user.id, school_id: school.id, accepted: true).present? or Relationship.where(user_id: current_user.id, admin: true).present? or Relationship.where(user_id: current_user.id, head: true).present?
+      unless current_user.admin? || Role.where(user_id: current_user.id, role: "Athletic Director", roleable_type: "School", status: "Active", roleable_id: school.id).present? or Relationship.where(user_id: current_user.id, admin: true).present? or Relationship.where(user_id: current_user.id, head: true).present?
         flash[:message] = "This is your account."
         redirect_to edit_user_path(current_user)
         #render :file => "public/401.html", :status => :unauthorized
