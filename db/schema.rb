@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104134217) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20151118204426) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -143,8 +140,8 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.string   "state"
     t.string   "zip"
     t.string   "zip_ext"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.float    "latitude",            limit: 24
+    t.float    "longitude",           limit: 24
     t.boolean  "gmaps"
     t.string   "phone_number"
     t.string   "email"
@@ -160,7 +157,7 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "price"
+    t.float    "price",               limit: 24
     t.string   "facility_owner_type"
     t.integer  "facility_owner_id"
   end
@@ -190,6 +187,11 @@ ActiveRecord::Schema.define(version: 20151104134217) do
   end
 
   add_index "fans", ["fannable_id", "fannable_type"], name: "index_fans_on_fannable_id_and_fannable_type", using: :btree
+
+  create_table "identity_checks", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "league_managers", force: true do |t|
     t.integer  "user_id"
@@ -230,9 +232,9 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.string   "city"
     t.integer  "zip"
     t.integer  "zip_ext"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.float    "price"
+    t.float    "latitude",          limit: 24
+    t.float    "longitude",         limit: 24
+    t.float    "price",             limit: 24
     t.boolean  "gmaps"
     t.string   "classification"
     t.string   "category"
@@ -419,7 +421,17 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.string   "jersey_number"
   end
 
-  add_index "relationships", ["slug"], name: "index_relationships_on_slug", unique: true, using: :btree
+  create_table "roles", force: true do |t|
+    t.integer  "user_id"
+    t.string   "role"
+    t.integer  "roleable_id"
+    t.string   "roleable_type"
+    t.datetime "date_added"
+    t.integer  "accepting_user_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "schools", force: true do |t|
     t.string   "name"
@@ -431,8 +443,8 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.string   "state"
     t.string   "zip"
     t.string   "zip_ext"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.float    "latitude",               limit: 24
+    t.float    "longitude",              limit: 24
     t.boolean  "gmaps"
     t.string   "phone_number"
     t.string   "email"
@@ -444,7 +456,7 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.date     "last_payment"
     t.string   "stripe_subscription_id"
     t.boolean  "premium"
-    t.float    "price"
+    t.float    "price",                  limit: 24
     t.string   "facebook"
     t.string   "twitter"
     t.string   "linkedin"
@@ -518,8 +530,8 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.string   "state"
     t.string   "zip"
     t.string   "zip_ext"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.float    "latitude",           limit: 24
+    t.float    "longitude",          limit: 24
     t.boolean  "gmaps"
     t.string   "phone_number"
     t.string   "email"
@@ -533,7 +545,7 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "price"
+    t.float    "price",              limit: 24
     t.text     "description"
   end
 
@@ -607,6 +619,7 @@ ActiveRecord::Schema.define(version: 20151104134217) do
     t.string   "provider"
     t.string   "uid"
     t.string   "mobile_phone_number"
+    t.integer  "temporary_school_ids"
     t.integer  "signin_count",            default: 0
   end
 
