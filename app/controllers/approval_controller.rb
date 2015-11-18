@@ -3,24 +3,15 @@ class ApprovalController < ApplicationController
   before_action :authenticate_admin!
   
   def index
-    @athletic_directors = AthleticDirector.where(accepted: nil).where.not(school_id: nil)
-    @coaches = Relationship.where(accepted: nil, head: true)
+    @athletic_directors = Role.where(role: "Athletic Director", status: "Pending")
+    @coaches = Role.where(role: "Coach", status: "Pending")
   end
   
-  def approve_director
-    @athletic_director = AthleticDirector.find(params[:id])
-    @athletic_director.update_attributes(accepted: true)
-    @athletic_directors = AthleticDirector.where(accepted: nil).where.not(school_id: nil)
-    respond_to do |format|
-      format.js
-      format.html { redirect_to :back }
-    end
-  end
-  
-  def approve_coach
-    @coach = Relationship.find(params[:id])
-    @coach.update_attributes(accepted: true)
-    @coaches = Relationship.where(accepted: nil, head: true)
+  def approve
+    @role = Role.find(params[:id])
+    @role.update_attributes(status: "Active")
+    @athletic_directors = Role.where(role: "Athletic Director", status: "Active")
+    @coaches = Role.where(role: "Coach", status: "Active")
     respond_to do |format|
       format.js
       format.html { redirect_to :back }

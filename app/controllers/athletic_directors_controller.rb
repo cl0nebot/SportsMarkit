@@ -1,11 +1,11 @@
 class AthleticDirectorsController < ApplicationController
   
   def index
-   @directors = AthleticDirector.all  
+   @directors = Role.where(role: "Athletic Director") 
   end
   
   def destroy
-    @director = AthleticDirector.find(params[:id])
+    @director = Role.find(params[:id])
     @director.destroy
     respond_to do |format|
       format.js
