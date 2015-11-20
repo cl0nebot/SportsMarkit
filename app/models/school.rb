@@ -7,6 +7,10 @@ class School < ActiveRecord::Base
   include Geo
   include Avatar
   include ClassificationCount
+  include Link
+  
+  has_many :roles, as: :roleable, dependent: :destroy
+  has_many :userless_roles, as: :userless, dependent: :destroy
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable
@@ -20,7 +24,6 @@ class School < ActiveRecord::Base
   
   has_many :facility_links, as: :facilitatable
 
-  has_many :athletic_directors, dependent: :destroy
   has_many :users, through: :athletic_directors
   has_many :medias, as: :mediable
   
@@ -40,91 +43,8 @@ class School < ActiveRecord::Base
     "#{city}-#{state}"
   end
   
-  def athletes
-    team_ids = teams.pluck(:id)
-    rels = Relationship.where(team_id: team_ids, accepted: true, participant: true)
-    user_ids = rels.pluck(:user_id)
-    users = User.where(id: user_ids)
-  end
-  
-  
-  def user_ids
-    rels = Relationship.where(team_id: team_ids, accepted: true)
-    rels.pluck(:user_id)
-  end
-  
-  def people
-    users = User.where(id: user_ids)
-  end
-  
-  def userless_people
-    rels = UserlessRelationship.where(team_id: team_ids)
-  end
-  
-  # managers
-  
-  def manager_ids_for_school
-    team_ids = teams.pluck(:id)
-    relationships = Relationship.where(team_id: team_ids, manager: true, accepted: true)
-    manager_ids = relationships.pluck(:user_id)
-  end
-  
-  def userless_managers_for_school
-    team_ids = teams.pluck(:id)
-    relationships = UserlessRelationship.where(team_id: team_ids, manager: true)
-    relationships.pluck(:first_name, :last_name)
-  end
-  
-  # trainers
-  
-  def trainer_ids_for_school
-    team_ids = teams.pluck(:id)
-    relationships = Relationship.where(team_id: team_ids, trainer: true, accepted: true)
-    trainer_ids = relationships.pluck(:user_id)
-  end
-  
-  def userless_trainers_for_school
-    team_ids = teams.pluck(:id)
-    relationships = UserlessRelationship.where(team_id: team_ids, trainer: true)
-    relationships.pluck(:first_name, :last_name)
-  end
-  
-  # managers and trainers
-  
-  def manager_and_trainers
-     users = User.where(id: manager_ids_for_school) + User.where(id: trainer_ids_for_school)
-     manager_and_trainers = users.uniq
-  end
-  
-  def userless_managers_and_trainers
-    team_ids = teams.pluck(:id)
-    manager_relationships = UserlessRelationship.where(team_id: team_ids, manager: true)
-    trainer_relationships = UserlessRelationship.where(team_id: team_ids, trainer: true)
-    (manager_relationships.pluck(:first_name, :last_name) + trainer_relationships.pluck(:first_name, :last_name)).uniq
-  end
-  
-  
-  
-  def admin_ids_for_school
-    team_ids = teams.pluck(:id)
-    relationships = Relationship.where(team_id: team_ids, admin: true, accepted: true)
-    ad_ids = athletic_directors.pluck(:user_id)
-    admin_ids = relationships.pluck(:user_id)
-    ad_ids + admin_ids
-  end
-  
-  def admins
-    admins = User.where(id: admin_ids_for_school)
-  end
-  
-  def userless_admins
-    team_ids = teams.pluck(:id)
-    relationships = UserlessRelationship.where(team_id: team_ids, admin: true)
-    relationships.pluck(:first_name, :last_name)
-  end
-  
   def school_certifications
-    Certificate.where(user_id: accepted_coaches.pluck(:id))
+    Certificate.where(user_id: coaches.pluck(:id))
   end
 
   def self.school_names
@@ -160,11 +80,11 @@ class School < ActiveRecord::Base
   end
   
   def is_athletic_director?(user)
-    AthleticDirector.where(school_id: id, user_id: user.id).present?
+    roles.where(status: "Active", role: "Athletic Director", user_id: user.id).present?
   end
   
   def general_information_present?
-    [number_of_students.present? , motto.present? ,  colors.present?, number_of_teams.present?, mascot.present?].include? true
+    [number_of_students.present? , motto.present? , colors.present?, number_of_teams.present?, mascot.present?].include? true
   end
   
 

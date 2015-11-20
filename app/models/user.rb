@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   include Reusable
   include ClassificationCount
   include EventDetail
+  include Link
 
   extend FriendlyId
   friendly_id :use_for_slug, use: [:slugged, :finders]
@@ -32,6 +33,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :user_profile_pictures, :reject_if => :all_blank, :allow_destroy => true
 
   has_many :fans, as: :fannable, dependent: :destroy
+  has_many :roles, as: :roleable, dependent: :destroy
   has_many :events, as: :eventable
   
   has_many :relationships, dependent: :destroy
@@ -47,6 +49,10 @@ class User < ActiveRecord::Base
   has_many :certificates
   has_many :certifications, through: :certificates
   has_many :medias, as: :mediable
+  
+  has_many :roles, dependent: :destroy
+  
+  
   
   has_one :online_status
 
@@ -235,11 +241,11 @@ class User < ActiveRecord::Base
     # end
   end
   
-  def teammates
-    team_ids = relationships.where(accepted: true).pluck(:team_id)
-    teammate_ids = Relationship.where(team_id: team_ids, accepted: true).pluck(:user_id)
-    teammates = User.where(id: teammate_ids).uniq - [self]
-  end
+  # def teammates
+  #   team_ids = relationships.where(accepted: true).pluck(:team_id)
+  #   teammate_ids = Relationship.where(team_id: team_ids, accepted: true).pluck(:user_id)
+  #   teammates = User.where(id: teammate_ids).uniq - [self]
+  # end
   
   def shared_teams(user_id)
     user = User.find(user_id)
@@ -342,11 +348,6 @@ class User < ActiveRecord::Base
     teams = Team.where(id: team_ids).where.not(school_id: nil)
     school_ids = teams.pluck(:school_id) + AthleticDirector.where(user_id: id).pluck(:school_id)
     schools = School.where(id: school_ids).uniq
-  end
-  
-  def user_teams
-    team_ids = relationships.where(accepted: true).pluck(:team_id)
-    teams = Team.where(id: team_ids)
   end
   
   def event_notifications
@@ -458,6 +459,10 @@ class User < ActiveRecord::Base
     else
       false
     end
+  end
+  
+  def create_profile
+    Profile.create(user_id: self.id, focus: [], specialties: [], skills: [], injuries: [], current_ailments: [])
   end
   
 end

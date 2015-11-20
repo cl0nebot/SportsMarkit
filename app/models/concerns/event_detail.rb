@@ -33,6 +33,9 @@ module EventDetail
     elsif self.class.to_s == "Facility" 
       event_ids = EventFacility.where(facility_id: id).pluck(:event_id)
       events = Event.where(id: event_ids ).where('ends_at >= ?', Time.now).order('starts_at ASC')
+    elsif self.class.to_s == "Club" 
+      event_ids = EventFacility.where(facility_id: id).pluck(:event_id)
+      events = Event.where(id: event_ids ).where('ends_at >= ?', Time.now).order('starts_at ASC')
     end
   end
   

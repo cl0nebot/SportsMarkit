@@ -33,21 +33,21 @@
 									<span class="title">
 										<span class="bold"><%= team.name %></span>
 									</span>
-									<span class="fs_11 text-muted"><%= pluralize team.accepted_coach_relationships.count, "Coach" %>, 
-										<%= pluralize team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize team.accepted_trainer_relationships.count, "Trainer" %>
+									<span class="fs_11 text-muted"><%= pluralize team.coach_roles.count, "Coach" %>, 
+										<%= pluralize team.athlete_roles.count, "Player" %>, <%= pluralize team.manager_roles.count, "Manager" %>, <%= pluralize team.accepted_trainer_relationships.count, "Trainer" %>
 									</span>
 								</div>
 							</a>
 						</li>
 						<ul class="users bgcolor-light-grey" style="border-bottom: 1px solid #ddd;">
-							<% team.accepted_coaches.each do |user| %>
+							<% team.coaches.each do |user| %>
 								<li>
 									<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
 										<%= image_tag user.avatar %>
 									</a>
 								</li>
 							<% end %>
-							<% (team.accepted_athletes - team.accepted_coaches).each do |user| %>
+							<% (team.athletes - team.coaches).each do |user| %>
 								<li>
 									<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
 										<%= image_tag user.avatar %>

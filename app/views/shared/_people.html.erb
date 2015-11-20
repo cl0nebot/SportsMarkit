@@ -26,7 +26,7 @@
 						Student-Athletes <span class="ml5 caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
-						<% @accepted_athletes.each do |user| %>
+						<% @athletes.each do |user| %>
 							<li>
 								<%= link_to user_path(user) do %>
 						  			<%= user.full_name %>
@@ -43,7 +43,7 @@
 						Coaches <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
-						<% @accepted_coaches.each do |user| %>
+						<% @coaches.each do |user| %>
 							<li>
 								<%= link_to user_path(user) do %>
 						  			<%= user.full_name %>
@@ -98,7 +98,7 @@
 	<% @people.each_with_index do |person, i| %>
 		<div class="col-lg-4 col-md-6 col-sm-6">
 			<div class="card tile card-friend material-animate box-shadow-ccc">
-				<a href="user-profile.html">
+				<a href="<%= user_path(person) %>">
 					<%= image_tag person.avatar, class: "user-photo" %>
 				</a>
 				<div class="friend-content">
@@ -135,7 +135,7 @@
 	<% @userless_people.each_with_index do |person, i| %>
 		<div class="col-lg-4 col-md-6 col-sm-6">
 			<div class="card tile card-friend material-animate box-shadow-ccc">
-				<a href="user-profile.html">
+				<a href="javascript: void(0)">
 					<%= image_tag "http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "user-photo" %>
 				</a>
 				<div class="friend-content">

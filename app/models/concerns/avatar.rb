@@ -34,6 +34,12 @@ module Avatar
       else
         profile_pictures.last.photo
       end
+    elsif self.class.to_s == "Club"
+      if profile_pictures.last.try(:id).blank?
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Color_icon_gray_v2.svg/2000px-Color_icon_gray_v2.svg.png"
+      else
+        profile_pictures.last.photo
+      end
     end
   end
   

@@ -40,21 +40,7 @@ class League < ActiveRecord::Base
   
   def teams
     teams = Team.where(id: team_ids)
-  end
-  
-  def userless_people
-    rels = UserlessRelationship.where(team_id: team_ids)
-  end
-  
-  def user_ids
-    rels = Relationship.where(team_id: team_ids, accepted: true)
-    rels.pluck(:user_id)
-  end
-  
-  def people
-    users = User.where(id: user_ids)
-  end
-  
+  end 
   
   def self.league_names
     League.pluck(:name)

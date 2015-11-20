@@ -110,16 +110,16 @@ class ApplicationController < ActionController::Base
   end
   
   def shared_variables
-    @accepted_coaches = @object.accepted_coaches
+    @accepted_coaches = @object.coaches
     @userless_coaches = @object.userless_coaches
-    @accepted_athletes = @object.accepted_athletes
+    @accepted_athletes = @object.athletes
     @userless_athletes = @object.userless_athletes
     @videos = @object.medias.where(category: "Video")
     @articles = @object.medias.where(category: "Article")
     @fans = @object.fans
     @events = @object.upcoming_events
     @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
-    @json = @object.to_gmaps4rails
+    #@json = @object.to_gmaps4rails
     @class = @object.class
     
   end

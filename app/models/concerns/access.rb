@@ -33,6 +33,10 @@ module Access
     end
   end
   
+  def can_edit_club?(object)
+    true
+  end
+  
   def can_edit_facility?(object)
     
   end
@@ -54,6 +58,8 @@ module Access
       can_edit_facility?(object)
     elsif object.class.to_s == "User"
       can_edit_user?(object)
+    elsif object.class.to_s == "Club"
+       can_edit_club?(object)
     end
     
   end

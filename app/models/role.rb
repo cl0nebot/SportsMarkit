@@ -5,12 +5,15 @@ class Role < ActiveRecord::Base
   has_many :positionings, :as => :positionable, :dependent => :destroy
   has_many :positions, :through => :positionings
   
-  ["Athlete", "Coach", "Manager", "Admin", "Trainer"].each do |type|
-    define_singleton_method type.downcase.pluralize do
+  ["Athlete", "Coach", "Manager", "Admin", "Trainer", "Athletic Director"].each do |type|
+    
+    formatted_type = type.gsub(" ", "_").downcase
+    
+    define_singleton_method formatted_type.pluralize do
       where(status: "Active", role: type)
     end
     
-    define_singleton_method "pending_#{type.downcase.pluralize}" do
+    define_singleton_method "pending_#{formatted_type.pluralize}" do
       where(status: "Pending", role: type)
     end
   end

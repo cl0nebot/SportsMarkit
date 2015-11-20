@@ -45,7 +45,8 @@ module ApplicationHelper
     urls = {"School" => 'http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg',
      'User' => image_path('http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg'),
      'Team' => 'http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg',
-     'Facility' => 'http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg'}
+     'Facility' => 'http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg',
+     'Club' => 'http://svite-league-apps-content.s3.amazonaws.com/bgimages/sports-wave.jpg',}
     (obj.main_photo.try(:persisted?) && obj.main_photo.image.url.present?) ? obj.main_photo.image.url : urls[obj.class.to_s]
   end
   

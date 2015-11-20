@@ -29,17 +29,18 @@ class SchoolsController < ApplicationController
   
   def show
     @object = @school
-    @teams = @school.teams
-    @athletes = @school.athletes
+    @teams = @object.teams
+    @athletes = @object.athletes
+    @coaches = @object.athletes
     shared_variables
-    @manager_and_trainers = @school.manager_and_trainers
-    @userless_managers_and_trainers = @school.userless_managers_and_trainers
-    @admins = @school.admins
-    @userless_admins = @school.userless_admins
-    @people = @school.people
-    @userless_people = @school.userless_people
-    @facilities = @school.facilities
-    @certifications = @school.school_certifications
+    @manager_and_trainers = @object.manager_and_trainers
+    @userless_managers_and_trainers = @object.userless_managers_and_trainers
+    @admins = @object.admins
+    @userless_admins = @object.userless_admins
+    @people = @object.people
+    @userless_people = @object.userless_people
+    @facilities = @object.facilities
+    @certifications = @object.school_certifications
   end
   
   def edit

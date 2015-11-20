@@ -5,10 +5,13 @@ class Team < ActiveRecord::Base
   include Roster
   include EventDetail
   include Avatar
+  include Link
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   
   has_many :fans, as: :fannable, dependent: :destroy
+  has_many :roles, as: :roleable, dependent: :destroy
+  has_many :userless_roles, as: :userless, dependent: :destroy
   belongs_to :school
   has_many :events, as: :eventable
   has_many :team_leagues
@@ -173,12 +176,6 @@ class Team < ActiveRecord::Base
     Message.where(chatroom_id: id).last.find_beginning_of_stream
   end
   
-  def people
-    user_ids = relationships.where(accepted: true).pluck(:user_id).uniq
-    User.where(id: user_ids)
-  end
-  
-
   
   def classification_and_category
     if school_id.present?
