@@ -17,7 +17,7 @@ class UserlessRole < ActiveRecord::Base
   end
   
   def self.staff_roles
-    where(status: "Active", role: ["Manager", "Trainer", "Coach"])
+    where(status: "Active", role: ["Manager", "Trainer", "Coach", "Athletic Director"])
   end
   
   def self.create_new_role(array, params={})
@@ -25,8 +25,8 @@ class UserlessRole < ActiveRecord::Base
       role = create(
         first_name: params[:first_name],
         last_name: params[:last_name],
-        roleable_type: "Team", 
-        roleable_id: params[:team_id],  
+        userless_type: "Team", 
+        userless_id: params[:team_id],  
         status: "Active", 
         role: role_type, 
         mobile_phone_number: params[:mobile_phone_number], 
@@ -41,6 +41,10 @@ class UserlessRole < ActiveRecord::Base
   
   def add_positions_to_role(position_ids)
     position_ids.nil? ? "" : position_ids.each { |i| Positioning.create(position_id: i, positionable_id: id, positionable_type: "UserlessRole") }
+  end
+  
+  def position_list
+    positions.pluck(:position).join(", ")
   end
   
   

@@ -19,7 +19,7 @@ class Role < ActiveRecord::Base
   end
   
   def self.staff_roles
-    where(status: "Active", role: ["Manager", "Trainer", "Coach"])
+    where(status: "Active", role: ["Manager", "Trainer", "Coach", "Athletic Director"])
   end
 
   
