@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-sm-2">
 					<div class="center">
-						<% if m.class.to_s == "Relationship" %>
+						<% if m.class.to_s == "Role" %>
 						  <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 150px; height: 150px; border: 2px solid #ddd;" %>
 						<% else %>
 						  <%= image_tag "http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "face-radius", alt: "", style: "width: 150px; height: 150px; border: 2px solid #ddd;" %>
@@ -14,7 +14,7 @@
 				<div class="col-sm-9">
 					<div class="row">
 						<div class="col-md-12">
-							<% if m.class.to_s == "Relationship" %>
+							<% if m.class.to_s == "Role" %>
 								<h3 class="semi-bold capitalize">
 								  <%= m.user.try(:full_name) %>
 							    </h3>
@@ -41,7 +41,7 @@
 							<% end %>
 						</div>
 						<div class="col-md-12">
-							<%= f.text_field :participant_classification, type: "text", class: "form-control" %> 
+							<%= f.text_field :level, type: "text", class: "form-control" %> 
 							<p class="small">
 								<small>
 									Class
@@ -67,7 +67,7 @@
 									</p>
 								</div>
 								<div class="col-md-1 col-md-offset-1">
-									<%= f.check_box :participant %> 
+									<%= check_box_tag :athlete %> 
 									<p class="small inline">
 										<small>
 											Athlete?
@@ -80,7 +80,7 @@
 					</div>
 				</div>
 				<div class="col-sm-1">
-				<%= link_to team_close_roster_view_path(team_id: team.id, class: m.class, id: m.id, status: "member"), remote: true, class: "btn btn-floating btn-default btn-ripple mr20" do %>
+				<%= link_to roster_close_roster_view_path(roster_id: team.id, class: m.class, id: m.id, status: "member"), remote: true, class: "btn btn-floating btn-default btn-ripple mr20" do %>
 					<i class="ion-close-round"></i>
 				<% end %>
 			</div>			

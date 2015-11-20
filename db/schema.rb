@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118204426) do
+ActiveRecord::Schema.define(version: 20151119191208) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
@@ -81,6 +81,15 @@ ActiveRecord::Schema.define(version: 20151118204426) do
   create_table "classifications", force: true do |t|
     t.integer  "user_id"
     t.string   "classification"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "connects", force: true do |t|
+    t.string   "owner_type"
+    t.integer  "owner_id"
+    t.string   "connectable_type"
+    t.integer  "connectable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -429,6 +438,11 @@ ActiveRecord::Schema.define(version: 20151118204426) do
     t.datetime "date_added"
     t.integer  "accepting_user_id"
     t.string   "status"
+    t.string   "mobile_phone_number"
+    t.string   "level"
+    t.string   "nickname"
+    t.string   "jersey_number"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -547,6 +561,8 @@ ActiveRecord::Schema.define(version: 20151118204426) do
     t.string   "youtube"
     t.float    "price",              limit: 24
     t.text     "description"
+    t.string   "teamable_type"
+    t.integer  "teamable_id"
   end
 
   create_table "tournaments", force: true do |t|
@@ -592,6 +608,24 @@ ActiveRecord::Schema.define(version: 20151118204426) do
     t.boolean  "manager"
     t.boolean  "trainer"
     t.string   "jersey_number"
+  end
+
+  create_table "userless_roles", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "role"
+    t.integer  "userless_id"
+    t.string   "userless_type"
+    t.datetime "date_added"
+    t.integer  "accepting_user_id"
+    t.string   "status"
+    t.string   "mobile_phone_number"
+    t.string   "level"
+    t.string   "nickname"
+    t.string   "jersey_number"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

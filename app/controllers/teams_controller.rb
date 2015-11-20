@@ -51,77 +51,14 @@ class TeamsController < ApplicationController
     end
   end
   
-  def create_roster_spot
-    @team = Team.friendly.find(params[:id])
-    mobile_number = params[:mobile_phone_number]
-    user_exists = User.exists?(mobile_phone_number: mobile_number)
-    fname = params[:first_name]
-    lname = params[:last_name]
-    title = params[:title]
-    position = params[:position]
-    classification = params[:participant_classification]
-    head = params[:head].nil? ? false : true
-    participant = params[:participant].nil? ? false : true
-    admin = params[:admin].nil? ? false : true
-    trainer = params[:trainer].nil? ? false : true
-    manager = params[:manager].nil? ? false : true
-    nickname = params[:nickname]
-    position_ids = params[:position_ids]
-    jersey = params[:jersey_number]
-    
-    if mobile_number.present? # if a phone number is provided in the form
-      if user_exists # check to see if a user exists on the site with that phone number
-        user = User.find_by_mobile_phone_number(mobile_number) # if yes, find user
-        if user.relationships.exists?(team_id: @team.id)  # check to see if that user already has a relationship with team
-          flash[:error] = "User is on roster already" # if so, don't submit.
-          redirect_to :back
-        else
-          rel = Relationship.create(team_id: @team.id, user_id: user.id, accepted: true, head: head, participant: participant, mobile_phone_number: mobile_number, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager, jersey_number: jersey) # if user exists, but relationship does not, create relationship
-          position_ids.each do |i|
-            Positioning.create(position_id: i, positionable_id: rel.id, positionable_type: "Relationship")
-          end
-        end
-      else # if user doesn't exist with that mobile number, create
-        password = generate_temporary_password(fname)
-        @new_user = User.new(first_name: fname, last_name: lname, mobile_phone_number: mobile_number, password: password)
-        if @new_user.save
-          Profile.create(user_id: @new_user.id, focus: [], specialties: [], skills: [], injuries: [], current_ailments: [])
-          @relationship = Relationship.create(user_id: @new_user.id, team_id: @team.id, accepted: true, mobile_phone_number: mobile_number, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager, jersey_number: jersey)
-          position_ids.each do |i|
-            Positioning.create(position_id: i, positionable_id: @relationship.id, positionable_type: "Relationship")
-          end
-          if @team.school.present?
-            Classification.where(user_id: @new_user.id, classification: "Student Athlete").first_or_create
-          else
-            Classification.where(user_id: @new_user.id, classification: "Athlete").first_or_create
-          end
-          if @relationship.head?
-            Classification.where(user_id: @new_user.id, classification: "Coach").first_or_create
-          end
-          send_mobile_invitation(@new_user, password)
-          redirect_to :back
-        else
-          # user not saved
-          redirect_to :back
-        end
-      end
-    else #mobile not present
-      urel = UserlessRelationship.create(first_name: fname, last_name: lname, team_id: @team.id, head: head, participant: participant, participant_classification: classification, position: position, admin: admin, nickname: nickname, trainer: trainer, manager: manager, jersey_number: jersey)
-      position_ids.each do |i|
-        Positioning.create(position_id: i, positionable_id: urel.id, positionable_type: "UserlessRelationship")
-      end
-      redirect_to :back
-    end
-  end
-  
   def show
-    @members = @team.relationships.where(accepted: true, participant: true) + UserlessRelationship.where(team_id: @team.id, participant: true)
+    @members = @team.all_athlete_roles
     @admins = @team.relationships.where(accepted: true, admin: true) + UserlessRelationship.where(team_id: @team.id, admin: true)
-    @athletes = @team.relationships.where(accepted: true, head: false)
+    @athletes = @team.roles.athletes
     @pending_members = @team.relationships.where(accepted: nil, rejected: nil)
     staff_relationships = @team.relationships.where(accepted: true, head: true) + @team.relationships.where(accepted: true, trainer: true) + @team.relationships.where(accepted: true, manager: true)
     staff_userless_relationships = UserlessRelationship.where(team_id: @team.id, head: true) + UserlessRelationship.where(team_id: @team.id, trainer: true) + UserlessRelationship.where(team_id: @team.id, manager: true)
-    @heads = staff_relationships.uniq + staff_userless_relationships.uniq
+    @heads = @team.staff_roles
     @class = @team.class
     @object = @team
     @picture =  @object.photos.build
@@ -134,60 +71,6 @@ class TeamsController < ApplicationController
     @videos = @team.medias.where(category: "Video")
     @articles = @team.medias.where(category: "Article")
     @fans = @team.fans
-  end
-  
-  def accept_user
-    admin = params[:relationship][:admin] == "1" ? true : false
-    head = params[:relationship][:head] == "1" ? true : false
-    participant = params[:relationship][:participant] == "1" ? true : false
-    @relationship = Relationship.find(params[:relationship_id])
-    @relationship.update_attributes(accepted: true, admin: admin, head: head, participant: participant)
-    @team = Team.find(@relationship.team_id)
-    staff_relationships = @team.relationships.where(accepted: true, head: true) + @team.relationships.where(accepted: true, trainer: true) + @team.relationships.where(accepted: true, manager: true)
-    staff_userless_relationships = UserlessRelationship.where(team_id: @team.id, head: true) + UserlessRelationship.where(team_id: @team.id, trainer: true) + UserlessRelationship.where(team_id: @team.id, manager: true)
-    @heads = staff_relationships.uniq + staff_userless_relationships.uniq
-    @members = @team.relationships.where(accepted: true, participant: true) + UserlessRelationship.where(team_id: @team.id, participant: true)
-    @admins = @team.relationships.where(accepted: true, admin: true) + UserlessRelationship.where(team_id: @team.id, admin: true)
-    if @team.school.present?
-      Classification.where(user_id: @relationship.user_id, classification: "Student Athlete").first_or_create
-    else
-      Classification.where(user_id: @relationship.user_id, classification: "Athlete").first_or_create
-    end
-    if @relationship.head?
-      Classification.where(user_id: @relationship.user_id, classification: "Coach").first_or_create
-    end
-    # @pending_relationships = Relationship.where(team_id: @relationship.team_id, accepted: nil, rejected: nil)
-    # @relationships = Relationship.where(team_id: @relationship.team_id, accepted: true)
-    respond_to do |format|
-      format.js
-      format.html { redirect_to :back }
-    end
-  end
-
-  def reject_user
-    @relationship = Relationship.find(params[:id])
-    @relationship.destroy
-    # @pending_relationships = Relationship.where(team_id: @relationship.team_id, accepted: nil, rejected: nil)
-    # @relationships = Relationship.where(team_id: @relationship.team_id, accepted: true)
-    respond_to do |format|
-      format.js
-      format.html { redirect_to :back }
-    end
-  end
-  
-  
-  def edit_roster_view
-    @id = params[:id]
-    @team = Team.find(params[:team_id])
-    @class = params[:class]
-    @object = @class.constantize.send("find", @id)
-  end
-  
-  def close_roster_view
-    @id = params[:id]
-    @team = Team.find(params[:team_id])
-    @class = params[:class]
-    @object = @class.constantize.send("find", @id)
   end
 
   def edit

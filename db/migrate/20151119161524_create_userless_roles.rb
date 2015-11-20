@@ -1,10 +1,11 @@
-class CreateRoles < ActiveRecord::Migration
+class CreateUserlessRoles < ActiveRecord::Migration
   def change
-    create_table :roles do |t|
-      t.belongs_to :user
+    create_table :userless_roles do |t|
+      t.string :first_name
+      t.string :last_name
       t.string :role
-      t.integer :roleable_id
-      t.string :roleable_type
+      t.integer :userless_id
+      t.string :userless_type
       t.datetime :date_added
       t.integer :accepting_user_id
       t.string :status
@@ -13,6 +14,7 @@ class CreateRoles < ActiveRecord::Migration
       t.string :nickname
       t.string :jersey_number
       t.string :title
+
       t.timestamps
     end
   end

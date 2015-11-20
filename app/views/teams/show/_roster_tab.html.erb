@@ -5,16 +5,16 @@
 			<h6 class="text-grey semi-bold no-margin "><%= (@heads.count > 1 or @heads.count == 0) ? "Coaches" : "Coach" %></h6>
 		</div>
 		<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
-			<h1 class="text-indigo no-margin bold"><%= @team.accepted_athletes.count + @team.userless_athletes.count %></h1>
-			<h6 class="text-grey semi-bold no-margin"><%= ((@team.accepted_athletes.count + @team.userless_athletes.count) > 1 or (@team.accepted_athletes.count + @team.userless_athletes.count) == 0) ? "Athletes" : "Athlete" %></h6>
+			<h1 class="text-indigo no-margin bold"><%= @team.athletes.count + @team.userless_athletes.count %></h1>
+			<h6 class="text-grey semi-bold no-margin"><%= ((@team.athletes.count + @team.userless_athletes.count) > 1 or (@team.athletes.count + @team.userless_athletes.count) == 0) ? "Athletes" : "Athlete" %></h6>
 		</div>
 		<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
-			<h1 class="text-indigo no-margin bold"><%= @team.accepted_managers.count + @team.userless_managers.count %></h1>
-			<h6 class="text-grey semi-bold no-margin"><%= ((@team.accepted_managers.count + @team.userless_managers.count) > 1 or (@team.accepted_managers.count + @team.userless_managers.count) == 0) ? "Team Managers" : "Team Manager" %></h6>
+			<h1 class="text-indigo no-margin bold"><%= @team.managers.count + @team.userless_managers.count %></h1>
+			<h6 class="text-grey semi-bold no-margin"><%= ((@team.managers.count + @team.userless_managers.count) > 1 or (@team.managers.count + @team.userless_managers.count) == 0) ? "Team Managers" : "Team Manager" %></h6>
 		</div>
 		<div class="col-lg-2 col-md-4 col-sm-6 text-center">
-			<h1 class="text-indigo no-margin bold"><%= @team.accepted_trainers.count + @team.userless_trainers.count %></h1>
-			<h6 class="text-grey semi-bold no-margin"><%= ((@team.accepted_trainers.count + @team.userless_trainers.count) > 1 or (@team.accepted_trainers.count + @team.userless_trainers.count) == 0) ? "Athletic Trainers" : "Athletic Trainer" %></h6>
+			<h1 class="text-indigo no-margin bold"><%= @team.trainers.count + @team.userless_trainers.count %></h1>
+			<h6 class="text-grey semi-bold no-margin"><%= ((@team.trainers.count + @team.userless_trainers.count) > 1 or (@team.trainers.count + @team.userless_trainers.count) == 0) ? "Athletic Trainers" : "Athletic Trainer" %></h6>
 		</div>
 		<div class="col-lg-2 col-md-4 col-sm-6 mt5">
 			<div class="well bgcolor-light-grey no-margin">
@@ -23,7 +23,7 @@
 					Find an Athlete <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
-						<% @team.accepted_athletes.each do |user| %>
+						<% @team.athletes.each do |user| %>
 							<li>
 								<%= link_to user_path(user) do %>
 					  			<%= user.full_name %>
@@ -67,12 +67,12 @@
 					       <h3 class="semi-bold fs_20 mb0 text-black">
 								Coaches and Staff Members
 							</h3>
-							<%= render 'coach_count', heads: @heads %>
+							<%= render 'rosters/coach_count', heads: @heads %>
 						</div>
 					</div><!--.panel-heading-->
 					<hr class="no-margin"/>
 					<div class="panel-body no-padding" id="heads-of-team">
-						<%= render 'heads_of_team', heads: @heads %>
+						<%= render 'rosters/heads_of_team', heads: @heads %>
 					</div><!--.panel-body-->
 				</div><!--.panel-->
 				<br/>
@@ -87,12 +87,12 @@
 						  	<h3 class="semi-bold fs_20 mb0 text-black">
 							Active and Inactive Athletes
 							</h3>
-							<%= render 'athlete_count', members: @members%>
+							<%= render 'rosters/athlete_count', members: @members%>
 						</div>
 					</div><!--.panel-heading-->
 					<hr class="no-margin"/>
 					<div class="panel-body no-padding" id="athletes-of-team">
-			         	<%= render 'athletes_of_team', members: @members, team: @team %>
+			         	<%= render 'rosters/athletes_of_team', members: @members, team: @team %>
 					</div><!--.panel-body-->
 				</div><!--.panel-->
 				<!-- team roster -->

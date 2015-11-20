@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="center">
-					<% if m.class.to_s == "Relationship" %>
+					<% if m.class.to_s == "Role" %>
 					  <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 150px; height: 150px; border: 2px solid #ddd;" %>
 					<% else %>
 					  <%= image_tag "http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png", class: "face-radius pl", alt: "", style: "width: 150px; height: 150px; border: 2px solid #ddd;" %>
@@ -14,7 +14,7 @@
 				<div class="row">
 					<div class="col-md-8">
 						<h3 class="no-margin capitalize text-black semi-bold">
-							<% if m.class.to_s == "Relationship" %>
+							<% if m.class.to_s == "Role" %>
 							  <%= m.user.try(:full_name) %>
 							<% else %>
 							  <%= m.first_name  %> <%= m.last_name %>
@@ -29,17 +29,17 @@
 					<div class="col-md-4">
 						
 						<%#= link_to "Edit", params.merge(partial: "edit_member", m: m.id, class: m.class), remote: true  %>
-						<% if m.class.to_s == "Relationship" %>
-						  <%= link_to relationship_path(id: m, class: "Relationship"), method: :delete, remote: true, class: "pull-right btn btn-orange", data: {confirm: "Are you sure?"}  do %>
+						<% if m.class.to_s == "Role" %>
+						  <%= link_to role_path(id: m, class: "Role"), method: :delete, remote: true, class: "pull-right btn btn-orange", data: {confirm: "Are you sure?"}  do %>
 						  		<span class="ion-trash-b"></span>
 						  	<% end %>
 						<% else %>
-						  	<%= link_to userless_relationship_path(id: m, class: "UserlessRelationship"), method: :delete, remote: true, class: "btn btn-orange pull-right", data: {confirm: "Are you sure?"} do %>
+						  	<%= link_to userless_role_path(id: m, class: "UserlessRole"), method: :delete, remote: true, class: "btn btn-orange pull-right", data: {confirm: "Are you sure?"} do %>
 						  		<span class="ion-trash-b"></span>
 						  	<% end %>
 						<% end %>
 
-						<%= link_to team_edit_roster_view_path(team_id: @team.id, class: m.class, id: m.id, status: "member"), remote: true, class: "btn btn-primary pull-right mr10" do %>
+						<%= link_to roster_edit_roster_view_path(roster_id: @team.id, class: m.class, id: m.id, status: "member"), remote: true, class: "btn btn-primary pull-right mr10" do %>
 						  		<span class="ion-ios-gear"></span>
 						  	<% end %>
 						
@@ -49,7 +49,7 @@
 			<div class="row">
 				<div class="col-sm-2">
 					<h5 class="no-margin semi-bold">
-						<%= m.participant_classification.present? ? m.participant_classification : "TBD" %>
+						<%= m.level.present? ? m.level : "TBD" %>
 					</h5>
 					<p class="small text-grey">
 						<small>
@@ -93,7 +93,7 @@
 					</div>
 				<div class="col-sm-1">
 					<h5 class="no-margin semi-bold">
-						<%= m.age.present? ? m.age : "TBD" %>
+						<%#= m.age.present? ? m.age : "TBD" %>
 					</h5>
 					<p class="small text-grey">
 						<small>

@@ -66,7 +66,7 @@
 						<ul class="list-material borderless">
 							<% @heads.each do |head| %>
 								<li class="has-action-left">
-									<a href="<%= head.class.to_s == "Relationship" ? user_path(head.user) : "javascript: void(0)" %>" class="visible">
+									<a href="<%= head.class.to_s == "Role" ? user_path(head.user) : "javascript: void(0)" %>" class="visible">
 										<div class="pull-right pt20">
 											<% if head.mobile_phone_number.present? %>
 											<span class="text-muted fs_11">
@@ -74,7 +74,7 @@
 												<%= head.mobile_phone_number %> 
 											</span>
 											<% end %>
-											<% unless head.class.to_s == "UserlessRelationship"%>
+											<% unless head.class.to_s == "UserlessRole"%>
 											<span class="text-muted fs_11">
 												<i class="ion-email text-primary mr5"></i>
 												<%= head.user.email %> 
@@ -87,7 +87,7 @@
 										</div>
 										<div class="list-content">
 											
-											<% if head.class.to_s == "Relationship" %>
+											<% if head.class.to_s == "Role" %>
 											  <span class="title"><%= head.user.full_name %></span>
 											<% else %>
 											  <span class="title"><%= head.first_name %> <%= head.last_name %></span>
@@ -171,7 +171,7 @@
 									<ul class="list-material borderless">
 										<% @members.each do |member| %>
 										<li class="has-action-left">
-											<a href="<%= member.class.to_s == "Relationship" ? user_path(member.user) : "javascript: void(0)" %>" class="visible">
+											<a href="<%= member.class.to_s == "Role" ? user_path(member.user) : "javascript: void(0)" %>" class="visible">
 												<div class="pull-right pr20">
 													<span class="lh_20 pull-right h3 inline">
 														<% if member.jersey_number.present? %>
@@ -188,14 +188,14 @@
 												</div>
 												<div class="list-content">
 												
-													<span class="title"><% if member.class.to_s == "Relationship" %>
+													<span class="title"><% if member.class.to_s == "Role" %>
 														
 													  <%= member.user.try(:full_name) %>
 													 
 													<% else %>
 													  <%= member.first_name  %> <%= member.last_name %>
 													<% end %></span>
-													<span class="fs_11 text-muted"><%= member.participant_classification.try(:capitalize) %><%= "#{', ' if (member.participant_classification.present? && member.position_list.present?) }"%> <%= member.position_list %></span>
+													<span class="fs_11 text-muted"><%= member.level.try(:capitalize) %><%= "#{', ' if (member.level.present? && member.position_list.present?) }"%> <%= member.position_list %></span>
 												</div>
 
 											</a>

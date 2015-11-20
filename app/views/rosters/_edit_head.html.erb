@@ -1,16 +1,16 @@
-<%= form_for m, html: {data: {remote: true}} do |f| %>
+<%= form_for m, url: roster_path(id: m.id, object_type: m.class.to_s), html: {data: {remote: true}} do |f| %>
 <li id="edit-head-<%= m.class.to_s %><%= m.id%>" class="">
 	<div class="list-content no-padding">
 		<div class="clearfix pt15">
 			<div class="col-md-12">
 				<div class="pull-right">
-					<%= link_to team_close_roster_view_path(team_id: team.id, class: m.class, id: m.id, status: "head"), remote: true, class: "btn btn-floating btn-default btn-ripple pull-right mr20" do %>
+					<%= link_to roster_close_roster_view_path(roster_id: team.id, class: m.class, id: m.id, status: "head"), remote: true, class: "btn btn-floating btn-default btn-ripple pull-right mr20" do %>
 						<i class="ion-close-round"></i>
 					<% end %>
 				</div>
 				<div class="pull-left mr20">
 					<div class="center">
-						<% if m.class.to_s == "Relationship" %>
+						<% if m.class.to_s == "Role" %>
 						  <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 75px; height: 75px; border: 2px solid #ddd;" %>
 						<% else %>
 						  <%= image_tag "http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "face-radius", alt: "", style: "width: 75px; height: 75px; border: 2px solid #ddd;" %>
@@ -18,7 +18,7 @@
 					</div>
 				</div>
 				<div class="pull-left">
-					<% if m.class.to_s == "Relationship" %>
+					<% if m.class.to_s == "Role" %>
 						<h4 class="semi-bold capitalize no-margin text-black">
 						  <%= m.user.try(:full_name) %>
 					    </h4>
@@ -44,30 +44,20 @@
 					<% end %>
 					<p class="small text-muted no-margin">
 						<small>
-							<%= m.head_title.blank? ? "TBD" : m.head_title %>
+							<%= m.title.blank? ? "TBD" : m.title %>
 						</small>
 					</p>
 
 					<br/>
 
 					<div class="">
-						<%= f.text_field :head_title, type: "text", class: "form-control" %> 
+						<%= f.text_field :title, type: "text", class: "form-control" %> 
 						<p class="small">
 							<small>
 								Position/Title
 							</small>
 						</p>
 					</div>
-					<!-- <div class="col-md-6">
-						<%# if false %>
-						  	<%= f.text_field :position, type: "text", class: "form-control"  %>
-							<p class="small">
-								<small>
-									Position
-								</small>
-							</p>
-						<%# end %>
-					</div> -->
 					<div class="">
 					  	<%= f.text_field :mobile_phone_number, type: "text", class: "form-control"  %>
 						<p class="small">
@@ -80,7 +70,7 @@
 					<div class="row">
 				
 						<div class="col-md-4">
-							<%= f.check_box :head %> 
+							<%= check_box_tag :coach %> 
 							<p class="small">
 								<small>
 									Coach
@@ -88,7 +78,7 @@
 							</p>
 						</div>
 						<div class="col-md-4">
-							<%= f.check_box :trainer %> 
+							<%= check_box_tag :trainer %> 
 							<p class="small">
 								<small>
 									Trainer
@@ -96,7 +86,7 @@
 							</p>
 						</div>
 						<div class="col-md-4">
-							<%= f.check_box :manager %> 
+							<%= check_box_tag :manager %> 
 							<p class="small">
 								<small>
 									Manager

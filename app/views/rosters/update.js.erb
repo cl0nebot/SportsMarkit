@@ -1,0 +1,16 @@
+<% unless @accepting_action %>
+  $('#edit-member-<%= params[:object_type] %><%= @id %>').empty()
+  $('#edit-member-<%= params[:object_type] %><%= @id %>').append('<%= j render 'rosters/admin_view_member', m: @object, team: @team %>')
+  $('#edit-head-<%= params[:object_type] %><%= @id %>').empty()
+  $('#edit-head-<%= params[:object_type] %><%= @id %>').append('<%= j render 'rosters/head', m: @object, team: @team %>')
+<% else %>
+  $('#pending-<%= @role.id %>').empty()
+  $('#athletes-of-team').empty()
+  $('#athletes-of-team').append('<%= j render 'rosters/athletes_of_team', members: @members, team: @team %>')
+  $('#heads-of-team').empty()
+  $('#heads-of-team').append('<%= j render 'rosters/heads_of_team', heads: @heads, team: @team %>')
+  $('#coach-count').empty()
+  $('#coach-count').append("<%= j render 'rosters/coach_count', heads: @heads %>")
+  $('#athlete-count').empty()
+  $('#athlete-count').append("<%= j render 'rosters/athlete_count', members: @members %>")
+<% end %>

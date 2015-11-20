@@ -72,8 +72,6 @@ Rails.application.routes.draw do
     end
     
     resources :teams do
-      get :edit_roster_view
-      get :close_roster_view
       resources :photos
       resources :profile_pictures, only: %w[create update destroy]
       resources :events
@@ -142,6 +140,18 @@ Rails.application.routes.draw do
         patch :approve_coach
       end
     end
+    
+    resources :uploads do
+      collection do
+        post :import
+      end
+    end
+    
+    resources :rosters do
+      get "edit_roster_view" => "rosters#edit_roster_view", as: :edit_roster_view
+      get "close_roster_view" => "rosters#close_roster_view", as: :close_roster_view
+    end
+    resources :roles
     
     #contact_messages
     resources :contact_messages

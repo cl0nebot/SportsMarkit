@@ -1,0 +1,14 @@
+<% if params[:status] == "member" %>
+$('#edit-member-<%= @class %><%= @id %>').empty()
+$('#edit-member-<%= @class %><%= @id %>').append('<%= j render 'rosters/admin_view_member', m: @object %>')
+<% end %>
+
+<% if params[:status] == "head" %>
+$('#edit-head-<%= @class %><%= @id %>').empty()
+$('#edit-head-<%= @class %><%= @id %>').append('<%= j render 'rosters/head', m: @object %>')
+<% end %>
+
+<% if params[:status] == "admin" %>
+$('#edit-admin-<%= @class %><%= @id %>').empty()
+$('#edit-admin-<%= @class %><%= @id %>').append('<%= j render 'rosters/admin', m: @object %>')
+<% end %>

@@ -72,7 +72,7 @@
 						<div class="panel panel-transparent box-shadow-ccc">
 							<div class="panel-heading no-margin">
 								<div class="panel-title" id="admin-count">
-						      <%= render 'admin_count', admins: @admins %>
+						      <%= render 'rosters/admin_count', admins: @admins %>
 						      <h3 class="semi-bold fs_20 mb0">
 											Administrative Users
 									</h3>
@@ -80,7 +80,7 @@
 							</div><!--.panel-heading-->
 							<hr class="no-margin"/>
 							<div class="panel-body no-padding" id="admins-of-team">
-								<%= render 'admins_of_team', admins: @admins %>
+								<%= render 'rosters/admins_of_team', admins: @admins %>
 							</div><!--.panel-body-->
 						</div><!--.panel-->
 						<br/>
@@ -90,7 +90,7 @@
 							<div class="panel box-shadow-ccc">
 								<div class="panel-body padding-40">
 
-									<%= form_for @new_user, url: create_roster_spot_team_path, html: {id: "roster-form"} do |f| %>
+									<%= form_for @new_user, url: rosters_path, method: :post, html: {id: "roster-form"} do |f| %>
 
 										<div class="row">
 											<div class="col-md-4">
@@ -127,7 +127,7 @@
 													<div class="col-md-12">
 														<div class="inputer">
 															<div class="input-wrapper">
-																<%= text_field_tag :participant_classification,"" , placeholder: "", type: "text", class: "form-control", name: "participant_classification" %>
+																<%= text_field_tag :level,"" , placeholder: "", type: "text", class: "form-control", name: "participant_classification" %>
 															</div>
 														</div>
 													</div><!--.col-md-9-->
@@ -182,15 +182,15 @@
 															<%= hidden_field_tag :team_id,"", value: @team.id %>
 
 															<div class="checkboxer form-inline mb5">
-										                      	<%= check_box_tag :participant, "",false, id: "participant"%>
-										                      	<label for="participant">
+										                      	<%= check_box_tag :athlete, "",false, id: "athlete"%>
+										                      	<label for="athlete">
 										                      		Athlete?
 										                      	</label>
 										                    </div>
 															
 															<div class="checkboxer form-inline mb5">
-										                      	<%= check_box_tag :head, "",false, id: "head"%>
-										                      	<label for="head">Coach?
+										                      	<%= check_box_tag :coach, "",false, id: "coach"%>
+										                      	<label for="coach">Coach?
 										                      	</label>
 										                    </div>
 
