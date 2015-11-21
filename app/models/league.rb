@@ -7,9 +7,13 @@ class League < ActiveRecord::Base
   include Geo
   include ClassificationCount
   include EventDetail
+  include Link
   
   friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable
+  
+  has_many :roles, as: :roleable, dependent: :destroy
+  has_many :userless_roles, as: :userless, dependent: :destroy
   
   has_many :fans, as: :fannable, dependent: :destroy
   has_many :facilities, as: :facility_owner
