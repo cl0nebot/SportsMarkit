@@ -101,7 +101,7 @@ class ApplicationController < ActionController::Base
     authenticate_user!
     if current_user
       school = Team.friendly.find(params[:id]).school
-      unless current_user.admin? || Role.where(user_id: current_user.id, role: "Athletic Director", roleable_type: "School", status: "Active", roleable_id: school.id).present? or Relationship.where(user_id: current_user.id, admin: true).present? or Relationship.where(user_id: current_user.id, head: true).present?
+      unless current_user.admin? || Role.where(user_id: current_user.id, role: "Athletic Director", roleable_type: "School", status: "Active", roleable_id: school.id).present? || Relationship.where(user_id: current_user.id, admin: true).present? or Relationship.where(user_id: current_user.id, head: true).present?
         flash[:message] = "This is your account."
         redirect_to edit_user_path(current_user)
         #render :file => "public/401.html", :status => :unauthorized
@@ -110,15 +110,34 @@ class ApplicationController < ActionController::Base
   end
   
   def shared_variables
-    @accepted_coaches = @object.coaches
-    @userless_coaches = @object.userless_coaches
-    @accepted_athletes = @object.athletes
+    # athletes
+    @athletes = @object.athletes
     @userless_athletes = @object.userless_athletes
+    
+    # coaches
+    @userless_coaches = @object.userless_coaches
+    @coaches = @object.coaches
+    
+    # athletic directors 
+    @athletic_directors = @object.athletic_directors
+        
+    # media
     @videos = @object.medias.where(category: "Video")
     @articles = @object.medias.where(category: "Article")
-    @fans = @object.fans
-    @events = @object.upcoming_events
     @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
+    @picture =  @object.photos.build
+    
+    # people
+    @people = @object.people
+    @userless_people = @league.userless_people
+    
+    # events
+    @event = @object.events.build
+    @events = @object.upcoming_events
+      
+    # fans
+    @fans = @object.fans
+    
     #@json = @object.to_gmaps4rails
     @class = @object.class
     
