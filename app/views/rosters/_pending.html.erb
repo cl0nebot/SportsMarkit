@@ -1,5 +1,5 @@
 <li class="has-action-left" id="pending-<%= m.id %>">
-	<%= form_for m, url: accept_user_team_path(@team, relationship_id: m.id), html: {data: {remote: true}} do |f| %>
+	<%= form_for m, url: accept_user_team_path(@team, role_id: m.id), html: {data: {remote: true}} do |f| %>
 		<%= f.hidden_field :accepted, value: true %>
 		<div class="hidden pt30">
 			<p class="text-center mb5">
@@ -34,8 +34,8 @@
 					</div>
 					<div class="col-md-2">
 						<div class="checkboxer form-inline mb5">
-	                      	<%= f.check_box :admin, id: "#{m.id}-relationship_admin"  %>
-	                      	<label for="<%= "#{m.id}" %>-relationship_admin"></label>
+	                      	<%= check_box_tag :admin, id: "#{m.id}-role_admin"  %>
+	                      	<label for="<%= "#{m.id}" %>-role_admin"></label>
 	                    </div>
 						<p class="small">
 							<small>
@@ -45,8 +45,8 @@
 					</div>
 					<div class="col-md-2">
 						<div class="checkboxer form-inline mb5">
-	                      	<%= f.check_box :head, id: "#{m.id}-relationship_head"  %>
-	                      	<label for="<%= "#{m.id}" %>-relationship_head"></label>
+	                      	<%= check_box_tag :coach, id: "#{m.id}-role_head"  %>
+	                      	<label for="<%= "#{m.id}" %>-role_head"></label>
 	                    </div>
 						<p class="small">
 							<small>
@@ -56,8 +56,8 @@
 					</div>
 					<div class="col-md-2">
 						<div class="checkboxer form-inline mb5">
-	                      	<%= f.check_box :participant, id: "#{m.id}-relationship_participant"  %>
-	                      	<label for="<%= "#{m.id}" %>-relationship_participant"></label>
+	                      	<%= check_box_tag :athlete, id: "#{m.id}-role_participant"  %>
+	                      	<label for="<%= "#{m.id}" %>-role_participant"></label>
 	                    </div>
 						<p class="small">
 							<small>

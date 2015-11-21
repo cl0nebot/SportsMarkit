@@ -1,7 +1,0 @@
-  $('#member-<%= params[:controller].classify %><%= params[:id] %>').empty()
-  $('#head-<%= params[:controller].classify %><%= params[:id] %>').empty()
-  $('#coach-count').empty()
-  $('#coach-count').append("<%= j render 'teams/coach_count', heads: @heads %>")
-  $('#athlete-count').empty()
-  $('#athlete-count').append("<%= j render 'teams/athlete_count', members: @members %>")
-

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-sm-2">
                 <div class="">
-                    <% if m.class.to_s == "Relationship" %>
+                    <% if m.class.to_s == "Role" %>
                       <%= image_tag m.user.avatar, class: "face-radius", alt: "", style: "width: 150px; height: 150px; border: 2px solid #ddd;" %>
                     <% else %>
                       <%= image_tag "http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png", class: "face-radius pl", alt: "", style: "width: 150px; height: 150px; border: 2px solid #ddd;" %>
@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         <h3 class="no-margin capitalize text-black semi-bold">
-                            <% if m.class.to_s == "Relationship" %>
+                            <% if m.class.to_s == "Role" %>
                               <%= m.user.full_name %>
                             <% else %>
                               <%= m.first_name  %> <%= m.last_name %>
@@ -43,7 +43,7 @@
             <div class="row">
                 <div class="col-sm-2">
                     <h5 class="no-margin semi-bold">
-                        <%= m.head_title.blank? ? "TBD" : m.head_title %>
+                        <%= m.title.blank? ? "TBD" : m.title %>
                     </h5>
                     <p class="small text-grey">
                         <small>
@@ -52,7 +52,7 @@
                     </p>
                 </div>
                 <div class="col-sm-4">
-					<% if m.class.to_s == "Relationship" %>
+					<% if m.class.to_s == "Role" %>
                     <h5 class="no-margin capitalize semi-bold">
                         <%= m.user.certification_list.blank? ? "TBD" : m.user.certification_list %>
                     </h5>
@@ -64,7 +64,7 @@
 					<% end %>
                     </div>
                 <div class="col-sm-2">
-					<% if m.class.to_s == "Relationship" %>
+					<% if m.class.to_s == "Role" %>
                     <h5 class="no-margin semi-bold">
                         <%= m.user.mobile_phone_number.blank? ? "TBD" : number_to_phone(m.user.mobile_phone_number) %>
                     </h5>
