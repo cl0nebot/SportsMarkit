@@ -10,7 +10,7 @@ class SetupController < ApplicationController
     @non_school_teams = Team.without_schools
     @coached_teams = @user.coached_teams
     @children = @user.children
-    @users_schools_teams_ids = Relationship.where(user_id: @user.id, participant: true).pluck(:team_id)
+    @users_schools_teams_ids = @user.roles.where(roleable_type: "Team", role: "Athlete").pluck(:roleable_id)
     @users_schools_teams = Team.with_schools.where(id: @users_schools_teams_ids)
     @users_non_schools_teams_ids = Relationship.where(user_id: @user.id, participant: true).pluck(:team_id)
     @users_non_schools_teams = Team.without_schools.where(id: @users_non_schools_teams_ids)
@@ -23,6 +23,10 @@ class SetupController < ApplicationController
   
   def test_setup
     @athletes = User.athletes
+  end
+  
+  def add_role
+    
   end
   
   
