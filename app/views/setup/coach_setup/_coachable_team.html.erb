@@ -2,8 +2,8 @@
 
   <div class="card card-meal card-meal-blue card-square card-shadow">
     <div class="card-heading">
-      <% if team.school.present? %>
-        <h3 class="card-title"><%= team.school.name %></h3>
+      <% if team.teamable == "School" %>
+        <h3 class="card-title"><%= team.teamable.name %></h3>
 
         <div class="card-subhead">
           <a href="#">
