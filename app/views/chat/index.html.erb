@@ -51,7 +51,7 @@
 
 
 
-      <% current_user.relationships.each do |rel| %>
+      <% current_user.roles.each do |rel| %> <!--TODO make .team below roleable -->
         <% unless rel.team == @team %>
           <li class="has-action-left has-action-right">
 
