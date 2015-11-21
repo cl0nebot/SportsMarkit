@@ -21,14 +21,14 @@
             <%= image_tag("http://www.oxtonhc.co.uk/wp-content/themes/oxtonhc/library/images/team-placeholder.jpg") %>
           </div><!--.image-->
           <ul class="users">
-      			<% team.accepted_athletes.each do |user| %>
+      			<% team.athletes.each do |user| %>
               <li><a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>"><%= image_tag user.avatar %></a></li>
       		  <% end %>
           </ul>
         </div><!--.card-body-->
         <div class="card-footer">
           <ul>
-          <li class="fs_14"><%= pluralize team.accepted_athletes.count, "Teammate"%></li>
+          <li class="fs_14"><%= pluralize team.athletes.count, "Teammate"%></li>
           <li><a href="<%= team_path(team) %>" class="fs_14">View Team</a></li>
         </ul>
         </div><!--.card-footer-->
