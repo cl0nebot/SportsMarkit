@@ -4,7 +4,7 @@
   $('#edit-head-<%= @class %><%= @id %>').empty()
   $('#edit-head-<%= @class %><%= @id %>').append('<%= j render 'teams/head', m: @object, team: @team %>')
 <% else %>
-  $('#pending-<%= @relationship.id %>').empty()
+  $('#pending-<%= @role.id %>').empty()
   $('#athletes-of-team').empty()
   $('#athletes-of-team').append('<%= j render 'teams/athletes_of_team', members: @members, team: @team %>')
   $('#heads-of-team').empty()

@@ -1,5 +1,5 @@
 $('#team-button').empty();
-$('#team-button').append('<%= j render 'relationships/pending' %>');
+$('#team-button').append('<%= j render 'roles/pending' %>');
 $('.pending-members').empty();
 
 <% @team.pending_members.each do |m| %>
