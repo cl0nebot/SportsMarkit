@@ -23,6 +23,22 @@ class EventsController < ApplicationController
           Attendee.create(user_id: i, event_id: @event.id, yes: true)
         end
       end
+      @event.name_and_phone_numbers.each do |obj|
+        receiving_number = obj.last
+
+        twilio_sid = ENV['TWILIO_SID']
+        twilio_token = ENV['TWILIO_AUTH_TOKEN']
+        twilio_phone_number = "2027590519"
+        @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+      
+        @twilio_client.account.sms.messages.create(
+          :from => "+1#{twilio_phone_number}",
+          :to => receiving_number,
+          :body => "Hello #{obj.first}! A new #{@event.event_type} has been created: #{@event.title} "
+        )
+      
+      end
+      
       redirect_to @event
     else
       render 'new'
