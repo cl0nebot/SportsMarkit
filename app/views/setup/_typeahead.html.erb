@@ -1,34 +1,200 @@
-  <script type="text/javascript">
-     $(function () {
-       $('body').popover({
-           selector: '[data-toggle="popover"]'
-       });
+<script type="text/javascript">
 
-       $('body').tooltip({
-           selector: 'a[rel="tooltip"], [data-toggle="tooltip"]'
-       });
 
-       var users = <%= raw(User.all.to_json) %>
+// QUICKSEARCH SCHOOLS
 
-       search = function(users){
-         $.each(users, function(index, user){
+$( function() {
+  // quick search regex
+  var qsRegex;
+  
+  // init Isotope
+  var $grid = $('.schools').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows',
+    filter: function() {
+      return qsRegex ? $(this).text().match( qsRegex ) : true;
+    }
+  });
 
-         })
-       }
-       $('.search-typeahead').typeahead(
-         {
-           hint: true,
-           highlight: true,
-           minLength: 1
-         },
-         {
-           name: 'destinations',
-           source: search(users),
-           header: '<h3 class="typeahead-header"><i class="glyphicon glyphicon-map-marker"></i> Destinations</h3>',
-           template: '{{pretty_name}}',
-           engine: Hogan
-         }
-      );
+  // use value of search field to filter
+  var $quicksearch = $('.quicksearch-schools').keyup( debounce( function() {
+    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+    $grid.isotope();
+  }, 200 ) );
+  
+});
 
-     });
-   </script>
+// debounce so filtering doesn't happen every millisecond
+function debounce( fn, threshold ) {
+  var timeout;
+  return function debounced() {
+    if ( timeout ) {
+      clearTimeout( timeout );
+    }
+    function delayed() {
+      fn();
+      timeout = null;
+    }
+    timeout = setTimeout( delayed, threshold || 100 );
+  }
+}
+
+
+// QUICKSEARCH TEAMS
+
+$( function() {
+  // quick search regex
+  var qsRegex;
+  
+  // init Isotope
+  var $grid = $('.teams').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows',
+    filter: function() {
+      return qsRegex ? $(this).text().match( qsRegex ) : true;
+    }
+  });
+
+  // use value of search field to filter
+  var $quicksearch = $('.quicksearch-teams').keyup( debounce( function() {
+    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+    $grid.isotope();
+  }, 200 ) );
+  
+});
+
+// debounce so filtering doesn't happen every millisecond
+function debounce( fn, threshold ) {
+  var timeout;
+  return function debounced() {
+    if ( timeout ) {
+      clearTimeout( timeout );
+    }
+    function delayed() {
+      fn();
+      timeout = null;
+    }
+    timeout = setTimeout( delayed, threshold || 100 );
+  }
+}
+
+
+// QUICKSEARCH COACHED TEAMS
+
+$( function() {
+  // quick search regex
+  var qsRegex;
+  
+  // init Isotope
+  var $grid = $('.coaches').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows',
+    filter: function() {
+      return qsRegex ? $(this).text().match( qsRegex ) : true;
+    }
+  });
+
+  // use value of search field to filter
+  var $quicksearch = $('.quicksearch-coaches').keyup( debounce( function() {
+    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+    $grid.isotope();
+  }, 200 ) );
+  
+});
+
+// debounce so filtering doesn't happen every millisecond
+function debounce( fn, threshold ) {
+  var timeout;
+  return function debounced() {
+    if ( timeout ) {
+      clearTimeout( timeout );
+    }
+    function delayed() {
+      fn();
+      timeout = null;
+    }
+    timeout = setTimeout( delayed, threshold || 100 );
+  }
+}
+
+// QUICKSEARCH USERS
+
+$( function() {
+  // quick search regex
+  var qsRegex;
+  
+  // init Isotope
+  var $grid = $('.users').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows',
+    filter: function() {
+      return qsRegex ? $(this).text().match( qsRegex ) : true;
+    }
+  });
+
+  // use value of search field to filter
+  var $quicksearch = $('.quicksearch-users').keyup( debounce( function() {
+    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+    $grid.isotope();
+  }, 200 ) );
+  
+});
+
+// debounce so filtering doesn't happen every millisecond
+function debounce( fn, threshold ) {
+  var timeout;
+  return function debounced() {
+    if ( timeout ) {
+      clearTimeout( timeout );
+    }
+    function delayed() {
+      fn();
+      timeout = null;
+    }
+    timeout = setTimeout( delayed, threshold || 100 );
+  }
+}
+
+
+// QUICKSEARCH ATHLETIC DIRECTOR
+
+$( function() {
+  // quick search regex
+  var qsRegex;
+  
+  // init Isotope
+  var $grid = $('.directors').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows',
+    filter: function() {
+      return qsRegex ? $(this).text().match( qsRegex ) : true;
+    }
+  });
+
+  // use value of search field to filter
+  var $quicksearch = $('.quicksearch-directors').keyup( debounce( function() {
+    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+    $grid.isotope();
+  }, 200 ) );
+  
+});
+
+// debounce so filtering doesn't happen every millisecond
+function debounce( fn, threshold ) {
+  var timeout;
+  return function debounced() {
+    if ( timeout ) {
+      clearTimeout( timeout );
+    }
+    function delayed() {
+      fn();
+      timeout = null;
+    }
+    timeout = setTimeout( delayed, threshold || 100 );
+  }
+}
+</script>
+
+
+
+

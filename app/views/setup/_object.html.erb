@@ -1,0 +1,41 @@
+<div class="col-md-4 element-item" data-category="" style="min-height: 400px;" id="<%= classification %>-<%= object.class.to_s %>-<%= object.id %>" >
+	
+  <div class="card card-meal card-meal-blue card-square card-shadow">
+    <div class="card-heading">
+      <h3 class="card-title"><%= object.proper_name %></h3>
+        <div class="subhead">
+  	    <%# if object.age.present? %>
+  	       <%#= object.age %>
+  	   	<%# end %>
+          <i class="ion-location"></i>
+  		<%# if object.profile.city.present? %>
+  							, <%#= object.profile.residence %>
+  							<%# end %>
+  	<%# if object.teammates.count > 0 %>
+  	,<%#= pluralize object.teammates.count, "Teammate"%> 
+  	<%# end %>
+        </div>
+    </div><!--.card-heading-->
+    <div class="card-body">
+      <div class="image">
+        <a href="#">
+          <!-- placeholder image for school image -->
+          <%= image_tag("placeholders/classroom.jpg") %>
+        </a>
+      </div><!--.image-->
+    </div><!--.card-body-->
+    <div class="card-footer">
+      <div id="apply-for-school-team-<%= object.id %>">
+		  <% role = Role.where(roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", role: classification, user_id: user.id) %>
+		  
+		  <%= link_to "Add Link", add_role_path(id: user.id, roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", role: classification, user_id: user.id), class: "btn btn-block btn-primary", remote: true, id: "#{classification.delete(" ")}-#{object.class.to_s}-#{object.id}-add-button", style: (role.present? ? "display: none" : "display: block") %>
+		  
+		  <%= link_to "Claimed", "#", class: "btn btn-block btn-primary", remote: true, id: "#{classification.delete(" ")}-#{object.class.to_s}-#{object.id}-claimed-button", style: (role.present? ? "display: block" : "display: none"), disabled: true %>
+		  
+		  
+      </div><!-- team id -->
+    </div><!--.card-footer-->
+  </div><!--.card-->
+  <div class="clearfix"></div>
+</div>
+

@@ -75,298 +75,82 @@ li.step h6 {
 </script>
 
 <div class="content">
-  <!-- page header -->
-  <div class="page-header full-content bg-blue">
-    <div class="row">
-      <div class="col-sm-6">
-        <h1>Welcome <small> Let's Get Started</small></h1>
-      </div><!--.col-->
-      <div class="col-sm-6">
-        <ol class="breadcrumb">
-          <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="<%= teams_path %>">Teams</a></li>
-          <li><a href="#" class="active">New</a></li>
-        </ol>
-      </div><!--.col-->
-    </div><!--.row-->
-  </div><!--.page-header-->
-
-
-
+<!-- page header -->
+	<div class="page-header full-content bg-blue">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1>Welcome 
+					<small> Let's Get Started</small>
+				</h1>
+			</div><!--.col-->
+			<div class="col-sm-6">
+				<ol class="breadcrumb">
+					<li><a href="/"><i class="ion-home"></i></a></li>
+					<li><a href="<%= teams_path %>">Teams</a></li>
+					<li><a href="#" class="active">New</a></li>
+				</ol>
+			</div><!--.col-->
+		</div><!--.row-->
+	</div><!--.page-header-->
 	<div class="row">
-
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-md-10 col-md-offset-1">
 			<div class="row">
 				<div class="col-md-12">
 					<h6 class="bold text-orange">STEP BY STEP</h56>
-					<h3> Ok, now let's setup up your profiles</h3>
-					<br/>
-				</div>
-			</div>
-
-			<div class="panel bs-wizard bs-wizard-steps box-shadow-ccc">
-				<div class="panel-heading">
-					<div class="panel-title">
-						<div class="steps margin-top-20">
-							<ul class="wizard-steps">
-								<% @user.classifications.each_with_index do |c, i| %>
-								<li class="step">
-									<% if i == 0 %>
-									  <a href="#form2_tab<%= i + 1 %>" data-toggle="tab" class="btn btn-primary">
-									<% else %>
-									  <a href="#form2_tab<%= i + 1 %>" data-toggle="tab" class="btn btn-white">
-									<% end %>
-										
-										<%= i + 1%>
-									</a>
-									<h6><%= c.classification %></h6>
-								</li>
-								<% end %>
-								
-							</ul>
-						</div><!--.steps-pull-right-->
-					</div><!--.panel-title-->
-				</div><!--.panel-heading-->
-			
-
-				<hr class="no-margin"/>
-
-				<div class="panel box-shadow-ccc">
-
-					<div class="">
-
-					<div id="form2">
-
-					<div class="tab-content">
-						<% @user.classifications.each_with_index do |c, i| %>
-						  <div class="tab-pane pane padding-top-20" id="form2_tab<%= i+1 %>">		
-						  	<%= render "setup/#{c.classification.downcase.sub(" ", "_")}_setup/#{c.classification.downcase.sub(" ", "_")}_setup"%>
-						  </div><!--.tab-pane-->
-			           <% end %>
-					</div><!--.tab-content-->
-						
-					
-
+						<h3> Ok, now let's setup up your profiles</h3>
+						<br/>
 					</div>
-					</div><!--.panel-body-->
-					<div class="panel-footer">
-					<ul class="wizard clearfix">
-						<li class="bs-wizard-prev pull-left"><button class="btn btn-flat btn-default">Previous</button></li>
-						<li class="bs-wizard-next pull-right"><button class="btn btn-blue">Next</button></li>
-						<li class="bs-wizard-submit pull-right">
-							<%= link_to edit_user_path(@user), class: "btn btn-blue" do %> 
-								Complete setup
-							<% end %>
-						</li>
-					</ul>
-					</div><!--.panel-footer-->
 				</div>
-			</div>
+				<div class="panel bs-wizard bs-wizard-steps box-shadow-ccc">
+					<div class="panel-heading">
+						<div class="panel-title">
+							<div class="steps margin-top-20">
+								<ul class="wizard-steps">
+									<% @user.classifications.each_with_index do |c, i| %>
+									<li class="step">
+										<% if i == 0 %>
+										<a href="#form2_tab<%= i + 1 %>" data-toggle="tab" class="btn btn-primary">
+											<% else %>
+											<a href="#form2_tab<%= i + 1 %>" data-toggle="tab" class="btn btn-white">
+												<% end %>
+												<%= i + 1%>
+											</a>
+											<h6><%= c.classification %></h6>
+										</li>
+										<% end %>
+									</ul>
+								</div><!--.steps-pull-right-->
+							</div><!--.panel-title-->
+						</div><!--.panel-heading-->
+						<hr class="no-margin"/>
+						<div class="panel box-shadow-ccc">
+							<div class="">
+								<div id="form2">
+									<div class="tab-content">
+										<% @user.classifications.each_with_index do |c, i| %>
+										<div class="tab-pane pane padding-top-20" id="form2_tab<%= i+1 %>">
+											<%= render "setup", classification: c.classification, objects: objects(c.classification, @user), selected_objects: selected_objects(c.classification, @user), description: object_description(c.classification), typeahead: typeahead(c.classification)  %>
+										</div><!--.tab-pane-->
+										<% end %>
+									</div><!--.tab-content-->
+								</div>
+							</div><!--.panel-body-->
+							<div class="panel-footer">
+								<ul class="wizard clearfix">
+									<li class="bs-wizard-prev pull-left"><button class="btn btn-flat btn-default">Previous</button></li>
+									<li class="bs-wizard-next pull-right"><button class="btn btn-blue">Next</button></li>
+									<li class="bs-wizard-submit pull-right">
+										<%= link_to edit_user_path(@user), class: "btn btn-blue" do %> 
+										Complete setup
+										<% end %>
+									</li>
+								</ul>
+							</div><!--.panel-footer-->
+						</div>
+					</div>
+				</div>
+			</div><!--.row-->
 		</div>
-	</div><!--.row-->
-	<%#= f.submit %>
-	<%# end %>
-</div>
-<%#= @id %>
-<%#= @class %>
-
-<script type="text/javascript">
 
 
-// QUICKSEARCH SCHOOLS
-
-$( function() {
-  // quick search regex
-  var qsRegex;
-  
-  // init Isotope
-  var $grid = $('.schools').isotope({
-    itemSelector: '.element-item',
-    layoutMode: 'fitRows',
-    filter: function() {
-      return qsRegex ? $(this).text().match( qsRegex ) : true;
-    }
-  });
-
-  // use value of search field to filter
-  var $quicksearch = $('.quicksearch-schools').keyup( debounce( function() {
-    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
-    $grid.isotope();
-  }, 200 ) );
-  
-});
-
-// debounce so filtering doesn't happen every millisecond
-function debounce( fn, threshold ) {
-  var timeout;
-  return function debounced() {
-    if ( timeout ) {
-      clearTimeout( timeout );
-    }
-    function delayed() {
-      fn();
-      timeout = null;
-    }
-    timeout = setTimeout( delayed, threshold || 100 );
-  }
-}
-
-
-// QUICKSEARCH TEAMS
-
-$( function() {
-  // quick search regex
-  var qsRegex;
-  
-  // init Isotope
-  var $grid = $('.teams').isotope({
-    itemSelector: '.element-item',
-    layoutMode: 'fitRows',
-    filter: function() {
-      return qsRegex ? $(this).text().match( qsRegex ) : true;
-    }
-  });
-
-  // use value of search field to filter
-  var $quicksearch = $('.quicksearch-teams').keyup( debounce( function() {
-    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
-    $grid.isotope();
-  }, 200 ) );
-  
-});
-
-// debounce so filtering doesn't happen every millisecond
-function debounce( fn, threshold ) {
-  var timeout;
-  return function debounced() {
-    if ( timeout ) {
-      clearTimeout( timeout );
-    }
-    function delayed() {
-      fn();
-      timeout = null;
-    }
-    timeout = setTimeout( delayed, threshold || 100 );
-  }
-}
-
-
-// QUICKSEARCH COACHED TEAMS
-
-$( function() {
-  // quick search regex
-  var qsRegex;
-  
-  // init Isotope
-  var $grid = $('.coaches').isotope({
-    itemSelector: '.element-item',
-    layoutMode: 'fitRows',
-    filter: function() {
-      return qsRegex ? $(this).text().match( qsRegex ) : true;
-    }
-  });
-
-  // use value of search field to filter
-  var $quicksearch = $('.quicksearch-coaches').keyup( debounce( function() {
-    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
-    $grid.isotope();
-  }, 200 ) );
-  
-});
-
-// debounce so filtering doesn't happen every millisecond
-function debounce( fn, threshold ) {
-  var timeout;
-  return function debounced() {
-    if ( timeout ) {
-      clearTimeout( timeout );
-    }
-    function delayed() {
-      fn();
-      timeout = null;
-    }
-    timeout = setTimeout( delayed, threshold || 100 );
-  }
-}
-
-// QUICKSEARCH USERS
-
-$( function() {
-  // quick search regex
-  var qsRegex;
-  
-  // init Isotope
-  var $grid = $('.users').isotope({
-    itemSelector: '.element-item',
-    layoutMode: 'fitRows',
-    filter: function() {
-      return qsRegex ? $(this).text().match( qsRegex ) : true;
-    }
-  });
-
-  // use value of search field to filter
-  var $quicksearch = $('.quicksearch-users').keyup( debounce( function() {
-    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
-    $grid.isotope();
-  }, 200 ) );
-  
-});
-
-// debounce so filtering doesn't happen every millisecond
-function debounce( fn, threshold ) {
-  var timeout;
-  return function debounced() {
-    if ( timeout ) {
-      clearTimeout( timeout );
-    }
-    function delayed() {
-      fn();
-      timeout = null;
-    }
-    timeout = setTimeout( delayed, threshold || 100 );
-  }
-}
-
-
-// QUICKSEARCH ATHLETIC DIRECTOR
-
-$( function() {
-  // quick search regex
-  var qsRegex;
-  
-  // init Isotope
-  var $grid = $('.directors').isotope({
-    itemSelector: '.element-item',
-    layoutMode: 'fitRows',
-    filter: function() {
-      return qsRegex ? $(this).text().match( qsRegex ) : true;
-    }
-  });
-
-  // use value of search field to filter
-  var $quicksearch = $('.quicksearch-directors').keyup( debounce( function() {
-    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
-    $grid.isotope();
-  }, 200 ) );
-  
-});
-
-// debounce so filtering doesn't happen every millisecond
-function debounce( fn, threshold ) {
-  var timeout;
-  return function debounced() {
-    if ( timeout ) {
-      clearTimeout( timeout );
-    }
-    function delayed() {
-      fn();
-      timeout = null;
-    }
-    timeout = setTimeout( delayed, threshold || 100 );
-  }
-}
-</script>
-
-
-
-
+<%= render 'typeahead' %>

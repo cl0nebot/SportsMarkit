@@ -1,0 +1,3 @@
+$("#<%= params[:role].delete(" ") %>-<%= params[:roleable_type] %>-<%= params[:roleable_id] %>-add-button").css({ display: "none" });
+$("#<%= params[:role].delete(" ") %>-<%= params[:roleable_type] %>-<%= params[:roleable_id] %>-claimed-button").css({ display: "block" });
+$('#<%= params[:role].delete(" ") %>-list').html("<%= j render 'setup/selected_objects', objects: selected_objects(params[:role], @user), classification: params[:role], user: @user %>")

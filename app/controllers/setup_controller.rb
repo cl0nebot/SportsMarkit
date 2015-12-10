@@ -1,21 +1,10 @@
 class SetupController < ApplicationController
-  before_action :find_user, except: [:test_setup]
+  before_action :find_user, except: [:test_setup, :delete_role, :add_role]
   
   def setup
-    @athlete_teams = Team.where.not(id: @user.relationships.where(participant: true).pluck(:team_id))
-    @coach_teams = Team.where.not(id: @user.relationships.where(head: true).pluck(:team_id))
-    @schools = School.all
-    @athletes = User.athletes
-    @school_teams = Team.with_schools
-    @non_school_teams = Team.without_schools
-    @coached_teams = @user.coached_teams
-    @children = @user.children
-    @users_schools_teams_ids = @user.roles.where(roleable_type: "Team", role: "Athlete").pluck(:roleable_id)
-    @users_schools_teams = Team.with_schools.where(id: @users_schools_teams_ids)
-    @users_non_schools_teams_ids = Relationship.where(user_id: @user.id, participant: true).pluck(:team_id)
-    @users_non_schools_teams = Team.without_schools.where(id: @users_non_schools_teams_ids)
-    @coachable_teams = Team.all
-    @available_children = User.all - [@user]
+    @athlete_teams = Team.where.not(id: @user.relationships.where(participant: true).pluck(:team_id)).limit(20)
+    @coach_teams = Team.where.not(id: @user.relationships.where(head: true).pluck(:team_id)).limit(20)
+    @athletes = User.athletes.limit(20)
   end
   
   def overview
@@ -26,7 +15,22 @@ class SetupController < ApplicationController
   end
   
   def add_role
-    
+    @user = User.friendly.find(params[:user_id])
+    role = Role.create(user_id: params[:user_id], role: params[:role], roleable_id: params[:roleable_id], roleable_type: params[:roleable_type], status: params[:status])
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
+  
+  def delete_role
+    @user = User.friendly.find(params[:user_id])
+    @role = Role.find(params[:role_id])
+    @role.destroy
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
   
   
