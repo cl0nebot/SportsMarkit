@@ -1,0 +1,87 @@
+<style>
+	.card-friend .friend-content {
+	  margin-left: 180px;
+	}
+
+	.card-friend .user-photo {
+	  float: left;
+	  height: 160px;
+	  width: 160px;
+	  border-radius: 3px 0 0 3px;
+	}
+</style>
+
+<div class="content">
+	
+	<div class="page-header full-content bg-primary mb0" style="min-height: 141px;">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1 class="capitalize semi-bold">
+					<%= @club.name %>
+					<small></small>
+				</h1>
+			</div><!--.col-->
+			<div class="col-sm-6">
+				<ol class="breadcrumb">
+					<li><a href="/"><i class="ion-home"></i></a></li>
+					<li><a href="<%= facilities_path %>">Facilities</a></li>
+					<li><a href="<%= facility_path %>"><%= @club.name %></a></li>
+					<li><a href="#" class="active">Edit</a></li>
+				</ol>
+			</div><!--.col-->
+		</div><!--.row-->
+
+		<div class="header-tabs scrollable-tabs sticky">
+			
+        <% if @object.can_be_edited_by_user?(current_user)%>
+          <%= link_to edit_club_path(@object), class: "mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
+              <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
+          <% end %>
+        <% end %>
+		
+			<%= render 'shared/show_navigations'%>
+		</div>
+	</div><!--.page-header-->
+
+
+	<!-- main content div -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tab-content without-border">
+
+			<!-- about -->
+			<%= render "clubs/show/about_tab" %>
+			
+			<!-- teams -->
+			<%= render "clubs/show/teams_tab" %>
+			
+			<!-- people -->
+			<%= render "clubs/show/people_tab" %>
+
+			<!-- facilities -->
+			<%= render "clubs/show/facilities_tab" %>
+
+			<!-- facilities -->
+			<%= render "clubs/show/calendar_tab" %>
+			
+			<!-- media -->
+			<%= render "clubs/show/media_tab" %>
+
+			<% if false %>	<!-- following -->
+		    <%= render "clubs/show/following_tab" %>
+			<% end %>
+			
+			<%= render "clubs/show/certifications_tab"%>
+
+	      <!-- fans -->
+	      <%= render "clubs/show/fans_tab" %>
+			
+			</div><!--.tab-content-->
+		</div><!--.col-->
+	</div><!--.row-->
+
+	<%= render "shared/modals/boostrap_image_gallery_lightbox" %>
+
+</div><!--.content-->
+
+

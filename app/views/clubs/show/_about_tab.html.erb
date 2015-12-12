@@ -1,0 +1,298 @@
+<div id="about" class="tab-pane active">
+
+	
+	<div class="page-header full-content parallax">
+		 <%= render "shared/show/header" %>
+	</div><!--.page-header-->
+	
+
+ 
+	<div class="row ">
+		<div class="col-md-4" style="margin-top: -212px;">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card tile card-post"  style="border-top: 3px solid #3e50b4;">
+						<div class="card-heading pl40 pr40">
+	            		<!-- <img src="../../assets/globals/img/faces/14.jpg" class="user-image" alt=""> -->
+	    				<%= render "shared/fan" %>
+					    <%= render 'shared/online' %>
+						</div><!--.card-heading-->
+						<hr class="light mt0"/>
+						<div class="card-body pl40 pr40">
+							<div class="clearfix row">
+							  <div class="col-md-3">
+							  	<div class="profile-photo">
+							  		<div class="profile-photo-wrapper" style="height: 100px; width: 100px; overflow: hidden; border: 1px solid #ddd;">
+											<%= image_tag(@object.avatar, class: "img-responsive", style: "height: auto; width: 100%; min-width: 100px; min-height: 100px;") %>
+										</div>
+							  	</div><!--.profile-photo-->
+							  </div>
+								<div class="col-md-9">
+									<h4 class="semi-bold capitalize text-black no-margin lh_28 mt10 mb0">
+										<%= @club.name %>
+									</h4>
+									<p class="fs_12 semi-bold text-muted mb5 mt5">
+										<% if @club.founded.present? %> 
+										Founded: <%= @club.founded %> 
+										<% end %>
+										
+										<% if @club.founded.present? %> 
+										","
+										<% end %>
+										
+										<% if @club.enrollment.present? %> 
+										Enrollment: <%= @club.enrollment %> 
+										<% end %>
+										
+										<% if @club.enrollment.present? %> 
+										","
+										<% end %>
+										
+										<% if @club.faculty.present? %> 
+										Faculty: <%= @club.faculty %> 
+										<% end %>
+										
+										<% if @club.faculty.present? %> 
+										"," 
+										<% end %>
+										
+										
+									</p> 
+									<p class="semi-bold fs_14 text-muted no-margin">
+										<% if @club.league_names.present? %>
+										  <i class="ion-university fs_20 text-primary mr5"></i>
+										  <%= @club.league_names %>
+										<% end %>
+									</p>
+								</div>
+							</div>
+						</div>
+						<hr class="light mt15 mb15"/>
+						<div class="card-body pl40 pr40">
+							<h6 class="semi-bold">
+								<i class="ion-information-circled text-indigo mr5"></i> About <%= @club.name %>
+							</h6>
+							<p class="fs_14 lh_18 text-muted mb20 mt10">
+								<%= @club.description %> No club description.
+							</p>
+							<hr clas="light"/>
+							<h6 class="upper mt0">
+								<small class="text-grey bold">contact information</small>
+							</h6>
+							<div class="clearfix">
+								<div class="row">
+									<div class="col-md-6">
+										<p class="semi-bold fs_14 text-muted no-margin">
+										<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
+											<%= @club.phone_number %> 
+										</p>
+										<p class="semi-bold fs_14 text-muted no-margin">
+											<i class="ion-monitor fs_20 text-primary mr5"></i>
+											<a href="<%= @club.website %>">Website</a>
+										</p>
+									</div>
+									<div class="col-md-6">
+										<p class="semi-bold fs_14 text-muted no-margin">
+											<i class="ion-email fs_20 text-primary mr5"></i>
+											<%= @club.email %>
+										</p>
+										<p class="semi-bold fs_14 text-muted no-margin">
+											<i class="ion-android-time fs_20 text-primary mr5"></i>
+											7:30AM - 5:00PM, M-F
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr class="light mt15 mb15"/>
+						<div class="card-heading pl40 pr40">
+							<p class="author lh_26">
+								<a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a> 
+							</p>
+							<p class="no-margin fs_14 text-muted">
+								<i class="ion-location"></i> <%#= @club.address_1 %>, <%#= @club.city %>, <%#= @club.state %>, <%#= @club.zip %>
+							</p>
+							<hr class="light mt10 mb5"/>
+						</div>
+						<div class="card-body pl40 pr40">
+							<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
+						</div>
+						<hr class="light mt15 mb15"/>
+						<div class="card-body pl40 pr40">
+							<% if @club.general_information_present? %>
+							<h6 class="upper text-muted bold mt0"><small>general information</small></h6>
+							<div class="clearfix">
+								<% if @club.number_of_students.present? %>
+								<p class="semi-bold fs_14 text-muted no-margin">
+									<i class="ion-university fs_20 text-primary mr5"></i>
+									Public School - <%= pluralize @club.number_of_students, "Student"  %>
+								</p>
+								<% end %>
+								<% if @club.motto.present? %>
+								<p class="semi-bold small fs_14 text-muted no-margin">
+									<i class="ion-quote fs_20 text-primary mr5"></i>
+									Motto - <%= @club.motto %>
+								</p>
+								<% end %>
+								<% if @club.colors.present? %>
+								<p class="semi-bold small fs_14 text-muted no-margin">
+									<i class="ion-speakerphone fs_20 text-primary mr5"></i>
+									<%= @club.colors %>
+								</p>
+								<% end %>
+								<% if @club.number_of_teams.present? %>
+								<p class="semi-bold small fs_14 text-muted no-margin">
+									<i class="ion-document-text fs_20 text-primary mr5"></i>
+									<%= pluralize @club.number_of_teams, "Sports Team"  %>
+								</p>
+								<% end %>
+								<% if @club.mascot.present? %>
+								<p class="semi-bold small fs_14 text-muted no-margin">
+									<i class="ion-flag fs_20 text-primary mr5"></i>
+									Mascot - <%= @club.mascot %>
+								</p>
+								<% end %>
+							</div>
+							<% end %>
+						</div>
+					</div><!--.col-md-6-->
+					<!-- My Schedule -->
+				</div>
+
+				<div class="col-md-12">
+					<div class="panel border-indigo box-shadow-ccc">
+						<div class="panel-heading">
+							<div class="panel-title">
+								<h6 class="semi-bold fs_14 mb0"><%= @club.name %></h6>
+								<h4 class="card-title">Our Leagues</h3>
+							</div>
+						</div><!--.panel-heading-->
+						<div class="panel-body without-padding">	
+							<ul class="list-material borderless">
+								<% @club.leagues.each do |league| %>
+									<li class="has-action-left has-action-right">
+										<a href="#" class="visible">
+											<div class="list-action-left">
+												<i class="ion-checkmark-circled icon-circle"></i>
+											</div>
+											<div class="list-content">
+												<span class="h6 bold"><%= league.name %></span>
+											</div>
+											<div class="list-action-right">
+												<%= link_to "View", league_path(league), class: "btn btn-primary pull-right mt10 btn-sm" %>
+											</div>
+										</a>
+									</li>
+									<li class="divider with-border no-margin no-padding">
+									</li>
+								<% end %>
+							</ul>
+						</div><!--.panel-body-->
+					</div><!--.panel-->
+				</div>
+			</div>
+
+
+
+			</div>
+		<div class="col-md-8 pt20">
+			
+
+			<div class="row">
+				<div class="col-md-6">
+					<!-- My teammates -->
+					<div class="col-md-12">
+						<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+							<div class="card-heading">
+								<h6 class="semi-bold fs_14 mb0"><%= @club.name %></h6>
+								<h3 class="card-title">Student-Athletes</h3>
+								<!-- <div class="card-subhead">
+								 <a href="#">124 Students</a>
+								</div> -->
+								<!--.card-subhead-->
+							</div><!--.card-heading-->
+							<div class="card-body bgcolor-light-grey">
+								<ul class="users">
+									<% @athletes.each do |user| %>
+									<li>
+										<a href="<%= user_path(user) %>" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
+											<%= image_tag user.avatar %>
+										</a>
+									</li>
+									<% end %>
+									
+									<% @userless_athletes.each do |user| %>
+									<li>
+										<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.first_name %> <%= user.last_name %>">
+											<%= image_tag user.avatar %>
+										</a>
+									</li>
+									<% end %>
+								</ul>
+							</div><!--.card-body-->
+							<div class="card-footer">
+								<ul>
+									<li><span class="mr5 fs_14"><%= pluralize [@athletes.count, @userless_athletes.count].sum, "Student-Athlete"  %></span></li>
+									<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
+								</ul>
+							</div><!--.card-footer-->
+						</div><!--.card-->
+					</div><!--.col-md-12-->
+					<!-- My teammates -->
+
+					<!-- My teams -->
+			    <%= render 'shared/about_tab_teams', teams: @teams %>
+					<!-- My teams -->
+
+					<!-- My teammates -->
+					<%= render 'shared/about_tab_fans' %>
+					
+				</div>
+        <div class="col-md-6">	
+      	<%= render 'shared/about_tab_media' %>
+        <%= render 'shared/about_tab_upcoming'%>
+
+				<div class="col-md-12">
+					<div class="panel border-indigo box-shadow-ccc">
+						<div class="panel-heading">
+							<div class="panel-title">
+									<h6 class="semi-bold fs_14 mb0"><%= @club.name %></h6>
+									<h4 class="card-title">Our Facilities</h3>
+								</div>
+						</div><!--.panel-heading-->
+						<div class="panel-body without-padding">	
+							<ul class="list-material borderless">
+								<% @facilities.each do |facility| %>
+									<li class="has-action-left has-action-right">
+										<a href="#" class="visible">
+											<div class="list-action-left">
+												<i class="ion-checkmark-circled icon-circle"></i>
+											</div>
+											<div class="list-content">
+												<span class="h6 bold"><%= facility.name %></span>
+											</div>
+											<div class="list-action-right">
+												<%= link_to "View", facility_path(facility), class: "btn btn-primary pull-right mt10 btn-sm" %>							
+											</div>
+										</a>
+									</li>
+									<li class="divider with-border no-margin no-padding">
+									</li>
+								<% end %>
+							</ul>
+						</div><!--.panel-body-->
+					</div><!--.panel-->
+				</div>
+
+				
+
+
+
+				
+				</div>
+			</div>
+
+		</div>
+	</div><!--.col-md-12-->
+	<!-- My Schedule -->
+</div>

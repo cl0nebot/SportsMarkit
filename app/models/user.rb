@@ -1,15 +1,15 @@
 class User < ActiveRecord::Base
   include Location
-  include PhotoOwner
+  include Images
   include Access
-  include Avatar
-  include Reusable
+  include Shared
   include ClassificationCount
   include EventDetail
-  include Link
+  include Common
 
   extend FriendlyId
   friendly_id :use_for_slug, use: [:slugged, :finders]
+  before_update :update_slug
   has_secure_password
   
   validates_presence_of :password, :on => :create
@@ -26,18 +26,18 @@ class User < ActiveRecord::Base
   after_update :password_changed?, :on => :update
   before_save :encrypt_password
   
+  has_many :roles, dependent: :destroy
+  
   # user profile
   has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile, :reject_if => :all_blank, :allow_destroy => true
   has_many :user_profile_pictures, dependent: :destroy
   accepts_nested_attributes_for :user_profile_pictures, :reject_if => :all_blank, :allow_destroy => true
 
-  has_many :fans, as: :fannable, dependent: :destroy
-  has_many :roles, as: :roleable, dependent: :destroy
   has_many :events, as: :eventable
   
   has_many :relationships, dependent: :destroy
-  has_many :teams, through: :relationships
+  has_many :teams, through: :relationships #TODO through roles
   accepts_nested_attributes_for :relationships, :reject_if => :all_blank, :allow_destroy => true
   
   has_many :athletic_directors, dependent: :destroy
@@ -50,17 +50,17 @@ class User < ActiveRecord::Base
   has_many :certifications, through: :certificates
   has_many :medias, as: :mediable
   
-  has_many :roles, dependent: :destroy
-  
-  
-  
   has_one :online_status
 
   def self.user_types
-    ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director"] 
+    ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director", "Club Director", "School Manager", "Team Manager"] 
     # ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director", "Tournament Director" ] 
     #["Athlete", "Coach", "Parent", "Athletic Director", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]  
     
+  end
+  
+  def minus_self
+    User.where.not(id: id)
   end
   
   def follows
@@ -77,10 +77,6 @@ class User < ActiveRecord::Base
   
   def all_events
     Event.where("(eventable_id = ? AND eventable_type = 'User') OR (id in (?))", id, attending_events)
-  end
-  
-  def next_event
-    all_events.first.nil? ? "No upcoming events" : all_events.first.title
   end
 
   def event_type_filters
@@ -137,6 +133,17 @@ class User < ActiveRecord::Base
       "#{first_name} #{last_name} #{existing_user.count}"
     else
       "#{first_name} #{last_name}"
+    end
+  end
+  
+  def update_slug
+    if (first_name_changed? || last_name_changed?)
+      existing_user = minus_self.where('first_name = ?', self.first_name).where('last_name = ?', self.last_name)
+      if existing_user.present?
+        update_column(:slug, "#{ApplicationController.helpers.to_slug(first_name, last_name, (existing_user.count + 1))}")
+      else
+        update_column(:slug, "#{ApplicationController.helpers.to_slug(first_name, last_name)}")
+      end
     end
   end
 
@@ -438,15 +445,6 @@ class User < ActiveRecord::Base
     end
   end
   
-  def athlete_relationships
-    
-  end
-  
-  
-  def coach_relationships
-    
-  end
-  
   def parent_relationships
     child_ids = ParentChild.where(parent_id: id, accepted: true).pluck(:child_id)
     relationships = Relationship.where(user_id: child_ids, accepted: true)
@@ -463,6 +461,10 @@ class User < ActiveRecord::Base
   
   def create_profile
     Profile.create(user_id: self.id, focus: [], specialties: [], skills: [], injuries: [], current_ailments: [])
+  end
+  
+  def pending_object?(classification, object)
+    Role.where(user_id: id, roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", status: classification)
   end
   
 end

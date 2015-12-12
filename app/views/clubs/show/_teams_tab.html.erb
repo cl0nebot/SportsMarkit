@@ -1,0 +1,78 @@
+<div id="teams" class="tab-pane pt20">
+	
+	<div class="row bgcolor-white box-shadow-ccc pt20 pr20 pl20 pb30">
+		<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
+			<h1 class="text-indigo no-margin bold"><%= @teams.count %></h1>
+			<h6 class="text-grey semi-bold no-margin "><%= (@teams.count > 1 or @teams.count == 0) ? "Teams" : "Team" %></h6>
+		</div>
+		<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
+			<h1 class="text-indigo no-margin bold"><%= @club.athletes.count + @club.userless_athletes.count %></h1>
+			<h6 class="text-grey semi-bold no-margin"><%= ((@club.athletes.count + @club.userless_athletes.count) > 1 or (@club.athletes.count + @club.userless_athletes.count) == 0) ? "Student-Athletes" : "Student-Athlete" %></h6>
+		</div>
+		<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
+			<h1 class="text-indigo no-margin bold"><%= @club.coaches.count + @club.userless_coaches.count %></h1>
+			<h6 class="text-grey semi-bold no-margin"><%= ((@club.coaches.count + @club.userless_coaches.count) > 1 or (@club.coaches.count + @club.userless_coaches.count) == 0) ? "Coaches" : "Coach" %></h6>
+		</div>
+		<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
+			<h1 class="text-indigo no-margin bold"><%= @club.managers.count + @club.userless_managers.count %></h1>
+			<h6 class="text-grey semi-bold no-margin"><%= ((@club.managers.count + @club.userless_managers.count) > 1 or (@club.managers.count + @club.userless_managers.count) == 0) ? "Team Managers" : "Team Manager" %></h6>
+		</div>
+		<div class="col-lg-2 col-md-4 col-sm-6 text-center">
+			<h1 class="text-indigo no-margin bold"><%= @club.trainers.count + @club.userless_trainers.count %></h1>
+			<h6 class="text-grey semi-bold no-margin"><%= ((@club.trainers.count + @club.userless_trainers.count) > 1 or (@club.trainers.count + @club.userless_trainers.count) == 0) ? "Athletic Trainers" : "Athletic Trainer" %></h6>
+		</div>
+		<div class="col-lg-2 col-md-4 col-sm-6 mt5">
+			<div class="well bgcolor-light-grey no-margin">
+				<div class="btn-group btn-block">
+					<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+					Select a Team <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<% @teams.each do |team| %>
+							<li>
+								<%= link_to team_path(team) do %>
+					  			<%= team.name %>
+					  		<% end %>
+					  	</li>
+						<% end %>
+					</ul>
+				</div><!--.btn-group-->
+			</div>
+		</div>
+	</div>
+
+	<hr/>
+
+	<div class="row">
+		<div class="col-lg-12">
+		<div class="row teams">
+			<%= render 'shared/team_rosters' %>
+		</div>
+	</div>
+</div>
+
+
+
+	<!-- <ul class="list-material">
+		<% @teams.each do |team| %>
+			<li class="has-action-left has-action-right">
+				<a href="#" class="visible">
+					<div class="list-action-left">
+						<i class="ion-university icon-circle"></i>
+					</div>
+					<div class="list-content">
+						<span class="title">
+							<%= link_to team.name, "/teams/#{team.slug}" %>
+						</span>
+						<span class="caption">Basketball</span>
+					</div>
+					<div class="list-action-right">
+						<span class="top">15 min</span>
+						<i class="ion-android-done bottom"></i>
+					</div>
+				</a>
+			</li>
+		<% end %>
+	</ul> -->
+</div>
+<!--#teams.tab-pane-->

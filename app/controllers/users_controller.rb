@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  #before_action :authenticate_user!, only: %w[index show edit update destroy plans subscriptions]
-  before_action :find_user, only: %w[show edit update destroy store]
+  before_action :authenticate_user!, only: %w[index show edit update destroy plans subscriptions]
+  #before_action :correct_user!, only: %w[edit update]
+  before_action :find_user, only: %w[show edit destroy store]
   
   def index
     @users = User.includes(:profile, :user_profile_pictures).all
@@ -45,13 +46,22 @@ class UsersController < ApplicationController
     @object = @user
     @picture =  @object.photos.build
     @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
+    @videos = @object.medias.where(category: "Video")
+    @articles = @object.medias.where(category: "Article")
   end
   
   def update
+    @user = User.find_by_slug!(request.referrer.split("users/").last.split("/").first)
+    @user_profile_picture =  UserProfilePicture.where(user_id: @user.id).last
+    @user_profile_pictures = UserProfilePicture.where(user_id: @user.id)
+    @object = @user
+    @videos = @object.medias.where(category: "Video")
+    @articles = @object.medias.where(category: "Article")
+    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
     unless params[:user][:password].present?
       @profile = @user.profile
-      if @user.update_attributes(user_params)
-        @user.relationships.update_all(mobile_phone_number: @user.mobile_phone_number)
+      if @user.update_attributes!(user_params)
+        @user.roles.update_all(mobile_phone_number: @user.mobile_phone_number)
         flash[:success] = "Updated successfully."
         respond_to do |format|
           format.html {redirect_to :back}

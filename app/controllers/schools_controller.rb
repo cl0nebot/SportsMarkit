@@ -1,13 +1,13 @@
 class SchoolsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :upgrade]
-  before_action :authenticate_pending_athletic_director!, only: [:upgrade]
-  before_action :authenticate_athletic_director!, only: [:edit, :update, :destroy]
-  before_action :find_school, except: [:index, :new, :create, :upgrade, :upgrade_school, :plan]
+  before_action :correct_user!, only: [:edit, :destroy, :upgrade]
+  before_action :find_school, except: [:index, :new, :create, :upgrade, :upgrade_school, :plan, :update]
   
   
   def index
     @schools = School.all
-    @school = School.new
+    @object = School.new
+    @address = @object.build_address
     respond_to do |format|
       format.js
       format.html
@@ -15,7 +15,8 @@ class SchoolsController < ApplicationController
   end
   
   def new
-    @school = School.new
+    @object = School.new
+    @address = @object.build_address
   end
   
   def create
@@ -30,15 +31,11 @@ class SchoolsController < ApplicationController
   def show
     @object = @school
     @teams = @object.teams
-    @athletes = @object.athletes
-    @coaches = @object.athletes
     shared_variables
     @manager_and_trainers = @object.manager_and_trainers
     @userless_managers_and_trainers = @object.userless_managers_and_trainers
     @admins = @object.admins
     @userless_admins = @object.userless_admins
-    @people = @object.people
-    @userless_people = @object.userless_people
     @facilities = @object.facilities
     @certifications = @object.school_certifications
   end
@@ -51,13 +48,25 @@ class SchoolsController < ApplicationController
   end
   
   def update
-    if @school.update_attributes(school_params)
+    @object = School.find_by_slug!(request.referrer.split("schools/").last.split("/").first)
+    @profile_picture =  ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s).last
+    @profile_pictures = ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s)
+    @videos = @object.medias.where(category: "Video")
+    @articles = @object.medias.where(category: "Article")
+    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
+    if @object.update_attributes(school_params)
       respond_to do |format|
+        format.html {redirect_to :back}
         format.js
-        format.html { redirect_to :back }
+        format.json { respond_with_bip(@object) } 
       end
     else
-      render :edit
+      respond_to do |format|
+        format.html {redirect_to :back}
+        format.js
+        format.json { respond_with_bip(@object) } 
+      end
+      
     end
   end
   
@@ -123,7 +132,7 @@ class SchoolsController < ApplicationController
   protected
   
   def school_params
-    params.require(:school).permit(:name, :classification, :category, :abbreviation, :address_1, :address_2, :city, :state, :zip, :zip_ext, :latitude, :longitude, :gmaps, :phone_number, :email, :website, :slug, :stripe_token, :facebook, :twitter, :linkedin, :pinterest, :instagram, :foursquare, :youtube, :founded, :enrollment, :faculty)  
+    params.require(:school).permit(:name, :classification, :category, :abbreviation, :phone_number, :email, :website, :slug, :stripe_token, :facebook, :twitter, :linkedin, :pinterest, :instagram, :foursquare, :youtube, :founded, :enrollment, :faculty, {address_attributes: [:id, :addressable_id, :addressable_type, :street_1, :street_2, :city, :state, :country, :postcode, :suite, :nickname, :default, :county, :latitude, :longitude, :gmaps]})  
   end
   
   def find_school

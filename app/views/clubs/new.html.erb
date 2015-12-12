@@ -1,0 +1,100 @@
+<div class="content">
+
+	<br/>
+
+	<div class="row">
+		<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+			<div class="panel box-shadow-ccc">
+				<div class="panel-header bg-cyan">
+					<br/>
+					<h5 class="text-right text-white semi-bold">Add or Create a New Club
+						<i class="ion-plus-circled margin-right-10 margin-left-10 text-white"></i>
+					</h5>
+					<hr class="margin-top-0"/>
+				</div>
+
+				<%= form_for Club.new, url: teams_path, html: {class: "form-horizontal parsley-validate", id: 'new-club-form', method: :post} do |f| %>
+
+				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
+						 	<div class="row text-center mb20">
+								<div class="col-md-12">
+									<h3 class="semi-bold text-primary">Setup a new club</h3>
+									<h4>What sport?</h4>
+								</div>
+							</div>
+							<div class="row example-row">
+								<div class="col-sm-12 well margin-bottom-0">
+									<div class="row">
+										<%#= f.select :sport, Sport.pluck(:sport), {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => true, data:{live_search: 'true', width: '100%'}} %>
+										
+										<div class="col-md-6">
+											<%#= f.select :sport, Sport.pluck(:sport), { :include_blank => 'Select Sport' }, {:class => 'selecter bg-white margin-bottom-0', :required => true, data:{ live_search: 'true', width: '100%'}} %>
+										</div>
+										<div class="col-md-6">
+											<%#= f.select :classification, [ 'School District', 'Recreational: Adult', 'Recreational: Youth'], {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
+										</div>
+									</div>
+								</div>
+							</div><!--.row-->
+						</div>
+					</div>
+				</div>
+
+				
+				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+					<div class="panel-body padding-right-40 padding-left-40">
+
+						<h5 class="semi-bold text-muted text-center">Simply fill out all of the information below to create a new team.</h5>
+						<br/>
+							
+						<br/>
+						<h4 class="text-blue semi-bold">
+							<i class="ion-ios-location margin-right-10"></i> General Info
+						</h4>
+						<br/>
+						<div class="row example-row">
+							<div class="col-md-12">
+								<h4>Name</h4>
+							</div>
+							<div class="col-md-12">
+								<div class="inputer">
+									<div class="input-wrapper">
+										<%= f.text_field :name, type: "text", class: "form-control", placeholder: "", "data-parsley-required" => "true", "data-parsley-length" => "[2, 50]" %>
+									</div>
+								</div>
+							</div><!--.col-md-9-->
+						</div><!--.row-->
+					</div>
+				</div>
+				
+				
+               <%= render 'shared/new_address', f: f %>
+				
+					<br/>
+					<%= f.submit "Awesome. Let's create a club!", class: "btn btn-blue btn-lg btn-block btn-ripple" %>
+					<br/>
+				</div>
+				
+			<% end %>
+		</div>
+	</div>  
+</div>
+
+
+	<!-- PLUGINS INITIALIZATION AND SETTINGS -->
+	<script src="../../assets/globals/scripts/forms-validations-parsley.js"></script>
+	<!-- END PLUGINS INITIALIZATION AND SETTINGS -->
+
+	<!-- BEGIN INITIALIZATION-->
+	<script>
+	$(document).ready(function () {
+		Pleasure.init();
+		Layout.init();
+		FormsValidationsParsley.init();
+	});
+	</script>
+	<!-- END INITIALIZATION-->
+
+

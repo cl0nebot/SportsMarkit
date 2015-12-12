@@ -1,8 +1,11 @@
 class Facility < ActiveRecord::Base
   extend FriendlyId
-  include PhotoOwner
+  include Images
   include EventDetail
-  include Avatar
+  include Common
+  include Map
+  include Shared
+  include Access
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable
@@ -10,57 +13,45 @@ class Facility < ActiveRecord::Base
   belongs_to :facility_owner, polymorphic: true
   belongs_to :school
   
-  has_many :fans, as: :fannable, dependent: :destroy
+  has_many :roles, as: :roleable, dependent: :destroy
+  has_many :userless_roles, as: :userless, dependent: :destroy
+  
   has_many :event_facilities
   has_many :events, through: :event_facilities
   #has_many :events, as: :eventable
   has_many :team_facilities
-  has_many :medias, as: :mediable
+  before_update :update_slug
   
-  def gmaps4rails_address
-  #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
-    if self.school.present?
-      "#{self.school.address_1}, #{self.school.city}, #{self.school.state}"
-    else
-      "#{self.address_1}, #{self.city}, #{self.state}" 
-    end
+  def minus_self
+    Facility.where.not(id: id)
   end
   
   def use_for_slug
     existing_facility = Facility.where('slug = ?', self.slug)
-    school_present = self.school.present?
+    owner_name = self.facility_owner_type.present? ? self.facility_owner_type.constantize.find(self.facility_owner_id).name : nil
     
     if existing_facility.present?
-      if school_present
-        "#{self.school.name} #{name} #{self.city_and_state} #{existing_facility.count}"
-      else
-        "#{name} #{self.city_and_state} #{existing_facility.count}"
-      end
+      "#{owner_name} #{name} #{self.address.city_and_state} #{existing_facility.count}"
     else
-      if school_present
-        "#{self.school.name} #{name} #{self.city_and_state}"
+      "#{owner_name} #{name} #{self.address.city_and_state}"
+    end
+  end
+  
+  def update_slug
+    owner_name = self.facility_owner_type.present? ? self.facility_owner_type.constantize.find(self.facility_owner_id).name : nil
+    if (name_changed? || address.city_changed? || address.state_changed?)
+      existing_facility = self.minus_self.where('slug = ?', self.slug)
+      if existing_facility.present?
+        update_column(:slug, "#{ApplicationController.helpers.to_slug(owner_name, name, address.city_and_state, existing_facility.count)}")
       else
-        "#{name} #{self.city_and_state}"
+        update_column(:slug, "#{ApplicationController.helpers.to_slug(owner_name, name, address.city_and_state)}")
       end
     end
-    
-  end
-  
-  def city_and_state
-    "#{city}-#{state}"
-  end
-  
-  def full_address
-    
   end
   
   def all_teams
     team_ids = TeamFacility.where(facility_id: id).pluck(:team_id)
     teams = Team.where(id: team_ids)
-  end
-
-  def all_events
-    events
   end
   
   def people_that_use_facility
@@ -70,33 +61,8 @@ class Facility < ActiveRecord::Base
     users = User.where(id: user_ids)
   end
   
-  def self.facility_names
-    Facility.pluck(:name)
-  end
-  
-  def proper_name
-    if facility_owner_id.nil?
-      name
-    else
-      "#{facility_owner_type.constantize.find(facility_owner_id).name} #{name}"
-    end
-  end
-  
-  def self.facility_json
-    array = []
-    Facility.all.each do |facility|
-      array << {name: facility.proper_name, link: Rails.env.production? ? "http://www.sportsmarkit.com/facilities/#{facility.slug}" : "http://localhost:3000/facilities/#{facility.slug}"}
-    end
-    array
-  end
-  
-  def image
-    if Photo.where(photo_owner_id: id, photo_owner_type: "Facility").present?
-      Photo.where(photo_owner_id: id, photo_owner_type: "Facility").last.image
-    else
-      "http://www.carlostoxtli.com/wp-content/uploads/2014/05/placeholder15.png"
-    end
-  end
+
+
   
   def self.type_with_hyphen(type)
     type.downcase.gsub(" ","-")

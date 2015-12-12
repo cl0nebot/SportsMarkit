@@ -458,4 +458,36 @@ module ApplicationHelper
   def city_with_state(city)
     "#{city}, #{state_abbreviation(city)}"
   end
+  
+  def add_or_remove_facility_button(object_type, object_id, facility_id)
+    unless object_type.constantize.find(object_id).connects.where(connectable_type: "Facility", connectable_id: facility_id).present?      
+      render partial: 'facility_links/add', locals => {facility: facility, object: object}
+    else
+      connection = object_type.constantize.find(object_id).connects.where(connectable_type: "Facility", connectable_id: facility_id).last
+      render partial: 'facility_links/remove', locals => {connection: connection}
+    end
+  end
+  
+  def join_object_button(current_user, object_type, object_id)
+	  if current_user
+			 if current_user.roles.where(roleable_type: object_type, roleable_id: object_id, status: "Active").present? 
+         render partial: 'roles/member_button'
+       elsif current_user.roles.where(roleable_type: object_type, roleable_id: object_id, status: "Pending").present? 
+			   render partial: 'roles/pending_button'
+       elsif current_user.roles.where(roleable_type: object_type, roleable_id: object_id).empty? 
+			   render partial: 'roles/join_button'
+			 end 
+	  end
+  end
+  
+  def to_slug(*strings)
+    array = []
+     strings.each do |string|
+       array << string.to_s.downcase unless string.nil?
+     end
+    array.join(" ").downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '').gsub("- ", "").gsub("--", "-")
+  end
+    
+  
+
 end

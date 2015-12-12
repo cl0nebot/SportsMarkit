@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120013039) do
+ActiveRecord::Schema.define(version: 20151204045151) do
+
+  create_table "addresses", force: true do |t|
+    t.integer  "addressable_id"
+    t.string   "addressable_type"
+    t.string   "street_1"
+    t.string   "street_2"
+    t.string   "city"
+    t.string   "county"
+    t.string   "state"
+    t.string   "country"
+    t.string   "postcode"
+    t.string   "suite"
+    t.boolean  "default"
+    t.string   "nickname"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.boolean  "gmaps"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"

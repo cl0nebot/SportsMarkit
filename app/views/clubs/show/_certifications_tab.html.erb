@@ -1,0 +1,23 @@
+<% if false %>
+	<!--#events.tab-pane-->
+	<% if AthleticDirector.where(user_id: current_user.id, club_id: @club.id).present? %>
+		<!-- certifications -->
+		<div id="certifications" class="tab-pane">
+		
+			<% @certifications.each do |cert| %>
+		
+				certification: <%= cert.certification.name %><br>
+				issuer: <%= cert.certification.issuer %><br>
+				user: <%= cert.user.full_name %><br>
+				expiration: <%= cert.expiration %><br>
+				<div id="notification-link">
+				 <%= render 'notifications/notification_link', cert: cert %>
+			    </div>
+				<br><br>
+
+			<% end %>
+		
+		</div>
+		<!--#certfications.tab-pane-->
+	<% end %>
+<% end %>

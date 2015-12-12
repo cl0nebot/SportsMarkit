@@ -1,26 +1,25 @@
 class Team < ActiveRecord::Base
   extend FriendlyId
-  include PhotoOwner
-  include Reusable
+  include Images
+  include Shared
   include Roster
   include EventDetail
-  include Avatar
-  include Link
+  include Common
+  include Access
+  include Map
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   
-  has_many :fans, as: :fannable, dependent: :destroy
+  belongs_to :teamable, polymorphic: true
+  
   has_many :roles, as: :roleable, dependent: :destroy
   has_many :userless_roles, as: :userless, dependent: :destroy
-  belongs_to :school
+ 
+  #belongs_to :school
   has_many :events, as: :eventable
   has_many :team_leagues
-  has_many :medias, as: :mediable
-  has_many :facility_links, as: :facilitatable
   
-  has_many :relationships
-  has_many :userless_relationships
-  has_many :users, through: :relationships
+  has_many :users, through: :roles
   
   has_many :chatrooms
   
@@ -28,89 +27,48 @@ class Team < ActiveRecord::Base
   
   has_many :leagues, through: :team_leagues
   
-  
-  
-  
+  before_update :update_slug
+    
   def use_for_slug
     existing_team = Team.where('slug = ?', self.slug)
     if existing_team.present?
-      "#{name} #{self.school.name if self.school} #{sport} #{existing_team.count}"
+      "#{name} #{self.teamable.name if self.teamable.present?} #{sport} #{self.address.city if self.address.present?} #{existing_team.count}"
     else
-      "#{name} #{self.school.name if self.school} #{sport}"
+      "#{name} #{self.teamable.name if self.teamable.present?} #{sport} #{self.address.city if self.address.present?} "
     end
   end
   
-  def is_premium?
-    if school_id.present?
-      if school.premium?
-        true
+  def update_slug
+    if (name_changed? || address.city_changed?)
+      existing_team = self.minus_self.where('slug = ?', self.slug)
+      teamable = self.teamable.present? ? self.teamable.name : nil
+      if existing_team.present?
+        update_column(:slug, "#{ApplicationController.helpers.to_slug(name, teamable, sport, address.city, existing_team.count)}")
       else
-        false
-      end
-    else
-      if premium?
-        true
-      else
-        false
+        update_column(:slug, "#{ApplicationController.helpers.to_slug(name, teamable, sport, address.city)}")
       end
     end
   end
   
-  def facilities
-    team_facilities = TeamFacility.where(team_id: id)
-    facility_ids = team_facilities.pluck(:facility_id)
-    Facility.where(id: facility_ids)
+  def minus_self
+    Team.where.not(id: id)
   end
   
-  def leagues
-    team_leagues = TeamLeague.where(team_id: id)
-    league_ids = team_leagues.pluck(:league_id)
-    League.where(id: league_ids)
-  end
-
-  def pending_members
-    relationships.where(accepted: nil, rejected: nil)
-  end
-  
-  
-  def accepted_athlete_relationships
-    rels = Relationship.where(team_id: id, participant: true, accepted: true)
-    userless_rels = UserlessRelationship.where(team_id: id, participant: true)
-    rels + userless_rels
-  end
-  
-  def accepted_coach_relationships
-    rels = Relationship.where(team_id: id, head: true, accepted: true)
-    userless_rels = UserlessRelationship.where(team_id: id, head: true)
-    rels + userless_rels
-  end
-  
-  def accepted_trainer_relationships
-    rels = Relationship.where(team_id: id, trainer: true, accepted: true)
-    userless_rels = UserlessRelationship.where(team_id: id, trainer: true)
-    rels + userless_rels
-  end
-  
-  def accepted_manager_relationships
-    rels = Relationship.where(team_id: id, manager: true, accepted: true)
-    userless_rels = UserlessRelationship.where(team_id: id, manager: true)
-    rels + userless_rels
-  end
   
   def self.with_schools
-    Team.where.not(school_id: nil)
+    Team.where(teamable_type: "School")
   end
   
   def self.school_team_names
     array = []
     Team.with_schools.each do |team|
-      array << "#{team.school.name} #{team.name}"
+      array << "#{team.teamable.name} #{team.name}"
     end
     array
   end
 
   def self.without_schools
-    Team.where(school_id: nil)
+    Team.where(teamable_type: "Club")
   end
 
   def self.non_school_team_names
@@ -120,51 +78,13 @@ class Team < ActiveRecord::Base
     end
     array
   end
-
-  def self.team_names
-    self.school_team_names + self.non_school_team_names
-  end
-  
-  def self.team_json
-    array = []
-    Team.all.each do |team|
-      array << {name: team.proper_name, link: Rails.env.production? ? "http://www.sportsmarkit.com/teams/#{team.slug}" : "http://localhost:3000/teams/#{team.slug}"}
-    end
-    array
-  end
-  
-  
-  def city_state
-    if school_id.present?
-      comma = (school.city.present? && school.state.present?) ? "," : ""
-      "#{school.city}#{comma} #{school.state}"  
-    else
-      comma = (city.present? && state.present?) ? "," : ""
-      "#{city}#{comma} #{state}"
-    end
-  end
-  
+    
   def with_school_name
-    "#{school.name} #{name}"
+    "#{teamable.name} #{name}"
   end
   
-  def proper_name
-    if school_id.present?
-      with_school_name
-    else
-      name
-    end
-  end
   
-  def image
-    if Photo.where(photo_owner_id: id, photo_owner_type: "Team").present?
-      Photo.where(photo_owner_id: id, photo_owner_type: "Team").last.image
-    else
-      "http://cache3.asset-cache.net/gc/187840132-soccer-team-celebrates-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=ZQZzMJ8a0ONoFbdvawrO3ZhmEQ83NvPgJ9Rxm5hkoQw%3d"
-    end
-  end
-  
-  def is_athletic_director?(user)
+  def is_athletic_director?(user) #TODO remove this
     if school.present?
       school.is_athletic_director?(user)
     else
@@ -197,14 +117,6 @@ class Team < ActiveRecord::Base
   
   def self.type_with_hyphen(type)
     type.downcase.gsub("recreational: ","").gsub(" ","-")
-  end
-  
-  def self.classifications
-    school_ids = Team.all.pluck(:school_id).compact.uniq
-    classifications = School.where(id: school_ids).pluck(:classification).compact.uniq
-    categories = School.where(id: school_ids).pluck(:category).compact.uniq
-    more = Team.all.pluck(:classification).compact.uniq
-    classifications + categories + more
   end
   
   def self.count_for_classification(classification)

@@ -1,0 +1,11 @@
+<%= render 'shared/background_photo_tab', photo_owner: @school %>
+
+<div class="bg-overlay"></div>
+<%= render "shared/bg_edit" %>
+
+<div class="row">
+	<div class="col-sm-6">
+	  <%= render 'shared/upcoming_event', object: @school %>
+	</div><!--.col-->
+	
+</div><!--.row-->

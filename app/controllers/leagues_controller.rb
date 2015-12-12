@@ -1,12 +1,16 @@
 class LeaguesController < ApplicationController
-  before_action :find_league, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user!, only: [:edit]
+  before_action :find_league, only: [:show, :edit, :destroy]
   
   def index
     @leagues = League.all
+    @object = League.new
+    @address = @object.build_address 
   end
   
   def new
-    @league = League.new
+    @object = League.new
+    @address = @object.build_address 
   end
   
   def create
@@ -14,7 +18,7 @@ class LeaguesController < ApplicationController
     if @league.save
       if current_user
         unless current_user.admin?
-          LeagueManager.create(user_id: current_user.id, league_id: @league.id)
+          Role.create(user_id: current_user.id, roleable_type: "League", roleable_id: @league.id, role: "League Manager", status: "Active")
         end
 			end
       redirect_to @league
@@ -26,15 +30,11 @@ class LeaguesController < ApplicationController
   def show
     @object = @league
     shared_variables
-    @picture =  @object.photos.build
     @teams = @league.teams
-    @athletic_directors = @league.athletic_directors
     @manager_and_trainers = @league.manager_and_trainers
     @userless_managers_and_trainers = @league.userless_managers_and_trainers
     @admins = @league.admins
     @userless_admins = @league.userless_admins
-    @people = @league.people
-    @userless_people = @league.userless_people
     @facilities = @league.used_facilities
   end
   
@@ -47,10 +47,25 @@ class LeaguesController < ApplicationController
   end
   
   def update
-    if @league.update_attributes(league_params)
-      redirect_to :back
+    @object = League.find_by_slug!(request.referrer.split("leagues/").last.split("/").first)
+    @profile_picture =  ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s).last
+    @profile_pictures = ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s)
+    @videos = @object.medias.where(category: "Video")
+    @articles = @object.medias.where(category: "Article")
+    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
+    if @object.update_attributes(league_params)
+      respond_to do |format|
+        format.html {redirect_to :back}
+        format.js
+        format.json { respond_with_bip(@object) } 
+      end
     else
-      render 'edit'
+      respond_to do |format|
+        format.html {redirect_to :back}
+        format.js
+        format.json { respond_with_bip(@object) } 
+      end
+      
     end
   end
   
@@ -60,7 +75,7 @@ class LeaguesController < ApplicationController
   end
   
   def managers
-    @league_managers = LeagueManager.all
+    @league_managers = Role.where(roleable_type: "League", roleable_id: @league.id, role: "League Manager", status: "Active")
   end
   
   protected
@@ -70,7 +85,7 @@ class LeaguesController < ApplicationController
   end
   
   def league_params
-    params.require(:league).permit({:sport_ids => []}, :name, :description, :sport, :address_1, :address_2, :city, :state, :zip, :zip_ext, :latitude, :longitude, :gmaps, :slug, :classification, :category, :facebook, :twitter, :linkedin, :pinterest, :instagram, :youtube, :phone_number)  
+    params.require(:league).permit({:sport_ids => []}, :name, :description, :sport, :website, :emails, :slug, :classification, :category, :facebook, :twitter, :linkedin, :pinterest, :instagram, :youtube, :phone_number, {address_attributes: [:id, :addressable_id, :addressable_type, :street_1, :street_2, :city, :state, :country, :postcode, :suite, :nickname, :default, :county, :latitude, :longitude, :gmaps]})  
   end
   
   

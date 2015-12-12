@@ -1,0 +1,79 @@
+<%= link_to school_path(school) do %>
+
+	<div class="col-md-3 col-lg-2 col-sm-6 element-item <%= school.category_and_classification %> all" data-category="<%= school.category_and_classification %> all">
+	    <div class="card card-user card-clickable card-clickable-over-content">
+	      <div class="card-heading heading-full">
+			  <%#= image_tag school.main_photo, size: "428x150" %>
+	        <div class="user-image sample-member9" style="background: url('<%= school.avatar %>');"></div>
+
+	        <%= link_to edit_school_path(school) do %>
+		        <div class="clickable-button">
+		          <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-gear-b"></i></a>
+		        </div>
+		    	<% end %>
+
+	      </div><!--.card-heading-->
+
+	      <div class="card-body">
+
+	        <div style="height: 40px; position: relative;">
+	        	<h4 class="card-title capitalize fs_16 lh_20 absolute bottom bold">
+			        <%= truncate(school.name, length: 43) %>
+		        </h4>
+		      </div>
+
+	        <%= school.description	 %>
+	        <hr class="light no-margin mb5 mt5"/>
+
+	        <div class="subhead">
+	          <p class="mb0 fs_12">
+		          <span class="text-muted">
+		            <i class="ion-map mr5"></i> 
+		            <%= school.city.present? ? "#{school.city}, #{school.state}" : "NA" %>
+		          </span>
+		          <span class="text-muted">
+		            <i class="ion-ios-telephone mr5"></i> 
+		            <%= school.phone_number.present? ? school.phone_number : "NA" %>
+		          </span>
+		          <span class="text-muted">
+		            <i class="ion-android-desktop mr5"></i> 
+		            <% if school.website.present? %>
+		            	<a href="<%= school.website %>" class="text-muted">School Website</a>
+		            <% else %>
+		            	 NA
+		            <% end %>
+		            
+		          </span>
+		        </p>
+		        <hr class="light no-margin mb5 mt5"/>
+	          <!-- <p class="text-muted no-margin">
+	          	<%#= link_to school.website do %>
+	          		Website
+	          	<%# end %>
+	          	<%#= school.phone_number %>
+	          </p> -->
+	          <% if current_user %>
+	  		  		<% if current_user.admin? %>
+	  		    		<%= link_to new_school_team_path(school), class: "btn btn-primary button-striped button-full-striped btn-ripple btn-xs fs_12 mt10" do %>
+	  		    			<i class="ion-plus-circled"></i> Add Team
+	  		    			<span class="ripple animate"></span>
+	  		    		<% end %>
+	  		  		<% end %>
+  		  		<% end %>
+
+	         
+	        </div>
+	      </div><!--.card-body-->
+
+	     <!--  <div class="card-footer">
+	        <%#= link_to "Delete", school, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "btn btn-orange btn-xs" %>
+			
+	      </div> --><!--.card-footer-->
+
+	    </div><!--.card-->
+  	</div><!--.col-md-4-->
+<% end %>
+
+
+
+<%#= link_to school.name, school %>

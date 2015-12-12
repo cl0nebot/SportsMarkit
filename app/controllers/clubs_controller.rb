@@ -1,8 +1,7 @@
 class ClubsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :upgrade]
-  #before_action :authenticate_pending_athletic_director!, only: [:upgrade]
-  #before_action :authenticate_athletic_director!, only: [:edit, :update, :destroy]
-  before_action :find_club, except: [:index, :new, :create, :upgrade, :upgrade_club, :plan]
+  before_action :correct_user!, only: [:edit, :destroy, :upgrade]
+  before_action :find_club, except: [:index, :new, :create, :upgrade, :upgrade_club, :plan, :update]
   
   
   def index
@@ -15,7 +14,8 @@ class ClubsController < ApplicationController
   end
   
   def new
-    @club = Club.new
+    @object = Club.new
+    @address = @object.build_address
   end
   
   def create
@@ -30,33 +30,42 @@ class ClubsController < ApplicationController
   def show
     @object = @club
     @teams = @club.teams
-    @athletes = @club.athletes
     shared_variables
     @manager_and_trainers = @club.manager_and_trainers
     @userless_managers_and_trainers = @club.userless_managers_and_trainers
     @admins = @club.admins
     @userless_admins = @club.userless_admins
-    @people = @club.people
-    @userless_people = @club.userless_people
     @facilities = @club.facilities
-    @certifications = @club.school_certifications
+    @certifications = @club.club_certifications
   end
   
   def edit
     @object = @club
-    @picture =  @club.photos.build
+    @picture =  @object.photos.build
     @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
     profile_picture_insert
   end
   
   def update
-    if @club.update_attributes(club_params)
+    @object = Club.find_by_slug!(request.referrer.split("clubs/").last.split("/").first)
+    @profile_picture =  ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s).last
+    @profile_pictures = ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s)
+    @videos = @object.medias.where(category: "Video")
+    @articles = @object.medias.where(category: "Article")
+    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
+    if @object.update_attributes(club_params)
       respond_to do |format|
+        format.html {redirect_to :back}
         format.js
-        format.html { redirect_to :back }
+        format.json { respond_with_bip(@object) } 
       end
     else
-      render :edit
+      respond_to do |format|
+        format.html {redirect_to :back}
+        format.js
+        format.json { respond_with_bip(@object) } 
+      end
+      
     end
   end
   
@@ -122,10 +131,10 @@ class ClubsController < ApplicationController
   protected
   
   def club_params
-    params.require(:club).permit(:name, :classification, :category, :abbreviation, :address_1, :address_2, :city, :state, :zip, :zip_ext, :latitude, :longitude, :gmaps, :phone_number, :email, :website, :slug, :stripe_token, :facebook, :twitter, :linkedin, :pinterest, :instagram, :foursquare, :youtube, :founded, :enrollment, :faculty)  
+    params.require(:club).permit(:name, :classification, :category, :abbreviation, :phone_number, :email, :website, :slug, :stripe_token, :facebook, :twitter, :linkedin, :pinterest, :instagram, :foursquare, :youtube, :founded, :enrollment, :faculty, {address_attributes: [:id, :addressable_id, :addressable_type, :street_1, :street_2, :city, :state, :country, :postcode, :suite, :nickname, :default, :county, :latitude, :longitude, :gmaps]})  
   end
   
-  def find_school
+  def find_club
     @club = Club.friendly.find(params[:id])
   end
 end

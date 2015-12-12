@@ -1,0 +1,251 @@
+<div class="content">
+	<div class="page-header full-content mb0">
+		<div class="row">
+			<div class="col-sm-5">
+				 <div class="logo text-white">
+			          <%= image_tag("icons/flag.png", height: "15", class: "margin-right-5", style: "margin-top: -5px; width: 15px;") %>
+			          SportsMarkit
+		        </div><!--.logo-->
+	        	<h1>Schools <small>(<%= School.count %>)</small></h1>
+			</div><!--.col-->
+			<div class="col-sm-6">
+				<ol class="breadcrumb">
+					<li><a href="/"><i class="ion-home"></i></a></li>
+					<li><a href="#" class="active">All schools</a></li>
+				</ol>
+			</div><!--.col-->
+			<div class="col-sm-1 text-right">
+				<a class="btn btn-floating btn-pink" data-toggle="modal" data-target="#panel-new-school">
+					<i class="ion-android-add"></i>
+				</a>
+			</div>
+		</div><!--.row-->
+	</div><!--.page-header-->
+
+	<div class="col-md-2 pt60">
+      <div class="row">
+        <div class="col-md-11 button-group filters-button-group affix" style="width: 14%;">
+            <h6 class="bold text-muted no-margin">
+              <span class="ion-funnel text-indigo mr5"></span>
+              View by Type
+            </h6>
+            <ul id="filters" class="index-filters text-muted mt20">
+
+              <li>
+                <button data-filter=".all" class="btn btn-white b-rad-4 btn-sm btn-block">
+                  <span class="filter">All</span> 
+                  <span class="count"><%= School.all.count %></span>
+                </button>
+              </li>
+              <li>
+               <button data-filter=".high-school" class="btn btn-white b-rad-4 btn-sm btn-block">
+                  <span class="filter">High-Schools</span> 
+                  <span class="count"><%= School.high_school_count %></span>
+                </button>
+              </li>
+              <li>
+                <button data-filter=".middle-school" class="btn btn-white b-rad-4 btn-sm btn-block">
+                  <span class="filter">Middle Schools</span> 
+                  <span class="count"><%= School.middle_school_count %></span>
+                </button>
+              </li>
+               <li>
+                <button data-filter=".elementary, .alkaline-earth" class="btn btn-white b-rad-4 btn-sm btn-block">
+                  <span class="filter">Elementary Schools</span> 
+                  <span class="count"><%= School.elementary_school_count %></span>
+                </button>
+              </li>
+              <li>
+                <button data-filter=".private" class="button is-checked btn btn-white b-rad-4 btn-sm btn-block">
+                  <span class="filter">Private Schools</span> 
+                  <span class="count"><%= School.private_school_count %></span>
+                </button>
+              </li>
+              <li>
+                <button data-filter=".public" class="btn btn-white b-rad-4 btn-sm btn-block">
+                  <span class="filter">Public Schools</span> 
+                  <span class="count"><%= School.public_school_count %></span>
+                </button>
+              </li>
+              <li>
+                <button data-filter=".charter" class="btn btn-white b-rad-4 btn-sm btn-block">
+                  <span class="filter">Charter Schools</span> 
+                  <span class="count"><%= School.charter_school_count %></span>
+                </buton>
+              </li>
+            </ul> 
+        </div>
+        
+      </div>
+    </div>
+    <div class="bg-muted col-md-10" style="background: #fff; margin-left: 0px; border-left: 1px solid #eee; padding: 20px 30px; min-height: 1000px;">
+
+      <div class="row">
+        
+        <div class="col-md-6 pt40">
+          <div class="inputer">
+            <div class="input-wrapper">
+              <!-- <h6 class="text-indigo bold mb10">
+                <span class="ion-search text-indigo mr5"></span> Search Our Sports Community
+              </h6> -->
+              <input type="text" class="pb20 quicksearch-schools typeahead typeahead-schools form-control input-sm" placeholder="Search schools..."  />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-3">
+          <div class="well bgcolor-light-grey no-margin">
+            <div class="btn-group btn-block">
+              <button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+                <span class="text-muted">
+                  School Directory
+                  <span class="ml10 caret"></span>
+                </span>
+              </button>
+              <ul class="dropdown-menu directory" role="menu">
+                <% @schools.each do |school| %>
+                  <li>
+                    <%= link_to school_path(school) do %>
+                        <%= school.name %>
+                 	<% end %>
+                </li>
+                <% end %>
+              </ul>
+            </div><!--.btn-group-->
+          </div>
+        </div>
+      </div>
+
+      <br/>
+    
+    	<div class="schools grid">
+    		<%= render @schools %>	
+    	</div>
+    </div>
+</div>
+	      
+</div><!--.row-->
+
+
+<script type="text/javascript">
+	
+	// QUICKSEARCH USERS
+
+	$( function() {
+	  // quick search regex
+	  var qsRegex;
+	  
+	  // init Isotope
+	  var $grid = $('.schools').isotope({
+	    itemSelector: '.element-item',
+	    layoutMode: 'fitRows',
+	    filter: function() {
+	      return qsRegex ? $(this).text().match( qsRegex ) : true;
+	    }
+	  });
+
+	  // use value of search field to filter
+	  var $quicksearch = $('.quicksearch-schools').keyup( debounce( function() {
+	    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+	    $grid.isotope();
+	  }, 200 ) );
+
+	});
+
+	// debounce so filtering doesn't happen every millisecond
+	function debounce( fn, threshold ) {
+	  var timeout;
+	  return function debounced() {
+	    if ( timeout ) {
+	      clearTimeout( timeout );
+	    }
+	    function delayed() {
+	      fn();
+	      timeout = null;
+	    }
+	    timeout = setTimeout( delayed, threshold || 100 );
+	  }
+	}
+
+	// Filtering JS
+
+	$( function() {
+	  // init Isotope
+	  var $grid = $('.grid').isotope({
+	    itemSelector: '.element-item',
+	    layoutMode: 'fitRows'
+	  });
+	  // filter functions
+	  var filterFns = {
+	    // show if number is greater than 50
+	    numberGreaterThan50: function() {
+	      var number = $(this).find('.number').text();
+	      return parseInt( number, 10 ) > 50;
+	    },
+	    // show if name ends with -ium
+	    ium: function() {
+	      var name = $(this).find('.name').text();
+	      return name.match( /ium$/ );
+	    }
+	  };
+	  // bind filter button click
+	  $('.filters-button-group').on( 'click', 'button', function() {
+	    var filterValue = $( this ).attr('data-filter');
+	    // use filterFn if matches value
+	    filterValue = filterFns[ filterValue ] || filterValue;
+	    $grid.isotope({ filter: filterValue });
+	  });
+	  // change is-checked class on buttons
+	  $('.button-group').each( function( i, buttonGroup ) {
+	    var $buttonGroup = $( buttonGroup );
+	    $buttonGroup.on( 'click', 'button', function() {
+	      $buttonGroup.find('.is-checked').removeClass('is-checked');
+	      $( this ).addClass('is-checked');
+	    });
+	  });
+  
+	});
+
+	// Sorting JS
+
+
+	$(document).ready( function() {
+	  // init Isotope
+	  var $grid = $('.grid').isotope({
+	    itemSelector: '.element-item',
+	    layoutMode: 'fitRows',
+	    getSortData: {
+	      name: '.name',
+	      symbol: '.symbol',
+	      number: '.number parseInt',
+	      category: '[data-category]',
+	      weight: function( itemElem ) {
+	        var weight = $( itemElem ).find('.weight').text();
+	        return parseFloat( weight.replace( /[\(\)]/g, '') );
+	      }
+	    }
+	  });
+
+	  // bind sort button click
+	  $('.sort-by-button-group').on( 'click', 'button', function() {
+	    var sortValue = $(this).attr('data-sort-value');
+	    $grid.isotope({ sortBy: sortValue });
+	  });
+
+	  // change is-checked class on buttons
+	  $('.button-group').each( function( i, buttonGroup ) {
+	    var $buttonGroup = $( buttonGroup );
+	    $buttonGroup.on( 'click', 'button', function() {
+	      $buttonGroup.find('.is-checked').removeClass('is-checked');
+	      $( this ).addClass('is-checked');
+	    });
+	  });
+  
+	});
+
+
+	</script>
+
+	

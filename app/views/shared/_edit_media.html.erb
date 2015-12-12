@@ -6,14 +6,14 @@
   </div>
   <span class="mr10 inline-block">
     <div data-toggle="tooltip" data-placement="top" title="Add a Video">
-        <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'video')"), method: :get ,remote: true, class: 'btn btn-floating btn-indigo btn-ripple' do %>
+        <%= link_to eval("new_#{object.class.to_s.downcase.underscore}_medium_path(#{object.id}, object: 'video')"), method: :get ,remote: true, class: 'btn btn-floating btn-indigo btn-ripple' do %>
         <i class="ion-ios-videocam"></i>
       <% end %>
     </div>
   </span>
   <span class="mr10 inline-block">
     <div data-toggle="tooltip" data-placement="top" title="Add an Article">
-      <%= link_to eval("new_#{@object.class.to_s.downcase.underscore}_medium_path(#{@object.id}, object: 'article')"), method: :get ,remote: true, class: 'btn btn-floating btn-indigo btn-ripple' do %>
+      <%= link_to eval("new_#{object.class.to_s.downcase.underscore}_medium_path(#{object.id}, object: 'article')"), method: :get ,remote: true, class: 'btn btn-floating btn-indigo btn-ripple' do %>
         <i class="ion-document-text"></i>
       <% end %>
     </div>
@@ -23,10 +23,10 @@
   <div class="well bgcolor-light-grey">
     <div class="row">
       <div class="row image-row masonry">
-        <% @pictures.each do |p| %>
+        <% pictures.each do |p| %>
           <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" id="picture-<%= p.id %>">
             <img src="<%= p.image %>" alt="" class="img-responsive img-thumbnail mb20">
-		  <%= link_to "Delete", [ @object,p], method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-success row" %>
+		  <%= link_to "Delete", [ object,p], method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-success row" %>
 		  </div><!--.col-->
         <% end %>
         <div class="clearfix"></div>
@@ -37,7 +37,7 @@
 <hr/>
 <div class="clearfix">
   <div id="medias">
-    <% @object.medias.each do |m| %>
+    <% object.medias.each do |m| %>
       <%= render 'media/form', m: m, u: @object %>
     <% end %>
   </div>

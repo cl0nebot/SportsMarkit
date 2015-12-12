@@ -1,8 +1,8 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :upgrade]
-  before_action :authenticate_team_admin!, only: [:edit, :update, :destroy]
-  before_action :authenticate_team_athletic_director!, only: [:upgrade]
-  before_action :find_team, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user!, only: [:edit, :destroy, :upgrade]
+  before_action :find_teamable, only: [:new, :create]
+  before_action :find_team, only: [:show, :edit, :destroy]
   require 'twilio-ruby'
   
   def index
@@ -15,62 +15,35 @@ class TeamsController < ApplicationController
   end
   
   def new
-    if params[:school_id]
-      @school = School.friendly.find(params[:school_id])
-      @team = @school.teams.build
-    else
-      @team = Team.new
-    end
+    @teamable.present? ? @object = @teamable.teams.build : @object = Team.new
+    @address = @object.build_address
   end
   
-  def create    
-    if request.referrer.split("/")[3] == "schools"
-      @school = School.find_by_slug(request.referrer.split("/")[4])
-      @team = @school.teams.build(team_params)
-      if @team.save
-        Relationship.create(team_id: @team.id, user_id: current_user.id, accepted: true, admin: true)
-        Chatroom.create(team_id: @team.id, specific_id: 1)
-        Chatroom.create(team_id: @team.id, specific_id: 2)
-        Chatroom.create(team_id: @team.id, specific_id: 3)
-        redirect_to "/teams/#{@team.slug}"
-      else
-        flash[:error] = "Oops."
-        render 'new'
-      end
+  def create 
+    @team = @teamable.present? ? @teamable.teams.build(team_params) : Team.new(team_params)
+    @team.teamable_id = @teamable.id if @teamable.present?
+    @team.teamable_type = @teamable.class.to_s if @teamable.present?
+    if @team.save
+      Role.create(roleable_id: @team.id, roleable_type: "Team", status: "Active", role: "Admin", user_id: current_user.id) unless current_user.admin?
+      [1,2,3].each { |i| Chatroom.create(team_id: @team.id, specific_id: i) }
+      redirect_to @team
     else
-      @team = Team.new(team_params)
-      if @team.save
-        Chatroom.create(team_id: @team.id, specific_id: 1)
-        Chatroom.create(team_id: @team.id, specific_id: 2)
-        Chatroom.create(team_id: @team.id, specific_id: 3)
-        redirect_to teams_path
-      else
-        flash[:error] = "Oops."
-        render 'new'
-      end
+      flash[:error] = "Oops."
+      render 'new'
     end
   end
   
   def show
-    @members = @team.all_athlete_roles
-    @admins = @team.relationships.where(accepted: true, admin: true) + UserlessRelationship.where(team_id: @team.id, admin: true)
-    @athletes = @team.roles.athletes
-    @pending_members = @team.relationships.where(accepted: nil, rejected: nil)
-    staff_relationships = @team.relationships.where(accepted: true, head: true) + @team.relationships.where(accepted: true, trainer: true) + @team.relationships.where(accepted: true, manager: true)
-    staff_userless_relationships = UserlessRelationship.where(team_id: @team.id, head: true) + UserlessRelationship.where(team_id: @team.id, trainer: true) + UserlessRelationship.where(team_id: @team.id, manager: true)
-    @heads = @team.staff_roles
-    @class = @team.class
     @object = @team
-    @picture =  @object.photos.build
-    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
-    @events = @team.all_events
-    @facilities = @team.used_facilities
+    shared_variables
+    @join_requests = @object.roles.where(status: "Pending")
+    @members = @object.all_athlete_roles
+    @admins = @object.all_admin_roles
+    @athletes = @object.roles.athletes
+    @pending_members = @object.pending_athlete_roles
+    @heads = @object.staff_roles
+    @facilities = @object.used_facilities
     @new_user = User.new
-    @relationship = @new_user.relationships.build
-    @event = @object.events.build
-    @videos = @team.medias.where(category: "Video")
-    @articles = @team.medias.where(category: "Article")
-    @fans = @team.fans
   end
 
   def edit
@@ -81,6 +54,26 @@ class TeamsController < ApplicationController
   end
   
   def update
+    @object = Team.find_by_slug!(request.referrer.split("teams/").last.split("/").first)
+    @profile_picture =  ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s).last
+    @profile_pictures = ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s)
+    @videos = @object.medias.where(category: "Video")
+    @articles = @object.medias.where(category: "Article")
+    @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
+    if @object.update_attributes(team_params)
+      respond_to do |format|
+        format.html {redirect_to :back}
+        format.js
+        format.json { respond_with_bip(@object) } 
+      end
+    else
+      respond_to do |format|
+        format.html {redirect_to :back}
+        format.js
+        format.json { respond_with_bip(@object) } 
+      end
+      
+    end
   end
   
   def destroy
@@ -105,18 +98,23 @@ class TeamsController < ApplicationController
   
   protected
   
+  def find_teamable
+    param = params.keys.find{|key| key =~ /(\w+)_id/}
+    @teamable = $1.capitalize.constantize.find(params[param]) rescue []
+  end
+  
   def find_team
     @team = Team.friendly.find(params[:id])
   end
   
   def team_params
-    params.require(:team).permit(:name, :sport, :school_id, :league_id, :classification, :description, :abbreviation, :address_1, :address_2, :city, :state, :zip, :zip_ext, :latitude, :longitude, :gmaps, :phone_number, :email, :website, :slug, :facebook, :twitter, :linkedin, :pinterest, :instagram, :foursquare, :youtube)  
+    params.require(:team).permit(:name, :sport, :league_id, :classification, :description, :abbreviation, :phone_number, :email, :website, :slug, :facebook, :twitter, :linkedin, :pinterest, :instagram, :foursquare, :youtube, {address_attributes: [:id, :addressable_id, :addressable_type, :street_1, :street_2, :city, :state, :country, :postcode, :suite, :nickname, :default, :county, :latitude, :longitude, :gmaps]})  
   end
   
   def user_params
     params.require(:user).permit(:prefix, :first_name, :middle_name, :last_name, :suffix, :email, :username,  :password, :password_confirmation, :current_password, :mobile_phone_number, {relationships_attributes: [:id, :user_id, :team_id, :head, :head_title, :mobile_phone_number, :position, :jersey_number, :participant, :participant_classification, :username ]})
   end
-  
+    
   def send_mobile_invitation(user, password)
     receiving_number = user.mobile_phone_number
 
