@@ -50,72 +50,7 @@
 									</div><!--.col-md-9-->
 								</div><!--.row-->
 
-								<div class="row example-row">
-									<div class="col-md-3">Address 1 </div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :address_1, type: "text", class: "form-control", placeholder: "" %>
-											</div>
-										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
-
-
-								<div class="row example-row">
-									<div class="col-md-3">Address 2 </div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :address_2, type: "text", class: "form-control", placeholder: "" %>
-											</div>
-										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
-
-								<div class="row example-row">
-									<div class="col-md-3">City</div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :city, type: "text", class: "form-control", placeholder: "" %>
-											</div>
-										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
-
-								<div class="row example-row">
-									<div class="col-md-3">State</div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :state, type: "text", class: "form-control", placeholder: "" %>
-											</div>
-										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
-
-								<div class="row example-row">
-									<div class="col-md-3">Zipcode</div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :zip, type: "text", class: "form-control payment-restrict", :restrict => true %>
-											</div>
-										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
-
-								<div class="row example-row">
-									<div class="col-md-3">Zip Extention</div><!--.col-md-3-->
-									<div class="col-md-9">
-										<div class="inputer">
-											<div class="input-wrapper">
-												<%= f.text_field :zip_ext, type: "text", class: "form-control payment-restrict", :restrict => true %>
-											</div>
-										</div>
-									</div><!--.col-md-9-->
-								</div><!--.row-->
+                               <%= render 'shared/new_address', f: f %>
 
 
 								<div class="row example-row">

@@ -13,10 +13,10 @@
 							<% League.all.each do |league| %>
 
                                <div id="league-<%= league.id %>">
-								<% unless TeamLeague.where(team_id: @team.id, league_id: league.id ).present? %>
-								  <%= render 'team_leagues/join_league', team: @team, league: league %>
+								<% unless Connect.where(owner_id: @team.id, owner_type: @team.class.to_s, connectable_type: "League", connectable_id: league.id ).present? %>
+								  <%= render 'connects/team_leagues/join_league', team: @team, league: league %>
 								<% else %>
-								  <%= render 'team_leagues/leave_league', team: @team, league: league %>
+								  <%= render 'connects/team_leagues/leave_league', team: @team, league: league %>
 								<% end %>
 							    </div>
 

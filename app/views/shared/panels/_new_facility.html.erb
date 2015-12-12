@@ -28,14 +28,14 @@
 										<hr class="light mb10"/>
 									    <p class="mb10 small upper fs_12 bold text-muted">Option: 3</p>
 										
-										<% if ["teams","schools", "leagues"].include? params[:controller] %>
+										<% if ["teams","schools", "leagues", "clubs"].include? params[:controller] %>
 
 									    <!-- MAKE THIS WORK WITH ADDITION FORM CODE ************************************* -->
 											<%= form_tag add_multiple_facility_links_path, remote: true do |f| %>
 
-										    <%= select_tag :facility_ids, options_for_select(Facility.pluck(:name, :id), :selected=> @object.facility_links.pluck(:facility_id)), class: "selecter bg-white margin-bottom-0", multiple: true, "data-live-search" =>  true %>
-											<%= hidden_field_tag :facility_owner_type, @object.class.to_s %>
-											<%= hidden_field_tag :facility_owner_id, @object.id %>
+										    <%= select_tag :facility_ids, options_for_select(Facility.pluck(:name, :id), :selected=> Connect.where(owner_type: @object.class.to_s, owner_id: @object.id, connectable_type: "Facility").pluck(:connectable_id)), class: "selecter bg-white margin-bottom-0", multiple: true, "data-live-search" =>  true %>
+											<%= hidden_field_tag :owner_type, @object.class.to_s %>
+											<%= hidden_field_tag :owner_id, @object.id %>
 										
 										
 										
