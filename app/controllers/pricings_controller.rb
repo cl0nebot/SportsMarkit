@@ -14,5 +14,15 @@ class PricingsController < ApplicationController
     end
   end
   
+  def edit
+    @object = params[:object].constantize.find(params[:id])
+    respond_to do |format|
+      format.html{redirect_to :back}
+      format.js
+    end
+  end
+  
+
+  
   
 end
