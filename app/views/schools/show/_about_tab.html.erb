@@ -2,7 +2,7 @@
 
 	
 	<div class="page-header full-content parallax">
-		<%= render "schools/show/header" %>
+		<%= render "shared/show/header" %>
 	</div><!--.page-header-->
 	
 
@@ -152,6 +152,7 @@
 									Mascot - <%= @school.mascot %>
 								</p>
 								<% end %>
+							</div>
 							<% end %>
 						</div>
 					</div><!--.col-md-6-->
@@ -168,7 +169,7 @@
 						</div><!--.panel-heading-->
 						<div class="panel-body without-padding">	
 							<ul class="list-material borderless">
-								<% @school.all_leagues.each do |league| %>
+								<% @school.leagues.each do |league| %>
 									<li class="has-action-left has-action-right">
 										<a href="#" class="visible">
 											<div class="list-action-left">
