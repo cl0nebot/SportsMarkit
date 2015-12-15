@@ -1,15 +1,12 @@
 <table class="table table table-bordered table-striped table-condensed" id="pricing-table">
   <tbody>
     <% objects.each do |object| %>
-	<%= form_for pricing_path(object), remote: true do |f| %>
-		<tr id="<%= object.class.to_s %>-<%= object.id%>-tr">
-      <% if object.price.blank? %>
-         <%= render 'pricings/form', object: object, f: f %>
-      <% else %>
-         <%= render 'pricings/pricing', object: object, f: f %>
-      <% end %>
-       </tr>
-	  <% end %>
+	  <tr id="<%= object.class.to_s %>-<%= object.id%>-tr">
+	   <%= render 'pricings/object', object: object%>
+	 </tr>
    <% end %>
   </tbody>
 </table>
+
+
+

@@ -1,2 +1,3 @@
-$('#price-<%= @object.class.to_s %>-<%= @object.id %> > tbody').empty()
-$('#price-<%= @object.class.to_s %>-<%= @object.id %> > tbody ').append("<%= j render 'pricings/pricing', object: @object %>")
+$('#<%= @object.class.to_s %>-<%= @object.id %>-tr').empty()
+$('#<%= @object.class.to_s %>-<%= @object.id %>-tr').append("<%= j render 'pricings/pricing', object: @object %>")
+

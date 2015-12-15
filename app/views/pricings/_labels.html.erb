@@ -8,3 +8,7 @@
 						<li class="<%= params[:view].present? ? (params[:view] == "leagues" ? "active" : "") : ""  %>">
 							<%= link_to "Leagues", pricings_path(view: "leagues"), remote: true %>
 						</li>
+						
+						<li class="<%= params[:view].present? ? (params[:view] == "clubs" ? "active" : "") : ""  %>">
+							<%= link_to "Clubs", pricings_path(view: "clubs"), remote: true %>
+						</li>

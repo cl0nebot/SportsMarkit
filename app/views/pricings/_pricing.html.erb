@@ -5,7 +5,7 @@
 	<%= number_to_currency(object.price) %>
 </td>
 <td width="20%">
-	<%= link_to "Edit Price", pricings_path(object: object.class.to_s, object_id: object.id, event: "edit", view: object.class.to_s.downcase.pluralize), remote: true, class: "btn btn-sm btn-block btn-white pull-right" %>
+	<%= link_to "Edit Price", edit_pricing_path(id: object.id, object: object.class.to_s, event: "edit", view: object.class.to_s.downcase.pluralize), remote: true, class: "btn btn-sm btn-block btn-white pull-right" %>
 </td>
 	
 
