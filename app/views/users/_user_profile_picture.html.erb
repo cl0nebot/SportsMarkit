@@ -5,7 +5,7 @@
   <div class="fileinput fileinput-new" data-provides="fileinput">
     <div class="fileinput-new no-margin">
       <div class="img-wrapper">
-          <%= image_tag  @user.avatar, class: "thumbnail img-responsive" %>
+          <%= image_tag  user.avatar, class: "thumbnail img-responsive" %>
       </div>
     </div>
     <div class="clearfix"></div>
@@ -15,9 +15,9 @@
       Choose File
       </button>
      
-      <% unless @user_profile_pictures.empty? %>
-        <%= render 'users/delete_user_profile_picture_modal', photo: @user_profile_picture %>
-        <button class="btn btn-danger box-shadow-ccc" data-toggle="modal" data-target="#<%=@user_profile_picture.id %>">
+      <% unless user_profile_pictures.empty? %>
+        <%= render 'users/delete_user_profile_picture_modal', photo: user_profile_picture %>
+        <button class="btn btn-danger box-shadow-ccc" data-toggle="modal" data-target="#<%=user_profile_picture.id %>">
           Remove
         </button>
       <% end %>

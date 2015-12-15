@@ -49,7 +49,7 @@
 						
 						<% else %>
 						  <% if current_user %>
-						    <% if current_user.can_edit_user?(@object) %>
+						    <% if @object.can_be_edited_by_user?(current_user) %>
 							  <%= link_to edit_user_path(@object) do %>
 					            <p class="fs_14 lh_18 text-muted mb20 mt10">
 						          Add description to your profile.
@@ -91,14 +91,14 @@
 										<i class="ion-email fs_20 text-primary mr5"></i>
 										<%= @object.email %>
 									</p>
-									<% if current_user %>
-									<% if current_user.can_edit_user?(@user) %>
+								
+									<% if @object.can_be_edited_by_user?(current_user) %>
 										<p class="semi-bold fs_14 text-muted no-margin">
 											<i class="ion-ios-telephone fs_20 text-primary mr5"></i>
 											<%= @object.mobile_phone_number %>
 										</p>
 									<% end %>
-									<% end %>
+									
 									<% if @object.profile.date_of_birth.present? %>
 									<p class="semi-bold fs_14 text-muted no-margin">
 										<i class="ion-android-calendar fs_20 text-primary mr5"></i>
@@ -116,6 +116,43 @@
 
 						</div>
 					</div>
+					<% if @object.profile.favorite_pro_team.present? || @object.profile.favorite_college_team.present? || @object.profile.favorite_pro_athlete.present?  %>
+					<hr class="light mt15 mb15"/>
+					<div class="card-body pl40 pr40">
+						<h6 class="upper text-muted bold mt0">
+							<small class="text-grey bold">favorites</small></h6>
+						<!-- these must stay together as an interator -->
+						<table class="table table-hover bgcolor-white box-shadow-ccc">
+							<thead>
+								<th><span class="text-muted semi-bold fs_12">Favorite</span></th>
+								<th><span class="text-muted semi-bold fs_12"></span></th>
+							</thead>
+							<tbody>
+									<% if @object.profile.favorite_pro_team.present? %>
+									<tr>
+										<td><span class="fs_12">Favorite Professional Team</span></td>
+										<td><span class="fs_12"><%= @object.profile.favorite_pro_team %></span></td>
+										
+									</tr>
+									<% end %>
+									<% if @object.profile.favorite_college_team.present? %>
+									<tr>
+										<td><span class="fs_12">Favorite College Team</span></td>
+										<td><span class="fs_12"><%= @object.profile.favorite_college_team %></span></td>
+									</tr>
+									<% end %>
+									<% if @object.profile.favorite_pro_athlete.present? %>
+									<tr>
+										<td><span class="fs_12">Favorite Professional Athlete</span></td>
+										<td><span class="fs_12"><%= @object.profile.favorite_pro_athlete %></span></td>
+									</tr>
+									<% end %>
+								
+							</tbody>
+						</table>
+					</div>
+					
+					<% end %>
 					<hr class="light mt15 mb15"/>
 					<div class="card-body pl40 pr40">
 						<h6 class="upper text-muted bold mt0">
