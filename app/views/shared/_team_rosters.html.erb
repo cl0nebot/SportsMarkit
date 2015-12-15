@@ -15,7 +15,7 @@
 
 					 <div class="pull-right">
 						<% if current_user %>
-						  <% if current_user.can_edit_team?(team) %>
+						  <% if team.can_be_edited_by_user?(current_user) %>
 								<%= link_to edit_team_path(team), class: "btn btn-primary btn-sm mr5" do %>
 									<i class="ion-gear-b"></i>
 								<% end %>

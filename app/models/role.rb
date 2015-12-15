@@ -4,6 +4,14 @@ class Role < ActiveRecord::Base
   
   has_many :positionings, :as => :positionable, :dependent => :destroy
   has_many :positions, :through => :positionings
+  validate :not_duplicate
+  
+  def not_duplicate
+    existing_role = Role.where(user_id: self.user_id, role: self.role, roleable_id: self.roleable_id, roleable_type: self.roleable_type)
+    if existing_role.present?
+      errors.add(:user_id, "#{self.role} role already exists for this user.")
+    end
+  end
   
   ["Athlete", "Coach", "Manager", "Admin", "Trainer", "Athletic Director"].each do |type|
     

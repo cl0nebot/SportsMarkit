@@ -1,0 +1,8 @@
+<%= select_tag :roleable_id, options_for_select(roleable_type.constantize.all.collect{ |u| [u.name, u.id] }) %><br>
+
+<%= hidden_field_tag :roleable_type,"", value: roleable_type %><br>
+
+
+<%= select_tag :role_name, options_for_select(roleable_type.constantize.role_types) %><br>
+
+

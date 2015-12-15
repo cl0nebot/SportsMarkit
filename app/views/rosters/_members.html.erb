@@ -1,5 +1,5 @@
 <% members.each do |m| %>
-	<% if current_user.can_edit_team?(team) %>
+	<% if team.can_be_edited_by_user?(current_user) %>
 		<%= render 'rosters/admin_view_member', m: m%>
 	<% else %>
 		<%= render 'rosters/member', m: m%>

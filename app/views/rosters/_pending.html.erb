@@ -1,6 +1,9 @@
-<li class="has-action-left" id="pending-<%= m.id %>">
-	<%= form_for m, url: accept_user_team_path(@team, role_id: m.id), html: {data: {remote: true}} do |f| %>
-		<%= f.hidden_field :accepted, value: true %>
+<li class="has-action-left" id="pending-<%= m.user.id %>">
+	<%= form_for m, url:  roster_accept_path(roster_id: @team.id), method: :get, html: {data: {remote: true}} do |f| %>
+		<%= hidden_field_tag :accepted, true %>
+		<%= hidden_field_tag :user_id, m.user.id %>
+		<%= hidden_field_tag :roleable_type, @team.class.to_s %>
+		<%= hidden_field_tag :roleable_id, @team.id %>
 		<div class="hidden pt30">
 			<p class="text-center mb5">
 				<%= link_to reject_user_team_path(m), method: :patch, remote: true, class: "btn btn-danger"  do %> 
@@ -32,21 +35,21 @@
 							</p>
 						</div>
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-1">
 						<div class="checkboxer form-inline mb5">
-	                      	<%= check_box_tag :admin, id: "#{m.id}-role_admin"  %>
-	                      	<label for="<%= "#{m.id}" %>-role_admin"></label>
+	                      	<%= check_box_tag :athlete, true, nil, id: "#{m.id}-role-athlete"  %>
+	                      	<label for="<%= "#{m.id}" %>-role-athlete"></label>
 	                    </div>
 						<p class="small">
 							<small>
-								Admin?
+								Athlete?
 							</small>
 						</p>
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-1">
 						<div class="checkboxer form-inline mb5">
-	                      	<%= check_box_tag :coach, id: "#{m.id}-role_head"  %>
-	                      	<label for="<%= "#{m.id}" %>-role_head"></label>
+	                      	<%= check_box_tag :coach, true, nil, id: "#{m.id}-role-coach"  %>
+	                      	<label for="<%= "#{m.id}" %>-role-coach"></label>
 	                    </div>
 						<p class="small">
 							<small>
@@ -54,14 +57,47 @@
 							</small>
 						</p>
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-1">
 						<div class="checkboxer form-inline mb5">
-	                      	<%= check_box_tag :athlete, id: "#{m.id}-role_participant"  %>
-	                      	<label for="<%= "#{m.id}" %>-role_participant"></label>
+	                      	<%= check_box_tag :parent,true, nil,  id: "#{m.id}-role-parent"  %>
+	                      	<label for="<%= "#{m.id}" %>-role-parent"></label>
 	                    </div>
 						<p class="small">
 							<small>
-								Athlete?
+								Parent?
+							</small>
+						</p>
+					</div>
+					<div class="col-md-1">
+						<div class="checkboxer form-inline mb5">
+	                      	<%= check_box_tag :manager, true, nil, id: "#{m.id}-role-manager"  %>
+	                      	<label for="<%= "#{m.id}" %>-role-manager"></label>
+	                    </div>
+						<p class="small">
+							<small>
+								Manager?
+							</small>
+						</p>
+					</div>
+					<div class="col-md-1">
+						<div class="checkboxer form-inline mb5">
+	                      	<%= check_box_tag :trainer,true, nil, id: "#{m.id}-role-trainer"  %>
+	                      	<label for="<%= "#{m.id}" %>-role-trainer"></label>
+	                    </div>
+						<p class="small">
+							<small>
+								Trainer?
+							</small>
+						</p>
+					</div>
+					<div class="col-md-1">
+						<div class="checkboxer form-inline mb5">
+	                      	<%= check_box_tag :admin,true, nil,  id: "#{m.id}-role-admin"  %>
+	                      	<label for="<%= "#{m.id}" %>-role-admin"></label>
+	                    </div>
+						<p class="small">
+							<small>
+								Admin?
 							</small>
 						</p>
 					</div>

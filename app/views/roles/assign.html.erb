@@ -1,0 +1,19 @@
+
+<%= form_for Role.new, url: admin_assign_role_path, method: :post, html: {} do |f| %>
+
+<%= f.collection_select :user_id, User.all, :id, :full_name, {:prompt => "Select User"} %>
+<br>
+ <% ["User", "School", "Team", "Club", "Facility", "League"].each do |roleable| %>
+   <%= link_to roleable, roleable_path(roleable_type: roleable), remote: true %><br>
+ 
+ <% end %>
+ 
+ <div id="roleable">
+	
+ </div>
+ 
+ <%= submit_tag "Assign Role"%>
+ 
+ 
+
+<% end %>

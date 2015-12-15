@@ -53,12 +53,13 @@ class ApplicationController < ActionController::Base
     redirect_to signup_path, alert: "Not authorized" if current_user.nil?
   end
   
-  def authenticate_user_account
+  def correct_user!
     authenticate_user!
-    unless current_user.admin? or current_user == User.friendly.find(params[:id])
-      flash[:message] = "This is your account."
-      redirect_to edit_user_path(current_user)
-      #render :file => "public/401.html", :status => :unauthorized
+    if current_user
+      unless params[:controller].camelcase.singularize.constantize.friendly.find(params[:id]).can_be_edited_by_user?(current_user)
+        flash[:message] = "Unauthorized."
+        redirect_to edit_user_path(current_user)
+      end
     end
   end
   
@@ -97,17 +98,6 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def authenticate_team_admin!
-    authenticate_user!
-    if current_user
-      school = Team.friendly.find(params[:id]).school
-      unless current_user.admin? || Role.where(user_id: current_user.id, role: "Athletic Director", roleable_type: "School", status: "Active", roleable_id: school.id).present? || Relationship.where(user_id: current_user.id, admin: true).present? or Relationship.where(user_id: current_user.id, head: true).present?
-        flash[:message] = "This is your account."
-        redirect_to edit_user_path(current_user)
-        #render :file => "public/401.html", :status => :unauthorized
-      end
-    end
-  end
   
   def shared_variables
     # athletes
@@ -129,7 +119,7 @@ class ApplicationController < ActionController::Base
     
     # people
     @people = @object.people
-    @userless_people = @league.userless_people
+    @userless_people = @object.userless_people
     
     # events
     @event = @object.events.build

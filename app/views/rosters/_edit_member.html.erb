@@ -1,4 +1,4 @@
-<%= form_for m, html: {data: {remote: true}} do |f| %>
+<%= form_for m, url: roster_path(id: m.id), method: :patch, html: {data: {remote: true}} do |f| %>
 	<li id="edit-member-<%= m.class.to_s %><%= m.id%>" class="">
 		<div class="list-content no-padding pt20">
 			<div class="row">
