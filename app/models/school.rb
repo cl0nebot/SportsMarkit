@@ -70,6 +70,19 @@ class School < ActiveRecord::Base
   def category_and_classification
     "#{classification_with_hyphen} #{category.try(:downcase)}"
   end
+  
+  def self.search(term)
+    if term.length >= 1
+      where("LOWER(name) LIKE ? OR LOWER(name) LIKE ?", "#{term.downcase}%", "% #{term.downcase}%")
+    else
+      all
+    end
+    # arr = []
+    # ["first_name", "last_name", "email_address", "company_name", "phone_number"].each do |column|
+    #   arr << where("LOWER(#{column}) ~ ?", "#{term.downcase}").pluck(:id)
+    # end
+    # where(id: arr.flatten.uniq)
+  end
     
     
 end
