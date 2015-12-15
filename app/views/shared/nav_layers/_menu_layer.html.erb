@@ -18,7 +18,7 @@
 			</ul>
 		</li>
 
-		<% if current_user.relationships.any? %>
+		<% if current_user.roles.any? %>
 		<li>
 			<a href="javascript:;"><i class="ion-flag mr5"></i> My Teams</a>
 			<ul class="child-menu">
@@ -28,16 +28,16 @@
 					New Team Panel Form</a>
 				</li> -->
 				
-					<% current_user.relationships.where.not(id: nil).each do |relationship| %>
+					<% current_user.roles.where(roleable_type: "Team").where.not(id: nil).each do |role| %>
 					<li>
-						<%= link_to team_path(relationship.team.friendly_id) do %>
-								<i class="ion-flag mr5"></i> <%= "#{relationship.team.proper_name} #{relationship.accepted? ? '' : '(Pending)'}" %>
+						<%= link_to team_path(role.roleable.friendly_id) do %>
+								<i class="ion-flag mr5"></i> <%= "#{role.roleable.proper_name} #{role.status == "Active" ? '' : '(Pending)'}" %>
 							<% end %>
 					</li>
-						<% if relationship.head? or relationship.admin? or relationship.team.is_athletic_director?(current_user) %>
+						<% if false %> <!-- TODO change to real logic -->
 						<li>
-							<%= link_to edit_team_path(relationship.team.friendly_id) do %>
-								<i class="ion-gear-b mr5"></i> <%= "Edit #{relationship.team.proper_name} Information" %>
+							<%= link_to edit_team_path(role.roleable.friendly_id) do %>
+								<i class="ion-gear-b mr5"></i> <%= "Edit #{role.roleable.proper_name} Information" %>
 							<% end %>
 						</li>
 						<% end %>

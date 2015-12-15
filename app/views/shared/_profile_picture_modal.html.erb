@@ -2,7 +2,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
 
 <div class="modal fade" id="picturePhoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <%= form_for [@object, @profile_picture], html: {multipart: true, class: 'remote-upload'} do |f| %>
+  <%= form_for [object, profile_picture], html: {multipart: true, class: 'remote-upload'} do |f| %>
 
   <div class="modal-dialog">
     <div class="modal-content">
@@ -17,16 +17,16 @@
      <div class="center">
         <div class="fileinput fileinput-new" data-provides="fileinput">
           <div class="fileinput-new thumbnail" style="width: 250px; height: 250px;">
-            <% if @profile_picture.present? %>
-              <%= image_tag @profile_picture.photo %>
+            <% if profile_picture.present? %>
+              <%= image_tag profile_picture.photo %>
             <% else %>
               <img class="thumbnail clearfix" src="http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif" alt="...">
             <% end %>
           </div>
           <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 200px;"></div>
           <div>
-             <%= f.hidden_field :profile_picture_owner_id, :value => @object.id %>
-			 <%= f.hidden_field :profile_picture_owner_type, :value => @object.class.to_s %>
+             <%= f.hidden_field :profile_picture_owner_id, :value => object.id %>
+			 <%= f.hidden_field :profile_picture_owner_type, :value => object.class.to_s %>
             <span class="btn btn-sm btn-primary btn-file">
               <span class="fileinput-new">Select image</span>
               <span class="fileinput-exists">Change</span>

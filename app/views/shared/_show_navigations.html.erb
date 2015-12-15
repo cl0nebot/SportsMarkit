@@ -21,11 +21,9 @@
 	<% end %>
 	<li><a href="#media" data-toggle="tab" class="btn-ripple">Media</a></li>
 	<% if ["Team"].include? @object.class.to_s %>
-	<% if current_user %>
-	  <% if current_user.admin? or current_user.can_edit_team?(@team)%>
+	  <% if @object.can_be_edited_by_user?(current_user) %>
 	    <li><a href="#admin" data-toggle="tab" class="btn-ripple">Admin</a></li>
 	  <% end %>
-	<% end %>
 	<% end %>
 	<% if current_user %>
 		<% if ["User"].include? @object.class.to_s %>
