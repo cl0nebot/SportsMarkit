@@ -1,0 +1,132 @@
+<%= f.fields_for :address, @address do |address|%>
+<% if params[:action] == "new" %>
+			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+				<div class="panel-body padding-right-40 padding-left-40">
+					
+
+						<br/>
+						<h4 class="text-blue semi-bold">
+							<i class="ion-ios-location margin-right-10"></i> Address and Location Info
+						</h4>
+						<br/>
+						<div class="row example-row">
+							<div class="col-md-12"><h4>Street 1</h4></div><!--.col-md-3-->
+							<div class="col-md-12">
+								<div class="inputer">
+									<div class="input-wrapper">
+										<%= address.text_field :street_1, class: "form-control", placeholder: "", value: (@school.address_1 if @school.present?) %>
+									</div>
+								</div>
+							</div><!--.col-md-9-->
+						</div><!--.row-->
+
+						<div class="row example-row">
+							<div class="col-md-12"><h4>Street 2</h4></div><!--.col-md-3-->
+							<div class="col-md-12">
+								<div class="inputer">
+									<div class="input-wrapper">
+										<%= address.text_field :street_2, type: "text", class: "form-control", placeholder: "", value: (@school.address_2 if @school.present?) %>
+									</div>
+								</div>
+							</div><!--.col-md-9-->
+						</div><!--.row-->
+
+						<div class="row example-row">
+							<div class="row">
+								<div class="col-md-5">
+									<div class="col-md-12"><h4>City</h4></div><!--.col-md-3-->
+									<div class="col-md-12">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= address.text_field :city, type: "text", class: "form-control", placeholder: "", value: (@school.city if @school.present?) %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div>
+								<div class="col-md-3">
+									<div class="col-md-12"><h4>State</h4></div><!--.col-md-3-->
+									<div class="col-md-12">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= address.text_field :state, type: "text", class: "form-control", placeholder: "", value: (@school.state if @school.present?) %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div>
+								<div class="col-md-4">
+									<div class="col-md-12"><h4>Zipcode</h4></div><!--.col-md-3-->
+									<div class="col-md-12">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= address.text_field :postcode, type: "text", class: "form-control payment-restrict", :restrict => true, value: (@school.zip if @school.present?) %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div>
+								
+							</div>
+						</div><!--.row-->
+						
+				</div>
+			</div>
+			
+<% else %>			
+			
+			<div class="row example-row">
+				<div class="col-md-3">Street 1 </div><!--.col-md-3-->
+				<div class="col-md-9">
+					<div class="inputer">
+						<div class="input-wrapper">
+							<%= address.text_field :street_1, class: "form-control", placeholder: "", value: (@school.address_1 if @school.present?) %>
+						</div>
+					</div>
+				</div><!--.col-md-9-->
+			</div><!--.row-->
+			
+			<div class="row example-row">
+				<div class="col-md-3">Street 2 </div><!--.col-md-3-->
+				<div class="col-md-9">
+					<div class="inputer">
+						<div class="input-wrapper">
+							<%= address.text_field :street_2, class: "form-control", placeholder: "", value: (@school.address_2 if @school.present?) %>
+						</div>
+					</div>
+				</div><!--.col-md-9-->
+			</div><!--.row-->
+
+			<div class="row example-row">
+				<div class="col-md-3">City</div><!--.col-md-3-->
+				<div class="col-md-9">
+					<div class="inputer">
+						<div class="input-wrapper">
+							<%= address.text_field :city, type: "text", class: "form-control", placeholder: "", value: (@school.city if @school.present?) %>
+						</div>
+					</div>
+				</div><!--.col-md-9-->
+			</div><!--.row-->
+
+			<div class="row example-row">
+				<div class="col-md-3">State</div><!--.col-md-3-->
+				<div class="col-md-9">
+					<div class="inputer">
+						<div class="input-wrapper">
+							<%= address.text_field :state, type: "text", class: "form-control", placeholder: "", value: (@school.state if @school.present?) %>
+						</div>
+					</div>
+				</div><!--.col-md-9-->
+			</div><!--.row-->
+
+			<div class="row example-row">
+				<div class="col-md-3">Zipcode</div><!--.col-md-3-->
+				<div class="col-md-9">
+					<div class="inputer">
+						<div class="input-wrapper">
+							<%= address.text_field :postcode, type: "text", class: "form-control payment-restrict", :restrict => true, value: (@school.zip if @school.present?) %>
+						</div>
+					</div>
+				</div><!--.col-md-9-->
+			</div><!--.row-->
+  <% end %>
+			
+<% end %>
+			
