@@ -1,3 +1,9 @@
-<% slug = "/users/#{@user.slug}/edit" %>
-history.replaceState("", "", "<%= slug %>");
-$('#content').html("<%= j render 'users/edit_form', user: @user, user_profile_pictures: @user_profile_pictures, user_profile_picture: @user_profile_picture, object: @object, pictures: @pictures, videos: @videos, articles: @articles %>")
+<% if @email_taken %>
+  $('#email-taken').css({ display: "block" })
+<% elsif @phone_taken %>
+  $('#phone-taken').css({ display: "block" })
+<% else %>
+	<% slug = "/users/#{@user.slug}/edit" %>
+	history.replaceState("", "", "<%= slug %>");
+	$('#content').html("<%= j render 'users/edit_form', user: @user, user_profile_pictures: @user_profile_pictures, user_profile_picture: @user_profile_picture, object: @object, pictures: @pictures, videos: @videos, articles: @articles %>")
+<% end %>

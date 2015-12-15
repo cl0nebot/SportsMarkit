@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: %w[index show edit update destroy plans subscriptions]
-  #before_action :correct_user!, only: %w[edit update]
+  before_action :correct_user!, only: %w[edit]
   before_action :find_user, only: %w[show edit destroy store]
   
   def index
@@ -58,7 +58,23 @@ class UsersController < ApplicationController
     @videos = @object.medias.where(category: "Video")
     @articles = @object.medias.where(category: "Article")
     @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
-    unless params[:user][:password].present?
+    @email_taken = @object.minus_self.exists?(:email => params[:user][:email])
+    @phone_taken = @object.minus_self.exists?(:mobile_phone_number => params[:user][:mobile_phone_number])
+    if @email_taken
+      # @email_message = "The email address, #{params[:user][:email]}, is already taken."
+      respond_to do |format|
+        format.html {redirect_to :back}
+        format.js
+        format.json { respond_with_bip(@user) } 
+      end
+    elsif @phone_taken
+      # @email_message = "The email address, #{params[:user][:email]}, is already taken."
+      respond_to do |format|
+        format.html {redirect_to :back}
+        format.js
+        format.json { respond_with_bip(@user) } 
+      end
+    elsif !params[:user][:password].present?
       @profile = @user.profile
       if @user.update_attributes!(user_params)
         @user.roles.update_all(mobile_phone_number: @user.mobile_phone_number)
@@ -69,6 +85,7 @@ class UsersController < ApplicationController
           format.json { respond_with_bip(@user) } 
         end
       else
+        flash[:error] = "Error."
         respond_to do |format|
           format.html{render :edit}
           format.js

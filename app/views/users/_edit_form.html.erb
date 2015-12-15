@@ -87,6 +87,7 @@
 																		<div class="input-wrapper">
 																			<%= f.text_field :first_name, type: "text", class: "form-control", placeholder: "", "data-parsley-required" => "true", "data-parsley-length" => "[2, 25]" %>
 																		</div>
+																		
 																	</div>
 																</div><!--.col-md-9-->
 															</div><!--.row-->
@@ -158,6 +159,11 @@
 																<div class="input-wrapper">
 																	<%= f.email_field :email, class: "form-control", placeholder: "", "data-parsley-required" => "true", "data-parsley-type" => "email"  %>
 																</div>
+									 						    <!-- <div id="email-taken-wrapper"> -->
+									 								<div id="email-taken" style="display: none">
+									 								    <font size="2" color="red">Email is already taken.</font>
+									 							   </div>
+									 						   <!-- </div> -->
 															</div>
 														</div><!--.col-md-9-->
 													</div><!--.row-->
@@ -168,8 +174,13 @@
 														<div class="col-md-12">
 															<div class="inputer">
 																<div class="input-wrapper">
-																	<%= f.text_field :mobile_phone_number, class: "form-control", placeholder: "", "data-parsley-type" => "number" %>
+																	<%= f.text_field :mobile_phone_number, class: "form-control", placeholder: "", "data-parsley-type" => "number"%>
 																</div>
+  									 						    <!-- <div id="email-taken-wrapper"> -->
+  									 								<div id="phone-taken" style="display: none">
+  									 								    <font size="2" color="red">Phone number is already in use.</font>
+  									 							   </div>
+  									 						   <!-- </div> -->
 															</div>
 														</div><!--.col-md-9-->
 													</div><!--.row-->
@@ -223,6 +234,7 @@
 												<div class="row">
 													<div class="col-lg-8 col-lg-offset-2">
 														<%= f.submit "Update Profile", class: "btn btn-large btn-blue btn-block" %>
+														<% end %>
 													</div>
 												</div>
 											</div>
@@ -230,6 +242,7 @@
 
 										<div class="tab-pane text-style" id="social-media">
 											<div class="panel-body ">
+												<%= form_for user, html: {class: "form-horizontal parsley-validate", data: {remote: true }} do |f| %>
 												<h4 class="text-right">Social Media Profiles</h4>
 												<hr class="margin-top-0"/>
 												<h5 class="bold text-primary">Add Social Media Accounts</h5>
@@ -238,12 +251,14 @@
 													<%= render 'shared/social_edit', f: builder %>
 													<%#= render 'athlete', f: builder %>
 												<% end %>  
+												<% end %>
 											</div>
 										</div><!--tab-pane-->
 										
 										<div class="tab-pane text-style" id="stats">
 
 											<div class="panel-body">
+												<%= form_for user, html: {class: "form-horizontal parsley-validate", data: {remote: true }} do |f| %>
 												<h4 class="text-right">Sports Resume</h4>
 												<hr class="margin-top-0"/>
 												<h5 class="bold text-primary">Athletic Profile</h4>
@@ -350,6 +365,7 @@
 												<div class="row">
 													<div class="col-lg-8 col-lg-offset-2">
 														<%= f.submit "Update Profile", class: "btn btn-large btn-blue btn-block" %>
+														<% end %>
 													</div>
 												</div>
 											</div>
@@ -384,6 +400,7 @@
 
 										<div class="tab-pane text-style" id="favorites">
 											<div class="panel-body">
+												<%= form_for user, html: {id: "favorite-form", class: "form-horizontal parsley-validate", data: {remote: true }} do |f| %>
 												<h4 class="text-right">Sports Favorites</h4>
 												<div class="col-md-12">
 													<hr class="margin-top-0"/>
@@ -434,6 +451,7 @@
 												<div class="row">
 													<div class="col-lg-8 col-lg-offset-2">
 														<%= f.submit "Update Profile", class: "btn btn-large btn-blue btn-block" %>
+														<% end %>
 													</div>
 												</div>
 											</div>
@@ -441,6 +459,7 @@
 
 										<div class="tab-pane text-style" id="password">
 											<div class="panel-body">
+												<%= form_for user, html: {id: "password-form", class: "form-horizontal parsley-validate", data: {remote: true }} do |f| %>
 												<h4 class="text-right">Password</h4>
 												<hr class="margin-top-0"/>
 												<h5 class="bold text-primary">Reset Your Password</h4>
@@ -483,6 +502,7 @@
 												<div class="row">
 													<div class="col-lg-8 col-lg-offset-2">
 														<%= f.submit "Reset password", class: "btn btn-large btn-blue btn-block" %>
+														<% end %>
 													</div>
 												</div>
 											</div>
@@ -503,7 +523,7 @@
 							</div><!--.panel-->		
 						</div><!--.row-->
 					</div>
-				<% end %>
+				
 			</div>
 		</div>
 	</div>
