@@ -33,7 +33,7 @@
 		<div class="header-tabs scrollable-tabs sticky">
 
 			 <% if current_user %>
-		        <% if current_user.can_edit_facility?(@facility)%>
+		        <% if @object.can_be_edited_by_user?(current_user) %>
 		          <%= link_to edit_facility_path(@facility), class: "mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
 		              <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
 		          <% end %>
@@ -42,15 +42,14 @@
 
 	    <%= render 'shared/show_navigations'%>
 	
-	      	<% if current_user %>
-	        	<% if current_user.admin? or current_user.can_edit_facility?(@facility)%>
+	        	<% if @object.can_be_edited_by_user?(current_user)%>
 	          		<%= link_to edit_facility_path(@facility) do %>
 		            <button href="" class="btn btn-floating btn-blue btn-ripple pull-right">
 		          		<i class="ion-gear-b"></i>
 		          	</button>
 	          	<% end %>
 	        	<% end %>
-	      	<% end %>
+
 		</div>
 	</div><!--.page-header-->
 
