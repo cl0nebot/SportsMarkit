@@ -9,11 +9,9 @@
 			<i class="ion-calendar m-r-5"></i>
 			<small>
 				<%= @event.title %>
-				<% if current_user %>
-					<% if (@event.user == current_user) || current_user.admin? %>
+				<% if @event.can_be_edited_by_user?(current_user) %>
 					  <%= link_to "Cancel", @event, method: :delete, class: "ml20 btn btn-danger btn-xs" %>
 					  <%= link_to "Reschedule", edit_event_path(@event), class: "btn btn-white btn-xs" %>
-					<% end %>
 				<% end %>
 			</small>
 		</h1>
@@ -27,13 +25,7 @@
 		</ol>
 	</div><!--.col-->
 	<div class="col-sm-1 text-right">
-		<% if false %>
-		
-			<%= link_to edit_event_path(@event), class:"btn btn-floating btn-light-blue" do %>
-			  <i class="ion-android-settings"></i>
-			<% end %>
-			
-		<% end %>
+
 	</div>
 </div><!--.row-->
 

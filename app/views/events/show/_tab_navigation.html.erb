@@ -18,8 +18,7 @@
 				</li>
 				<li><a href="#no" data-toggle="tab" class="btn-ripple">Not Going</a></li>
 				<li>
-	            	<% if current_user %>
-	              		<% if current_user.admin? or current_user.can_edit_event?(@event)%>
+	              		<% if @object.can_be_edited_by_user?(current_user) %>
 	                		<button href="" class="ml10 mt15 btn btn-blue btn-ripple btn-xs">
 	                  			<%= link_to edit_event_path(@event) do %>
 	                            <span class=" text-white">
@@ -27,7 +26,7 @@
 	                          <% end %>
 	                        </button>
 	              		<% end %>
-	            	<% end %>
+
 	          	</li>
 			</ul>
 

@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   def create
     @event = @object.events.build(event_params)
     if @event.save
-      EventFacility.create(event_id: @event.id, facility_id: params[:event][:facility_ids])
+      Connect.create(owner_id: @event.id, owner_type: "Event", connectable_type: "Facility", connectable_id: params[:event][:facility_ids])
       if @event.eventable_type == "Team"
         user_ids = Team.find(@event.eventable_id).roles.where(status: "Active").pluck(:user_id).uniq
         user_ids.each do |i|
@@ -50,7 +50,9 @@ class EventsController < ApplicationController
     @attendees = @event.attendees.where(yes: true)
     @maybes = @event.attendees.where(maybe: true)
     @nos = @event.attendees.where(no: true)
-    @json = @event.facility.to_gmaps4rails
+    @facility = @event.facility
+    @json = @facility.to_gmaps4rails
+    
   end
   
   def edit
@@ -61,7 +63,7 @@ class EventsController < ApplicationController
   def update
     @event = Event.friendly.find(params[:id])
     if @event.update_attributes(event_params)
-      redirect_to events_path
+      redirect_to @event
     else
       render 'edit'
     end
@@ -69,6 +71,9 @@ class EventsController < ApplicationController
   
   def destroy
     @event = Event.friendly.find(params[:id])
+    @object_type = @event.eventable_type
+    @object_id = @event.eventable_id
+    @object = @object_type.constantize.find(@object_id)
     @event.name_and_phone_numbers.each do |obj|
       receiving_number = obj.last
 
@@ -86,8 +91,7 @@ class EventsController < ApplicationController
     end
     
     @event.destroy
-    redirect_to new_user_event_path(current_user)
-    #add twilio
+    redirect_to eval("new_#{@object_type.downcase}_event_path(@object.friendly_id)")
   end
   
   def rsvp

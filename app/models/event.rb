@@ -3,12 +3,13 @@ class Event < ActiveRecord::Base
   # scope :between, lambda {{ :conditions => ["starts_at >= ? AND starts_at <= ?", Event.format_date(start_time), Event.format_date(end_time)] }}
   belongs_to :eventable, polymorphic: true
   belongs_to :user
+  include Access
   extend FriendlyId
   friendly_id :use_for_slug, use: [:slugged, :finders]
   has_many :attendees, dependent: :destroy
   
   has_one :event_facility, dependent: :destroy
-  has_one :facility, through: :event_facility
+  has_many :connects, as: :owner, dependent: :destroy 
   
   def self.between(start_time, end_time)
     where('starts_at >= ?', Event.format_date(start_time)).where('starts_at <= ?', Event.format_date(end_time)).where.not('starts_at > ?', Event.format_date(end_time)).uniq
@@ -72,6 +73,10 @@ class Event < ActiveRecord::Base
     array
   end
   
+  def facility
+    Facility.find(connects.where(connectable_type: "Facility").last.connectable_id)
+  end
+  
   def proper_facility_name
     if facility.school.present?
       "#{facility.school.name} #{facility.name}"
@@ -82,9 +87,9 @@ class Event < ActiveRecord::Base
   
   def proper_facility_name_and_location
     if facility.school.present?
-      "#{facility.school.name} #{facility.name}, #{facility.city_and_state}"
+      "#{facility.school.name} #{facility.name}, #{facility.address.city_and_state}"
     else
-      "#{facility.name} #{facility.city_and_state}"
+      "#{facility.name} #{facility.address.city_and_state}"
     end
     
   end

@@ -77,6 +77,8 @@
               </div>
             </div><!--.col-md-9-->
           </div><!--.row-->
+		  
+		  
 
 
           <br/>
@@ -113,7 +115,10 @@
           </div><!--.row-->
 
           <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= f.hidden_field :eventable_type, value: @class %>
+          
+		  <% if @event.new_record? %>
+		    <%= f.hidden_field :eventable_type, value: @object.class.to_s %>
+		  <% end %>
 
 
           <!-- <div class="field">
