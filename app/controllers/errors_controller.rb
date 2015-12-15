@@ -1,18 +1,14 @@
 class ErrorsController < ApplicationController
+  rescue_from Exception, :with => :server_error
+  layout false
   
   def not_found
-    respond_to do |format|
-      format.any(:htm, :html, :xls, :xlsx) { render :status => 404, :formats => [:html] }
-      format.all { render nothing: true, status: 404 }
-    end
+    render :status => 404, :formats => [:html]
   end
 
-  def server_error
-    respond_to do |format|
-      format.html { render :layout => false, :status => 500 }
-      format.all { render nothing: true, status: 500}
-    end
+  def server_error(exception)
+    ExceptionNotifier.notify_exception(exception,
+      :env => request.env, :data => {:message => "was doing something wrong"})
+    render :status => 500, :formats => [:html]
   end
-  
 end
-
