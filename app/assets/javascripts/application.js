@@ -91,9 +91,7 @@
 //= require pleasure/globals/plugins/jquery.flexselect-0.7.0/jquery.flexselect
 //= require pleasure/globals/plugins/jquery.flexselect-0.7.0/liquidmetal
 
-//= require pleasure/globals/plugins/video.js/dist/video-js/video
-//= require pleasure/globals/plugins/video.js/plugins/playlist/videojs-playlists.min
-//= require pleasure/globals/plugins/video.js/plugins/youtube/youtube
+
 
 
 //= require imagesloaded.pkgd.js
@@ -151,5 +149,31 @@
 			$('#masonry-about-tab').load(document.URL +  ' #masonry-about-tab');
 		}		
 	});
+	
+	$(function () {
+		var whitelist = ["xls", "xlsx", "csv"];
+		$('#file-field').on('change.bs.fileinput', function() {
+		  var ext = $('#file-field').val().split('.').pop().toLowerCase();
+		  var extensionisgood = (whitelist.indexOf(ext) > -1);
+		  if (extensionisgood) {
+			  $('#file-submit').removeAttr('disabled');
+			  $('#invalid-message').hide()
+			
+		  } else {
+			  $('#file-submit').attr('disabled', true);
+			  $('#file-field').val("")
+			  $('#invalid-message').css({ display: "block" });
+		  }
+		});
+	});
+	
+	$(function() {
+	  return $('#school-pricings-search-box').keyup(function() {
+	    $.get($(this).attr("action"), $(this).serialize(), null, "script");
+	    return false;
+	  });
+	});
+	
+	
 	
 
