@@ -31,7 +31,7 @@
 									</h4>
 									<p class="fs_12 semi-bold text-muted mb5 mt5">
 										<i class="ion-person-stalker fs_16 text-primary mr5"></i>
-										<%= pluralize @accepted_coaches.count, "Player" %>, <%= pluralize @accepted_athletes.count, "Player" %>,  <%= pluralize @athletic_directors.count, "Athletic Director" %>
+										<%= pluralize @coaches.count, "Player" %>, <%= pluralize @athletes.count, "Player" %>,  <%= pluralize @athletic_directors.count, "Athletic Director" %>
 									</p> 
 									<!-- <p class="semi-bold fs_14 text-muted no-margin">
 										<i class="ion-university fs_20 text-primary mr5"></i><%#= pluralize @league.schools.count, "School" %>
@@ -126,13 +126,13 @@
 								</div><!--.card-heading-->
 								<div class="card-body bgcolor-light-grey">
 									<ul class="users">
-										<% unless @accepted_coaches.present? %>
+										<% unless @coaches.present? %>
 										<p class="mb0 mt0 center padding-10 text-grey">
 												<!-- <i class="ion-person-add mr10"></i> Add Coaches -->
 												No Coaches for League
 										</p>
 									    <% else %>
-										<% @accepted_coaches.each do |user| %>
+										<% @coaches.each do |user| %>
 											<li>
 												<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
 													<%= image_tag user.avatar %>
@@ -144,7 +144,7 @@
 								</div><!--.card-body-->
 								<div class="card-footer">
 									<ul>
-										<li><span class="mr5 fs_14"><%= pluralize @accepted_coaches.count, "Coach" %></span></li>
+										<li><span class="mr5 fs_14"><%= pluralize @coaches.count, "Coach" %></span></li>
 										<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
 									</ul>
 								</div><!--.card-footer-->
@@ -216,12 +216,12 @@
 								</div><!--.card-heading-->
 								<div class="card-body bgcolor-light-grey">
 									<ul class="users">
-										<% unless @accepted_athletes.present? %>
+										<% unless @athletes.present? %>
 										<p class="mb0 mt0 center padding-10 text-grey">
 											<i class="ion-person-add mr10"></i> No Athletes for League
 										</p>
 										<% else %>
-										<% @accepted_athletes.each do |user| %>
+										<% @athletes.each do |user| %>
 										<li>
 											<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= user.full_name %>">
 												<%= image_tag user.avatar %>
@@ -233,7 +233,7 @@
 								</div><!--.card-body-->
 								<div class="card-footer">
 									<ul>
-										<li><span class="mr5 fs_14"><%= pluralize @accepted_athletes.count, "Athlete" %></span></li>
+										<li><span class="mr5 fs_14"><%= pluralize @athletes.count, "Athlete" %></span></li>
 										<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
 									</ul>
 								</div><!--.card-footer-->
