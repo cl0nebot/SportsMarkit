@@ -34,8 +34,8 @@
        	<ol class="breadcrumb">
 					<li><a href="/"><i class="ion-home"></i></a></li>
 					<li><a href="<%= teams_path %>">Teams</a></li>
-					<% if @team.school.present? %>
-				  		<li><a href="#"><%= @team.school.name %></a></li>
+					<% if @team.teamable.present? %>
+				  		<li><a href="#"><%= @team.teamable.name %></a></li>
 				  		<!-- add path for linking -->
 					<% end %>
 					<li><a href="#" class="active"><%= @team.name %></a></li>
@@ -45,26 +45,15 @@
 
     <div class="header-tabs scrollable-tabs sticky">
       
-    <% if current_user %>
-      <% if current_user.can_edit_team?(@team)%>
+      <% if @object.can_be_edited_by_user?(current_user) %>
         <%= link_to edit_team_path(@team), class: "mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
             <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
         <% end %>
       <% end %>
-    <% end %>
 
-      <div class="pull-right mr10 mt10" id="team-button">
-		  <% if current_user %>
-				<% if current_user.relationships.where(team_id: @team.id).empty? %>
-				  <%= render 'relationships/relationship'%>
-				<% elsif current_user.relationships.where(team_id: @team.id, accepted: nil, rejected: nil).present? %>
-				  <%= render 'relationships/pending'%>
-				<% elsif current_user.relationships.where(team_id: @team.id, accepted: true).present? %>
-					<%= render 'relationships/member'%>
-					
-				<% end %>
-		<% end %>
-			</div>
+      <div class="pull-right mr10 mt10" id="join-button">
+		  <%= join_object_button(current_user, @object.class.to_s, @object.id) %>
+	  </div>
 
 
 

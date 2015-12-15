@@ -45,7 +45,7 @@
 
 
 <% if current_user %>
-  <% if current_user.admin? or current_user.can_edit_team?(@team)%>
+  <% if @object.can_be_edited_by_user?(current_user) %>
 
 		<div id="admin" class="tab-pane tab-top-margin">
 
@@ -241,8 +241,8 @@
 						</div><!--.panel-heading-->
 						<div class="panel-body no-padding">
 							<ul class="list-material has-hidden pending-members">
-								<% @pending_members.each do |m| %>
-							    	<%= render 'pending', m: m%>
+								<% @join_requests.each do |m| %>
+							    	<%= render 'rosters/pending', m: m%>
 							  	<% end %>
 							</ul>
 						</div><!--.panel-body-->

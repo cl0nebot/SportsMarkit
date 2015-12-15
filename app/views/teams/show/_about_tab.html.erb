@@ -1,7 +1,7 @@
 <div id="about" class="tab-pane active">
 	<!--.page-header-->
   <div class="page-header full-content parallax">
-    <%= render "teams/show/header" %>
+    <%= render "shared/show/header" %>
     <%#= render "users/show/tab_navigation" %>
   </div>
   <!--.page-header-->
@@ -30,13 +30,13 @@
 								</h4>
 								<p class="fs_12 semi-bold text-muted mb5 mt5">
 									<i class="ion-person-stalker fs_16 text-primary mr5"></i>
-									<%= pluralize @team.accepted_coach_relationships.count, "Coach" %>, 
-									<%= pluralize @team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize @team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize @team.accepted_trainer_relationships.count, "Trainer" %>
+									<%= pluralize @team.coach_roles.count, "Coach" %>, 
+									<%= pluralize @team.athlete_roles.count, "Player" %>, <%= pluralize @team.manager_roles.count, "Manager" %>, <%= pluralize @team.trainer_roles.count, "Trainer" %>
 								</p> 
-								<% if @team.school.present? %>
+								<% if @team.teamable.present? %>
 									<p class="semi-bold fs_14 text-muted no-margin">
 										<i class="ion-university fs_20 text-primary mr5"></i>
-										<%= link_to @team.school.name, school_path(@team.school) %>
+										<%= link_to @team.teamable.name, @team.teamable %>
 									</p>
 								<% end %>
 							</div>
@@ -109,8 +109,8 @@
 						<div class="clearfix">
 							<p class="semi-bold fs_12 text-muted no-margin">
 								<i class="ion-person-stalker fs_20 text-primary mr5"></i>
-								<%= pluralize @team.accepted_coach_relationships.count, "Coach" %>, 
-								<%= pluralize @team.accepted_athlete_relationships.count, "Player" %>, <%= pluralize @team.accepted_manager_relationships.count, "Manager" %>, <%= pluralize @team.accepted_trainer_relationships.count, "Trainer" %>
+								<%= pluralize @team.coach_roles.count, "Coach" %>, 
+								<%= pluralize @team.athlete_roles.count, "Player" %>, <%= pluralize @team.manager_roles.count, "Manager" %>, <%= pluralize @team.trainer_roles.count, "Trainer" %>
 							</p>
                             <% if @team.website.present? %>
 							<p class="semi-bold fs_14 text-muted no-margin">
@@ -154,7 +154,7 @@
 								<div class="card-body bgcolor-light-grey">
 								<% unless @members.present? %>
 								   <% if current_user %>
-									   <% if current_user.can_edit_team?(@team)%>
+									   <% if @object.can_be_edited_by_user?(current_user) %>
 										    <%= link_to "/teams/#{@team.slug}/#tab_admin" do %>
 											<p class="mb0 mt0 center padding-20 text-grey">
 													<i class="ion-person-add mr10"></i> Add Players to Roster
@@ -184,7 +184,13 @@
 												</div>
 
 												<div class="list-action-left">
-													<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
+													<% if member.class.to_s == "Role" %>
+													<%= image_tag(member.user.avatar, class: "face-radius")%>
+							
+													<% else %>
+													<%= image_tag(member.avatar, class: "face-radius")%>
+													<% end %>
+													
 												</div>
 												<div class="list-content">
 												
@@ -210,7 +216,7 @@
 								<hr class="no-margin"/>
 								<div class="card-footer">
 									<ul>
-										<li class="fs_14"><span class="mr5"><%= pluralize @members.count, "Player" %> Players</span></li>
+										<li class="fs_14"><span class="mr5"><%= pluralize @members.count, "Player" %></span></li>
 										<li><a href="#roster" data-toggle="tab" class="fs_14">View Complete Roster</a></li>
 									</ul>
 								</div><!--.card-footer-->
