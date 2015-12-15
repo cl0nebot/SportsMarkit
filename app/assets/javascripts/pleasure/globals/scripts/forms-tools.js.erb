@@ -200,8 +200,37 @@ var FormsTools = {
 	},
 
 	typeahead: function () {
+		
+		var clubs = <%= Club.object_json.to_json %>;
 
-		var facilities = <%= Facility.facility_json.to_json %>;
+		// instantiate the bloodhound suggestion engine
+		var clubs = new Bloodhound({
+		    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+		    queryTokenizer: Bloodhound.tokenizers.whitespace,
+		    local: $.map(clubs, function(club) { return { value: club.name, link: club.link }; })
+		});
+
+		// initialize the bloodhound suggestion engine
+		clubs.initialize();
+
+		// Typeahead example 1
+		$('.typeahead-clubs')
+		    .typeahead({
+		        hint: true,
+		        highlight: true,
+		        minLength: 1
+		    }, {
+		        name: 'clubs',
+		        displayKey: 'value',
+		        source: clubs.ttAdapter()
+		    })
+		    .on('typeahead:selected', function(object, datum) {
+		        // This is the function that should update the "source" (i.e.: delete the selected value from it)
+				window.location.href = datum.link
+		        // update_the_source_with(datum.value);
+		});
+
+		var facilities = <%= Facility.object_json.to_json %>;
 
 		// instantiate the bloodhound suggestion engine
 		var facilities = new Bloodhound({
@@ -231,7 +260,7 @@ var FormsTools = {
 		});
 		    
 
-		var schools = <%= School.school_json.to_json %>;
+		var schools = <%= School.object_json.to_json %>;
 
 		// instantiate the bloodhound suggestion engine
 		var schools = new Bloodhound({
@@ -261,7 +290,7 @@ var FormsTools = {
 		});
 
 
-		var teams = <%= Team.team_json.to_json %>;
+		var teams = <%= Team.object_json.to_json %>;
 
 		// instantiate the bloodhound suggestion engine
 		var teams = new Bloodhound({
@@ -291,7 +320,7 @@ var FormsTools = {
 		});
 
 
-		var users = <%= User.user_json.to_json %>;
+		var users = <%= User.object_json.to_json %>;
 
 		// instantiate the bloodhound suggestion engine
 		var users = new Bloodhound({
@@ -412,7 +441,7 @@ var FormsTools = {
 
 
 
-		var facilities = <%= Facility.facility_names %>;
+		var facilities = <%= Facility.object_names %>;
 
 		// instantiate the bloodhound suggestion engine
 		var facilities = new Bloodhound({
@@ -443,7 +472,7 @@ var FormsTools = {
 
 
 
-		var leagues = <%= League.league_json.to_json %>;
+		var leagues = <%= League.object_json.to_json %>;
 
 		// instantiate the bloodhound suggestion engine
 		var leagues = new Bloodhound({
