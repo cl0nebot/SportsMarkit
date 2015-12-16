@@ -4,7 +4,7 @@ class Role < ActiveRecord::Base
   
   has_many :positionings, :as => :positionable, :dependent => :destroy
   has_many :positions, :through => :positionings
-  validate :not_duplicate
+  validate :not_duplicate, on: :create
   
   def not_duplicate
     existing_role = Role.where(user_id: self.user_id, role: self.role, roleable_id: self.roleable_id, roleable_type: self.roleable_type)
@@ -28,6 +28,14 @@ class Role < ActiveRecord::Base
   
   def self.staff_roles
     where(status: "Active", role: ["Manager", "Trainer", "Coach", "Athletic Director"])
+  end
+  
+  def self.unique_staff_roles
+    array =[]
+    self.staff_roles.pluck(:user_id).uniq.each do |id|
+      array << where(status: "Active", role: ["Manager", "Trainer", "Coach", "Athletic Director"], user_id: id).last.id
+    end
+    Role.where(id: array)
   end
 
   

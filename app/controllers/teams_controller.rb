@@ -41,7 +41,7 @@ class TeamsController < ApplicationController
     @admins = @object.all_admin_roles
     @athletes = @object.roles.athletes
     @pending_members = @object.pending_athlete_roles
-    @heads = @object.staff_roles
+    @heads = @object.unique_staff_roles
     @facilities = @object.used_facilities
     @new_user = User.new
   end

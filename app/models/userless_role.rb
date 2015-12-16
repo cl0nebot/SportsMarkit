@@ -20,6 +20,14 @@ class UserlessRole < ActiveRecord::Base
     where(status: "Active", role: ["Manager", "Trainer", "Coach", "Athletic Director"])
   end
   
+  def self.unique_staff_roles
+    array =[]
+    self.staff_roles.pluck(:first_name, :last_name).uniq.each do |first, last|
+      array << where(status: "Active", role: ["Manager", "Trainer", "Coach", "Athletic Director"], first_name: first, last_name: last).last.id
+    end
+    UserlessRole.where(id: array)
+  end
+  
   def self.create_new_role(array, params={})
     array.compact.each do |role_type|
       role = create(

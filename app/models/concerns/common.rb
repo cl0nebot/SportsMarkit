@@ -107,7 +107,19 @@ module Common
   end
   
   def staff_roles
-    user_ids = roles.staff_roles + Role.where(roleable_type: "Team", roleable_id: self.team_ids).staff_roles + userless_roles.staff_roles + UserlessRole.where(userless_type: "Team", userless_id: self.team_ids).staff_roles 
+    if self.class.to_s == "Team"
+      user_ids = roles.staff_roles + userless_roles.staff_roles
+    else
+      user_ids = roles.staff_roles + Role.where(roleable_type: "Team", roleable_id: self.team_ids).staff_roles + userless_roles.staff_roles + UserlessRole.where(userless_type: "Team", userless_id: self.team_ids).staff_roles 
+    end
+  end
+  
+  def unique_staff_roles
+    if self.class.to_s == "Team"
+      user_ids = roles.unique_staff_roles + userless_roles.unique_staff_roles
+    else
+      user_ids = roles.unique_staff_roles + Role.where(roleable_type: "Team", roleable_id: self.team_ids).unique_staff_roles + userless_roles.unique_staff_roles + UserlessRole.where(userless_type: "Team", userless_id: self.team_ids).unique_staff_roles 
+    end
   end
   
   def accepted_staff_members
