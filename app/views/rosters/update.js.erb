@@ -14,3 +14,19 @@
   $('#athlete-count').empty()
   $('#athlete-count').append("<%= j render 'rosters/athlete_count', members: @members %>")
 <% end %>
+
+<% if params[:close_member].present? %>
+  $('#edit-member-<%= params[:object_type] %><%= params[:id] %>').empty()
+  $('#edit-member-<%= params[:object_type] %><%= params[:id] %>').append('<%= j render 'rosters/admin_view_member', m: @object %>')
+<% end %>
+
+
+<% if params[:close_head].present? %>
+$('#edit-head-<%= params[:object_type] %><%= params[:id] %>').empty()
+  <% objects = Role.where(user_id: @user_id, status: "Active", role: ["Manager", "Trainer", "Coach", "Athletic Director"]) %>
+  <% if objects.present? %>
+    $('#edit-head-<%= params[:object_type] %><%= params[:id] %>').append('<%= j render 'rosters/head', m: objects.first %>')
+  <% end %>
+<% end %>
+
+

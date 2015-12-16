@@ -1,8 +1,8 @@
 <div id="roster" class="tab-pane pt40">
 	<div class="row bgcolor-white box-shadow-ccc pt20 pr20 pl20 mb20 pb30">
 		<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
-			<h1 class="text-indigo no-margin bold"><%= @heads.count %></h1>
-			<h6 class="text-grey semi-bold no-margin "><%= (@heads.count > 1 or @heads.count == 0) ? "Coaches" : "Coach" %></h6>
+			<h1 class="text-indigo no-margin bold"><%= @coaches.count %></h1>
+			<h6 class="text-grey semi-bold no-margin "><%= (@coaches.count > 1 or @coaches.count == 0) ? "Coaches" : "Coach" %></h6>
 		</div>
 		<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
 			<h1 class="text-indigo no-margin bold"><%= @team.athletes.count + @team.userless_athletes.count %></h1>
@@ -77,6 +77,8 @@
 				</div><!--.panel-->
 				<br/>
 				<!-- coaches and staff -->
+				
+				
 			</div>
 
 			<div class="col-lg-8" style="">

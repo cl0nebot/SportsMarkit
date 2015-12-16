@@ -1,5 +1,6 @@
-<%= form_for m, url: roster_path(id: m.id, object_type: m.class.to_s), html: {data: {remote: true}} do |f| %>
 <li id="edit-head-<%= m.class.to_s %><%= m.id%>" class="">
+	<%= form_for m, url: roster_path(id: m.id, object_type: m.class.to_s), html: {data: {remote: true}} do |f| %>
+	<%= hidden_field_tag :close_head, true %>
 	<div class="list-content no-padding">
 		<div class="clearfix pt15">
 			<div class="col-md-12">
@@ -58,6 +59,7 @@
 							</small>
 						</p>
 					</div>
+					<% if m.class.to_s == "UserlessRole" %>
 					<div class="">
 					  	<%= f.text_field :mobile_phone_number, type: "text", class: "form-control"  %>
 						<p class="small">
@@ -66,27 +68,36 @@
 							</small>
 						</p>
 					</div>
+					<% end %>
 
 					<div class="row">
 				
-						<div class="col-md-4">
-							<%= check_box_tag :coach %> 
+						<div class="col-md-3">
+							<%= check_box_tag :coach, true, (@team.roles.where(user_id: m.user.id, role: "Coach", status: "Active").present? ? true : false) %> 
 							<p class="small">
 								<small>
 									Coach
 								</small>
 							</p>
 						</div>
-						<div class="col-md-4">
-							<%= check_box_tag :trainer %> 
+						<div class="col-md-3">
+							<%= check_box_tag :trainer, true, (@team.roles.where(user_id: m.user.id, role: "Trainer", status: "Active").present? ? true : false) %> 
 							<p class="small">
 								<small>
 									Trainer
 								</small>
 							</p>
 						</div>
-						<div class="col-md-4">
-							<%= check_box_tag :manager %> 
+						<div class="col-md-3">
+							<%= check_box_tag :admin, true, (@team.roles.where(user_id: m.user.id, role: "Admin", status: "Active").present? ? true : false) %> 
+							<p class="small">
+								<small>
+									Admin
+								</small>
+							</p>
+						</div>
+						<div class="col-md-3">
+							<%= check_box_tag :manager,true, (@team.roles.where(user_id: m.user.id, role: "Manager", status: "Active").present? ? true : false) %>
 							<p class="small">
 								<small>
 									Manager
@@ -103,6 +114,6 @@
 			</div>
 		</div>
 	</div>
+<% end %>
 </li>
 
-<% end %>

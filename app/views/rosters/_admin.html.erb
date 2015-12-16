@@ -33,7 +33,7 @@
                                 <span class="ion-trash-b"></span>
                         <% end %>
 
-                        <%= link_to team_edit_roster_view_path(team_id: @team.id, class: m.class, id: m.id, status: "admin"), remote: true, class: "btn btn-primary pull-right mr10" do %>
+                        <%= link_to roster_edit_roster_view_path(roster_id: @team.id, class: m.class, id: m.id, status: "admin"), remote: true, class: "btn btn-primary pull-right mr10" do %>
                                 <span class="ion-ios-gear"></span>
                         <% end %>
                     </div>
@@ -47,7 +47,7 @@
                     </h5>
                     <p class="small text-grey">
                         <small>
-                            <%= m.head_position_list %>
+                            <%#= m.head_position_list %>
                         </small>
                     </p>
                 </div>

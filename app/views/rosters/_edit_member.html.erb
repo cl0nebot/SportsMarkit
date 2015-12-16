@@ -1,5 +1,7 @@
-<%= form_for m, url: roster_path(id: m.id), method: :patch, html: {data: {remote: true}} do |f| %>
+<%= form_for m, url: roster_path(id: m.id, object_type: m.class.to_s), html: {data: {remote: true}} do |f| %>
 	<li id="edit-member-<%= m.class.to_s %><%= m.id%>" class="">
+		<%= hidden_field_tag :member, true %>
+		<%= hidden_field_tag :close_member, true %>
 		<div class="list-content no-padding pt20">
 			<div class="row">
 				<div class="col-sm-2">
@@ -59,21 +61,29 @@
 						<div class="col-md-12">
 							<div class="row">
 								<div class="col-md-4">
-								  	<%= f.text_field :mobile_phone_number, type: "text", class: "form-control"  %>
+								  	<%= f.text_field :jersey_number, type: "text", class: "form-control"  %>
 									<p class="small">
 										<small>
-											Mobile Phone Number
+											Jersey Number
 										</small>
 									</p>
 								</div>
-								<div class="col-md-1 col-md-offset-1">
-									<%= check_box_tag :athlete %> 
+								<div class="col-md-4">
+								  	<%= f.text_field :nickname, type: "text", class: "form-control"  %>
+									<p class="small">
+										<small>
+											Nickname
+										</small>
+									</p>
+								</div>
+								<!-- <div class="col-md-1 col-md-offset-1">
+									<%#= check_box_tag :athlete, true, (@team.roles.where(user_id: m.user.id, role: "Athlete", status: "Active").present? ? true : false) %>
 									<p class="small inline">
 										<small>
 											Athlete?
 										</small>
 									</p>
-								</div>
+								</div> -->
 								
 							</div>
 						</div>

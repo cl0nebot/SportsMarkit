@@ -6,20 +6,18 @@ class RostersController < ApplicationController
     @mobile_number.present? ? (@user_exists ? add_existing_user_to_roster : create_new_user_and_roster_spot) : create_userlesss_roster_spot
   end
   
-  def update
-    @id = params[:id]
-    @role = params[:object_type].constantize.find(@id)
-    @team = @role.roleable
-    @object = @role
-    @role.update_attributes(role_or_userless_role_params)
-    @members = @team.all_athlete_roles
-    @heads = @team.staff_roles
-    @accepting_action = true # params[:roster][:accepted].nil? ? false : true
-    respond_to do |format|
-      format.js
-      format.html { redirect_to :back }
-    end
-  end
+  # def update
+  #
+  #   @team = @object.roleable
+  #   @object.update_attributes(role_or_userless_role_params)
+  #   @members = @team.all_athlete_roles
+  #   @heads = @team.staff_roles
+  #
+  #   respond_to do |format|
+  #     format.js
+  #     format.html { redirect_to :back }
+  #   end
+  # end
   
   def accept
     user_id = params[:user_id]
@@ -43,9 +41,39 @@ class RostersController < ApplicationController
   end
   
   def update
-    @object = Role.find(params[:id])
-    @team = Team.find(@object.roleable_id)
+    @object = params[:object_type].constantize.find(params[:id])
+    @user_id = @object.user_id
+    @team = @object.roleable
+    #@accepting_action = true # params[:roster][:accepted].nil? ? false : true
+    roleable_type = @team.class.to_s
+    roleable_id = @team.id
+    title = params[:role][:title]
     
+    athlete = params[:athlete].present? ? "Athlete" : nil
+    coach = params[:coach].present? ? "Coach" : nil
+    #parent = params[:parent].present? ? "Parent" : nil
+    manager = params[:manager].present? ? "Manager" : nil
+    trainer = params[:trainer].present? ? "Trainer" : nil
+    admin = params[:admin].present? ? "Admin" : nil
+    
+    add = ["Coach", "Manager", "Trainer", "Admin"] & [coach, manager, trainer, admin].compact
+    remove = ["Coach", "Manager", "Trainer", "Admin"] - [coach, manager, trainer, admin].compact
+    
+    unless params[:member].present?
+      add.compact.each do |role_name|
+        role = Role.where(user_id: @user_id, roleable_type: roleable_type, roleable_id: roleable_id, role: role_name, title: title ).first_or_create
+        role.update(status: "Active")
+      end
+      remove.compact.each do |role_name|
+        role = Role.where(user_id: @user_id, roleable_type: roleable_type, roleable_id: roleable_id, role: role_name).last.try(:delete)
+      end
+      respond_to do |format|
+        format.js
+        format.html { redirect_to :back }
+      end
+    else
+      @object.update_attributes(role_or_userless_role_params)
+    end
   end
   
   # def update
@@ -221,9 +249,9 @@ Password: #{password}"
   
   def role_or_userless_role_params
     if params[:object_type] == "Role"
-      params.require(:role).permit(:role, :roleable_id, :roleable_type, :date_added, :accepting_user_id, :status, :mobile_phone_number, :level, :nickname, :jersey_number, :title)
+      params.require(:role).permit(:role, :roleable_id, :roleable_type, :date_added, :accepting_user_id, :status, :mobile_phone_number, :level, :nickname, :jersey_number, :title, position_ids: [])
     elsif params[:object_type] == "UserlessRole"
-      params.require(:userless_role).permit(:first_name, :last_name, :role, :roleable_id, :roleable_type, :date_added, :accepting_user_id, :status, :roleable_type, :level, :nickname, :jersey_number, :title)
+      params.require(:userless_role).permit(:first_name, :last_name, :role, :roleable_id, :roleable_type, :date_added, :accepting_user_id, :status, :roleable_type, :level, :nickname, :jersey_number, :title, position_ids: [])
     end
   end
   
