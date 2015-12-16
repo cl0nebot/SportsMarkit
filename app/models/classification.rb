@@ -1,6 +1,6 @@
 class Classification < ActiveRecord::Base
   belongs_to :user
-  validate :not_duplicate
+  validate :not_duplicate, on: :create
   
   def not_duplicate
     existing_classification = Classification.where(user_id: self.user_id, classification: self.classification)
