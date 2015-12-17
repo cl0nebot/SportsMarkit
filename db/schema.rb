@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204045151) do
+ActiveRecord::Schema.define(version: 20151217080335) do
 
   create_table "addresses", force: true do |t|
     t.integer  "addressable_id"
@@ -35,6 +35,22 @@ ActiveRecord::Schema.define(version: 20151204045151) do
 
   create_table "amenities", force: true do |t|
     t.string   "amenity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "announcements", force: true do |t|
+    t.integer  "user_id"
+    t.string   "announceable_type"
+    t.integer  "announceable_id"
+    t.text     "message"
+    t.text     "sports"
+    t.text     "team_ids"
+    t.text     "specific_user_groups"
+    t.text     "default_user_groups"
+    t.boolean  "sms"
+    t.boolean  "email"
+    t.string   "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

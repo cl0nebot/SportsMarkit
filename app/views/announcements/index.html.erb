@@ -1,0 +1,204 @@
+<div class="content">
+	<div class="page-header full-content bg-blue mb0">
+	  <div class="row">
+	    <div class="col-sm-6">
+	      <h1><%= params[:controller].capitalize %>: <small>Group Communication</small></h1>
+	    </div><!--.col-->
+	    <div class="col-sm-6">
+	      <ol class="breadcrumb">
+	        <li><a href="/"><i class="ion-home"></i></a></li>
+	        <li><a href="<%= users_path %>" class="active">all users</a></li>
+	      </ol>
+	    </div><!--.col-->
+	  </div><!--.row-->
+	</div><!--.page-header-->
+
+	   
+	  	
+	<div class="pt60">
+		<div class="row">
+			<div class="col-lg-4">
+	    	<%= form_for eval("#{@object.class.to_s.underscore}_announcements_path"), html: {id: 'announcement-form', data: {remote: true}} do |f| %>
+		    <div class="panel box-shadow-ccc">
+		    	<div class="panel-heading">
+						<div class="panel-title">
+							<span class="ion-plus-circled text-primary h1 mr15 mt0 pull-left"></span>
+							<h3>Send your message below.</h3>
+						</div>
+					</div>
+					<div class="panel-body">
+			      <div class="row">
+			      	<div class="col-md-12">
+			        	<div class="row">
+							Send: <br>
+							<div class="col-md-1">
+								<div class="checkboxer form-inline mb5">
+			                      	<%= check_box_tag :sms,true, nil,  id: "sms"  %>
+			                      	<label for="sms"></label>
+			                    </div>
+								<p class="small">
+									<small>
+										SMS
+									</small>
+								</p>
+							</div>
+							<div class="col-md-1">
+								<div class="checkboxer form-inline mb5">
+			                      	<%= check_box_tag :email, true, nil, id: "email"  %>
+			                      	<label for="email"></label>
+			                    </div>
+								<p class="small">
+									<small>
+										EMAIL
+									</small>
+								</p>
+							</div>
+							<div class="pull-right" id="delivery-method" style="display: none">
+						
+			                      	<font size="2" color="red">You must assign at least one delivery method.</font>
+	                  
+							</div>
+							<br><br>
+							to all:
+									<div class="col-md-12">
+										<div class="row example-row no-margin">
+											<h5 class="text-muted text-center">Select the users that should receive this message. </h5>
+											
+											<div class="col-md-12">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<% unless @object.class.to_s == "Team" %>
+														<%= select_tag :specific_role_names, options_for_select([["All"] + [@object_type.constantize.custom_message_groups]].flatten, " "), {:multiple => true, include_blank: true} %><br>
+														
+														and also to:
+														<% end %>
+														<%= select_tag :default_role_names, options_for_select([["All"] + [@object_type.constantize.default_message_groups]].flatten), {:multiple => true, include_blank: true} %><br>
+													</div>
+												</div>
+											</div><!--.col-md-9-->
+											<div class="pull-right" id="user-group" style="display: none">
+						
+							                      	<font size="2" color="red">You must assign at least one user group.</font>
+	                  
+											</div>
+										</div><!--.row-->
+										
+									
+										
+										
+										
+										<div class="row example-row no-margin">
+											<h5 class="text-muted text-center">Select the users that should receive this message. </h5>
+											
+											<div class="col-md-12">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<% unless @object.class.to_s == "Team" %>
+
+														that play these sports:
+														<%= select_tag :sports, options_for_select([["All"] + [@object.teams.pluck(:sport)]].flatten), {:multiple => true, include_blank: true} %><br>
+														
+														and/or are on these teams:
+														<%= select_tag :team_ids, options_for_select(@object.teams.collect{ |team| [team.name, team.id] }), {:multiple => true, include_blank: true} %><br>
+														<% end %>
+														<div class="pull-right" id="sport-or-team" style="display: none">
+						
+										                      	<font size="2" color="red">You must assign at least one sport or team.</font>
+	                  
+														</div>
+														
+													</div>
+												</div>
+											</div><!--.col-md-9-->
+										</div><!--.row-->
+										
+										<div class="row example-row no-margin">
+											<h5 class="text-muted text-center">Write your message. Messages must be less than 480 characters. </h5>
+											
+											<div class="col-md-12">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<%= text_area_tag :message, nil, maxlength: 200, id: 'review_text' %><br>
+														Chars left: <span id="counter" data-maximum-length="<%= 480 %>"><%= 480 %></span>
+														<div class="pull-right" id="atleast-ten" style="display: none">
+			
+										                      	<font size="2" color="red">Your message must be at least 10 characters.</font>
+          
+														</div>
+														<div class="pull-right" id="less-than-max-char" style="display: none">
+			
+										                      	<font size="2" color="red">Your message exceeds 480 characters.</font>
+          
+														</div>
+													</div>
+												</div>
+											</div><!--.col-md-9-->
+									
+										</div><!--.row-->
+									</div>
+								</div>
+								<%= hidden_field_tag :object_type, @object.class.to_s %>
+								<%= hidden_field_tag :object_id, @object.id %>			
+								
+						
+								<div class="row mt10">
+					        <div class="col-md-12">
+					        	<%= submit_tag "Send Message", class: "btn btn-blue btn-block mt20", data: { disable_with: "Sending out messages. Please wait..." } %>
+								<div class="pull-right" id="sent-message">
+
+				                      	
+
+								</div>
+					        </div>
+					      </div>
+					    </div>
+			      </div>
+			    </div>
+			  </div>
+				<% end %>	
+			</div>
+			<div class="col-lg-8">
+				<div class="panel box-shadow-ccc">
+					<div class="panel-heading">
+						<div class="panel-title">
+							<h4 class="semi-bold">All Messages</h4>
+						</div>
+					</div>
+					<div class="panel-body pb40">
+						<div class="">
+							<table id="announcement-list" class="table table-hover table-condensed" id="example">
+					          <thead>
+					            <tr>
+								  <th style="width:10%" class="semi-bold h6 text-muted">Date</th>
+								  <th style="width:30%" class="semi-bold h6 text-muted">Message</th>
+					              <th style="width:30%" class="semi-bold h6 text-muted">Sent To</th>
+								  <th style="width:30%" class="semi-bold h6 text-muted">Sports</th>
+								  <th style="width:30%" class="semi-bold h6 text-muted">Teams</th>
+					              <th style="width:30%" class="semi-bold h6 text-muted">Sent As</th>
+					            </tr>
+					          </thead>
+					          <tbody>
+					            <%= render @objects %>
+					          </tbody>
+				        	</table>
+				      	</div>
+				      </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+								<script>
+								    $(document).ready(function() {
+								      var review_text = $("#review_text");
+								      var counter     = $("#counter");
+								      var max_length  = counter.data("maximum-length");
+
+								      review_text.keyup(function() {
+								          counter.text(max_length - $(this).val().length);
+								      });
+
+								    });
+								</script>

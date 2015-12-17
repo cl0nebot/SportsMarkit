@@ -236,17 +236,6 @@ class User < ActiveRecord::Base
     end
   end
   
-  def has_confirmed_parent?(user)
-    ParentChild.where(parent_id: user.id, child_id: id, accepted: true).present?
-  end
-  
-  def children_events #TODO finish
-    # if ParentChild.where(parent_id: id).present?
-    #   kid_id = ParentChild.where(parent_id: id).last
-    #   kid = User.friendly.find(kid_id)
-    #   kid.attendances
-    # end
-  end
   
   # def teammates
   #   team_ids = relationships.where(accepted: true).pluck(:team_id)
@@ -262,13 +251,6 @@ class User < ActiveRecord::Base
   end
   
   
-  def self.athletes
-    relationship_user_ids = Relationship.where(participant: true).pluck(:user_id)
-    student_athlete_user_ids = Classification.where(classification: "Student Athlete").pluck(:user_id) 
-    athlete_user_ids = Classification.where(classification: "Athlete").pluck(:user_id) 
-    unique_user_ids = (relationship_user_ids + student_athlete_user_ids + athlete_user_ids).uniq
-    all_athletes = User.where(id: unique_user_ids)
-  end
   
   def self.user_names
     array = []
@@ -307,10 +289,6 @@ class User < ActiveRecord::Base
     coached_teams = Team.where(id: coached_team_ids)
   end
   
-  def children
-    children_ids = ParentChild.where(parent_id: id).pluck(:child_id)
-    children = User.where(id: children_ids)
-  end
   
   def age
     if profile.date_of_birth.present?
@@ -445,19 +423,6 @@ class User < ActiveRecord::Base
     end
   end
   
-  def parent_relationships
-    child_ids = ParentChild.where(parent_id: id, accepted: true).pluck(:child_id)
-    relationships = Relationship.where(user_id: child_ids, accepted: true)
-  end
-  
-  def parent_relationship_with_team?(team)
-    if parent_relationships.present?
-      array = parent_relationships.pluck(:team_id).uniq
-      array.include? team.id
-    else
-      false
-    end
-  end
   
   def create_profile
     Profile.create(user_id: self.id, focus: [], specialties: [], skills: [], injuries: [], current_ailments: [])

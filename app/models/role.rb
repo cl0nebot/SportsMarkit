@@ -13,7 +13,7 @@ class Role < ActiveRecord::Base
     end
   end
   
-  ["Athlete", "Coach", "Manager", "Admin", "Trainer", "Athletic Director"].each do |type|
+  ["Athlete", "Coach", "Team Manager", "Admin", "Trainer", "Athletic Director", "Guardian", "School Manager", "Athletic Director", "Club Director", "League Manager", "Facility Manager"].each do |type|
     
     formatted_type = type.gsub(" ", "_").downcase
     

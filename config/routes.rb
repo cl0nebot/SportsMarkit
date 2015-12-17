@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     resources :sessions
     resources :password_resets
     resources :schools do
+      resources :announcements
       resources :facilities
       resources :media
       resources :teams
@@ -72,6 +73,7 @@ Rails.application.routes.draw do
     end
     
     resources :teams do
+      resources :announcements
       resources :photos
       resources :profile_pictures, only: %w[create update destroy]
       resources :events
@@ -91,6 +93,7 @@ Rails.application.routes.draw do
     end
 
     resources :facilities do
+      resources :announcements
       resources :profile_pictures, only: %w[create update destroy]
       collection do
         get :selection_option
@@ -105,6 +108,7 @@ Rails.application.routes.draw do
 
     resources :tournaments
     resources :leagues do
+      resources :announcements
       resources :profile_pictures, only: %w[create update destroy]
       resources :events
       resource :calendar do
@@ -130,7 +134,7 @@ Rails.application.routes.draw do
       end
     end
     resources :pricings
-    resources :team_leagues
+    resources :connects
     resources :classifications
     resources :parent_children
     resources :approval do
@@ -147,11 +151,38 @@ Rails.application.routes.draw do
       end
     end
     
+    resources :clubs do
+      resources :announcements
+      resources :facilities
+      resources :media
+      resources :teams
+      resources :photos
+      resources :profile_pictures, only: %w[create update destroy]
+      resources :events
+      resource :calendar do
+        get :events, on: :member
+      end
+      get :upgrade
+      get :plan
+      patch :upgrade_club
+     
+    end
+    
     resources :rosters do
       get "edit_roster_view" => "rosters#edit_roster_view", as: :edit_roster_view
       get "close_roster_view" => "rosters#close_roster_view", as: :close_roster_view
+      get :accept
+      get :reject
     end
+    
     resources :roles
+    get "roleable" => "roles#roleable", as: :roleable
+    get "assign" => "roles#assign", as: :assign_role
+    post "admin_assign_role" => "roles#admin_assign_role", as: :admin_assign_role
+    get "add_role " => "setup#add_role", as: :add_role
+    get "delete_role " => "setup#delete_role", as: :delete_role
+    
+    resources :userless_roles
     
     #contact_messages
     resources :contact_messages

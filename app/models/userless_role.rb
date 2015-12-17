@@ -1,9 +1,10 @@
 class UserlessRole < ActiveRecord::Base
+  include Images
   
   has_many :positionings, :as => :positionable, :dependent => :destroy
   has_many :positions, :through => :positionings
   
-  ["Athlete", "Coach", "Manager", "Admin", "Trainer", "Athletic Director"].each do |type|
+  ["Athlete", "Coach", "Team Manager", "Admin", "Trainer", "Athletic Director", "Guardian", "School Manager", "Athletic Director", "Club Director", "League Manager", "Facility Manager"].each do |type|
     
     formatted_type = type.gsub(" ", "_").downcase
     
