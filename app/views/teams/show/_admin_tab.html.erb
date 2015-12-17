@@ -90,7 +90,10 @@
 							<div class="panel box-shadow-ccc">
 								<div class="panel-body padding-40">
 
-									<%= form_for @new_user, url: rosters_path, method: :post, html: {id: "roster-form"} do |f| %>
+									<%= form_for @new_user, url: rosters_path, method: :post, html: {id: "roster-form", data: {remote: true}} do |f| %>
+									<div class="pull-right" id="roster-spot-success" style="display: none">
+					                    <font size="2" color="green">Successfully created roster spot.</font>
+									</div>
 
 										<div class="row">
 											<div class="col-md-4">
@@ -127,7 +130,7 @@
 													<div class="col-md-12">
 														<div class="inputer">
 															<div class="input-wrapper">
-																<%= text_field_tag :level,"" , placeholder: "", type: "text", class: "form-control", name: "participant_classification" %>
+																<%= text_field_tag :level,"" , placeholder: "", type: "text", class: "form-control", name: "level" %>
 															</div>
 														</div>
 													</div><!--.col-md-9-->
@@ -210,7 +213,13 @@
 										                    </div>
 														
 													</div><!--.col-md-9-->
+													<div class="" id="blank-role-message-new" style="display: none">
+						
+									                      	<font size="2" color="red">You must assign at least one role.</font>
+	                  
+													</div>
 												</div><!--.row-->
+												
 											</div>
 										</div>
 					

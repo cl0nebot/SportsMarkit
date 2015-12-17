@@ -1,9 +1,12 @@
-<%= form_for m, html: {data: {remote: true}} do |f| %>
+
 	<li id="edit-admin-<%= m.class.to_s %><%= m.id%>" class="">
+		<%= form_for m, url: roster_path(id: m.id, object_type: m.class.to_s), html: {data: {remote: true}} do |f| %>
+		<%= hidden_field_tag :close_admin, true %>
+		<%= hidden_field_tag :admin, true %>
 		<div class="list-content pb40">
 			<div class="row">
 				<div class="col-sm-12">
-					<%= link_to team_close_roster_view_path(team_id: team.id, class: m.class, id: m.id, status: "admin"), remote: true, class: "btn btn-floating btn-default btn-ripple pull-right mr20" do %>
+					<%= link_to roster_close_roster_view_path(roster_id: team.id, class: m.class, id: m.id, status: "admin"), remote: true, class: "btn btn-floating btn-default btn-ripple pull-right mr20" do %>
 						<i class="ion-close-round"></i>
 					<% end %>
 				</div>
@@ -12,7 +15,7 @@
 			<div class="row">
 				<div class="col-sm-2">
 					<div class="center">
-						<% if m.class.to_s == "Relationship" %>
+						<% if m.class.to_s == "Role" %>
 						  <%= image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 75px; height: 75px; border: 2px solid #ddd;" %>
 						<% else %>
 						  <%= image_tag "http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "face-radius", alt: "", style: "width: 75px; height: 75px; border: 2px solid #ddd;" %>
@@ -23,7 +26,7 @@
 				<div class="col-sm-10">
 					<div class="row">
 						<div class="col-md-12">
-							<% if m.class.to_s == "Relationship" %>
+							<% if m.class.to_s == "Role" %>
 								<h3 class="semi-bold capitalize">
 								  <%= m.user.try(:full_name) %>
 							    </h3>
@@ -52,37 +55,27 @@
 						<div class="col-md-12">
 							<div class="row">
 								<div class="col-md-12">
-									<%= f.text_field :head_title, type: "text", class: "form-control" %> 
+									<%= f.text_field :title, type: "text", class: "form-control" %> 
 									<p class="small">
 										<small>
-											Head Title
+											Title
 										</small>
 									</p>
-								</div><!-- 
-								<div class="col-md-6">
-									<%# if false %>
-									  	<%= f.text_field :position, type: "text", class: "form-control"  %>
-										<p class="small">
-											<small>
-												Position
-											</small>
-										</p>
-									<%# end %>
-								</div> -->
+								</div>
 							</div>
 						</div>
 						<div class="col-md-12">
 							<div class="row">
-								<div class="col-md-12">
-								  	<%= f.text_field :mobile_phone_number, type: "text", class: "form-control"  %>
+								<!-- <div class="col-md-12">
+								  	<%#= f.text_field :mobile_phone_number, type: "text", class: "form-control"  %>
 									<p class="small">
 										<small>
 											Mobile Phone Number
 										</small>
 									</p>
-								</div>
+								</div> -->
 								<div class="col-md-3">
-									<%= f.check_box :head %> 
+									<%= check_box_tag :coach, true, (@team.roles.where(user_id: m.user.id, role: "Coach", status: "Active").present? ? true : false) %> 
 									<p class="small">
 										<small>
 											Is Coach?
@@ -90,7 +83,7 @@
 									</p>
 								</div>
 								<div class="col-md-3">
-									<%= f.check_box :trainer %> 
+									<%= check_box_tag :trainer, true, (@team.roles.where(user_id: m.user.id, role: "Trainer", status: "Active").present? ? true : false) %> 
 									<p class="small">
 										<small>
 											Is Trainer?
@@ -98,7 +91,7 @@
 									</p>
 								</div>
 								<div class="col-md-3">
-									<%= f.check_box :manager %> 
+									<%= check_box_tag :manager,true, (@team.roles.where(user_id: m.user.id, role: "Manager", status: "Active").present? ? true : false) %>
 									<p class="small">
 										<small>
 											Is Manager?
@@ -117,5 +110,5 @@
 				</div>
 			</div>
 		</div>
+		<% end %>
 	</li>
-<% end %>

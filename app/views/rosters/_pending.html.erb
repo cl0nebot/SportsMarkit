@@ -6,7 +6,7 @@
 		<%= hidden_field_tag :roleable_id, @team.id %>
 		<div class="hidden pt30">
 			<p class="text-center mb5">
-				<%= link_to reject_user_team_path(m), method: :patch, remote: true, class: "btn btn-danger"  do %> 
+				<%= link_to roster_reject_path(id: m.id, roster_id: @team.id, user_id: m.user.id), remote: true, class: "btn btn-danger"  do %> 
 				<span class="ion-close-circled"></span>
 				<% end %>
 			</p>
@@ -100,6 +100,11 @@
 								Admin?
 							</small>
 						</p>
+					</div>
+					<div class="pull-right" id="blank-role-message" style="display: none">
+						
+	                      	<font size="2" color="red">You must assign at least one role.</font>
+	                  
 					</div>
 				</div>
 			</div>

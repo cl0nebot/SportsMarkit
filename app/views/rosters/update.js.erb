@@ -29,4 +29,7 @@ $('#edit-head-<%= params[:object_type] %><%= params[:id] %>').empty()
   <% end %>
 <% end %>
 
-
+<% if params[:close_admin].present? %>
+  $('#edit-admin-<%= params[:object_type] %><%= params[:id] %>').empty()
+  $('#edit-admin-<%= params[:object_type] %><%= params[:id] %>').append('<%= j render 'rosters/admin', m: @object %>')
+<% end %>

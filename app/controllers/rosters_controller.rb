@@ -3,7 +3,10 @@ class RostersController < ApplicationController
   
   def create
     variables
-    @mobile_number.present? ? (@user_exists ? add_existing_user_to_roster : create_new_user_and_roster_spot) : create_userlesss_roster_spot
+    @blank = @array.compact.blank?
+    unless @blank
+      @mobile_number.present? ? (@user_exists ? add_existing_user_to_roster : create_new_user_and_roster_spot) : create_userlesss_roster_spot
+    end
   end
   
   # def update
@@ -24,21 +27,35 @@ class RostersController < ApplicationController
     roleable_type = params[:roleable_type]
     roleable_id = params[:roleable_id]
     athlete = params[:athlete].present? ? "Athlete" : nil
-    p athlete
     coach = params[:coach].present? ? "Coach" : nil
     parent = params[:parent].present? ? "Parent" : nil
     manager = params[:manager].present? ? "Manager" : nil
     trainer = params[:trainer].present? ? "Trainer" : nil
     admin = params[:admin].present? ? "Admin" : nil
-    Role.where(user_id: user_id, roleable_type: roleable_type, roleable_id: roleable_id, status: "Pending").destroy_all
-    [athlete, coach, parent, manager, trainer, admin].compact.each do |role|
-      Role.create(user_id: user_id, roleable_type: roleable_type, roleable_id: roleable_id, status: "Active", role: role)
+    @blank = [athlete, coach, parent, manager, trainer, admin].compact.blank?
+    p @blank
+    unless @blank 
+      Role.where(user_id: user_id, roleable_type: roleable_type, roleable_id: roleable_id, status: "Pending").destroy_all
+      [athlete, coach, parent, manager, trainer, admin].compact.each do |role|
+        Role.create(user_id: user_id, roleable_type: roleable_type, roleable_id: roleable_id, status: "Active", role: role)
+      end   
     end
     respond_to do |format|
       format.js
       format.html { redirect_to :back }
     end
   end
+  
+  def reject
+    @object = Role.find(params[:id])
+    @object.destroy
+    respond_to do |format|
+      format.js
+      format.html { redirect_to :back }
+    end
+  end
+  
+  #Parameters: {"utf8"=>"✓", "authenticity_token"=>"c9leG2pZ+ByyH1nxaILKu1av2lDp5GLriI/z4E0PHmk=", "close_admin"=>"true", "role"=>{"title"=>""}, "coach"=>"true", "commit"=>"Update Team Member", "object_type"=>"Role", "id"=>"21319"}
   
   def update
     @object = params[:object_type].constantize.find(params[:id])
@@ -61,8 +78,8 @@ class RostersController < ApplicationController
     
     unless params[:member].present?
       add.compact.each do |role_name|
-        role = Role.where(user_id: @user_id, roleable_type: roleable_type, roleable_id: roleable_id, role: role_name, title: title ).first_or_create
-        role.update(status: "Active")
+        role = Role.where(user_id: @user_id, roleable_type: roleable_type, roleable_id: roleable_id, role: role_name).first_or_create
+        role.update_attributes(status: "Active", title: title )
       end
       remove.compact.each do |role_name|
         role = Role.where(user_id: @user_id, roleable_type: roleable_type, roleable_id: roleable_id, role: role_name).last.try(:delete)

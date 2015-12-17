@@ -26,7 +26,7 @@
                             </small>
                         </p>
                     </div>
-					<% if @object.can_be_edited_by_user?(current_user) %>
+					<% if @team.can_be_edited_by_user?(current_user) %>
                     <div class="col-md-4">
 
                         <%= link_to m, method: :delete, remote: true,  class: "pull-right btn btn-orange"  do %>

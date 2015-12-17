@@ -1,0 +1,8 @@
+<% if @blank %>
+  $('#blank-role-message-new').css({ display: "block" })
+<% else %>
+  // $('#roster-spot-success').css({ display: "block" }).fadeOut(4000);
+  // $('#roster-form')[0].reset()
+  // window.location.reload();
+  window.location.href = "/teams/<%= @team.slug %>#tab_roster";
+<% end %>

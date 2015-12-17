@@ -1,1 +1,5 @@
-$('#pending-<%= params[:user_id] %>').empty()
+<% if @blank %>
+  $('#blank-role-message').css({ display: "block" })
+<% else %>
+  $('#pending-<%= params[:user_id] %>').empty()
+<% end %>
