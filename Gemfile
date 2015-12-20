@@ -19,6 +19,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc # bundle exec rake doc:rails genera
 gem 'spring',        group: :development # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem "letter_opener", :group => :development
 gem "parsley-rails" # Add parsley form validation
+gem 'roo', '~> 2.1.0'
 
 #maps and geocoding
 gem 'gmaps4rails', "~> 1.5.6" # For google maps view, geocoding, etc
