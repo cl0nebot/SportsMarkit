@@ -6,6 +6,7 @@ class Club < ActiveRecord::Base
   include Access
   include Shared
   include Map
+  include Import
   
   serialize   :sports, Array
   has_many :roles, as: :roleable, dependent: :destroy

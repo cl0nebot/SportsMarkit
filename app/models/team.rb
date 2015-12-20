@@ -7,6 +7,7 @@ class Team < ActiveRecord::Base
   include Common
   include Access
   include Map
+  include Import
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   

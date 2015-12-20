@@ -8,6 +8,7 @@ class School < ActiveRecord::Base
   include ClassificationCount
   include Common
   include Access
+  include Import
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   #acts_as_gmappable
