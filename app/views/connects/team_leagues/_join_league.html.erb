@@ -1,0 +1,11 @@
+<%= form_for Connect.new, html: {method: :post, remote: true } do |f| %>
+	<%= f.hidden_field :owner_id, value: team.id %>
+	<%= f.hidden_field :owner_type, value: team.class.to_s %>
+	<%= f.hidden_field :connectable_id, value: league.id %>
+	<%= f.hidden_field :connectable_type, value: league.class.to_s %>
+	<%= league.name %>
+		<%= button_tag class: "btn btn-blue btn-sm pull-right" do %>
+	 Join <i class="ion-plus-circled pull-right margin-left-10"></i>
+	<% end %>
+	<hr/>
+<% end %>
