@@ -132,7 +132,7 @@ module Common
     else
       array = []
       team_ids.each { |id| array << Team.find(id).league_ids }
-      connected_league_ids = array
+      connected_league_ids = array.flatten.flatten
     end
   end
   
@@ -271,7 +271,7 @@ module Common
   end
 
   def manager_and_trainers
-    user_ids = (managers.pluck(:id) + trainers.pluck(:id)).uniq
+    user_ids = (team_managers.pluck(:id) + trainers.pluck(:id)).uniq
     User.where(id: user_ids)
   end
   
