@@ -423,6 +423,68 @@ class User < ActiveRecord::Base
     end
   end
   
+  def self.generate_temporary_password(first_name)
+    alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    first_part = first_name.delete(' ').downcase.reverse
+    name_array = first_name.split("")
+    array = []
+    second_part = name_array.each do |letter|
+      array << alpha.index(letter)
+    end
+    first_part.last(3) + array.join.last(5) + first_part.first(3)
+  end
+  
+  def self.create_new_user_and_roster_spot(first_name,last_name, mobile_number, array, params)
+    # password = User.generate_temporary_password(first_name)
+#     new_user = User.new(first_name: first_name, last_name: last_name, mobile_phone_number: mobile_number, password: password)
+#     p first_name
+#     p last_name
+#     p mobile_number
+#     p password
+#     p array
+#     # if new_user.save
+# #       new_user.create_profile
+# #       Role.create_new_role(new_user.id, array, params)
+# #       User.send_mobile_invitation(new_user, password)
+#     end
+  end
+  
+  def self.create_role_from_excel(params)
+    password = User.generate_temporary_password(params[:first_name])
+    if params[:mobile_phone_number].present?
+      new_user = User.new(first_name: params[:first_name], last_name: params[:last_name], mobile_phone_number: params[:mobile_phone_number], password: password)
+      new_user.save! unless User.exists?(mobile_phone_number: params[:mobile_phone_number])
+      user = User.find_by_mobile_phone_number(params[:mobile_phone_number])
+      user.create_profile unless Profile.exists?(user_id: user.id)
+      Role.create_new_role(user.id, ["Athlete"], params) unless Role.where(mobile_phone_number:  params[:mobile_phone_number], user_id: user.id, role: "Athlete", status: "Active", roleable_type: "Team", roleable_id: params[:team_id]).present?
+    else
+      UserlessRole.create_new_role(["Athlete"], params)
+    end
+  end
+  
+  def self.send_mobile_invitation(user, password)
+    receiving_number = user.mobile_phone_number
+
+    twilio_sid = ENV['TWILIO_SID']
+    twilio_token = ENV['TWILIO_AUTH_TOKEN']
+    twilio_phone_number = "2027590519"
+
+    twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+   begin
+    twilio_client.account.sms.messages.create(
+      :from => "+1#{twilio_phone_number}",
+      :to => receiving_number,
+      :body => "#{user.first_name}, Coach has created your new team hub! 
+      
+http://www.sportsmarkit.com/login 
+Login: #{user.mobile_phone_number} 
+Password: #{password}"
+    )
+    rescue Twilio::REST::RequestError => e
+      puts e.message
+    end
+  end
+  
   
   def create_profile
     Profile.create(user_id: self.id, focus: [], specialties: [], skills: [], injuries: [], current_ailments: [])

@@ -39,15 +39,6 @@ class ApplicationController < ActionController::Base
     true # Or something like current_user.xeditable?
   end
   
-  def generate_temporary_password(first_name)
-    first_part = first_name.delete(' ').downcase.reverse
-    name_array = first_name.split("")
-    array = []
-    second_part = name_array.each do |letter|
-      array << ALPHABET_ARRAY.index(letter)
-    end
-    first_part.last(3) + array.join.last(5) + first_part.first(3)
-  end
   
   def authenticate_user!
     redirect_to signup_path, alert: "Not authorized" if current_user.nil?

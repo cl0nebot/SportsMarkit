@@ -224,18 +224,8 @@ class RostersController < ApplicationController
     end
   end
   
-  def generate_password
-    @password = generate_temporary_password(@first_name)
-  end
-  
   def create_new_user_and_roster_spot
-    generate_password
-    @new_user = User.new(first_name: @first_name, last_name: @last_name, mobile_phone_number: @mobile_number, password: @password)
-    if @new_user.save
-      @new_user.create_profile
-      Role.create_new_role(@new_user.id, @array, params)
-      send_mobile_invitation(@new_user, @password)
-    end
+    User.create_new_user_and_roster_spot(@first_name,@last_name, @mobile_number, @array)
     redirect_to :back
   end
   
