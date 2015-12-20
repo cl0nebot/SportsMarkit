@@ -1,5 +1,6 @@
 $('.modal#<%= @profile_picture.id %>').modal('hide');
 $("#profile-picture").replaceWith("<%= j render "shared/profile_picture", object: @owner %>");
+$("#x-profile-picture-modal").replaceWith("<%= j render "shared/picture_modal", object: @owner, profile_picture: ProfilePicture.new %>");
 $('.modal-backdrop').css({
      'position': 'relative'
  });
