@@ -48,11 +48,11 @@ Array(1..4000).each do |i|
   last_name = i == 1 ? "Stanfield" : (i == 2 ? "Coakley" : (i == 3 ? "Gibson" : (i == 4 ? "Payton" : last_names.sample)))
   full_name = "#{first_name.downcase}#{last_name.downcase}"
   website = "http://www.#{full_name}.com"
-  email = i == 1 ? "cordis.stanfield@gmail.com" : (i == 2 ? "khadijah.coakley@gmail.com" : (i == 3 ? "dwgjr3@gmail.com" : (i == 4 ? "tpayton13@gmail.com" : "#{first_name}.#{last_name}#{i}@email.com")))
+  email = i == 1 ? "cordis.stanfield@gmail.com" : (i == 2 ? "khadijah.coakley@gmail.com" : (i == 3 ? "dwgjr3@gmail.com" : (i == 4 ? "tpayton13@gmail.com" : ( i == 5 ? "jamela.black@gmail.com" : "#{first_name.downcase}.#{last_name.downcase}#{i}@email.com"))))
   business_email = "#{full_name}#{i}@businessemail.com"
   #sport = [sports.sample]
-  phone_number_1 = "#{(200..999).to_a.sample}-#{(200..999).to_a.sample}-#{(1000..9999).to_a.sample}"
-  phone_number_2 = "#{(200..999).to_a.sample}-#{(200..999).to_a.sample}-#{(1000..9999).to_a.sample}"
+  phone_number_1 = "#{(200..999).to_a.sample}#{(200..999).to_a.sample}#{(1000..9999).to_a.sample}"
+  phone_number_2 = "#{(200..999).to_a.sample}#{(200..999).to_a.sample}#{(1000..9999).to_a.sample}"
   #languages = ["English", non_english_languages.sample, non_english_languages.sample]
   #fake_schools = ["#{school_prefixes.sample}#{school_suffixes.sample}", "#{school_prefixes.sample}#{school_suffixes.sample}"]
   #fake_certs = ["#{fake_cert_prefixes.sample}#{fake_cert_suffixes.sample}", "#{fake_cert_prefixes.sample}#{fake_cert_suffixes.sample}"]
