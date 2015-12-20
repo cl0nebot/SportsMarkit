@@ -31,7 +31,7 @@
 								<p class="fs_12 semi-bold text-muted mb5 mt5">
 									<i class="ion-person-stalker fs_16 text-primary mr5"></i>
 									<%= pluralize @team.coach_roles.count, "Coach" %>, 
-									<%= pluralize @team.athlete_roles.count, "Player" %>, <%= pluralize @team.manager_roles.count, "Manager" %>, <%= pluralize @team.trainer_roles.count, "Trainer" %>
+									<%= pluralize @team.athlete_roles.count, "Player" %>, <%= pluralize @team.team_manager_roles.count, "Manager" %>, <%= pluralize @team.trainer_roles.count, "Trainer" %>
 								</p> 
 								<% if @team.teamable.present? %>
 									<p class="semi-bold fs_14 text-muted no-margin">
@@ -110,7 +110,7 @@
 							<p class="semi-bold fs_12 text-muted no-margin">
 								<i class="ion-person-stalker fs_20 text-primary mr5"></i>
 								<%= pluralize @team.coach_roles.count, "Coach" %>, 
-								<%= pluralize @team.athlete_roles.count, "Player" %>, <%= pluralize @team.manager_roles.count, "Manager" %>, <%= pluralize @team.trainer_roles.count, "Trainer" %>
+								<%= pluralize @team.athlete_roles.count, "Player" %>, <%= pluralize @team.team_manager_roles.count, "Manager" %>, <%= pluralize @team.trainer_roles.count, "Trainer" %>
 							</p>
                             <% if @team.website.present? %>
 							<p class="semi-bold fs_14 text-muted no-margin">
