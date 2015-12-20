@@ -42,7 +42,7 @@ SPORTS.each do |sport|
   Sport.create(sport: sport)
 end
 
-Array(1..4000).each do |i|
+Array(1..100).each do |i|
   # user attributes
   first_name = i == 1 ? "Cordis" : (i == 2 ? "Khadijah" : (i == 3 ? "David" : (i == 4 ? "Thaddeus" : (i.odd? ? boy_names.sample : girl_names.sample))))
   last_name = i == 1 ? "Stanfield" : (i == 2 ? "Coakley" : (i == 3 ? "Gibson" : (i == 4 ? "Payton" : last_names.sample)))
@@ -105,12 +105,12 @@ Array(1..4000).each do |i|
 
 end
 
-Array(1..250).each do |i|
+Array(1..40).each do |i|
   suffix = SCHOOL_SUFFIXES.sample
   school_name = "#{[PRESIDENTS.sample, PRESIDENTS.sample.split(" ").last, BLACK_PEOPLE.sample].sample} #{suffix}"
   
   
-  school = School.create(
+  school = School.new(
     name: school_name,
     classification: suffix,
     abbreviation: school_name.split.map(&:first).join.upcase,
@@ -135,6 +135,9 @@ Array(1..250).each do |i|
     number_of_teams: rand(4..20),
     )
     
+    school.build_address(street_1: "1600 Pennsylvania Ave NW", city: "Washington", state: "District of Columbia", postcode: 20050)
+    school.save!
+    
 end
 
 School.all.each do |school|
@@ -142,7 +145,7 @@ School.all.each do |school|
     sex = SEX.sample
     sport = SPORTS.sample
     team_name = "#{SCHOOL_SPORT_PREFIXES.sample} #{sex} #{sport}"
-    Team.create(
+    team = Team.new(
       teamable_id: school.id,
       teamable_type: "School",
       name: team_name,
@@ -159,15 +162,17 @@ School.all.each do |school|
       sport: sport,
       description: "This is another description to see what it looks like for a team.",
       )
+      team.build_address(street_1: "1600 Pennsylvania Ave NW", city: "Washington", state: "District of Columbia", postcode: 20050)
+      team.save!
   end
 end
 
-Array(1..250).each do |i|
+Array(1..40).each do |i|
   club_name = "#{[PRESIDENTS.sample, PRESIDENTS.sample.split(" ").last, BLACK_PEOPLE.sample].sample}"
   level = LEVEL.sample
   sports = [SPORTS.sample, SPORTS.sample, SPORTS.sample]
   
-  club = Club.create(
+  club = Club.new(
     name: club_name,
     abbreviation: club_name.split.map(&:first).join.upcase,
     linkedin: "http://www.linkedin.com/#{club_name.delete(' ')}#{i}", 
@@ -194,7 +199,9 @@ Array(1..250).each do |i|
     gender: ["Male", "Female", "Co-Ed"],
     age_range: AGE_RANGE.sample,
     sports: sports,
-    ) 
+    )
+    club.build_address(street_1: "1585 Broadway", city: "New York", state: "New York", postcode: 10036)
+    club.save!
 end
 
 Club.all.each do |club|
@@ -202,7 +209,7 @@ Club.all.each do |club|
     sex = SEX.sample
     sport = SPORTS.sample
     team_name = "#{club.name} #{sex} #{sport}"
-    Team.create(
+    team = Team.new(
       teamable_id: club.id,
       teamable_type: "Club",
       name: team_name,
@@ -219,28 +226,32 @@ Club.all.each do |club|
       sport: sport,
       description: "This is another description to see what it looks like for a team.",
       )
+      team.build_address(street_1: "2400 Sixth St NW", city: "Washington", state: "District of Columbia", postcode: 20059)
+      team.save!
   end
 end
 
 CITIES.each_with_index do |city, i|
     league_name = "#{city} #{["Public School League", "AAU Association", "Private School League", "Recreational", "Intramural"].sample}"
-  
-    league = League.create(
+
+    league = League.new(
     name: league_name,
-    linkedin: "http://www.linkedin.com/#{league_name.delete(' ')}#{i}", 
-    facebook: "http://www.facebook.com/#{league_name.delete(' ')}#{i}", 
-    instagram: "http://www.instagram.com/#{league_name.delete(' ')}#{i}", 
+    linkedin: "http://www.linkedin.com/#{league_name.delete(' ')}#{i}",
+    facebook: "http://www.facebook.com/#{league_name.delete(' ')}#{i}",
+    instagram: "http://www.instagram.com/#{league_name.delete(' ')}#{i}",
     twitter: "http://www.twitter.com/#{league_name.delete(' ')}#{i}",
-    youtube: "http://www.youtube.com/#{league_name.delete(' ')}#{i}", 
-    pinterest: "http://www.pinterest.com/#{league_name.delete(' ')}#{i}", 
+    youtube: "http://www.youtube.com/#{league_name.delete(' ')}#{i}",
+    pinterest: "http://www.pinterest.com/#{league_name.delete(' ')}#{i}",
     email: "#{league_name.delete(' ').downcase}@gmail.com",
     phone_number: "#{(200..999).to_a.sample}-#{(200..999).to_a.sample}-#{(1000..9999).to_a.sample}",
     website: "http://www.#{league_name.downcase}-#{league_name.split.map(&:first).join.downcase}.com",
-    classification: "", 
+    classification: "",
     category: "",
     school_affiliated: league_name.split(" ").include?("School") ? true : false,
     description: "Lorem Isum - jk. We write custom fake text 'round here."
     )
+    league.build_address(street_1: "1025 5th St NW", city: "Washington", state: "District of Columbia", postcode: 20001)
+    league.save!
 end
 
 
@@ -250,13 +261,13 @@ girl_teams = Team.where("name LIKE ?", "%#{'girl'}%")
 boy_teams = Team.where("name LIKE ?", "%#{'boy'}%")
 
 girls.each do |object|
-  6.times do
+  4.times do
     Role.create(user_id: object.id, roleable_type: "Team", roleable_id: girl_teams.sample.id, status: "Active", role: "Athlete", jersey_number: (1..99).to_a.sample, level: ["Freshman", "Sophomore", "Junior", "Senior"].sample)
   end
 end
 
 boys.each do |object|
-  6.times do
+  4.times do
     Role.create(user_id: object.id, roleable_type: "Team", roleable_id: boy_teams.sample.id, status: "Active", role: "Athlete", jersey_number: (1..99).to_a.sample, level: ["Freshman", "Sophomore", "Junior", "Senior"].sample)
   end
 end
@@ -265,16 +276,16 @@ adults = Profile.where("date_of_birth <= ?", 19.years.ago)
 
 adults.each do |object|
   3.times do
-    Role.create(user_id: object.id, roleable_type: "Team", roleable_id: adults.sample.id, status: "Active", role: ["Trainer", "Manager", "Coach"].sample, jersey_number: (1..99).to_a.sample, level: "")
+    Role.create(user_id: object.id, roleable_type: "Team", roleable_id: adults.sample.id, status: "Active", role: ["Trainer", "Team Manager", "Coach"].sample, jersey_number: (1..99).to_a.sample, level: "")
   end
 end
- 
 
-12000.times do
+
+400.times do
   Fan.create(user_id: Profile.where("date_of_birth >= ?", 19.years.ago).sample.id, fannable_id: User.all.sample.id, fannable_type: "User")
 end
 
-4000.times do
+400.times do
   Fan.create(user_id: User.all.sample.id, fannable_id: Team.all.sample.id, fannable_type: "Team")
   Fan.create(user_id: User.all.sample.id, fannable_id: School.all.sample.id, fannable_type: "School")
   Fan.create(user_id: User.all.sample.id, fannable_id: School.all.sample.id, fannable_type: "Club")
