@@ -75,6 +75,11 @@ class User < ActiveRecord::Base
     attendances.pluck(:event_id)
   end
   
+  def self.athletes
+    user_ids = Classification.where(classification: "Athlete").pluck(:user_id)
+    users = User.where(id: user_ids)
+  end
+  
   def all_events
     Event.where("(eventable_id = ? AND eventable_type = 'User') OR (id in (?))", id, attending_events)
   end
