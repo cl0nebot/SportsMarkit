@@ -95,7 +95,7 @@ module Seed
           number_of_teams: rand(4..20),
           level: level,
           selection_criteria: SELECTION_CRITERIA.sample,
-          gender: ["Male", "Female", "Co-Ed"],
+          gender: ["Male", "Female", "Co-Ed"].sample,
           age_range: AGE_RANGE.sample,
           sports: sports,
           )
