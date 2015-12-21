@@ -9,6 +9,7 @@ class School < ActiveRecord::Base
   include Common
   include Access
   include Import
+  include Seed
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   #acts_as_gmappable
