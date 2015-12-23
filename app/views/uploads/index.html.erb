@@ -1,6 +1,6 @@
 	  <%= form_tag import_uploads_path, multipart: true do %>
 	  
-	  <%= select_tag :object, options_for_select([ "School", "Team", "Club", "League" ], "School"), id: "object-field" %>
+	  <%= select_tag :object, options_for_select([ "School", "Team", "Club", "League", "Facility" ], "School"), id: "object-field" %>
       <%= select_tag :school_id, options_for_select(School.all.collect{ |school| [school.name, school.id] }), {:multiple => false, include_blank: true} %><br>
 	  <div class="fileinput fileinput-new input-group" data-provides="fileinput">
 	    <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>

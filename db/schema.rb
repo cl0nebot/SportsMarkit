@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217080335) do
+ActiveRecord::Schema.define(version: 20151223163122) do
 
   create_table "addresses", force: true do |t|
     t.integer  "addressable_id"
@@ -224,7 +224,7 @@ ActiveRecord::Schema.define(version: 20151217080335) do
   create_table "facilities", force: true do |t|
     t.string   "name"
     t.string   "facility_type"
-    t.boolean  "private"
+    t.boolean  "is_private"
     t.boolean  "publicly_visible"
     t.string   "address_1"
     t.string   "address_2"

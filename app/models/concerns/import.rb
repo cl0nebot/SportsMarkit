@@ -19,6 +19,8 @@ module Import
           new_object = model.new(model_hash.merge(id: model.last.try(:id).to_i + 1))
           new_object.sports = model_hash["sports"].split(", ") if model == Club
           new_object.school_affiliated = (model_hash["school_affiliated"] == "Yes" ? true : false) if model == League
+          new_object.is_private = (model_hash["is_private"] == "Yes" ? true : false) if model == Facility
+          new_object.publicly_visible = (model_hash["publicly_visible"] == "Yes" ? true : false) if model == Facility
           new_object.build_address(address_hash)
           new_object.save!
         end

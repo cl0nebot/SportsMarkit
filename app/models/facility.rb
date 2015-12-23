@@ -6,6 +6,7 @@ class Facility < ActiveRecord::Base
   include Map
   include Shared
   include Access
+  include Import
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable
