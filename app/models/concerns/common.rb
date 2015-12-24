@@ -8,6 +8,8 @@ module Common
     
     has_many :announcements, as: :announceable, dependent: :destroy
     
+    has_many :connects, as: :ownerable, dependent: :destroy
+    
     
   end
   
@@ -64,7 +66,7 @@ module Common
   end
   
   def connected_teams
-    Connect.where(owner_type:"Team", owner_id: id, connectable_type: self.class.to_s)
+    Connect.where(ownerable_type:"Team", ownerable_id: id, connectable_type: self.class.to_s)
     #TODO both ways
   end
   
@@ -79,7 +81,7 @@ module Common
   end
   
   def connected_schools
-    Connect.where(owner_type:"School", owner_id: id, connectable_type: self.class.to_s)
+    Connect.where(ownerable_type:"School", ownerable_id: id, connectable_type: self.class.to_s)
   end
   
   def school_ids
@@ -95,7 +97,7 @@ module Common
   end
   
   def connected_clubs
-    Connect.where(owner_type:"Club", owner_id: id, connectable_type: self.class.to_s)
+    Connect.where(ownerable_type:"Club", ownerable_id: id, connectable_type: self.class.to_s)
     #TODO both ways
   end
   
@@ -112,7 +114,7 @@ module Common
   end
   
   def connected_leagues
-    league_ids = Connect.where(owner_type: self.class.to_s, owner_id: id, connectable_type: "League")
+    league_ids = Connect.where(ownerable_type: self.class.to_s, ownerable_id: id, connectable_type: "League")
     #TODO both ways
   end
   
@@ -153,7 +155,7 @@ module Common
   end
   
   def used_facilities
-    facility_ids = Connect.where(owner_type: self.class.to_s, owner_id: id, connectable_type: "Facility").pluck(:connectable_id)
+    facility_ids = Connect.where(ownerable_type: self.class.to_s, ownerable_id: id, connectable_type: "Facility").pluck(:connectable_id)
     #facilities through teams
     Facility.where(id: facility_ids)
   end

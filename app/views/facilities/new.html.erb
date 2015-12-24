@@ -59,7 +59,7 @@
               <div class="col-md-12">
                 <div class="clearfix margin-bottom-10">
                   <div class="checkboxer form-inline">
-                    <%= f.check_box :private, id: "facility_private"  %>
+                    <%= f.check_box :is_private, id: "facility_private"  %>
                     <label for="facility_private">Private?</label>
                   </div>
                   <div class="checkboxer form-inline">
@@ -74,7 +74,7 @@
 				</div>
 			</div>
 
-           <%= render 'shared/new_address', f: f %>
+           <%= render 'shared/new_address', f: f, object: Facility.new %>
 			
 			
 			
@@ -210,6 +210,11 @@
 						</div>
 					</div><!--.row-->
 				</div>
+                
+                <% if @object.new_record? %>
+                  <%= f.hidden_field :facility_owner_type, value: @owner_type %>
+                  <%= f.hidden_field :facility_owner_id,  value: @owner_id %>
+                <% end %>
 
 				<div class="form-buttons no-margin">
 					<div class="row">

@@ -13,11 +13,7 @@
 							<% League.all.each do |league| %>
 
                                <div id="league-<%= league.id %>">
-								<% unless Connect.where(owner_id: @team.id, owner_type: @team.class.to_s, connectable_type: "League", connectable_id: league.id ).present? %>
-								  <%= render 'connects/team_leagues/join_league', team: @team, league: league %>
-								<% else %>
-								  <%= render 'connects/team_leagues/leave_league', team: @team, league: league %>
-								<% end %>
+								  <%= render 'shared/panels/leagues/league', team: @team, league: league %>
 							    </div>
 
 					        <% end %>
@@ -37,4 +33,3 @@
 		</div>
 	</div>
 </div><!--.modal-->
-

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223163122) do
+ActiveRecord::Schema.define(version: 20151224015449) do
 
   create_table "addresses", force: true do |t|
     t.integer  "addressable_id"
@@ -169,8 +169,8 @@ ActiveRecord::Schema.define(version: 20151223163122) do
   end
 
   create_table "connects", force: true do |t|
-    t.string   "owner_type"
-    t.integer  "owner_id"
+    t.string   "ownerable_type"
+    t.integer  "ownerable_id"
     t.string   "connectable_type"
     t.integer  "connectable_id"
     t.datetime "created_at"

@@ -1,0 +1,7 @@
+<% if @connectable_type == "Facility" %>
+  $('#facility-connect-<%= @connectable_id %>').html("<%= j render 'facility_links/add', facility_id: @connectable_id, ownerable_id: @ownerable_id, ownerable_type: @ownerable_type %>")
+  $('#facility-show-<%= @connectable_id %>').hide()
+  $('#facility-border-<%= @connectable_id %>').hide()
+<% elsif @connectable_type == "League" %>
+   $('#league-<%= @connectable_id %>').html("<%= j render 'shared/panels/leagues/league', team: @team, league: League.find(@connectable_id) %>")
+<% end %>

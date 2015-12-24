@@ -1,7 +1,8 @@
- <%= form_for FacilityLink.new, html: {id: 'facility-link-form', data: {remote: true}} do |f|   %>
-    <%= f.hidden_field :facilitatable_id, value: object.id %>
-	<%= f.hidden_field :facilitatable_type, value: object.class.to_s %>
-    <%= f.hidden_field :facility_id, value: facility.id %>
+ <%= form_for Connect.new, html: {id: 'facility-connect-form', data: {remote: true}} do |f|   %>
+    <%= f.hidden_field :connectable_id, value: facility_id %>
+	<%= f.hidden_field :connectable_type, value: "Facility" %>
+    <%= f.hidden_field :ownerable_id, value: ownerable_id %>
+    <%= f.hidden_field :ownerable_type, value:  ownerable_type %>
     <%= button_tag class: "btn btn-blue btn-sm pull-right" do %>
 	 Add Facility <i class="ion-plus-circled pull-right margin-left-10"></i>
 	<% end %>

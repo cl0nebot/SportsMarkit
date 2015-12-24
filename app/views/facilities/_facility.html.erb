@@ -4,12 +4,14 @@
     <div class="card card-user card-clickable card-clickable-over-content visible"  style="height: 380px;">
       <div class="card-heading heading-full">
        <div class="user-image sample-member9" style="background: url('<%= facility.avatar %>');"></div>
-
+        
+        <% if facility.can_be_edited_by_user?(current_user) %>
         <div class="clickable-button">
         	<%= link_to edit_facility_path(facility), class: "btn btn-floating btn-orange initial-position floating-open" do %>
           	<i class="ion-gear-b"></i>
         	<% end %>
     		</div>
+        <% end %>
 	  	</div><!--.card-heading-->
 
       <div class="card-body">

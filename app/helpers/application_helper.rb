@@ -459,12 +459,12 @@ module ApplicationHelper
     "#{city}, #{state_abbreviation(city)}"
   end
   
-  def add_or_remove_facility_button(object_type, object_id, facility_id)
-    unless object_type.constantize.find(object_id).connects.where(connectable_type: "Facility", connectable_id: facility_id).present?      
-      render partial: 'facility_links/add', locals => {facility: facility, object: object}
+  def add_or_remove_facility_button(ownerable_type, ownerable_id, facility_id)
+    unless ownerable_type.constantize.find(ownerable_id).connects.where(connectable_type: "Facility", connectable_id: facility_id).present?      
+      render partial: 'facility_links/add', :locals => {facility_id: facility_id, ownerable_type: ownerable_type, ownerable_id: ownerable_id}
     else
-      connection = object_type.constantize.find(object_id).connects.where(connectable_type: "Facility", connectable_id: facility_id).last
-      render partial: 'facility_links/remove', locals => {connection: connection}
+      connection = ownerable_type.constantize.find(ownerable_id).connects.where(connectable_type: "Facility", connectable_id: facility_id).last
+      render partial: 'facility_links/remove', :locals => {connection: connection}
     end
   end
   

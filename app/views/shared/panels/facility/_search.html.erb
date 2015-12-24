@@ -5,8 +5,12 @@
 				<div class="row">
 					<div class="col-md-12 pr20 pl20 pt10">
 						<p class="text-primary">
-							<%= link_to "Create a New Facility", selection_option_facilities_path(selection: "form", object: object.class.to_s, object_id: object.id), remote: true, class: "btn btn-sm btn-primary button-striped button-full-striped btn-ripple"%> <% unless object.class.to_s == "League" %> 
-							<%= link_to "Add a School Facilities", selection_option_facilities_path(selection: "school", object: object.class.to_s, object_id: object.id), remote: true, class: "btn btn-sm btn-primary button-striped button-full-striped btn-ripple" %> <% end %>
+							<%= link_to "Create a New Facility", selection_option_facilities_path(selection: "form", object: object.class.to_s, object_id: object.id), remote: true, class: "btn btn-sm btn-primary button-striped button-full-striped btn-ripple"%> 
+						    <% if @object.present? %>
+							<% if @object.try(:teamable).try(:present?) == true %>
+							<%= link_to "Add a School Facilities", selection_option_facilities_path(selection: "school", object: object.class.to_s, object_id: object.id), remote: true, class: "btn btn-sm btn-primary button-striped button-full-striped btn-ripple" %> 
+                            <% end %>
+                            <% end %>
 						</p>
 						<div class="panel">
 							<div class="panel-heading no-border">
@@ -16,15 +20,7 @@
 							</div><!--.panel-heading-->
 							<div class="panel-body pt0">
 	 	            <div class="row">
-	                <div class=""  style="background: #fff;">
-	                  <div class="padding-bottom-0">
-	                    <div class="inputer mt5 mb5 ml10">
-                    		<div class="input-wrapper">
-                  				<input type="text" class="fs_20 quicksearch-facilities typeahead typeahead-facilities form-control" rows="1" placeholder="Enter facility name...">
-                  			</div>
-	                  	</div>
-		                </div>
-		              </div>
+
 						 	  </div>
 
 						 	  <br/>
@@ -32,7 +28,23 @@
 							  <div class="bg-muted" style="background: #F7F7F7;">
 							    <div class="facilities">
 							     	<div class="col-lg-12">
-							     		<%= render "facilities/find_facility", facilities: facilities %>	
+										<%# if ["teams","schools", "leagues", "clubs"].include? params[:controller] %>
+
+									    <!-- MAKE THIS WORK WITH ADDITION FORM CODE ************************************* -->
+											<%= form_tag add_multiple_facilities_connects_path, remote: true do |f| %>
+
+										    <%= select_tag :facility_ids, options_for_select(Facility.pluck(:name, :id), :selected=> Connect.where(ownerable_type: object.class.to_s, ownerable_id: object.id, connectable_type: "Facility").pluck(:connectable_id)), class: "selecter bg-white margin-bottom-0", multiple: true, "data-live-search" =>  true %>
+											<%= hidden_field_tag :ownerable_type, object.class.to_s %>
+											<%= hidden_field_tag :ownerable_id, object.id %>
+										
+										
+										
+											<br>
+											<%= submit_tag %>
+										
+											<% end %>
+										
+										<%# end %>	
 							     	</div>
 							     </div>
 							   </div>

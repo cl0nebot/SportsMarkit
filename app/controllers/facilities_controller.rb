@@ -14,34 +14,38 @@ class FacilitiesController < ApplicationController
   end
   
   def new
-    if params[:school_id]
-      @school = School.friendly.find(params[:school_id])
-      @facility = @school.facilities.build
-    else
-      @object = Facility.new
-      @address = @object.build_address
-    end
+    param = params.keys.find{|key| key =~ /(\w+)_id/}
+    @owner = $1.capitalize.try(:constantize).try(:find, params[param])
+    @owner_type = @owner.class.to_s
+    @owner_id = @owner.id
+    @object = Facility.new
+    @address = @object.build_address
   end
   
   def create
-    if params[:facility][:facility_owner_type].present? 
-      @object = params[:facility][:facility_owner_type].constantize.find(params[:facility][:facility_owner_id])
-      @facility = @object.facilities.build(facility_params)
-      if @facility.save
-        FacilityLink.find_or_create_by(facility_id: @facility.id, facilitatable_type: params[:facility][:facility_owner_type], facilitatable_id: params[:facility][:facility_owner_id])
-        redirect_to "#{request.referrer}#tab_facilities"
-      else
-        redirect_to :back
-      end
+    @object = Facility.new(facility_params)
+    if @object.save
+      redirect_to @object.facility_owner if @object.facility_owner.present?
+      redirect_to @object unless @object.facility_owner.present? 
     else
-      @facility = Facility.new(facility_params)
-      if @facility.save
-        redirect_to :back
-      else
-        render 'new'
-      end
+      render 'new'
     end
   end
+  
+  def create_from_modal
+    @object = Facility.new(facility_params)
+    if @object.save
+      @facilities = @object.facility_owner.facilities
+      respond_to do |format|
+        format.html {redirect_to :back}
+        format.js
+      end
+    else
+      render 'new'
+    end
+  end
+  
+  
   
   def show
     @class = @facility.class
@@ -81,6 +85,15 @@ class FacilitiesController < ApplicationController
     end
   end
   
+  def remove_facility
+    @facility = Facility.find(params[:id])
+    @facility.destroy
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.js
+    end
+  end
+  
   def destroy
     @facility.destroy
     redirect_to :destroy
@@ -97,6 +110,6 @@ class FacilitiesController < ApplicationController
   end
   
   def facility_params
-    params.require(:facility).permit(:school_id, :team_id, :name, :field_type, :private, :publicly_visible, :facility_type, :phone_number, :email, :website, {address_attributes: [:id, :addressable_id, :addressable_type, :street_1, :street_2, :city, :state, :country, :postcode, :suite, :nickname, :default, :county, :latitude, :longitude, :gmaps]}, :slug, :facility_owner_id, :facility_owner_type, :facebook, :twitter, :linkedin, :pinterest, :instagram, :foursquare, :youtube)  
+    params.require(:facility).permit(:school_id, :team_id, :name, :field_type, :is_private, :publicly_visible, :facility_type, :phone_number, :email, :website, {address_attributes: [:id, :addressable_id, :addressable_type, :street_1, :street_2, :city, :state, :country, :postcode, :suite, :nickname, :default, :county, :latitude, :longitude, :gmaps]}, :slug, :facility_owner_id, :facility_owner_type, :facebook, :twitter, :linkedin, :pinterest, :instagram, :foursquare, :youtube)  
   end
 end

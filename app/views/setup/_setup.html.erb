@@ -37,6 +37,10 @@
 		<div class="row">
 			<div class="col-lg-10 col-lg-offset-1">
 				<h5 class="bold text-black">Your <%= description.pluralize.downcase %>
+                    (Can't find what you're looking for? Create <%= description %>)
+    				<a class="btn btn-floating btn-pink" data-toggle="modal" data-target="#panel-new-school">
+    					<i class="ion-android-add"></i>
+    				</a>
 					<span class="small semi-bold text-orange"></span>
 				</h5>
 				<div class="panel-body without-padding">

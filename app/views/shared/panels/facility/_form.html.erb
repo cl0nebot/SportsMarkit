@@ -5,8 +5,12 @@
 				<div class="row">
 					<div class="col-md-12 pr20 pl20 pt10">
 						<p>
-							<% unless object.class.to_s == "League" %>
-							<%= link_to "Add a School Facility", selection_option_facilities_path(selection: "school", object: object.class.to_s, object_id: object.id), remote: true, class: "btn btn-xs btn-primary button-striped button-full-striped btn-ripple" %> <% end %>
+						    <% if @object.present? %>
+							<% if @object.try(:teamable).try(:present?) == true %>
+							<%= link_to "Add a School Facility", selection_option_facilities_path(selection: "school", object: object.class.to_s, object_id: object.id), remote: true, class: "btn btn-xs btn-primary button-striped button-full-striped btn-ripple" %> 
+                            <% end %>
+                            <% end %>
+                            
 							<%= link_to "Search Existing Facilities",  selection_option_facilities_path(selection: "search", object: object.class.to_s, object_id: object.id), remote: true, class: "btn btn-xs btn-primary button-striped button-full-striped btn-ripple" %>
 						</p>
 						<div class="panel">
@@ -17,7 +21,7 @@
 							</div><!--.panel-heading-->
 							<div class="panel-body pt20">
 
-								<%= form_for Facility.new, html: {id: 'facility-form'} do |f|   %>
+								<%= form_for Facility.new, url: create_from_modal_facilities_path, html: {remote: true, id: 'facility-form'} do |f|   %>
 								<%= f.hidden_field :facility_owner_id, value: object.id %>
 								<%= f.hidden_field :facility_owner_type, value: object.class.to_s %>
 				
@@ -33,7 +37,7 @@
 									</div><!--.col-md-9-->
 								</div><!--.row-->
 
-								 <%= render 'shared/new_address', f: f %> s
+								 <%= render 'shared/new_address', f: f, object: Facility.new %>
 
 
 								<div class="row example-row">
@@ -71,8 +75,8 @@
 
 								<div class="clearfix margin-bottom-10">
 									<div class="checkboxer form-inline">
-										<%= f.check_box :private %>
-										<label for="facility_private">Private</label>
+										<%= f.check_box :is_private %>
+										<label for="facility_is_private">Private</label>
 									</div>
 									<div class="checkboxer form-inline">
 										<input type="checkbox" id="inlineCheckbox2" value="option2">

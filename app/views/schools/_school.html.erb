@@ -5,12 +5,14 @@
 	      <div class="card-heading heading-full">
 			  <%#= image_tag school.main_photo, size: "428x150" %>
 	        <div class="user-image sample-member9" style="background: url('<%= school.avatar %>');"></div>
-
-	        <%= link_to edit_school_path(school) do %>
-		        <div class="clickable-button">
-		          <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-gear-b"></i></a>
-		        </div>
-		    	<% end %>
+              
+              <% if school.can_be_edited_by_user?(current_user)%>
+    	          <%= link_to edit_school_path(school) do %>
+    		        <div class="clickable-button">
+    		          <a class="btn btn-floating btn-orange initial-position floating-open"><i class="ion-gear-b"></i></a>
+    		        </div>
+    		      <% end %>
+              <% end %>
 
 	      </div><!--.card-heading-->
 

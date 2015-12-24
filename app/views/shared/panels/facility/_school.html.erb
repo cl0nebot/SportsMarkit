@@ -17,7 +17,7 @@
 							<div class="panel-body pt20">
 				   		  <% object.teamable.facilities.each do |facility| %>
 				   		    <div class="pull-left"><%= facility.name %></div>
-					   			<div id="facility-link-<%= facility.id %>">
+					   			<div id="facility-connect-<%= facility.id %>">
 					   			    <%= add_or_remove_facility_button(object.class.to_s, object.id, facility.id) %>
 		   		          		</div>
 			     	    	<% end %>

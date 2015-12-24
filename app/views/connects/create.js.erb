@@ -1,0 +1,11 @@
+<% ownerable_id = params[:connect][:ownerable_id] %>
+<% ownerable_type = params[:connect][:ownerable_type] %>
+<% connectable_id = params[:connect][:connectable_id] %>
+<% connectable_type = params[:connect][:connectable_type] %>
+
+<% if connectable_type == "Facility" %>
+  $('#facility-connect-<%= connectable_id %>').html("<%= j render 'facility_links/remove', connection: ownerable_type.constantize.find(ownerable_id).connects.where(connectable_type: "Facility", connectable_id: connectable_id).last %>")
+  $('#facility-show-list').html("<%= j render 'shared/facilities', facilities: @facilities %>")
+<% elsif connectable_type == "League" %>
+   $('#league-<%= @league.id %>').html("<%= j render 'shared/panels/leagues/league', team: @team, league: @league %>")
+<% end %>

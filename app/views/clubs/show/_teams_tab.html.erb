@@ -14,8 +14,8 @@
 			<h6 class="text-grey semi-bold no-margin"><%= ((@club.coaches.count + @club.userless_coaches.count) > 1 or (@club.coaches.count + @club.userless_coaches.count) == 0) ? "Coaches" : "Coach" %></h6>
 		</div>
 		<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
-			<h1 class="text-indigo no-margin bold"><%= @club.managers.count + @club.userless_managers.count %></h1>
-			<h6 class="text-grey semi-bold no-margin"><%= ((@club.managers.count + @club.userless_managers.count) > 1 or (@club.managers.count + @club.userless_managers.count) == 0) ? "Team Managers" : "Team Manager" %></h6>
+			<h1 class="text-indigo no-margin bold"><%= @club.team_managers.count + @club.userless_team_managers.count %></h1>
+			<h6 class="text-grey semi-bold no-margin"><%= ((@club.team_managers.count + @club.userless_team_managers.count) > 1 or (@club.team_managers.count + @club.userless_team_managers.count) == 0) ? "Team Managers" : "Team Manager" %></h6>
 		</div>
 		<div class="col-lg-2 col-md-4 col-sm-6 text-center">
 			<h1 class="text-indigo no-margin bold"><%= @club.trainers.count + @club.userless_trainers.count %></h1>

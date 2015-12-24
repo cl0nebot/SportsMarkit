@@ -1,4 +1,4 @@
-<%= f.fields_for :address, @address do |address|%>
+<%= f.fields_for :address, object.build_address do |address|%>
 <% if params[:action] == "new" %>
 			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
 				<div class="panel-body padding-right-40 padding-left-40">

@@ -5,7 +5,7 @@
 	<div class="panel-body without-padding">	
 		<ul class="list-material borderless">
 			<% facilities.each do |facility| %>
-				<li class="has-action-left has-action-right">
+				<li class="has-action-left has-action-right" id="facility-show-<%= facility.id %>">
 					<a href="#" class="visible">
 						<div class="list-action-left">
 							<i class="ion-checkmark-circled icon-circle"></i>
@@ -13,13 +13,16 @@
 						<div class="list-content">
 							<span class="h4 bold"><%= facility.name %></span>
 						</div>
+                        <% if facility.can_be_edited_by_user?(current_user) %>
+                        <div class="list-action">
+					  <%= link_to "Delete", facility_remove_facility_path(facility, id: facility.id), class: "btn btn-primary pull-right mt20", data: {confirm: "Are you sure?"}, remote: true %></div><% end %>
 						<div class="list-action-right">
+                            
 							<%= link_to "View", facility_path(facility), class: "btn btn-primary pull-right mt20" %>							
 						</div>
 					</a>
 				</li>
-				<li class="divider with-border">
-				</li>
+				<li class="divider with-border" id="facility-border-<%= facility.id %>"></li>
 			<% end %>
 		</ul>
 	</div><!--.panel-body-->

@@ -97,6 +97,7 @@ Rails.application.routes.draw do
       resources :profile_pictures, only: %w[create update destroy]
       collection do
         get :selection_option
+        post :create_from_modal
       end
       resources :events
       resource :calendar do
@@ -104,6 +105,7 @@ Rails.application.routes.draw do
       end
       resources :media
       resources :photos
+      get :remove_facility
     end
 
     resources :tournaments
@@ -134,7 +136,11 @@ Rails.application.routes.draw do
       end
     end
     resources :pricings
-    resources :connects
+    resources :connects do
+      collection do
+        post :add_multiple_facilities
+      end  
+    end
     resources :classifications
     resources :parent_children
     resources :approval do
