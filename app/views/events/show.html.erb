@@ -141,7 +141,7 @@
 										<!--.card-subhead-->
 									</div><!--.card-heading-->
 									<div class="card-body bgcolor-light-grey">
-										<ul class="users">
+										<ul class="users" id="yes">
 											<%= render 'events/rsvp_list', people: @attendees %> 		
 										</ul>
 									</div><!--.card-body-->
@@ -166,7 +166,7 @@
 										<!--.card-subhead-->
 									</div><!--.card-heading-->
 									<div class="card-body bgcolor-light-grey">
-										<ul class="users">
+										<ul class="users" id="no">
 											<%= render 'events/rsvp_list', people: @nos %>	
 										</ul>
 									</div><!--.card-body-->
@@ -192,7 +192,7 @@
 										<!--.card-subhead-->
 									</div><!--.card-heading-->
 									<div class="card-body bgcolor-light-grey">
-										<ul class="users">
+										<ul class="users" id="maybe">
 											<%= render 'events/rsvp_list', people: @maybes %>	
 										</ul>
 									</div><!--.card-body-->

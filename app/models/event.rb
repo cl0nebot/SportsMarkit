@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
   has_many :attendees, dependent: :destroy
   
   has_one :event_facility, dependent: :destroy
-  has_many :connects, as: :owner, dependent: :destroy 
+  has_many :connects, as: :ownerable, dependent: :destroy 
   
   def self.between(start_time, end_time)
     where('starts_at >= ?', Event.format_date(start_time)).where('starts_at <= ?', Event.format_date(end_time)).where.not('starts_at > ?', Event.format_date(end_time)).uniq

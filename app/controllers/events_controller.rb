@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   def create
     @event = @object.events.build(event_params)
     if @event.save
-      Connect.create(owner_id: @event.id, owner_type: "Event", connectable_type: "Facility", connectable_id: params[:event][:facility_ids])
+      Connect.create(ownerable_id: @event.id, ownerable_type: "Event", connectable_type: "Facility", connectable_id: params[:event][:facility_ids])
       if @event.eventable_type == "Team"
         user_ids = Team.find(@event.eventable_id).roles.where(status: "Active").pluck(:user_id).uniq
         user_ids.each do |i|
@@ -30,12 +30,15 @@ class EventsController < ApplicationController
         twilio_token = ENV['TWILIO_AUTH_TOKEN']
         twilio_phone_number = "2027590519"
         @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
-      
+      begin
         @twilio_client.account.sms.messages.create(
           :from => "+1#{twilio_phone_number}",
           :to => receiving_number,
           :body => "Hello #{obj.first}! A new #{@event.event_type} has been created: #{@event.title} "
         )
+      rescue Twilio::REST::RequestError => e
+        puts e.message
+      end
       
       end
       
