@@ -6,12 +6,12 @@
 			          <%= image_tag("icons/flag.png", height: "15", class: "margin-right-5", style: "margin-top: -5px; width: 15px;") %>
 			          SportsMarkit
 		        </div><!--.logo-->
-	        	<h1>Schools <small>(<%= School.count %>)</small></h1>
+	        	<h1>Clubs <small>(<%= Club.count %>)</small></h1>
 			</div><!--.col-->
 			<div class="col-sm-6">
 				<ol class="breadcrumb">
 					<li><a href="/"><i class="ion-home"></i></a></li>
-					<li><a href="#" class="active">All schools</a></li>
+					<li><a href="#" class="active">All clubs</a></li>
 				</ol>
 			</div><!--.col-->
 			<div class="col-sm-1 text-right">
@@ -34,43 +34,43 @@
               <li>
                 <button data-filter=".all" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">All</span> 
-                  <span class="count"><%= School.all.count %></span>
+                  <span class="count"><%= Club.all.count %></span>
                 </button>
               </li>
               <li>
                <button data-filter=".high-school" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">High-Schools</span> 
-                  <span class="count"><%= School.high_school_count %></span>
+                  <span class="count"><%#= .high_school_count %></span>
                 </button>
               </li>
               <li>
                 <button data-filter=".middle-school" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">Middle Schools</span> 
-                  <span class="count"><%= School.middle_school_count %></span>
+                  <span class="count"><%#= School.middle_school_count %></span>
                 </button>
               </li>
                <li>
                 <button data-filter=".elementary, .alkaline-earth" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">Elementary Schools</span> 
-                  <span class="count"><%= School.elementary_school_count %></span>
+                  <span class="count"><%#= School.elementary_school_count %></span>
                 </button>
               </li>
               <li>
                 <button data-filter=".private" class="button is-checked btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">Private Schools</span> 
-                  <span class="count"><%= School.private_school_count %></span>
+                  <span class="count"><%#= School.private_school_count %></span>
                 </button>
               </li>
               <li>
                 <button data-filter=".public" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">Public Schools</span> 
-                  <span class="count"><%= School.public_school_count %></span>
+                  <span class="count"><%#= School.public_school_count %></span>
                 </button>
               </li>
               <li>
                 <button data-filter=".charter" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">Charter Schools</span> 
-                  <span class="count"><%= School.charter_school_count %></span>
+                  <span class="count"><%#= School.charter_school_count %></span>
                 </buton>
               </li>
             </ul> 
@@ -100,15 +100,15 @@
             <div class="btn-group btn-block">
               <button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
                 <span class="text-muted">
-                  School Directory
+                  Club Directory
                   <span class="ml10 caret"></span>
                 </span>
               </button>
               <ul class="dropdown-menu directory" role="menu">
-                <% @schools.each do |school| %>
+                <% @clubs.each do |club| %>
                   <li>
-                    <%= link_to school_path(school) do %>
-                        <%= school.name %>
+                    <%= link_to club_path(club) do %>
+                        <%= club.name %>
                  	<% end %>
                 </li>
                 <% end %>
@@ -121,7 +121,7 @@
       <br/>
     
     	<div class="schools grid">
-    		<%= render @schools %>	
+    		<%= render @clubs %>	
     	</div>
     </div>
 </div>
