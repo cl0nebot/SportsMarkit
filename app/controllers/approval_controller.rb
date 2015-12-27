@@ -10,6 +10,7 @@ class ApprovalController < ApplicationController
   def approve
     @role = Role.find(params[:id])
     @role.update_attributes(status: "Active")
+    SendEmail.notify_user_of_admin_role(User.find(@role.user_id), @role.role, @role.roleable_type.constantize.find(@role.roleable_id)
     @athletic_directors = Role.where(role: "Athletic Director", status: "Active")
     @coaches = Role.where(role: "Coach", status: "Active")
     respond_to do |format|

@@ -23,7 +23,8 @@ class RolesController < ApplicationController
     roleable_id = params[:roleable_id]
     roleable_type = params[:roleable_type]
     
-   Role.create(user_id: user_id, roleable_id: roleable_id, roleable_type: roleable_type, role: role_name, status: "Active", date_added: Date.today, accepting_user_id: current_user )
+   @role = Role.create(user_id: user_id, roleable_id: roleable_id, roleable_type: roleable_type, role: role_name, status: "Active", date_added: Date.today, accepting_user_id: current_user )
+   SendEmail.notify_user_of_admin_role(User.find(@role.user_id), @role.role, @role.roleable_type.constantize.find(@role.roleable_id)
    # respond_to do |format|
    #   format.js
    #   format.html {redirect_to :back}
