@@ -280,11 +280,6 @@ ActiveRecord::Schema.define(version: 20151224015449) do
 
   add_index "fans", ["fannable_id", "fannable_type"], name: "index_fans_on_fannable_id_and_fannable_type", using: :btree
 
-  create_table "identity_checks", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "league_managers", force: true do |t|
     t.integer  "user_id"
     t.integer  "league_id"
@@ -506,12 +501,15 @@ ActiveRecord::Schema.define(version: 20151224015449) do
     t.datetime "updated_at"
     t.string   "mobile_phone_number"
     t.boolean  "admin",                      default: false
+    t.integer  "school_id"
     t.integer  "age"
     t.string   "nickname"
     t.boolean  "manager"
     t.boolean  "trainer"
     t.string   "jersey_number"
   end
+
+  add_index "relationships", ["slug"], name: "index_relationships_on_slug", unique: true, using: :btree
 
   create_table "roles", force: true do |t|
     t.integer  "user_id"

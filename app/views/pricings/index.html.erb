@@ -21,10 +21,8 @@
   </div><!--.page-header-->
 
 
-    <div class="row pt60">
-		<div id="progress-bar">
-		  
-	    </div>
+  <div class="row pt60">
+		<div id="progress-bar"></div>
 		<div class="col-md-6 col-md-offset-3">
 			<div class="panel">
 				<div class="panel-heading">
@@ -33,19 +31,16 @@
 					<div class="panel-title"><h4>SET PRICING</h4></div><!--.panel-title-->
 				
 					<ul class="nav nav-tabs with-panel" id="object-labels">
-						
 						<%= render 'labels' %>
-						
 					</ul>
 					
 				</div><!--.panel-heading-->
 				<div class="panel-body" id="objects">
 					<table class="table table table-bordered table-striped table-condensed" id="pricing-table">
 					  <tbody>
-					<%= render 'pricings/list', objects: @schools %>
+							<%= render 'pricings/list', objects: @schools %>
 					  </tbody>
 					</table>
-					
 				</div><!--.panel-body-->
 			</div><!--.panel-->
 		</div><!--.col-->
