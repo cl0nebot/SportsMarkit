@@ -57,12 +57,14 @@
 							</small>
 						</p>
 											
-						<div class="row no-margin">
+						<div class="no-margin well">
 							<% unless @object.class.to_s == "Team" %>
-								<%= select_tag :specific_role_names, options_for_select([["All"] + [@object_type.constantize.custom_message_groups]].flatten, " "), {:multiple => true, include_blank: true, "data-live-search" =>  true, "data-width"=> "100%", class: "form-control"} %>
-								<h6>and also to:</h6>
+								<h6 class="h6 mt10 mb10">Applicable admin groups:</h6>
+								<%= select_tag :specific_role_names, options_for_select([["All"] + [@object_type.constantize.custom_message_groups]].flatten, " "), {:multiple => true, include_blank: true, "data-live-search" =>  true, "data-width"=> "100%", class: "form-control bg-white"} %>
+								<br/>
+								<h6 class="h6 mt10 mb10">Applicable user profiles:</h6>
 							<% end %>
-							<%= select_tag :default_role_names, options_for_select([["All"] + [@object_type.constantize.default_message_groups]].flatten), {:multiple => true, include_blank: true} %><br>
+							<%= select_tag :default_role_names, options_for_select([["All"] + [@object_type.constantize.default_message_groups]].flatten),  {:multiple => true, include_blank: true, "data-live-search" =>  true, "data-width"=> "100%", class: "form-control bg-white"}%>
 						</div>
 						<div id="user-group" style="display: none">
             	<p class="text-danger">You must assign at least one user group.</p>
@@ -71,15 +73,17 @@
 
 					<hr class="no-margin"/>
 					<div class="panel-body">
-						<% unless @object.class.to_s == "Team" %>
-							<h6>that play these sports:</h6>
-							<%= select_tag :sports, options_for_select([["All"] + [@object.teams.pluck(:sport)]].flatten), {:multiple => true, include_blank: true} %><br>
+						<div class="well">
+							<% unless @object.class.to_s == "Team" %>
+							<h6>Applicable sports:</h6>
+							<%= select_tag :sports, options_for_select([["All"] + [@object.teams.pluck(:sport)]].flatten), {:multiple => true, include_blank: true, "data-live-search" =>  true, "data-width"=> "100%", class: "form-control bg-white"} %><br>
 							
-							<h6>and/or are on these teams:</h6>
-							<%= select_tag :team_ids, options_for_select(@object.teams.collect{ |team| [team.name, team.id] }), {:multiple => true, include_blank: true} %><br>
-						<% end %>
-						<div id="sport-or-team" style="display: none">
-			        <p class="text-danger">You must assign at least one sport or team.</p>
+							<h6>Applicable teams:</h6>
+							<%= select_tag :team_ids, options_for_select(@object.teams.collect{ |team| [team.name, team.id] }), {:multiple => true, include_blank: true, "data-live-search" =>  true, "data-width"=> "100%", class: "form-control bg-white"} %><br>
+							<% end %>
+							<div id="sport-or-team" style="display: none">
+			        	<p class="text-danger">You must assign at least one sport or team.</p>
+							</div>
 						</div>
 						
 						<h5 class="text-primary mb0">3. Write your message.</h5>
