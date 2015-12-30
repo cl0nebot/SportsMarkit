@@ -1,41 +1,59 @@
-<br/>
-<div class="row">
-	<div class="col-md-4 col-md-offset-4">
-		<div class="panel">
-			<div class="panel-heading">
-				<div class="panel-title">
-					<h4>Assign Privileges <small>more description</small></h4>
-				</div>
-			</div><!--.panel-heading-->
-			<div class="panel-body padding-20">
-				<%= form_for Role.new, url: admin_assign_role_path, method: :post, html: {} do |f| %>
-				<div class="row">
-					<div class="col-md-4">
-						<% ["User", "School", "Team", "Club", "Facility", "League"].each do |roleable| %>
-							<%= link_to roleable, roleable_path(roleable_type: roleable), remote: true %><br/>
-						<% end %>
+<div class="content">
+	<div class="page-header full-content bg-blue mb0">
+	  <div class="row">
+	    <div class="col-sm-6">
+	      <h1><%= params[:controller].capitalize %>: <small>Assigning Priviledges</small></h1>
+	    </div><!--.col-->
+	    <div class="col-sm-6">
+	      <ol class="breadcrumb">
+	        <li><a href="/"><i class="ion-home"></i></a></li>
+	        <li><a href="<%= users_path %>" class="active">all users</a></li>
+	      </ol>
+	    </div><!--.col-->
+	  </div><!--.row-->
+	</div><!--.page-header-->
+
+
+
+	<div class="row pt60">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="panel">
+				<div class="panel-heading">
+					<div class="panel-title">
+						<h4>Assign Privileges <small>more description</small></h4>
 					</div>
-					<div class="col-md-8">
-						<div class="well">
-							<label class="form-label semi-bold h5"><small>Select User</small></label>
-							<%= f.collection_select :user_id, User.all, :id, :full_name, {:prompt => "Select User"}, class: "form-control bg-white" %>
-							<div id="roleable" class="mt10"></div>
+				</div><!--.panel-heading-->
+				<div class="panel-body padding-20">
+					<%= form_for Role.new, url: admin_assign_role_path, method: :post, html: {} do |f| %>
+					<div class="row">
+						<div class="col-md-2">
+							<% ["User", "School", "Team", "Club", "Facility", "League"].each do |roleable| %>
+								<%= link_to roleable, roleable_path(roleable_type: roleable), remote: true, class: "btn btn-primary btn-block btn-xs" %>
+							<% end %>
+						</div>
+						<div class="col-md-10">
+							<div class="well">
+								<label class="form-label semi-bold h5"><small>Select User</small></label>
+								<%= f.collection_select :user_id, User.all, :id, :full_name, {:prompt => "Select User"}, class: "form-control bg-white" %>
+								<div id="roleable" class="mt10"></div>
+							</div>
+						</div>
+						<hr class="mb0"/>
+					</div>
+				</div>
+				<hr class="mb0"/>
+				<div class="padding-20">
+					<div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<%= submit_tag "Assign Role", class: "btn btn-primary btn-ripple btn-block" %>
 						</div>
 					</div>
-					<hr class="mb0"/>
 				</div>
-			</div>
-			<hr class="mb0"/>
-			<div class="padding-20">
-				<div class="row">
-					<div class="col-md-4 col-md-offset-4">
-						<%= submit_tag "Assign Role", class: "btn btn-primary btn-ripple btn-block" %>
-					</div>
-				</div>
-			</div>
-		<% end %>
-		</div><!--.panel-->
-	</div><!--.col-->
+			<% end %>
+			</div><!--.panel-->
+		</div><!--.col-->
+	</div>
+
 </div>
 
  
