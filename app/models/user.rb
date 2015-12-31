@@ -36,10 +36,6 @@ class User < ActiveRecord::Base
 
   has_many :events, as: :eventable
   
-  has_many :relationships, dependent: :destroy
-  has_many :teams, through: :relationships #TODO through roles
-  accepts_nested_attributes_for :relationships, :reject_if => :all_blank, :allow_destroy => true
-  
   has_many :athletic_directors, dependent: :destroy
   has_many :schools, through: :athletic_directors
   
