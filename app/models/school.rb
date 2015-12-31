@@ -12,7 +12,6 @@ class School < ActiveRecord::Base
   include Seed
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
-  #acts_as_gmappable
   
   has_many :events, as: :eventable
   #has_many :event_facilities, as: :reservable
