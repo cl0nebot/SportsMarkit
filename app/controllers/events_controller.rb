@@ -55,7 +55,7 @@ class EventsController < ApplicationController
     @maybes = @event.attendees.where(maybe: true)
     @nos = @event.attendees.where(no: true)
     @facility = @event.facility
-    @json = @facility.to_gmaps4rails
+    @json = @facility.address.to_gmaps4rails
     
   end
   

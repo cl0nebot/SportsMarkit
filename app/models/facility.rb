@@ -9,7 +9,6 @@ class Facility < ActiveRecord::Base
   include Import
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
-  acts_as_gmappable
   
   belongs_to :facility_owner, polymorphic: true
   belongs_to :school
@@ -17,9 +16,9 @@ class Facility < ActiveRecord::Base
   has_many :roles, as: :roleable, dependent: :destroy
   has_many :userless_roles, as: :userless, dependent: :destroy
   
-  has_many :event_facilities
-  has_many :events, through: :event_facilities
-  #has_many :events, as: :eventable
+  has_many :connects, as: :connectable, dependent: :destroy
+  
+  has_many :events, as: :eventable
   has_many :team_facilities
   before_update :update_slug
   
@@ -50,20 +49,6 @@ class Facility < ActiveRecord::Base
     end
   end
   
-  def all_teams
-    team_ids = TeamFacility.where(facility_id: id).pluck(:team_id)
-    teams = Team.where(id: team_ids)
-  end
-  
-  def people_that_use_facility
-    team_ids = all_teams.pluck(:id)
-    relationships = Relationship.where(team_id: team_ids)
-    user_ids = relationships.pluck(:user_id)
-    users = User.where(id: user_ids)
-  end
-  
-
-
   
   def self.type_with_hyphen(type)
     type.downcase.gsub(" ","-")
