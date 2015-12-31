@@ -36,6 +36,20 @@ module Access
         false
       end
    
+    elsif self.class.to_s == "Facility"
+      if Role.where(user_id: current_user.id, status: "Active", roleable_type: "Facility", roleable_id: self.id, role: ["Facility Manager"] ).present?
+        true
+      elsif facility_owner_id.present?
+        if (facility_owner_type == "User" && facility_owner_id == current_user.id)
+          true
+        elsif facility_owner_type.constantize.find(facility_owner_id).can_be_edited_by_user?(current_user)
+          true
+        else
+          false
+        end
+      else
+        false
+      end
     else
       false
     end
