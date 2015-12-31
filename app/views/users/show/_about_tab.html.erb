@@ -29,10 +29,10 @@
 									<%= @object.last_name %>
 								</h3>
 								<p class="fs_12 semi-bold text-muted mb5 mt5"><%= @object.classification_list %></p> 
-								<% if @object.user_schools.present? %>
+								<% if @object.all_schools.present? %>
 									<p class="semi-bold fs_14 text-muted no-margin">
 										<i class="ion-university fs_20 text-primary mr5"></i>
-										<%= @object.user_schools.first.name  %>
+										<%= @object.all_schools.first.name  %>
 									</p>
 								<% end %>
 							</div>
@@ -105,10 +105,10 @@
 										<%= @object.profile.date_of_birth %>
 									</p>
 									<% end %>
-									<% if @object.user_schools.present? %>
+									<% if @object.all_schools.present? %>
 									<p class="semi-bold fs_14 text-muted no-margin">
 										<i class="ion-university fs_20 text-primary mr5"></i>
-										<%= @object.user_schools.first.name  %>
+										<%= @object.all_schools.first.name  %>
 									</p>
 									<% end %>
 								</div>

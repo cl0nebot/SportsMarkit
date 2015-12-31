@@ -332,14 +332,7 @@ class User < ActiveRecord::Base
   def has_profile_picture?
     user_profile_pictures.present?
   end
-  
-  def user_schools
-    team_ids = relationships.pluck(:team_id)
-    teams = Team.where(id: team_ids).where.not(school_id: nil)
-    school_ids = teams.pluck(:school_id) + AthleticDirector.where(user_id: id).pluck(:school_id)
-    schools = School.where(id: school_ids).uniq
-  end
-  
+    
   def event_notifications
     team_ids = Relationship.where(user_id: id).pluck(:team_id)
     all_team_events_after_today = Event.where(eventable_type: "Team", eventable_id: team_ids).where('starts_at >= ?', Time.now)
@@ -354,14 +347,14 @@ class User < ActiveRecord::Base
   end
   
   def schools_and_teams
-    user_schools + user_teams
+    all_schools + all_teams
   end
   
   def lead_affiliation
-    if user_schools.empty?
-      user_teams.first
+    if all_schools.empty?
+      all_teams.first
     else
-      user_schools.first
+      all_schools.first
     end
   end
   

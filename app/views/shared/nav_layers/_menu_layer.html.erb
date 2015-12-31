@@ -48,11 +48,11 @@
 		</li>
 		<% end %>
 
-       <% if current_user.user_schools.any? %>
+       <% if current_user.all_schools.any? %>
 		<li>
 			<a href="javascript:;"><i class="ion-university mr5"></i> My Schools</a>
 			<ul class="child-menu">
-				<% current_user.user_schools.each do |school| %>
+				<% current_user.all_schools.each do |school| %>
 					<li>
 						<%= link_to school_path(school) do %>
 							<i class="ion-university mr5"></i> <%= school.name %>
