@@ -28,8 +28,8 @@ class RostersController < ApplicationController
     roleable_id = params[:roleable_id]
     athlete = params[:athlete].present? ? "Athlete" : nil
     coach = params[:coach].present? ? "Coach" : nil
-    parent = params[:parent].present? ? "Parent" : nil
-    manager = params[:manager].present? ? "Manager" : nil
+    parent = params[:parent].present? ? "Guardian" : nil
+    manager = params[:manager].present? ? "Team Manager" : nil
     trainer = params[:trainer].present? ? "Trainer" : nil
     admin = params[:admin].present? ? "Admin" : nil
     @blank = [athlete, coach, parent, manager, trainer, admin].compact.blank?
@@ -70,13 +70,13 @@ class RostersController < ApplicationController
     
     athlete = params[:athlete].present? ? "Athlete" : nil
     coach = params[:coach].present? ? "Coach" : nil
-    #parent = params[:parent].present? ? "Parent" : nil
-    manager = params[:manager].present? ? "Manager" : nil
+    parent = params[:parent].present? ? "Guardian" : nil
+    manager = params[:manager].present? ? "Team Manager" : nil
     trainer = params[:trainer].present? ? "Trainer" : nil
     admin = params[:admin].present? ? "Admin" : nil
     
-    add = ["Coach", "Manager", "Trainer", "Admin"] & [coach, manager, trainer, admin].compact
-    remove = ["Coach", "Manager", "Trainer", "Admin"] - [coach, manager, trainer, admin].compact
+    add = ["Coach", "Team Manager", "Trainer", "Admin"] & [coach, manager, trainer, admin].compact
+    remove = ["Coach", "Team Manager", "Trainer", "Admin"] - [coach, manager, trainer, admin].compact
     
     unless params[:member].present?
       add.compact.each do |role_name|

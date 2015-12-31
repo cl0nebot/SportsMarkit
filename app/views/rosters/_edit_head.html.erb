@@ -97,7 +97,7 @@
 							</p>
 						</div>
 						<div class="col-md-3">
-							<%= check_box_tag :manager,true, (@team.roles.where(user_id: m.user.id, role: "Manager", status: "Active").present? ? true : false) %>
+							<%= check_box_tag :manager,true, (@team.roles.where(user_id: m.user.id, role: "Team Manager", status: "Active").present? ? true : false) %>
 							<p class="small">
 								<small>
 									Manager

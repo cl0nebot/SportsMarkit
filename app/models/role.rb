@@ -27,13 +27,13 @@ class Role < ActiveRecord::Base
   end
   
   def self.staff_roles
-    where(status: "Active", role: ["Manager", "Trainer", "Coach", "Athletic Director"])
+    where(status: "Active", role: ["Team Manager", "Trainer", "Coach", "Athletic Director"])
   end
   
   def self.unique_staff_roles
     array =[]
     self.staff_roles.pluck(:user_id).uniq.each do |id|
-      array << where(status: "Active", role: ["Manager", "Trainer", "Coach", "Athletic Director"], user_id: id).last.id
+      array << where(status: "Active", role: ["Team Manager", "Trainer", "Coach", "Athletic Director"], user_id: id).last.id
     end
     Role.where(id: array)
   end
