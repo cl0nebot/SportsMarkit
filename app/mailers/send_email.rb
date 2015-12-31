@@ -22,6 +22,12 @@ class SendEmail < ActionMailer::Base
     mail(from: "donotreply@sportsmarkit.com", to: "info@sportsmarkit.com", subject: @message)
   end
   
+  def send_announcement_message(user, message)
+    @user = user
+    @message = message
+    mail(from: "donotreply@sportsmarkit.com", to: user.email, subject: @message)
+  end
+  
   
   
 end

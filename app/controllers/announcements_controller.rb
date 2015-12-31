@@ -14,7 +14,7 @@ class AnnouncementsController < ApplicationController
     @start_time = Time.now.to_i
     @user_group_is_not_selected = ((params[:specific_role_names].try(:first).try(:length).to_i > 1) || (params[:default_role_names].try(:first).try(:length).to_i > 1) ) ? false : true
     @delivery_method_is_not_selected = ((params[:sms].present?) || (params[:email].present?) ) ? false : true
-    @sport_or_team_not_selected = @object.class.to_s != "Team" ? (((params[:sports].try(:first).try(:length).to_i > 1) || (params[:team_ids].try(:first).to_i != 0) ) ? false : true) : nil
+    @sport_or_team_not_selected = params[:object_type] != "Team" ? (((params[:sports].try(:first).try(:length).to_i > 1) || (params[:team_ids].try(:first).to_i != 0) ) ? false : true) : nil
     @character_limit_over = (params[:message].length > 480) ? true : false
     @characters_less_than_ten = (params[:message].length < 10) ? true : false
     unless [@user_group_is_not_selected, @delivery_method_is_not_selected, @sport_or_team_not_selected, @character_limit_over, @characters_less_than_ten].compact.include? true
@@ -93,6 +93,7 @@ class AnnouncementsController < ApplicationController
       
         if params[:email].present?
           users.each do |user|
+            next if user.email.nil?
             SendEmail.send_announcement_message(user, str).deliver
           end
         end
