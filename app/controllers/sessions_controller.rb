@@ -68,7 +68,7 @@ class SessionsController < ApplicationController
 
       @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
       begin
-      @twilio_client.account.sms.messages.create(
+      @twilio_client.account.messages.create(
         :from => "+1#{twilio_phone_number}",
         :to => receiving_number,
         :body => "Coach, #{user.first_name} has joined your SportsMarkit team!" )

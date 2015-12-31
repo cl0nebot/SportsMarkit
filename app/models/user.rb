@@ -468,7 +468,7 @@ class User < ActiveRecord::Base
 
     twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
    begin
-    twilio_client.account.sms.messages.create(
+    twilio_client.account.messages.create(
       :from => "+1#{twilio_phone_number}",
       :to => receiving_number,
       :body => "#{user.first_name}, Coach has created your new team hub! 
