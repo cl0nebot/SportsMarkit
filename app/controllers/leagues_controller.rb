@@ -30,7 +30,7 @@ class LeaguesController < ApplicationController
   def show
     @object = @league
     shared_variables
-    @teams = @league.teams
+    @teams = @league.all_teams
     @manager_and_trainers = @league.manager_and_trainers
     @userless_managers_and_trainers = @league.userless_managers_and_trainers
     @admins = @league.admins
