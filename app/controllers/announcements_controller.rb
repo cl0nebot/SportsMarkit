@@ -11,10 +11,10 @@ class AnnouncementsController < ApplicationController
   end
     
   def create
-    @start_time = Time.now
+    @start_time = Time.now.to_i
     @user_group_is_not_selected = ((params[:specific_role_names].try(:first).try(:length).to_i > 1) || (params[:default_role_names].try(:first).try(:length).to_i > 1) ) ? false : true
     @delivery_method_is_not_selected = ((params[:sms].present?) || (params[:email].present?) ) ? false : true
-    @sport_or_team_not_selected = @object.class.to_s == "Team" ? (((params[:sports].try(:first).try(:length).to_i > 1) || (params[:team_ids].try(:first).to_i != 0) ) ? false : true) : nil
+    @sport_or_team_not_selected = @object.class.to_s != "Team" ? (((params[:sports].try(:first).try(:length).to_i > 1) || (params[:team_ids].try(:first).to_i != 0) ) ? false : true) : nil
     @character_limit_over = (params[:message].length > 480) ? true : false
     @characters_less_than_ten = (params[:message].length < 10) ? true : false
     unless [@user_group_is_not_selected, @delivery_method_is_not_selected, @sport_or_team_not_selected, @character_limit_over, @characters_less_than_ten].compact.include? true
@@ -79,7 +79,7 @@ class AnnouncementsController < ApplicationController
             @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
             [str[0..159], str[160..319], str[320..479]].compact.each do |message|
             begin
-              @twilio_client.account.sms.messages.create(
+              @twilio_client.account.messages.create(
                 :from => "+1#{twilio_phone_number}",
                 :to => receiving_number,
                 :body => "#{message}"
@@ -100,7 +100,7 @@ class AnnouncementsController < ApplicationController
         
         @object = Announcement.create(user_id: current_user.id, announceable_type: object.class.to_s , announceable_id: object.id, message: params[:message], sports: params[:sports], team_ids: params[:team_ids], specific_user_groups: params[:specific_role_names] , default_user_groups: params[:default_role_names], sms: params[:sms].present?, email: params[:email].present?, subject: params[:subject] )
         
-        @time_elapsed = (Time.now - @start_time)
+        @time_elapsed = (Time.now.to_i - @start_time)
       end
       respond_to do |format|
         format.js
