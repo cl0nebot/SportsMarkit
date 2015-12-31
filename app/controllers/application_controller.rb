@@ -119,7 +119,7 @@ class ApplicationController < ActionController::Base
     # fans
     @fans = @object.fans
     
-    #@json = @object.to_gmaps4rails
+    @json = @object.address.to_gmaps4rails
     @class = @object.class
     
   end
