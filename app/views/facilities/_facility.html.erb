@@ -31,9 +31,9 @@
 			<p class="lh_16 text-muted fs_12 no-margin">
 			<!-- <i class="ion-location pull-left mr10"></i>  -->
 			<span class="pull-left">
-				<% if facility.city.present? %>
-					<%= facility.address_1 %><br/>
-					<%= facility.city %>, <%= facility.state %> 
+				<% if facility.address.city.present? %>
+					<%= facility.address.street_1 %><br/>
+					<%= facility.address.city %>, <%= facility.address.state %> 
 				<% else %>
 					Address not available.
 				<% end %>

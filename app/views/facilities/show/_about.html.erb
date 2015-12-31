@@ -27,8 +27,8 @@
 							<a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a> 
 						</p>
 						<p class="no-margin fs_14 text-muted">
-							<i class="ion-location"></i> <%= @facility.address_1 %><br/>
-							 <%= @facility.city %>, <%= @facility.state %>, <%= @facility.zip %>
+							<i class="ion-location"></i> <%= @facility.address.street_1 %><br/>
+							 <%= @facility.address.city %>, <%= @facility.address.state %>, <%= @facility.address.postcode %>
 						</p>
 						<% if @facility.phone_number.present? || @facility.website.present? || @facility.email.present?  %>
 						  <hr class="light mb0 mt10"/>

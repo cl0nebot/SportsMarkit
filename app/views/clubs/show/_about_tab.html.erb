@@ -110,7 +110,7 @@
 								<a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a> 
 							</p>
 							<p class="no-margin fs_14 text-muted">
-								<i class="ion-location"></i> <%#= @club.address_1 %>, <%#= @club.city %>, <%#= @club.state %>, <%#= @club.zip %>
+								<i class="ion-location"></i> <%= @club.address.street_1 %>, <%= @club.address.city %>, <%= @club.address.state %>, <%= @club.address.postcode %>
 							</p>
 							<hr class="light mt10 mb5"/>
 						</div>

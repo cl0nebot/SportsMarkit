@@ -89,8 +89,8 @@
 								<a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a> 
 							</p>
 							<p class="no-margin fs_14 text-muted">
-								<i class="ion-location"></i> <%= @league.address_1 %><br/>
-							 <%= @league.city %>, <%= @league.state %>, <%= @league.zip %>
+								<i class="ion-location"></i> <%= @league.address.street_1 %><br/>
+							 <%= @league.address.city %>, <%= @league.address.state %>, <%= @league.address.postcode %>
 							</p>
 							<hr class="light mt10"/>
 							<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>

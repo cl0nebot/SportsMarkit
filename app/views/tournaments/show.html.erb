@@ -59,10 +59,10 @@
 						</p>
 						<h3 class="semi-bold"><%= @event.facility.name %><h3>
 						<p> 
-							<%= @event.facility.address_1 %>
-						 	<%= @event.facility.city %><br/>
-						 	<%= @event.facility.state %><br/>
-						 	<%= @event.facility.zip %>
+							<%= @event.facility.address.street_1 %>
+						 	<%= @event.facility.address.city %><br/>
+						 	<%= @event.facility.address.state %><br/>
+						 	<%= @event.facility.address.postcode %>
 						</p>
 						<h4>
 							<i class="ion-android-call margin-right-10"></i>
