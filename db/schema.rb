@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151224015449) do
+ActiveRecord::Schema.define(version: 20151225151810) do
 
   create_table "addresses", force: true do |t|
     t.integer  "addressable_id"
@@ -216,6 +216,8 @@ ActiveRecord::Schema.define(version: 20151224015449) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "opponent_id"
+    t.string   "opponent_type"
   end
 
   add_index "events", ["eventable_id", "eventable_type"], name: "index_events_on_eventable_id_and_eventable_type", using: :btree
