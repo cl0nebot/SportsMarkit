@@ -20,6 +20,7 @@ gem 'spring',        group: :development # Spring speeds up development by keepi
 gem "letter_opener", :group => :development
 gem "parsley-rails" # Add parsley form validation
 gem 'roo', '~> 2.1.0'
+gem 'exception_notification'
 
 #maps and geocoding
 gem 'gmaps4rails', "~> 1.5.6" # For google maps view, geocoding, etc
@@ -44,7 +45,6 @@ group :development do
   gem 'pry-rails'
   gem "better_errors"
   gem "binding_of_caller"
-  gem 'exception_notification'
 end
 
 gem 'haml_coffee_assets'
