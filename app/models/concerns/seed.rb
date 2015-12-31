@@ -208,7 +208,7 @@ module Seed
     
     def add_roles
       Relationship.all.each do |rel|
-        roles = [["participant?", "Athlete"], ["head?", "Coach"], ["manager", "Team Manager"], ["trainer?", "Trainer"], ["admin?", "Admin"]].each do |role|
+        roles = [["participant?", "Athlete"], ["head?", "Coach"], ["manager?", "Team Manager"], ["trainer?", "Trainer"], ["admin?", "Admin"]].each do |role|
           rel.send(role.first) ? Role.create(user_id: rel.user_id, role: role.second, roleable_type: "Team", roleable_id: rel.team_id, status: "Active", jersey_number: rel.jersey_number, title: rel.head_title, level: rel.participant_classification, mobile_phone_number: rel.mobile_phone_number, nickname: rel.nickname  ) : nil
         end
       end
