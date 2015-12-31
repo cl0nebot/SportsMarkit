@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   
   def create
     @event = @object.events.build(event_params)
+    @event.opponent_type = "Team"
     if @event.save
       Connect.create(ownerable_id: @event.id, ownerable_type: "Event", connectable_type: "Facility", connectable_id: params[:event][:facility_ids])
       if @event.eventable_type == "Team"
@@ -116,7 +117,7 @@ class EventsController < ApplicationController
   protected
   
   def event_params
-    params.require(:event).permit(:user_id, :eventable_id, :eventable_type, :event_type, :title, :starts_at, :ends_at, :all_day, :description, :private, :created_by, :reservation)
+    params.require(:event).permit(:user_id, :eventable_id, :eventable_type, :opponent_id, :opponent_type, :event_type, :title, :starts_at, :ends_at, :all_day, :description, :private, :created_by, :reservation)
   end
   
   def find_object
