@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151225151810) do
+ActiveRecord::Schema.define(version: 20151231112951) do
 
   create_table "addresses", force: true do |t|
     t.integer  "addressable_id"
@@ -282,6 +282,11 @@ ActiveRecord::Schema.define(version: 20151225151810) do
 
   add_index "fans", ["fannable_id", "fannable_type"], name: "index_fans_on_fannable_id_and_fannable_type", using: :btree
 
+  create_table "identity_checks", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "league_managers", force: true do |t|
     t.integer  "user_id"
     t.integer  "league_id"
@@ -487,32 +492,6 @@ ActiveRecord::Schema.define(version: 20151225151810) do
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
-  create_table "relationships", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "team_id"
-    t.boolean  "head"
-    t.string   "head_title"
-    t.boolean  "participant"
-    t.string   "participant_classification"
-    t.string   "position"
-    t.string   "quote"
-    t.boolean  "accepted"
-    t.boolean  "rejected"
-    t.string   "slug"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "mobile_phone_number"
-    t.boolean  "admin",                      default: false
-    t.integer  "school_id"
-    t.integer  "age"
-    t.string   "nickname"
-    t.boolean  "manager"
-    t.boolean  "trainer"
-    t.string   "jersey_number"
-  end
-
-  add_index "relationships", ["slug"], name: "index_relationships_on_slug", unique: true, using: :btree
-
   create_table "roles", force: true do |t|
     t.integer  "user_id"
     t.string   "role"
@@ -672,26 +651,6 @@ ActiveRecord::Schema.define(version: 20151225151810) do
 
   add_index "user_profile_pictures", ["photo"], name: "index_user_profile_pictures_on_photo", using: :btree
   add_index "user_profile_pictures", ["user_id"], name: "index_user_profile_pictures_on_user_id", using: :btree
-
-  create_table "userless_relationships", force: true do |t|
-    t.integer  "team_id"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.boolean  "head"
-    t.string   "head_title"
-    t.boolean  "participant"
-    t.string   "participant_classification"
-    t.string   "position"
-    t.string   "mobile_phone_number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "age"
-    t.string   "nickname"
-    t.boolean  "admin"
-    t.boolean  "manager"
-    t.boolean  "trainer"
-    t.string   "jersey_number"
-  end
 
   create_table "userless_roles", force: true do |t|
     t.string   "first_name"
