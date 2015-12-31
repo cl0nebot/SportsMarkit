@@ -61,13 +61,24 @@ module Common
      
   end
   
-  def owned_teams
-    Team.where(teamable_type: self.class.to_s, teamable_id: id)
+  
+  #connected teams, connected clubs, connected schools. right now. they all connect to leagues, but not to each other via 'CONNECT'
+  ["Team", "School", "Club"].each do |model|
+    formatted_type = model.gsub(" ", "_").downcase.pluralize
+    define_method "connected_#{formatted_type}" do
+      Connect.where(ownerable_type: model, connectable_id: id, connectable_type: self.class.to_s)
+      #TODO both ways
+    end
   end
   
-  def connected_teams
-    Connect.where(ownerable_type:"Team", ownerable_id: id, connectable_type: self.class.to_s)
+  def connected_leagues
+    league_ids = Connect.where(ownerable_type: self.class.to_s, ownerable_id: id, connectable_type: "League")
     #TODO both ways
+  end
+  
+  
+  def owned_teams
+    Team.where(teamable_type: self.class.to_s, teamable_id: id)
   end
   
   def team_ids
@@ -76,13 +87,10 @@ module Common
     elsif self.class.to_s == "Team"
       [self.id]
     else 
-      (owned_teams.pluck(:id) + connected_teams.pluck(:id)).uniq
+      (owned_teams.pluck(:id) + connected_teams.pluck(:ownerable_id)).uniq
     end
   end
-  
-  def connected_schools
-    Connect.where(ownerable_type:"School", ownerable_id: id, connectable_type: self.class.to_s)
-  end
+
   
   def school_ids
     if self.class.to_s == "User"
@@ -92,14 +100,10 @@ module Common
     elsif self.class.to_s == "Team"
       teamable_type == "School" ? [teamable_id] : []
     else
-       (connected_schools.pluck(:id) + all_teams.where(teamable_type: "School").pluck(:teamable_id)).uniq
+       (connected_schools.pluck(:ownerable_id) + all_teams.where(teamable_type: "School").pluck(:teamable_id)).uniq
     end
   end
-  
-  def connected_clubs
-    Connect.where(ownerable_type:"Club", ownerable_id: id, connectable_type: self.class.to_s)
-    #TODO both ways
-  end
+
   
   def club_ids
     if self.class.to_s == "User"
@@ -109,14 +113,10 @@ module Common
     elsif self.class.to_s == "Team"
       teamable_type == "Club" ? [teamable_id] : []
     else
-       (connected_clubs.pluck(:id) + all_teams.where(teamable_type: "Club").pluck(:teamable_id)).uniq
+       (connected_clubs.pluck(:ownerable_id) + all_teams.where(teamable_type: "Club").pluck(:teamable_id)).uniq
     end
   end
   
-  def connected_leagues
-    league_ids = Connect.where(ownerable_type: self.class.to_s, ownerable_id: id, connectable_type: "League")
-    #TODO both ways
-  end
   
   def league_ids
     if self.class.to_s == "User"
