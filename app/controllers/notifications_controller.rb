@@ -11,11 +11,14 @@ class NotificationsController < ApplicationController
     twilio_phone_number = "2027590519"
 
     @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
-
+    begin
     @twilio_client.account.sms.messages.create(
       :from => "+1#{twilio_phone_number}",
       :to => receiving_number,
       :body => "#{@user.first_name}, REMINDER: Your certification, #{@certificate.certification.name} is set to expire on #{@certificate.expiration}.")
+    rescue Twilio::REST::RequestError => e
+      puts e.message
+    end
   end
   
 end

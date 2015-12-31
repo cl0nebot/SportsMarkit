@@ -67,11 +67,14 @@ class SessionsController < ApplicationController
       twilio_phone_number = "2027590519"
 
       @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
-
+      begin
       @twilio_client.account.sms.messages.create(
         :from => "+1#{twilio_phone_number}",
         :to => receiving_number,
         :body => "Coach, #{user.first_name} has joined your SportsMarkit team!" )
+        rescue Twilio::REST::RequestError => e
+          puts e.message
+        end
       end
   end
   

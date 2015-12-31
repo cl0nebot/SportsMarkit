@@ -244,7 +244,8 @@ class RostersController < ApplicationController
     twilio_phone_number = "2027590519"
 
     @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
-
+    
+    begin
     @twilio_client.account.sms.messages.create(
       :from => "+1#{twilio_phone_number}",
       :to => receiving_number,
@@ -254,6 +255,9 @@ http://www.sportsmarkit.com/login
 Login: #{user.mobile_phone_number} 
 Password: #{password}"
     )
+    rescue Twilio::REST::RequestError => e
+      puts e.message
+    end
   end
   
   def role_or_userless_role_params
