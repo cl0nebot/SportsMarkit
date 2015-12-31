@@ -197,10 +197,25 @@ module Seed
        # Fan.create(user_id: User.all.sample.id, fannable_id: Team.all.sample.id, fannable_type: "")
       end
     end
+    
+    def add_addresses
+      ["School", "Team", "Facility", "League"].each do |model| #no users, clubs
+        model.constantize.all.each do |object|
+          Address.create(addressable_id: object.id, addressable_type: object.class.to_s, city: city, state: state, country: country, postcode: zip)
+        end
+      end 
+    end
+    
+    def add_roles
+      Relationship.all.each do |rel|
+        roles = [["participant?", "Athlete"], ["head?", "Coach"], ["manager", "Team Manager"], ["trainer?", "Trainer"], ["admin?", "Admin"]].each do |role|
+          rel.send(role.first) ? Role.create(user_id: rel.user_id, role: role.second, roleable_type: "Team", roleable_id: rel.team_id, status: "Active", jersey_number: rel.jersey_number, title: rel.head_title, level: rel.participant_classification, mobile_phone_number: rel.mobile_phone_number, nickname: rel.nickname  ) : nil
+        end
+      end
+    end
    
       
   end
 
   
 end
-
