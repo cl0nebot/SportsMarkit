@@ -6,7 +6,7 @@
           <%= image_tag("icons/flag.png", height: "15", class: "margin-right-5", style: "margin-top: -5px; width: 15px;") %>
           SportsMarkit
         </div><!--.logo-->
-        <h1>Our Sports Community <small class="ml5"><%= User.all.count%> people</small></h1>
+        <h1>Our Sports Community <small class="ml5"></small></h1>
       </div><!--.col-->
       <div class="col-sm-4">
           
@@ -34,37 +34,37 @@
               <li>
                 <button data-filter=".all" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">All</span> 
-                  <span class="count"><%= User.all.count %></span>
+                  <span class="count"><%#= User.all.count %></span>
                 </button>
               </li>
               <li>
                <button data-filter=".student-athlete" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">Student-Athletes</span> 
-                  <span class="count"><%= User.student_athlete_count %></span>
+                  <span class="count"><%#= User.student_athlete_count %></span>
                 </button>
               </li>
               <li>
                 <button data-filter=".athlete" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">Athletes</span> 
-                  <span class="count"><%= User.athlete_count %></span>
+                  <span class="count"><%#= User.athlete_count %></span>
                 </button>
               </li>
                <li>
                 <button data-filter=".coach, .alkaline-earth" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">Coaches</span> 
-                  <span class="count"><%= User.coach_count %></span>
+                  <span class="count"><%#= User.coach_count %></span>
                 </button>
               </li>
               <li>
                 <button data-filter=".parent" class="button is-checked btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">Parents</span> 
-                  <span class="count"><%= User.parent_count %></span>
+                  <span class="count"><%#= User.parent_count %></span>
                 </button>
               </li>
               <li>
                 <button data-filter=".athletic-director" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">Athletic Directors</span> 
-                  <span class="count"><%= User.athletic_director_count %></span>
+                  <span class="count"><%#= User.athletic_director_count %></span>
                 </button>
               </li>
               <!-- <li>

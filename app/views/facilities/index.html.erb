@@ -6,7 +6,7 @@
 	          <%= image_tag("icons/flag.png", height: "15", class: "margin-right-5", style: "margin-top: -5px; width: 15px;") %>
 	          SportsMarkit
 	        </div><!--.logo-->
-	        <h1>All Facilities <small>(<%= Facility.count %>)</small></h1>
+	        <h1>All Facilities <small></small></h1>
 			</div><!--.col-->
 			<div class="col-sm-6">
 				<ol class="breadcrumb">
@@ -32,14 +32,14 @@
           <li>
             <button data-filter=".all" class="btn btn-white b-rad-4 btn-sm btn-block">
               <span class="filter">All</span> 
-              <span class="count"><%= Facility.all.count %></span>
+              <span class="count"><%#= Facility.all.count %></span>
             </button>
           </li>
 		  <% Facility.pluck(:facility_type).compact.uniq.each do |type|%>
           <li>
             <button data-filter=".<%= Facility.type_with_hyphen(type) %>" class="btn btn-white b-rad-4 btn-sm btn-block">
               <span class="filter"><%= type %></span> 
-              <span class="count"><%= Facility.where(facility_type: type).count %></span>
+              <span class="count"><%#= Facility.where(facility_type: type).count %></span>
             </button>
           </li>
 		  <% end %>

@@ -6,7 +6,7 @@
           <%= image_tag("icons/flag.png", height: "15", class: "margin-right-5", style: "margin-top: -5px; width: 15px;") %>
           SportsMarkit
         </div><!--.logo-->
-        <h1>All Teams <small>(<%= Team.count %>)</small></h1>
+        <h1>All Teams <small></small></h1>
 			</div><!--.col-->
 			<div class="col-sm-6">
 				<ol class="breadcrumb">
@@ -33,14 +33,14 @@
               <li>
                 <button data-filter=".all" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter">All</span> 
-                  <span class="count"><%= Team.all.count %></span>
+                  <span class="count"><%#= Team.all.count %></span>
                 </button>
               </li>
 			  <% Team.classifications.each do |type|%>
               <li>
                 <button data-filter=".<%= Team.type_with_hyphen(type) %>" class="btn btn-white b-rad-4 btn-sm btn-block">
                   <span class="filter"><%= type %></span> 
-                  <span class="count"><%= Team.count_for_classification(type) %></span>
+                  <span class="count"><%#= Team.count_for_classification(type) %></span>
                 </button>
               </li>
 			  <% end %>
