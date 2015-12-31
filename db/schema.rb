@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151231112951) do
+ActiveRecord::Schema.define(version: 20151231113858) do
 
   create_table "addresses", force: true do |t|
     t.integer  "addressable_id"
@@ -228,15 +228,6 @@ ActiveRecord::Schema.define(version: 20151231112951) do
     t.string   "facility_type"
     t.boolean  "is_private"
     t.boolean  "publicly_visible"
-    t.string   "address_1"
-    t.string   "address_2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "zip_ext"
-    t.float    "latitude",            limit: 24
-    t.float    "longitude",           limit: 24
-    t.boolean  "gmaps"
     t.string   "phone_number"
     t.string   "email"
     t.string   "website"
@@ -307,7 +298,6 @@ ActiveRecord::Schema.define(version: 20151231112951) do
   create_table "leagues", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "state"
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -321,15 +311,7 @@ ActiveRecord::Schema.define(version: 20151231112951) do
     t.string   "email"
     t.string   "website"
     t.string   "phone_number"
-    t.string   "address_1"
-    t.string   "address_2"
-    t.string   "city"
-    t.integer  "zip"
-    t.integer  "zip_ext"
-    t.float    "latitude",          limit: 24
-    t.float    "longitude",         limit: 24
     t.float    "price",             limit: 24
-    t.boolean  "gmaps"
     t.string   "classification"
     t.string   "category"
   end
@@ -513,15 +495,6 @@ ActiveRecord::Schema.define(version: 20151231112951) do
     t.string   "name"
     t.string   "classification"
     t.string   "abbreviation"
-    t.string   "address_1"
-    t.string   "address_2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "zip_ext"
-    t.float    "latitude",               limit: 24
-    t.float    "longitude",              limit: 24
-    t.boolean  "gmaps"
     t.string   "phone_number"
     t.string   "email"
     t.string   "website"
@@ -600,15 +573,6 @@ ActiveRecord::Schema.define(version: 20151231112951) do
     t.datetime "updated_at"
     t.string   "classification"
     t.string   "abbreviation"
-    t.string   "address_1"
-    t.string   "address_2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "zip_ext"
-    t.float    "latitude",           limit: 24
-    t.float    "longitude",          limit: 24
-    t.boolean  "gmaps"
     t.string   "phone_number"
     t.string   "email"
     t.string   "website"
