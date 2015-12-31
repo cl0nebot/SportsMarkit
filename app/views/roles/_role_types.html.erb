@@ -1,0 +1,3 @@
+<% ["User", "School", "Team", "Club", "Facility", "League"].each do |roleable| %>
+	<%= link_to roleable, roleable_path(roleable_type: roleable), remote: true, class: (params[:roleable_type].present? ? (params[:roleable_type] == roleable ? "btn btn-success btn-block btn-xs" : "btn btn-primary btn-block btn-xs" ) : "btn btn-primary btn-block btn-xs" ) %>
+<% end %>

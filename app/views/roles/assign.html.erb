@@ -20,16 +20,14 @@
 			<div class="panel">
 				<div class="panel-heading">
 					<div class="panel-title">
-						<h4>Assign Privileges <small>more description</small></h4>
+						<h4>Assign Privileges <small></small></h4>
 					</div>
 				</div><!--.panel-heading-->
 				<div class="panel-body padding-20">
 					<%= form_for Role.new, url: admin_assign_role_path, method: :post, html: {} do |f| %>
 					<div class="row">
-						<div class="col-md-2">
-							<% ["User", "School", "Team", "Club", "Facility", "League"].each do |roleable| %>
-								<%= link_to roleable, roleable_path(roleable_type: roleable), remote: true, class: "btn btn-primary btn-block btn-xs" %>
-							<% end %>
+						<div class="col-md-2" id="role-types-array">
+							<%= render 'roles/role_types' %>
 						</div>
 						<div class="col-md-10">
 							<div class="well">
