@@ -1,7 +1,12 @@
 class Address < ActiveRecord::Base
   include Location
   belongs_to :addressable, :polymorphic => true
-  acts_as_gmappable
+  acts_as_gmappable :check_process => false
+  
+  def gmaps4rails_address
+  #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
+    "#{self.street_1}, #{self.city}, #{self.state}" 
+  end
   
   def city_and_state
     "#{city}-#{state}"
