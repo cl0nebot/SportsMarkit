@@ -37,7 +37,7 @@
 										<% end %>
 										
 										<% if @school.founded.present? %> 
-										","
+										,
 										<% end %>
 										
 										<% if @school.enrollment.present? %> 
@@ -45,16 +45,13 @@
 										<% end %>
 										
 										<% if @school.enrollment.present? %> 
-										","
+										,
 										<% end %>
 										
 										<% if @school.faculty.present? %> 
 										Faculty: <%= @school.faculty %> 
 										<% end %>
-										
-										<% if @school.faculty.present? %> 
-										"," 
-										<% end %>
+								
 										
 										
 									</p> 

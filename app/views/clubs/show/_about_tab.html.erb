@@ -37,7 +37,7 @@
 										<% end %>
 										
 										<% if @club.founded.present? %> 
-										","
+										,
 										<% end %>
 										
 										<% if @club.enrollment.present? %> 
@@ -45,16 +45,14 @@
 										<% end %>
 										
 										<% if @club.enrollment.present? %> 
-										","
+										,
 										<% end %>
 										
 										<% if @club.faculty.present? %> 
 										Faculty: <%= @club.faculty %> 
 										<% end %>
 										
-										<% if @club.faculty.present? %> 
-										"," 
-										<% end %>
+										
 										
 										
 									</p> 
