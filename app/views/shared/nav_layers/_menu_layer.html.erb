@@ -58,7 +58,7 @@
 							<i class="ion-university mr5"></i> <%= school.name %>
 						<% end %>
 					</li>
-				  <% if school.is_athletic_director?(current_user)%>
+				  <% if school.can_be_edited_by_user?(current_user)%>
 				    <li>
 				    	<%= link_to edit_school_path(school) do %>
 								<i class="ion-gear-b mr5"></i> <%= "Edit #{school.name}" %>
