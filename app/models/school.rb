@@ -54,7 +54,7 @@ class School < ActiveRecord::Base
 
 
   def self.claimable_schools
-    where.not( id: AthleticDirector.select(:school_id).distinct)
+    where.not( id: Role.where(roleable_type: "School", status: "Active", role: ["Athletic Director", "School Manager"]).pluck(:roleable_id))
   end
 
   def self.cached_claimable_schools(last_update)

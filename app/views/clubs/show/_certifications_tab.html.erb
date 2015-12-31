@@ -1,6 +1,6 @@
-<% if false %>
+
 	<!--#events.tab-pane-->
-	<% if AthleticDirector.where(user_id: current_user.id, club_id: @club.id).present? %>
+	<% if @objecy.can_be_edited_by_user?(current_user) %>
 		<!-- certifications -->
 		<div id="certifications" class="tab-pane">
 		
@@ -20,4 +20,3 @@
 		</div>
 		<!--#certfications.tab-pane-->
 	<% end %>
-<% end %>

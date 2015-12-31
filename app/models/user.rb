@@ -36,9 +36,6 @@ class User < ActiveRecord::Base
 
   has_many :events, as: :eventable
   
-  has_many :athletic_directors, dependent: :destroy
-  has_many :schools, through: :athletic_directors
-  
   has_many :attendees, dependent: :destroy
   has_many :classifications, dependent: :destroy
   has_many :measurables, dependent: :destroy
@@ -204,13 +201,19 @@ class User < ActiveRecord::Base
   end
   
   def is_parent?
-    Classification.where(user_id: id, classification: "Parent").present?
+    if Classification.where(user_id: id, classification: "Parent").present?
+      true
+    elsif Role.where(user_id: id, roleable_type: "Team", status: "Active", role: "Guardian").present?
+      true
+    else
+      false
+    end
   end
   
   def is_athlete?
     if Classification.where(user_id: id, classification: "Athlete").present?
       true
-    elsif Relationship.where(user_id: id, participant: true).present?
+    elsif Role.where(user_id: id, roleable_type: "Team", status: "Active", role: "Athlete").present?
       true
     else
       false
@@ -220,7 +223,7 @@ class User < ActiveRecord::Base
   def is_coach?
     if Classification.where(user_id: id, classification: "Coach").present?
       true
-    elsif Relationship.where(user_id: id, head: true).present?
+    elsif Role.where(user_id: id, roleable_type: "Team", status: "Active", role: "Coach").present?
       true
     else
       false
@@ -230,7 +233,7 @@ class User < ActiveRecord::Base
   def is_athletic_director?
     if Classification.where(user_id: id, classification: "Athletic Director").present?
       true
-    elsif AthleticDirector.where(user_id: id).present?
+    elsif Role.where(user_id: id, roleable_type: "School", status: "Active", role: "Athletic Director").present?
       true
     else
       false
