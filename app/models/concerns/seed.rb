@@ -201,7 +201,7 @@ module Seed
     def add_addresses
       ["School", "Team", "Facility", "League"].each do |model| #no users, clubs
         model.constantize.all.each do |object|
-          Address.create(addressable_id: object.id, addressable_type: object.class.to_s, city: city, state: state, country: country, postcode: zip)
+          Address.create(addressable_id: object.id, addressable_type: object.class.to_s, city: object.city, state: object.state, country: object.country, postcode: object.zip)
         end
       end 
     end
