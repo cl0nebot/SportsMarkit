@@ -214,6 +214,14 @@ module Seed
       end
     end
    
+    def create_user_with_certs
+      user = User.create(first_name: "Coach", last_name: "Jones", password: "password", email: "coach@jones.com")
+      profile = Profile.create(user_id: user.id)
+      classification = Classification.create(classification: "Coach")
+      role = Role.create(user_id: user.id, role: "Coach", status: "Active", roleable_type: "Team", roleable_id: Team.first.id)
+      certification = Certification.create(name: "CPR", issuer: "Issuer Name")
+      certificate = Certificate.create(user_id: user.id, certification_id: certification.id, expiration: (Date.today + 2.weeks), expires: true)
+    end
       
   end
 

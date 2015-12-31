@@ -43,7 +43,7 @@
 	<li><a href="#fans" data-toggle="tab" class="btn-ripple">Fans</a></li>
 	<% if current_user %>
 		<% if ["School"].include? @object.class.to_s %>
-			<% if AthleticDirector.where(user_id: current_user.id, school_id: @school.id).present? %>
+			<% if @object.can_be_edited_by_user?(current_user) %>
 		  	<li>
 		  		<a href="#certifications" data-toggle="tab" class="btn-ripple">Certifications</a>
 		  	</li>

@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   has_many :attendees, dependent: :destroy
   has_many :classifications, dependent: :destroy
   has_many :measurables, dependent: :destroy
-  has_many :certificates
+  has_many :certificates, dependent: :destroy
   has_many :certifications, through: :certificates
   has_many :medias, as: :mediable
   
