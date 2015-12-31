@@ -71,6 +71,12 @@
 				
 				
                <%= render 'shared/new_address', f: f, object: Team.new %>
+               
+     		  <% if @object.new_record? %>
+     		    <%= f.hidden_field :teamable_type, value: @teamable.try(:class).try(:to_s) %>
+                <%= f.hidden_field :teamable_id, value: @teamable.try(:id) %>
+                
+     		  <% end %>
 				
 					<br/>
 					<%= f.submit "Awesome. Let's create a team!", class: "btn btn-blue btn-lg btn-block btn-ripple" %>

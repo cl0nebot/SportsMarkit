@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :upgrade]
   before_action :correct_user!, only: [:edit, :destroy, :upgrade]
-  before_action :find_teamable, only: [:new, :create]
+  before_action :find_teamable, only: [:new]
   before_action :find_team, only: [:show, :edit, :destroy]
   require 'twilio-ruby'
   
@@ -20,6 +20,7 @@ class TeamsController < ApplicationController
   end
   
   def create 
+    @teamable = params[:team][:teamable_type].try(:constantize).try(:find, params[:team][:teamable_id])
     @team = @teamable.present? ? @teamable.teams.build(team_params) : Team.new(team_params)
     @team.teamable_id = @teamable.id if @teamable.present?
     @team.teamable_type = @teamable.class.to_s if @teamable.present?
@@ -100,7 +101,7 @@ class TeamsController < ApplicationController
   
   def find_teamable
     param = params.keys.find{|key| key =~ /(\w+)_id/}
-    @teamable = $1.capitalize.constantize.find(params[param]) rescue []
+    @teamable = $1.capitalize.constantize.find(params[param])
   end
   
   def find_team
