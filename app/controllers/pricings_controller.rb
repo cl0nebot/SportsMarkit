@@ -5,7 +5,7 @@ class PricingsController < ApplicationController
     @teams = Team.without_schools
   end
   
-  def create
+  def add_or_update_price
     @object = params[:object].constantize.find(params[:id])
     @object.update_attributes(price: params[:price])
     respond_to do |format|

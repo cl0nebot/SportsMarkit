@@ -135,7 +135,9 @@ Rails.application.routes.draw do
         post :add_multiple
       end
     end
-    resources :pricings
+    resources :pricings do
+      get :add_or_update_price
+    end
     resources :connects do
       collection do
         post :add_multiple_facilities
