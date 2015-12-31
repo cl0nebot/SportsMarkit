@@ -14,7 +14,7 @@
 							<div class="col-md-12">
 								<div class="inputer">
 									<div class="input-wrapper">
-										<%= address.text_field :street_1, class: "form-control", placeholder: "", value: (@school.address_1 if @school.present?) %>
+										<%= address.text_field :street_1, class: "form-control", placeholder: "", value: nil %>
 									</div>
 								</div>
 							</div><!--.col-md-9-->
@@ -25,7 +25,7 @@
 							<div class="col-md-12">
 								<div class="inputer">
 									<div class="input-wrapper">
-										<%= address.text_field :street_2, type: "text", class: "form-control", placeholder: "", value: (@school.address_2 if @school.present?) %>
+										<%= address.text_field :street_2, type: "text", class: "form-control", placeholder: "", value: nil %>
 									</div>
 								</div>
 							</div><!--.col-md-9-->
@@ -38,7 +38,7 @@
 									<div class="col-md-12">
 										<div class="inputer">
 											<div class="input-wrapper">
-												<%= address.text_field :city, type: "text", class: "form-control", placeholder: "", value: (@school.city if @school.present?) %>
+												<%= address.text_field :city, type: "text", class: "form-control", placeholder: "", value: nil %>
 											</div>
 										</div>
 									</div><!--.col-md-9-->
@@ -48,7 +48,7 @@
 									<div class="col-md-12">
 										<div class="inputer">
 											<div class="input-wrapper">
-												<%= address.text_field :state, type: "text", class: "form-control", placeholder: "", value: (@school.state if @school.present?) %>
+												<%= address.text_field :state, type: "text", class: "form-control", placeholder: "", value: nil %>
 											</div>
 										</div>
 									</div><!--.col-md-9-->
@@ -58,7 +58,7 @@
 									<div class="col-md-12">
 										<div class="inputer">
 											<div class="input-wrapper">
-												<%= address.text_field :postcode, type: "text", class: "form-control payment-restrict", :restrict => true, value: (@school.zip if @school.present?) %>
+												<%= address.text_field :postcode, type: "text", class: "form-control payment-restrict", :restrict => true, value: nil %>
 											</div>
 										</div>
 									</div><!--.col-md-9-->
@@ -77,7 +77,7 @@
 				<div class="col-md-9">
 					<div class="inputer">
 						<div class="input-wrapper">
-							<%= address.text_field :street_1, class: "form-control", placeholder: "", value: (@school.address_1 if @school.present?) %>
+							<%= address.text_field :street_1, class: "form-control", placeholder: "", value: nil %>
 						</div>
 					</div>
 				</div><!--.col-md-9-->
@@ -88,7 +88,7 @@
 				<div class="col-md-9">
 					<div class="inputer">
 						<div class="input-wrapper">
-							<%= address.text_field :street_2, class: "form-control", placeholder: "", value: (@school.address_2 if @school.present?) %>
+							<%= address.text_field :street_2, class: "form-control", placeholder: "", value: nil %>
 						</div>
 					</div>
 				</div><!--.col-md-9-->
@@ -99,7 +99,7 @@
 				<div class="col-md-9">
 					<div class="inputer">
 						<div class="input-wrapper">
-							<%= address.text_field :city, type: "text", class: "form-control", placeholder: "", value: (@school.city if @school.present?) %>
+							<%= address.text_field :city, type: "text", class: "form-control", placeholder: "", value: nil %>
 						</div>
 					</div>
 				</div><!--.col-md-9-->
@@ -110,7 +110,7 @@
 				<div class="col-md-9">
 					<div class="inputer">
 						<div class="input-wrapper">
-							<%= address.text_field :state, type: "text", class: "form-control", placeholder: "", value: (@school.state if @school.present?) %>
+							<%= address.text_field :state, type: "text", class: "form-control", placeholder: "", value: nil %>
 						</div>
 					</div>
 				</div><!--.col-md-9-->
@@ -121,7 +121,7 @@
 				<div class="col-md-9">
 					<div class="inputer">
 						<div class="input-wrapper">
-							<%= address.text_field :postcode, type: "text", class: "form-control payment-restrict", :restrict => true, value: (@school.zip if @school.present?) %>
+							<%= address.text_field :postcode, type: "text", class: "form-control payment-restrict", :restrict => true, value: nil %>
 						</div>
 					</div>
 				</div><!--.col-md-9-->
