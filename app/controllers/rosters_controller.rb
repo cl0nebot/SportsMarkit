@@ -9,19 +9,6 @@ class RostersController < ApplicationController
     end
   end
   
-  # def update
-  #
-  #   @team = @object.roleable
-  #   @object.update_attributes(role_or_userless_role_params)
-  #   @members = @team.all_athlete_roles
-  #   @heads = @team.staff_roles
-  #
-  #   respond_to do |format|
-  #     format.js
-  #     format.html { redirect_to :back }
-  #   end
-  # end
-  
   def accept
     user_id = params[:user_id]
     roleable_type = params[:roleable_type]
@@ -227,7 +214,7 @@ class RostersController < ApplicationController
   end
   
   def create_new_user_and_roster_spot
-    User.create_new_user_and_roster_spot(@first_name,@last_name, @mobile_number, @array)
+    User.create_new_user_and_roster_spot(@first_name,@last_name, @mobile_number, @array, params)
     redirect_to :back
   end
   
@@ -375,7 +362,7 @@ end
 #
 #     @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 #
-#     @twilio_client.account.sms.messages.create(
+#     @twilio_client.account.messages.create(
 #       :from => "+1#{twilio_phone_number}",
 #       :to => receiving_number,
 #       :body => "#{user.first_name}, Coach #{current_user.last_name.capitalize} has created your new team hub!

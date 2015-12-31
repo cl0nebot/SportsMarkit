@@ -432,18 +432,13 @@ class User < ActiveRecord::Base
   end
   
   def self.create_new_user_and_roster_spot(first_name,last_name, mobile_number, array, params)
-    # password = User.generate_temporary_password(first_name)
-#     new_user = User.new(first_name: first_name, last_name: last_name, mobile_phone_number: mobile_number, password: password)
-#     p first_name
-#     p last_name
-#     p mobile_number
-#     p password
-#     p array
-#     # if new_user.save
-# #       new_user.create_profile
-# #       Role.create_new_role(new_user.id, array, params)
-# #       User.send_mobile_invitation(new_user, password)
-#     end
+    password = User.generate_temporary_password(first_name)
+    new_user = User.new(first_name: first_name, last_name: last_name, mobile_phone_number: mobile_number, password: password)
+    if new_user.save
+      new_user.create_profile
+      Role.create_new_role(new_user.id, array, params)
+      User.send_mobile_invitation(new_user, password)
+    end
   end
   
   def self.create_role_from_excel(params)
