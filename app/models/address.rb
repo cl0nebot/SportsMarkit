@@ -1,6 +1,7 @@
 class Address < ActiveRecord::Base
   include Location
   belongs_to :addressable, :polymorphic => true
+  acts_as_gmappable
   
   def city_and_state
     "#{city}-#{state}"
