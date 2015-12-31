@@ -38,7 +38,7 @@ class RostersController < ApplicationController
       Role.where(user_id: user_id, roleable_type: roleable_type, roleable_id: roleable_id, status: "Pending").destroy_all
       [athlete, coach, parent, manager, trainer, admin].compact.each do |role|
         role = Role.create(user_id: user_id, roleable_type: roleable_type, roleable_id: roleable_id, status: "Active", role: role)
-        SendEmail.notify_user_of_admin_role(User.find(role.user_id), role.role, role.roleable_type.constantize.find(role.roleable_id)  
+        SendEmail.notify_user_of_admin_role(User.find(role.user_id), role.role, role.roleable_type.constantize.find(role.roleable_id))  
       end
        
     end

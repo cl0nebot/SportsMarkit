@@ -1,12 +1,10 @@
-<table class="table table table-bordered table-striped table-condensed" id="pricing-table">
-  <tbody>
-    <% objects.each do |object| %>
-	  <tr id="<%= object.class.to_s %>-<%= object.id%>-tr">
-	   <%= render 'pricings/object', object: object%>
-	 </tr>
-   <% end %>
-  </tbody>
-</table>
+<div>
+  <% objects.each do |object| %>
+  <div id="<%= object.class.to_s %>-<%= object.id%>-tr">
+   <%= render 'pricings/object', object: object%>
+ </div>
+ <% end %>
+</div>
 
 
 

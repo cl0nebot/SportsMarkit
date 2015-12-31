@@ -1,8 +1,15 @@
-<%= select_tag :roleable_id, options_for_select(roleable_type.constantize.all.collect{ |u| [u.name, u.id] }) %><br>
+<div class="form-group text-small">
+	<label class="form-label semi-bold h5"><small>Select</small></label>
+	<%= select_tag :roleable_id, options_for_select(roleable_type.constantize.all.collect{ |u| [u.name, u.id] }),  class: "form-control bg-white" %>
+</div>
 
+<div class="form-group">
+	<label class="form-label semi-bold h5"><small>Role</small></label>
+	<%= select_tag :role_name, options_for_select(roleable_type.constantize.role_types),  class: "form-control bg-white" %>
+</div>
 <%= hidden_field_tag :roleable_type,"", value: roleable_type %><br>
 
 
-<%= select_tag :role_name, options_for_select(roleable_type.constantize.role_types) %><br>
+
 
 

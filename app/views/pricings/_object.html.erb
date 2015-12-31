@@ -1,7 +1,7 @@
 <%= form_for pricing_path(object), method: (params[:event].present? ? :patch : :post), remote: true do |f| %>
   <% if object.price.blank? || params[:event].present? %>
-     <%= render 'pricings/form', object: object, f: f %>
+    <%= render 'pricings/form', object: object, f: f %>
   <% else %>
-     <%= render 'pricings/pricing', object: object, f: f %>
+    <%= render 'pricings/pricing', object: object, f: f %>
   <% end %>
 <% end %>

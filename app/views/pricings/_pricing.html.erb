@@ -1,13 +1,14 @@
-<td width="60%">
-	<%= object.name %> 
-</td>
-<td width="20%">
-	<%= number_to_currency(object.price) %>
-</td>
-<td width="20%">
-	<%= link_to "Edit Price", edit_pricing_path(id: object.id, object: object.class.to_s, event: "edit", view: object.class.to_s.downcase.pluralize), remote: true, class: "btn btn-sm btn-block btn-white pull-right" %>
-</td>
-	
+<div class="row mb5">
+	<div class="col-md-8">
+		<%= object.name %> 
+	</div>
+	<div class="col-md-2">
+		<%= number_to_currency(object.price) %>
+	</div>
+	<div class="col-md-2">
+		<%= link_to "Edit Price", edit_pricing_path(id: object.id, object: object.class.to_s, event: "edit", view: object.class.to_s.downcase.pluralize), remote: true, class: "btn btn-sm btn-block btn-white pull-right" %>
+	</div>
+</div>		
 
 
-	
+		
