@@ -47,5 +47,14 @@ class Club < ActiveRecord::Base
     Certificate.where(user_id: [])#coaches.pluck(:id))
   end
     
+  def classification_with_hyphen
+    if classification.present?
+      classification.downcase.gsub(" ","-")
+    end
+  end
+  
+  def category_and_classification
+    "#{classification_with_hyphen} #{category.try(:downcase)}"
+  end  
 
 end
