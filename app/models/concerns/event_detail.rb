@@ -23,9 +23,10 @@ module EventDetail
       league_events_ids = Event.where(eventable_type: "League", eventable_id: id).pluck(:id)
       events = Event.where(id: (team_events_ids + league_events_ids + opponent_team_events_ids).uniq )
     elsif self.class.to_s == "Team"
+      teamable = self.teamable_type.present? ? self.teamable_type.try(:constantize).try(:find, self.teamable_id).try(:all_events).try(:pluck, :id) : []
       team = Event.where(eventable_type: "Team", eventable_id: id).pluck(:id)
       opponent = Event.where(opponent_type: "Team", opponent_id: id).pluck(:id)
-      Event.where(id: (team + opponent).uniq)
+      Event.where(id: (team + opponent + teamable).uniq)
     elsif self.class.to_s == "Facility"
       facility_created_events = self.events.pluck(:id)
       event_ids = Connect.where(ownerable_type: "Event", connectable_id: id, connectable_type: "Facility").pluck(:ownerable_id)
