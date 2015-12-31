@@ -83,36 +83,27 @@ class Team < ActiveRecord::Base
   def with_school_name
     "#{teamable.name} #{name}"
   end
-  
-  
-  def is_athletic_director?(user) #TODO remove this
-    if school.present?
-      school.is_athletic_director?(user)
-    else
-      false
-    end
-  end
-  
+    
   def last_chat_stream_message_id
     Message.where(chatroom_id: id).last.find_beginning_of_stream
   end
   
   
   def classification_and_category
-    if school_id.present?
-      school_class = school.category_and_classification
+    if teamable.present?
+      teamable_class = teamable.category_and_classification
     end
     
     if classification.present?
       self_class = classification.downcase.gsub("recreational: ","").gsub(" ","-")
     end
     
-    if school_class.nil? 
+    if teamable_class.nil? 
       self_class
     elsif self_class.nil?
-      school_class
+      teamable_class
     else
-      school_class + self_class
+      teamable_class + self_class
     end
   end
   
