@@ -33,17 +33,35 @@ class FacilitiesController < ApplicationController
   end
   
   def create_from_modal
-    @object = Facility.new(facility_params)
-    if @object.save
-      @facilities = @object.facility_owner.facilities
+    if (params[:facility][:address_attributes][:street_1].present? && params[:facility][:address_attributes][:city].present? || params[:facility][:address_attributes][:state].present?)
+      @object = Facility.new(facility_params)
+      if @object.save
+        @facilities = @object.facility_owner.facilities
+        respond_to do |format|
+          format.html {redirect_to :back}
+          format.js
+        end
+      else
+        flash[:error] = "Facility needs a name and a valid address."
+        @owner = params[:facility][:facility_owner_type].constantize.find(params[:facility][:facility_owner_id])
+        @facilities = @owner.facilities
+        respond_to do |format|
+          format.html {redirect_to :back}
+          format.js
+        end
+      end
+    else
+      flash[:error] = "Address is invalid."
+      @owner = params[:facility][:facility_owner_type].constantize.find(params[:facility][:facility_owner_id])
+      @facilities = @owner.facilities
       respond_to do |format|
         format.html {redirect_to :back}
         format.js
       end
-    else
-      render 'new'
     end
   end
+  
+
   
   
   

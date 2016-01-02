@@ -18,6 +18,8 @@ class Facility < ActiveRecord::Base
   
   has_many :connects, as: :connectable, dependent: :destroy
   
+  validates :name, presence: true
+  
   has_many :events, as: :eventable
   has_many :team_facilities
   before_update :update_slug
