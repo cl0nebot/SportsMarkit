@@ -37,12 +37,12 @@ module Images
   def avatar
     if self.class.to_s == "User"
       if user_profile_pictures.last.try(:id).blank?
-        if self.profile.sex == "Female" #TODO only do this in development
-          GIRL_PHOTOS.sample
-        elsif self.profile.sex == "Male" #TODO only do this in development
-          BOY_PHOTOS.sample
-        end
-        #"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Color_icon_gray_v2.svg/2000px-Color_icon_gray_v2.svg.png"
+        # if self.profile.sex == "Female" #TODO only do this in development
+  #         GIRL_PHOTOS.sample
+  #       elsif self.profile.sex == "Male" #TODO only do this in development
+  #         BOY_PHOTOS.sample
+  #       end
+         "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Color_icon_gray_v2.svg/2000px-Color_icon_gray_v2.svg.png"
       else
         user_profile_pictures.last.photo
       end
