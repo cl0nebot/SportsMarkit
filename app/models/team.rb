@@ -25,6 +25,7 @@ class Team < ActiveRecord::Base
   has_many :chatrooms
   
   validates :sport, presence: true
+  validates :name, presence: true
   
   has_many :leagues, through: :team_leagues
   

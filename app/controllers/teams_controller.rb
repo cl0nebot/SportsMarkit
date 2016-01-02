@@ -19,18 +19,23 @@ class TeamsController < ApplicationController
     @address = @object.build_address
   end
   
-  def create 
-    @teamable = params[:team][:teamable_type].try(:constantize).try(:find, params[:team][:teamable_id])
-    @team = @teamable.present? ? @teamable.teams.build(team_params) : Team.new(team_params)
-    @team.teamable_id = @teamable.id if @teamable.present?
-    @team.teamable_type = @teamable.class.to_s if @teamable.present?
-    if @team.save
-      Role.create(roleable_id: @team.id, roleable_type: "Team", status: "Active", role: "Admin", user_id: current_user.id) unless current_user.admin?
-      [1,2,3].each { |i| Chatroom.create(team_id: @team.id, specific_id: i) }
-      redirect_to @team
+  def create
+    if (params[:team][:address_attributes][:street_1].present? && params[:team][:address_attributes][:city].present? || params[:team][:address_attributes][:state].present?)
+      @teamable = params[:team][:teamable_type].try(:constantize).try(:find, params[:team][:teamable_id])
+      @team = @teamable.present? ? @teamable.teams.build(team_params) : Team.new(team_params)
+      @team.teamable_id = @teamable.id if @teamable.present?
+      @team.teamable_type = @teamable.class.to_s if @teamable.present?
+      if @team.save
+        Role.create(roleable_id: @team.id, roleable_type: "Team", status: "Active", role: "Admin", user_id: current_user.id) unless current_user.admin?
+        [1,2,3].each { |i| Chatroom.create(team_id: @team.id, specific_id: i) }
+        redirect_to @team
+      else
+        flash[:error] = "Team needs a name, sport, and a valid address."
+        redirect_to :back
+      end
     else
-      flash[:error] = "Oops."
-      render 'new'
+      flash[:error] = "Address is invalid."
+      redirect_to :back
     end
   end
   
