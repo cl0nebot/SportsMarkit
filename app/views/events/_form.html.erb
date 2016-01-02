@@ -67,7 +67,7 @@
                 <div class="col-md-12"><h4>Opponent</h4></div>
                 <div class="col-md-12">
                   <div class="inputer">
-                    <%= f.collection_select :opponent_id, Team.all, :id, :name, {:selected => ""}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", placeholder: "Select a Team" } %>
+                    <%= f.collection_select :opponent_id, Team.all, :id, :name, {:prompt => "Select a Team"}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0"} %>
                   </div>
                 </div><!--.col-md-9-->
               </div><!--.row-->
