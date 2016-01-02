@@ -250,7 +250,15 @@
 												<%= f.fields_for :profile, @profile do |builder| %>
 													<%= render 'shared/social_edit', f: builder %>
 													<%#= render 'athlete', f: builder %>
-												<% end %>  
+												<% end %> 
+    											<div class="form-buttons">
+    												<div class="row">
+    													<div class="col-lg-8 col-lg-offset-2">
+    														<%= f.submit "Update Social Media", class: "btn btn-large btn-blue btn-block" %>
+    														
+    													</div>
+    												</div>
+    											</div>
 												<% end %>
 											</div>
 										</div><!--tab-pane-->
