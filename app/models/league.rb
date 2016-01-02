@@ -11,9 +11,6 @@ class League < ActiveRecord::Base
   include Import
   
   friendly_id :use_for_slug, use: [:slugged, :finders]
-  acts_as_gmappable
-  has_one :address, as: :addressable, :dependent => :destroy
-  accepts_nested_attributes_for :address, :reject_if => :all_blank, :allow_destroy => true
   
   has_many :roles, as: :roleable, dependent: :destroy
   has_many :userless_roles, as: :userless, dependent: :destroy
@@ -24,6 +21,9 @@ class League < ActiveRecord::Base
   
   has_many :league_sports, :dependent => :destroy
   has_many :sports, :through => :league_sports
+  
+  validates :name, presence: true
+  
   
   before_update :update_slug
   

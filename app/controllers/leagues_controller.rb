@@ -14,16 +14,22 @@ class LeaguesController < ApplicationController
   end
   
   def create
-    @league = League.new(league_params)
-    if @league.save
-      if current_user
-        unless current_user.admin?
-          Role.create(user_id: current_user.id, roleable_type: "League", roleable_id: @league.id, role: "League Manager", status: "Active")
+    if (params[:league][:address_attributes][:street_1].present? && params[:league][:address_attributes][:city].present? || params[:league][:address_attributes][:state].present?)
+      @league = League.new(league_params)
+      if @league.save
+        if current_user
+          unless current_user.admin?
+            Role.create(user_id: current_user.id, roleable_type: "League", roleable_id: @league.id, role: "League Manager", status: "Active")
+          end
         end
-			end
-      redirect_to @league
+        redirect_to @league
+      else
+        flash[:error] = "Leagues need a name and a valid address."
+        redirect_to :back
+      end
     else
-      render 'new'
+      flash[:error] = "Address is invalid."
+      redirect_to :back
     end
   end
   
