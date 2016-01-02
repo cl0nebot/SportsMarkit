@@ -185,30 +185,30 @@
 															<%= hidden_field_tag :team_id,"", value: @team.id %>
 
 															<div class="checkboxer form-inline mb5">
-										                      	<%= check_box_tag :athlete, "",false, id: "athlete"%>
+										                      	<%= check_box_tag :athlete, 1,false, id: "athlete"%>
 										                      	<label for="athlete">
 										                      		Athlete?
 										                      	</label>
 										                    </div>
 															
 															<div class="checkboxer form-inline mb5">
-										                      	<%= check_box_tag :coach, "",false, id: "coach"%>
+										                      	<%= check_box_tag :coach, 1,false, id: "coach"%>
 										                      	<label for="coach">Coach?
 										                      	</label>
 										                    </div>
 
 															<div class="checkboxer form-inline mb5">
-										                      	<%= check_box_tag :trainer, "",false, id: "trainer"  %>
+										                      	<%= check_box_tag :trainer, 1,false, id: "trainer"  %>
 										                      	<label for="trainer">Trainer?</label>
 										                    </div>
 
 															<div class="checkboxer form-inline mb5">
-										                      	<%= check_box_tag :manager, "",false, id: "manager"  %>
+										                      	<%= check_box_tag :manager, 1,false, id: "manager"  %>
 										                      	<label for="manager">Manager?</label>
 										                    </div>
 															
 															<div class="checkboxer form-inline mb5">
-										                      	<%= check_box_tag :admin, "",false, id: "access"  %>
+										                      	<%= check_box_tag :admin, 1,false, id: "access"  %>
 										                      	<label for="access">Admin?</label>
 										                    </div>
 														
@@ -226,7 +226,18 @@
 
 										<hr class="mt0" />
 
-										<%= f.submit "Add New Team Member", class: "btn btn-primary pull-right" %>
+										<%= f.submit "Add New Team Member", class: "btn btn-primary pull-right" %><br><br>
+										<div class="pull-right" id="roster-spot-created" style="display: none">
+			
+						                      	<font size="2" color="green">Roster spot created.</font>
+          
+										</div>
+										<div class="pull-right" id="roster-spot-not-created" style="display: none">
+			
+						                      	<font size="2" color="red">Roster spot not created.</font>
+          
+										</div>
+                                        
 								</div><!--.panel-body-->
 							</div><!--.panel-->
 						</div>

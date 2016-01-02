@@ -193,7 +193,7 @@ class RostersController < ApplicationController
     @title = params[:title]
     @level = params[:level]
     @array = []
-    @array << coach = params[:head].nil? ? nil : "Coach"
+    @array << coach = params[:coach].nil? ? nil : "Coach"
     @array << athlete = params[:athlete].nil? ? nil : "Athlete"
     @array << admin = params[:admin].nil? ? nil : "Admin"
     @array << trainer = params[:trainer].nil? ? nil : "Trainer"
@@ -206,21 +206,17 @@ class RostersController < ApplicationController
   def add_existing_user_to_roster
     @existing_user = User.find_by_mobile_phone_number(@mobile_number) 
     if @existing_user.roles.where(roleable_type: "Team", roleable_id: @team.id).present? 
-      redirect_to :back, flash[:error] = "User is on roster already" 
     else
-      Role.create_new_role(@existing_user.id, @array, params)
-      redirect_to :back   
+      Role.create_new_role(@existing_user.id, @array, params) 
     end
   end
   
   def create_new_user_and_roster_spot
     User.create_new_user_and_roster_spot(@first_name,@last_name, @mobile_number, @array, params)
-    redirect_to :back
   end
   
   def create_userlesss_roster_spot
     UserlessRole.create_new_role(@array, params)
-    redirect_to :back
   end
   
   def send_mobile_invitation(user, password)

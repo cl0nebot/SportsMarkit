@@ -1,8 +1,14 @@
 <% if @blank %>
   $('#blank-role-message-new').css({ display: "block" })
+  $('#roster-spot-not-created').css({ display: "block" })
 <% else %>
-  // $('#roster-spot-success').css({ display: "block" }).fadeOut(4000);
+  // $('#roster-spot-created').css({ display: "block" }).fadeOut(4000);
   // $('#roster-form')[0].reset()
-  // window.location.reload();
-  window.location.href = "http://www.sportsmarkit.com/teams/<%= @team.slug %>#tab_roster";
+  <% if Rails.env.production? %>
+    window.location.assign("http://www.sportsmarkit.com/teams/<%= @team.slug %>#tab_roster");
+     window.location.reload()
+  <% else %>
+    window.location.assign("http://localhost:3000/teams/<%= @team.slug %>#tab_roster");
+    window.location.reload()
+  <% end %>
 <% end %>
