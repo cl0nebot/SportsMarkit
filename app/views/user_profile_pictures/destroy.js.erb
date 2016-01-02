@@ -1,6 +1,6 @@
 $('.modal#<%= @user_profile_picture.id %>').modal('hide');
-$("#user-profile-picture").replaceWith("<%= j render "users/user_profile_picture" %>");
-$("#user-profile-picture-modal").replaceWith("<%= j render "users/user_profile_picture_modal", user_profile_picture: UserProfilePicture.new %>");
+$("#user-profile-picture").replaceWith("<%= j render "users/user_profile_picture", user: @user, user_profile_pictures: @user_profile_pictures %>");
+$("#user-profile-picture-modal").replaceWith("<%= j render "users/user_profile_picture_modal", user_profile_picture: UserProfilePicture.new, user: @user %>");
 $("#edit-header-avatar").load(location.href+" #edit-header-avatar>*","");
 $("#sidenav-avatar").load(location.href+" #sidenav-avatar>*","");
 $('.modal-backdrop').css({
