@@ -106,7 +106,7 @@ class TeamsController < ApplicationController
   
   def find_teamable
     param = params.keys.find{|key| key =~ /(\w+)_id/}
-    @teamable = $1.capitalize.constantize.find(params[param])
+    @teamable = $1.try(:capitalize).try(:constantize).try(:find, params[param])
   end
   
   def find_team
