@@ -28,16 +28,16 @@
 					New Team Panel Form</a>
 				</li> -->
 				
-					<% current_user.roles.where(roleable_type: "Team").where.not(id: nil).each do |role| %>
+					<% current_user.all_teams.each do |team| %>
 					<li>
-						<%= link_to team_path(role.roleable.friendly_id) do %>
-								<i class="ion-flag mr5"></i> <%= "#{role.roleable.proper_name} #{role.status == "Active" ? '' : '(Pending)'}" %>
+						<%= link_to team_path(team.friendly_id) do %>
+								<i class="ion-flag mr5"></i> <%= "#{team.proper_name}" %>
 							<% end %>
 					</li>
 						<% if false %> <!-- TODO change to real logic -->
 						<li>
-							<%= link_to edit_team_path(role.roleable.friendly_id) do %>
-								<i class="ion-gear-b mr5"></i> <%= "Edit #{role.roleable.proper_name} Information" %>
+							<%= link_to edit_team_path(team.friendly_id) do %>
+								<i class="ion-gear-b mr5"></i> <%= "Edit #{team.proper_name} Information" %>
 							<% end %>
 						</li>
 						<% end %>
