@@ -150,10 +150,10 @@ class RostersController < ApplicationController
       role_or_userless_role.find(@id).destroy
     elsif params[:roster_spot] == "Head"
       object = role_or_userless_role.find(@id)
-      objects = if role_or_userless_role == "Role" 
-        Role.where(user_id: object.user_id , status: "Active", roleable_type: "Team", roleable_id: params[:team_id], role: ["Coach", "Team Manager", "Trainer", "Admin"] ) 
+      if @class == "Role" 
+        objects = Role.where(user_id: object.user_id , status: "Active", roleable_type: "Team", roleable_id: params[:team_id], role: ["Coach", "Team Manager", "Trainer", "Admin"] ) 
       else
-        UserlessRole.where(first_name: object.first_name , last_name: object.last_name , role: ["Coach", "Team Manager", "Trainer", "Admin"], status: "Active", userless_type: "Team", userless_id: params[:team_id])
+        objects = UserlessRole.where(first_name: object.first_name , last_name: object.last_name , role: ["Coach", "Team Manager", "Trainer", "Admin"], status: "Active", userless_type: "Team", userless_id: params[:team_id])
       end
       objects.destroy_all
     end
