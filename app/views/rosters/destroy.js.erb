@@ -1,0 +1,5 @@
+<% unless params[:roster_spot] == "Athlete" %>
+  $('#head-<%= @class %><%= @id %>').empty()
+<% else %>
+  $('#member-<%= @class %><%= @id %>').empty()
+<% end %>

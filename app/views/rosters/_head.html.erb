@@ -48,9 +48,9 @@
 					<% if @team.can_be_edited_by_user?(current_user) %>
                         <div class="pull-right mr10">
 
-                            <%= link_to m, method: :delete, remote: true,  class: "pull-right btn btn-orange", data: {confirm: "Are you sure?"} do %>
-                                    <span class="ion-trash-b"></span>
-                            <% end %>
+    					  	<%= link_to roster_path(id: m, class: m.class.to_s, roster_spot: "Head", team_id: @team.id), method: :delete, remote: true, class: "btn btn-orange pull-right", data: {confirm: "Are you sure?"} do %>
+    					  		<span class="ion-trash-b"></span>
+    					  	<% end %>
 
                             <%= link_to roster_edit_roster_view_path(roster_id: @team.id, class: m.class, id: m.id, status: "head"), remote: true, class: "btn btn-primary pull-right mr10" do %>
                                     <span class="ion-ios-gear"></span>

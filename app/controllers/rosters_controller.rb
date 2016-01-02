@@ -47,14 +47,6 @@ class RostersController < ApplicationController
   #Parameters: {"utf8"=>"✓", "authenticity_token"=>"c9leG2pZ+ByyH1nxaILKu1av2lDp5GLriI/z4E0PHmk=", "close_admin"=>"true", "role"=>{"title"=>""}, "coach"=>"true", "commit"=>"Update Team Member", "object_type"=>"Role", "id"=>"21319"}
   
   def update
-    @object = params[:object_type].constantize.find(params[:id])
-    @user_id = @object.user_id
-    @team = @object.roleable
-    #@accepting_action = true # params[:roster][:accepted].nil? ? false : true
-    roleable_type = @team.class.to_s
-    roleable_id = @team.id
-    title = params[:role][:title]
-    
     athlete = params[:athlete].present? ? "Athlete" : nil
     coach = params[:coach].present? ? "Coach" : nil
     parent = params[:parent].present? ? "Guardian" : nil
@@ -64,21 +56,52 @@ class RostersController < ApplicationController
     
     add = ["Coach", "Team Manager", "Trainer", "Admin"] & [coach, manager, trainer, admin].compact
     remove = ["Coach", "Team Manager", "Trainer", "Admin"] - [coach, manager, trainer, admin].compact
+    @object = params[:object_type].constantize.find(params[:id])
+    if @object.class == Role
+      title = params[:role][:title]
+      @user_id = @object.user_id
+      @team = @object.roleable
+      #@accepting_action = true # params[:roster][:accepted].nil? ? false : true
+      roleable_type = @team.class.to_s
+      roleable_id = @team.id
     
-    unless params[:member].present?
-      add.compact.each do |role_name|
-        role = Role.where(user_id: @user_id, roleable_type: roleable_type, roleable_id: roleable_id, role: role_name).first_or_create
-        role.update_attributes(status: "Active", title: title )
-      end
-      remove.compact.each do |role_name|
-        role = Role.where(user_id: @user_id, roleable_type: roleable_type, roleable_id: roleable_id, role: role_name).last.try(:delete)
-      end
-      respond_to do |format|
-        format.js
-        format.html { redirect_to :back }
+      unless params[:member].present?
+        add.compact.each do |role_name|
+          role = Role.where(user_id: @user_id, roleable_type: roleable_type, roleable_id: roleable_id, role: role_name).first_or_create
+          role.update_attributes(status: "Active", title: title )
+        end
+        remove.compact.each do |role_name|
+          role = Role.where(user_id: @user_id, roleable_type: roleable_type, roleable_id: roleable_id, role: role_name).last.try(:delete)
+        end
+        respond_to do |format|
+          format.js
+          format.html { redirect_to :back }
+        end
+      else
+        @object.update_attributes(role_or_userless_role_params)
       end
     else
-      @object.update_attributes(role_or_userless_role_params)
+      title = params[:userless_role][:title]
+      @first_name = @object.first_name
+      @last_name = @object.last_name
+      @team = Team.find(params[:team_id])
+      userless_type = @team.class.to_s
+      userless_id = @team.id
+      unless params[:member].present?
+        add.compact.each do |role_name|
+          userless_role = UserlessRole.where(first_name: @first_name, last_name: @last_name, userless_type: userless_type, userless_id: userless_id, role: role_name).first_or_create
+          userless_role.update_attributes(status: "Active", title: title )
+        end
+        remove.compact.each do |role_name|
+          userless_role = UserlessRole.where(first_name: @first_name, last_name: @last_name, userless_type: userless_type, userless_id: userless_id, role: role_name).last.try(:delete)
+        end
+        respond_to do |format|
+          format.js
+          format.html { redirect_to :back }
+        end
+      else
+        @object.update_attributes(role_or_userless_role_params)
+      end
     end
   end
   
@@ -118,6 +141,23 @@ class RostersController < ApplicationController
   #     format.html { redirect_to :back }
   #   end
   # end
+  
+  def destroy
+    @class = params[:class]
+    @id = params[:id]
+    role_or_userless_role = @class.constantize
+    if params[:roster_spot] == "Athlete"
+      role_or_userless_role.find(@id).destroy
+    elsif params[:roster_spot] == "Head"
+      object = role_or_userless_role.find(@id)
+      objects = if role_or_userless_role == "Role" 
+        Role.where(user_id: object.user_id , status: "Active", roleable_type: "Team", roleable_id: params[:team_id], role: ["Coach", "Team Manager", "Trainer", "Admin"] ) 
+      else
+        UserlessRole.where(first_name: object.first_name , last_name: object.last_name , role: ["Coach", "Team Manager", "Trainer", "Admin"], status: "Active", userless_type: "Team", userless_id: params[:team_id])
+      end
+      objects.destroy_all
+    end
+  end
   
   
   
@@ -197,7 +237,7 @@ class RostersController < ApplicationController
     @array << athlete = params[:athlete].nil? ? nil : "Athlete"
     @array << admin = params[:admin].nil? ? nil : "Admin"
     @array << trainer = params[:trainer].nil? ? nil : "Trainer"
-    @array << manager = params[:manager].nil? ? nil : "Manager"
+    @array << manager = params[:manager].nil? ? nil : "Team Manager"
     @nickname = params[:nickname]
     @position_ids = params[:position_ids]
     @jersey = params[:jersey_number]
