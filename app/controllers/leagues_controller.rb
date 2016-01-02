@@ -41,7 +41,7 @@ class LeaguesController < ApplicationController
     @userless_managers_and_trainers = @league.userless_managers_and_trainers
     @admins = @league.admins
     @userless_admins = @league.userless_admins
-    @facilities = @league.used_facilities
+    @facilities = @league.facilities
   end
   
   
