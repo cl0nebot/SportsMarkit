@@ -19,6 +19,8 @@ class School < ActiveRecord::Base
   has_many :roles, as: :roleable, dependent: :destroy
   has_many :userless_roles, as: :userless, dependent: :destroy
   
+  validates :name, presence: true
+  
   before_update :update_slug
   
   attr_accessor :stripe_token

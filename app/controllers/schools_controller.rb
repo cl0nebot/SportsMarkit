@@ -20,11 +20,17 @@ class SchoolsController < ApplicationController
   end
   
   def create
-    @school = School.new(school_params)
-    if @school.save
-      redirect_to @school
+    if (params[:school][:address_attributes][:street_1].present? && params[:school][:address_attributes][:city].present? || params[:school][:address_attributes][:state].present?)
+      @school = School.new(school_params)
+      if @school.save
+        redirect_to @school
+      else
+        flash[:error] = "School needs a name and a valid address."
+        redirect_to :back
+      end
     else
-      render :new
+      flash[:error] = "Address is invalid."
+      redirect_to :back
     end
   end
   
