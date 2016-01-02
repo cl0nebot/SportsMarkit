@@ -70,7 +70,9 @@ class Team < ActiveRecord::Base
   end
 
   def self.without_schools
-    Team.where(teamable_type: "Club")
+   club_teams = Team.where(teamable_type: "Club").pluck(:id)
+   indy_teams = Team.where(teamable_type: nil).pluck(:id)
+   Team.where(id: (club_teams + indy_teams).uniq)
   end
 
   def self.non_school_team_names
