@@ -3,21 +3,21 @@ module SetupHelper
   def objects(classification, user)
     case classification
     when "Athlete"
-      objects = Team.without_schools.limit(20)
+      objects = Team.without_schools
     when "Student Athlete" 
-      objects = Team.with_schools.limit(20)
+      objects = Team.with_schools
     when "Coach"
-      objects = Team.all.limit(20)
-    when "Parent"
-      objects = User.all.limit(20) - [user]
+      objects = Team.all
+    when "Guardian"
+      objects = User.all - [user]
     when "Athletic Director"
-      objects = School.all.limit(20)
+      objects = School.all
     when "Club Director"
-      objects = Club.all.limit(20)
+      objects = Club.all
     when "Team Manager"
-      objects = Team.all.limit(20)
+      objects = Team.all
     when "School Manager"
-      objects = School.all.limit(20)
+      objects = School.all
     end
   end
   
@@ -30,7 +30,7 @@ module SetupHelper
       roles = Team.with_schools.where(id: role_ids)
     when "Coach"
       roles = Team.all.where(id: role_ids)
-    when "Parent"
+    when "Guardian"
       roles = User.all.where(id: role_ids)
     when "Athletic Director"
       roles = School.all.where(id: role_ids)
@@ -51,7 +51,7 @@ module SetupHelper
       "Team"
     when "Coach"
       "Team"
-    when "Parent"
+    when "Guardian"
       "Child"
     when "Athletic Director"
       "School"
@@ -72,7 +72,7 @@ module SetupHelper
       "teams"
     when "Coach"
       "teams"
-    when "Parent"
+    when "Guardian"
       "users"
     when "Athletic Director"
       "schools"

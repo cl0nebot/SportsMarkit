@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   has_one :online_status
 
   def self.user_types
-    ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director", "Club Director", "School Manager", "Team Manager"] 
+    ["Student Athlete", "Athlete", "Coach", "Guardian", "Athletic Director", "Club Director", "School Manager", "Team Manager"] 
     # ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director", "Tournament Director" ] 
     #["Athlete", "Coach", "Parent", "Athletic Director", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]  
     
