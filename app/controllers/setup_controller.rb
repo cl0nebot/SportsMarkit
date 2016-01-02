@@ -2,9 +2,9 @@ class SetupController < ApplicationController
   before_action :find_user, except: [:test_setup, :delete_role, :add_role]
   
   def setup
-    @athlete_teams = Team.where.not(id: @user.relationships.where(participant: true).pluck(:team_id)).limit(20)
-    @coach_teams = Team.where.not(id: @user.relationships.where(head: true).pluck(:team_id)).limit(20)
-    @athletes = User.athletes.limit(20)
+    @athlete_teams = Team.where.not(id: @user.roles.where(status: "Active", role: "Athlete", roleable_type: "Team").pluck(:roleable_id))
+    @coach_teams = Team.where.not(id: @user.roles.where(status: "Active", role: "Coach", roleable_type: "Team").pluck(:roleable_id))
+    @athletes = User.athletes
   end
   
   def overview
