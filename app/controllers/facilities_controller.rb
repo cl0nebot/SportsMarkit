@@ -15,9 +15,9 @@ class FacilitiesController < ApplicationController
   
   def new
     param = params.keys.find{|key| key =~ /(\w+)_id/}
-    @owner = $1.capitalize.try(:constantize).try(:find, params[param])
-    @owner_type = @owner.class.to_s
-    @owner_id = @owner.id
+    @owner = $1.try(:capitalize).try(:constantize).try(:find, params[param])
+    @owner_type = @owner.try(:class).try(:to_s)
+    @owner_id = @owner.try(:id)
     @object = Facility.new
     @address = @object.build_address
   end
