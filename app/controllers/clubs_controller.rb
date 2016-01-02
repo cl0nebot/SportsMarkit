@@ -19,11 +19,17 @@ class ClubsController < ApplicationController
   end
   
   def create
-    @club = Club.new(club_params)
-    if @club.save
-      redirect_to @club
+    if (params[:club][:address_attributes][:street_1].present? && params[:club][:address_attributes][:city].present? || params[:club][:address_attributes][:state].present?)
+      @club = Club.new(club_params)
+      if @club.save
+        redirect_to @club
+      else
+        flash[:error] = "Club needs a name and a valid address."
+        redirect_to :back
+      end
     else
-      render :new
+      flash[:error] = "Address is invalid."
+      redirect_to :back
     end
   end
   

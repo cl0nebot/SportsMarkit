@@ -13,6 +13,7 @@ class Club < ActiveRecord::Base
   has_many :userless_roles, as: :userless, dependent: :destroy
   has_many :facilities, as: :facility_owner
   has_many :events, as: :eventable
+  validates :name, presence: true
   friendly_id :use_for_slug, use: [:slugged, :finders]
   acts_as_gmappable
   
