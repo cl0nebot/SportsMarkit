@@ -70,18 +70,20 @@
 					</p>
 					</div>
 				<div class="col-sm-1">
+                    <% if m.class.to_s == "Role" %>
 					<h5 class="no-margin semi-bold">
-						<% if m.class.to_s == "Role" %>
+						
 						  <%= m.user.age.present? ? m.user.age : "TBD" %>
-						<% else %>
-						  N/A
-						<% end %>
+						
 					</h5>
 					<p class="small text-grey">
 						<small>
 							Age
 						</small>
 					</p>
+					<% else %>
+					  
+					<% end %>
 				</div>
 			</div>
 		</div>
