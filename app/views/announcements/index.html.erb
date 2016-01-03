@@ -76,7 +76,7 @@
 						<div class="well">
 							<% unless @object.class.to_s == "Team" %>
 							<h6>Applicable sports:</h6>
-							<%= select_tag :sports, options_for_select([["All"] + [@object.teams.pluck(:sport)]].flatten), {:multiple => true, include_blank: true, "data-live-search" =>  true, "data-width"=> "100%", class: "form-control bg-white"} %><br>
+							<%= select_tag :sports, options_for_select([["All"] + [@object.teams.pluck(:sport).uniq]].flatten), {:multiple => true, include_blank: true, "data-live-search" =>  true, "data-width"=> "100%", class: "form-control bg-white"} %><br>
 							
 							<h6>Applicable teams:</h6>
 							<%= select_tag :team_ids, options_for_select(@object.teams.collect{ |team| [team.name, team.id] }), {:multiple => true, include_blank: true, "data-live-search" =>  true, "data-width"=> "100%", class: "form-control bg-white"} %><br>
