@@ -77,12 +77,13 @@ class AnnouncementsController < ApplicationController
             twilio_phone_number = "2027590519"
 
             @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
-            [str[0..159], str[160..319], str[320..479]].compact.each do |message|
+            # [str[0..159], str[160..319], str[320..479]].compact.each do |message|
+            [str].compact.each do |message|
             begin
               @twilio_client.account.messages.create(
                 :from => "+1#{twilio_phone_number}",
                 :to => receiving_number,
-                :body => "#{message}"
+                :body => "#{user.first_name}, you have a message from #{current_user.full_name}: #{message}"
               )
               rescue Twilio::REST::RequestError => e
                 puts e.message
