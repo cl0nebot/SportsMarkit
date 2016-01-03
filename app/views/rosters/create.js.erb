@@ -1,3 +1,7 @@
+<% unless @valid_phone_number %>
+    $('#invalid-phone-message').css({ display: "block" })
+<% end %>
+
 <% if @blank %>
   $('#blank-role-message-new').css({ display: "block" })
   $('#roster-spot-not-created').css({ display: "block" })

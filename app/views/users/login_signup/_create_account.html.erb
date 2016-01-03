@@ -2,7 +2,7 @@
 
 <hr class="hr-333 mt10"/>
 
-<%= form_for User.new, html: {id: 'signup-form'} do |f|   %>
+<%= form_for User.new, html: {class: "form-horizontal parsley-validate", id: 'signup-form'} do |f|   %>
 	
 	<div class="form-group">
 		<div class="inputer">
@@ -28,7 +28,7 @@
 	<div class="form-group">
 		<div class="inputer">
 			<div class="input-wrapper">
-				<%= f.text_field :mobile_phone_number, class: "form-control", placeholder: "Phone Number" %>
+                <%= f.text_field :mobile_phone_number, class: "form-control", placeholder: "Mobile Phone Number ex. 5556667777", "data-parsley-type" => "number", "data-parsley-type-message" => "Your message"%>
 			</div>
 		</div>
 	</div><!--.form-group-->

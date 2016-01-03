@@ -4,7 +4,8 @@ class RostersController < ApplicationController
   def create
     variables
     @blank = @array.compact.blank?
-    unless @blank
+    @valid_phone_number = @mobile_number.present? ? (@mobile_number.to_i == 10 ? true : false) : true
+    if (@blank == false || @valid_phone_numnber == true)
       @mobile_number.present? ? (@user_exists ? add_existing_user_to_roster : create_new_user_and_roster_spot) : create_userlesss_roster_spot
     end
   end
