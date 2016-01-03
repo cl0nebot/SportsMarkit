@@ -209,30 +209,8 @@
 							<small class="text-grey bold">measurements</small>
 						</h6>
 						<!-- these must stay together as an interator -->
-						<div class="clearfix">
-							<table class="table table-hover bgcolor-white box-shadow-ccc">
-								<thead>
-									<th><span class="text-muted semi-bold fs_12">Measurement</span></th>
-									<th><span class="text-muted semi-bold fs_12">Sport</span></th>
-									<th><span class="text-muted semi-bold fs_12">Score</span></th>
-									<th><span class="text-muted semi-bold fs_12">Verified</span></th>
-								</thead>
-								<tbody>
-									<% @object.measurables.each do |measurable| %>
-										<tr>
-											<td><span class="fs_12"><%= measurable.measurable %></span></td>
-											<td><span class="fs_12"><%= measurable.sport %></span></td>
-											<td><span class="fs_12"><%= measurable.result %></span></td>
-											<% if false %>
-											<td><span class="fs_12">
-												<i class="ion-checkmark-circled fs_16 text-primary"></i>
-												</span>
-											</td>
-											<% end %>
-										</tr>
-									<% end %>
-								</tbody>
-							</table>
+						<div class="clearfix" id="measurable-table">
+							<%= render 'users/show/measurables', object: @object %>
 						</div>
 						<!-- <h6 class="upper text-muted bold no-margin"><small>My favorites</small></h6> -->
 						<%#= @user.profile.hudl %>

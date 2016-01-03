@@ -55,6 +55,10 @@ module Access
     end
   end
   
+  def can_verify_user?(current_user)
+    true
+  end
+  
   
   
 

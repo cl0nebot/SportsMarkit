@@ -46,7 +46,9 @@ Rails.application.routes.draw do
         get :events
       end
     end
-    resources :measurables
+    resources :measurables do
+      get :verify
+    end
     resources :certificates
     resources :media
     resources :events do
