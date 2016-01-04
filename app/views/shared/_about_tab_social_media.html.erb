@@ -7,41 +7,41 @@
 	<p>
 	<% @object.profile.facebook.present? %>	
 	   <% if @object.profile.facebook.present? %>	
-			<%=  link_to @object.profile.facebook, class: "mr5 btn btn-floating btn-blue btn-ripple", :target => "_blank" do %>
+			<%=  link_to @object.social_media_link(@object.profile.facebook, "facebook"), class: "mr5 btn btn-floating btn-blue btn-ripple", :target => "_blank" do %>
 				<i class="ion-social-facebook"></i>
 			<% end %>
 		<% end %>
 		
 		<% if @object.profile.linkedin.present? %>	
-			<%=  link_to @object.profile.linkedin, class: "mr5 btn btn-floating btn-indigo btn-ripple", :target => "_blank" do %>
+			<%=  link_to @object.social_media_link(@object.profile.linkedin, "linkedin"), class: "mr5 btn btn-floating btn-indigo btn-ripple", :target => "_blank" do %>
 				<i class="ion-social-linkedin"></i>
 			<% end %>
 		<% end %>
 		
 		<% if @object.profile.youtube.present? %>
-			<%=  link_to @object.profile.youtube, class: "mr5 btn btn-floating btn-red btn-ripple", :target => "_blank" do %>
+			<%=  link_to @object.social_media_link(@object.profile.youtube, "youtube"), class: "mr5 btn btn-floating btn-red btn-ripple", :target => "_blank" do %>
 				<i class="ion-social-youtube"></i>
 			<% end %>
 		<% end %>
 		
 		<% if @object.profile.twitter.present? %>
-			<%=  link_to @object.profile.twitter, class: "mr5 btn btn-floating btn-light-blue btn-ripple", :target => "_blank" do %>
+			<%=  link_to @object.social_media_link(@object.profile.twitter, "twitter"), class: "mr5 btn btn-floating btn-light-blue btn-ripple", :target => "_blank" do %>
 				<i class="ion-social-twitter"></i>
 			<% end %>
 		<% end %>
 		
 		<% if @object.profile.instagram.present? %>
-			<%=  link_to @object.profile.instagram, class: "mr5 btn btn-floating btn-brown btn-ripple", :target => "_blank" do %>
+			<%=  link_to @object.social_media_link(@object.profile.instagram, "instagram"), class: "mr5 btn btn-floating btn-brown btn-ripple", :target => "_blank" do %>
 				<i class="ion-social-instagram"></i>
 			<% end %>
 		<% end %>
 		<% if @object.profile.pinterest.present? %>
-			<%=  link_to @object.profile.pinterest, class: "mr5 btn btn-floating btn-pink btn-ripple", :target => "_blank" do %>
+			<%=  link_to @object.social_media_link(@object.profile.pinterest, "pinterest"), class: "mr5 btn btn-floating btn-pink btn-ripple", :target => "_blank" do %>
 				<i class="ion-social-pinterest"></i>
 			<% end %>
 		<% end %>
 		<% if @object.profile.foursquare.present? %>
-			<%=  link_to @object.profile.foursquare, class: "mr5 btn btn-floating btn-blue btn-ripple", :target => "_blank" do %>
+			<%=  link_to @object.social_media_link(@object.profile.foursquare, "foursquare"), class: "mr5 btn btn-floating btn-blue btn-ripple", :target => "_blank" do %>
 				<i class="ion-social-foursquare"></i>
 			<% end %>
 		<% end %>
@@ -57,36 +57,36 @@
 	<p>
 	<% @object.facebook.present? %>	
 	   <% if @object.facebook.present? %>	
-			<%=  link_to @object.facebook, class: "mr5 btn btn-floating btn-blue btn-ripple", :target => "_blank" do %>
+			<%=  link_to @object.social_media_link(@object.facebook, "facebook"), class: "mr5 btn btn-floating btn-blue btn-ripple", :target => "_blank" do %>
 				<i class="ion-social-facebook"></i>
 			<% end %>
 		<% end %>
 		
 		<% if @object.linkedin.present? %>	
-			<%=  link_to @object.linkedin, class: "mr5 btn btn-floating btn-indigo btn-ripple", :target => "_blank" do %>
+			<%=  link_to @object.social_media_link(@object.linkedin, "linkedin"), class: "mr5 btn btn-floating btn-indigo btn-ripple", :target => "_blank" do %>
 				<i class="ion-social-linkedin"></i>
 			<% end %>
 		<% end %>
 		
 		<% if @object.youtube.present? %>
-			<%=  link_to @object.youtube, class: "mr5 btn btn-floating btn-red btn-ripple", :target => "_blank" do %>
+			<%=  link_to @object.social_media_link(@object.youtube, "youtube"), class: "mr5 btn btn-floating btn-red btn-ripple", :target => "_blank" do %>
 				<i class="ion-social-youtube"></i>
 			<% end %>
 		<% end %>
 		
 		<% if @object.twitter.present? %>
-			<%=  link_to @object.twitter, class: "mr5 btn btn-floating btn-light-blue btn-ripple", :target => "_blank" do %>
+			<%=  link_to @object.social_media_link(@object.twitter, "twitter"), class: "mr5 btn btn-floating btn-light-blue btn-ripple", :target => "_blank" do %>
 				<i class="ion-social-twitter"></i>
 			<% end %>
 		<% end %>
 		
 		<% if @object.instagram.present? %>
-			<%=  link_to @object.instagram, class: "mr5 btn btn-floating btn-brown btn-ripple", :target => "_blank" do %>
+			<%=  link_to @object.social_media_link(@object.instagram, "instagram"), class: "mr5 btn btn-floating btn-brown btn-ripple", :target => "_blank" do %>
 				<i class="ion-social-instagram"></i>
 			<% end %>
 		<% end %>
 		<% if @object.pinterest.present? %>
-			<%=  link_to @object.pinterest, class: "mr5 btn btn-floating btn-pink btn-ripple", :target => "_blank" do %>
+			<%=  link_to @object.social_media_link(@object.pinterest, "pinterest"), class: "mr5 btn btn-floating btn-pink btn-ripple", :target => "_blank" do %>
 				<i class="ion-social-pinterest"></i>
 			<% end %>
 		<% end %>

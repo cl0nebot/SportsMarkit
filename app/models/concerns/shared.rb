@@ -64,6 +64,10 @@ module Shared
     end
   end
   
+  def social_media_link(url, site)
+    url.include?(site) ? url : "http://www.#{site}.com/#{url}" 
+  end
+  
   def number_of_people_online
     array = []
     people.uniq.each do |p|
