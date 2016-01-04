@@ -19,7 +19,7 @@ class Announcement < ActiveRecord::Base
     else
       sent = specific_user_groups.join(", ")
     end
-    "#{sent} at #{announceable_type.downcase} management level and "
+    sent.present? ? "#{sent} at #{announceable_type.downcase} management level and " : ""
   end
   
   def default_sent_to
@@ -34,7 +34,11 @@ class Announcement < ActiveRecord::Base
   end
   
   def sent_to
-     specific_sent_to +  default_sent_to
+    if announceable_type == "Team"
+      default_user_groups.join(", ")
+    else
+     specific_sent_to +  default_sent_to 
+    end
   end
   
   def sent_as

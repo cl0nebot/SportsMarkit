@@ -8,12 +8,14 @@
 	 <td class="v-align-middle">
 		<%= announcement.sent_to %>
 	</td>
+    <% unless @object.class.to_s == "Team" %>
 	 <td class="v-align-middle">
-		<%= announcement.sports %>
+		<%= announcement.sports.join(", ") %>
 	</td>
 	 <td class="v-align-middle">
-		<%= announcement.team_ids %>
+		<%= Team.where(id: announcement.team_ids).pluck(:name).join(", ") %>
 	</td>
+    <% end %>
 	 <td class="v-align-middle">
 		<%= announcement.sent_as %>
 	</td>

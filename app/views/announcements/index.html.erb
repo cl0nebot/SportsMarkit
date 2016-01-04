@@ -133,12 +133,14 @@
 				<table id="announcement-list" class="table table-hover table-condensed" id="example">
 		      <thead>
 		        <tr>
-						  <th style="width:10%" class="semi-bold h6 text-muted">Date</th>
-						  <th style="width:30%" class="semi-bold h6 text-muted">Message</th>
-			        <th style="width:10%" class="semi-bold h6 text-muted">Sent To</th>
-						  <th style="width:10%" class="semi-bold h6 text-muted">Sports</th>
-						  <th style="width:10%" class="semi-bold h6 text-muted">Teams</th>
-			        <th style="width:10%" class="semi-bold h6 text-muted">Sent As</th>
+						  <th style="width:8%" class="semi-bold h6 text-muted">Date</th>
+						  <th style="width:28%" class="semi-bold h6 text-muted">Message</th>
+			        <th style="width:21%" class="semi-bold h6 text-muted">Sent To</th>
+                         <% unless @object.class.to_s == "Team" %>
+						  <th style="width:8%" class="semi-bold h6 text-muted">Sports</th>
+						  <th style="width:8%" class="semi-bold h6 text-muted">Teams</th>
+                          <% end %>
+			        <th style="width:7%" class="semi-bold h6 text-muted">Sent As</th>
 		        </tr>
 		      </thead>
 		    <tbody>
