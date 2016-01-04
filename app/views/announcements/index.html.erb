@@ -60,11 +60,13 @@
 						<div class="no-margin well">
 							<% unless @object.class.to_s == "Team" %>
 								<h6 class="h6 mt10 mb10">Applicable admin groups:</h6>
-								<%= select_tag :specific_role_names, options_for_select([["All"] + [@object_type.constantize.custom_message_groups]].flatten, " "), {:multiple => true, include_blank: true, "data-live-search" =>  true, "data-width"=> "100%", class: "form-control bg-white"} %>
+								<%= select_tag :specific_role_names, options_for_select([["All"] + [@object_type.constantize.custom_message_groups]].flatten, " "), {:multiple => true, include_blank: true, "data-live-search" =>  true, "data-width"=> "100%", :class => 'selecter bg-white margin-bottom-0'} %>
+                                
+                                <%#= f.select :classification, [ 'School District', 'Recreational: Adult', 'Recreational: Youth'], {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
 								<br/>
 								<h6 class="h6 mt10 mb10">Applicable user profiles:</h6>
 							<% end %>
-							<%= select_tag :default_role_names, options_for_select([["All"] + [@object_type.constantize.default_message_groups]].flatten),  {:multiple => true, include_blank: true, "data-live-search" =>  true, "data-width"=> "100%", class: "form-control bg-white"}%>
+							<%= select_tag :default_role_names, options_for_select([["All"] + [@object_type.constantize.default_message_groups]].flatten),  {:multiple => true, include_blank: true, "data-live-search" =>  true, "data-width"=> "100%", :class => 'selecter bg-white margin-bottom-0'}%>
 						</div>
 						<div id="user-group" style="display: none">
             	<p class="text-danger">You must assign at least one user group.</p>
@@ -76,10 +78,10 @@
 						<div class="well">
 							<% unless @object.class.to_s == "Team" %>
 							<h6>Applicable sports:</h6>
-							<%= select_tag :sports, options_for_select([["All"] + [@object.teams.pluck(:sport).uniq]].flatten), {:multiple => true, include_blank: true, "data-live-search" =>  true, "data-width"=> "100%", class: "form-control bg-white"} %><br>
+							<%= select_tag :sports, options_for_select([["All"] + [@object.teams.pluck(:sport).uniq]].flatten), {:multiple => true, include_blank: true, "data-live-search" =>  true, "data-width"=> "100%", :class => 'selecter bg-white margin-bottom-0'} %><br>
 							
 							<h6>Applicable teams:</h6>
-							<%= select_tag :team_ids, options_for_select(@object.teams.collect{ |team| [team.name, team.id] }), {:multiple => true, include_blank: true, "data-live-search" =>  true, "data-width"=> "100%", class: "form-control bg-white"} %><br>
+							<%= select_tag :team_ids, options_for_select(@object.teams.collect{ |team| [team.name, team.id] }), {:multiple => true, include_blank: true, "data-live-search" =>  true, "data-width"=> "100%", :class => 'selecter bg-white margin-bottom-0'} %><br>
 							<% end %>
 							<div id="sport-or-team" style="display: none">
 			        	<p class="text-danger">You must assign at least one sport or team.</p>
