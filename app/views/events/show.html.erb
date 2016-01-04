@@ -140,17 +140,9 @@
 										</div> -->
 										<!--.card-subhead-->
 									</div><!--.card-heading-->
-									<div class="card-body bgcolor-light-grey">
-										<ul class="users" id="yes">
-											<%= render 'events/rsvp_list', people: @attendees %> 		
-										</ul>
-									</div><!--.card-body-->
-									<div class="card-footer">
-										<ul>
-											<li><span class="mr5 fs_14"><%= pluralize @attendees.count, "Person" %></span></li>
-											<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
-										</ul>
-									</div><!--.card-footer-->
+                                    <div id="yes">
+                                      <%= render 'events/rsvp_list', people: @attendees %>
+                                    </div>
 								</div><!--.card-->
 							</div><!--.col-md-12-->
 
@@ -165,17 +157,9 @@
 										</div> -->
 										<!--.card-subhead-->
 									</div><!--.card-heading-->
-									<div class="card-body bgcolor-light-grey">
-										<ul class="users" id="no">
-											<%= render 'events/rsvp_list', people: @nos %>	
-										</ul>
-									</div><!--.card-body-->
-									<div class="card-footer">
-										<ul>
-											<li><span class="mr5 fs_14">People</span></li>
-											<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
-										</ul>
-									</div><!--.card-footer-->
+                                    <div id="no">
+                                      <%= render 'events/rsvp_list', people: @nos %>
+                                    </div>
 								</div><!--.card-->
 							</div><!--.col-md-12-->
 
@@ -191,17 +175,9 @@
 										</div> -->
 										<!--.card-subhead-->
 									</div><!--.card-heading-->
-									<div class="card-body bgcolor-light-grey">
-										<ul class="users" id="maybe">
-											<%= render 'events/rsvp_list', people: @maybes %>	
-										</ul>
-									</div><!--.card-body-->
-									<div class="card-footer">
-										<ul>
-											<li><span class="mr5 fs_14">People</span></li>
-											<li><a href="#people" data-toggle="tab" class="fs_14">View All</a></li>
-										</ul>
-									</div><!--.card-footer-->
+                                    <div id="maybe">
+                                      <%= render 'events/rsvp_list', people: @maybes %>
+                                   </div>
 								</div><!--.card-->
 							</div><!--.col-md-12-->
 					  	</div>
