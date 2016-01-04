@@ -95,7 +95,7 @@ class AnnouncementsController < ApplicationController
         if params[:email].present?
           users.each do |user|
             next if user.email.nil?
-            SendEmail.send_announcement_message(user, str).deliver
+            SendEmail.send_announcement_message(object, current_user, user, str).deliver
           end
         end
         
