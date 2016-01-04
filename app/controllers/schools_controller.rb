@@ -5,12 +5,14 @@ class SchoolsController < ApplicationController
   
   
   def index
+    if stale?(:etag => ["schools-index", "v0"], :last_modified => School.maximum(:updated_at))
     @schools = School.all
-    @object = School.new
-    @address = @object.build_address
-    respond_to do |format|
-      format.js
-      format.html
+        @object = School.new
+        @address = @object.build_address
+        respond_to do |format|
+          format.js
+          format.html
+        end
     end
   end
   

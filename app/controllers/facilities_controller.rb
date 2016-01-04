@@ -5,11 +5,13 @@ class FacilitiesController < ApplicationController
   
   
   def index
-    if params[:school_id]
-      @school = School.friendly.find(params[:school_id])
-      @facilities = @school.facilities.all
-    else
-      @facilities = Facility.all
+    if stale?(:etag => ["facilites-index", "v0"], :last_modified => Facility.maximum(:updated_at))
+      if params[:school_id]
+        @school = School.friendly.find(params[:school_id])
+        @facilities = @school.facilities.all
+      else
+        @facilities = Facility.all
+      end
     end
   end
   

@@ -5,11 +5,13 @@ class ClubsController < ApplicationController
   
   
   def index
-    @clubs = Club.all
-    @club = Club.new
-    respond_to do |format|
-      format.js
-      format.html
+    if stale?(:etag => ["clubs-index", "v0"], :last_modified => Club.maximum(:updated_at))
+      @clubs = Club.all
+      @club = Club.new
+      respond_to do |format|
+        format.js
+        format.html
+      end
     end
   end
   

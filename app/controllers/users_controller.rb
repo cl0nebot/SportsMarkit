@@ -4,7 +4,9 @@ class UsersController < ApplicationController
   before_action :find_user, only: %w[show edit destroy store]
   
   def index
-    @users = User.includes(:profile, :user_profile_pictures).all
+    if stale?(:etag => ["users-index", "v0"], :last_modified => [User.maximum(:updated_at), UserProfilePicture.maximum(:updated_at)].max)
+      @users = User.includes(:profile, :user_profile_pictures).all
+    end
   end
   
   def new

@@ -3,9 +3,11 @@ class LeaguesController < ApplicationController
   before_action :find_league, only: [:show, :edit, :destroy]
   
   def index
-    @leagues = League.all
-    @object = League.new
-    @address = @object.build_address 
+    if stale?(:etag => ["leagues-index", "v0"], :last_modified => League.maximum(:updated_at))
+      @leagues = League.all
+      @object = League.new
+      @address = @object.build_address 
+    end
   end
   
   def new
