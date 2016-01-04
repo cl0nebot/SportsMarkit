@@ -1,12 +1,11 @@
+<ul class="users">
 <% people.each do |person| %>
-
-	<ul class="users">
 		<li>
 			<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= person.user.full_name %>">
 				<%= image_tag person.user.avatar %>
 			</a>
 		</li>
-	</ul>
 
 <% end %>  
+</ul>
 	
