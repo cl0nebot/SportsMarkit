@@ -27,7 +27,7 @@ class SendEmail < ActionMailer::Base
     @message = message
     @object = object
     @sender = current_user
-    mail(from: "#{@sender.first_name} via SportsMarkit <donotreply@sportsmarkit.com>", to: user.email, subject: @message)
+    mail(from: "#{@sender.first_name} via SportsMarkit <donotreply@sportsmarkit.com>", to: user.email, subject: "Message from #{@object.proper_name}")
   end
   
   
