@@ -50,8 +50,10 @@ class ConnectsController < ApplicationController
     object = params[:ownerable_type]
     object_id = params[:ownerable_id]
     object.constantize.find(object_id).connects.where(connectable_type: "Facility").destroy_all
-    params[:facility_ids].each do |id|
-      Connect.create(ownerable_type: object, ownerable_id: object_id, connectable_type: "Facility", connectable_id: id)
+    if params[:facility_ids].present?
+      params[:facility_ids].each do |id|
+        Connect.create(ownerable_type: object, ownerable_id: object_id, connectable_type: "Facility", connectable_id: id)
+      end
     end
     @facilities = object.constantize.find(object_id).facilities
     respond_to do |format|
