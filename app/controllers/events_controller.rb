@@ -19,9 +19,9 @@ class EventsController < ApplicationController
     if @event.save
       Connect.create(ownerable_id: @event.id, ownerable_type: "Event", connectable_type: "Facility", connectable_id: params[:event][:facility_ids])
       if @event.eventable_type == "Team"
-        user_ids = Team.find(@event.eventable_id).roles.where(status: "Active").pluck(:user_id).uniq
-        opponent_ids = Team.find(@event.opponent_id).roles.where(status: "Active").pluck(:user_id).uniq
-        all_ids = user_ids + opponent_ids
+        user_ids = Team.find(@event.eventable_id).roles.where(status: "Active").pluck(:user_id)
+        opponent_ids = Team.find(@event.opponent_id).roles.where(status: "Active").pluck(:user_id)
+        all_ids = (user_ids + opponent_ids).uniq
         all_ids.each do |i|
           Attendee.create(user_id: i, event_id: @event.id, yes: true)
         end

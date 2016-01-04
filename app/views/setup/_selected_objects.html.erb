@@ -1,5 +1,5 @@
 <%= classification %>
-<% if ["Athlete", "Student Athlete", "Coach", "Team Manager", "Club Director", "School Manager", "Guardian"].include? classification %>
+<% if ["Athlete", "Student Athlete", "Coach", "Team Manager", "Club Director", "School Manager", "Guardian", "Athletic Director"].include? classification %>
 	
 	<% objects.each do |object| %>
 	  <li class="has-action-left has-action-right" id="non_school_object_<%= object.id %>">
