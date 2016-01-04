@@ -6,11 +6,13 @@ class TeamsController < ApplicationController
   require 'twilio-ruby'
   
   def index
-    if params[:school_id]
-      @school = School.friendly.find(params[:school_id])
-      @teams = @school.teams.all
-    else
-      @teams = Team.all
+    if stale?(:etag => ["teams-index", "v0", :last_modified => Team.maximum(:updated_at))
+      if params[:school_id]
+        @school = School.friendly.find(params[:school_id])
+        @teams = @school.teams.all
+      else
+        @teams = Team.all
+      end
     end
   end
   
