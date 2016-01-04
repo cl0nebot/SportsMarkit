@@ -13,7 +13,7 @@
 					<hr class="margin-top-0"/>
 				</div>
 
-				<%= form_for Club.new, url: teams_path, html: {class: "form-horizontal parsley-validate", id: 'new-club-form', method: :post} do |f| %>
+				<%= form_for Club.new, html: {class: "form-horizontal parsley-validate", id: 'new-club-form', method: :post} do |f| %>
 
 				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
 					<div class="row">
@@ -29,11 +29,11 @@
 									<div class="row">
 										<%#= f.select :sport, Sport.pluck(:sport), {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => true, data:{live_search: 'true', width: '100%'}} %>
 										
-										<div class="col-md-6">
-											<%= f.select :classification, [ 'College', 'High School', 'Middle School', 'Elementary'], {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
-										</div>
-										<div class="col-md-6">
-											<%= f.select :category, [ 'Public', 'Private', 'Charter'], {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
+									    <!-- <div class="col-md-6">
+                                            <%#= f.select :classification, [ 'College', 'High School', 'Middle School', 'Elementary'], {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
+                                        </div> -->
+										<div class="col-md-12">
+											<%= f.select :category, club_types, {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
 										</div>
 									</div>
 								</div>

@@ -22,8 +22,13 @@ class ApplicationController < ActionController::Base
       @online_status = OnlineStatus.find_or_create_by(user_id: current_user.id).update(last_seen: Time.now)
     end
   end
+  
+  def club_types
+    ["Adult Recreational", "Youth Recreational", "Travel", "AAU", "USATF", "Little League Baseball", "Pop Warner", "AYFL", "Independent", "USTA", "US Youth Soccer", "NFL Play60", "MLB RBI", "College Intramural", "City/County Recreational", "Independent", "Fitness and Training"].sort
+  end
+  
 
-  helper_method :new_user, :current_user
+  helper_method :new_user, :current_user, :club_types
   
   #authentication
 

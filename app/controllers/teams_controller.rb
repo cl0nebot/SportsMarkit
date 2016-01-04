@@ -21,7 +21,7 @@ class TeamsController < ApplicationController
   
   def create
     if (params[:team][:address_attributes][:street_1].present? && params[:team][:address_attributes][:city].present? || params[:team][:address_attributes][:state].present?)
-      @teamable = params[:team][:teamable_type].try(:constantize).try(:find, params[:team][:teamable_id])
+      @teamable = params[:team][:teamable_type].try(:constantize).try(:find, params[:team][:teamable_id]) rescue nil
       @team = @teamable.present? ? @teamable.teams.build(team_params) : Team.new(team_params)
       @team.teamable_id = @teamable.id if @teamable.present?
       @team.teamable_type = @teamable.class.to_s if @teamable.present?
