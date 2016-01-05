@@ -15,9 +15,9 @@
       Choose File
       </button>
      
-      <% unless @profile_pictures.empty? %>
-        <%= render 'shared/delete_profile_picture_modal', photo: @profile_picture %>
-        <button class="btn btn-danger box-shadow-ccc" data-toggle="modal" data-target="#<%= @profile_picture.id %>">
+      <% unless profile_pictures.empty? %>
+        <%= render 'shared/delete_profile_picture_modal', photo: profile_picture %>
+        <button class="btn btn-danger box-shadow-ccc" data-toggle="modal" data-target="#<%= profile_picture.id %>">
           Remove
         </button>
       <% end %>

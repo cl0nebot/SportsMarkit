@@ -3,7 +3,7 @@
 
 
 <div class="modal fade" id="pPhoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <%= form_for [@object, @picture], html: {multipart: true, class: 'remote-upload'} do |f| %>
+  <%= form_for [object, profile_picture], html: {multipart: true, class: 'remote-upload'} do |f| %>
 
   <div class="modal-dialog">
     <div class="modal-content">
@@ -23,8 +23,8 @@
           </div>
           <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 200px;"></div>
           <div>
-             <%= f.hidden_field :photo_owner_id, :value => @object.id %>
-			       <%= f.hidden_field :photo_owner_type, :value => @object.class.to_s %>
+             <%= f.hidden_field :photo_owner_id, :value => object.id %>
+			       <%= f.hidden_field :photo_owner_type, :value => object.class.to_s %>
             <span class="btn btn-sm btn-grey btn-file pull-right"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><%= f.file_field :image %></span>
             <a href="#" class="btn btn-sm btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
           </div>
