@@ -19,7 +19,7 @@
 	      <div class="card-body">
 
 	        <div style="height: 40px; position: relative;">
-	        	<h4 class="card-title capitalize fs_16 lh_20 absolute bottom bold">
+	        	<h4 class="card-title capitalize fs_14 lh_20 absolute bottom bold">
 			        <%= truncate(school.name, length: 43) %>
 		        </h4>
 		      </div>
@@ -31,7 +31,7 @@
 	          <p class="mb0 fs_12">
 		          <span class="text-muted">
 		            <i class="ion-map mr5"></i> 
-		            <%= school.address.city.present? ? "#{school.address.city}, #{school.address.state}" : "NA" %>
+		            <%#= school.address.city.present? ? "#{school.address.city}, #{school.address.state}" : "NA" %>
 		          </span>
 		          <span class="text-muted">
 		            <i class="ion-ios-telephone mr5"></i> 
