@@ -1,53 +1,26 @@
 <div class="panel-body margin-top-10">
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-1">
-			<div class="row">
-				<div class="pull-left">
-					<%= image_tag(@user.avatar, class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
-				</div>
-				<div class="pull-left">
-					<h4 class="margin-bottom-5"><% @user.first_name.present? ? @user.full_name : "My Profile"  %>
-						<p class="small"><%= classification %> Profile Setup</p>
-					</div>
-				</div>
-				<div class="note note-warning note-left-striped">
-					<h4>Adding <%= description.pluralize.downcase %> to your <%= classification.downcase %> profile.</h4>
-					<p class="small text-grey">
-						Use the search box below to find your <%= description.pluralize.downcase %>. Once added, the <%= description.downcase %> will be notified of your request and will have the ability to approve your request. In the meantime, your status will be pending.
-					</p>
-				</div>
-				<hr class="no-margin"/>
-				<br/>
-				<div class="row well padding-bottom-0">
-					<div class="col-lg-4 col-md-6 col-sm-12">
-						<h3 class="bold text-primary margin-top-10">
-							<i class="ion ion-search margin-right-5"></i> Find your <%= description.pluralize.downcase %>
-						</h3>
-					</div><!--.col-md-3-->
-					<div class="col-lg-8 col-md-6 col-sm-12">
-						<div class="inputer">
-							<!-- isotope filtering and typeahead-->
-							<textarea type="text" class="fs_30 lh_55 quicksearch-teams typeahead typeahead-<%= typeahead %> form-control" rows="1" placeholder="start typing..."></textarea>
-						</div>
-					</div><!--.col-md-9-->
-				</div><!--.row-->
-				<hr class="margin-top-10"/>
+			<h3 class="bold text-primary margin-top-10">
+				Step 1: Find your <%= description.pluralize.downcase %>
+			</h3>
+			<h6 class="uppercase muted bold mb5"> <i class="ion-information-circled"></i> How it Works</h6>
+			<!-- <h5 class="semi-bold">Adding <%= description.pluralize.downcase %> to your <span class="capitalize"><%= classification.downcase %></span> profile.</h5> -->
+			<p class="small text-grey lh_22">
+				Use the search box below to find your <%= description.pluralize.downcase %>. Once added, the <%= description.downcase %> will be notified of your request and will have the ability to approve your request. In the meantime, your status will be pending.
+			</p>
+			<div class="inputer">
+				<!-- isotope filtering and typeahead-->
+				<textarea type="text" class="fs_30 lh_55 quicksearch-teams typeahead typeahead-<%= typeahead %> form-control" rows="1" placeholder="Start typing here..."></textarea>
 			</div>
+			<br/>
 		</div>
 		<div class="row">
-			<div class="col-lg-10 col-lg-offset-1">
-				<h5 class="bold text-black">Your <%= description.pluralize.downcase %>
-                    (Can't find what you're looking for? Create <%= description %>)
-    				<a class="btn btn-floating btn-pink" data-toggle="modal" data-target="#panel-new-school">
-    					<i class="ion-android-add"></i>
-    				</a>
-					<span class="small semi-bold text-orange"></span>
-				</h5>
-				<div class="panel-body without-padding">
-					<ul class="list-material" id="<%= classification.delete(" ") %>-list">
-						<%= render 'selected_objects', objects: selected_objects, classification: classification, user: @user %>	
-					</ul>
-				</div><!--.panel-body-->
+			<div class="col-lg-10 col-lg-offset-1 well">
+				<h5 class="bold text-black capitalize"><%= description.pluralize.downcase %> added</h5>
+				<h6 class="muted semi-bold">Can't find your <%= description.downcase %>?
+					<a href="#" data-toggle="modal" data-target="#panel-new-school"><u>Create a <%= description %></u></a>
+				</h6>
 			</div>
 		</div>
 	</div>
@@ -57,7 +30,7 @@
 		</div>
 		<div class="clearfix"></div>
 	</div><!--.row-->
-
+</div>
 
 
 
