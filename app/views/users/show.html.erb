@@ -67,13 +67,15 @@
     </div><!--.row-->
 
     <div class="header-tabs scrollable-tabs sticky">
-
-     
-        <% if @object.can_be_edited_by_user?(current_user) %>
-          <%= link_to edit_user_path(@user), class: "mt10 pull-right btn button-striped button-full-striped btn-ripple mr20" do %>
-              <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
-          <% end %>
+      <% if @object.can_be_edited_by_user?(current_user) %>
+        <%= link_to edit_user_path(@user), class: "mt10 pull-right btn-primary btn button-striped button-full-striped btn-ripple mr20" do %>
+            <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
         <% end %>
+      <% end %>
+
+      <a class="mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20">
+          <i class="ion-speakerphone fs_16 mr5"></i> View Announcements
+      </a>
 
      <%= render 'shared/show_navigations'%>
     </div>

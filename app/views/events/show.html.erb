@@ -32,15 +32,19 @@
 
 		<div class="header-tabs scrollable-tabs sticky">
                 
-		          <% if @event.can_be_edited_by_user?(current_user) %>
-			          <%= link_to edit_event_path(@event), class: "mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
-			              <i class="ion-gear-b fs_16 mr5"></i> Edit Event
-			          <% end %>
-				  <% end %>
-				  
-		          <%= link_to eval("#{@event.eventable_type.downcase}_path(@event.eventable.friendly_id)"), class: "mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
-		              <i class="ion-gear-b fs_16 mr5"></i> Return to <%= @event.eventable.name %>
-		          <% end %>
+      <% if @event.can_be_edited_by_user?(current_user) %>
+        <%= link_to edit_event_path(@event), class: "mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20" do %>
+            <i class="ion-gear-b fs_16 mr5"></i> Edit Event
+        <% end %>
+		  <% end %>
+
+		  <a class="mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20">
+        <i class="ion-speakerphone fs_16 mr5"></i> View Announcements
+    	</a>
+		  
+      <%= link_to eval("#{@event.eventable_type.downcase}_path(@event.eventable.friendly_id)"), class: "mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
+          <i class="ion-gear-b fs_16 mr5"></i> Return to <%= @event.eventable.name %>
+      <% end %>
 		        
 
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
