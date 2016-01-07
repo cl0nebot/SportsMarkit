@@ -27,7 +27,7 @@
 										<% end %>
 										
 										<hr class="light mb10"/>
-									    <p class="mb10 small upper fs_12 bold text-muted">Option: 3</p>
+									    <p class="mb10 small upper fs_12 bold text-muted">Option: 1</p>
 										
 										<% if ["teams","schools", "leagues", "clubs"].include? params[:controller] %>
 
@@ -41,7 +41,8 @@
 										
 										
 											<br>
-											<%= submit_tag %>
+											<br>
+											<%= submit_tag "Add Existing Facility", class: "btn btn-primary" %>
 										
 											<% end %>
 										
