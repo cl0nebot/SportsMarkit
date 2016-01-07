@@ -1,1 +1,1 @@
-send notification: <%= link_to "Send Notification Message", notification_text_path(user_id: cert.user.id, cert_id: cert.id), remote: true  %><br>
+<%= link_to "Send Notification Message", notification_text_path(user_id: cert.user.id, cert_id: cert.id), remote: true, class: "btn btn-sm btn-primary"  %>

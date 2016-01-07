@@ -1,15 +1,15 @@
 
   <%= link_to team_path(team) do %>
-  <div class="col-md-4 col-lg-2 col-sm-6 element-item <%= team.classification_and_category %> all" data-category="<%= team.classification_and_category %> all">
+    <div class="col-md-4 col-lg-2 col-sm-6 element-item <%= team.classification_and_category %> all" data-category="<%= team.classification_and_category %> all">
       <div class="card card-user card-clickable card-clickable-over-content">
         <div class="card-heading heading-full">
           <div class="user-image sample-member9" style="background: url('<%= team.avatar %>'); background-position: bottom;"></div>
           <% if team.can_be_edited_by_user?(current_user)%>
-              <div class="clickable-button">
-                <%= link_to edit_team_path(team), class: "btn btn-floating btn-orange initial-position floating-open" do %>
-                  <i class="ion-gear-b"></i>
-                <% end %>
-              </div>
+            <div class="clickable-button">
+              <%= link_to edit_team_path(team), class: "btn btn-floating btn-orange initial-position floating-open" do %>
+                <i class="ion-gear-b"></i>
+              <% end %>
+            </div>
           <% end %>
 
         </div><!--.card-heading-->

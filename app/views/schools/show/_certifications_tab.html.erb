@@ -1,21 +1,57 @@
-	<!--#events.tab-pane-->
-	<% if @school.can_be_edited_by_user?(current_user) %>
-		<!-- certifications -->
-		<div id="certifications" class="tab-pane">
+<% if @school.can_be_edited_by_user?(current_user) %>
+	<div id="certifications" class="row margin-top-20 tab-pane">
+	  <% @certifications.each do |cert| %>
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="panel">
+						<div class="panel-heading">
+							<div class="panel-title"><h4>Certifications</h4></div>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+						    <div class="col-md-1">
+						      <div class="example-row">
+						        <img src="../../assets/globals/img/faces/2.jpg" class="face-radius img-responsive" alt="">
+						      </div>
+						    </div>
+				      	<div class="col-md-2">
+				          <div class="row example-row">
+				            <div class="col-md-12">Name</div>
+				            <div class="col-md-12"><span class="bold"><%= cert.user.full_name %></span></div>
+				          </div>
+				        </div>
+				        <div class="col-md-2">
+				          <div class="row example-row">
+				            <div class="col-md-12">Issuer</div>
+				            <div class="col-md-12"><%= cert.certification.issuer %></div>
+				          </div><!--.row-->
+				        </div>
+				        <div class="col-md-3">
+				          <div class="row example-row">
+				            <div class="col-md-12">Expiration Date </div>
+				            <div class="col-md-12"><%= cert.expiration %></div>
+				          </div>
+				        </div>
+				        <div class="col-md-3">
+				          <div class="row example-row">
+				            <div class="col-md-12">Send Notification</div>
+				            <div class="col-md-12">
+				            	<div id="notification-link">
+					 							<%= render 'notifications/notification_link', cert: cert %>
+				  						</div>
+				  					</div>
+				          </div>
+				        </div>
+					  	</div>
+					  	
+						</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+<% end %>
 		
-			<% @certifications.each do |cert| %>
 		
-				certification: <%= cert.certification.name %><br>
-				issuer: <%= cert.certification.issuer %><br>
-				user: <%= cert.user.full_name %><br>
-				expiration: <%= cert.expiration %><br>
-				<div id="notification-link">
-				 <%= render 'notifications/notification_link', cert: cert %>
-			    </div>
-				<br><br>
-
-			<% end %>
 		
-		</div>
-		<!--#certfications.tab-pane-->
-	<% end %>
+	
