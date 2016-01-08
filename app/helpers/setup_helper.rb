@@ -21,6 +21,27 @@ module SetupHelper
     end
   end
   
+  def role_for(classification)
+    case classification
+    when "Athlete"
+      "Athlete"
+    when "Student Athlete" 
+      "Athlete"
+    when "Coach"
+      "Coach"
+    when "Guardian"
+      "Guardian"
+    when "Athletic Director"
+      "Athletic Director"
+    when "Club Director"
+      "Club Director"
+    when "Team Manager"
+      "Team Manager"
+    when "School Manager"
+      "School Manager"
+    end
+  end
+  
   def selected_objects(classification, user)
     role_ids = Role.where(user_id: user.id, status: ["Pending", "Active"], role: classification).pluck(:roleable_id)
     case classification

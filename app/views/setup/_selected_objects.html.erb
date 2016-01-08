@@ -1,4 +1,4 @@
-<%= classification %>
+
 <% if ["Athlete", "Student Athlete", "Coach", "Team Manager", "Club Director", "School Manager", "Guardian", "Athletic Director"].include? classification %>
 	
 	<% objects.each do |object| %>
@@ -18,7 +18,7 @@
 				</span>
 				<span class="caption">
 					<i class="ion-location"></i>
-	        <%#= object.city_state %>,
+	        <%= object.address.city_state unless object.instance_of?(User)%>
 	        <%#= pluralize object.users.count, "member" %>
 				</span>
 	      </div>

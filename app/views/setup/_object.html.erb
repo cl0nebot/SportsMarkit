@@ -3,6 +3,7 @@
   <div class="card card-meal card-meal-blue card-square card-shadow">
     <div class="card-heading pr10 pl10">
       <h5 class="card-title fs_14 lh_18"><span class="bold"><%= object.proper_name %></span></h5>
+      <font size="2"><%= object.address.city_state unless object.instance_of?(User)%></font>
       <div class="subhead">
         <%# if object.age.present? %>
            <%#= object.age %>

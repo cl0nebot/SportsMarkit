@@ -1,0 +1,107 @@
+<div class="modal fade full-height from-right" id="panel-new-club-setup" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12 pr20 pl20 pt10">
+						<div class="panel">
+							<div class="panel-heading no-border">
+								<div class="panel-title">
+									<h4 class="text-primary">
+										<span class="ion-plus-circled mr5"></span>
+										Complete the form below.
+									</h4>
+									<h3 class="modal-title bold mt0 mb0">Add a New Club</h3>
+								</div>
+							</div><!--.panel-heading-->
+							<div class="panel-body">
+
+								<%= form_for Club.new, url: setup_create_object_path, html: {method: :post, id: "new-club-setup-form", data: {remote: true }}  do |f| %>
+					
+
+								<div class="row example-row">
+									<div class="col-md-3">Name </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">Category</div><!--.col-md-3-->
+									<div class="col-md-9">
+										
+										<%= f.select :category, club_types, {}, {:class => 'selecter bg-white margin-bottom-0', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
+
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">Abbreviation </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :abbreviation, type: "text", class: "form-control", placeholder: "" %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+                               <%= render 'shared/new_address', f: f, object: Club.new %>
+
+
+								<div class="row example-row">
+									<div class="col-md-3">Website </div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :website, type: "text", class: "form-control", placeholder: ""  %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">Email</div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :email, type: "text", class: "form-control" %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+								<div class="row example-row">
+									<div class="col-md-3">Phone</div><!--.col-md-3-->
+									<div class="col-md-9">
+										<div class="inputer">
+											<div class="input-wrapper">
+												<%= f.text_field :phone_number, type: "text", class: "form-control" %>
+											</div>
+										</div>
+									</div><!--.col-md-9-->
+								</div><!--.row-->
+
+							</div><!--.panel-body-->
+						</div><!--.panel-->
+					</div><!--.col-md-12-->
+				</div><!--.row-->
+			</div>
+            
+            <%= hidden_field_tag :user_id, @user.id %>
+            <%= hidden_field_tag :object_type, "Club" %>
+            <%= hidden_field_tag :role, role %>
+            <%= hidden_field_tag :classification, classification %>
+            
+			<div class="modal-footer bg-light-grey padding-40">
+				<%= f.submit "Create School", class: "btn btn-block btn-blue" %>
+			</div>
+			<% end %>			
+		</div>
+	</div>
+</div><!--.modal-->
+

@@ -14,6 +14,10 @@ class Address < ActiveRecord::Base
   def city_and_state
     "#{city}-#{state}"
   end
+  
+  def city_state
+    "#{city}, #{state}"
+  end
  #
  #  def city_state # schools
  #    if school_id.present?

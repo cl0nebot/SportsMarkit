@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require validation
+    
+    
 
 // <!-- BEGIN GLOBAL AND THEME VENDORS -->
 //= require pleasure/globals/js/global-vendors

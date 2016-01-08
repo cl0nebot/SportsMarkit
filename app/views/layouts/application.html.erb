@@ -58,8 +58,11 @@
 
 	<!-- side panels -->
     <%= render "shared/panels/new_club" %>
-	<%= render "shared/panels/new_school" %>
-	<%= render "shared/panels/new_team" %>
+	
+	<% unless params[:controller] == "setup"%>
+      <%= render "shared/panels/new_school" %>
+      <%= render "shared/panels/new_team" %>
+    <% end %>
 	<%= render "shared/panels/new_facility" %>
 	<%= render "shared/panels/new_league" %>
 

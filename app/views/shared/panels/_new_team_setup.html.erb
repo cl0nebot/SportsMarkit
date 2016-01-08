@@ -1,4 +1,4 @@
-<div class="modal fade full-height from-right" id="panel-new-team" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade full-height from-right" id="panel-new-team-setup" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">
@@ -15,7 +15,7 @@
 								</div>
 							</div><!--.panel-heading-->
 							<div class="panel-body">
-								<%= form_for Team.new, url: teams_path, method: :post do |f| %>
+								<%= form_for Team.new, url: setup_create_object_path, html: {method: :post, id: "new-team-setup-form", data: {remote: true }}  do |f| %>
 
 									<br/>
 									<div class="row example-row">
@@ -59,6 +59,11 @@
 					</div><!--.col-md-12-->
 				</div><!--.row-->
 			</div>
+            <%= hidden_field_tag :user_id, @user.id %>
+            <%= hidden_field_tag :object_type, "Team" %>
+            <%= hidden_field_tag :role, role %>
+            <%= hidden_field_tag :classification, classification %>
+            
 			<div class="modal-footer bg-light-grey padding-40">
 				<%= f.submit "Create Team", class: "btn btn-blue btn-block" %>
 			</div>

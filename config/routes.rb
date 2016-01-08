@@ -213,4 +213,6 @@ Rails.application.routes.draw do
     get '/404', to: 'errors#not_found', as: :not_found
     get '/422' => 'errors#server_error'
     get '/500' => 'errors#server_error'
+    
+    post "setup/create_object" => "setup#create_object"
 end

@@ -18,9 +18,14 @@
 		<div class="row">
 			<div class="col-lg-10 col-lg-offset-1 well">
 				<h5 class="bold text-black capitalize"><%= description.pluralize.downcase %> added</h5>
-				<h6 class="muted semi-bold">Can't find your <%= description.downcase %>?
-					<a href="#" data-toggle="modal" data-target="#panel-new-school"><u>Create a <%= description %></u></a>
-				</h6>
+                <ul class="list-material" id="<%= classification.delete(" ") %>-list">
+                	<%= render 'selected_objects', objects: selected_objects, classification: classification, user: @user %>	
+                </ul>
+                <% if ["Athlete", "Athletic Director", "School Manager", "Club Director"].include? classification  %>
+    				<h6 class="muted semi-bold">Can't find your <%= description.downcase %>?
+    					<a href="#" data-toggle="modal" data-target="#panel-new-<%= description.downcase %>-setup" class="open-modal"><u>Create a <%= description %></u></a>
+    				</h6>
+                <% end %>
 			</div>
 		</div>
 	</div>
@@ -32,6 +37,9 @@
 	</div><!--.row-->
 </div>
 
+<%= render "shared/panels/new_team_setup", role: role_for(classification), classification: classification %>
+<%= render "shared/panels/new_school_setup", role: role_for(classification), classification: classification %>
+<%= render "shared/panels/new_club_setup", role: role_for(classification), classification: classification %>
 
 
 
