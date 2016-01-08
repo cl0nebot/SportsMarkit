@@ -1,7 +1,19 @@
-<% @coaches.each do |coach| %>
+						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th>Team</th>
+									<th>Requesting User</th>
+									<th>Mobile #</th>
+									<th>Date of Request</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+                        
+<% coaches.each do |coach| %>
 <tr>
     <td class="v-align-middle">
-    	<%= coach.team.name   %><br>
+    	<%= coach.roleable.name   %><br>
     </td>
     <td class="v-align-middle">
     	<span class="capitalize"><%= coach.user.full_name %></span>
@@ -15,11 +27,13 @@
     <td class="v-align-middle">
     	<div class="row clearfix">
         	<div class="col-md-12">
-				<%= link_to "Accept", approve_coach_approval_path(coach.id), method: :patch, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-success row" %>
+				<%= link_to "Accept", approve_approval_path(coach.id), method: :patch, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-success row" %>
         		<%#= link_to "Delete", ad, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-danger" %>
         	</div>
         </div>
     </td>
 </tr>
 <% end %>
-	                	
+	                
+					</tbody>
+				</table>

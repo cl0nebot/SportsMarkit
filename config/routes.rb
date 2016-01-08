@@ -148,8 +148,7 @@ Rails.application.routes.draw do
     resources :approval do
       get "approval" => "approval#approval", as: :approval
       member do
-        patch :approve_director
-        patch :approve_coach
+        patch :approve
       end
     end
     

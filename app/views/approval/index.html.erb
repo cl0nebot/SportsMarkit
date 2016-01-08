@@ -32,21 +32,8 @@
 					<div class="col-md-12">
 						<h4 class="semi-bold text-primary">Athletic Directors</h4>
 					</div><!--.col-md-3-->
-					<div class="col-md-12">
-						<table class="table table-condensed">
-							<thead>
-								<tr>
-									<th>School</th>
-									<th>Requesting User</th>
-									<th>Mobile #</th>
-									<th>Date of Request</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<%= render 'approval/athletic_directors', athletic_directors: @athletic_directors  %>
-							</tbody>
-						</table>
+					<div class="col-md-12" id="directors-list">
+						<%= render 'approval/athletic_directors', athletic_directors: @athletic_directors  %>
 					</div><!--.col-md-9-->
 				</div><!--.row-->
 			</div><!-- panel-body -->
@@ -56,24 +43,46 @@
 					<div class="col-md-12">
 						<h4 class="semi-bold text-primary">Coaches</h4>
 					</div><!--.col-md-3-->
-					<div class="col-md-12">
-						<table class="table table-condensed">
-							<thead>
-								<tr>
-									<th>School</th>
-									<th>Requesting User</th>
-									<th>Mobile #</th>
-									<th>Date of Request</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<%= render 'approval/coaches', coaches: @coaches %>
-							</tbody>
-						</table>
+					<div class="col-md-12" id="coaches-list">
+						<%= render 'approval/coaches', coaches: @coaches %>
 					</div><!--.col-md-9-->
 				</div><!--.row-->
 			</div><!-- panel-body -->
+            
+			<div class="panel-body padding-left-40 padding-right-40">
+				<div class="row example-row">
+					<div class="col-md-12">
+						<h4 class="semi-bold text-primary">Club Directors</h4>
+					</div><!--.col-md-3-->
+					<div class="col-md-12" id="club-directors-list">
+						<%= render 'approval/club_directors', club_directors: @club_directors  %>
+					</div><!--.col-md-9-->
+				</div><!--.row-->
+			</div><!-- panel-body -->
+            
+			<div class="panel-body padding-left-40 padding-right-40">
+				<div class="row example-row">
+					<div class="col-md-12">
+						<h4 class="semi-bold text-primary">School Managers</h4>
+					</div><!--.col-md-3-->
+					<div class="col-md-12" id="school-managers-list">
+						<%= render 'approval/school_managers', school_managers: @school_managers  %>
+					</div><!--.col-md-9-->
+				</div><!--.row-->
+			</div><!-- panel-body -->
+            
+			<div class="panel-body padding-left-40 padding-right-40">
+				<div class="row example-row">
+					<div class="col-md-12">
+						<h4 class="semi-bold text-primary">Team Managers</h4>
+					</div><!--.col-md-3-->
+					<div class="col-md-12" id="team-managers-list">
+						<%= render 'approval/team_managers', team_managers: @team_managers  %>
+					</div><!--.col-md-9-->
+				</div><!--.row-->
+			</div><!-- panel-body -->
+            
+            
 		</div>
 	</div>
 </div>

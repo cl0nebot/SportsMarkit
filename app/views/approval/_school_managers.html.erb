@@ -11,24 +11,24 @@
 	<tbody>
 								
 							
-<% athletic_directors.each do |ad| %>
+<% school_managers.each do |sm| %>
 <tr>
     <td class="v-align-middle">
-    	<%= ad.roleable.name   %><br>
+    	<%= sm.roleable.name   %><br>
     </td>
     <td class="v-align-middle">
-    	<span class="capitalize"><%= ad.user.full_name %></span>
+    	<span class="capitalize"><%= sm.user.full_name %></span>
     </td>
     <td class="v-align-middle">
-    	<%= ad.user.mobile_phone_number   %>
+    	<%= sm.user.mobile_phone_number   %>
     </td>
      <td class="v-align-middle">
-    	<p class="small muted"><%= ad.created_at %></p>
+    	<p class="small muted"><%= sm.created_at %></p>
     </td>
     <td class="v-align-middle">
     	<div class="row clearfix">
         	<div class="col-md-12">
-				<%= link_to "Accept", approve_approval_path(ad.id), method: :patch, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-success row" %>
+				<%= link_to "Accept", approve_approval_path(sm.id), method: :patch, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-success row" %>
         		<%#= link_to "Delete", ad, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-danger" %>
         	</div>
         </div>

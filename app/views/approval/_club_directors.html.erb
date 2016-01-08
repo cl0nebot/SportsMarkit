@@ -1,7 +1,7 @@
 <table class="table table-condensed">
 	<thead>
 		<tr>
-			<th>School</th>
+			<th>Club</th>
 			<th>Requesting User</th>
 			<th>Mobile #</th>
 			<th>Date of Request</th>
@@ -11,24 +11,24 @@
 	<tbody>
 								
 							
-<% athletic_directors.each do |ad| %>
+<% club_directors.each do |cd| %>
 <tr>
     <td class="v-align-middle">
-    	<%= ad.roleable.name   %><br>
+    	<%= cd.roleable.name   %><br>
     </td>
     <td class="v-align-middle">
-    	<span class="capitalize"><%= ad.user.full_name %></span>
+    	<span class="capitalize"><%= cd.user.full_name %></span>
     </td>
     <td class="v-align-middle">
-    	<%= ad.user.mobile_phone_number   %>
+    	<%= cd.user.mobile_phone_number   %>
     </td>
      <td class="v-align-middle">
-    	<p class="small muted"><%= ad.created_at %></p>
+    	<p class="small muted"><%= cd.created_at %></p>
     </td>
     <td class="v-align-middle">
     	<div class="row clearfix">
         	<div class="col-md-12">
-				<%= link_to "Accept", approve_approval_path(ad.id), method: :patch, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-success row" %>
+				<%= link_to "Accept", approve_approval_path(cd.id), method: :patch, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-success row" %>
         		<%#= link_to "Delete", ad, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-small btn-danger" %>
         	</div>
         </div>
