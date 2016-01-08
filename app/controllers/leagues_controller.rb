@@ -83,7 +83,7 @@ class LeaguesController < ApplicationController
   end
   
   def managers
-    @league_managers = Role.where(roleable_type: "League", roleable_id: @league.id, role: "League Manager", status: "Active")
+    @league_managers = Role.where(roleable_type: "League", role: "League Manager", status: "Active")
   end
   
   protected

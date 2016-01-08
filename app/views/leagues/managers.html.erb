@@ -40,8 +40,8 @@
 					          	<% @league_managers.each do |lm| %>
 						            <tr>
 						            	<td><%= lm.user.full_name %></td>
-							            <td><%= lm.league.name %></td>
-							            <td><%= lm.user.mobile_phone_number %></td>
+							            <td><%= lm.roleable.name %></td>
+							            <td><%= number_to_phone(lm.user.mobile_phone_number) %></td>
 							            <td><%= lm.user.email %></td>
 							            <td><%= time_ago_in_words(lm.created_at) %> ago</td>
 							        </tr>
