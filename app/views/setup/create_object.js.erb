@@ -1,0 +1,7 @@
+$('#<%= params[:classification].delete(" ") %>-list').html("<%= j render 'setup/selected_objects', objects: selected_objects(params[:classification], @user), classification: params[:classification], user: @user %>")
+// $('#list').after("<%= j render 'setup/object', object: @object, classification: params[:classification], user: @user %>")
+$('#panel-new-<%= params[:object_type].downcase %>-setup').hide()
+$('.modal-backdrop').css({
+     'position': 'relative'
+ });
+ 
