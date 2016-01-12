@@ -1,0 +1,5 @@
+<% unless object.instance_of?(User) %>
+  <%= link_to "/#{object.class.to_s.downcase.underscore.pluralize}/#{object.slug}/announcements", class: "mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20" do %>
+      <i class="ion-speakerphone fs_16 mr5"></i> View Announcements
+  <% end %>
+<% end %>
