@@ -1,0 +1,3 @@
+$('#new-events').html('<%= j(render 'small_form', e: @object.events.build, object: @object) %>');
+$('#old-events').append('<%= j(render 'small_form', e: @event, object: @object) %>');
+Layout.initSelectPicker();

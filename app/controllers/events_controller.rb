@@ -1,12 +1,12 @@
-require "teams_controller"
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_object, except: [:show, :destroy, :edit, :update]
+  before_action :find_object, except: [:show, :destroy, :edit, :update, :index]
   require 'twilio-ruby'
   
   def index
-    @events = @object.events
-    @user = User.friendly.find(params[:user_id])
+    @events = Event.all
+    @upcoming_events = @events.upcoming_events
+    @user = current_user
   end
   
   def new
@@ -49,6 +49,55 @@ class EventsController < ApplicationController
     else
       render 'new'
     end
+  end
+  
+  def add
+    @event = @object.events.build
+  end
+  
+  def create_event
+    @event = @object.events.build(event_params)
+    @event.opponent_type = "Team"
+    if @event.save
+      Connect.create(ownerable_id: @event.id, ownerable_type: "Event", connectable_type: "Facility", connectable_id: params[:event][:facility_ids])
+      if @event.eventable_type == "Team"
+        user_ids = Team.find(@event.eventable_id).roles.where(status: "Active").pluck(:user_id)
+        opponent_ids = Team.find(@event.opponent_id).roles.where(status: "Active").pluck(:user_id) rescue []
+        all_ids = (user_ids + opponent_ids).uniq
+        all_ids.each do |i|
+          Attendee.create(user_id: i, event_id: @event.id, yes: true)
+        end
+      end
+      @event.name_and_phone_numbers.each do |obj|
+        receiving_number = obj.last
+
+        twilio_sid = ENV['TWILIO_SID']
+        twilio_token = ENV['TWILIO_AUTH_TOKEN']
+        twilio_phone_number = "2027590519"
+        @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+      begin
+        @twilio_client.account.messages.create(
+          :from => "+1#{twilio_phone_number}",
+          :to => receiving_number,
+          :body => "Hello #{obj.first}! A new #{@event.event_type} has been created: #{@event.title} "
+        )
+      rescue Twilio::REST::RequestError => e
+        puts e.message
+      end
+      
+      end
+      
+      respond_to do |format|
+        format.html{redirect_to :back}
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html{redirect_to :back}
+        format.js
+      end
+    end
+    
   end
   
   def show

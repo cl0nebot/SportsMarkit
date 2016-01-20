@@ -1,0 +1,37 @@
+<div class="">
+    <div class="panel box-shadow-ccc">
+        <div class="panel-header bg-cyan"><br/>
+            <h5 class="text-right text-white semi-bold">Manage Events
+                <i class="ion-plus-circled margin-right-10 margin-left-10 text-white"></i>
+            </h5>
+            <hr class="margin-top-0"/>
+        </div>
+        <div class="panel-body" style="border-bottom: 1px solid #ddd;">
+            <div class="row">
+                <div class="">
+                    <div class="row text-center">
+                        <div class="col-md-12">
+                            <h3 class="semi-bold text-primary">Create Events</h3>
+                             <%= link_to "Add Event", eval("add_#{@object.class.to_s.downcase.underscore}_events_path(@object)"), method: :get ,remote: true, class: 'btn btn-large btn-blue pull-right' %>
+                        </div>
+                    </div>
+                   
+                    Add New Event
+                    <div id="new-events">
+                      <%= render 'events/small_form', object: @object, e: @event %>
+                    </div>
+                    <div></div>
+                    Upcoming Events
+                    <div id="old-events">
+                      <% @object.events.where.not(id: nil).each do |event| %>
+                        <%= render 'events/small_form', object: @object, e: event %>
+                      <% end %>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                   

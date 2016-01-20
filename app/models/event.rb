@@ -8,11 +8,19 @@ class Event < ActiveRecord::Base
   friendly_id :use_for_slug, use: [:slugged, :finders]
   has_many :attendees, dependent: :destroy
   
+  def fake_id
+    @fake_id ||= id || SecureRandom.hex
+  end
+  
   has_one :event_facility, dependent: :destroy
   has_many :connects, as: :ownerable, dependent: :destroy 
   
   def self.between(start_time, end_time)
     where('starts_at >= ?', Event.format_date(start_time)).where('starts_at <= ?', Event.format_date(end_time)).where.not('starts_at > ?', Event.format_date(end_time)).uniq
+  end
+  
+  def self.upcoming_events
+    where('ends_at >= ?', Time.now).order('starts_at ASC')
   end
   
   def use_for_slug

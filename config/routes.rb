@@ -63,7 +63,12 @@ Rails.application.routes.draw do
       resources :teams
       resources :photos
       resources :profile_pictures, only: %w[create update destroy]
-      resources :events
+      resources :events do
+        collection do
+          get :add
+          post :create_event
+        end
+      end
       resource :calendar do
         get :events, on: :member
       end
@@ -76,7 +81,12 @@ Rails.application.routes.draw do
       resources :announcements
       resources :photos
       resources :profile_pictures, only: %w[create update destroy]
-      resources :events
+      resources :events do
+        collection do
+          get :add
+          post :create_event
+        end
+      end
       resources :media
       resources :chat
       resource :calendar do
@@ -99,7 +109,12 @@ Rails.application.routes.draw do
         get :selection_option
         post :create_from_modal
       end
-      resources :events
+      resources :events do
+        collection do
+          get :add
+          post :create_event
+        end
+      end
       resource :calendar do
         get :events, on: :member
       end
@@ -112,7 +127,12 @@ Rails.application.routes.draw do
     resources :leagues do
       resources :announcements
       resources :profile_pictures, only: %w[create update destroy]
-      resources :events
+      resources :events do
+        collection do
+          get :add
+          post :create_event
+        end
+      end
       resource :calendar do
         get :events, on: :member
       end
@@ -155,6 +175,7 @@ Rails.application.routes.draw do
     resources :uploads do
       collection do
         post :import
+        post :roster
       end
     end
     
@@ -165,7 +186,12 @@ Rails.application.routes.draw do
       resources :teams
       resources :photos
       resources :profile_pictures, only: %w[create update destroy]
-      resources :events
+      resources :events do
+        collection do
+          get :add
+          post :create_event
+        end
+      end
       resource :calendar do
         get :events, on: :member
       end
