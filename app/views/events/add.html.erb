@@ -1,36 +1,53 @@
-<div class="">
-    <div class="panel box-shadow-ccc">
-        <div class="panel-header bg-cyan"><br/>
-            <h5 class="text-right text-white semi-bold">Manage Events
-                <i class="ion-plus-circled margin-right-10 margin-left-10 text-white"></i>
-            </h5>
-            <hr class="margin-top-0"/>
+<div class="content">
+  <div class="page-header full-content bg-blue">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1>Create Events <small>(<%= @object.events.count %>)</small></h1>
+      </div><!--.col-->
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="#" class="active">all events</a></li>
+        </ol>
+      </div><!--.col-->
+    </div><!--.row-->
+  </div><!--.page-header-->
+
+  <div class="row">
+
+
+  <div class="col-md-12">
+    <div class="panel box-shadow-ccc pb50">
+      <div class="panel-header bg-cyan pl20 pt20">
+        <h4 class="text-left text-white semi-bold">Create Multiple Events</h4>
+        <hr class="margin-top-0"/>
+      </div>
+      <div class="panel-body pl50 pr50">
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="semi-bold text-bold mb0">Need to create multiple events, no problem.</h3>
+            <p class="text-muted">Use the form below to create multiple events</p>
+          </div>
         </div>
-        <div class="panel-body" style="border-bottom: 1px solid #ddd;">
-            <div class="row">
-                <div class="">
-                    <div class="row text-center">
-                        <div class="col-md-12">
-                            <h3 class="semi-bold text-primary">Create Events</h3>
-                             <%= link_to "Add Event", eval("add_#{@object.class.to_s.downcase.underscore}_events_path(@object)"), method: :get ,remote: true, class: 'btn btn-large btn-blue pull-right' %>
-                        </div>
-                    </div>
-                   
-                    Add New Event
-                    <div id="new-events">
-                      <%= render 'events/small_form', object: @object, e: @event %>
-                    </div>
-                    <div></div>
-                    Upcoming Events
-                    <div id="old-events">
-                      <% @object.events.where.not(id: nil).each do |event| %>
-                        <%= render 'events/small_form', object: @object, e: event %>
-                      <% end %>
-                    </div>                    
-                </div>
-            </div>
+        <hr class="mt10"/>
+        <h5 class="semi-bold text-primary">1. Add New Event</h4>
+        
+        <div id="new-events">
+          <%= render 'events/small_form', object: @object, e: @event %>
         </div>
+        <br/>
+        <div id="old-events">
+          <% @object.events.where.not(id: nil).each do |event| %>
+            <%= render 'events/small_form', object: @object, e: event %>
+          <% end %>
+        </div> 
+        <br/>                   
+        <%= link_to eval("add_#{@object.class.to_s.downcase.underscore}_events_path(@object)"), method: :get ,remote: true, class: 'btn btn-large btn-blue' do %>
+          <i class="ion ion-plus-circled mr5"></i> Add Another Event
+        <% end %>
+      </div>
     </div>
+  </div>
 </div>
 
 
