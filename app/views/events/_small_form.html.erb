@@ -31,10 +31,10 @@
      <div class="col-md-4">
        <div class="input-wrapper">
          <span class="text-muted text-small fs_14 lh_40">Date of Event</span>
-         <% if @event.new_record? %>
+         <% if e.new_record? %>
          <input type="text" style="width: 500px" name="event[reservation]" class="form-control bootstrap-daterangepicker-date-time" value="<%=Time.now.month %>/<%=Time.now.day %>/<%=Time.now.year %> <%=Time.now.strftime("%I:%M %p") %> - <%=Time.now.month %>/<%=Time.now.day %>/<%=Time.now.year %> <%=(Time.now + 1.hour).strftime("%I:%M %p") %>">
          <% else %>
-         <input type="text" style="width: 500px" name="event[reservation]" class="form-control bootstrap-daterangepicker-date-time" value="<%= @event.starts_at.month %>/<%=@event.starts_at.day %>/<%=@event.starts_at.year %> <%=@event.starts_at.strftime("%I:%M %p") %> - <%= @event.ends_at.month %>/<%=@event.ends_at.day %>/<%=@event.ends_at.year %> <%=@event.ends_at.strftime("%I:%M %p") %>">
+         <input type="text" style="width: 500px" name="event[reservation]" class="form-control bootstrap-daterangepicker-date-time" value="<%= e.starts_at.month %>/<%=e.starts_at.day %>/<%=e.starts_at.year %> <%=e.starts_at.strftime("%I:%M %p") %> - <%= e.ends_at.month %>/<%=e.ends_at.day %>/<%=e.ends_at.year %> <%=e.ends_at.strftime("%I:%M %p") %>">
          <% end %>
         </div>
       </div>
