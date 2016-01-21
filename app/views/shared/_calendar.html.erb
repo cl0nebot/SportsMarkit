@@ -3,6 +3,7 @@
 		<% if @object.can_be_edited_by_user?(current_user) %>
 		<p class="text-right">
 			<%= link_to "New Event", eval("new_#{@object.class.to_s.downcase}_event_path(@object.friendly_id)"), class: "btn btn-pink" %>
+            <%= link_to "Manage Events", eval("add_#{@object.class.to_s.downcase}_events_path(@object.friendly_id)"), class: "btn btn-pink" %>
 		</p>
 		<% end %>
 	<% end %>
