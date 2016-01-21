@@ -1,4 +1,4 @@
-<div id="event-<%= e.fake_id %>" class="mb20 pr50 pl50 pt50 well">
+<div id="event-<%= e.fake_id %>" class="mb20 pr20 pl20 pt20 well">
   <%= form_for [object, e], url: eval("create_event_#{object.class.to_s.downcase.underscore}_events_path(object, e)"), html: {id: 'event-form'} do |f| %>
      
     <div class="row">
@@ -26,8 +26,6 @@
       </div><!--.col-md-2-->
      <% end %>
     </div>
-
-   <br/>
 
     <div class="row">
      <div class="col-md-4">
@@ -63,15 +61,13 @@
         </div>
       </div>
 
-      <br/>
-      <br/>
-    
+      
       <div class="row">
         <%= f.hidden_field :user_id, value: current_user.id %>
         <% if @event.new_record? %>
           <%= f.hidden_field :eventable_type, value: @object.class.to_s %>
         <% end %>
-          <div class="col-md-2 pull-right">
+          <div class="col-md-2 pull-left">
         <% if e.persisted? %>
         <button class="btn btn-large btn-blue submit-form"> Update </button>
         <button class="btn btn-large btn-blue">
