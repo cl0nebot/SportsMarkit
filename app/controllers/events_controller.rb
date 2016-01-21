@@ -124,6 +124,22 @@ class EventsController < ApplicationController
     end
   end
   
+  def update_event
+    @event = Event.friendly.find(params[:event][:id])
+    if @event.update_attributes(event_params)
+      @event.connects.last.update(connectable_id: params[:event][:facility_ids])
+      respond_to do |format|
+        format.html{redirect_to :back}
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html{redirect_to :back}
+        format.js
+      end
+    end
+  end
+  
   def destroy
     @event = Event.friendly.find(params[:id])
     @object_type = @event.eventable_type
@@ -149,6 +165,38 @@ class EventsController < ApplicationController
     redirect_to eval("new_#{@object_type.downcase}_event_path(@object.friendly_id)")
   end
   
+  def destroy_event
+    @event = Event.friendly.find(params[:id])
+    @id = @event.id
+    @object_type = @event.eventable_type
+    @object_id = @event.eventable_id
+    @object = @object_type.constantize.find(@object_id)
+    @event.name_and_phone_numbers.each do |obj|
+      receiving_number = obj.last
+
+      twilio_sid = ENV['TWILIO_SID']
+      twilio_token = ENV['TWILIO_AUTH_TOKEN']
+      twilio_phone_number = "2027590519"
+      @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+      
+      @twilio_client.account.messages.create(
+        :from => "+1#{twilio_phone_number}",
+        :to => receiving_number,
+        :body => "Hello #{obj.first}! Your event #{@event.title} has been canceled."
+      )
+      
+    end
+    
+    @event.destroy
+    respond_to do |format|
+      format.html{redirect_to :back}
+      format.js
+    end
+  end
+  
+  
+  
+  
   def rsvp
     @event = Event.find(params[:event_id])
     @user = User.find(params[:user_id])
@@ -168,7 +216,7 @@ class EventsController < ApplicationController
   protected
   
   def event_params
-    params.require(:event).permit(:user_id, :eventable_id, :eventable_type, :opponent_id, :opponent_type, :event_type, :title, :starts_at, :ends_at, :all_day, :description, :private, :created_by, :reservation)
+    params.require(:event).permit(:user_id, :eventable_id, :eventable_type, :opponent_id, :opponent_type, :event_type, :title, :starts_at, :ends_at, :all_day, :description, :private, :created_by, :reservation, facility_ids: [])
   end
   
   def find_object

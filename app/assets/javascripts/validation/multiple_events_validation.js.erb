@@ -1,0 +1,87 @@
+$(function(){
+  if($('div').is('#multiple-events-page')){
+    $( ".submit-form" ).attr('disabled', true);
+      
+    
+    init_multiple_event_title_validator();
+    init_multiple_event_event_type_validator();
+    init_multiple_event_facility_validator();
+    // init_multiple_event_description_validator();
+    init_multiple_event_form_validator();
+   
+  }
+})
+
+function init_multiple_event_title_validator() {
+  $('.title').on("keyup change", function() {
+    var object = $(this)
+    var objectVal = $(this).val();
+     if (objectVal == "" ) {
+      $(this).parent().siblings('.title_field').html("<font size='2' color='red'>This field is required.</font>")
+    } else if (objectVal.length < 2) {
+      $(this).parent().siblings('.title_field').html("<font size='2' color='red'>Must be at least 2 characters.</font>")
+    } else if (objectVal.length >= 2) {
+      $(this).parent().siblings('.title_field').html("<font size='2' color='green'><b></b> </font>")
+    }
+  })
+};
+
+function init_multiple_event_event_type_validator() {
+  $('.event_type').on("keyup change", function() {
+    var object = $(this)
+    var objectVal = $(this).val();
+     if (objectVal == "" ) {
+      $(this).parent().siblings('.event_type_field').html("<font size='2' color='red'>This field is required.</font>")
+    } else {
+      $(this).parent().siblings('.event_type_field').html("<font size='2' color='green'><b></b> </font>")
+    }
+  })
+}
+
+function init_multiple_event_facility_validator() {
+  $('.facility').on("keyup change", function() {
+    var object = $(this)
+    var objectVal = $(this).val();
+     if (objectVal == "" ) {
+      $(this).parent().siblings('.facility_field').html("<font size='2' color='red'>This field is required.</font>")
+    } else {
+      $(this).siblings('.facility_field').html("<font size='2' color='green'>Facility looks good. </font>")
+    }
+  })
+}
+
+function init_multiple_event_description_validator() {
+  $('.description').on("keyup change", function() {
+    var object = $(this)
+    var objectVal = $(this).val();
+     if (objectVal == "" ) {
+      $(this).parent().siblings('.description_field').html("<font size='2' color='red'>This field is required.</font>")
+    } else if (objectVal.length < 2) {
+      $(this).parent().siblings('.description_field').html("<font size='2' color='red'>Must be at least 2 characters.</font>")
+    } else if (objectVal.length >= 2) {
+      $(this).parent().siblings('.description_field').html("<font size='2' color='green'><b></b> </font>")
+    }
+  })
+}
+
+function init_multiple_event_form_validator() {
+  $('.multiple-event-form').on("keyup change", function() {
+    var eventtitle = $(this).find('#event_title')
+    var eventtitleVal = $(this).find('#event_title').val();
+    var eventtype = $(this).find('#event_event_type')
+    var eventtypeVal = $(this).find('#event_event_type').val();
+    var eventfacility = $(this).find('#event_facility_ids')
+    var eventfacilityVal = $(this).find('#event_facility_ids').val();
+    var eventdescription = $(this).find('#event_description')
+    var eventdescriptionVal = $(this).find('#event_description').val();
+      if (eventtitleVal.length < 2) {
+        $( ".submit-form" ).attr('disabled', true);
+      } else if (eventtypeVal == "") {
+       $( ".submit-form" ).attr('disabled', true);
+      } else if (eventfacilityVal == "") {
+       $( ".submit-form" ).attr('disabled', true);
+      } else {
+        $( ".submit-form" ).removeAttr('disabled');
+      }
+  })
+}

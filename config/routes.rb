@@ -67,6 +67,10 @@ Rails.application.routes.draw do
         collection do
           get :add
           post :create_event
+          patch :update_event
+        end
+        member do
+          get :destroy_event
         end
       end
       resource :calendar do
@@ -85,6 +89,10 @@ Rails.application.routes.draw do
         collection do
           get :add
           post :create_event
+          patch :update_event
+        end
+        member do
+          get :destroy_event
         end
       end
       resources :media
@@ -113,6 +121,10 @@ Rails.application.routes.draw do
         collection do
           get :add
           post :create_event
+          patch :update_event
+        end
+        member do
+          get :destroy_event
         end
       end
       resource :calendar do
@@ -131,6 +143,10 @@ Rails.application.routes.draw do
         collection do
           get :add
           post :create_event
+          patch :update_event
+        end
+        member do
+          get :destroy_event
         end
       end
       resource :calendar do
@@ -190,6 +206,10 @@ Rails.application.routes.draw do
         collection do
           get :add
           post :create_event
+          patch :update_event
+        end
+        member do
+          get :destroy_event
         end
       end
       resource :calendar do

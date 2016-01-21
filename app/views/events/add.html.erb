@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" id="multiple-events-page">
   <div class="page-header full-content bg-blue">
     <div class="row">
       <div class="col-sm-6">
@@ -26,8 +26,10 @@
         <div class="row">
           <div class="col-md-12">
             <div class="pull-right">
+                <% if false %>
               <%= link_to eval("add_#{@object.class.to_s.downcase.underscore}_events_path(@object)"), method: :get ,remote: true, class: 'btn btn-large btn-blue' do %>
                 <i class="ion ion-plus-circled mr5"></i> Add Another Event
+              <% end %>
               <% end %>
             </div>
             <h3 class="semi-bold text-bold mb0">Need to create multiple events, no problem.</h3>
@@ -35,7 +37,12 @@
           </div>
         </div>
         <hr class="mt10"/>
-        <h5 class="semi-bold text-primary">1. Add New Event</h4>
+        <h5 class="semi-bold text-primary" id="add-event-header">1. Add New Event 
+            <div class="pull-right" id='created-message'>
+                
+            </div>
+        </h4>
+            
         
         <div id="new-events">
           <%= render 'events/small_form', object: @object, e: @event %>

@@ -8,7 +8,7 @@
 	<div class="page-header full-content bg-blue">
 		<div class="row">
 			<div class="col-sm-5">
-				<h1>All Events <small>(<%= @object.events.count %>)</small></h1>
+				<h1>All Events <small>(<%= @events.count %>)</small></h1>
 			</div><!--.col-->
 			<div class="col-sm-6">
 				<ol class="breadcrumb">
@@ -26,11 +26,11 @@
 
 	<div class="row">
 		
-		<% @object.upcoming_events.each do |event| %>
-		<div id="rsvp-for-event-<%= event.id %>">
-			<%= render 'events/event', event: event %>
-		</div>
-		<% end %>
+		
+		
+			<%= render @upcoming_events %>
+		
+		
 
 	</div><!--.row-->
 
