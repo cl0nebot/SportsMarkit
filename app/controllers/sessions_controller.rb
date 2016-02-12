@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
         redirect_to user_email_path(user)
       else
         if user.signin_count < 1 or user.classifications.blank?
-          if user.mobile_phone_number.present? && Relationship.where(user_id: user.id, mobile_phone_number: user.mobile_phone_number)
+          if user.mobile_phone_number.present? && Role.where(user_id: user.id, mobile_phone_number: user.mobile_phone_number).present?
             send_mobile_notification(user)
           end
           user.increment!(:signin_count)
@@ -55,8 +55,8 @@ class SessionsController < ApplicationController
   end
   
   def send_mobile_notification(user)
-    relationship_ids = user.relationships.pluck(:team_id)
-    coach_user_ids = Relationship.where(team_id: relationship_ids, head: true, accepted: true).pluck(:user_id)
+    role_ids = user.roles.pluck(:roleable_id)
+    coach_user_ids = Role.where(roleable_type: "Team", roleable_id: role_ids, status: "Active", role: "Coach").pluck(:user_id)
     
     User.where(id: coach_user_ids).each do |coach|
       
