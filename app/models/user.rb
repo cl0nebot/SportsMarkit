@@ -477,6 +477,7 @@ Login: #{user.mobile_phone_number}
 Password: #{password}"
     )
     rescue Twilio::REST::RequestError => e
+      Rails.logger.info("Error when attempting to send sms to #{user.mobile_phone_number}")
       puts e.message
     end
   end
