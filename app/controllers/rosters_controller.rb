@@ -5,6 +5,7 @@ class RostersController < ApplicationController
     variables  
     @blank = @array.compact.blank?
     @valid_phone_number = @mobile_number.present? ? (@mobile_number.to_i == 10 ? true : false) : true
+     Rails.logger.info("Phone number is invalid.") unless @valid_phone_number
     if (@blank == false || @valid_phone_numnber == true)
       Rails.logger.info("Phone number is valid.") if @valid_phone_number
       @mobile_number.present? ? (@user_exists ? add_existing_user_to_roster : create_new_user_and_roster_spot) : create_userlesss_roster_spot
