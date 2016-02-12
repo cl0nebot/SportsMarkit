@@ -4,7 +4,7 @@ class RostersController < ApplicationController
   def create
     variables  
     @blank = @array.compact.blank?
-    @valid_phone_number = @mobile_number.present? ? (@mobile_number.to_i == 10 ? true : false) : true
+    @valid_phone_number = @mobile_number.present? ? ((Math.log10(@mobile_number.to_i).to_i + 1) == 10 ? true : false) : true
      Rails.logger.info("Phone number is invalid.") unless @valid_phone_number
     if (@blank == false || @valid_phone_numnber == true)
       Rails.logger.info("Phone number is valid.") if @valid_phone_number
