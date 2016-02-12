@@ -260,4 +260,6 @@ Rails.application.routes.draw do
     get '/500' => 'errors#server_error'
     
     post "setup/create_object" => "setup#create_object"
+
+    get "/checkemail" => "users#email_check"
 end
