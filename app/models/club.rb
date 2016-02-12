@@ -56,6 +56,10 @@ class Club < ActiveRecord::Base
   
   def category_and_classification
     "#{classification_with_hyphen} #{category.try(:downcase)}"
-  end  
+  end 
+  
+  def self.classification_with_hyphen(classification)
+    classification.downcase.gsub(" ","-")
+  end
 
 end
