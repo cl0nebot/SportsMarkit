@@ -17,7 +17,16 @@ Rails.application.routes.draw do
       post :add_coach_team_at_setup
       post :add_child_at_setup
       resources :user_profile_pictures, only: %w[create update destroy]
-      resources :events
+      resources :events do
+        collection do
+          get :add
+          post :create_event
+          patch :update_event
+        end
+        member do
+          get :destroy_event
+        end
+      end
       resource :calendar do
         get :events, on: :member
       end
@@ -83,6 +92,12 @@ Rails.application.routes.draw do
     
     resources :teams do
       resources :announcements
+      resources :registrations
+      resources :custom_forms do
+        collection do
+          get :change_field
+        end
+      end
       resources :photos
       resources :profile_pictures, only: %w[create update destroy]
       resources :events do
