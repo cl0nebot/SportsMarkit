@@ -49,6 +49,12 @@ Rails.application.routes.draw do
 
     get "welcome" => "users#welcome", as: :user_welcome
 
+    concern :documentable do
+      resources :documents, except: %w[destroy]
+    end
+
+    resources :documents, only: %w[destroy]
+
     resources :messages do
       collection do
         get :chatroom
@@ -65,7 +71,7 @@ Rails.application.routes.draw do
     end
     resources :sessions
     resources :password_resets
-    resources :schools do
+    resources :schools, concerns: :documentable do
       resources :announcements
       resources :facilities
       resources :media
@@ -90,7 +96,7 @@ Rails.application.routes.draw do
       patch :upgrade_school
     end
     
-    resources :teams do
+    resources :teams, concerns: :documentable do
       resources :announcements
       resources :registrations
       resources :custom_forms do
@@ -125,7 +131,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :facilities do
+    resources :facilities, concerns: :documentable do
       resources :announcements
       resources :profile_pictures, only: %w[create update destroy]
       collection do
@@ -151,7 +157,7 @@ Rails.application.routes.draw do
     end
 
     resources :tournaments
-    resources :leagues do
+    resources :leagues, concerns: :documentable do
       resources :announcements
       resources :profile_pictures, only: %w[create update destroy]
       resources :events do
@@ -210,7 +216,7 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :clubs do
+    resources :clubs, concerns: :documentable do
       resources :announcements
       resources :facilities
       resources :media

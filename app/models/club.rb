@@ -19,6 +19,8 @@ class Club < ActiveRecord::Base
   
   before_update :update_slug
   
+  has_many :documents, as: :documentable, dependent: :destroy
+  
   def minus_self
     Club.where.not(id: id)
   end

@@ -30,7 +30,9 @@ class Team < ActiveRecord::Base
   has_many :leagues, through: :team_leagues
   
   before_update :update_slug
-    
+  
+  has_many :documents, as: :documentable, dependent: :destroy
+
   def use_for_slug
     existing_team = Team.where('slug = ?', self.slug)
     if existing_team.present?

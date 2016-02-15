@@ -307,6 +307,7 @@ hr.light {border-top-color: #fff; border-bottom: 1px solid #eee;}
 
 .example-row > div:first-child {font-size: 16px; color: #aaa;}
 input.form-control {font-size: 26px; line-height: 30px;}
+textarea.form-control {font-size: 26px; line-height: 30px;}
 
 .bg-muted {background: #f7f7f7;}
 

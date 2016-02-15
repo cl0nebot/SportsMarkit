@@ -24,6 +24,8 @@ class Facility < ActiveRecord::Base
   has_many :team_facilities
   before_update :update_slug
   
+  has_many :documents, as: :documentable, dependent: :destroy
+  
   def minus_self
     Facility.where.not(id: id)
   end
