@@ -50,10 +50,10 @@ Rails.application.routes.draw do
     get "welcome" => "users#welcome", as: :user_welcome
 
     concern :documentable do
-      resources :documents, except: %w[destroy]
+      resources :documents, except: %w[destroy show]
     end
 
-    resources :documents, only: %w[destroy]
+    resources :documents, only: %w[destroy show]
 
     resources :messages do
       collection do
