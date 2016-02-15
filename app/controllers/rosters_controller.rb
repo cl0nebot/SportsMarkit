@@ -2,11 +2,14 @@ class RostersController < ApplicationController
   require 'twilio-ruby'
   
   def create
-    variables
+    variables  
     @blank = @array.compact.blank?
-    @valid_phone_number = @mobile_number.present? ? (@mobile_number.to_i == 10 ? true : false) : true
+    @valid_phone_number = @mobile_number.present? ? ((Math.log10(@mobile_number.to_i).to_i + 1) == 10 ? true : false) : true
+     Rails.logger.info("Phone number is invalid.") unless @valid_phone_number
     if (@blank == false || @valid_phone_numnber == true)
+      Rails.logger.info("Phone number is valid.") if @valid_phone_number
       @mobile_number.present? ? (@user_exists ? add_existing_user_to_roster : create_new_user_and_roster_spot) : create_userlesss_roster_spot
+      Rails.logger.info("User already exists") if @user_exists
     end
   end
   
@@ -262,6 +265,7 @@ class RostersController < ApplicationController
   
   def send_mobile_invitation(user, password)
     receiving_number = user.mobile_phone_number
+    Rails.logger.info("Sending text message to #{user.mobile_phone_number}")
 
     twilio_sid = ENV['TWILIO_SID']
     twilio_token = ENV['TWILIO_AUTH_TOKEN']

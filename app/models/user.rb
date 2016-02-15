@@ -435,8 +435,11 @@ class User < ActiveRecord::Base
     password = User.generate_temporary_password(first_name)
     new_user = User.new(first_name: first_name, last_name: last_name, mobile_phone_number: mobile_number, password: password)
     if new_user.save
+      Rails.logger.info("New user created...")
       new_user.create_profile
+      Rails.logger.info("New user profile created...")
       Role.create_new_role(new_user.id, array, params)
+      Rails.logger.info("New user role created...")
       User.send_mobile_invitation(new_user, password)
     end
   end
@@ -456,6 +459,7 @@ class User < ActiveRecord::Base
   
   def self.send_mobile_invitation(user, password)
     receiving_number = user.mobile_phone_number
+    Rails.logger.info("Sending text invitation to #{user.mobile_phone_number}")
 
     twilio_sid = ENV['TWILIO_SID']
     twilio_token = ENV['TWILIO_AUTH_TOKEN']
@@ -473,6 +477,7 @@ Login: #{user.mobile_phone_number}
 Password: #{password}"
     )
     rescue Twilio::REST::RequestError => e
+      Rails.logger.info("Error when attempting to send sms to #{user.mobile_phone_number}")
       puts e.message
     end
   end

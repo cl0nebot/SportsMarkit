@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-lg-12 col-md-4 col-sm-6">
 				<h4 class="text-indigo bold fs_20 text-center">
-					<span class="ion-person mr10"></span> School Athletic Directory
+					<span class="ion-person mr10"></span> Directory
 				</h4>
 				<!-- <div class="row example-row no-margin">
 					<div class="inputer floating-labe no-margin">
@@ -23,7 +23,7 @@
 			<div class="well bgcolor-light-grey no-margin">
 				<div class="btn-group btn-block">
 					<button type="button" class="btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-						Student-Athletes <span class="ml5 caret"></span>
+						<%= params[:controller] == "clubs" ? "Athletes" : "Student-Athletes" %> <span class="ml5 caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
 						<% @athletes.each do |user| %>

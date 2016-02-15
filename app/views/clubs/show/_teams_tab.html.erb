@@ -7,7 +7,7 @@
 		</div>
 		<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
 			<h1 class="text-indigo no-margin bold"><%= @club.athletes.count + @club.userless_athletes.count %></h1>
-			<h6 class="text-grey semi-bold no-margin"><%= ((@club.athletes.count + @club.userless_athletes.count) > 1 or (@club.athletes.count + @club.userless_athletes.count) == 0) ? "Student-Athletes" : "Student-Athlete" %></h6>
+			<h6 class="text-grey semi-bold no-margin"><%= ((@club.athletes.count + @club.userless_athletes.count) > 1 or (@club.athletes.count + @club.userless_athletes.count) == 0) ? "Athletes" : "Athlete" %></h6>
 		</div>
 		<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
 			<h1 class="text-indigo no-margin bold"><%= @club.coaches.count + @club.userless_coaches.count %></h1>
