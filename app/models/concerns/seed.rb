@@ -225,7 +225,7 @@ module Seed
     
     def convert_school_to_club(id)
       school = School.find(id)
-      club = Club.create(
+      club = Club.new(
                   name: school.name,
                   classification: school.classification,
                   abbreviation: school.abbreviation,
@@ -254,6 +254,20 @@ module Seed
                   enrollment: school.enrollment, 
                   faculty: school.faculty,
                   )
+       club.address.build(
+                          street_1: school.street_1, 
+                          street_2: school.street_2, 
+                          city: school.city, 
+                          county: school.county, 
+                          state: school.state, 
+                          country: school.country, 
+                          postcode: school.postcode, 
+                          suite: school.suite, 
+                          default: school.default, 
+                          nickname: school.nickname, 
+                          latitude: school.latitude, 
+                          longitude: school.longitude,)  
+          club.save!                     
                   
        school.roles.update_all(roleable_type: "Club", roleable_id: club.id)
        school.userless_roles.update_all(userless_id: club.id, userless_type: "Club")
