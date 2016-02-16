@@ -255,18 +255,18 @@ module Seed
                   faculty: school.faculty,
                   )
        club.address.build(
-                          street_1: school.street_1, 
-                          street_2: school.street_2, 
-                          city: school.city, 
-                          county: school.county, 
-                          state: school.state, 
-                          country: school.country, 
-                          postcode: school.postcode, 
-                          suite: school.suite, 
-                          default: school.default, 
-                          nickname: school.nickname, 
-                          latitude: school.latitude, 
-                          longitude: school.longitude,)  
+                          street_1: school.address.street_1, 
+                          street_2: school.address.street_2, 
+                          city: school.address.city, 
+                          county: school.address.county, 
+                          state: school.address.state, 
+                          country: school.address.country, 
+                          postcode: school.address.postcode, 
+                          suite: school.address.suite, 
+                          default: school.address.default, 
+                          nickname: school.address.nickname, 
+                          latitude: school.address.latitude, 
+                          longitude: school.address.longitude,)  
           club.save!                     
                   
        school.roles.update_all(roleable_type: "Club", roleable_id: club.id)
