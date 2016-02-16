@@ -21,11 +21,31 @@
           </button>
         </div>
       </div>
+      <br>
+      <div class="row clearfix">
+        <div class="col-md-6">
+          <a class="btn btn-block btn-sm btn-info row btn-ripple" href="<%= document_path(document.id) %>">
+            <span class="ion-clipboard"></span>
+          </a>
+        </div>
+        <div class="col-md-6">
+          <a class="btn btn-block btn-sm btn-default row btn-ripple" href="#">
+            <span class="ion-link"></span>
+          </a>
+        </div>
+      </div>
       <%= render 'edit_document', document: document %>
     <% else %>
       <div class="row clearfix">
         <div class="col-md-6">
-          <%= link_to "Sign", 'javascript:void(0)' do %><% end %>
+          <a class="btn btn-block btn-sm btn-info row btn-ripple" href="<%= document_path(document.id) %>">
+            <span class="ion-clipboard"></span>
+          </a>
+        </div>
+        <div class="col-md-6">
+          <a class="btn btn-block btn-sm btn-default row btn-ripple" href="#">
+            <span class="ion-link"></span>
+          </a>
         </div>
       </div>
     <% end %>

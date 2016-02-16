@@ -1,7 +1,7 @@
 class DocumentsController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin!
-  before_action :find_documentable, except: %w[destroy]
+  before_action :find_documentable, except: %w[destroy show]
   before_action :find_document, only: %w[edit update]
 
   def index
@@ -21,6 +21,10 @@ class DocumentsController < ApplicationController
       format.html{redirect_to :back}
       format.js
     end
+  end
+
+  def show
+    @document = Document.where(id: params[:id]).first
   end
 
   def update
