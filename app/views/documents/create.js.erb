@@ -1,0 +1,8 @@
+<% if @documents.present? %>
+  $('#document-list > tbody').html('<%= j render(@documents) %>');
+  $('#document-form')[0].reset()
+<% end %>
+$('.create_document').attr('disabled', false)
+$('.create_document').click(function(){
+  $(this).attr('disabled', true)
+})

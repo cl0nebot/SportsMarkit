@@ -153,6 +153,13 @@ class UsersController < ApplicationController
   #   end
   # end
 
+  def email_check
+    @user = User.find_by_email(params[:email])
+    respond_to do |format|
+      format.json {render :json => {email_exists: @user.present?}} 
+    end
+  end
+
   protected
   
   def user_params

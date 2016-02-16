@@ -1,4 +1,6 @@
 //= require ./validation/multiple_events_validation
+//= require ./validation/user_login_validation
+
 $(function(){
     $('.open-modal').on("click", function() {
         $( "input[type='submit']" ).attr('disabled', true);

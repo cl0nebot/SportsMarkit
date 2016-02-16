@@ -1,0 +1,116 @@
+<div class="content">
+  <div class="page-header full-content bg-blue mb0">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1>Admin <small>Documents</small></h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="<%= users_path %>" class="active">all users</a></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt60">
+    <div class="row">
+      <% if @document.can_be_edited_by_user?(current_user) %>
+        <div class="col-lg-4">
+          <%= form_for [@object, @document], html: {:multipart => true, id: "document-form" }, remote: true do |f| %>
+          <div class="panel box-shadow-ccc">
+            <div class="panel-heading">
+              <div class="panel-title">
+                <span class="ion-plus-circled text-primary h1 mr15 mt0 pull-left"></span>
+                <h3 class="semi-bold mt10">
+                  <span class="">New Document</span>
+                </h3>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="row">
+
+                    <div class="col-md-12">
+                      <div class="row example-row no-margin">
+                        <div class="col-md-12">Document File</div>
+                        <div class="col-md-12">
+                          <div class="inputer">
+                            <div class="input-wrapper">
+                              <%= f.file_field :file %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="row example-row no-margin">
+                        <div class="col-md-12">Document Name</div>
+                        <div class="col-md-12">
+                          <div class="inputer">
+                            <div class="input-wrapper">
+                              <%= f.text_field :name, type: "text", class: "form-control", placeholder: "" %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="row example-row no-margin">
+                        <div class="col-md-12">Document Description</div>
+                        <div class="col-md-12">
+                          <div class="inputer">
+                            <div class="input-wrapper">
+                              <%= f.text_area :description, type: "text", class: "form-control", placeholder: "" %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row mt10">
+                    <div class="col-md-12">
+                      <%= f.submit "Create Document", class: "btn btn-blue btn-block mt20 create_document" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% end %> 
+        </div>
+      <% end %>
+
+      <div class="col-lg-8">
+        <div class="panel box-shadow-ccc">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h4 class="semi-bold">All Documents</h4>
+            </div>
+          </div>
+          <div class="panel-body pb40">
+            <div class="">
+              <table id="document-list" class="table table-hover table-condensed" id="example">
+                <thead>
+                  <tr>
+                    <th style="width:30%" class="semi-bold h6 text-muted">Name</th>
+                    <th style="width:30%" class="semi-bold h6 text-muted">Description</th>
+                    <th style="width:30%" class="semi-bold h6 text-muted">File</th>
+                    <th style="width:30%" class="semi-bold h6 text-muted">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%= render @documents %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+  </div>
+</div>

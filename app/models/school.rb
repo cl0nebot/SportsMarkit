@@ -23,6 +23,8 @@ class School < ActiveRecord::Base
   
   before_update :update_slug
   
+  has_many :documents, as: :documentable, dependent: :destroy
+
   attr_accessor :stripe_token
   
   def minus_self

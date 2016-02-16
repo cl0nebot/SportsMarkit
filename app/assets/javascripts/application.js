@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require validation
-    
+//= require jquery.remotipart
     
 
 // <!-- BEGIN GLOBAL AND THEME VENDORS -->
@@ -128,55 +128,52 @@
 //= require schools
 //= require hamlcoffee
 //= require_tree ./templates
-	
 
-	
+$(document).click(function(event) {
+  var ClickedVariable = $(event.target).text();
+  if (ClickedVariable == "Upload Media") {
+    $('#media-page').load(document.URL +  ' #media-page');
+  }   
+});
 
-	$(document).click(function(event) {
-		var ClickedVariable = $(event.target).text();
-		if (ClickedVariable == "Upload Media") {
-			$('#media-page').load(document.URL +  ' #media-page');
-		}		
-	});
-	
-	$(document).click(function(event) {
-		var ClickedVariable = $(event.target).text();
-		if (ClickedVariable == "Media") {
-			$('#load-masonry').load(document.URL +  ' #load-masonry');
-		}		
-	});
-	
-	$(document).click(function(event) {
-		var ClickedVariable = $(event.target).text();
-		if (ClickedVariable == "About") {
-			$('#masonry-about-tab').load(document.URL +  ' #masonry-about-tab');
-		}		
-	});
-	
-	$(function () {
-		var whitelist = ["xls", "xlsx", "csv"];
-		$('#file-field').on('change.bs.fileinput', function() {
-		  var ext = $('#file-field').val().split('.').pop().toLowerCase();
-		  var extensionisgood = (whitelist.indexOf(ext) > -1);
-		  if (extensionisgood) {
-			  $('#file-submit').removeAttr('disabled');
-			  $('#invalid-message').hide()
-			
-		  } else {
-			  $('#file-submit').attr('disabled', true);
-			  $('#file-field').val("")
-			  $('#invalid-message').css({ display: "block" });
-		  }
-		});
-	});
-	
-	$(function() {
-	  return $('#school-pricings-search-box').keyup(function() {
-	    $.get($(this).attr("action"), $(this).serialize(), null, "script");
-	    return false;
-	  });
-	});
-	
-	
-	
+$(document).click(function(event) {
+  var ClickedVariable = $(event.target).text();
+  if (ClickedVariable == "Media") {
+    $('#load-masonry').load(document.URL +  ' #load-masonry');
+  }   
+});
 
+$(document).click(function(event) {
+  var ClickedVariable = $(event.target).text();
+  if (ClickedVariable == "About") {
+    $('#masonry-about-tab').load(document.URL +  ' #masonry-about-tab');
+  }   
+});
+
+$(function () {
+  var whitelist = ["xls", "xlsx", "csv"];
+  $('#file-field').on('change.bs.fileinput', function() {
+    var ext = $('#file-field').val().split('.').pop().toLowerCase();
+    var extensionisgood = (whitelist.indexOf(ext) > -1);
+    if (extensionisgood) {
+      $('#file-submit').removeAttr('disabled');
+      $('#invalid-message').hide()
+    
+    } else {
+      $('#file-submit').attr('disabled', true);
+      $('#file-field').val("")
+      $('#invalid-message').css({ display: "block" });
+    }
+  });
+});
+
+$(function() {
+  return $('#school-pricings-search-box').keyup(function() {
+    $.get($(this).attr("action"), $(this).serialize(), null, "script");
+    return false;
+  });
+});
+
+$('.create_document').on('click', function(){
+  $(this).attr('disabled', true)
+})

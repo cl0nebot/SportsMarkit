@@ -1,0 +1,53 @@
+<tr id="show<%= document.id %>">
+  <td class="v-align-middle">
+    <h5 class="semi-bold muted"><%= document.name %></h5>
+  </td>
+  <td class="v-align-middle">
+    <%= document.description %>
+  </td>
+  <td class="v-align-middle">
+    <%= document.file %>
+  </td>
+  <td class="v-align-middle">
+    <% if document.can_be_edited_by_user?(current_user) %>
+      <div class="row clearfix">
+        <div class="col-md-6">
+          <%= link_to document_path(document.id), method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-block btn-sm btn-orange" do %>
+            <span class="ion-trash-b"></span>
+          <% end %>
+        </div>
+        <div class="col-md-6">
+          <button class="btn btn-block btn-sm btn-primary row" data-toggle="modal" data-target="#<%= document.id %>"> <span class="ion-gear-b"></span>
+          </button>
+        </div>
+      </div>
+      <br>
+      <div class="row clearfix">
+        <div class="col-md-6">
+          <a class="btn btn-block btn-sm btn-info row btn-ripple" href="<%= document_path(document.id) %>">
+            <span class="ion-clipboard"></span>
+          </a>
+        </div>
+        <div class="col-md-6">
+          <a class="btn btn-block btn-sm btn-default row btn-ripple" href="#">
+            <span class="ion-link"></span>
+          </a>
+        </div>
+      </div>
+      <%= render 'edit_document', document: document %>
+    <% else %>
+      <div class="row clearfix">
+        <div class="col-md-6">
+          <a class="btn btn-block btn-sm btn-info row btn-ripple" href="<%= document_path(document.id) %>">
+            <span class="ion-clipboard"></span>
+          </a>
+        </div>
+        <div class="col-md-6">
+          <a class="btn btn-block btn-sm btn-default row btn-ripple" href="#">
+            <span class="ion-link"></span>
+          </a>
+        </div>
+      </div>
+    <% end %>
+  </td>
+</tr>
