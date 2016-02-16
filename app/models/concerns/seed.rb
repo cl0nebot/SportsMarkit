@@ -254,7 +254,7 @@ module Seed
                   enrollment: school.enrollment, 
                   faculty: school.faculty,
                   )
-       club.address.build(
+       club.build_address(
                           street_1: school.address.street_1, 
                           street_2: school.address.street_2, 
                           city: school.address.city, 
