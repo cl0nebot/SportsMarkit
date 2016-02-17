@@ -222,6 +222,62 @@ module Seed
       certification = Certification.create(name: "CPR", issuer: "Issuer Name")
       certificate = Certificate.create(user_id: user.id, certification_id: certification.id, expiration: (Date.today + 2.weeks), expires: true)
     end
+    
+    def convert_school_to_club(id)
+      school = School.find(id)
+      club = Club.new(
+                  name: school.name,
+                  classification: school.classification,
+                  abbreviation: school.abbreviation,
+                  phone_number: school.phone_number, 
+                  email: school.email, 
+                  website: school.website, 
+                  stripe_customer_id: school.stripe_customer_id, 
+                  last_payment: school.last_payment, 
+                  stripe_subscription_id: school.stripe_subscription_id, 
+                  premium: school.premium, 
+                  price: school.price, 
+                  facebook: school.facebook, 
+                  twitter: school.twitter, 
+                  linkedin: school.linkedin, 
+                  pinterest: school.pinterest, 
+                  instagram: school.instagram, 
+                  foursquare: school.foursquare, 
+                  youtube: school.youtube, 
+                  description: school.description, 
+                  colors: school.colors, 
+                  mascot: school.mascot, 
+                  motto: school.motto, 
+                  number_of_teams: school.number_of_teams, 
+                  category: school.category, 
+                  founded: school.founded, 
+                  enrollment: school.enrollment, 
+                  faculty: school.faculty,
+                  )
+       club.build_address(
+                          street_1: school.address.street_1, 
+                          street_2: school.address.street_2, 
+                          city: school.address.city, 
+                          county: school.address.county, 
+                          state: school.address.state, 
+                          country: school.address.country, 
+                          postcode: school.address.postcode, 
+                          suite: school.address.suite, 
+                          default: school.address.default, 
+                          nickname: school.address.nickname, 
+                          latitude: school.address.latitude, 
+                          longitude: school.address.longitude,)  
+          club.save!                     
+                  
+       school.roles.update_all(roleable_type: "Club", roleable_id: club.id)
+       school.userless_roles.update_all(userless_id: club.id, userless_type: "Club")
+       school.photos.update_all(photo_owner_id: club.id, photo_owner_type: "Club")
+       school.teams.update_all(teamable_type: "Club", teamable_id: club.id)
+       school.fans.update_all(fannable_id: club.id, fannable_type: "Club")
+       school.events.update_all(eventable_id: club.id, eventable_type: "Club")
+       school.facilities.update_all(facility_owner_type: "Club", facility_owner_id: club.id)
+                  
+    end
       
   end
 
