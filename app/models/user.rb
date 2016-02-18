@@ -139,7 +139,7 @@ class User < ActiveRecord::Base
     if (first_name_changed? || last_name_changed?)
       existing_user = minus_self.where('first_name = ?', self.first_name).where('last_name = ?', self.last_name)
       if existing_user.present?
-        update_column(:slug, "#{ApplicationController.helpers.to_slug(first_name, last_name, (existing_user.count + 1))}")
+        update_column(:slug, "#{ApplicationController.helpers.to_slug(first_name, last_name, (existing_user.count))}")
       else
         update_column(:slug, "#{ApplicationController.helpers.to_slug(first_name, last_name)}")
       end

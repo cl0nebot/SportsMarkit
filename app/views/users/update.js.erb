@@ -7,3 +7,5 @@
 	history.replaceState("", "", "<%= slug %>");
 	$('#content').html("<%= j render 'users/edit_form', user: @user, user_profile_pictures: @user_profile_pictures, user_profile_picture: @user_profile_picture, object: @object, pictures: @pictures, videos: @videos, articles: @articles %>")
 <% end %>
+
+user_edit_validation();
