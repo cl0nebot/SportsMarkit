@@ -15,7 +15,6 @@
 //= require jquery-ui
 //= require validation
 //= require jquery.remotipart
-//= require ./ready
 
 // <!-- BEGIN GLOBAL AND THEME VENDORS -->
 //= require pleasure/globals/js/global-vendors
@@ -125,6 +124,7 @@
 //= require parsley
 //= require jquery.cropit
 //= require schools
+//= require ./ready
 //= require registrations
 //= require hamlcoffee
 //= require_tree ./templates
