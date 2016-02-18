@@ -126,6 +126,7 @@
 //= require parsley
 //= require jquery.cropit
 //= require schools
+//= require registrations
 //= require hamlcoffee
 //= require_tree ./templates
 

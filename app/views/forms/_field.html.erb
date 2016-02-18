@@ -1,0 +1,3 @@
+<span id="<%= field %>">
+<%= link_to label, change_field_forms_path(formable_id: @object.id, formable_type: @object.class.to_s, object: "Registration", field: field, label: label), class: button_style, remote: true %>
+</span>
