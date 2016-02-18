@@ -30,13 +30,25 @@
         <div class="panel-body pr50 pl50 pt50 pb50 labels-light labels-16">
 
           <h3>Please complete the form below.</h3> <br>
-          
+
           <%= form_tag change_submitter_registrations_path, method: :get, remote: true do %>
             <%= hidden_field_tag :form_id, @form.id %>
             <%= hidden_field_tag :object_id, @object.id %>
             <%= hidden_field_tag :object_type, @object.class.to_s %>
-            <%= select_tag 'user_id', options_from_collection_for_select(User.smart_order(current_user), "id", "name"), :id => "user-select-box", class: 'autosubmit' %>
+            
+            <h5>Select User</h5>
+            <div class="well">
+            <%= select_tag 'user_id', options_from_collection_for_select(User.smart_order(current_user), "id", "name"), :id => "user-select-box", class: ' bg-white autosubmit form-control' %>
+            </div>
           <% end %>
+          
+          <br/>
+
           <div id="form-reg">
             <%= render 'registrations/form', form: @form, master: @master, object: @object, submitter: current_user %>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

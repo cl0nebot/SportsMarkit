@@ -1,140 +1,144 @@
-          <%= form_for Form.new, url: registrations_path do |f| %>
-            <%= f.hidden_field :formable_id, value: object.id %>
-            <%= f.hidden_field :formable_type, value: object.class.to_s %>
-            <%= f.hidden_field :submittable_id, value: submitter.id %>
-            <%= f.hidden_field :submittable_type, value: submitter.class.to_s %>
-            <%= f.hidden_field :submitter_id, value: current_user.nil? ? nil : current_user.id %>
+<%= form_for Form.new, url: registrations_path do |f| %>
+  <%= f.hidden_field :formable_id, value: object.id %>
+  <%= f.hidden_field :formable_type, value: object.class.to_s %>
+  <%= f.hidden_field :submittable_id, value: submitter.id %>
+  <%= f.hidden_field :submittable_type, value: submitter.class.to_s %>
+  <%= f.hidden_field :submitter_id, value: current_user.nil? ? nil : current_user.id %>
 
-            <h4 class="bold">General Field</h4>
+  <h4 class="bold">General Field</h4>
 
-            <% Form.general_fields.each do |field| %>
-              <% if form.send("#{field.last}_required?") %>
-                <%= label_tag field.last.to_sym, field.first %>
-                <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
-                <br>
-              <% elsif form.send("#{field.last}_display?") %>
-                <%= label_tag field.last.to_sym, field.first %>
-                <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
-                <br>
-              <% end %>
-            <% end %>
+  <% Form.general_fields.each do |field| %>
+    <% if form.send("#{field.last}_required?") %>
+      <%= label_tag field.last.to_sym, field.first %>
+      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
+      <br>
+    <% elsif form.send("#{field.last}_display?") %>
+      <%= label_tag field.last.to_sym, field.first %>
+      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
+      <br>
+    <% end %>
+  <% end %>
 
-            <h4 class="bold">Guardian</h4>
+  <h4 class="bold">Guardian</h4>
 
-            <% Form.guardian_fields.each do |field| %>
-              <% if form.send("#{field.last}_required?") %>
-                <%= label_tag field.last.to_sym, field.first %>
-                <%= f.text_field field.last.to_sym, class: "form-control" %> <font size='2' color='red'>*</font>
-                <br>
-              <% elsif form.send("#{field.last}_display?") %>
-                <%= label_tag field.last.to_sym, field.first %>
-                <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> 
-                <br>
-              <% end %>
-            <% end %>
+  <% Form.guardian_fields.each do |field| %>
+    <% if form.send("#{field.last}_required?") %>
+      <%= label_tag field.last.to_sym, field.first %>
+      <%= f.text_field field.last.to_sym, class: "form-control" %> <font size='2' color='red'>*</font>
+      <br>
+    <% elsif form.send("#{field.last}_display?") %>
+      <%= label_tag field.last.to_sym, field.first %>
+      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> 
+      <br>
+    <% end %>
+  <% end %>
 
-            <h4 class="bold">Emergency Contact</h4>
-            <% Form.emergency_fields.each do |field| %>
-              <% if form.send("#{field.last}_required?") %>
-                <%= label_tag field.last.to_sym, field.first %>
-                <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
-                <br>
-              <% elsif form.send("#{field.last}_display?") %>
-                <%= label_tag field.last.to_sym, field.first %>
-                <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
-                <br>
-              <% end %>
-            <% end %>
+  <h4 class="bold">Emergency Contact</h4>
+  <% Form.emergency_fields.each do |field| %>
+    <% if form.send("#{field.last}_required?") %>
+      <%= label_tag field.last.to_sym, field.first %>
+      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
+      <br>
+    <% elsif form.send("#{field.last}_display?") %>
+      <%= label_tag field.last.to_sym, field.first %>
+      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
+      <br>
+    <% end %>
+  <% end %>
 
-            <h5 class="bold">Insurance</h5>
+  <h4 class="bold">Insurance</h4>
 
-            <% Form.insurance_fields.each do |field| %>
-              <% if form.send("#{field.last}_required?") %>
-                <%= label_tag field.last.to_sym, field.first %>
-                <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
-                <br>
-              <% elsif form.send("#{field.last}_display?") %>
-                <%= label_tag field.last.to_sym, field.first %>
-                <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
-                <br>
-              <% end %>
-            <% end %>
+  <% Form.insurance_fields.each do |field| %>
+    <% if form.send("#{field.last}_required?") %>
+      <%= label_tag field.last.to_sym, field.first %>
+      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
+      <br>
+    <% elsif form.send("#{field.last}_display?") %>
+      <%= label_tag field.last.to_sym, field.first %>
+      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
+      <br>
+    <% end %>
+  <% end %>
 
-            <h5 class="bold">Health</h5>
+  <h4 class="bold">Health</h4>
 
-            <% Form.health_fields.each do |field| %>
-              <% if form.send("#{field.last}_required?") %>
-                <%= label_tag field.last.to_sym, field.first %>
-                <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
-                <br>
-              <% elsif form.send("#{field.last}_display?") %>
-                <%= label_tag field.last.to_sym, field.first %>
-                <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
-                <br>
-              <% end %>
-            <% end %>
+  <% Form.health_fields.each do |field| %>
+    <% if form.send("#{field.last}_required?") %>
+      <%= label_tag field.last.to_sym, field.first %>
+      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
+      <br>
+    <% elsif form.send("#{field.last}_display?") %>
+      <%= label_tag field.last.to_sym, field.first %>
+      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
+      <br>
+    <% end %>
+  <% end %>
 
-            <h5 class="bold">Membership</h5>
+  <h4 class="bold">Membership</h4>
 
-            <% Form.membership_fields.each do |field| %>
-              <% if form.send("#{field.last}_required?") %>
-                <%= label_tag field.last.to_sym, field.first %>
-                <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
-                <br>
-              <% elsif form.send("#{field.last}_display?") %>
-                <%= label_tag field.last.to_sym, field.first %>
-                <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> 
-                <br>
-              <% end %>
-            <% end %>
+  <% Form.membership_fields.each do |field| %>
+    <% if form.send("#{field.last}_required?") %>
+      <%= label_tag field.last.to_sym, field.first %>
+      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
+      <br>
+    <% elsif form.send("#{field.last}_display?") %>
+      <%= label_tag field.last.to_sym, field.first %>
+      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> 
+      <br>
+    <% end %>
+  <% end %>
 
-            <h5 class="bold">School</h5>
+  <h4 class="bold">School</h4>
 
-            <% Form.school_fields.each do |field| %>
-              <% if form.send("#{field.last}_required?") %>
-                <%= label_tag field.last.to_sym, field.first %>
-                <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
-                <br>
-              <% elsif form.send("#{field.last}_display?") %>
-                <%= label_tag field.last.to_sym, field.first %>
-                <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
-                <br>
-              <% end %>
-            <% end %>
+  <% Form.school_fields.each do |field| %>
+    <% if form.send("#{field.last}_required?") %>
+      <%= label_tag field.last.to_sym, field.first %>
+      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
+      <br>
+    <% elsif form.send("#{field.last}_display?") %>
+      <%= label_tag field.last.to_sym, field.first %>
+      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
+      <br>
+    <% end %>
+  <% end %>
 
-            <h5 class="bold">Financial</h5>
+  <h4 class="bold">Financial</h4>
 
-            <% Form.financial_fields.each do |field| %>
-              <% if form.send("#{field.last}_required?") %>
-                <%= label_tag field.last.to_sym, field.first, class: "form-control" %>
-                <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym) %> <font size='2' color='red'>*</font>
-                <br>
-              <% elsif form.send("#{field.last}_display?") %>
-                <%= label_tag field.last.to_sym, field.first %>
-                <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
-                <br>
-              <% end %>
-            <% end %>
-            
-            
+  <% Form.financial_fields.each do |field| %>
+    <% if form.send("#{field.last}_required?") %>
+      <%= label_tag field.last.to_sym, field.first, class: "form-control" %>
+      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym) %> <font size='2' color='red'>*</font>
+      <br>
+    <% elsif form.send("#{field.last}_display?") %>
+      <%= label_tag field.last.to_sym, field.first %>
+      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
+      <br>
+    <% end %>
+  <% end %>
 
-            <h5 class="bold">Waiver</h5>
-            <div class="well">
-              <%= @object.forms.first.waiver %>
-            </div>
-            
-            <h5 class="semi-bold">Accept Waiver:</h5>
-            
-            <%= check_box_tag :accept_waiver, class: "form-control" %>
-            
-            
-            <h5 class="bold">Registration Options</h5>
-            <% form.options.each do |option| %>
-            <%= "#{option.name} #{number_to_currency(option.price)}"%>
-            <%= radio_button_tag 'registration_options', option.id, nil %><br>
+  <h5 class="bold">Waiver</h5>
+  <div class="well">
+    <%= @object.forms.first.waiver %>
+  </div>
+  
+  <h5 class="semi-bold">Accept Waiver:</h5>
+  <div class="checkboxer checkboxer-green form-inline">
+    <%= check_box_tag :accept_waiver, class: "form-control", type: "checkbox", id:"accept_waiver", name: "accept_waiver", value: "1"%>
+    <label for="accept_waiver">Yes</label>
+  </div>
+  
+  <br/>
+  <h6 class="bold">Registration Options</h6>
+  <% form.options.each do |option| %>
+    <%= "#{option.name} #{number_to_currency(option.price)}"%>
+    <%= radio_button_tag 'registration_options', option.id, nil %><br>
 
-            <% end %>
-            
-            <%= submit_tag "Submit Registration", class: "btn btn-primary pull-right" %>
+  <% end %>
+  
+  <%= submit_tag "Submit Registration", class: "btn btn-primary pull-right" %>
 
-          <% end %>
+
+<% end %>
+
+
+
