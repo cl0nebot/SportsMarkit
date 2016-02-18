@@ -12,6 +12,7 @@ class Document < ActiveRecord::Base
   validates :file, presence: true
   validates :description, presence: true
   validates :name, presence: true
+  has_many :signed_documents, dependent: :destroy
 
   def use_for_slug
     existing_document = Document.where('name = ?', self.name)
@@ -26,7 +27,7 @@ class Document < ActiveRecord::Base
     if (name_changed?)
       existing_document = minus_self.where('name = ?', self.name)
       if existing_document.present?
-        update_column(:slug, "#{ApplicationController.helpers.to_slug(name, (existing_document.count + 1))}")
+        update_column(:slug, "#{ApplicationController.helpers.to_slug(name, (existing_document.count))}")
       else
         update_column(:slug, "#{ApplicationController.helpers.to_slug(name)}")
       end

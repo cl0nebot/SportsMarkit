@@ -15,7 +15,6 @@
 //= require jquery-ui
 //= require validation
 //= require jquery.remotipart
-    
 
 // <!-- BEGIN GLOBAL AND THEME VENDORS -->
 //= require pleasure/globals/js/global-vendors
@@ -122,10 +121,10 @@
 //= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.googlemaps
 //= require best_in_place
-//= require ./ready
 //= require parsley
 //= require jquery.cropit
 //= require schools
+//= require ./ready
 //= require registrations
 //= require hamlcoffee
 //= require_tree ./templates
@@ -134,21 +133,21 @@ $(document).click(function(event) {
   var ClickedVariable = $(event.target).text();
   if (ClickedVariable == "Upload Media") {
     $('#media-page').load(document.URL +  ' #media-page');
-  }   
+  }
 });
 
 $(document).click(function(event) {
   var ClickedVariable = $(event.target).text();
   if (ClickedVariable == "Media") {
     $('#load-masonry').load(document.URL +  ' #load-masonry');
-  }   
+  }
 });
 
 $(document).click(function(event) {
   var ClickedVariable = $(event.target).text();
   if (ClickedVariable == "About") {
     $('#masonry-about-tab').load(document.URL +  ' #masonry-about-tab');
-  }   
+  }
 });
 
 $(function () {
@@ -159,7 +158,7 @@ $(function () {
     if (extensionisgood) {
       $('#file-submit').removeAttr('disabled');
       $('#invalid-message').hide()
-    
+
     } else {
       $('#file-submit').attr('disabled', true);
       $('#file-field').val("")
@@ -174,7 +173,3 @@ $(function() {
     return false;
   });
 });
-
-$('.create_document').on('click', function(){
-  $(this).attr('disabled', true)
-})

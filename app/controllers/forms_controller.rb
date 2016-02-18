@@ -8,7 +8,7 @@ class FormsController < ApplicationController
   def create_or_update_form
     @form = Form.find_or_create_by(formable_id: params[:formable_id], formable_type: params[:formable_type], object: params[:object])
     @form.update_attributes(waiver: params[:waiver])
-    redirect_to :back
+    redirect_to "/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/registrations/new"
   end
   
   def change_field

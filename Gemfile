@@ -84,3 +84,4 @@ gem 'actionpack-action_caching'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'remotipart'
+gem 'docusign_rest'

@@ -51,9 +51,13 @@ Rails.application.routes.draw do
 
     concern :documentable do
       resources :documents, except: %w[destroy show]
+      resources :signed_documents, only: %w[index]
     end
 
     resources :documents, only: %w[destroy show]
+    resources :documents do
+      resources :signed_documents, only: %w[new create]
+    end
 
     resources :messages do
       collection do
@@ -272,6 +276,9 @@ Rails.application.routes.draw do
     end
     
     resources :registrations do
+      collection do
+        get :change_submitter
+      end
       patch :pay
     end
     

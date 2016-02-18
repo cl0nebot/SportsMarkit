@@ -78,6 +78,9 @@ GEM
     coffee-script-source (1.9.1.1)
     dalli (2.7.2)
     debug_inspector (0.0.2)
+    docusign_rest (0.1.1)
+      json
+      multipart-post (>= 1.2)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
@@ -372,6 +375,7 @@ DEPENDENCIES
   carrierwave-crop
   coffee-rails (~> 4.0.0)
   dalli
+  docusign_rest
   exception_notification
   execjs
   figaro!

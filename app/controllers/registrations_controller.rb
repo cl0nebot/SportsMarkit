@@ -27,6 +27,13 @@ class RegistrationsController < ApplicationController
     end
   end
   
+  def change_submitter
+    @form = Form.find(params[:form_id])
+    @master = Form.where(submittable_type: "User", submittable_id: params[:user_id], master: true).last
+    @submitter = User.find(params[:user_id])
+    @object = params[:object_type].constantize.find(params[:object_id])
+  end
+  
   def pay
     stripe_token = params[:form][:stripe_token]
     begin

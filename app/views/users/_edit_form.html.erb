@@ -56,7 +56,7 @@
 			</div>
 		
 
-			<%= form_for user, html: {class: "form-horizontal parsley-validate", data: {remote: true }} do |f| %>
+			<%= form_for user, html: {class: "edit-user-form form-horizontal parsley-validate", data: {remote: true }} do |f| %>
 			
 			<div class="col-md-9">
 
@@ -87,7 +87,7 @@
 																		<div class="input-wrapper">
 																			<%= f.text_field :first_name, type: "text", class: "form-control", placeholder: "", "data-parsley-required" => "true", "data-parsley-length" => "[2, 25]" %>
 																		</div>
-																		
+																		<div class="user_first_name_field"></div>
 																	</div>
 																</div><!--.col-md-9-->
 															</div><!--.row-->
@@ -110,6 +110,7 @@
 																		<div class="input-wrapper">
 																			<%= f.text_field :last_name, type: "text", class: "form-control", placeholder: "", "data-parsley-required" => "true", "data-parsley-length" => "[2, 25]"  %>
 																		</div>
+																		<div class="user_last_name_field"></div>
 																	</div>
 																</div><!--.col-md-9-->
 															</div><!--.row-->
@@ -159,6 +160,7 @@
 																<div class="input-wrapper">
 																	<%= f.email_field :email, class: "form-control", placeholder: "", "data-parsley-required" => "true", "data-parsley-type" => "email"  %>
 																</div>
+																<div class="user_email_field"></div>
 									 						    <!-- <div id="email-taken-wrapper"> -->
 									 								<div id="email-taken" style="display: none">
 									 								    <font size="2" color="red">Email is already taken.</font>
@@ -176,6 +178,7 @@
 																<div class="input-wrapper">
 																	<%= f.text_field :mobile_phone_number, class: "form-control", placeholder: "5556667777", "data-parsley-type" => "number", "data-parsley-type-message" => "Your message"%>
 																</div>
+																<div class="user_mobile_phone_number_field"></div>
   									 						    <!-- <div id="email-taken-wrapper"> -->
   									 								<div id="phone-taken" style="display: none">
   									 								    <font size="2" color="red">Phone number is already in use.</font>

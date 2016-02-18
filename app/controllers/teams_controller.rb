@@ -62,7 +62,11 @@ class TeamsController < ApplicationController
   end
   
   def update
-    @object = Team.find_by_slug!(request.referrer.split("teams/").last.split("/").first)
+    if params[:id].present?
+      @object = Team.where(slug: params[:id]).first
+    else
+      @object = Team.find_by_slug!(request.referrer.split("teams/").last.split("/").first)
+    end
     @profile_picture =  ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s).last
     @profile_pictures = ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s)
     @videos = @object.medias.where(category: "Video")

@@ -44,12 +44,19 @@ class User < ActiveRecord::Base
   has_many :medias, as: :mediable
   
   has_one :online_status
-
+  has_many :signed_documents, dependent: :destroy
+  
   def self.user_types
     ["Student Athlete", "Athlete", "Coach", "Guardian", "Athletic Director", "Club Director", "School Manager", "Team Manager"] 
     # ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director", "Tournament Director" ] 
     #["Athlete", "Coach", "Parent", "Athletic Director", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]  
     
+  end
+  
+  def self.smart_order(current_user)
+    ids = User.pluck(:id) - [current_user.id]
+    new_ids = [current_user.id] << ids
+    User.where(id: new_ids) 
   end
   
   def minus_self
@@ -138,7 +145,7 @@ class User < ActiveRecord::Base
     if (first_name_changed? || last_name_changed?)
       existing_user = minus_self.where('first_name = ?', self.first_name).where('last_name = ?', self.last_name)
       if existing_user.present?
-        update_column(:slug, "#{ApplicationController.helpers.to_slug(first_name, last_name, (existing_user.count + 1))}")
+        update_column(:slug, "#{ApplicationController.helpers.to_slug(first_name, last_name, (existing_user.count))}")
       else
         update_column(:slug, "#{ApplicationController.helpers.to_slug(first_name, last_name)}")
       end
