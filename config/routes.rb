@@ -276,6 +276,9 @@ Rails.application.routes.draw do
     end
     
     resources :registrations do
+      collection do
+        get :change_submitter
+      end
       patch :pay
     end
     

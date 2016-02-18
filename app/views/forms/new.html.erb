@@ -88,18 +88,19 @@
 
           <hr/>
           <%= form_tag create_or_update_form_team_forms_path(@object) do %>
+          <% existing_form = @object.forms.where(object: "Registration").last %>
           <h4 class="bold">Waiver</h4>
           <div class="well">
-            <%= text_area_tag :waiver, "", size: "60x6", class: "form-control", placeholder: "Enter text here." %>
+            <%= text_area_tag :waiver, existing_form.present? ? existing_form.waiver : "" , size: "60x6", class: "form-control", placeholder: "Enter text here." %>
           </div>
 
           <hr/>
           <h4 class="bold">Agreements</h4>
           <div class="well">
-            <%= text_area_tag :agreements, "", size: "60x6", class: "form-control", placeholder: "Enter text here." %>
+            <%= text_area_tag :agreements, existing_form.present? ? existing_form.agreements : "", size: "60x6", class: "form-control", placeholder: "Enter text here." %>
           </div>
-          <%= hidden_field_tag :formable_id, 1 %>
-          <%= hidden_field_tag :formable_type, "Team" %>
+          <%= hidden_field_tag :formable_id, @object.id %>
+          <%= hidden_field_tag :formable_type, @object.class.to_s %>
           <%= hidden_field_tag :object, "Registration" %>
            
           <%= submit_tag "Create Form", class: "btn btn-primary pull-right" %>

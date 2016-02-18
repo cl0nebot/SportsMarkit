@@ -53,6 +53,12 @@ class User < ActiveRecord::Base
     
   end
   
+  def self.smart_order(current_user)
+    ids = User.pluck(:id) - [current_user.id]
+    new_ids = [current_user.id] << ids
+    User.where(id: new_ids) 
+  end
+  
   def minus_self
     User.where.not(id: id)
   end
