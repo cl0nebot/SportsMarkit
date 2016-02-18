@@ -47,5 +47,8 @@ class RegistrationsController < ApplicationController
     param = params.keys.find{|key| key =~ /(\w+)_id/}
     @object = $1.capitalize.constantize.find(params[param])
   end
+
+  def index;
+  end
   
 end
