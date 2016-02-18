@@ -77,6 +77,7 @@ Rails.application.routes.draw do
     resources :password_resets
     resources :schools, concerns: :documentable do
       resources :forms do
+        resources :options
         collection do
           post :create_or_update_form
         end
@@ -107,6 +108,7 @@ Rails.application.routes.draw do
     
     resources :teams, concerns: :documentable do
       resources :forms do
+        resources :options
         collection do
           post :create_or_update_form
           

@@ -1,0 +1,2 @@
+$('#option-<%= params[:option][:fake_id] %>').replaceWith('<%= j(render 'form', form: @form, o: @option) %>');
+Layout.initSelectPicker();

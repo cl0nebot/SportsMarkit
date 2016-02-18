@@ -115,6 +115,8 @@
                 <br>
               <% end %>
             <% end %>
+            
+            
 
             <h5 class="bold">Waiver</h5>
             <div class="well">
@@ -124,6 +126,14 @@
             <h5 class="semi-bold">Accept Waiver:</h5>
             
             <%= check_box_tag :accept_waiver, class: "form-control" %>
+            
+            
+            <h5 class="bold">Registration Options</h5>
+            <% form.options.each do |option| %>
+            <%= "#{option.name} #{number_to_currency(option.price)}"%>
+            <%= radio_button_tag 'registration_options', option.id, nil %><br>
+
+            <% end %>
             
             <%= submit_tag "Submit Registration", class: "btn btn-primary pull-right" %>
 

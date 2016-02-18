@@ -21,6 +21,7 @@ class RegistrationsController < ApplicationController
       @master.save
     end 
     if @form.save
+      SelectedOption.create(user_id:  params[:submittable_id], form_id: @form.id, option_id: params[:registration_options])
       redirect_to "/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/registrations/#{@form.id}/register"
     else
       render "didn't save"
