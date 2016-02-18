@@ -73,3 +73,8 @@ pictureCropping = ->
     $('#offset_x').val(offset.x)
     $('#offset_y').val(offset.y)
     $('#zoom').val(zoom)
+
+$(document).ready ->
+  $('.autosubmit').change ->
+    $(@).closest('form').trigger('submit.rails')
+    false

@@ -10,7 +10,6 @@ $('document').ready(function() {
   };
 
   $.externalScript('https://js.stripe.com/v1/').done(function(script, textStatus) {
-      debugger;
       Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
       var registration = {
         setupForm: function() {
