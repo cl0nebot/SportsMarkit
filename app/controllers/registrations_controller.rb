@@ -37,12 +37,7 @@ class RegistrationsController < ApplicationController
   
   def pay
     stripe_token = params[:form][:stripe_token]
-    begin
-
-      raise "Stripe token not present. Cannot process transaction." if stripe_token.blank?
-      
-    end
-     
+    @form = Form.find(params[:form_id]).update_attributes(paid: true)
     render text: params
   end
   
