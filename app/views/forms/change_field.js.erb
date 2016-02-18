@@ -1,1 +1,1 @@
-$('#<%= @field_name %>').html("<%= j render 'forms/field', label: @field_label, field: @field_name, button_style: @form.button_styling(@field_name) %>")
+$('#<%= @field_name %>').html("<%= j render 'forms/field', object: params[:formable_type].constantize.find(params[:formable_id]),label: @field_label, field: @field_name, button_style: @form.button_styling(@field_name) %>")

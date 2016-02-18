@@ -30,14 +30,14 @@
         <div class="panel-body pr50 pl50 pt50 pb50">
           <h4 class="bold">General</h4>
           <% Form.general_fields.each do |field| %>
-            <%= render 'field', label: field.first, field: field.last, button_style: button_styling("Team", 1, "Registration", field.last) %>
+            <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
           <% end %>
 
           <hr/>
 
           <h4 class="bold">Guardian</h4>
           <% Form.guardian_fields.each do |field| %>
-            <%= render 'field', label: field.first, field: field.last, button_style: button_styling("Team", 1, "Registration", field.last) %>
+            <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
             <% if field.first == "Guardian Email"%></br><% end %>
           <% end %>
 
@@ -46,7 +46,7 @@
 
           <h4 class="bold">Emergency</h4>
           <% Form.emergency_fields.each do |field| %>
-            <%= render 'field', label: field.first, field: field.last, button_style: button_styling("Team", 1, "Registration", field.last) %>
+            <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
             <% if field.first == "Emergency Email"%></br><% end %>
           <% end %>
 
@@ -54,35 +54,35 @@
 
           <h4 class="bold">Insurance</h4>
           <% Form.insurance_fields.each do |field| %>
-            <%= render 'field', label: field.first, field: field.last, button_style: button_styling("Team", 1, "Registration", field.last) %>
+            <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
           <% end %>
 
           <hr/>
 
           <h4 class="bold">Health</h4>
           <% Form.health_fields.each do |field| %>
-            <%= render 'field', label: field.first, field: field.last, button_style: button_styling("Team", 1, "Registration", field.last) %>
+            <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
           <% end %>
 
           <hr/>
 
           <h4 class="bold">Membership</h4>
           <% Form.membership_fields.each do |field| %>
-            <%= render 'field', label: field.first, field: field.last, button_style: button_styling("Team", 1, "Registration", field.last) %>
+            <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
           <% end %>
 
           <hr/>
 
           <h4 class="bold">School</h4>
           <% Form.school_fields.each do |field| %>
-            <%= render 'field', label: field.first, field: field.last, button_style: button_styling("Team", 1, "Registration", field.last) %>
+            <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
           <% end %>
 
           <hr/>
 
           <h4 class="bold">Financial</h4>
           <% Form.financial_fields.each do |field| %>
-            <%= render 'field', label: field.first, field: field.last, button_style: button_styling("Team", 1, "Registration", field.last) %>
+            <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
           <% end %>
 
 
