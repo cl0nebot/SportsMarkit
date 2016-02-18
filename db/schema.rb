@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216081051) do
+ActiveRecord::Schema.define(version: 20160218213222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -552,6 +552,16 @@ ActiveRecord::Schema.define(version: 20160216081051) do
     t.datetime "updated_at"
   end
 
+  create_table "options", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.float    "price"
+    t.integer  "form_id"
+    t.string   "object"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "parent_children", force: true do |t|
     t.integer  "parent_id"
     t.integer  "child_id"
@@ -709,6 +719,14 @@ ActiveRecord::Schema.define(version: 20160216081051) do
   end
 
   add_index "schools", ["slug"], name: "index_schools_on_slug", unique: true, using: :btree
+
+  create_table "selected_options", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "form_id"
+    t.integer  "option_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "signed_documents", force: true do |t|
     t.integer  "user_id"
