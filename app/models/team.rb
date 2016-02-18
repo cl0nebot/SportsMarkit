@@ -13,7 +13,7 @@ class Team < ActiveRecord::Base
   
   belongs_to :teamable, polymorphic: true
   
-  has_many :custom_forms, as: :formable, dependent: :destroy
+  has_many :forms, as: :formable, dependent: :destroy
   has_many :registrations, as: :registerable, dependent: :destroy
   has_many :roles, as: :roleable, dependent: :destroy
   has_many :userless_roles, as: :userless, dependent: :destroy

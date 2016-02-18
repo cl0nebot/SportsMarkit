@@ -1,0 +1,72 @@
+<h3>Customize Your Form </h3>
+
+
+<br/><br/>
+<h5>General</h5>
+<% Form.general_fields.each do |field| %>
+  <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
+<% end %>
+
+<br><br>
+
+<h5>Guardian</h5>
+<% Form.guardian_fields.each do |field| %>
+   <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
+  <% if field.first == "Guardian Email"%></br><% end %>
+<% end %>
+
+
+<br><br>
+<h5>Emergency</h5>
+<% Form.emergency_fields.each do |field| %>
+   <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
+  <% if field.first == "Emergency Email"%></br><% end %>
+<% end %>
+
+<br><br>
+
+<h5>Insurance</h5>
+<% Form.insurance_fields.each do |field| %>
+   <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
+<% end %>
+
+<br><br>
+<h5>Health</h5>
+<% Form.health_fields.each do |field| %>
+   <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
+<% end %>
+
+<br><br>
+<h5>Membership</h5>
+<% Form.membership_fields.each do |field| %>
+   <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
+<% end %>
+
+<br><br>
+<h5>School</h5>
+<% Form.school_fields.each do |field| %>
+   <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
+<% end %>
+
+<br><br>
+<h5>Financial</h5>
+<% Form.financial_fields.each do |field| %>
+   <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
+<% end %>
+
+
+<%= form_tag create_or_update_form_team_forms_path(@object) do %>
+<br><br>
+Waiver<br>
+<%= text_area_tag :waiver, "", size: "60x6" %>
+
+Agreements</br>
+
+<%= text_area_tag :agreements, "", size: "60x6" %>
+<%= hidden_field_tag :formable_id, 1 %>
+<%= hidden_field_tag :formable_type, "Team" %>
+<%= hidden_field_tag :object, "Registration" %>
+ 
+<%= submit_tag %>
+
+<% end %>

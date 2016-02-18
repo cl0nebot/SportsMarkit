@@ -1,6 +1,7 @@
 class SchoolsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :upgrade]
-  before_action :correct_user!, only: [:edit, :destroy, :upgrade]
+  before_action :correct_user!, only: [:edit, :destroy]
+  #need correct user method here that uses school id instead of id
   before_action :find_school, except: [:index, :new, :create, :upgrade, :upgrade_school, :plan, :update]
   
   
@@ -92,6 +93,7 @@ class SchoolsController < ApplicationController
   
   def upgrade
     @school = School.friendly.find(params[:school_id])
+    @object = @school
   end
   
   def upgrade_school

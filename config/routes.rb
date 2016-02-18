@@ -76,6 +76,11 @@ Rails.application.routes.draw do
     resources :sessions
     resources :password_resets
     resources :schools, concerns: :documentable do
+      resources :forms do
+        collection do
+          post :create_or_update_form
+        end
+      end
       resources :announcements
       resources :facilities
       resources :media
@@ -101,12 +106,15 @@ Rails.application.routes.draw do
     end
     
     resources :teams, concerns: :documentable do
-      resources :announcements
-      resources :registrations
-      resources :custom_forms do
+      resources :forms do
         collection do
-          get :change_field
+          post :create_or_update_form
+          
         end
+      end
+      resources :announcements
+      resources :registrations do
+        get :register
       end
       resources :photos
       resources :profile_pictures, only: %w[create update destroy]
@@ -136,6 +144,11 @@ Rails.application.routes.draw do
     end
 
     resources :facilities, concerns: :documentable do
+      resources :forms do
+        collection do
+          post :create_or_update_form
+        end
+      end
       resources :announcements
       resources :profile_pictures, only: %w[create update destroy]
       collection do
@@ -162,6 +175,11 @@ Rails.application.routes.draw do
 
     resources :tournaments
     resources :leagues, concerns: :documentable do
+      resources :forms do
+        collection do
+          post :create_or_update_form
+        end
+      end
       resources :announcements
       resources :profile_pictures, only: %w[create update destroy]
       resources :events do
@@ -221,6 +239,11 @@ Rails.application.routes.draw do
     end
     
     resources :clubs, concerns: :documentable do
+      resources :forms do
+        collection do
+          post :create_or_update_form
+        end
+      end
       resources :announcements
       resources :facilities
       resources :media
@@ -244,6 +267,16 @@ Rails.application.routes.draw do
       get :plan
       patch :upgrade_club
      
+    end
+    
+    resources :forms do
+      collection do
+        get :change_field
+      end
+    end
+    
+    resources :registrations do
+      patch :pay
     end
     
     resources :rosters do
