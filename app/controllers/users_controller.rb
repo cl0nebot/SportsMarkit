@@ -154,9 +154,21 @@ class UsersController < ApplicationController
   # end
 
   def email_check
-    @user = User.find_by_email(params[:email])
-    respond_to do |format|
-      format.json {render :json => {email_exists: @user.present?}} 
+    if params[:number].present? && params[:email].present?
+      @user = User.where("mobile_phone_number = '#{params[:number]}' or email = '#{params[:email]}'").first
+      respond_to do |format|
+        format.json {render :json => {user_exists: @user.present?}} 
+      end
+    elsif params[:number].present?
+      @user = User.where(mobile_phone_number: params[:number]).first
+      respond_to do |format|
+        format.json {render :json => {number_exists: @user.present?}} 
+      end
+    else
+      @user = User.find_by_email(params[:email])
+      respond_to do |format|
+        format.json {render :json => {email_exists: @user.present?}} 
+      end
     end
   end
 
