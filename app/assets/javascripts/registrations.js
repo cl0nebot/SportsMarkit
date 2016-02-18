@@ -10,6 +10,7 @@ $('document').ready(function() {
   };
 
   $.externalScript('https://js.stripe.com/v1/').done(function(script, textStatus) {
+      debugger;
       Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
       var registration = {
         setupForm: function() {
@@ -36,8 +37,8 @@ $('document').ready(function() {
         },
         handleStripeResponse: function(status, response) {
           if (response.error === undefined) {
-            $('#registration_stripe_token').val(response.id)
-            $('.registration_card_form')[0].submit()
+            $('#form_stripe_token').val(response.id);
+            $('.registration_card_form')[0].submit();
           } else {
             $('#stripe_error').text(response.error.message).removeClass('hidden').show();
             return $('input[type=submit]').prop('disabled', false);
