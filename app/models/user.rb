@@ -44,7 +44,8 @@ class User < ActiveRecord::Base
   has_many :medias, as: :mediable
   
   has_one :online_status
-
+  has_many :signed_documents, dependent: :destroy
+  
   def self.user_types
     ["Student Athlete", "Athlete", "Coach", "Guardian", "Athletic Director", "Club Director", "School Manager", "Team Manager"] 
     # ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director", "Tournament Director" ] 

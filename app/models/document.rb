@@ -12,6 +12,7 @@ class Document < ActiveRecord::Base
   validates :file, presence: true
   validates :description, presence: true
   validates :name, presence: true
+  has_many :signed_documents, dependent: :destroy
 
   def use_for_slug
     existing_document = Document.where('name = ?', self.name)

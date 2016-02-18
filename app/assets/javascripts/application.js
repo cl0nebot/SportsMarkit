@@ -173,7 +173,3 @@ $(function() {
     return false;
   });
 });
-
-$('.create_document').on('click', function(){
-  $(this).attr('disabled', true)
-})

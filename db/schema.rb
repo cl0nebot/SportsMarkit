@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151231113858) do
+ActiveRecord::Schema.define(version: 20160216081051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,6 +188,19 @@ ActiveRecord::Schema.define(version: 20151231113858) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "documents", force: true do |t|
+    t.integer  "documentable_id"
+    t.string   "documentable_type"
+    t.string   "file"
+    t.text     "description"
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "documents", ["slug"], name: "index_documents_on_slug", unique: true, using: :btree
 
   create_table "event_facilities", force: true do |t|
     t.integer  "event_id"
@@ -524,6 +537,14 @@ ActiveRecord::Schema.define(version: 20151231113858) do
   end
 
   add_index "schools", ["slug"], name: "index_schools_on_slug", unique: true, using: :btree
+
+  create_table "signed_documents", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "documents_id"
+    t.boolean  "signed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sport_icons", force: true do |t|
     t.integer  "sport_id"
