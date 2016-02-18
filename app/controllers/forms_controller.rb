@@ -3,7 +3,6 @@ class FormsController < ApplicationController
   
   def new
     @style = "btn btn"
-    @object = Team.friendly.find(params[:team_id])
   end
   
   def create_or_update_form
