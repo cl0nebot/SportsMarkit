@@ -40,6 +40,22 @@ class Form < ActiveRecord::Base
   end
   
   
+  def create_master(params={}, form_params)
+    unless Form.where(submittable_type: params[:submittable_type], submittable_id: params[:submittable_id], master: true).present?
+      master = Form.new(form_params)
+      master.master = true
+      master.save
+    end
+  end
+  
+  def registrant
+    submittable_type.constantize.find(submittable_id)
+  end
+  
+  def select_pricing_option(id, params={})
+    SelectedOption.create(user_id:  params[:form][:submittable_id], form_id: id, option_id: params[:registration_options])
+  end
+  
   def button_styling(field_name)
     field = field_name
     display_field = "#{field_name}_display"

@@ -25,7 +25,7 @@
 				<div class="panel-heading">
 					<div class="panel-title text-center">
 						<br/>
-						<h3>Account Registation.</h3>
+						<h3>Account Registration.</h3>
 					</div>
 				</div>
 				<!--.panel-heading-->
@@ -37,10 +37,10 @@
 
 						<div class="form-row text-center">
 	        		<div class="row example-row no-margin">
-								<div class="col-md-12">Upgrade Plan </div><!--.col-md-3-->
+								<div class="col-md-12">Register for <%= @object.name %> </div><!--.col-md-3-->
 								<div class="col-md-12">
 									<label class="text-primary semi-bold text-center h4 MB0">
-		            		Premium High School Plan
+		            		<%= @form.selected_option.option.name %>
 		            	</label>
 		            	<h1 class="text-center no-margin semi-bold"><%= number_to_currency(@form.selected_option.option.price, precision: 0) %> <small class="small h6">/year</small></h1>
 									

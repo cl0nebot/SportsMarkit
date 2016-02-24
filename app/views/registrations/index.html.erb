@@ -1,1 +1,7 @@
-index.html.erb
+<% @registrations.each do |registration| %>
+
+<%= registration.registrant.full_name %>-
+<%= registration.paid? ? "Paid" : "" %></br>
+<%= registration.paid? ? "Paid" : "" %></br>
+
+<% end %>

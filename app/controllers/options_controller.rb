@@ -16,6 +16,10 @@ class OptionsController < ApplicationController
     @option.save
   end
   
+  def destroy
+    
+  end
+  
   protected
   
   def option_params
