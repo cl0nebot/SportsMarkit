@@ -51,6 +51,19 @@ Rails.application.routes.draw do
     resources :documents do
       resources :signed_documents, only: %w[new create]
     end
+    
+    concern :eventable do
+      resources :events do
+        collection do
+          get :add
+          post :create_event
+          patch :update_event
+        end
+        member do
+          get :destroy_event
+        end
+      end
+    end
 
     resources :messages do
       collection do
@@ -68,7 +81,7 @@ Rails.application.routes.draw do
     end
     resources :sessions
     resources :password_resets
-    resources :schools, concerns: [:documentable, :announceable] do
+    resources :schools, concerns: [:documentable, :announceable, :eventable] do
       resources :forms do
         resources :options
         collection do
@@ -80,16 +93,6 @@ Rails.application.routes.draw do
       resources :teams
       resources :photos
       resources :profile_pictures, only: %w[create update destroy]
-      resources :events do
-        collection do
-          get :add
-          post :create_event
-          patch :update_event
-        end
-        member do
-          get :destroy_event
-        end
-      end
       resource :calendar do
         get :events, on: :member
       end
@@ -98,7 +101,7 @@ Rails.application.routes.draw do
       patch :upgrade_school
     end
     
-    resources :teams, concerns: [:documentable, :announceable] do
+    resources :teams, concerns: [:documentable, :announceable, :eventable] do
       resources :forms do
         resources :options
         collection do
@@ -111,16 +114,6 @@ Rails.application.routes.draw do
       end
       resources :photos
       resources :profile_pictures, only: %w[create update destroy]
-      resources :events do
-        collection do
-          get :add
-          post :create_event
-          patch :update_event
-        end
-        member do
-          get :destroy_event
-        end
-      end
       resources :media
       resources :chat
       resource :calendar do
@@ -136,7 +129,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :facilities, concerns: [:documentable, :announceable] do
+    resources :facilities, concerns: [:documentable, :announceable, :eventable] do
       resources :forms do
         collection do
           post :create_or_update_form
@@ -147,16 +140,6 @@ Rails.application.routes.draw do
         get :selection_option
         post :create_from_modal
       end
-      resources :events do
-        collection do
-          get :add
-          post :create_event
-          patch :update_event
-        end
-        member do
-          get :destroy_event
-        end
-      end
       resource :calendar do
         get :events, on: :member
       end
@@ -166,23 +149,13 @@ Rails.application.routes.draw do
     end
 
     resources :tournaments
-    resources :leagues, concerns: [:documentable, :announceable] do
+    resources :leagues, concerns: [:documentable, :announceable, :eventable] do
       resources :forms do
         collection do
           post :create_or_update_form
         end
       end
       resources :profile_pictures, only: %w[create update destroy]
-      resources :events do
-        collection do
-          get :add
-          post :create_event
-          patch :update_event
-        end
-        member do
-          get :destroy_event
-        end
-      end
       resource :calendar do
         get :events, on: :member
       end
@@ -229,7 +202,7 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :clubs, concerns: [:documentable, :announceable] do
+    resources :clubs, concerns: [:documentable, :announceable, :eventable] do
       resources :forms do
         collection do
           post :create_or_update_form
@@ -240,16 +213,6 @@ Rails.application.routes.draw do
       resources :teams
       resources :photos
       resources :profile_pictures, only: %w[create update destroy]
-      resources :events do
-        collection do
-          get :add
-          post :create_event
-          patch :update_event
-        end
-        member do
-          get :destroy_event
-        end
-      end
       resource :calendar do
         get :events, on: :member
       end
