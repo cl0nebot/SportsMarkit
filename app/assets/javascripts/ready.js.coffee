@@ -76,3 +76,25 @@ pictureCropping = ->
 $(document).ready ->
   $('.autosubmit').change ->
     remoteSubmit($(@).closest('form'))
+
+$(document).ready ->
+  $('.city-preloader').each ->
+    placeholder = if $(@).data('current-city')? then $(@).data('current-city') else 'Search for city'
+    $(@).selectpicker().ajaxSelectPicker
+      ajax:
+        url: 'https://api.teleport.org/api/cities/'
+        data: ->
+          search: '{{{q}}}'
+        method: 'GET'
+      locale:
+        emptyTitle: placeholder
+      preprocessData: (data) ->
+        cities = for city in data._embedded['city:search-results']
+          name = city.matching_full_name
+          {
+            'value': name.split(',')[0],
+            'text': name,
+            'disabled': false
+          }
+        cities
+      preserveSelected: false
