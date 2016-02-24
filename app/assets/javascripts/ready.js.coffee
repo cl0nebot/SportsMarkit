@@ -12,6 +12,7 @@ $(document).on 'click', '.remove-form', ->
 
 $(document).on  'click', '.submit-form', ->
   remoteSubmit($(@).closest('form'))
+  false
 
 $(document).ready ->
   $(".best_in_place").best_in_place();

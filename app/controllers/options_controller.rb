@@ -17,7 +17,8 @@ class OptionsController < ApplicationController
   end
   
   def destroy
-    
+    @option = Option.find(params[:id])
+    @option.destroy
   end
   
   protected
