@@ -193,8 +193,7 @@
 														<div class="col-md-12">
 															<div class="inputer margin-bottom-10">
 																<%= f.fields_for :profile, @profile do |builder| %>
-																	<%= builder.select(:city, User.cities_list.sort.collect {|city| [ city_with_state(city), city ] }, {}, {:class => 'selecter', data:{live_search: 'true', width: '100%'}}) %>
-																
+																	<%= builder.select(:city, [], {}, {:class => 'city-preloader', data:{live_search: 'true', width: '100%', current_city: builder.object.city}}) %>
 																<% end %>
 															</div>
 														</div><!--.col-md-9-->
