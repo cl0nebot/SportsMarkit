@@ -53,6 +53,10 @@ Rails.application.routes.draw do
       resources :documents, except: %w[destroy show]
       resources :signed_documents, only: %w[index]
     end
+    
+    concern :announceable do
+       resources :announcements
+    end
 
     resources :documents, only: %w[destroy show]
     resources :documents do
@@ -75,14 +79,13 @@ Rails.application.routes.draw do
     end
     resources :sessions
     resources :password_resets
-    resources :schools, concerns: :documentable do
+    resources :schools, concerns: [:documentable, :announceable] do
       resources :forms do
         resources :options
         collection do
           post :create_or_update_form
         end
       end
-      resources :announcements
       resources :facilities
       resources :media
       resources :teams
@@ -106,7 +109,7 @@ Rails.application.routes.draw do
       patch :upgrade_school
     end
     
-    resources :teams, concerns: :documentable do
+    resources :teams, concerns: [:documentable, :announceable] do
       resources :forms do
         resources :options
         collection do
@@ -114,7 +117,6 @@ Rails.application.routes.draw do
           
         end
       end
-      resources :announcements
       resources :registrations do
         get :register
       end
@@ -145,13 +147,12 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :facilities, concerns: :documentable do
+    resources :facilities, concerns: [:documentable, :announceable] do
       resources :forms do
         collection do
           post :create_or_update_form
         end
       end
-      resources :announcements
       resources :profile_pictures, only: %w[create update destroy]
       collection do
         get :selection_option
@@ -176,13 +177,12 @@ Rails.application.routes.draw do
     end
 
     resources :tournaments
-    resources :leagues, concerns: :documentable do
+    resources :leagues, concerns: [:documentable, :announceable] do
       resources :forms do
         collection do
           post :create_or_update_form
         end
       end
-      resources :announcements
       resources :profile_pictures, only: %w[create update destroy]
       resources :events do
         collection do
@@ -240,13 +240,12 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :clubs, concerns: :documentable do
+    resources :clubs, concerns: [:documentable, :announceable] do
       resources :forms do
         collection do
           post :create_or_update_form
         end
       end
-      resources :announcements
       resources :facilities
       resources :media
       resources :teams
