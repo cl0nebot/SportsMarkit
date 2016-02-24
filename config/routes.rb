@@ -1,21 +1,10 @@
 Rails.application.routes.draw do
     root 'main#home'
-
-    get "lockscreen" => "main#lockscreen"
-    get "home" => "main#home"
-    
+        
     resources :users do
       get :email
       get :phone
       resources :photos
-      post :add_school_team_at_setup
-      delete :remove_school_team
-      delete :remove_non_school_team
-      delete :remove_coach_team
-      delete :remove_child
-      post :add_non_school_team_at_setup
-      post :add_coach_team_at_setup
-      post :add_child_at_setup
       resources :user_profile_pictures, only: %w[create update destroy]
       resources :events do
         collection do
