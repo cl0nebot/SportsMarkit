@@ -32,29 +32,29 @@
 
 		<div class="header-tabs scrollable-tabs sticky">
 
-			 <a class="mt10 pull-right btn btn-orange mr20">
-	            Register
-	        </a>
+			<a class="mt10 pull-right btn btn-orange mr20">
+        Register
+      </a>
 
-	        <% if current_user %>
-			        <% if @object.can_be_edited_by_user?(current_user) %>
-		          <%= link_to edit_facility_path(@facility), class: "mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20" do %>
-		              <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
-		          <% end %>
-		        <% end %>
-		      <% end %>
+      <% if current_user %>
+        <% if @object.can_be_edited_by_user?(current_user) %>
+	        <%= link_to edit_facility_path(@facility), class: "mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20" do %>
+	            <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
+	        <% end %>
+	      <% end %>
+      <% end %>
 
-		      <%= render 'shared/view_announcement_button', object: @object %>
+		  <%= render 'shared/view_announcement_button', object: @object %>
 
 	    <%= render 'shared/show_navigations'%>
 	
-	        	<% if @object.can_be_edited_by_user?(current_user)%>
-	          		<%= link_to edit_facility_path(@facility) do %>
-		            <button href="" class="btn btn-floating btn-blue btn-ripple pull-right">
-		          		<i class="ion-gear-b"></i>
-		          	</button>
-	          	<% end %>
-	        	<% end %>
+    	<% if @object.can_be_edited_by_user?(current_user)%>
+      		<%= link_to edit_facility_path(@facility) do %>
+          <button href="" class="btn btn-floating btn-blue btn-ripple pull-right">
+        		<i class="ion-gear-b"></i>
+        	</button>
+      	<% end %>
+    	<% end %>
 
 		</div>
 	</div><!--.page-header-->

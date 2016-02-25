@@ -1,17 +1,32 @@
 <div class="content">
-  <div class="page-header full-content bg-blue mb0">
+  <div class="page-header full-content bg-primary mb0" style="min-height: 121px;">
     <div class="row">
       <div class="col-sm-6">
-        <h1>Admin <small>Documents</small></h1>
-      </div>
+        <h1 class="capitalize semi-bold">
+          <%= @object.name %>
+          <small>Manage Documents</small>
+        </h1>
+      </div><!--.col-->
       <div class="col-sm-6">
         <ol class="breadcrumb">
           <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="<%= users_path %>" class="active">all users</a></li>
+          <li><a href="<%= teams_path %>">Teams</a></li>
+          <% if @object.teamable.present? %>
+              <li><a href="#"><%= @object.teamable.name %></a></li>
+              <!-- add path for linking -->
+          <% end %>
+          <li><a href="#" class="active"><%= @object.name %></a></li>
         </ol>
       </div>
-    </div>
-  </div>
+    </div><!--.row-->
+
+   <%= render "shared/show_navigation_admin" %>
+          
+    <script>
+    onclick="theFunction(event)"
+    </script>
+
+  </div><!--.page-header-->
 
   <div class="pt60">
     <div class="row">
