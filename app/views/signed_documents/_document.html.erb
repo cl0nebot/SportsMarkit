@@ -1,40 +1,32 @@
 <tr id="show<%= document.try(:id) %>">
   <td class="v-align-middle">
-    <h5 class="semi-bold muted"><%= document.try(:name) %></h5>
+    <h6 class="semi-bold muted"><%= document.try(:name) %></h6>
   </td>
   <td class="v-align-middle">
-    <%= document.try(:description) %>
+    <p class="fs_14 text-muted"><%= document.try(:description) %></p>
   </td>
   <td class="v-align-middle">
-    <%= document.try(:file).try(:url) %>
+    <p class="fs_14 text-muted"><%= document.try(:file).try(:url) %></p>
   </td>
   <td class="v-align-middle">
     <% if document.can_be_edited_by_user?(current_user) %>
-      <div class="row clearfix">
-        <div class="col-md-6">
-          <a class="btn btn-block btn-sm btn-info row btn-ripple" href="<%= document_path(document.id) %>">
-            <span class="ion-clipboard"></span>
-          </a>
-        </div>
-        <div class="col-md-6">
-          <%= link_to document_signed_documents_path(document.try(:id), path: request.fullpath.split('?').first), class: "btn btn-block btn-sm btn-default row btn-ripple", method: :post do %>
-            <span class="ion-link"></span>
-          <% end %>
-        </div>
-      </div>
+      <a class="btn btn-sm btn-info btn-ripple" href="<%= document_path(document.id) %>" data-toggle="tooltip" data-placement="top" title="Share?">
+        <span class="ion-clipboard"></span>
+      </a>
+      <span  data-toggle="tooltip" data-placement="top" title="Sign">
+        <%= link_to document_signed_documents_path(document.try(:id), path: request.fullpath.split('?').first), class: "btn  btn-sm btn-default btn-ripple", method: :post do %>
+          <span class="ion-link"></span>
+        <% end %>
+      </spam>
     <% else %>
-      <div class="row clearfix">
-        <div class="col-md-6">
-          <a class="btn btn-block btn-sm btn-info row btn-ripple" href="<%= document_path(document.id) %>">
-            <span class="ion-clipboard"></span>
-          </a>
-        </div>
-        <div class="col-md-6">
-          <%= link_to document_signed_documents_path(document.try(:id), path: request.fullpath.split('?').first), class: "btn btn-block btn-sm btn-default row btn-ripple", method: :post do %>
-            <span class="ion-link"></span>
-          <% end %>
-        </div>
-      </div>
+    <a class="btn btn-block btn-sm btn-info btn-ripple" data-toggle="tooltip" data-placement="top" title="Share?" href="<%= document_path(document.id) %>">
+      <span class="ion-clipboard"></span>
+    </a>
+    <span  data-toggle="tooltip" data-placement="top" title="Sign">
+      <%= link_to document_signed_documents_path(document.try(:id), path: request.fullpath.split('?').first), class: "btn btn-sm btn-default btn-ripple", method: :post do %>
+        <span class="ion-link"></span>
+      <% end %>
+    </span>
     <% end %>
   </td>
 </tr>

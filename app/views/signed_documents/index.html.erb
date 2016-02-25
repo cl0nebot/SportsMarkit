@@ -1,18 +1,36 @@
 <div class="content">
-  <div class="page-header full-content bg-blue mb0">
+
+  <div class="page-header full-content bg-primary mb0" style="min-height: 141px;">
     <div class="row">
       <div class="col-sm-6">
-        <h1>Admin <small>Signed Documents</small></h1>
-      </div>
+        <h1 class="capitalize semi-bold">
+          <%= @object.name %>
+          <small>Signed Documents</small>
+        </h1>
+      </div><!--.col-->
       <div class="col-sm-6">
         <ol class="breadcrumb">
           <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="<%= users_path %>" class="active">all users</a></li>
+          <li><a href="<%= teams_path %>">Teams</a></li>
+          <% if @object.teamable.present? %>
+              <li><a href="#"><%= @object.teamable.name %></a></li>
+              <!-- add path for linking -->
+          <% end %>
+          <li><a href="#" class="active"><%= @object.name %></a></li>
         </ol>
       </div>
-    </div>
-  </div>
+    </div><!--.row-->
 
+   <%= render "shared/show_navigation_admin" %>
+
+
+          
+      <script>
+      onclick="theFunction(event)"
+      </script>
+
+  </div><!--.page-header-->
+ 
   <div class="pt60">
     <div class="row">
       <div class="col-lg-8 col-sm-offset-2">
@@ -23,16 +41,24 @@
             </div>
           </div>
           <div class="panel-body pb40">
-            <div class="">
-              <table id="document-list" class="table table-hover table-condensed" id="example">
+            <div class="overflow-table">
+              <table id="document-list" class="pt30 pb30 table display datatables-basic table-hover table-condensed" id="example">
                 <thead>
                   <tr>
-                    <th style="width:30%" class="semi-bold h6 text-muted">Name</th>
-                    <th style="width:30%" class="semi-bold h6 text-muted">Description</th>
-                    <th style="width:30%" class="semi-bold h6 text-muted">File</th>
-                    <th style="width:30%" class="semi-bold h6 text-muted">Actions</th>
+                    <th class="semi-bold fs_14 text-muted">Name</th>
+                    <th class="semi-bold fs_14 text-muted">Description</th>
+                    <th class="semi-bold fs_14 text-muted">File</th>
+                    <th  class="semi-bold fs_14 text-muted">Actions</th>
                   </tr>
                 </thead>
+                <tfoot>
+                  <tr>
+                    <th class="semi-bold fs_14 text-muted">Name</th>
+                    <th class="semi-bold fs_14 text-muted">Description</th>
+                    <th class="semi-bold fs_14 text-muted">File</th>
+                    <th  class="semi-bold fs_14 text-muted">Actions</th>
+                  </tr>
+                </tfoot>
                 <tbody>
                   <% if @documents.present? %>
                     <% @documents.each do |document| %>

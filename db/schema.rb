@@ -870,7 +870,6 @@ ActiveRecord::Schema.define(version: 20160224233431) do
     t.string   "provider"
     t.string   "uid"
     t.string   "mobile_phone_number"
-    t.integer  "temporary_school_ids"
     t.integer  "signin_count",            default: 0
   end
 
