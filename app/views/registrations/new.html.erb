@@ -41,7 +41,7 @@
             <h4 class="text-primary semi-bold">1. Who is this registration for?</h4>
             <h5>Select User</h5>
             <div class="well">
-            <%= select_tag 'user_id', options_from_collection_for_select(User.smart_order(current_user), "id", "name"), :id => "user-select-box", class: ' bg-white autosubmit form-control' %>
+            <%= select_tag  'user_id', options_from_collection_for_select(User.smart_order(current_user), "id", "name"), {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0" } %>
             </div>
           <% end %>
           
