@@ -104,6 +104,7 @@
 															<div class="input-wrapper">
 																<%= text_field_tag :first_name, "", type: "text", class: "form-control", placeholder: "", name: "first_name" %>
 															</div>
+															<div class="first_name_field"></div>
 														</div>
 													</div><!--.col-md-9-->
 												</div><!--.row-->
@@ -117,6 +118,7 @@
 															<div class="input-wrapper">
 																<%= text_field_tag :last_name,"", type: "text", class: "form-control", placeholder: "", name: "last_name" %>
 															</div>
+															<div class="last_name_field"></div>
 														</div>
 													</div><!--.col-md-9-->
 												</div><!--.row-->
@@ -155,9 +157,11 @@
 													<div class="col-md-12">
 														<div class="inputer">
 															<div class="input-wrapper">
-																<%= text_field_tag :mobile_phone_number,"", type: "text", class: "form-control", placeholder: "" %>
+																<%= text_field_tag :phone_number,"", type: "text", class: "form-control", placeholder: "" %>
+																<%= hidden_field_tag :mobile_phone_number,"", type: "text", class: "form-control", placeholder: "" %>
             													
 															</div>
+															<div class="mobile_phone_number_field"></div>
         													<div class="" id="invalid-phone-message" style="display: none">
 					
         									                      	<font size="2" color="red">Phone Number is Invalid. Please enter 10 digits.</font>
@@ -232,7 +236,7 @@
 
 										<hr class="mt0" />
 
-										<%= f.submit "Add New Team Member", class: "btn btn-primary pull-right" %><br><br>
+										<%= f.submit "Add New Team Member", class: "btn btn-primary pull-right add_team_member" %><br><br>
 										<div class="pull-right" id="roster-spot-created" style="display: none">
 			
 						                      	<font size="2" color="green">Roster spot created.</font>

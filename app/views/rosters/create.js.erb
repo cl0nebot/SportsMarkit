@@ -16,3 +16,8 @@
     window.location.reload()
   <% end %>
 <% end %>
+
+$('#roster-form')[0].reset();
+$('.mobile_phone_number_field').html("");
+$( ".add_team_member" ).attr('disabled', true);
+team_admin_validation();

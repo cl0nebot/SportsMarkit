@@ -156,7 +156,7 @@ class UsersController < ApplicationController
   def email_check
     if params[:number].present? && params[:email].present?
       @users = User.where("mobile_phone_number = '#{params[:number]}' or email = '#{params[:email]}'")
-      if current_user.present?
+      if current_user.present? && params[:type] != "other"
         if @users.include? current_user
           status = false
         else
@@ -170,7 +170,7 @@ class UsersController < ApplicationController
       end
     elsif params[:number].present?
       @user = User.where(mobile_phone_number: params[:number]).first
-      if current_user.present?
+      if current_user.present? && params[:type] != "other"
         if @user == current_user
           status = false
         else
@@ -184,7 +184,7 @@ class UsersController < ApplicationController
       end
     else
       @user = User.find_by_email(params[:email])
-      if current_user.present?
+      if current_user.present? && params[:type] != "other"
         if @user == current_user
           status = false
         else
