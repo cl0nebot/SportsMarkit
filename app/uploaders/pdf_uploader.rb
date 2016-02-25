@@ -1,14 +1,14 @@
 class PdfUploader < CarrierWave::Uploader::Base
 
   storage :fog
-  
+
   def extension_white_list
     %w(pdf)
   end
-  
+
   def filename
-      "#{secure_token}.#{file.extension}" if original_filename.present?
-    end
+    "#{secure_token}.#{file.extension}" if original_filename.present?
+  end
 
     protected
     def secure_token

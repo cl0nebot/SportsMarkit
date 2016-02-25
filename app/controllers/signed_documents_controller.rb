@@ -5,12 +5,8 @@ class SignedDocumentsController < ApplicationController
   before_action :find_document, only: %w[new create]
 
   def index
-    @class = @object.class.to_s
-    if @class == "User"
-      @documents = Document.where(documentable_id: @object.id)
-    else
-      @documents = Document.where(documentable_id: @object.id, documentable_type: @object.class.to_s)
-    end
+    documents = Document.where(documentable_id: @object.id, documentable_type: @object.class.to_s)
+    @signed_documents = SignedDocument.where(documents_id: documents)
   end
 
   def create
