@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: %w[index show edit update destroy plans subscriptions]
+  before_action :authenticate_user!, only: %w[index edit update destroy plans subscriptions]
   before_action :correct_user!, only: %w[edit]
   before_action :find_user, only: %w[show edit destroy store]
   
