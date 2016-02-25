@@ -23,16 +23,24 @@
             </div>
           </div>
           <div class="panel-body pb40">
-            <div class="">
-              <table id="document-list" class="table table-hover table-condensed" id="example">
+            <div class="overflow-table">
+              <table id="document-list" class="pt30 pb30 table display datatables-basic table-hover table-condensed" id="example">
                 <thead>
                   <tr>
-                    <th class="semi-bold h6 text-muted">Name</th>
-                    <th class="semi-bold h6 text-muted">Description</th>
-                    <th class="semi-bold h6 text-muted">File</th>
-                    <th  class="semi-bold h6 text-muted">Actions</th>
+                    <th class="semi-bold fs_14 text-muted">Name</th>
+                    <th class="semi-bold fs_14 text-muted">Description</th>
+                    <th class="semi-bold fs_14 text-muted">File</th>
+                    <th  class="semi-bold fs_14 text-muted">Actions</th>
                   </tr>
                 </thead>
+                <tfoot>
+                  <tr>
+                    <th class="semi-bold fs_14 text-muted">Name</th>
+                    <th class="semi-bold fs_14 text-muted">Description</th>
+                    <th class="semi-bold fs_14 text-muted">File</th>
+                    <th  class="semi-bold fs_14 text-muted">Actions</th>
+                  </tr>
+                </tfoot>
                 <tbody>
                   <% if @documents.present? %>
                     <% @documents.each do |document| %>
