@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
   before_action :find_object, except: [:show, :destroy, :edit, :update, :index]
   require 'twilio-ruby'
   
