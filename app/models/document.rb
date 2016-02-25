@@ -47,4 +47,18 @@ class Document < ActiveRecord::Base
     array.uniq.find_index(id) + 1
   end
 
+  def get_membership
+    object = self.documentable_type.classify.safe_constantize.where(id: self.documentable_id).first
+    object.try(:name)
+  end
+
+  def get_signed_date(user_id)
+    object = SignedDocument.where(user_id: user_id, documents_id: self.id).first
+    if object.present? && object.signed
+      object.updated_at.strftime("%m/%d/%Y")
+    else
+      "Not Signed Yet."
+    end
+  end
+
 end

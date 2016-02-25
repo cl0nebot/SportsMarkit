@@ -2,7 +2,7 @@
   <div class="page-header full-content bg-blue mb0">
     <div class="row">
       <div class="col-sm-6">
-        <h1>Admin <small>Signed Documents</small></h1>
+        <h1>Admin <small>Signed Documents2</small></h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb">
@@ -19,7 +19,7 @@
         <div class="panel box-shadow-ccc">
           <div class="panel-heading">
             <div class="panel-title">
-              <h4 class="semi-bold">Signed Documents</h4>
+              <h4 class="semi-bold">Signed Documents2</h4>
             </div>
           </div>
           <div class="panel-body pb40">
@@ -27,22 +27,15 @@
               <table id="document-list" class="table table-hover table-condensed" id="example">
                 <thead>
                   <tr>
-                    <% if @class == "User" %>
-                      <th style="width:30%" class="semi-bold h6 text-muted">Membership</th>
-                      <th style="width:30%" class="semi-bold h6 text-muted">Document</th>
-                      <th style="width:30%" class="semi-bold h6 text-muted">Date Signed</th>
-                    <% else %>
-                      <th style="width:30%" class="semi-bold h6 text-muted">Name</th>
-                      <th style="width:30%" class="semi-bold h6 text-muted">Description</th>
-                      <th style="width:30%" class="semi-bold h6 text-muted">File</th>
-                      <th style="width:30%" class="semi-bold h6 text-muted">Actions</th>
-                    <% end %>
+                    <th style="width:30%" class="semi-bold h6 text-muted">Signee</th>
+                    <th style="width:30%" class="semi-bold h6 text-muted">Document</th>
+                    <th style="width:30%" class="semi-bold h6 text-muted">Date Signed</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <% if @documents.present? %>
-                    <% @documents.each do |document| %>
-                      <%= render partial: 'signed_documents/document', locals: { document: document } %>
+                  <% if @signed_documents.present? %>
+                    <% @signed_documents.each do |signed_document| %>
+                      <%= render partial: 'signed_documents2/document', locals: { signed_document: signed_document } %>
                     <% end %>
                   <% end %>
                 </tbody>

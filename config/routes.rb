@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
     root 'main#home'
-        
-    resources :users do
+    
+    concern :signed_documentable do
+      resources :signed_documents, only: %w[index]
+      resources :signed_documents2, only: %w[index]
+    end
+
+    resources :users, concerns: [:signed_documentable] do
       get :email
       get :phone
       resources :photos
@@ -40,7 +45,6 @@ Rails.application.routes.draw do
 
     concern :documentable do
       resources :documents, except: %w[destroy show]
-      resources :signed_documents, only: %w[index]
     end
     
     concern :announceable do
@@ -81,7 +85,7 @@ Rails.application.routes.draw do
     end
     resources :sessions
     resources :password_resets
-    resources :schools, concerns: [:documentable, :announceable, :eventable] do
+    resources :schools, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
       resources :forms do
         resources :options
         collection do
@@ -101,7 +105,7 @@ Rails.application.routes.draw do
       patch :upgrade_school
     end
     
-    resources :teams, concerns: [:documentable, :announceable, :eventable] do
+    resources :teams, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
       resources :forms do
         resources :options
         collection do
@@ -129,7 +133,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :facilities, concerns: [:documentable, :announceable, :eventable] do
+    resources :facilities, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
       resources :forms do
         collection do
           post :create_or_update_form
@@ -149,7 +153,7 @@ Rails.application.routes.draw do
     end
 
     resources :tournaments
-    resources :leagues, concerns: [:documentable, :announceable, :eventable] do
+    resources :leagues, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
       resources :forms do
         collection do
           post :create_or_update_form
@@ -202,7 +206,7 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :clubs, concerns: [:documentable, :announceable, :eventable] do
+    resources :clubs, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
       resources :forms do
         collection do
           post :create_or_update_form

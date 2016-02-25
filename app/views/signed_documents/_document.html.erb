@@ -1,40 +1,48 @@
-<tr id="show<%= document.try(:id) %>">
-  <td class="v-align-middle">
-    <h5 class="semi-bold muted"><%= document.try(:name) %></h5>
-  </td>
-  <td class="v-align-middle">
-    <%= document.try(:description) %>
-  </td>
-  <td class="v-align-middle">
-    <%= document.try(:file).try(:url) %>
-  </td>
-  <td class="v-align-middle">
-    <% if document.can_be_edited_by_user?(current_user) %>
-      <div class="row clearfix">
-        <div class="col-md-6">
-          <a class="btn btn-block btn-sm btn-info row btn-ripple" href="<%= document_path(document.id) %>">
-            <span class="ion-clipboard"></span>
-          </a>
+<% if @class == "User" %>
+  <tr>
+    <td><%= document.get_membership %></td>
+    <td><%= document.try(:description) %></td>
+    <td><%= document.get_signed_date(params[:user_id]) %></td>
+  </tr>
+<% else %>
+  <tr id="show<%= document.try(:id) %>">
+    <td class="v-align-middle">
+      <h5 class="semi-bold muted"><%= document.try(:name) %></h5>
+    </td>
+    <td class="v-align-middle">
+      <%= document.try(:description) %>
+    </td>
+    <td class="v-align-middle">
+      <%= document.try(:file).try(:url) %>
+    </td>
+    <td class="v-align-middle">
+      <% if document.can_be_edited_by_user?(current_user) %>
+        <div class="row clearfix">
+          <div class="col-md-6">
+            <a class="btn btn-block btn-sm btn-info row btn-ripple" href="<%= document_path(document.id) %>">
+              <span class="ion-clipboard"></span>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <%= link_to document_signed_documents_path(document.try(:id), path: request.fullpath.split('?').first), class: "btn btn-block btn-sm btn-default row btn-ripple", method: :post do %>
+              <span class="ion-link"></span>
+            <% end %>
+          </div>
         </div>
-        <div class="col-md-6">
-          <%= link_to document_signed_documents_path(document.try(:id), path: request.fullpath.split('?').first), class: "btn btn-block btn-sm btn-default row btn-ripple", method: :post do %>
-            <span class="ion-link"></span>
-          <% end %>
+      <% else %>
+        <div class="row clearfix">
+          <div class="col-md-6">
+            <a class="btn btn-block btn-sm btn-info row btn-ripple" href="<%= document_path(document.id) %>">
+              <span class="ion-clipboard"></span>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <%= link_to document_signed_documents_path(document.try(:id), path: request.fullpath.split('?').first), class: "btn btn-block btn-sm btn-default row btn-ripple", method: :post do %>
+              <span class="ion-link"></span>
+            <% end %>
+          </div>
         </div>
-      </div>
-    <% else %>
-      <div class="row clearfix">
-        <div class="col-md-6">
-          <a class="btn btn-block btn-sm btn-info row btn-ripple" href="<%= document_path(document.id) %>">
-            <span class="ion-clipboard"></span>
-          </a>
-        </div>
-        <div class="col-md-6">
-          <%= link_to document_signed_documents_path(document.try(:id), path: request.fullpath.split('?').first), class: "btn btn-block btn-sm btn-default row btn-ripple", method: :post do %>
-            <span class="ion-link"></span>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-  </td>
-</tr>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
