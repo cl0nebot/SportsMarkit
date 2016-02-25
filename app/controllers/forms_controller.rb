@@ -1,7 +1,11 @@
 class FormsController < ApplicationController
-  before_action :find_object, only: [:new]
+  before_action :find_object, only: [:new, :edit]
   
   def new
+    @style = "btn btn"
+  end
+  
+  def edit
     @style = "btn btn"
   end
   
