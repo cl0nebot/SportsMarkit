@@ -9,7 +9,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb">
           <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="<%#= teams_path %>">Schools</a></li>
+          <li><a href="<%#= teams_path %>"><%= @object.class.to_s.pluralize %></a></li>
           <li><a href="#"><%#= @school.name %></a></li>
           <li><a href="#" class="active">Registration</a></li>
         </ol>
