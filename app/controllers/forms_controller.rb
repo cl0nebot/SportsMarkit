@@ -12,7 +12,7 @@ class FormsController < ApplicationController
   def create_or_update_form
     @form = Form.find_or_create_by(formable_id: params[:formable_id], formable_type: params[:formable_type], object: params[:object])
     @form.update_attributes(waiver: params[:waiver])
-    redirect_to eval("#{@object.class.to_s.downcase}_form_options_path(@form.formable_id, @form.id)")
+    redirect_to eval("#{@form.formable.class.to_s.downcase}_form_options_path(@form.formable_id, @form.id)")
     #redirect_to "/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/#{@form.id}/options"
     # redirect_to "/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/#{@form.id}/registrations/new"
   end

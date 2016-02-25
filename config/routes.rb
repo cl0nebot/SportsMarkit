@@ -145,14 +145,10 @@ Rails.application.routes.draw do
       end
     end
 
-<<<<<<< HEAD
     resources :facilities, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
-=======
-    resources :facilities, concerns: [:documentable, :announceable, :eventable] do
       resources :registrations do
         get :register
       end
->>>>>>> 100d4df126c7eda9edf9796e71a0058de9aacf2b
       resources :forms do
         collection do
           post :create_or_update_form
@@ -172,14 +168,10 @@ Rails.application.routes.draw do
     end
 
     resources :tournaments
-<<<<<<< HEAD
     resources :leagues, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
-=======
-    resources :leagues, concerns: [:documentable, :announceable, :eventable] do
       resources :registrations do
         get :register
       end
->>>>>>> 100d4df126c7eda9edf9796e71a0058de9aacf2b
       resources :forms do
         collection do
           post :create_or_update_form
@@ -232,14 +224,10 @@ Rails.application.routes.draw do
       end
     end
     
-<<<<<<< HEAD
     resources :clubs, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
-=======
-    resources :clubs, concerns: [:documentable, :announceable, :eventable] do
       resources :registrations do
         get :register
       end
->>>>>>> 100d4df126c7eda9edf9796e71a0058de9aacf2b
       resources :forms do
         collection do
           post :create_or_update_form

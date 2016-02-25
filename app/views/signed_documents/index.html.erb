@@ -2,12 +2,13 @@
   <div class="page-header full-content bg-blue mb0">
     <div class="row">
       <div class="col-sm-6">
-        <h1>Admin <small>Signed Documents2</small></h1>
+        <h1>Admin <small>Signed Documents</small></h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb">
           <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="<%= users_path %>" class="active">all users</a></li>
+          <li><a href="<%= eval("#{@object.class.to_s.downcase.pluralize}_path")%>"><%= @object.class.to_s.pluralize %></a></li>
+          <li><%= link_to @object.name, @object %></li>
         </ol>
       </div>
     </div>
@@ -19,7 +20,7 @@
         <div class="panel box-shadow-ccc">
           <div class="panel-heading">
             <div class="panel-title">
-              <h4 class="semi-bold">Signed Documents2</h4>
+              <h4 class="semi-bold">Signed Documents</h4>
             </div>
           </div>
           <div class="panel-body pb40">
@@ -35,7 +36,7 @@
                 <tbody>
                 <% if @signed_documents.present? %>
                   <% @signed_documents.each do |signed_document| %>
-                    <%= render partial: 'signed_documents2/document', locals: { signed_document: signed_document } %>
+                    <%= render partial: 'signed_documents/document', locals: { signed_document: signed_document } %>
                   <% end %>
                 <% end %>
                 </tbody>
