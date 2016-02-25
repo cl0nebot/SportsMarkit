@@ -14,9 +14,11 @@ class RegistrationsController < ApplicationController
   end
   
   def create
-    @form = Form.new(form_params)
-    @form.create_master(params, form_params)
-    save_registration or render 'new'
+    Form.new.create_master(params, form_params)
+    @form = Form.find_or_create_by(formable_id: params[:form][:formable_id], formable_type: params[:form][:formable_type], object: params[:object], submittable_id: params[:form][:submittable_id], submittable_type: params[:form][:submittable_type] )
+    @form.update_attributes(form_params)
+    @form.select_pricing_option(@form.id, params)
+    redirect_to "/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/registrations/#{@form.id}/register"
   end
   
   def change_submitter
@@ -54,12 +56,12 @@ class RegistrationsController < ApplicationController
     @form = Form.find(params[:registration_id] || params[:form_id])
   end
     
-  def save_registration
-    if @form.save
-      @form.select_pricing_option(@form.id, params)
-      redirect_to "/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/registrations/#{@form.id}/register"
-    end
-  end
+  # def save_registration
+  #   if @form.save
+  #     @form.select_pricing_option(@form.id, params)
+  #     redirect_to "/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/registrations/#{@form.id}/register"
+  #   end
+  # end
   
   def load_master
     @master = Form.where(submittable_type: "User", submittable_id: params[:user_id], master: true).last
