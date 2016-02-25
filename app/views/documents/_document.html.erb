@@ -10,25 +10,35 @@
   </td>
   <td class="v-align-middle">
     <% if document.can_be_edited_by_user?(current_user) %>
-      <%= link_to document_path(document.id), method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-orange" do %>
+      <span  data-toggle="tooltip" data-placement="top" title="Delete">
+        <%= link_to document_path(document.id), method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-orange" do %>
         <span class="ion-trash-b"></span>
-      <% end %>
-      <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#<%= document.id %>"> <span class="ion-gear-b"></span>
-      </button>
-      <a class="btn btn-sm btn-info btn-ripple" href="<%= document_path(document.id) %>">
-        <span class="ion-clipboard"></span>
-      </a>
-      <%= link_to document_signed_documents_path(document.try(:id), path: request.fullpath.split('?').first), class: "btn btn-sm btn-default btn-ripple", method: :post do %>
-        <span class="ion-link"></span>
-      <% end %>
+        <% end %>
+      </span>
+      <span  data-toggle="tooltip" data-placement="top" title="Edit">
+        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#<%= document.id %>"> <span class="ion-gear-b"></span>
+        </button>
+      </span>
+      <span  data-toggle="tooltip" data-placement="top" title="Share">
+        <a class="btn btn-sm btn-info btn-ripple" href="<%= document_path(document.id) %>">
+          <span class="ion-clipboard"></span>
+        </a>
+      </span>
+      <span  data-toggle="tooltip" data-placement="top" title="Sign">
+        <%= link_to document_signed_documents_path(document.try(:id), path: request.fullpath.split('?').first), class: "btn btn-sm btn-default btn-ripple", method: :post do %>
+          <span class="ion-link"></span>
+        <% end %>
+      </span>
       <%= render 'edit_document', document: document %>
     <% else %>
-      <a class="btn btn-block btn-sm btn-info btn-ripple" href="<%= document_path(document.id) %>">
+      <a class="btn btn-block btn-sm btn-info btn-ripple" data-toggle="tooltip" data-placement="top" title="Share" href="<%= document_path(document.id) %>">
         <span class="ion-clipboard"></span>
       </a>
-      <%= link_to document_signed_documents_path(document.try(:id), path: request.fullpath.split('?').first), class: "btn btn-sm btn-default btn-ripple", method: :post do %>
-        <span class="ion-link"></span>
-      <% end %>
+      <span data-toggle="tooltip" data-placement="top" title="Share">
+        <%= link_to document_signed_documents_path(document.try(:id), path: request.fullpath.split('?').first), class: "btn btn-sm btn-default btn-ripple", method: :post do %>
+          <span class="ion-link"></span>
+        <% end %>
+      </span>
     <% end %>
   </td>
 </tr>
