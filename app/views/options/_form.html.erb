@@ -1,12 +1,15 @@
-<div id='option-<%= o.fake_id %>' style='margin-bottom: 20px; display: block; float: left; width: 100%;'>
+<div id='option-<%= o.fake_id %>' style='margin-bottom: 50px; display: block; float: left; width: 100%;'>
   <%= form_for [form.formable, form, o], remote: true do |f| %>
     <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)%>
+    <h4 class="text-primary semi-bold">Option</h4>
     <div class="col-md-12">
       <div class="row example-row">
         <div class="col-md-12">Name </div><!--.col-md-3-->
         <div class="col-md-12">
           <div class="inputer">
-            <%= f.text_field :name, class: "form-control", placeholder: ""  %>
+            <div class="input-wrapper">
+              <%= f.text_field :name, class: "form-control", placeholder: ""  %>
+            </div>
           </div>
         </div><!--.col-md-9-->
       </div>
@@ -41,7 +44,7 @@
       <% else %>
         <button class="btn btn-large btn-blue submit-form"> Create </button>
         <%= f.hidden_field :fake_id %>
-        <button class="btn btn-large btn-blue remove-form">Remove</button>
+        <button class="btn btn-large btn-danger remove-form">Remove</button>
       <% end %>
     </div>
   <% end %>

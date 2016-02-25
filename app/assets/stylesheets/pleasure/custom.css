@@ -810,3 +810,34 @@ ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
 .labels-16 label {
     font-size: 16px;
   }
+
+
+  .list-material.wide > li .list-action-right {
+    width: 120px;
+}
+
+.dataTables_wrapper .dataTables_length label,
+.dataTables_wrapper .dataTables_info {
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+
+.header-tabs.thin {
+    height: 41px;
+}
+
+.header-tabs.thin ul li a {
+    background: transparent;
+    border: 0 !important;
+    color: #111;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    opacity: .7;
+    border-radius: 0;
+    padding: 10px 20px;
+    top: 0;
+    margin-right: 0;
+}
+

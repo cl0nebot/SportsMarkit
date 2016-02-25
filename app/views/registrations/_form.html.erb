@@ -5,135 +5,208 @@
   <%= f.hidden_field :submittable_type, value: submitter.class.to_s %>
   <%= f.hidden_field :submitter_id, value: current_user.nil? ? nil : current_user.id %>
 
-  <h4 class="bold">General Field</h4>
-
-  <% Form.general_fields.each do |field| %>
-    <% if form.send("#{field.last}_required?") %>
-      <%= label_tag field.last.to_sym, field.first %>
-      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
-      <br>
-    <% elsif form.send("#{field.last}_display?") %>
-      <%= label_tag field.last.to_sym, field.first %>
-      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
-      <br>
-    <% end %>
-  <% end %>
-
-  <h4 class="bold">Guardian</h4>
-
-  <% Form.guardian_fields.each do |field| %>
-    <% if form.send("#{field.last}_required?") %>
-      <%= label_tag field.last.to_sym, field.first %>
-      <%= f.text_field field.last.to_sym, class: "form-control" %> <font size='2' color='red'>*</font>
-      <br>
-    <% elsif form.send("#{field.last}_display?") %>
-      <%= label_tag field.last.to_sym, field.first %>
-      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> 
-      <br>
-    <% end %>
-  <% end %>
-
-  <h4 class="bold">Emergency Contact</h4>
-  <% Form.emergency_fields.each do |field| %>
-    <% if form.send("#{field.last}_required?") %>
-      <%= label_tag field.last.to_sym, field.first %>
-      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
-      <br>
-    <% elsif form.send("#{field.last}_display?") %>
-      <%= label_tag field.last.to_sym, field.first %>
-      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
-      <br>
-    <% end %>
-  <% end %>
-
-  <h4 class="bold">Insurance</h4>
-
-  <% Form.insurance_fields.each do |field| %>
-    <% if form.send("#{field.last}_required?") %>
-      <%= label_tag field.last.to_sym, field.first %>
-      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
-      <br>
-    <% elsif form.send("#{field.last}_display?") %>
-      <%= label_tag field.last.to_sym, field.first %>
-      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
-      <br>
-    <% end %>
-  <% end %>
-
-  <h4 class="bold">Health</h4>
-
-  <% Form.health_fields.each do |field| %>
-    <% if form.send("#{field.last}_required?") %>
-      <%= label_tag field.last.to_sym, field.first %>
-      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
-      <br>
-    <% elsif form.send("#{field.last}_display?") %>
-      <%= label_tag field.last.to_sym, field.first %>
-      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
-      <br>
-    <% end %>
-  <% end %>
-
-  <h4 class="bold">Membership</h4>
-
-  <% Form.membership_fields.each do |field| %>
-    <% if form.send("#{field.last}_required?") %>
-      <%= label_tag field.last.to_sym, field.first %>
-      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
-      <br>
-    <% elsif form.send("#{field.last}_display?") %>
-      <%= label_tag field.last.to_sym, field.first %>
-      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> 
-      <br>
-    <% end %>
-  <% end %>
-
-  <h4 class="bold">School</h4>
-
-  <% Form.school_fields.each do |field| %>
-    <% if form.send("#{field.last}_required?") %>
-      <%= label_tag field.last.to_sym, field.first %>
-      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
-      <br>
-    <% elsif form.send("#{field.last}_display?") %>
-      <%= label_tag field.last.to_sym, field.first %>
-      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
-      <br>
-    <% end %>
-  <% end %>
-
-  <h4 class="bold">Financial</h4>
-
-  <% Form.financial_fields.each do |field| %>
-    <% if form.send("#{field.last}_required?") %>
-      <%= label_tag field.last.to_sym, field.first, class: "form-control" %>
-      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym) %> <font size='2' color='red'>*</font>
-      <br>
-    <% elsif form.send("#{field.last}_display?") %>
-      <%= label_tag field.last.to_sym, field.first %>
-      <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
-      <br>
-    <% end %>
-  <% end %>
-
-  <h5 class="bold">Waiver</h5>
+  <h4 class="text-primary semi-bold">2. Which option are you registering for?</h4>
   <div class="well">
-    <%= @object.forms.first.waiver %>
+    <h6 class="semi-bold text-muted">Registration Options</h6>
+    <div class="row">
+      <% form.options.each_with_index do |option,i| %>
+        <div class="radioer col-md-4">
+          <%= radio_button_tag 'registration_options', option.id, nil, type: "radio", name:"registration_options", id: "registration_options_#{i}" %>
+          <label for="<%= "registration_options_#{i}" %>" class="text-black">
+            <%= "#{option.name}"%>,
+            <span class="bold"><%= "#{number_to_currency(option.price)}"%></span>
+          </label>
+        </div>
+      <% end %>
+    </div>
   </div>
   
-  <h5 class="semi-bold">Accept Waiver:</h5>
-  <div class="checkboxer checkboxer-green form-inline">
+  
+
+  
+
+  <br/>
+  <h4 class="text-primary semi-bold">3. Please complete a registration profile.</h4>
+  
+  <div class="outline" style="border: 2px solid #ddd; padding: 45px; border-radius: 6px;">
+
+    <p class="text-muted fs_16 mb5">We'll be sure to save your profile for future registrations.</p>
+    <p class="text-muted fs_12 clearfix mt0">
+      <span class="ion-android-alert text-danger fs_24 pull-left"></span>
+      <span class="pull-left mt10 ml5"> = Required Entry</span>
+    </p>
+    <hr class="mt0 mb30"/>
+    
+    <% if form.general_fields? %><h4 class="bold">General Field</h4><% end %>
+
+    <% Form.general_fields.each do |field| %>
+      <% if form.send("#{field.last}_required?") %>
+        <%= label_tag field.last.to_sym, field.first %>
+        <div class="inputer">
+          <div class="input-wrapper">
+            <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %>
+            <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
+          </div>
+        </div>
+        <br>
+      <% elsif form.send("#{field.last}_display?") %>
+        <%= label_tag field.last.to_sym, field.first %>
+        <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
+        <br>
+      <% end %>
+    <% end %>
+
+    
+     <% if form.guardian_fields? %><h4 class="bold">Guardian</h4><%end%>
+
+    <% Form.guardian_fields.each do |field| %>
+      <% if form.send("#{field.last}_required?") %> 
+        <%= label_tag field.last.to_sym, field.first %>
+        <div class="inputer">
+          <div class="input-wrapper">
+            <%= f.text_field field.last.to_sym, class: "form-control" %> 
+            <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
+          </div>
+        </div>
+        <br>
+      <% elsif form.send("#{field.last}_display?") %>
+        <%= label_tag field.last.to_sym, field.first %>
+        <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> 
+        <br>
+      <% end %>
+    <% end %>
+
+    <% if form.emergency_fields? %><h4 class="bold">Emergency Contact</h4><% end %>
+    <% Form.emergency_fields.each do |field| %>
+      <% if form.send("#{field.last}_required?") %>
+        <%= label_tag field.last.to_sym, field.first %>
+        <div class="inputer no-border">
+          <div class="input-wrapper">
+            <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> 
+            <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
+            <br>
+          </div>
+        </div>
+      <% elsif form.send("#{field.last}_display?") %>
+        <%= label_tag field.last.to_sym, field.first %>
+        <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
+        <br>
+      <% end %>
+    <% end %>
+
+    <% if form.insurance_fields? %><h4 class="bold">Insurance</h4><% end %>
+
+    <% Form.insurance_fields.each do |field| %>
+      <% if form.send("#{field.last}_required?") %>
+        <%= label_tag field.last.to_sym, field.first %>
+        <div class="inputer no-border">
+          <div class="input-wrapper">
+            <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> 
+            <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
+          </div>
+        </div>
+        <br>
+      <% elsif form.send("#{field.last}_display?") %>
+        <%= label_tag field.last.to_sym, field.first %>
+        <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
+        <br>
+      <% end %>
+    <% end %>
+
+    <% if form.health_fields? %><h4 class="bold">Health</h4><% end %>
+
+    <% Form.health_fields.each do |field| %>
+      <% if form.send("#{field.last}_required?") %>
+        <%= label_tag field.last.to_sym, field.first %>
+        <div class="inputer no-border">
+          <div class="input-wrapper">
+            <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %>
+            <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
+          </div>
+        </div>
+        <br>
+      <% elsif form.send("#{field.last}_display?") %>
+        <%= label_tag field.last.to_sym, field.first %>
+        <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
+        <br>
+      <% end %>
+    <% end %>
+
+    <% if form.membership_fields? %><h4 class="bold">Membership</h4><% end %>
+
+    <% Form.membership_fields.each do |field| %>
+      <% if form.send("#{field.last}_required?") %>
+        <%= label_tag field.last.to_sym, field.first %>
+        <div class="inputer no-border">
+          <div class="input-wrapper">
+            <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
+          </div>
+        </div>
+        <br>
+      <% elsif form.send("#{field.last}_display?") %>
+        <%= label_tag field.last.to_sym, field.first %>
+        <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> 
+        <br>
+      <% end %>
+    <% end %>
+
+    <% if form.school_fields? %><h4 class="bold">School</h4><% end %>
+
+    <% Form.school_fields.each do |field| %>
+      <% if form.send("#{field.last}_required?") %>
+        <%= label_tag field.last.to_sym, field.first %>
+        <div class="inputer no-border">
+          <div class="input-wrapper">
+            <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
+            <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
+          </div>
+        </div>
+        <br>
+      <% elsif form.send("#{field.last}_display?") %>
+        <%= label_tag field.last.to_sym, field.first %>
+        <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
+        <br>
+      <% end %>
+    <% end %>
+
+    <% if form.financial_fields? %><h4 class="bold">Financial</h4><% end %>
+
+    <% Form.financial_fields.each do |field| %>
+      <% if form.send("#{field.last}_required?") %>
+        <%= label_tag field.last.to_sym, field.first, class: "form-control" %>
+        <div class="inputer no-border">
+          <div class="input-wrapper">
+            <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym) %> <font size='2' color='red'>*</font>
+            <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
+          </div>
+        </div>
+        <br>
+      <% elsif form.send("#{field.last}_display?") %>
+        <%= label_tag field.last.to_sym, field.first %>
+        <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
+        <br>
+      <% end %>
+    <% end %>
+  </div>
+
+  <br/><br/>
+  <h4 class="text-primary semi-bold">4. Please review and accept the registration waiver.</h4>
+  <p class="fs_14 text-muted">Insert Legalese</p>
+
+  <div class="well">
+    <%= @object.forms.first.waiver %>
+    <hr/>
+    <h6 class="semi-bold">I have reviewed and accept the terms and agreements of this registration waiver.</h6>
+    <div class="checkboxer checkboxer-green form-inline">
     <%= check_box_tag :accept_waiver, class: "form-control", type: "checkbox", id:"accept_waiver", name: "accept_waiver", value: "1"%>
     <label for="accept_waiver">Yes</label>
   </div>
   
+  </div>
+  
+ 
   <br/>
-  <h6 class="bold">Registration Options</h6>
-  <% form.options.each do |option| %>
-    <%= "#{option.name} #{number_to_currency(option.price)}"%>
-    <%= radio_button_tag 'registration_options', option.id, nil %><br>
-
-  <% end %>
+ 
   
   <%= submit_tag "Submit Registration", class: "btn btn-primary pull-right" %>
 

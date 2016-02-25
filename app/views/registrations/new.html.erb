@@ -1,27 +1,35 @@
 <div class="content">
-  <div class="page-header full-content bg-primary" style="min-height: 141px;">
+
+  <div class="page-header full-content bg-primary mb0" style="min-height: 121px;">
     <div class="row">
-      <div class="col-md-6">
-          <div class="pull-left margin-right-20" id="edit-header-avatar">
-            <%#= image_tag(user.avatar, class: "img-thumbnail img-responsive", height: "", width: "100") %>
-          </div>
-          <div class="pull-left">
-            <h1 class="capitalize h1-xlarge">
-              Team Registration
-            </h1>
-            <h6 class="bold capitalize h1-xlarge text-white">
-              <%= @object.name %>
-            </h6>
-          </div>
-        
+      <div class="col-sm-6">
+        <h1 class="capitalize semi-bold">
+          <%= @object.name %>
+          <small>Team Registration</small>
+        </h1>
       </div><!--.col-->
-      <div class="col-md-6">
+      <div class="col-sm-6">
         <ol class="breadcrumb">
           <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="<%= teams_path %>">Teams</a></li>
+          <% if @object.teamable.present? %>
+              <li><a href="#"><%= @object.teamable.name %></a></li>
+              <!-- add path for linking -->
+          <% end %>
+          <li><a href="#" class="active"><%= @object.name %></a></li>
         </ol>
-      </div><!--.col-->
+      </div>
     </div><!--.row-->
+
+   <%= render "shared/show_navigation_admin" %>
+          
+      <script>
+      onclick="theFunction(event)"
+      </script>
+
   </div><!--.page-header-->
+
+  <br/><br/>
   
 
   <div class="row">
@@ -29,24 +37,27 @@
       <div class="panel box-shadow-ccc">
         <div class="panel-body pr50 pl50 pt50 pb50 labels-light labels-16">
 
-          <h3>Please complete the form below.</h3> <br>
+          <h3>Please complete the form below.</h3>
+          <p class="text-muted fs_16">Please complete the information below to complete the regisration process. </p>
+          <hr/>
 
           <%= form_tag change_submitter_registrations_path, method: :get, remote: true do %>
             <%= hidden_field_tag :form_id, @form.id %>
             <%= hidden_field_tag :object_id, @object.id %>
             <%= hidden_field_tag :object_type, @object.class.to_s %>
             
-            <h5>Select User</h5>
+            <h4 class="text-primary semi-bold">1. Who is this registration for?</h4>
             <div class="well">
-            <%= select_tag 'user_id', options_from_collection_for_select(User.smart_order(current_user), "id", "name"), :id => "user-select-box", class: ' bg-white autosubmit form-control' %>
-            </div>
-          <% end %>
+              <h6 class="semi-bold text-muted">Select User</h6>
+              <%= select_tag  'user_id', options_from_collection_for_select(User.smart_order(current_user), "id", "name"), {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0" } %>
+              </div>
+              <% end %>
           
-          <br/>
+            <br/>
 
-          <div id="form-reg">
-            <%= render 'registrations/form', form: @form, master: @master, object: @object, submitter: current_user %>
-          </div>
+            <div id="form-reg">
+              <%= render 'registrations/form', form: @form, master: @master, object: @object, submitter: current_user %>
+            </div>
         </div>
       </div>
     </div>
