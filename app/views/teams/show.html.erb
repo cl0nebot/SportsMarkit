@@ -45,9 +45,7 @@
 
     <div class="header-tabs scrollable-tabs sticky">
       
-      <a class="mt10 pull-right btn btn-orange mr20">
-          Register
-      </a>
+      <%= render 'shared/register_button' %>
 
         <% if @object.can_be_edited_by_user?(current_user) %>
         <%= link_to edit_team_path(@team), class: "mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20" do %>
