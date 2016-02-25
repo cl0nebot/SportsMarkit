@@ -26,21 +26,25 @@
   
   <div class="outline" style="border: 2px solid #ddd; padding: 45px; border-radius: 6px;">
 
-    <p class="text-muted fs_16">We'll be sure to save your profile for future registrations.</p>
+    <p class="text-muted fs_16 mb5">We'll be sure to save your profile for future registrations.</p>
+    <p class="text-muted fs_12 clearfix mt0">
+      <span class="ion-android-alert text-danger fs_24 pull-left"></span>
+      <span class="pull-left mt10 ml5"> = Required Entry</span>
+    </p>
     <hr class="mt0 mb30"/>
 
     <h4 class="bold">General Field</h4>
 
     <% Form.general_fields.each do |field| %>
       <% if form.send("#{field.last}_required?") %>
-        <div class="inputer no-border">
+        <%= label_tag field.last.to_sym, field.first %>
+        <div class="inputer">
           <div class="input-wrapper">
-            <%= label_tag field.last.to_sym, field.first %>
-            <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
+            <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %>
             <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
-            <br>
           </div>
         </div>
+        <br>
       <% elsif form.send("#{field.last}_display?") %>
         <%= label_tag field.last.to_sym, field.first %>
         <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control"  %> 
@@ -52,10 +56,10 @@
 
     <% Form.guardian_fields.each do |field| %>
       <% if form.send("#{field.last}_required?") %> 
-        <div class="inputer no-border">
+        <%= label_tag field.last.to_sym, field.first %>
+        <div class="inputer">
           <div class="input-wrapper">
-            <%= label_tag field.last.to_sym, field.first %>
-            <%= f.text_field field.last.to_sym, class: "form-control" %> <font size='2' color='red'>*</font>
+            <%= f.text_field field.last.to_sym, class: "form-control" %> 
             <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
           </div>
         </div>
@@ -70,10 +74,10 @@
     <h4 class="bold">Emergency Contact</h4>
     <% Form.emergency_fields.each do |field| %>
       <% if form.send("#{field.last}_required?") %>
+        <%= label_tag field.last.to_sym, field.first %>
         <div class="inputer no-border">
           <div class="input-wrapper">
-            <%= label_tag field.last.to_sym, field.first %>
-            <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
+            <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> 
             <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
             <br>
           </div>
@@ -89,10 +93,10 @@
 
     <% Form.insurance_fields.each do |field| %>
       <% if form.send("#{field.last}_required?") %>
+        <%= label_tag field.last.to_sym, field.first %>
         <div class="inputer no-border">
           <div class="input-wrapper">
-            <%= label_tag field.last.to_sym, field.first %>
-            <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
+            <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> 
             <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
           </div>
         </div>
@@ -109,8 +113,12 @@
     <% Form.health_fields.each do |field| %>
       <% if form.send("#{field.last}_required?") %>
         <%= label_tag field.last.to_sym, field.first %>
-        <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
-        <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
+        <div class="inputer no-border">
+          <div class="input-wrapper">
+            <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %>
+            <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
+          </div>
+        </div>
         <br>
       <% elsif form.send("#{field.last}_display?") %>
         <%= label_tag field.last.to_sym, field.first %>
@@ -124,8 +132,11 @@
     <% Form.membership_fields.each do |field| %>
       <% if form.send("#{field.last}_required?") %>
         <%= label_tag field.last.to_sym, field.first %>
-        <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
-        <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
+        <div class="inputer no-border">
+          <div class="input-wrapper">
+            <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
+          </div>
+        </div>
         <br>
       <% elsif form.send("#{field.last}_display?") %>
         <%= label_tag field.last.to_sym, field.first %>
@@ -139,8 +150,12 @@
     <% Form.school_fields.each do |field| %>
       <% if form.send("#{field.last}_required?") %>
         <%= label_tag field.last.to_sym, field.first %>
-        <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
-        <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
+        <div class="inputer no-border">
+          <div class="input-wrapper">
+            <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym), class: "form-control" %> <font size='2' color='red'>*</font>
+            <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
+          </div>
+        </div>
         <br>
       <% elsif form.send("#{field.last}_display?") %>
         <%= label_tag field.last.to_sym, field.first %>
@@ -154,8 +169,12 @@
     <% Form.financial_fields.each do |field| %>
       <% if form.send("#{field.last}_required?") %>
         <%= label_tag field.last.to_sym, field.first, class: "form-control" %>
-        <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym) %> <font size='2' color='red'>*</font>
-        <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
+        <div class="inputer no-border">
+          <div class="input-wrapper">
+            <%= f.text_field field.last.to_sym, value: master.try(field.last.to_sym) %> <font size='2' color='red'>*</font>
+            <span class="ion-android-alert tooltips form-control-feedback text-danger" data-toggle="tooltip" data-placement="bottom" title="Error tooltip"></span>
+          </div>
+        </div>
         <br>
       <% elsif form.send("#{field.last}_display?") %>
         <%= label_tag field.last.to_sym, field.first %>
