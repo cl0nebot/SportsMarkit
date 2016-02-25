@@ -39,17 +39,17 @@
             <%= hidden_field_tag :object_type, @object.class.to_s %>
             
             <h4 class="text-primary semi-bold">1. Who is this registration for?</h4>
-            <h5>Select User</h5>
             <div class="well">
-            <%= select_tag  'user_id', options_from_collection_for_select(User.smart_order(current_user), "id", "name"), {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0" } %>
-            </div>
-          <% end %>
+              <h6 class="semi-bold text-muted">Select User</h6>
+              <%= select_tag  'user_id', options_from_collection_for_select(User.smart_order(current_user), "id", "name"), {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0" } %>
+              </div>
+              <% end %>
           
-          <br/>
+            <br/>
 
-          <div id="form-reg">
-            <%= render 'registrations/form', form: @form, master: @master, object: @object, submitter: current_user %>
-          </div>
+            <div id="form-reg">
+              <%= render 'registrations/form', form: @form, master: @master, object: @object, submitter: current_user %>
+            </div>
         </div>
       </div>
     </div>
