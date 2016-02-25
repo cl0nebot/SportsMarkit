@@ -37,6 +37,14 @@ Rails.application.routes.draw do
     patch "/user/:id/athletic_director_setup" => "setup#athletic_director_setup", as: :athletic_director_setup
 
     get "welcome" => "users#welcome", as: :user_welcome
+    
+    
+    
+    resources :admin do
+      collection do 
+        get :users
+      end
+    end
 
     concern :documentable do
       resources :documents, except: %w[destroy show]

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224233431) do
+ActiveRecord::Schema.define(version: 20160225152007) do
 
   create_table "addresses", force: true do |t|
     t.integer  "addressable_id"
@@ -732,7 +732,7 @@ ActiveRecord::Schema.define(version: 20160224233431) do
 
   create_table "signed_documents", force: true do |t|
     t.integer  "user_id"
-    t.integer  "documents_id"
+    t.integer  "document_id"
     t.boolean  "signed"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -870,6 +870,7 @@ ActiveRecord::Schema.define(version: 20160224233431) do
     t.string   "provider"
     t.string   "uid"
     t.string   "mobile_phone_number"
+    t.integer  "temporary_school_ids"
     t.integer  "signin_count",            default: 0
   end
 

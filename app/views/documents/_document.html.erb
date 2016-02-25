@@ -19,11 +19,13 @@
         <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#<%= document.id %>"> <span class="ion-gear-b"></span>
         </button>
       </span>
+      <% if false %>
       <span  data-toggle="tooltip" data-placement="top" title="Share">
         <a class="btn btn-sm btn-info btn-ripple" href="<%= document_path(document.id) %>">
           <span class="ion-clipboard"></span>
         </a>
       </span>
+      <% end %>
       <span  data-toggle="tooltip" data-placement="top" title="Sign">
         <%= link_to document_signed_documents_path(document.try(:id), path: request.fullpath.split('?').first), class: "btn btn-sm btn-default btn-ripple", method: :post do %>
           <span class="ion-link"></span>

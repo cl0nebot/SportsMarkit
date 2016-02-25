@@ -498,4 +498,8 @@ Password: #{password}"
     Role.where(user_id: id, roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", status: classification)
   end
   
+  def find_registration(object)
+    object.forms.where(submittable_id: id, submittable_type: "User").last
+  end
+  
 end
