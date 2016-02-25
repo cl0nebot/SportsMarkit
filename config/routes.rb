@@ -90,6 +90,9 @@ Rails.application.routes.draw do
     resources :sessions
     resources :password_resets
     resources :schools, concerns: [:documentable, :announceable, :eventable] do
+      resources :registrations do
+        get :register
+      end
       resources :forms do
         resources :options
         collection do
@@ -138,6 +141,9 @@ Rails.application.routes.draw do
     end
 
     resources :facilities, concerns: [:documentable, :announceable, :eventable] do
+      resources :registrations do
+        get :register
+      end
       resources :forms do
         collection do
           post :create_or_update_form
@@ -158,6 +164,9 @@ Rails.application.routes.draw do
 
     resources :tournaments
     resources :leagues, concerns: [:documentable, :announceable, :eventable] do
+      resources :registrations do
+        get :register
+      end
       resources :forms do
         collection do
           post :create_or_update_form
@@ -211,6 +220,9 @@ Rails.application.routes.draw do
     end
     
     resources :clubs, concerns: [:documentable, :announceable, :eventable] do
+      resources :registrations do
+        get :register
+      end
       resources :forms do
         collection do
           post :create_or_update_form
