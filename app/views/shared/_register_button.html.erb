@@ -1,0 +1,7 @@
+        <% if @object.forms.where(object: "Registration").present? %>
+            <% if @object.forms.where(object: "Registration").first.options.present? %>
+            <a class="mt10 pull-right btn btn-orange mr20">
+                Register
+            </a>
+            <% end %>
+        <% end %>

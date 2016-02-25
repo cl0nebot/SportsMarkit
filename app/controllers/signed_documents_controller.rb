@@ -10,7 +10,7 @@ class SignedDocumentsController < ApplicationController
   end
 
   def create
-    signed_doc = SignedDocument.where(user_id: current_user.id, documents_id: @document.id, signed: true).first
+    signed_doc = SignedDocument.where(user_id: current_user.id, document_id: @document.id, signed: true).first
     if signed_doc.present?
       flash[:error] = "Document already signed."
       redirect_to :back
@@ -59,15 +59,15 @@ class SignedDocumentsController < ApplicationController
 
   def new
     if params[:event] == "signing_complete"
-      signed_doc = SignedDocument.where(user_id: current_user.id, documents_id: @document.id, signed: false).first
+      signed_doc = SignedDocument.where(user_id: current_user.id, document_id: @document.id, signed: false).first
       if signed_doc.present?
         signed_doc.update(signed: true)
       else
-        SignedDocument.create!(user_id: current_user.id, documents_id: @document.id, signed: true)
+        SignedDocument.create!(user_id: current_user.id, document_id: @document.id, signed: true)
       end
       flash[:success] = "Thanks! Successfully signed"
     else
-      SignedDocument.create!(user_id: current_user.id, documents_id: @document.id, signed: false)
+      SignedDocument.create!(user_id: current_user.id, document_id: @document.id, signed: false)
       flash[:error] = "Document not signed."
     end
     if params[:path].present?

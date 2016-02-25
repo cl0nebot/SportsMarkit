@@ -42,6 +42,8 @@
 
 		<div class="header-tabs scrollable-tabs sticky">
 			
+        <%= render 'shared/register_button' %>
+
         <% if @object.can_be_edited_by_user?(current_user) %>
           <%= link_to edit_league_path(@league), class: "mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20" do %>
               <i class="ion-gear-b fs_16 mr5"></i> Edit Profile

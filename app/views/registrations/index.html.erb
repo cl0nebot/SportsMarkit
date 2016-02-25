@@ -37,9 +37,9 @@
       <div class="panel box-shadow-ccc">
         <div class="panel-body pr50 pl50 pt50 pb50 labels-light labels-16">
 
-          <h3>Team Registrations</h3>
+          <h3><%= @object.class.to_s %> Registrations</h3>
           <p class="text-muted fs_16">
-          	View the status of your team's registrations below.
+          	View the status of your <%= @object.class.to_s.downcase %>'s registrations below.
           </p>
 
           <ul class="nav nav-tabs fs_16 no-border no-adding" role="tablist">
@@ -59,51 +59,9 @@
 								</div><!--.panel-heading-->
 								<div class="panel-body without-padding">
 									<ul class="list-material wide">
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/1.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Ruth Barnes</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">1/16/16 1:06pm</span>
-													<span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/2.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Mark Estrada</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">Yesterday 1:06pm</span>
-													<span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/3.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Brenda Warren</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">2 hr ago</span>
-													<span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
-												</div>
-											</a>
-										</li>
+                                        <% @registrations.each do |registration| %>
+                                            <%= render 'registrations/registrant', registration: registration %>
+                                        <% end %>
 									</ul>
 								</div><!--.panel-body-->
 							</div><!--.panel-->
@@ -117,126 +75,9 @@
 								</div><!--.panel-heading-->
 								<div class="panel-body without-padding">
 									<ul class="list-material wide">
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/1.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Ruth Barnes</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">1/16/16 1:06pm</span>
-													<span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/2.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Mark Estrada</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">Yesterday 1:06pm</span>
-													<span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/1.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Ruth Barnes</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">1/16/16 1:06pm</span>
-													<span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/2.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Mark Estrada</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">Yesterday 1:06pm</span>
-													<span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/1.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Ruth Barnes</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">1/16/16 1:06pm</span>
-													<span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/2.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Mark Estrada</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">Yesterday 1:06pm</span>
-													<span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/1.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Ruth Barnes</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">1/16/16 1:06pm</span>
-													<span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/2.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Mark Estrada</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">Yesterday 1:06pm</span>
-													<span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
-												</div>
-											</a>
-										</li>
+                                        <% @registrations.where(paid: true).each do |registration| %>
+                                            <%= render 'registrations/registrant', registration: registration %>
+                                        <% end %>
 									</ul>
 								</div><!--.panel-body-->
 							</div><!--.panel-->
@@ -251,168 +92,9 @@
 								</div><!--.panel-heading-->
 								<div class="panel-body without-padding">
 									<ul class="list-material wide">
-										
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/3.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Brenda Warren</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">2 hr ago</span>
-													<span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
-												</div>
-											</a>
-										</li>
-
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/3.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Brenda Warren</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">2 hr ago</span>
-													<span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
-												</div>
-											</a>
-										</li>
-
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/3.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Brenda Warren</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">2 hr ago</span>
-													<span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
-												</div>
-											</a>
-										</li>
-
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/3.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Brenda Warren</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">2 hr ago</span>
-													<span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
-												</div>
-											</a>
-										</li>
-
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/3.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Brenda Warren</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">2 hr ago</span>
-													<span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
-												</div>
-											</a>
-										</li>
-
-
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/3.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Brenda Warren</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">2 hr ago</span>
-													<span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
-												</div>
-											</a>
-										</li>
-
-
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/3.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Brenda Warren</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">2 hr ago</span>
-													<span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
-												</div>
-											</a>
-										</li>
-
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/3.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Brenda Warren</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">2 hr ago</span>
-													<span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
-												</div>
-											</a>
-										</li>
-
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/3.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Brenda Warren</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">2 hr ago</span>
-													<span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
-												</div>
-											</a>
-										</li>
-
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/3.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Brenda Warren</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">2 hr ago</span>
-													<span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
-												</div>
-											</a>
-										</li>
+                                        <% @registrations.where(paid: nil).each do |registration| %>
+                                            <%= render 'registrations/registrant', registration: registration %>
+                                        <% end %>
 									</ul>
 								</div><!--.panel-body-->
 							</div><!--.panel-->
@@ -426,96 +108,42 @@
 								</div><!--.panel-heading-->
 								<div class="panel-body without-padding">
 									<ul class="list-material wide">
+                                        <% @object.athletes.each do |user| %>
 										<li class="has-action-left has-action-right has-long-story">
 											<a href="#" class="visible">
 												<div class="list-action-left">
-													<%= image_tag("faces/1.jpg", class: "face-radius", alt:"") %>
+													<%= image_tag(user.avatar, class: "face-radius", alt:"") %>
 												</div>
 												<div class="list-content">
-													<span class="title">Ruth Barnes</span>
-													<span class="caption">[Registration option], [Registration price] </span>
+													<span class="title"><%= user.full_name %></span>
+                                                    <span class="caption">
+                                                    <% if user.find_registration(@object).present? %>
+													  <% if user.find_registration(@object).selected_option.present? %>
+                                                        <%= user.find_registration(@object).selected_option.option.name %>, <%= number_to_currency(user.find_registration(@object).selected_option.option.price) %>
+                                                      <% else %>
+                                                        No option selected.
+                                                      <% end %>
+                                                    <% else %>
+                                                     Registration not started.
+                                                    <% end %>
+                                                    </span>
 												</div>
 												<div class="list-action-right">
-													<span class="top">1/16/16 1:06pm</span>
+                                                    <% if user.find_registration(@object).present? %>
+													<span class="top"> <%= format(user.find_registration(@object).updated_at,1) %> <%= format(user.find_registration(@object).updated_at,9) %></span>
+                                                    
+                                                    <% if user.find_registration(@object).paid? %>
 													<span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
+                                                    <% else %>
+                                                    <span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
+                                                    <% end %>
+                                                    <% else %>
+                                                     <span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
+                                                    <% end %>
 												</div>
 											</a>
 										</li>
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/2.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Mark Estrada</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">Yesterday 1:06pm</span>
-													<span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/3.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Brenda Warren</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">2 hr ago</span>
-													<span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/1.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Ruth Barnes</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">1/16/16 1:06pm</span>
-													<span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/2.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Mark Estrada</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">Yesterday 1:06pm</span>
-													<span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
-												</div>
-											</a>
-										</li>
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag("faces/3.jpg", class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title">Brenda Warren</span>
-													<span class="caption">[Registration option], [Registration price] </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top">2 hr ago</span>
-													<span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
-												</div>
-											</a>
-										</li>
+                                        <% end %>
 									</ul>
 								</div><!--.panel-body-->
 							</div><!--.panel-->
@@ -531,13 +159,7 @@
 
 
 
-          <% @registrations.each do |registration| %>
-
-					<%= registration.registrant.full_name %>-
-					<%= registration.paid? ? "Paid" : "" %></br>
-					<%= registration.paid? ? "Paid" : "" %></br>
-
-					<% end %>
+          
 </div>
 
 

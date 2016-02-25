@@ -29,7 +29,7 @@ class RegistrationsController < ApplicationController
   def pay
     stripe_token = params[:form][:stripe_token]
     @form.update_attributes(paid: true)
-    redirect_to eval("#{@object.class.to_s.underscore}_registrations_path(@object)")
+    redirect_to eval("#{@form.formable.class.to_s.underscore}_registrations_path(@object)")
   end
   
   def form_params

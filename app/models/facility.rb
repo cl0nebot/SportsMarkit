@@ -7,6 +7,9 @@ class Facility < ActiveRecord::Base
   include Shared
   include Access
   include Import
+  
+  has_many :forms, as: :formable, dependent: :destroy
+  has_many :registrations, as: :registerable, dependent: :destroy
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   

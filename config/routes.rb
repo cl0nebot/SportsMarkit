@@ -42,6 +42,14 @@ Rails.application.routes.draw do
     patch "/user/:id/athletic_director_setup" => "setup#athletic_director_setup", as: :athletic_director_setup
 
     get "welcome" => "users#welcome", as: :user_welcome
+    
+    
+    
+    resources :admin do
+      collection do 
+        get :users
+      end
+    end
 
     concern :documentable do
       resources :documents, except: %w[destroy show]
@@ -85,7 +93,11 @@ Rails.application.routes.draw do
     end
     resources :sessions
     resources :password_resets
+
     resources :schools, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
+      resources :registrations do
+        get :register
+      end
       resources :forms do
         resources :options
         collection do
@@ -133,7 +145,14 @@ Rails.application.routes.draw do
       end
     end
 
+<<<<<<< HEAD
     resources :facilities, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
+=======
+    resources :facilities, concerns: [:documentable, :announceable, :eventable] do
+      resources :registrations do
+        get :register
+      end
+>>>>>>> 100d4df126c7eda9edf9796e71a0058de9aacf2b
       resources :forms do
         collection do
           post :create_or_update_form
@@ -153,7 +172,14 @@ Rails.application.routes.draw do
     end
 
     resources :tournaments
+<<<<<<< HEAD
     resources :leagues, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
+=======
+    resources :leagues, concerns: [:documentable, :announceable, :eventable] do
+      resources :registrations do
+        get :register
+      end
+>>>>>>> 100d4df126c7eda9edf9796e71a0058de9aacf2b
       resources :forms do
         collection do
           post :create_or_update_form
@@ -206,7 +232,14 @@ Rails.application.routes.draw do
       end
     end
     
+<<<<<<< HEAD
     resources :clubs, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
+=======
+    resources :clubs, concerns: [:documentable, :announceable, :eventable] do
+      resources :registrations do
+        get :register
+      end
+>>>>>>> 100d4df126c7eda9edf9796e71a0058de9aacf2b
       resources :forms do
         collection do
           post :create_or_update_form

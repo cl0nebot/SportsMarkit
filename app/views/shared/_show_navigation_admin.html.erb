@@ -1,19 +1,30 @@
 <div class="header-tabs scrollable-tabs sticky thin">
 	<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-blue" id="nav-tabs">
 		<li>
-		  <a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Profile</a>
+            <%= link_to @object, class: "btn-ripple" do %>
+		      Profile
+            <% end %>
 		</li>
+        <% if false %>
 		<li>
 		  <a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Roster</a>
 		</li>
+        <% end %>
 		<li>
-		  <a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Documents</a>
+          <%= link_to eval("#{@object.class.to_s.underscore.downcase}_signed_documents_path(@object)") do %>
+		    Signed Documents
+          <% end %>
+		</li>
+        
+		<li>
+          <%= link_to eval("#{@object.class.to_s.underscore.downcase}_documents_path(@object)") do %>
+		    Documents
+          <% end %>
 		</li>
 		<li>
-		  <a href="#" data-toggle="tab" class="btn-ripple">Registrations</a>
-		</li>
-		<li>
-		  <a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Payments</a>
+          <%= link_to eval("#{@object.class.to_s.underscore.downcase}_registrations_path(@object)") do %>
+		    Registrations
+          <% end %>
 		</li>
 	</ul>
 </div>
