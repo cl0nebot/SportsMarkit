@@ -29,7 +29,8 @@
 	<div class="form-group">
 		<div class="inputer">
 			<div class="input-wrapper">
-        <%= f.text_field :mobile_phone_number, class: "form-control", placeholder: "Mobile Phone Number ex. 5556667777", "data-parsley-type" => "number", "data-parsley-type-message" => "Your message"%>
+				<%= text_field_tag :mobile_phone_number, "",class: "form-control", placeholder: "Mobile Phone Number ex. 5556667777", id: "mobile_phone_number" %>
+        <%= f.hidden_field :mobile_phone_number, class: "form-control", placeholder: "Mobile Phone Number ex. 5556667777", "data-parsley-type" => "number", "data-parsley-type-message" => "Your message"%>
 			</div>
 			<div class="user_mobile_phone_number_field"></div>
 		</div>

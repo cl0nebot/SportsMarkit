@@ -8,4 +8,8 @@
 	$('#content').html("<%= j render 'users/edit_form', user: @user, user_profile_pictures: @user_profile_pictures, user_profile_picture: @user_profile_picture, object: @object, pictures: @pictures, videos: @videos, articles: @articles %>")
 <% end %>
 
+$('.user_mobile_phone_number_field').html("");
+$('.user_email_field').html("")
+$('#mobile_phone_number').val("<%= @user.mobile_phone_number %>")
+$( "input[value='Update Profile']" ).attr('disabled', true);
 user_edit_validation();
