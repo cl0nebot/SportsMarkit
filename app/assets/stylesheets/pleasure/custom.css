@@ -810,3 +810,8 @@ ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
 .labels-16 label {
     font-size: 16px;
   }
+
+
+  .list-material.wide > li .list-action-right {
+    width: 120px;
+}
