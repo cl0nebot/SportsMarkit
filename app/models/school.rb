@@ -10,6 +10,9 @@ class School < ActiveRecord::Base
   include Access
   include Import
   include Seed
+  
+  has_many :forms, as: :formable, dependent: :destroy
+  has_many :registrations, as: :registerable, dependent: :destroy
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
   

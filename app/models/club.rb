@@ -8,6 +8,9 @@ class Club < ActiveRecord::Base
   include Map
   include Import
   
+  has_many :forms, as: :formable, dependent: :destroy
+  has_many :registrations, as: :registerable, dependent: :destroy
+  
   serialize   :sports, Array
   has_many :roles, as: :roleable, dependent: :destroy
   has_many :userless_roles, as: :userless, dependent: :destroy
