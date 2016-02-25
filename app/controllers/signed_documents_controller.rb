@@ -17,6 +17,7 @@ class SignedDocumentsController < ApplicationController
       if @document.present?
         doc_url = open(@document.try(:file).try(:url))
         custom_path = "#{request.protocol}#{request.host}:#{request.port}/documents/#{@document.id}/signed_documents/new?path=#{params[:path]}"
+        name = "#{current_user.first_name} #{current_user.last_name}"
         begin
           client = DocusignRest::Client.new
           @envelope_response = client.create_envelope_from_document(
@@ -27,7 +28,7 @@ class SignedDocumentsController < ApplicationController
             signers: [
               {
                 embedded: true,
-                name: current_user.first_name,
+                name: name,
                 email: current_user.email
               }
             ],
@@ -39,7 +40,7 @@ class SignedDocumentsController < ApplicationController
 
           response = client.get_recipient_view(
             envelope_id: @envelope_response["envelopeId"],
-            name: current_user.first_name,
+            name: name,
             email: current_user.email,
             return_url: custom_path
           )
