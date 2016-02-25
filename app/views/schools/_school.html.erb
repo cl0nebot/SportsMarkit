@@ -1,6 +1,8 @@
+<!-- ************** MUST UPDATE CONSOLE DUE TO CACHING School.update_all(updated_at: Time.now) ************* -->
+
 <%= link_to school_path(school) do %>
 
-	<div class="col-md-3 col-lg-2 col-sm-6 element-item <%= school.category_and_classification %> all" data-category="<%= school.category_and_classification %> all">
+	<div class="col-md-3 col-lg-2 col-sm-6 element-item <%= school.category_and_classification %> all" data-category="<%= school.category_and_classification %> all" style="height: 490px;">
 	    <div class="card card-user card-clickable card-clickable-over-content">
 	      <div class="card-heading heading-full">
 			  <%#= image_tag school.main_photo, size: "428x150" %>
@@ -24,23 +26,25 @@
 		        </h4>
 		      </div>
 
-	        <%= school.description	 %>
+	        <p class="text-666 fs_11 mt10">
+    			<%= truncate(school.description, length: 150) %>
+    		</p>
 	        <hr class="light no-margin mb5 mt5"/>
 
 	        <div class="subhead">
 	          <p class="mb0 fs_12">
-		          <span class="text-muted">
-		            <i class="ion-map mr5"></i> 
+		         <!--  <span class="">
+		            <i class="ion-location mr5"></i> 
 		            <%#= school.address.city.present? ? "#{school.address.city}, #{school.address.state}" : "NA" %>
-		          </span>
-		          <span class="text-muted">
+		          </span> -->
+		          <span class="">
 		            <i class="ion-ios-telephone mr5"></i> 
 		            <%= school.phone_number.present? ? school.phone_number : "NA" %>
 		          </span>
-		          <span class="text-muted">
+		          <span class="">
 		            <i class="ion-android-desktop mr5"></i> 
 		            <% if school.website.present? %>
-		            	<a href="<%= school.website %>" class="text-muted">School Website</a>
+		            	<a href="<%= school.website %>" class="">Visit Website</a>
 		            <% else %>
 		            	 NA
 		            <% end %>
@@ -56,8 +60,8 @@
 	          </p> -->
 	          <% if current_user %>
 	  		  		<% if current_user.admin? %>
-	  		    		<%= link_to new_school_team_path(school), class: "btn btn-primary button-striped button-full-striped btn-ripple btn-xs fs_12 mt10" do %>
-	  		    			<i class="ion-plus-circled"></i> Add a Team
+	  		    		<%= link_to new_school_team_path(school), class: "btn btn-primary btn-block btn-xs mt10" do %>
+	  		    			Add a Team
 	  		    			<span class="ripple animate"></span>
 	  		    		<% end %>
 	  		  		<% end %>

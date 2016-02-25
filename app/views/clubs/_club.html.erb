@@ -19,7 +19,11 @@
 		        </h4>
 		      </div>
 
-	        <%= club.description	 %>
+	        <p class="text-666 fs_11 mt10">
+    				<%= truncate(club.description , length: 150) %>
+    			</p>
+
+	        
 	        <hr class="light no-margin mb5 mt5"/>
 
 	        <div class="subhead">
