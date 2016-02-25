@@ -117,7 +117,6 @@ Rails.application.routes.draw do
         resources :options
         collection do
           post :create_or_update_form
-          
         end
       end
       resources :registrations do
@@ -145,6 +144,7 @@ Rails.application.routes.draw do
         get :register
       end
       resources :forms do
+        resources :options
         collection do
           post :create_or_update_form
         end
@@ -168,6 +168,7 @@ Rails.application.routes.draw do
         get :register
       end
       resources :forms do
+        resources :options
         collection do
           post :create_or_update_form
         end
@@ -224,6 +225,7 @@ Rails.application.routes.draw do
         get :register
       end
       resources :forms do
+        resources :options
         collection do
           post :create_or_update_form
         end
