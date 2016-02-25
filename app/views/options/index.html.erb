@@ -7,10 +7,10 @@
           </div>
           <div class="pull-left">
             <h1 class="capitalize h1-xlarge">
-              Team Registration
+              <%= @form.formable.class.to_s %> Registration
             </h1>
             <h6 class="bold capitalize h1-xlarge text-white">
-              [name]
+              <%= @form.formable.name %>
             </h6>
           </div>
         
@@ -33,10 +33,10 @@
     	<%= link_to "Launch Registration Form", "/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/registrations/new", class: "btn btn-large btn-white" %>
 
     	<br/><br/>
-
+<%# if false %>
     	<h5>Live Preview</h5>
-    	<iframe id="scaled-frame" src="teams/1/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/registrations/new" allowtransparency="true" frameborder="0" scrolling="yes" style="width: 100%; height: 500px;"></iframe>
-
+    	<iframe id="scaled-frame" src="<%= "/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/registrations/new" %>" allowtransparency="true" frameborder="0" scrolling="yes" style="width: 100%; height: 500px;"></iframe>
+<%# end %>
     </div>
     <div class="col-md-6 col-md-offset-1">
       <div class="panel box-shadow-ccc">
@@ -60,6 +60,7 @@
         </div>
       </div>
     </div>
+    
   </div>
 </div>
 
