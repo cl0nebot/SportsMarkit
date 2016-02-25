@@ -16,14 +16,14 @@
   <div class="pt60">
     <div class="row">
       <% if @document.can_be_edited_by_user?(current_user) %>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <%= form_for [@object, @document], html: {:multipart => true, id: "document-form" }, remote: true do |f| %>
           <div class="panel box-shadow-ccc">
             <div class="panel-heading">
               <div class="panel-title">
-                <span class="ion-plus-circled text-primary h1 mr15 mt0 pull-left"></span>
-                <h3 class="semi-bold mt10">
-                  <span class="">New Document</span>
+                <span class="ion-plus-circled text-primary h2 mr15 mt0 pull-left"></span>
+                <h3 class="semi-bold mt10 fs_24">
+                  <span class="">Upload a New Document</span>
                 </h3>
               </div>
             </div>
@@ -82,7 +82,7 @@
         </div>
       <% end %>
 
-      <div class="col-lg-8">
+      <div class="col-lg-9">
         <div class="panel box-shadow-ccc">
           <div class="panel-heading">
             <div class="panel-title">
@@ -94,10 +94,10 @@
               <table id="document-list" class="table table-hover table-condensed" id="example">
                 <thead>
                   <tr>
-                    <th style="width:30%" class="semi-bold h6 text-muted">Name</th>
-                    <th style="width:30%" class="semi-bold h6 text-muted">Description</th>
-                    <th style="width:30%" class="semi-bold h6 text-muted">File</th>
-                    <th style="width:30%" class="semi-bold h6 text-muted">Actions</th>
+                    <th class="semi-bold h6 text-muted">Name</th>
+                    <th class="semi-bold h6 text-muted">Description</th>
+                    <th class="semi-bold h6 text-muted">File</th>
+                    <th class="semi-bold h6 text-muted">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
