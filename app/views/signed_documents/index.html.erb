@@ -11,12 +11,8 @@
       <div class="col-sm-6">
         <ol class="breadcrumb">
           <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="<%= teams_path %>">Teams</a></li>
-          <% if @object.teamable.present? %>
-              <li><a href="#"><%= @object.teamable.name %></a></li>
-              <!-- add path for linking -->
-          <% end %>
-          <li><a href="#" class="active"><%= @object.name %></a></li>
+          <li><a href="<%= eval("#{@object.class.to_s.downcase.pluralize}_path")%>"><%= @object.class.to_s.pluralize %></a></li>
+          <li><%= link_to @object.name, @object %></li>
         </ol>
       </div>
     </div><!--.row-->
