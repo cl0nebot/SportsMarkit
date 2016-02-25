@@ -39,6 +39,78 @@ class Form < ActiveRecord::Base
     [["Special Assistance Programs", "special_assistance_programs"], ["Annual Family Income", "annual_family_income"], ["Number in Household", "number_in_household"]]
   end
   
+  def general_fields?
+    array =[]
+    Form.general_fields.each do |field|
+      array << send("#{field.last}_display?")
+      array << send("#{field.last}_required?")
+    end
+    array.include? true
+  end
+  
+  def guardian_fields?
+    array =[]
+    Form.guardian_fields.each do |field|
+      array << send("#{field.last}_display?")
+      array << send("#{field.last}_required?")
+    end
+    array.include? true
+  end
+  
+  def emergency_fields?
+    array =[]
+    Form.emergency_fields.each do |field|
+      array << send("#{field.last}_display?")
+      array << send("#{field.last}_required?")
+    end
+    array.include? true
+  end
+  
+  def insurance_fields?
+    array =[]
+    Form.insurance_fields.each do |field|
+      array << send("#{field.last}_display?")
+      array << send("#{field.last}_required?")
+    end
+    array.include? true
+  end
+  
+  def health_fields?
+    array =[]
+    Form.health_fields.each do |field|
+      array << send("#{field.last}_display?")
+      array << send("#{field.last}_required?")
+    end
+    array.include? true
+  end
+  
+  def membership_fields?
+    array =[]
+    Form.membership_fields.each do |field|
+      array << send("#{field.last}_display?")
+      array << send("#{field.last}_required?")
+    end
+    array.include? true
+  end
+  
+  def school_fields?
+    array =[]
+    Form.school_fields.each do |field|
+      array << send("#{field.last}_display?")
+      array << send("#{field.last}_required?")
+    end
+    array.include? true
+  end
+  
+  
+  def financial_fields?
+    array =[]
+    Form.financial_fields.each do |field|
+      array << send("#{field.last}_display?")
+      array << send("#{field.last}_required?")
+    end
+    array.include? true
+  end
   
   def create_master(params={}, form_params)
     unless Form.where(submittable_type: params[:submittable_type], submittable_id: params[:submittable_id], master: true).present?
@@ -53,7 +125,8 @@ class Form < ActiveRecord::Base
   end
   
   def select_pricing_option(id, params={})
-    SelectedOption.create(user_id:  params[:form][:submittable_id], form_id: id, option_id: params[:registration_options])
+    selected_option = SelectedOption.find_or_create_by(user_id:  params[:form][:submittable_id], form_id: id)
+    selected_option.update_attributes(option_id: params[:registration_options])
   end
   
   def button_styling(field_name)
