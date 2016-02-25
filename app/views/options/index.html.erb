@@ -30,7 +30,7 @@
     	<p class="fs_14 text-muted">
     		Curious what your form is looking like? No problem, click the button below to take peek launch the form or use the live preview below.
     	</p>
-    	<%= link_to "Launch Registration Form", "/teams/#{@form.formable_type.underscore.pluralize} #{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/registrations/new", class: "btn btn-large btn-white" %>
+    	<%= link_to "Launch Registration Form", "/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/registrations/new", class: "btn btn-large btn-white" %>
 
     	<br/><br/>
 

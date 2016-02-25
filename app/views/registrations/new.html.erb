@@ -29,13 +29,16 @@
       <div class="panel box-shadow-ccc">
         <div class="panel-body pr50 pl50 pt50 pb50 labels-light labels-16">
 
-          <h3>Please complete the form below.</h3> <br>
+          <h3>Please complete the form below.</h3>
+          <p class="text-muted fs_16">Please complete the information below to complete the regisration process. </p>
+          <hr/>
 
           <%= form_tag change_submitter_registrations_path, method: :get, remote: true do %>
             <%= hidden_field_tag :form_id, @form.id %>
             <%= hidden_field_tag :object_id, @object.id %>
             <%= hidden_field_tag :object_type, @object.class.to_s %>
             
+            <h4 class="text-primary semi-bold">1. Who is this registration for?</h4>
             <h5>Select User</h5>
             <div class="well">
             <%= select_tag 'user_id', options_from_collection_for_select(User.smart_order(current_user), "id", "name"), :id => "user-select-box", class: ' bg-white autosubmit form-control' %>
