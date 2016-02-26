@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
   
   def club_types
-    ["Other"] + ["Adult Recreational", "Youth Recreational", "Travel", "AAU", "USATF", "Little League Baseball", "Pop Warner", "AYFL", "Independent", "USTA", "US Youth Soccer", "NFL Play60", "MLB RBI", "College Intramural", "City/County Recreational", "Independent", "Fitness and Training"].sort
+    ["Other"] + ["Adult Recreational", "Boys & Girls Club", "Youth Recreational", "Travel", "AAU", "USATF", "Little League Baseball", "Pop Warner", "AYFL", "Independent", "USTA", "US Youth Soccer", "NFL Play60", "MLB RBI", "College Intramural", "City/County Recreational", "Independent", "Fitness and Training"].sort
   end
   
   def ethnicity
