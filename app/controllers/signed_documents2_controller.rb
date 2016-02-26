@@ -5,7 +5,7 @@ class SignedDocuments2Controller < ApplicationController
 
   def index
     documents = Document.where(documentable_id: @object.id, documentable_type: @object.class.to_s)
-    @signed_documents = SignedDocument.where(documents_id: documents)
+    @signed_documents = SignedDocument.where(document_id: documents)
   end
 
   private
