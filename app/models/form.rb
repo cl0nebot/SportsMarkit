@@ -7,8 +7,9 @@ class Form < ActiveRecord::Base
   
   
   def self.general_fields
-    [["Prefix", "prefix"],["First Name", "first_name"], ["Middle Name", "middle_name"], ["Last Name", "last_name"], ["Suffix", "suffix"], ["Date of Birth", "date_of_birth"],["Mobile Phone Number", "mobile_phone_number"],["Home Phone Number", "home_phone_number"]]
+    [["Prefix", "prefix"],["First Name", "first_name"], ["Middle Name", "middle_name"], ["Last Name", "last_name"], ["Suffix", "suffix"], ["Date of Birth", "date_of_birth"],["Mobile Phone Number", "mobile_phone_number"],["Home Phone Number", "home_phone_number"], ["Ethnicity", "ethnicity"], ["Lives With", "lives_with"]]
   end
+  # ["T Shirt Size","t_shirt_size"]
   
   def self.guardian_fields
    [["Guardian Name", "guardian_1_name"], ["Guardian Relationship To Athlete", "guardian_1_relationship"], ["Guardian Address", "guardian_1_address"], ["Guardian Phone", "guardian_1_phone"], ["Guardian Email", "guardian_1_email"], ["Secondary Guardian Name", "guardian_2_name"], ["Secondary Guardian Relationship To Athlete", "guardian_2_relationship"], ["Secondary Guardian Address", "guardian_2_address"], ["Secondary Guardian Phone", "guardian_2_phone"], ["Secondary Guardian Email", "guardian_2_email"]]
