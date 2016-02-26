@@ -76,6 +76,16 @@
 										</small>
 									</p>
 								</div>
+                                <% unless m.class.to_s == "Role" %>
+								<div class="col-md-4">
+								  	<%= f.text_field :mobile_phone_number, type: "text", class: "form-control"  %>
+									<p class="small">
+										<small>
+											Mobile Phone Number
+										</small>
+									</p>
+								</div>
+                                <% end %>
 								<!-- <div class="col-md-1 col-md-offset-1">
 									<%#= check_box_tag :athlete, true, (@team.roles.where(user_id: m.user.id, role: "Athlete", status: "Active").present? ? true : false) %>
 									<p class="small inline">

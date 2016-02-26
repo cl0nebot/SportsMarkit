@@ -27,8 +27,16 @@ class ApplicationController < ActionController::Base
     ["Other"] + ["Adult Recreational", "Youth Recreational", "Travel", "AAU", "USATF", "Little League Baseball", "Pop Warner", "AYFL", "Independent", "USTA", "US Youth Soccer", "NFL Play60", "MLB RBI", "College Intramural", "City/County Recreational", "Independent", "Fitness and Training"].sort
   end
   
+  def ethnicity
+    ["African American", "Caucasian", "Asian / Pacific Islander", "Native American", "Latino / Hispanic", "Multi-Racial", "Other"]
+  end
+  
+  def lives_with
+    ["Both Parents", "Mother", "Father", "Step Mother", "Step Father", "Grandparents","Other" ]
+  end
+  
 
-  helper_method :new_user, :current_user, :club_types
+  helper_method :new_user, :current_user, :club_types, :ethnicity, :lives_with
   
   #authentication
 

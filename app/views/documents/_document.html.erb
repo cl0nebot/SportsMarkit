@@ -6,7 +6,7 @@
     <p class="fs_14 text-muted"><%= document.description %></p>
   </td>
   <td class="v-align-middle">
-    <p class="fs_14 text-muted"><%= document.file %></p>
+    <p class="fs_14 text-muted"><%= "#{document.name}.pdf" %></p>
   </td>
   <td class="v-align-middle">
     <% if document.can_be_edited_by_user?(current_user) %>

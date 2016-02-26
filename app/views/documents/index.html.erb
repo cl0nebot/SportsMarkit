@@ -28,35 +28,100 @@
 
   <div class="pt60">
     <div class="row">
-      <div class="col-lg-8 col-sm-offset-2">
+      <% if @document.can_be_edited_by_user?(current_user) %>
+        <div class="col-lg-3">
+          <%= form_for [@object, @document], html: {:multipart => true, id: "document-form" }, remote: true do |f| %>
+          <div class="panel box-shadow-ccc">
+            <div class="panel-heading">
+              <div class="panel-title">
+                <span class="ion-plus-circled text-primary h2 mr15 mt0 pull-left"></span>
+                <h3 class="semi-bold mt10 fs_24">
+                  <span class="">Upload a New Document</span>
+                </h3>
+              </div>
+            </div>
+            <div class="panel-body">
+
+
+              <div class="row example-row no-margin">
+                <div class="col-md-12">Document File</div>
+                  <div class="col-md-12">
+                    <div class="fileinput fileinput-new mt20" data-provides="fileinput">
+                    <span class="btn btn-default btn-file">
+                      <span class="fileinput-new">Select file</span>
+                      <span class="fileinput-exists">Change</span>
+                      <%= f.file_field :file, type: "file" %>
+                    </span>
+                    <span class="fileinput-filename"></span>
+                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+                  </div>
+                </div>
+              </div>
+
+              <br/>
+
+              <div class="row example-row no-margin">
+                <div class="col-md-12">Document Name</div>
+                <div class="col-md-12">
+                  <div class="inputer">
+                    <div class="input-wrapper">
+                      <%= f.text_field :name, type: "text", class: "form-control", placeholder: "" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <br/>
+
+              <div class="row example-row no-margin">
+                <div class="col-md-12">Document Description</div>
+                <div class="col-md-12">
+                  <div class="inputer">
+                    <div class="input-wrapper">
+                      <%= f.text_area :description, type: "text", class: "form-control", placeholder: "" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mt10">
+                <div class="col-md-12">
+                  <%= f.submit "Create Document", class: "btn btn-blue btn-block mt20 create_document" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% end %> 
+        </div>
+      <% end %>
+
+      <div class="col-lg-9">
         <div class="panel box-shadow-ccc">
           <div class="panel-heading">
             <div class="panel-title">
-              <h4 class="semi-bold">Signed Documents</h4>
+              <h4 class="semi-bold">All Documents</h4>
             </div>
           </div>
           <div class="panel-body pb40">
             <div class="">
               <table id="document-list" class="table table-hover table-condensed" id="example">
                 <thead>
-                <tr>
-                  <th style="width:30%" class="semi-bold h6 text-muted">Signee</th>
-                  <th style="width:30%" class="semi-bold h6 text-muted">Document</th>
-                  <th style="width:30%" class="semi-bold h6 text-muted">Date Signed</th>
-                </tr>
+                  <tr>
+                    <th class="semi-bold h6 text-muted">Name</th>
+                    <th class="semi-bold h6 text-muted">Description</th>
+                    <th class="semi-bold h6 text-muted">File</th>
+                    <th class="semi-bold h6 text-muted">Actions</th>
+                  </tr>
                 </thead>
                 <tbody>
-                <% if @signed_documents.present? %>
-                  <% @signed_documents.each do |signed_document| %>
-                    <%= render partial: 'signed_documents/document', locals: { signed_document: signed_document } %>
-                  <% end %>
-                <% end %>
+                  <%= render @documents %>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      </div>
   </div>
 </div>
+
