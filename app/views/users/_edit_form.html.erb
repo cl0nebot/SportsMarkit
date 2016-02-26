@@ -176,7 +176,7 @@
 														<div class="col-md-12">
 															<div class="inputer">
 																<div class="input-wrapper">
-																	<%= text_field_tag :mobile_phone_number, current_user.mobile_phone_number, class: "form-control", placeholder: "5556667777", id: 'mobile_phone_number' %>
+																	<%= f.text_field :mobile_phone_number,  class: "form-control", placeholder: "5556667777", id: 'mobile_phone_number' %>
 																	<%= f.hidden_field :mobile_phone_number, class: "form-control", placeholder: "5556667777", "data-parsley-type" => "number", "data-parsley-type-message" => "Your message"%>
 																</div>
 																<div class="user_mobile_phone_number_field"></div>
@@ -192,7 +192,7 @@
 													<div class="row example-row">
 														<div class="col-md-12 margin-bottom-10">Location</div><!--.col-md-3-->
 														<div class="col-md-12">
-															<div class="margin-bottom-10">
+															<div class="inputer margin-bottom-10">
 																<%= f.fields_for :profile, @profile do |builder| %>
 																	<%= builder.text_field :city, :class => 'city-preloader form-control' %>
 																<% end %>
