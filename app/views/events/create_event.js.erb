@@ -2,6 +2,7 @@ $('#new-events').html('<%= j(render 'small_form', e: @object.events.build, objec
 $('#old-events').append('<%= j(render 'small_form', e: @event, object: @object) %>');
 $('#created-message').html('<%= j(render 'created_message', e: @event, object: @object) %>').fadeOut(6000)
 Layout.initSelectPicker();
+FormsPickers.dateRangePickerTime();
 init_multiple_event_title_validator();
 init_multiple_event_event_type_validator();
 init_multiple_event_facility_validator();
