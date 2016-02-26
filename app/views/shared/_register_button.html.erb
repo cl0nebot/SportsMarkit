@@ -1,7 +1,5 @@
         <% if @object.forms.where(object: "Registration").present? %>
             <% if @object.forms.where(object: "Registration").first.options.present? %>
-            <a class="mt10 pull-right btn btn-orange mr20">
-                Register
-            </a>
+              <%= link_to "Register", "/#{@object.class.to_s.underscore.pluralize}/#{@object.slug}/registrations/new", class: "mt10 pull-right btn btn-orange mr20" %>
             <% end %>
         <% end %>
