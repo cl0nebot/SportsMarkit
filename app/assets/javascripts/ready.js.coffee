@@ -95,6 +95,7 @@ $(document).ready ->
       for detail in place.address_components
         for type in detail.types
           if type is 'locality'
-            @input.val(detail.long_name)
+            @input.val(detail.short_name)
+            @input.closest('form').change()
 
   new googleAutocomplete('.city-preloader')

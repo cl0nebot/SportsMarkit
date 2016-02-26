@@ -1,7 +1,7 @@
 $(function(){
   if($('div').is('#general')){
     user_edit_validation();
-    $( "input[value='Update Profile']" ).attr('disabled', true);
+    $( "input[value='Update Profile']" ).attr('disabled', false);
   }
 })
 
@@ -88,40 +88,50 @@ function init_user_email_validation() {
 }
 
 function init_user_edit_form() {
-  $('.edit-user-form').on("keyup change", function() {
-    var userFirstName = $(this).find('#user_first_name').val()
-    var userLastName = $(this).find('#user_last_name').val()
+  $('.edit-user-form').on("keyup change", function(e) {
+    var userFirstName = $(this).find('#user_first_name').val();
+    var userLastName = $(this).find('#user_last_name').val();
     var userNumber = $(this).find('#mobile_phone_number').val().replace(/[^\d]/g, '');
     var userEmail = $(this).find('#user_email').val();
-    var pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
-    $.get('/checkemail?email='+userEmail+'&number='+userNumber,function(data){
-      if (userFirstName == "") {
-        $( "input[value='Update Profile']" ).attr('disabled', true);
-      } else if (userFirstName.length < 2) {
-        $( "input[value='Update Profile']" ).attr('disabled', true);
-      } else if (userLastName == "") {
-        $( "input[value='Update Profile']" ).attr('disabled', true);
-      } else if (userLastName.length < 2) {
-        $( "input[value='Update Profile']" ).attr('disabled', true);
-      } else if (userNumber.charAt(0) == 0) {
-        $( "input[value='Update Profile']" ).attr('disabled', true);
-      } else if (userNumber.charAt(0) == 1) {
-        $( "input[value='Update Profile']" ).attr('disabled', true);
-      } else if (userNumber.length >= 1 && userNumber.length < 10) {
-        $( "input[value='Update Profile']" ).attr('disabled', true);
-      } else if (userNumber.length > 10 ) {
-        $( "input[value='Update Profile']" ).attr('disabled', true);
-      } else if (!$.isNumeric(userNumber)) {
-        $( "input[value='Update Profile']" ).attr('disabled', true);
-      } else if (userEmail == "") {
-        $( "input[value='Update Profile']" ).attr('disabled', true);
-      } else if (!(pattern.test(userEmail))) {
-        $( "input[value='Update Profile']" ).attr('disabled', true);
-      } else if (data.user_exists) {
-        $( "input[value='Update Profile']" ).attr('disabled', true);
-      } else {
-        $( "input[value='Update Profile']" ).attr('disabled', false);
-      }
-    })
+    var pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    var disableUpdate = function(){
+      $( "input[value='Update Profile']" ).attr('disabled', true);
+    };
+
+    var enableUpdate = function(){
+      $( "input[value='Update Profile']" ).attr('disabled', false);
+    };
+    
+    if (e.target.getAttribute('id') == 'user_email'){
+      disableUpdate();
+      $.get('/checkemail?email='+userEmail+'&number='+userNumber,function(data){
+        if (!data.user_exists) {enableUpdate();}
+      })
+    }
+    if (userFirstName == "") {
+      disableUpdate();
+    } else if (userFirstName.length < 2) {
+      disableUpdate();
+    } else if (userLastName == "") {
+      disableUpdate();
+    } else if (userLastName.length < 2) {
+      disableUpdate();
+    } else if (userNumber.charAt(0) == 0) {
+      disableUpdate();
+    } else if (userNumber.charAt(0) == 1) {
+      disableUpdate();
+    } else if (userNumber.length >= 1 && userNumber.length < 10) {
+      disableUpdate();
+    } else if (userNumber.length > 10 ) {
+      disableUpdate();
+    } else if (!$.isNumeric(userNumber)) {
+      disableUpdate();
+    } else if (userEmail == "") {
+      disableUpdate();
+    } else if (!(pattern.test(userEmail))) {
+      disableUpdate();
+    } else {
+      enableUpdate();
+    }
   });
 }
