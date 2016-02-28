@@ -5,5 +5,6 @@ FactoryGirl.define do
     state { Faker::Address.state }
     country { Faker::Address.country }
     postcode { Faker::Address.postcode }
+    gmaps false
   end
 end

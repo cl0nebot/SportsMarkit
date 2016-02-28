@@ -28,7 +28,7 @@ module Import
     end
     
     def import_team(file, school_id)
-      Importer::Team.new(file: file, school_id: school_id ).call
+      Importer::Team.call(file: file, school_id: school_id )
     end
   
     def open_spreadsheet(file)

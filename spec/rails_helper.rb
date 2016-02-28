@@ -63,7 +63,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     RSpec::Mocks.with_temporary_scope do
-      allow(Address).to receive(:acts_as_gmappable).and_return(true)
+    #
     end
   end
 

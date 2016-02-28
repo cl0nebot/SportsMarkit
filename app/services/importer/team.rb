@@ -2,13 +2,24 @@ class Importer::Team < Importer::Base
   delegate :error_xls, :failure?, :failed_athletes, :failed_teams, :spreadsheet, :header, :school_id, :file, :school, to: :context
 
   def call
+    init_spreadsheet
+    check_for_spreadsheets
+    return if failure?
     context.failed_teams = []
     context.failed_athletes = []
-    init_spreadsheet
     import_teams
     import_athletes
     handle_errors
-    self
+  end
+
+  def check_for_spreadsheets
+    unless (spreadsheet.sheets & required_sheets) == required_sheets
+      context.fail!(error: "You don't have one of: '#{required_sheets.join(', ') }' sheets in your file") rescue false
+    end
+  end
+
+  def required_sheets
+    %w(Teams Athletes)
   end
 
   def handle_errors
