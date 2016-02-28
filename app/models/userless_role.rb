@@ -29,23 +29,27 @@ class UserlessRole < ActiveRecord::Base
     UserlessRole.where(id: array)
   end
   
-  def self.create_new_role(array, params={})
+  def self.create_new_roles(array, params={})
     array.compact.each do |role_type|
-      role = create(
-        first_name: params[:first_name],
-        last_name: params[:last_name],
-        userless_type: "Team", 
-        userless_id: params[:team_id],  
-        status: "Active", 
-        role: role_type, 
-        mobile_phone_number: params[:mobile_phone_number], 
-        level: params[:level], 
-        nickname: params[:nickname], 
-        jersey_number: params[:jersey_number], 
-        title: params[:title]
-        )
-        role.role == "Athlete" ? role.add_positions_to_role(params[:position_ids]) : "" 
+      role = create_new_role(role_type, params)
+      role.role == "Athlete" ? role.add_positions_to_role(params[:position_ids]) : ""
     end
+  end
+
+  def self.create_new_role(role_type, params)
+    create(
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      userless_type: "Team",
+      userless_id: params[:team_id],
+      status: "Active",
+      role: role_type,
+      mobile_phone_number: params[:mobile_phone_number],
+      level: params[:level],
+      nickname: params[:nickname],
+      jersey_number: params[:jersey_number],
+      title: params[:title]
+    )
   end
   
   def add_positions_to_role(position_ids)

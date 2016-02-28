@@ -445,7 +445,7 @@ class User < ActiveRecord::Base
       Rails.logger.info("New user created...")
       new_user.create_profile
       Rails.logger.info("New user profile created...")
-      Role.create_new_role(new_user.id, array, params)
+      Role.create_new_roles(new_user.id, array, params)
       Rails.logger.info("New user role created...")
       User.send_mobile_invitation(new_user, password)
     end
@@ -458,9 +458,9 @@ class User < ActiveRecord::Base
       new_user.save! unless User.exists?(mobile_phone_number: params[:mobile_phone_number])
       user = User.find_by_mobile_phone_number(params[:mobile_phone_number])
       user.create_profile unless Profile.exists?(user_id: user.id)
-      Role.create_new_role(user.id, ["Athlete"], params) unless Role.where(mobile_phone_number:  params[:mobile_phone_number], user_id: user.id, role: "Athlete", status: "Active", roleable_type: "Team", roleable_id: params[:team_id]).present?
+      Role.create_new_roles(user.id, ["Athlete"], params) unless Role.where(mobile_phone_number:  params[:mobile_phone_number], user_id: user.id, role: "Athlete", status: "Active", roleable_type: "Team", roleable_id: params[:team_id]).present?
     else
-      UserlessRole.create_new_role(["Athlete"], params)
+      UserlessRole.create_new_roles(["Athlete"], params)
     end
   end
   

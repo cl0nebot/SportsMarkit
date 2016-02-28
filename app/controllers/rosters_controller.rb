@@ -251,7 +251,7 @@ class RostersController < ApplicationController
     @existing_user = User.find_by_mobile_phone_number(@mobile_number) 
     if @existing_user.roles.where(roleable_type: "Team", roleable_id: @team.id).present? 
     else
-      Role.create_new_role(@existing_user.id, @array, params) 
+      Role.create_new_roles(@existing_user.id, @array, params)
     end
   end
   
@@ -260,7 +260,7 @@ class RostersController < ApplicationController
   end
   
   def create_userlesss_roster_spot
-    UserlessRole.create_new_role(@array, params)
+    UserlessRole.create_new_roles(@array, params)
   end
   
   def send_mobile_invitation(user, password)
