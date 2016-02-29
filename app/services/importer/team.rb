@@ -123,10 +123,9 @@ class Importer::Team < Importer::Base
       else
         handle_failed_athlete(athlete_attributes, "No team found with name: #{team_name}") and return
       end
-      
-      password = User.generate_temporary_password(attributes['first_name'])
-      user_params = attributes.slice('first_name', 'last_name', 'mobile_phone_number').merge(password: password)
       if attributes['mobile_phone_number'].present?
+        password = User.generate_temporary_password(attributes['first_name'])
+        user_params = attributes.slice('first_name', 'last_name', 'mobile_phone_number').merge(password: password)
         user = User.where(mobile_phone_number: attributes['mobile_phone_number']).first_or_initialize
         if user.update_attributes(user_params)
           user.create_profile unless user.profile.present?

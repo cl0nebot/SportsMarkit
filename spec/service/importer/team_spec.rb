@@ -52,6 +52,30 @@ RSpec.describe Importer::Team do
         expect{ run_import }.to change{UserlessRole.count}.by(1)
       end
     end
+
+    context 'valid team params and empty userless role ' do
+      let(:file){ uploaded_file('import/valid_teams_with_userless_empty_role.xlsx') }
+
+      it 'should create 1 team' do
+        expect{ run_import }.to change{Team.count}.by(1)
+      end
+
+      it 'should create 0 user' do
+        expect{ run_import }.to change{User.count}.by(0)
+      end
+
+      it 'should create 0 role' do
+        expect{ run_import }.to change{Role.count}.by(0)
+      end
+
+      it 'should create 0 userless role' do
+        expect{ run_import }.to change{UserlessRole.count}.by(1)
+      end
+
+      it 'should have failed context' do
+        expect(run_import.failure?).to be false
+      end
+    end
   end
 
   context 'invalid file' do
@@ -88,36 +112,77 @@ RSpec.describe Importer::Team do
     end
 
     describe 'valid team but athletes are invalid' do
-      let(:file){ uploaded_file('import/valid_teams_invalid_athletes.xlsx') }
+      context 'invalid team params on athlete page' do
+        let(:file){ uploaded_file('import/valid_teams_invalid_athletes.xlsx') }
 
-      it 'should create 1 team' do
-        expect{ run_import }.to change{Team.count}.by(0)
+        it 'should create 1 team' do
+          expect{ run_import }.to change{Team.count}.by(1)
+        end
+
+        it 'should create 0 user' do
+          expect{ run_import }.to change{User.count}.by(0)
+        end
+
+        it 'should create 0 role' do
+          expect{ run_import }.to change{Role.count}.by(0)
+        end
+
+        it 'should create 0 userless role' do
+          expect{ run_import }.to change{UserlessRole.count}.by(0)
+        end
+
+        it 'should have failed context' do
+          expect(run_import.failure?).to be true
+        end
+
+        it 'should have 0 failed team' do
+          expect(run_import.failed_teams.count).to be == 0
+        end
+
+        it 'should have 1 failed athlete' do
+          expect(run_import.failed_athletes.count).to be == 1
+        end
+
+        it 'should contain error csv' do
+          expect(run_import.error_xls).to be_present
+        end
       end
 
-      it 'should create 0 user' do
-        expect{ run_import }.to change{User.count}.by(0)
-      end
+      context 'valid team params but invalid user params on athlete page' do
+        let(:file){ uploaded_file('import/valid_teams_invalid_athletes.xlsx') }
 
-      it 'should create 0 role' do
-        expect{ run_import }.to change{Role.count}.by(0)
-      end
+        it 'should create 1 team' do
+          expect{ run_import }.to change{Team.count}.by(1)
+        end
 
-      it 'should have failed context' do
-        expect(run_import.failure?).to be true
-      end
+        it 'should create 0 user' do
+          expect{ run_import }.to change{User.count}.by(0)
+        end
 
-      it 'should have 0 failed team' do
-        expect(run_import.failed_teams.count).to be == 1
-      end
+        it 'should create 0 role' do
+          expect{ run_import }.to change{Role.count}.by(0)
+        end
 
-      it 'should have 1 failed athlete' do
-        expect(run_import.failed_athletes.count).to be == 1
-      end
+        it 'should create 0 userless role' do
+          expect{ run_import }.to change{UserlessRole.count}.by(0)
+        end
 
-      it 'should contain error csv' do
-        expect(run_import.error_xls).to be_present
+        it 'should have failed context' do
+          expect(run_import.failure?).to be true
+        end
+
+        it 'should have 0 failed team' do
+          expect(run_import.failed_teams.count).to be == 0
+        end
+
+        it 'should have 1 failed athlete' do
+          expect(run_import.failed_athletes.count).to be == 1
+        end
+
+        it 'should contain error csv' do
+          expect(run_import.error_xls).to be_present
+        end
       end
     end
   end
-
 end
