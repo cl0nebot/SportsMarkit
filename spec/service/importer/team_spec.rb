@@ -8,12 +8,6 @@ RSpec.describe Importer::Team do
   let(:school){ create :school }
   let(:run_import){ Importer::Team.call(file: file, school_id: school.id) }
 
-  def uploaded_file(path)
-    file = File.new(Rails.root.join('spec/fixtures/files', path))
-    file.rewind
-    ActionDispatch::Http::UploadedFile.new(:tempfile => file, :filename => File.basename(file))
-  end
-
   context 'valid file' do
     let(:file){ uploaded_file('import/valid_teams_with_user_role.xlsx') }
 
@@ -85,11 +79,11 @@ RSpec.describe Importer::Team do
       end
 
       it 'should create 0 userless role' do
-        expect{ run_import }.to change{UserlessRole.count}.by(1)
+        expect{ run_import }.to change{UserlessRole.count}.by(0)
       end
 
       it 'should have failed context' do
-        expect(run_import.failure?).to be false
+        expect(run_import.failure?).to be true
       end
     end
   end

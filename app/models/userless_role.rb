@@ -3,6 +3,8 @@ class UserlessRole < ActiveRecord::Base
   
   has_many :positionings, :as => :positionable, :dependent => :destroy
   has_many :positions, :through => :positionings
+
+  validates :first_name, :last_name, presence: true
   
   ["Athlete", "Coach", "Team Manager", "Admin", "Trainer", "Athletic Director", "Guardian", "School Manager", "Athletic Director", "Club Director", "League Manager", "Facility Manager"].each do |type|
     

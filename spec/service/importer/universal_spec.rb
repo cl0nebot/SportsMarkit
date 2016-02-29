@@ -1,12 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Importer::Team do
-
-
-  def uploaded_file(path)
-    file = File.new(Rails.root.join('spec/fixtures/files', path))
-    file.rewind
-    ActionDispatch::Http::UploadedFile.new(:tempfile => file, :filename => File.basename(file))
+  before do
+    Geocoding.stub_geocoding
   end
 
   [Club, Facility, League, School].each do |target|

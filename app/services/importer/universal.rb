@@ -11,16 +11,20 @@ class Importer::Universal < Importer::Base
   def run_import
     spreadsheet.each_with_index(model_header) do |model_attributes, i|
       next if i.zero?
-      attributes = model_attributes.dup
-      attributes['address_attributes'] = attributes.extract!(*address_attributes)
+      attributes = model_attributes.slice(*model.column_names)
+      attributes['address_attributes'] = model_attributes.slice(*address_attributes)
       object = model.where(id: attributes["id"]).first_or_initialize
       object.attributes = attributes
       object.sports = attributes["sports"].split(", ") if model == Club and attributes["sports"].present?
       object.school_affiliated = attributes["school_affiliated"].to_b if model == League
       object.is_private = attributes["is_private"].to_b if model == Facility
       object.publicly_visible = attributes["publicly_visible"].to_b if model == Facility
-      handle_failure(context.failed_records, attributes, object) unless object.save
+      handle_failure(attributes, object) unless object.save
     end
+  end
+
+  def handle_failure(attributes, object)
+    super(failed_records, attributes, object)
   end
 
   def failed_content

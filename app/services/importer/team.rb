@@ -1,4 +1,6 @@
 class Importer::Team < Importer::Base
+  include Importer::Concerns::Roster
+
   delegate :error_xls, :spreadsheet, :failure?, :file, :failed_athletes, :failed_teams, :school_id, :school, to: :context
 
   def call
@@ -82,35 +84,14 @@ class Importer::Team < Importer::Base
   def import_athletes
     athletes_spreadsheet.each_with_index(athlete_header) do |athlete_attributes, i|
       next if i.zero?
-      attributes = ActiveSupport::HashWithIndifferentAccess.new(athlete_attributes)
+      attributes = athlete_attributes.dup
       team_name = attributes.extract!('category', 'sex', 'sport').values.join(' ')
-
       if team = school.teams.where(name: team_name).last
         team_id = team.id
       else
         handle_failed_athlete(athlete_attributes, "No team found with name: #{team_name}") and return
       end
-      if attributes['mobile_phone_number'].present?
-        password = User.generate_temporary_password(attributes['first_name'])
-        user_params = attributes.slice('first_name', 'last_name', 'mobile_phone_number').merge(password: password)
-        user = User.where(mobile_phone_number: attributes['mobile_phone_number']).first_or_initialize
-        if user.update_attributes(user_params)
-          user.create_profile unless user.profile.present?
-          unless role_exists?(user, team_id, attributes)
-            role = Role.create_new_role(user.id, "Athlete", attributes)
-            handle_failed_athlete(athlete_attributes, role) unless role.persisted?
-          end
-        else
-          handle_failed_athlete(athlete_attributes, user)
-        end
-      else
-        role = UserlessRole.create_new_role("Athlete", attributes)
-        handle_failed_athlete(athlete_attributes, role) unless role.persisted?
-      end
+      create_roster(attributes, team_id){|failure| handle_failed_athlete(athlete_attributes, failure)}
     end
-  end
-  
-  def role_exists?(user, team_id, atts)
-    Role.where(mobile_phone_number:  atts['mobile_phone_number'], user_id: user.id, role: "Athlete", status: "Active", roleable_type: "Team", roleable_id: team_id).present?
   end
 end
