@@ -37,6 +37,22 @@ RSpec.describe Importer::Team do
 
     end
 
+    context 'with fixed errors' do
+      let(:file){ uploaded_file('import/valid_teams_with_fixed_errors.xlsx') }
+
+      it 'should create 1 team' do
+        expect{ run_import }.to change{Team.count}.by(1)
+      end
+      
+      it 'should create 1 user' do
+        expect{ run_import }.to change{User.count}.by(1)
+      end
+
+      it 'should create 1 role' do
+        expect{ run_import }.to change{Role.count}.by(1)
+      end
+    end
+
     context 'with userless role' do
       let(:file){ uploaded_file('import/valid_teams_with_userless_role.xlsx') }
 
