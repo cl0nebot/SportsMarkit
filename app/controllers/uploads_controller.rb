@@ -20,16 +20,12 @@ class UploadsController < ApplicationController
         return
       end
     else
-      redirect_to :back
+      redirect_to :back, notice: 'Uploaded'
     end
   end
 
   def roster
-    model = params[:object].constantize
-    if params[:team_id].present?
-      model.import_team(params[:file], params[:team_id])
-    else
-    end
+    Importer::Roster.call(file: params[:file], team_id: params[:team_id]) if params[:team_id].present?
     redirect_to :back, notice: "Uploaded."
   end
   

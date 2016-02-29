@@ -57,5 +57,4 @@ class Importer::Base
 
     context.error_xls = package.to_stream
   end
-
 end
