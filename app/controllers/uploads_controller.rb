@@ -22,4 +22,8 @@ class UploadsController < ApplicationController
     end
     redirect_to :back
   end
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> 5a70946257d5b444bd579b440bc47f5e17de5a35

@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 gem 'mysql2', group: :development # MYSQL in development
@@ -42,9 +41,17 @@ gem 'momentjs-rails'
 
 group :development do
   gem "quiet_assets"
-  gem 'pry-rails'
   gem "better_errors"
   gem "binding_of_caller"
+end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'faker'
+  gem 'database_cleaner'
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
 
 gem 'haml_coffee_assets'
@@ -70,6 +77,7 @@ gem 'pusher'
 gem 'memcachier'
 gem 'dalli'
 gem 'actionpack-action_caching'
+gem "interactor", "~> 3.0"
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -85,3 +93,6 @@ gem 'actionpack-action_caching'
 # gem 'debugger', group: [:development, :test]
 gem 'remotipart'
 gem 'docusign_rest'
+gem 'zip-zip'
+gem 'axlsx', '2.1.0.pre'
+gem 'axlsx_rails'
