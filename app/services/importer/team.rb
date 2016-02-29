@@ -1,5 +1,5 @@
 class Importer::Team < Importer::Base
-  delegate :error_xls, :failure?, :failed_athletes, :failed_teams, :spreadsheet, :header, :school_id, :file, :school, to: :context
+  delegate :error_xls, :spreadsheet, :failure?, :file, :failed_athletes, :failed_teams, :school_id, :school, to: :context
 
   def call
     init_spreadsheet
@@ -22,32 +22,12 @@ class Importer::Team < Importer::Base
     %w(Teams Athletes)
   end
 
-  def handle_errors
-    if failed_athletes.size > 0 or failed_athletes.size > 0
-      generate_error_csv
-      context.fail!(error: 'Some records could not be processed, they were sent to you in separate csv file') rescue false
-    end
+  def failed_content
+    {"Teams" => failed_teams, "Athletes" => failed_athletes}
   end
 
-  def generate_error_csv
-    package = Axlsx::Package.new
-    package.workbook.add_worksheet(:name => "Teams") do |sheet|
-      sheet.add_row(team_header.values << 'Errors')
-      failed_teams.each do |row|
-        sheet.add_row row
-      end
-    end
-    package.workbook.add_worksheet(:name => "Athletes") do |sheet|
-      sheet.add_row(athlete_header.values << 'Errors')
-      failed_athletes.each do |row|
-        sheet.add_row row
-      end
-    end
-    context.error_xls = package.to_stream
-  end
-
-  def header(sheet)
-    Hash[sheet.row(1).map{ |column| [column.gsub(" ", "_").downcase, column] unless column == "Errors"}.compact ]
+  def header_for(label)
+    send("#{label.downcase.singularize}_header")
   end
 
   def team_header
@@ -64,11 +44,6 @@ class Importer::Team < Importer::Base
 
   def athletes_spreadsheet
     spreadsheet.sheet('Athletes')
-  end
-
-
-  def address_attributes
-    %w(street_1 street_2 city county state country postcode suite)
   end
 
   def team_naming_attributes
@@ -89,14 +64,6 @@ class Importer::Team < Importer::Base
 
   def handle_failed_athlete(athlete_attributes, athlete)
     handle_failure(context.failed_athletes, athlete_attributes, athlete)
-  end
-
-  def handle_failure(target, attributes, error_record)
-    if error_record.is_a? String
-      target << (attributes.values << error_record)
-    else
-      target << (attributes.values << error_record.errors.full_messages.join(','))
-    end
   end
 
   def import_teams

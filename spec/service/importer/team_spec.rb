@@ -6,7 +6,7 @@ RSpec.describe Importer::Team do
   end
 
   let(:school){ create :school }
-  let(:run_import){ School.import_team(file, school.id) }
+  let(:run_import){ Importer::Team.call(file: file, school_id: school.id) }
 
   def uploaded_file(path)
     file = File.new(Rails.root.join('spec/fixtures/files', path))
@@ -43,7 +43,7 @@ RSpec.describe Importer::Team do
       it 'should create 1 team' do
         expect{ run_import }.to change{Team.count}.by(1)
       end
-      
+
       it 'should create 1 user' do
         expect{ run_import }.to change{User.count}.by(1)
       end
