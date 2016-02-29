@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     resources :admin do
       collection do 
         get :users
+        get :upload
       end
     end
 
@@ -95,6 +96,12 @@ Rails.application.routes.draw do
     resources :password_resets
 
     resources :schools, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
+      resources :uploads do
+        collection do
+          post :import
+          post :roster
+        end
+      end
       resources :registrations do
         get :register
       end
@@ -118,6 +125,12 @@ Rails.application.routes.draw do
     end
     
     resources :teams, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
+      resources :uploads do
+        collection do
+          post :import
+          post :roster
+        end
+      end
       resources :forms do
         resources :options
         collection do
@@ -145,6 +158,12 @@ Rails.application.routes.draw do
     end
 
     resources :facilities, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
+      resources :uploads do
+        collection do
+          post :import
+          post :roster
+        end
+      end
       resources :registrations do
         get :register
       end
@@ -169,6 +188,12 @@ Rails.application.routes.draw do
 
     resources :tournaments
     resources :leagues, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
+      resources :uploads do
+        collection do
+          post :import
+          post :roster
+        end
+      end
       resources :registrations do
         get :register
       end
@@ -218,14 +243,13 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :uploads do
-      collection do
-        post :import
-        post :roster
-      end
-    end
-    
     resources :clubs, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
+      resources :uploads do
+        collection do
+          post :import
+          post :roster
+        end
+      end
       resources :registrations do
         get :register
       end
@@ -260,6 +284,13 @@ Rails.application.routes.draw do
         get :change_submitter
       end
       patch :pay
+    end
+    
+    resources :uploads, except: [:index, :new, :create, :show, :edit, :update, :destroy] do
+      collection do
+        post :import
+        post :roster
+      end
     end
     
     resources :rosters do
