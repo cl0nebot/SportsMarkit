@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = User.find_by_slug!(request.referrer.split("users/").last.split("/").first)
+    @user = User.find_by_slug!(params[:id])
     @user_profile_picture =  UserProfilePicture.where(user_id: @user.id).last
     @user_profile_pictures = UserProfilePicture.where(user_id: @user.id)
     @object = @user
@@ -79,6 +79,7 @@ class UsersController < ApplicationController
         format.json { respond_with_bip(@user) } 
       end
     elsif !params[:user][:password].present?
+      binding.pry
       @profile = @user.profile
       if @user.update_attributes!(user_params)
         @user.roles.update_all(mobile_phone_number: @user.mobile_phone_number)

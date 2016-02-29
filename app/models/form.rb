@@ -114,10 +114,13 @@ class Form < ActiveRecord::Base
   end
   
   def create_master(params={}, form_params)
-    unless Form.where(submittable_type: params[:submittable_type], submittable_id: params[:submittable_id], master: true).present?
-      master = Form.new(form_params)
-      master.master = true
+    master_form = Form.where(submittable_type: params[:submittable_type], submittable_id: params[:submittable_id], master: true).last
+    if !master_form.present?
+      master = Form.new(submittable_type: params[:submittable_type], submittable_id: params[:submittable_id], master: true)
       master.save
+    elsif master_form.present?
+      master_form.update_attributes(form_params)
+      master_form.update_attributes(formable_type: nil, formable_id: nil, master: true)
     end
   end
   

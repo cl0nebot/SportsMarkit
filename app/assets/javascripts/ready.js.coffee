@@ -79,23 +79,23 @@ $(document).ready ->
     remoteSubmit($(@).closest('form'))
 
 $(document).ready ->
-  $('.city-preloader').each ->
-    placeholder = if $(@).data('current-city')? then $(@).data('current-city') else 'Search for city'
-    $(@).selectpicker().ajaxSelectPicker
-      ajax:
-        url: 'https://api.teleport.org/api/cities/'
-        data: ->
-          search: '{{{q}}}'
-        method: 'GET'
-      locale:
-        emptyTitle: placeholder
-      preprocessData: (data) ->
-        cities = for city in data._embedded['city:search-results']
-          name = city.matching_full_name
-          {
-            'value': name.split(',')[0],
-            'text': name,
-            'disabled': false
-          }
-        cities
-      preserveSelected: false
+
+  class googleAutocomplete
+    constructor: (selector)->
+      @input = $(selector)
+      return unless @input.length
+      @initAutoComplete()
+
+    initAutoComplete: ->
+      @autocomplete = new google.maps.places.Autocomplete(@input[0], {types: ['(cities)']});
+      @autocomplete.addListener('place_changed', @fillInAddress)
+
+    fillInAddress: =>
+      place = @autocomplete.getPlace()
+      for detail in place.address_components
+        for type in detail.types
+          if type is 'locality'
+            @input.val(detail.short_name)
+            @input.closest('form').change()
+
+  new googleAutocomplete('.city-preloader')

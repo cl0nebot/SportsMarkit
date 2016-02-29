@@ -39,22 +39,26 @@ class Role < ActiveRecord::Base
   end
 
   
-  def self.create_new_role(user_id, array, params={})
+  def self.create_new_roles(user_id, array, params={})
     array.compact.each do |role_type|
-      role = create(
-        roleable_type: "Team", 
-        roleable_id: params[:team_id], 
-        user_id: user_id, 
-        status: "Active", 
-        role: role_type, 
-        mobile_phone_number: params[:mobile_phone_number], 
-        level: params[:level], 
-        nickname: params[:nickname], 
-        jersey_number: params[:jersey_number], 
-        title: params[:title]
-        )
-        role.role == "Athlete" ? role.add_positions_to_role(params[:position_ids]) : "" 
+      role = create_new_role(user_id, role_type, params)
+      role.role == "Athlete" ? role.add_positions_to_role(params[:position_ids]) : ""
     end
+  end
+
+  def self.create_new_role(user_id, role_type, params)
+    create(
+        roleable_type: "Team",
+        roleable_id: params[:team_id],
+        user_id: user_id,
+        status: "Active",
+        role: role_type,
+        mobile_phone_number: params[:mobile_phone_number],
+        level: params[:level],
+        nickname: params[:nickname],
+        jersey_number: params[:jersey_number],
+        title: params[:title]
+    )
   end
   
   def add_positions_to_role(position_ids)
