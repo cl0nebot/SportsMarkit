@@ -19,7 +19,7 @@ class Importer::Universal < Importer::Base
       object.school_affiliated = attributes["school_affiliated"].to_b if model == League
       object.is_private = attributes["is_private"].to_b if model == Facility
       object.publicly_visible = attributes["publicly_visible"].to_b if model == Facility
-      handle_failure(attributes, object) unless object.save
+      handle_failure(model_attributes, object) unless object.save
     end
   end
 
