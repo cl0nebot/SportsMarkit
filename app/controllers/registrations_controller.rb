@@ -41,6 +41,20 @@ class RegistrationsController < ApplicationController
     load_registrants
   end
   
+  def pdf
+    load_object
+    load_registrants
+    template = 'registrations/pdf/registrations'
+    respond_to do |format|
+      format.html
+      format.js
+      format.pdf do
+        render pdf: "dashboard",
+              template: template
+      end
+    end
+  end
+
   private
   
   def load_registrants
@@ -66,7 +80,4 @@ class RegistrationsController < ApplicationController
   def load_master
     @master = Form.where(submittable_type: "User", submittable_id: params[:user_id], master: true).last
   end
-  
-    
-  
 end

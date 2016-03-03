@@ -104,6 +104,9 @@ Rails.application.routes.draw do
       end
       resources :registrations do
         get :register
+	collection do
+          get :pdf
+        end
       end
       resources :forms do
         resources :options
@@ -139,6 +142,9 @@ Rails.application.routes.draw do
       end
       resources :registrations do
         get :register
+        collection do
+          get :pdf
+        end
       end
       resources :photos
       resources :profile_pictures, only: %w[create update destroy]
@@ -166,6 +172,9 @@ Rails.application.routes.draw do
       end
       resources :registrations do
         get :register
+	collection do
+          get :pdf
+        end
       end
       resources :forms do
         resources :options
@@ -196,6 +205,9 @@ Rails.application.routes.draw do
       end
       resources :registrations do
         get :register
+	collection do
+          get :pdf
+        end
       end
       resources :forms do
         resources :options
@@ -252,6 +264,9 @@ Rails.application.routes.draw do
       end
       resources :registrations do
         get :register
+        collection do
+          get :pdf
+        end
       end
       resources :forms do
         resources :options
@@ -282,6 +297,7 @@ Rails.application.routes.draw do
     resources :registrations do
       collection do
         get :change_submitter
+        get :pdf
       end
       patch :pay
     end

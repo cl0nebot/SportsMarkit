@@ -1,24 +1,37 @@
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag(registration.registrant.avatar, class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title"><%= registration.registrant.full_name %></span>
-                                                    <span class="caption">
-                                                    <% if registration.selected_option.present? %>
-													 <%= registration.selected_option.option.name  %>, <%= number_to_currency(registration.selected_option.option.price) %>                                                        <% else %> 
-                                                      No option selected.
-                                                      <% end %>
-                                                  </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top"><%= format(registration.updated_at,1) %> <%= format(registration.updated_at,9) %></span>
-                                                    <% if registration.paid? %>
-													<span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
-                                                    <% else %>
-                                                    <span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
-                                                    <% end %>
-												</div>
-											</a>
-										</li>
+<li class="has-action-left has-action-right has-long-story">
+  <a href="#" class="visible">
+    <div class="list-action-left">
+      <%= image_tag(registration.registrant.avatar, class: "face-radius", alt:"") %>
+    </div>
+    <div class="list-content">
+      <span class="title"><%= registration.registrant.full_name %></span>
+      <span class="caption">
+        <% if registration.selected_option.present? %>
+          <%= registration.selected_option.option.name  %>, <%= number_to_currency(registration.selected_option.option.price) %>
+        <% else %>
+          No option selected.
+        <% end %>
+      </span>
+      <span>
+        <%= registration.prefix %>
+        <%= registration.first_name %>
+        <%= registration.middle_name %>
+        <%= registration.last_name %>
+        <%= registration.suffix %>
+        <%= registration.date_of_birth %>
+        <%= registration.mobile_phone_number %>
+        <%= registration.home_phone_number %>
+        <%= registration.ethnicity %>
+        <%= registration.lives_with %>
+      </span>
+    </div>
+    <div class="list-action-right">
+      <span class="top"><%= format(registration.updated_at,1) %> <%= format(registration.updated_at,9) %></span>
+      <% if registration.paid? %>
+        <span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
+      <% else %>
+        <span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
+      <% end %>
+    </div>
+  </a>
+</li>

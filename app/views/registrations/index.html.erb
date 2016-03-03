@@ -58,10 +58,15 @@
 								</div><!--.panel-heading-->
 								<div class="panel-body without-padding">
 									<ul class="list-material wide">
-                                        <% @registrations.each do |registration| %>
-                                            <%= render 'registrations/registrant', registration: registration %>
-                                        <% end %>
+                    <% @registrations.each do |registration| %>
+                      <%= render 'registrations/registrant', registration: registration %>
+                    <% end %>
 									</ul>
+                  <% if @object.class.to_s == "Team" %>
+                    <hr>
+                    <a href="<%= pdf_team_registrations_path(format: :pdf) %>", target="_blank"><i class="fa fs-16 fa-arrow-circle-o-down text-success m-r-10"></i></a>
+                    <span class="hint-text ">Print PDF</span>
+                  <% end %>
 								</div><!--.panel-body-->
 							</div><!--.panel-->
 						</div>
