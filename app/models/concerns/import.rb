@@ -10,14 +10,12 @@ module Import
       ((spreadsheet.first_row + 1)..spreadsheet.last_row).each do |i|
         model_hash = Hash[[header, spreadsheet.row(i)].transpose].except("street_1", "street_2", "city", "county", "state", "country", "postcode", "suite")
         address_hash = Hash[[header, spreadsheet.row(i)].transpose].extract!("street_1", "street_2", "city", "county", "state", "country", "postcode", "suite")
-        p model_hash
-        p address_hash
         object = model.where(id: model_hash["id"])
-        if object.count == 1 
+        if object.count == 1
           object.first.update_attributes(model_hash)
-        else 
+        else
           new_object = model.new(model_hash.merge(id: model.last.try(:id).to_i + 1))
-          new_object.sports = model_hash["sports"].split(", ") if model == Club
+          new_object.sports = model_hash["sports"].split(", ") if model == Club 
           new_object.school_affiliated = (model_hash["school_affiliated"] == "Yes" ? true : false) if model == League
           new_object.is_private = (model_hash["is_private"] == "Yes" ? true : false) if model == Facility
           new_object.publicly_visible = (model_hash["publicly_visible"] == "Yes" ? true : false) if model == Facility
