@@ -155,8 +155,10 @@ class UsersController < ApplicationController
   # end
 
   def email_check
-    if params[:number].present? && params[:email].present?
-      @users = User.where("mobile_phone_number = '#{params[:number]}' or email = '#{params[:email]}'")
+    number = params[:number].to_s.gsub(/[^\d]/, "")
+    email = params[:email].to_s.downcase
+    if number.present? && email.present?
+      @users = User.where("mobile_phone_number = '#{number}' or email = '#{email}'")
       if current_user.present? && params[:type] != "other"
         if @users.include? current_user
           status = false
@@ -167,10 +169,10 @@ class UsersController < ApplicationController
         status = @users.present?
       end
       respond_to do |format|
-        format.json {render :json => {user_exists: status }} 
+        format.json {render :json => {user_exists: status }}
       end
-    elsif params[:number].present?
-      @user = User.where(mobile_phone_number: params[:number]).first
+    elsif number.present?
+      @user = User.where(mobile_phone_number: number).first
       if current_user.present? && params[:type] != "other"
         if @user == current_user
           status = false
@@ -181,10 +183,10 @@ class UsersController < ApplicationController
         status = @user.present?
       end
       respond_to do |format|
-        format.json {render :json => {number_exists: status }} 
+        format.json {render :json => {number_exists: status }}
       end
     else
-      @user = User.find_by_email(params[:email])
+      @user = User.find_by_email(email)
       if current_user.present? && params[:type] != "other"
         if @user == current_user
           status = false
@@ -195,7 +197,7 @@ class UsersController < ApplicationController
         status = @user.present?
       end
       respond_to do |format|
-        format.json {render :json => {email_exists: status }} 
+        format.json {render :json => {email_exists: status }}
       end
     end
   end

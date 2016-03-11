@@ -16,7 +16,7 @@ function init_user_mobile_phone_number_validation() {
     var object = $(this)
     var objectVal = $(this).val().replace(/[^\d]/g, '');
     $('#user_mobile_phone_number').val(objectVal);
-    $.get('/checkemail?number='+objectVal,function(data){
+    $.get('/checkemail?number=' + objectVal, function(data) {
       if (objectVal == "") {
         object.parent().siblings('.user_mobile_phone_number_field').html("");
       } else if (objectVal.charAt(0) == 0) {
@@ -43,7 +43,7 @@ function init_user_email_validation() {
     var object = $(this)
     var objectVal = $(this).val();
     var pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i
-    $.get('/checkemail?email='+objectVal,function(data){
+    $.get('/checkemail?email=' + objectVal,function(data) {
       if (objectVal == "" ) {
         object.parent().siblings('.user_email_field').html("<font size='2' color='red'>This field is required.</font>")
       } else if (!(pattern.test(objectVal))) {

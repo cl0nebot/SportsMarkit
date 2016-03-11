@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
 
   before_create { generate_token(:authentication_token) }
+  before_create :fix_email
+  before_create :fix_phone
 
   after_update :password_changed?, :on => :update
   before_save :encrypt_password
@@ -500,6 +502,14 @@ Password: #{password}"
   
   def find_registration(object)
     object.forms.where(submittable_id: id, submittable_type: "User").last
+  end
+
+  def fix_email
+    self.email = email.to_s.downcase
+  end
+
+  def fix_phone
+    self.mobile_phone_number = mobile_phone_number.to_s.gsub(/[^\d]/, "")
   end
   
 end
