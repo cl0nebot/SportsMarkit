@@ -42,7 +42,7 @@ function init_user_email_validation() {
   $('#user_email').on("keyup change click", function() {
     var object = $(this)
     var objectVal = $(this).val();
-    var pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+    var pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i
     $.get('/checkemail?email='+objectVal,function(data){
       if (objectVal == "" ) {
         object.parent().siblings('.user_email_field').html("<font size='2' color='red'>This field is required.</font>")
@@ -61,7 +61,7 @@ function init_signup_form() {
   $('#signup-form').on("keyup change", function() {
     var userNumber = $(this).find('#user_mobile_phone_number').val().replace(/[^\d]/g, '');
     var userEmail = $(this).find('#user_email').val();
-    var pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+    var pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i
     $.get('/checkemail?email='+userEmail+'&number='+userNumber,function(data){
       if (userNumber.charAt(0) == 0) {
         $( "input[type='submit']" ).attr('disabled', true);

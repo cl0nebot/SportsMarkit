@@ -29,7 +29,7 @@ function init_user_identifier_validation() {
   $('#identifier').on("keyup change click", function() {
     var object = $(this)
     var objectVal = $(this).val();
-    var pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+    var pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i
     $.get('/checkemail?email='+objectVal,function(data){
       if (objectVal == "" ) {
         object.parent().siblings('.identifier_field').html("<font size='2' color='red'>This field is required.</font>")
@@ -48,7 +48,7 @@ function init_login_form_validation() {
   $('#login-form').on("keyup change", function() {
     var userPassword = $(this).find('#password').val();
     var userIdentifier = $(this).find('#identifier').val();
-    var pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+    var pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i
     $.get('/checkemail?email='+userIdentifier,function(data){
       if (userPassword == "" ) {
         $( "input[value='Login']" ).attr('disabled', true);
