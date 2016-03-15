@@ -212,7 +212,8 @@ ActiveRecord::Schema.define(version: 20160315105413) do
 
   create_table "event_schedules", force: true do |t|
     t.integer  "event_id"
-    t.time     "date"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

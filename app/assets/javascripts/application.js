@@ -116,6 +116,7 @@
 //= require pleasure/admin/js/layout
 
 //= require moment
+//= require pleasure/globals/plugins/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min
 //= require fullcalendar
 //= require ./full_calendar
 //= require gmaps4rails/gmaps4rails.base
@@ -171,5 +172,12 @@ $(function() {
   return $('#school-pricings-search-box').keyup(function() {
     $.get($(this).attr("action"), $(this).serialize(), null, "script");
     return false;
+  });
+});
+
+$(function(){
+  $(".bootstrap-datepicker").datetimepicker({
+    format: 'MM/DD/YYYY',
+    pickTime: false
   });
 });

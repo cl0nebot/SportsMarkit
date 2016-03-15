@@ -62,7 +62,7 @@
               <div class="col-md-12"><h4>Repeat Type</h4></div>
               <div class="col-md-12">
                 <div class="inputer">
-                  <%= f.select :facility_ids, options_for_select(Event.repeat_types.keys.map{ |type| [type.humanize, type] }), {:selected => ""}, {:multiple => false, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", placeholder: "Select repeat type" } %>
+                  <%= f.select :repeat_type, options_for_select(Event.repeat_types.keys.map{ |type| [type.humanize, type.to_s] }, @event.repeat_type), {}, {:multiple => false, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", placeholder: "Select repeat type" } %>
                 </div>
               </div>
             </div>
@@ -71,7 +71,7 @@
               <div class="col-md-12"><h4>Repeat Until</h4></div>
               <div class="col-md-12">
                 <div class="inputer">
-                  <input type="text" style="width: 500px" name="event[repeat_until]" class="form-control bootstrap-datepicker" data-provide="datepicker">
+                  <input type="text" style="width: 500px" name="event[repeat_until]" class="form-control bootstrap-datepicker" data-provide="datepicker" value="<%= @event.repeat_until %>">
                 </div>
               </div>
             </div>
