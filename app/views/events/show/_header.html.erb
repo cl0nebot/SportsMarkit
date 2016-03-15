@@ -34,5 +34,7 @@
 
 
 <div class="social-buttons" id="social-buttons">
-	<%= render 'rsvp_buttons', event: @event %>
+	<% @event.event_schedules.each do |event_schedule| %>
+		<%= render 'rsvp_buttons', event_schedule: event_schedule %>
+	<% end %>
 </div>

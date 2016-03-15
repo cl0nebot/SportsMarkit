@@ -1,11 +1,11 @@
-<%= link_to event_rsvp_path(event_schedule.id, user_id: current_user.id, rsvp: "yes", page: "show"), class: "btn btn btn-white  text-success", remote: true, disabled: (current_user.attendees.where(user_id: current_user.id, event_schedule_id: event_schedule.id, yes: true).present? ? true : false ) do %>
+<%= link_to event_rsvp_path(event_schedule.event.id, event_schedule_id: event_schedule.id, user_id: current_user.id, rsvp: "yes", page: "show"), class: "btn btn btn-white  text-success", remote: true, disabled: (current_user.attendees.where(user_id: current_user.id, event_schedule_id: event_schedule.id, yes: true).present? ? true : false ) do %>
 	<span class="ion-checkmark-circled mr5 text-green"></span> Going
 <% end %>
 
-<%= link_to event_rsvp_path(event_schedule.id, user_id: current_user.id, rsvp: "maybe", page: "show"), class: "btn btn text-warning btn-white", remote: true, disabled: (current_user.attendees.where(user_id: current_user.id, event_schedule_id: event_schedule.id, maybe: true).present? ? true : false ) do %>
+<%= link_to event_rsvp_path(event_schedule.event.id, event_schedule_id: event_schedule.id, user_id: current_user.id, rsvp: "maybe", page: "show"), class: "btn btn text-warning btn-white", remote: true, disabled: (current_user.attendees.where(user_id: current_user.id, event_schedule_id: event_schedule.id, maybe: true).present? ? true : false ) do %>
 	<span class="ion-minus-circled mr5 text-amber"></span>  Maybe
 <% end %>
 
-<%= link_to event_rsvp_path(event_schedule.id, user_id: current_user.id, rsvp: "no", page: "show"), class: "btn btn-white", remote: true, disabled: (current_user.attendees.where(user_id: current_user.id, event_schedule_id: event_schedule.id, no: true).present? ? true : false ) do %>
+<%= link_to event_rsvp_path(event_schedule.event.id, event_schedule_id: event_schedule.id, user_id: current_user.id, rsvp: "no", page: "show"), class: "btn btn-white", remote: true, disabled: (current_user.attendees.where(user_id: current_user.id, event_schedule_id: event_schedule.id, no: true).present? ? true : false ) do %>
 	<span class="ion-close-circled mr5 text-danger"></span> Not Going
 <% end %>

@@ -174,9 +174,9 @@ class EventsController < ApplicationController
     @event_schedule = @event.event_schedules.find(params[:event_schedule_id])
     @user = User.find(params[:user_id])
     boolean = params[:rsvp]
-    rsvp = Attendee.find_or_initialize_by(event_schedule_id: @event_schedule.id, user_id: @user.id)
-    rsvp.update_attributes(yes: nil, maybe: nil, no: nil)
-    rsvp.update_attributes(boolean.to_sym => true)
+    @rsvp = Attendee.find_or_initialize_by(event_schedule_id: @event_schedule.id, user_id: @user.id)
+    @rsvp.update_attributes(yes: nil, maybe: nil, no: nil)
+    @rsvp.update_attributes(boolean.to_sym => true)
     @attendees = @event_schedule.attendees.where(yes: true)
     @maybes = @event_schedule.attendees.where(maybe: true)
     @nos = @event_schedule.attendees.where(no: true)
