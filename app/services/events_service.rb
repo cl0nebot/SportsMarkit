@@ -55,6 +55,7 @@ class EventsService
   end
 
   def send_notifications
+    return unless Rails.env.production?
     @event.name_and_phone_numbers.each do |obj|
       receiving_number = obj.last
 

@@ -7,8 +7,8 @@ class Event < ActiveRecord::Base
 
   has_one :event_facility, dependent: :destroy
 
-  has_many :attendees, through: :event_schedules, dependent: :destroy
-  has_many :event_schedules
+  has_many :event_schedules, dependent: :destroy
+  has_many :attendees, through: :event_schedules
   has_many :connects, as: :ownerable, dependent: :destroy
 
   friendly_id :use_for_slug, use: [:slugged, :finders]

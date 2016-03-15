@@ -1,7 +1,7 @@
 class EventSchedule < ActiveRecord::Base
   belongs_to :event
 
-  has_many :attendees
+  has_many :attendees, dependent: :destroy
 
   scope :upcoming, -> { where('ends_at >= ?', Time.now).order('starts_at ASC') }
 
