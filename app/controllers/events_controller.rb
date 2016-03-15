@@ -1,7 +1,7 @@
 require 'twilio-ruby'
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :find_object, except: [:show, :destroy, :edit, :update, :index]
+  before_action :find_object, except: [:show, :destroy, :edit, :update, :index, :rsvp]
 
   def index
     @events = Event.all
@@ -171,14 +171,15 @@ class EventsController < ApplicationController
 
   def rsvp
     @event = Event.find(params[:event_id])
+    @event_schedule = @event.event_schedules.find(params[:event_schedule_id])
     @user = User.find(params[:user_id])
     boolean = params[:rsvp]
-    rsvp = Attendee.find_or_initialize_by(event_id: @event.id, user_id: @user.id)
+    rsvp = Attendee.find_or_initialize_by(event_schedule_id: @event_schedule.id, user_id: @user.id)
     rsvp.update_attributes(yes: nil, maybe: nil, no: nil)
     rsvp.update_attributes(boolean.to_sym => true)
-    @attendees = @event.attendees.where(yes: true)
-    @maybes = @event.attendees.where(maybe: true)
-    @nos = @event.attendees.where(no: true)
+    @attendees = @event_schedule.attendees.where(yes: true)
+    @maybes = @event_schedule.attendees.where(maybe: true)
+    @nos = @event_schedule.attendees.where(no: true)
     respond_to do |format|
       format.html{redirect_to :back}
       format.js

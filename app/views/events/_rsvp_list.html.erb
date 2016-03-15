@@ -1,21 +1,20 @@
-
-									<div class="card-body bgcolor-light-grey">
-										<ul class="users">
-                                            <% people.each do |person| %>
-                                            		<li>
-                                            			<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= person.user.full_name %>">
-                                            				<%= image_tag person.user.avatar %>
-                                            			</a>
-                                            		</li>
-
-                                            <% end %> 		
-										</ul>
-									</div><!--.card-body-->
-									<div class="card-footer">
-										<ul>
-											<li><span class="mr5 fs_14"><%= pluralize people.count, "Person" %></span></li>
-											<li><a href="#people" class="fs_14" data-toggle="modal" data-target="#modal-<%= rsvp %>">View All</a></li>
-										</ul>
-									</div><!--.card-footer-->
-                                    
-  <%= render 'events/show/modal', response: rsvp, people: people, group: group %>
+<div class="card-body bgcolor-light-grey">
+  <ul class="users">
+    <% people.each do |person| %>
+      <li>
+        <a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= person.user.full_name %>">
+          <%= image_tag person.user.avatar %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<!--.card-body-->
+<div class="card-footer">
+  <ul>
+    <li><span class="mr5 fs_14"><%= pluralize people.count, "Person" %></span></li>
+    <li><a href="#people" class="fs_14" data-toggle="modal" data-target="#modal-<%= rsvp %>">View All</a></li>
+  </ul>
+</div>
+<!--.card-footer-->
+<%= render 'events/show/modal', response: rsvp, people: people, group: group %>

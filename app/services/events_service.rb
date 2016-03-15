@@ -46,8 +46,10 @@ class EventsService
       user_ids = Team.find(@event.eventable_id).roles.where(status: "Active").pluck(:user_id)
       opponent_ids = Team.find(@event.opponent_id).roles.where(status: "Active").pluck(:user_id)
       all_ids = (user_ids + opponent_ids).uniq
-      all_ids.each do |i|
-        Attendee.create(user_id: i, event_id: @event.id, yes: true)
+      @event.event_schedules.each do |event_schedule|
+        all_ids.each do |i|
+          Attendee.create(user_id: i, event_schedule: event_schedule, yes: true)
+        end
       end
     end
   end

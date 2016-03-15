@@ -1,5 +1,5 @@
-<%= link_to "Attend", event_rsvp_path(event.id, user_id: @user.id, rsvp: "yes", page: "index"), class: "btn btn-green btn-flat", remote: true, disabled: (@user.attendees.where(user_id: @user.id, event_id: event.id, yes: true).present? ? true : false ) %>
-<%= link_to "Maybe", event_rsvp_path(event.id, user_id: @user.id, rsvp: "maybe", page: "index"), class: "btn btn-orange btn-flat", remote: true, disabled: (@user.attendees.where(user_id: @user.id, event_id: event.id, maybe: true).present? ? true : false ) %>
-<%= link_to "Decline", event_rsvp_path(event.id, user_id: @user.id, rsvp: "no", page: "index"), class: "btn btn-red btn-flat", remote: true, disabled: (@user.attendees.where(user_id: @user.id, event_id: event.id, no: true).present? ? true : false ) %> 
+<%= link_to "Attend", event_rsvp_path(event_schedule.event.id, event_schedule_id: event_schedule.id, user_id: @user.id, rsvp: "yes", page: "index"), class: "btn btn-green btn-flat", remote: true, disabled: (@user.attendees.where(user_id: @user.id, event_schedule_id: event_schedule.id, yes: true).present? ? true : false ) %>
+<%= link_to "Maybe", event_rsvp_path(event_schedule.event.id, event_schedule_id: event_schedule.id, user_id: @user.id, rsvp: "maybe", page: "index"), class: "btn btn-orange btn-flat", remote: true, disabled: (@user.attendees.where(user_id: @user.id, event_schedule_id: event_schedule.id, maybe: true).present? ? true : false ) %>
+<%= link_to "Decline", event_rsvp_path(event_schedule.event.id, event_schedule_id: event_schedule.id, user_id: @user.id, rsvp: "no", page: "index"), class: "btn btn-red btn-flat", remote: true, disabled: (@user.attendees.where(user_id: @user.id, event_schedule_id: event_schedule.id, no: true).present? ? true : false ) %>
 
 
