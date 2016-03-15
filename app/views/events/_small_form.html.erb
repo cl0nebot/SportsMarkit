@@ -1,91 +1,90 @@
 <div id="event-<%= e.fake_id %>" class="mb20 pr20 pl20 pt20 well">
   <%= form_for [object, e], url: eval("#{e.new_record? ? "create" : "update"}_event_#{object.class.to_s.downcase.underscore}_events_path(object, e)"), method: e.new_record? ? :post : :patch,html: {class: "multiple-event-form", id: 'event-form'} do |f| %>
-     
     <div class="row">
       <div class="col-md-6">
-         <div class="inputer">
-             <div class="input-wrapper">
-                 <span class="text-muted text-small fs_14 lh_40">Event Name</span>
-                 <%= f.text_field :title, type: "text", class: "form-control title", placeholder: "Event Name"%>
-             </div>
-             <div class='title_field'></div>
-         </div>
-      </div><!--.col-md-9-->
- 
-     <div class="col-md-2">
+        <div class="inputer">
+          <div class="input-wrapper">
+            <span class="text-muted text-small fs_14 lh_40">Event Name</span>
+            <%= f.text_field :title, type: "text", class: "form-control title", placeholder: "Event Name"%>
+          </div>
+          <div class='title_field'></div>
+        </div>
+      </div>
+      <!--.col-md-9-->
+      <div class="col-md-2">
         <span class="text-muted text-small fs_14 lh_40">Type</span>
         <%= f.collection_select :event_type, EventType.pluck(:event_type), :to_s, :to_s, {include_blank: false}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0 event_type" } %>
-     </div><!--.col-md-2-->
-     <div class="col-md-2">
-         <span class="text-muted text-small fs_14 lh_40">Facility</span>
-         <%= f.collection_select :facility_ids, Facility.all, :id, :name, {:selected => e.new_record? ? [] : e.facility.id}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0 facility", placeholder: "Select a Facility" } %>
-         <div class='facility_field'></div>
-     </div><!--.col-md-2-->
-     <div class='facilit_field'></div>
-     <% if @object.class.to_s == "Team" %>
+      </div>
+      <!--.col-md-2-->
       <div class="col-md-2">
-         <span class="text-muted text-small fs_14 lh_40">Select Team</span>
-         <%= f.collection_select :opponent_id, Team.all, :id, :name, {:prompt => "Select a Team"}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0"} %>
-      </div><!--.col-md-2-->
-     <% end %>
+        <span class="text-muted text-small fs_14 lh_40">Facility</span>
+        <%= f.collection_select :facility_ids, Facility.all, :id, :name, {:selected => e.new_record? ? [] : e.facility.id}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0 facility", placeholder: "Select a Facility" } %>
+        <div class='facility_field'></div>
+      </div>
+      <!--.col-md-2-->
+      <div class='facilit_field'></div>
+      <% if @object.class.to_s == "Team" %>
+        <div class="col-md-2">
+          <span class="text-muted text-small fs_14 lh_40">Select Team</span>
+          <%= f.collection_select :opponent_id, Team.all, :id, :name, {:prompt => "Select a Team"}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0"} %>
+        </div>
+        <!--.col-md-2-->
+      <% end %>
     </div>
-
     <div class="row">
-     <div class="col-md-4">
-       <div class="input-wrapper">
-         <span class="text-muted text-small fs_14 lh_40">Date of Event</span>
-         <% if e.new_record? %>
-         <input type="text" style="width: 500px" name="event[reservation]" class="form-control bootstrap-daterangepicker-date-time" value="<%=Time.now.month %>/<%=Time.now.day %>/<%=Time.now.year %> <%=Time.now.strftime("%I:%M %p") %> - <%=Time.now.month %>/<%=Time.now.day %>/<%=Time.now.year %> <%=(Time.now + 1.hour).strftime("%I:%M %p") %>">
-         <% else %>
-         <input type="text" style="width: 500px" name="event[reservation]" class="form-control bootstrap-daterangepicker-date-time" value="<%= e.starts_at.month %>/<%=e.starts_at.day %>/<%=e.starts_at.year %> <%=e.starts_at.strftime("%I:%M %p") %> - <%= e.ends_at.month %>/<%=e.ends_at.day %>/<%=e.ends_at.year %> <%=e.ends_at.strftime("%I:%M %p") %>">
-         <% end %>
+      <div class="col-md-4">
+        <div class="input-wrapper">
+          <span class="text-muted text-small fs_14 lh_40">Date of Event</span>
+          <% if e.new_record? %>
+            <input type="text" style="width: 500px" name="event[reservation]" class="form-control bootstrap-daterangepicker-date-time" value="<%=Time.now.month %>/<%=Time.now.day %>/<%=Time.now.year %> <%=Time.now.strftime("%I:%M %p") %> - <%=Time.now.month %>/<%=Time.now.day %>/<%=Time.now.year %> <%=(Time.now + 1.hour).strftime("%I:%M %p") %>">
+          <% else %>
+            <input type="text" style="width: 500px" name="event[reservation]" class="form-control bootstrap-daterangepicker-date-time" value="<%= e.starts_at.month %>/<%=e.starts_at.day %>/<%=e.starts_at.year %> <%=e.starts_at.strftime("%I:%M %p") %> - <%= e.ends_at.month %>/<%=e.ends_at.day %>/<%=e.ends_at.year %> <%=e.ends_at.strftime("%I:%M %p") %>">
+          <% end %>
         </div>
       </div>
       <div class="col-md-3">
         <span class="text-muted text-small fs_14 lh_40">Event Options</span>
         <div class="clearfix margin-bottom-10">
           <div class="checkboxer form-inline">
-           <%= f.check_box :all_day, id:"all_day_#{e.id}"  %>
-           <label for="all_day_<%= e.id %>">All Day?</label>
-         </div>
-         <div class="checkboxer form-inline">
-           <%= f.check_box :private, id: "private_#{e.id}" %>
-           <label for="private_<%= e.id %>">Private?</label>
-         </div>
-       </div>
-      </div><!--.col-md-9-->
-      <div class="col-md-5">
-        <div class="inputer">
-        <div class="input-wrapper">
-          <span class="text-muted text-small fs_14 lh_40">Description</span>
-          <%= f.text_area :description, type: "text", class: "form-control description", placeholder: "" %>
-         </div>
-         <div class='description_field'></div>
-       </div>
+            <%= f.check_box :all_day, id:"all_day_#{e.id}"  %>
+            <label for="all_day_<%= e.id %>">All Day?</label>
+          </div>
+          <div class="checkboxer form-inline">
+            <%= f.check_box :private, id: "private_#{e.id}" %>
+            <label for="private_<%= e.id %>">Private?</label>
+          </div>
         </div>
       </div>
-
-      
-      <div class="row">
-        <%= f.hidden_field :user_id, value: current_user.id %>
-        <% if @event.new_record? %>
-          <%= f.hidden_field :eventable_type, value: @object.class.to_s %>
-        <% end %>
-          <div class="col-md-2 pull-left">
+      <!--.col-md-9-->
+      <div class="col-md-5">
+        <div class="inputer">
+          <div class="input-wrapper">
+            <span class="text-muted text-small fs_14 lh_40">Description</span>
+            <%= f.text_area :description, type: "text", class: "form-control description", placeholder: "" %>
+          </div>
+          <div class='description_field'></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <% if @event.new_record? %>
+        <%= f.hidden_field :eventable_type, value: @object.class.to_s %>
+      <% end %>
+      <div class="col-md-2 pull-left">
         <% if e.persisted? %>
-        <%= f.hidden_field :id, value: e.id %>
-        <%= link_to "View", event_path(e), class: "btn btn-sm btn-blue" %>
-        <button class="btn btn-sm btn-blue submit-form"> Update </button>
-        <button class="btn btn-sm btn-blue">
-          <%= link_to "Remove", eval("destroy_event_#{object.class.to_s.downcase.underscore}_event_path(object, e)"), method: :get, remote: :true %>
-        </button>
+          <%= f.hidden_field :id, value: e.id %>
+          <%= link_to "View", event_path(e), class: "btn btn-sm btn-blue" %>
+          <button class="btn btn-sm btn-blue submit-form"> Update </button>
+          <button class="btn btn-sm btn-blue">
+            <%= link_to "Remove", eval("destroy_event_#{object.class.to_s.downcase.underscore}_event_path(object, e)"), method: :get, remote: :true %>
+          </button>
         <% else %>
-        <button class="btn btn-sm btn-blue submit-form"> Create </button>
+          <button class="btn btn-sm btn-blue submit-form"> Create </button>
           <%= f.hidden_field :fake_id %>
-        <button class="btn btn-sm btn-blue remove-form">Remove</button>
+          <button class="btn btn-sm btn-blue remove-form">Remove</button>
         <% end %>
       </div>
     </div>
-
   <% end %>
 </div>

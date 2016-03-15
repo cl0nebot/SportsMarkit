@@ -1,44 +1,35 @@
 <div class="modal fade full-height from-right" id="modal-<%= response %>" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-md-12 pr20 pl20 pt10">
-						<div class="panel">
-							<div class="panel-heading no-border">
-								<div class="panel-title">
-									<h4 class="text-primary">
-										<!-- <span class="ion-plus-circled mr5"></span> -->
-										People <%= group %> <%= @event.title %>
-									</h4>
-									<h3 class="modal-title bold mt0 mb0"></h3>
-								</div>
-							</div><!--.panel-heading-->
-							<div class="panel-body">
-								<ul class="users">
-                                    <% people.each do |person| %>
-                                    		<li>
-                                    			<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= person.user.full_name %>">
-                                    				<%= image_tag person.user.avatar, size: "50x50" %>
-                                    			</a>
-                                    		</li>
-
-                                    <% end %> 		
-								</ul>
-                                
-                                
-                                
-							</div><!--.panel-body-->
-						</div><!--.panel-->
-					</div><!--.col-md-12-->
-				</div><!--.row-->
-			</div>
-			<div class="modal-footer bg-light-grey padding-40">
-				
-			</div>
-					
-		</div>
-	</div>
-</div><!--.modal-->
-
-
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 pr20 pl20 pt10">
+            <div class="panel">
+              <div class="panel-heading no-border">
+                <div class="panel-title">
+                  <h4 class="text-primary">
+                    People <%= group %> <%= @event.title %>
+                  </h4>
+                  <h3 class="modal-title bold mt0 mb0"></h3>
+                </div>
+              </div>
+              <div class="panel-body">
+                <ul class="users">
+                  <% people.each do |person| %>
+                    <li>
+                      <a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<%= person.user.full_name %>">
+                        <%= image_tag person.user.avatar, size: "50x50" %>
+                      </a>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer bg-light-grey padding-40">
+      </div>
+    </div>
+  </div>
+</div>
