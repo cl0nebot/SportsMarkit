@@ -9,209 +9,147 @@
     margin-left: 180px;
   }
 </style>
-
-
 <div class="content">
-
-	<div class="page-header full-content bg-primary mb0" style="min-height: 141px;">
-		<div class="row">
-			<div class="col-sm-6">
-				<h1 class="capitalize semi-bold">
-					<%= @event.title %>
-					<small></small>
-				</h1>
-			</div><!--.col-->
-			<div class="col-sm-6">
-				<ol class="breadcrumb">
-					<li><a href="/"><i class="ion-home"></i></a></li>
-					<li><a href="<%= events_path %>">Events</a></li>
-					<li><a href="<%= event_path(@event) %>"><%= @event.title %></a></li>
-				</ol>
-			</div><!--.col-->
-		</div><!--.row-->
-
-		<div class="header-tabs scrollable-tabs sticky">
-                
+  <div class="page-header full-content bg-primary mb0" style="min-height: 141px;">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1 class="capitalize semi-bold">
+          <%= @event.title %>
+          <small></small>
+        </h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="<%= events_path %>">Events</a></li>
+          <li><a href="<%= event_path(@event) %>"><%= @event.title %></a></li>
+        </ol>
+      </div>
+    </div>
+    <div class="header-tabs scrollable-tabs sticky">
       <% if @event.can_be_edited_by_user?(current_user) %>
         <%= link_to edit_event_path(@event), class: "mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20" do %>
-            <i class="ion-gear-b fs_16 mr5"></i> Edit Event
+          <i class="ion-gear-b fs_16 mr5"></i> Edit Event
         <% end %>
-		  <% end %>
-
-		  <a class="mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20">
+      <% end %>
+      <a class="mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20">
         <i class="ion-speakerphone fs_16 mr5"></i> View Announcements
     	</a>
-		  
       <%= link_to eval("#{@event.eventable_type.downcase}_path(@event.eventable.friendly_id)"), class: "mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
-          <i class="ion-gear-b fs_16 mr5"></i> Return to <%= @event.eventable.name %>
+        <i class="ion-gear-b fs_16 mr5"></i> Return to <%= @event.eventable.name %>
       <% end %>
-		        
-
-			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
-				<li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">Location</a></li><!-- 
-				<li><a href="#teams" data-toggle="tab" class="btn-ripple">Attending</a></li> -->
-				<!-- <li><a href="#media" data-toggle="tab" class="btn-ripple">Edit</a></li> -->
-		  	</ul>
-	 
-
-		</div>
-	</div><!--.page-header-->
-
-	<!-- main content div -->
-  	<div class="row">
-		<div class="col-md-12">
-			<div class="tab-content without-border">
-
-				<div id="about" class="tab-pane active">
-					<div class="page-header full-content parallax">
-						<%= render "events/show/header" %>
-					</div><!--.page-header-->
-					<div class="col-md-6" style="margin-top: -223px;">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="card tile card-post" style="border-top: 3px solid #ccc;">
-									<!--.card-heading-->
-									<div class="card-body pl40 pr40 pb0">
-										<div class="profile-text light capitalize">
-											
-											<div class="row">
-												<div class="col-md-6">
-													<span class="h5 bold">
-														<span class="text-primary">
-															<i class="ion-clock mr5"></i> 
-															Starts:</span> <%= format(@event.starts_at, 4) %>
-														<%= format(@event.starts_at, 9) %>
-													</span>
-												</div>
-												<div class="col-md-6">
-													<span class="h5 bold">
-														<span class="text-danger"> 
-															<i class="ion-clock mr5"></i> 
-															Ends:</span> <%= format(@event.ends_at, 4) %>
-														<%= format(@event.ends_at, 9) %>
-													</span>
-												</div>
-											</div>
-											<hr class="light mt0 mb10"/>
-											<h4 class="text-grey">
-												<%= @event.event_type %>
-											</h4>
-										</div><!--.profile-text-->
-
-										<h4 class="semi-bold capitalize text-black no-margin">
-											<%= @event.title %>
-										</h4>
-										<p class="no-margin">
-											<span class="caption fs_12">
-												Created By: <%= link_to @event.eventable.name, eval("#{@event.eventable_type.downcase}_path(@event.eventable.friendly_id)") %>
-											</span>
-										</p>
-										<p class="fs_12 mt10">
-											<span class="caption">
-												<%= @event.description %>
-											</span>
-										</p>
-									</div>
-									<hr class="light mt10 mb10"/>
-									<div class="card-body pl40 pr40 pb40">
-
-										<h5 class="bold no-margin"><%= @event.facility.name %></h5>
-										<p class="author lh_26 mt5 fs_14">
-											<a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a> 
-										</p>
-										<div class="row contact-us">
-											<div class="col-md-12">
-												<%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
-											</div><!--.col-->
-										</div>
-										    		
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-					  <div class="row">
-					  	<div class="col-md-12">
-					  		<!-- Attending -->
-							<div class="col-md-12">
-								<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-									<div class="card-heading">
-										<h6 class="semi-bold fs_14 mb0"><%= @event.title %></h6>
-										<h3 class="card-title">Attending</h3>
-										<!-- <div class="card-subhead">
-										 <a href="#">124 Students</a>
-										</div> -->
-										<!--.card-subhead-->
-									</div><!--.card-heading-->
-                                    <div id="yes">
-                                      <%= render 'events/rsvp_list', people: @attendees, rsvp: "yes", group: "Attending" %>
-                                      
-                                    </div>
-								</div><!--.card-->
-							</div><!--.col-md-12-->
-
-							<!-- Maybe -->
-							<div class="col-md-12">
-								<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-									<div class="card-heading">
-										<h6 class="semi-bold fs_14 mb0"><%= @event.title %></h6>
-										<h3 class="card-title">Not Attending</h3>
-										<!-- <div class="card-subhead">
-										 <a href="#">124 Students</a>
-										</div> -->
-										<!--.card-subhead-->
-									</div><!--.card-heading-->
-                                    <div id="no">
-                                      <%= render 'events/rsvp_list', people: @nos, rsvp: "no", group: "Not Attending" %>
-                                    </div>
-								</div><!--.card-->
-							</div><!--.col-md-12-->
-
-
-							<!-- Maybe -->
-							<div class="col-md-12">
-								<div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
-									<div class="card-heading">
-										<h6 class="semi-bold fs_14 mb0"><%= @event.title %></h6>
-										<h3 class="card-title">Possibly Attending</h3>
-										<!-- <div class="card-subhead">
-										 <a href="#">124 Students</a>
-										</div> -->
-										<!--.card-subhead-->
-									</div><!--.card-heading-->
-                                    <div id="maybe">
-                                      <%= render 'events/rsvp_list', people: @maybes, rsvp: "maybe", group: "Possibly Attending" %>
-                                   </div>
-								</div><!--.card-->
-							</div><!--.col-md-12-->
-					  	</div>
-					  </div>
-					</div>
-				</div>
-			  
-			</div><!--.tab-content-->
-		</div><!--.col-->
-	</div><!--.row-->
-
-	
-
-</div><!--.content-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      <ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+        <li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">Location</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tab-content without-border">
+        <div id="about" class="tab-pane active">
+          <div class="page-header full-content parallax">
+            <%= render "events/show/header" %>
+          </div>
+          <div class="col-md-6" style="margin-top: -223px;">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card tile card-post" style="border-top: 3px solid #ccc;">
+                  <div class="card-body pl40 pr40 pb0">
+                    <div class="profile-text light capitalize">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <span class="h5 bold">
+                            <span class="text-primary">
+                              <i class="ion-clock mr5"></i>
+                              Starts:</span> <%= format(@event.starts_at, 4) %>
+                            <%= format(@event.starts_at, 9) %>
+                          </span>
+                        </div>
+                        <div class="col-md-6">
+                          <span class="h5 bold">
+                            <span class="text-danger">
+                              <i class="ion-clock mr5"></i>
+                              Ends:</span> <%= format(@event.ends_at, 4) %>
+                            <%= format(@event.ends_at, 9) %>
+                          </span>
+                        </div>
+                      </div>
+                      <hr class="light mt0 mb10"/>
+                      <h4 class="text-grey">
+                        <%= @event.event_type %>
+                      </h4>
+                    </div>
+                    <h4 class="semi-bold capitalize text-black no-margin">
+                      <%= @event.title %>
+                    </h4>
+                    <p class="no-margin">
+                      <span class="caption fs_12">
+                        Created By: <%= link_to @event.eventable.name, eval("#{@event.eventable_type.downcase}_path(@event.eventable.friendly_id)") %>
+                      </span>
+                    </p>
+                    <p class="fs_12 mt10">
+                      <span class="caption">
+                        <%= @event.description %>
+                      </span>
+                    </p>
+                  </div>
+                  <hr class="light mt10 mb10"/>
+                  <div class="card-body pl40 pr40 pb40">
+                    <h5 class="bold no-margin"><%= @event.facility.name %></h5>
+                    <p class="author lh_26 mt5 fs_14">
+                      <a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a>
+                    </p>
+                    <div class="row contact-us">
+                      <div class="col-md-12">
+                        <%= gmaps("map_options" => { "detect_location" => true, "auto_zoom" => false, "center_on_user" => false, "zoom" => 15, "maxZoom" => 15, "minZoom" => 3},"markers" => { "data" => @json }) %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-12">
+                  <div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+                    <div class="card-heading">
+                      <h6 class="semi-bold fs_14 mb0"><%= @event.title %></h6>
+                      <h3 class="card-title">Attending</h3>
+                    </div>
+                    <div id="yes">
+                      <%= render 'events/rsvp_list', people: @attendees, rsvp: "yes", group: "Attending" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+                    <div class="card-heading">
+                      <h6 class="semi-bold fs_14 mb0"><%= @event.title %></h6>
+                      <h3 class="card-title">Not Attending</h3>
+                    </div>
+                    <div id="no">
+                      <%= render 'events/rsvp_list', people: @nos, rsvp: "no", group: "Not Attending" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
+                    <div class="card-heading">
+                      <h6 class="semi-bold fs_14 mb0"><%= @event.title %></h6>
+                      <h3 class="card-title">Possibly Attending</h3>
+                    </div>
+                    <div id="maybe">
+                      <%= render 'events/rsvp_list', people: @maybes, rsvp: "maybe", group: "Possibly Attending" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

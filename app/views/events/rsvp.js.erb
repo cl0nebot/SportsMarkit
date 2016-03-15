@@ -1,6 +1,5 @@
 <% if params[:page] == "show" %>
-	// $('#social-buttons').empty()
-	// $('#social-buttons').append("<%= j render 'events/rsvp_buttons', event_schedule: @event_schedule %>")
+	$(".rsvp-buttons-<%= @event_schedule.id %>").html("<%= j render 'events/rsvp_buttons', event_schedule: @event_schedule %>")
 	$('#yes').empty()
 	$('#yes').append("<%= j render 'events/rsvp_list', people: @attendees %>")
 	$('#maybe').empty()
