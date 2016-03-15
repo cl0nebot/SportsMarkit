@@ -3,158 +3,152 @@
     <div class="panel box-shadow-ccc">
       <div class="panel-header bg-cyan">
         <br/>
-		<% if @event.new_record? %>
-        <h5 class="text-right text-white semi-bold">Create a New Event
-         <% else %>			
-		<h5 class="text-right text-white semi-bold">Update Event: <%= @event.title %>
-			<% end %>
-			
+		    <% if @event.new_record? %>
+          <h5 class="text-right text-white semi-bold">Create a New Event
+        <% else %>
+		      <h5 class="text-right text-white semi-bold">Update Event: <%= @event.title %>
+        <% end %>
           <i class="ion-plus-circled margin-right-10 margin-left-10 text-white"></i>
         </h5>
         <hr class="margin-top-0"/>
       </div>
 
-      <div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
-        <div class="row">
-          <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
-            <div class="row text-center">
-              <div class="col-md-12">
-				<% if @event.new_record? %>
-                  <h3 class="semi-bold text-primary">Create a new event</h3>
-				<% else %>
-				  <h3 class="semi-bold text-primary">Update Event: <%= @event.title %></h3>
-				<% end %>
-                <h4>What type of event?</h4>
+      <%= form_for [@object, @event], html: {id: 'event-form'} do |f| %>
+        <div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
+              <div class="row text-center">
+                <div class="col-md-12">
+                  <% if @event.new_record? %>
+                    <h3 class="semi-bold text-primary">Create a new event</h3>
+                  <% else %>
+                    <h3 class="semi-bold text-primary">Update Event: <%= @event.title %></h3>
+                  <% end %>
+                  <h4>What type of event?</h4>
+                </div>
+              </div>
+              <div class="row margin-bottom-0">
+                <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 well">
+  			          <%= f.collection_select :event_type, EventType.pluck(:event_type), :to_s, :to_s, {include_blank: false}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0" } %>
+  			        </div>
               </div>
             </div>
-			<%= form_for [@object, @event], html: {id: 'event-form'} do |f| %>
-            <div class="row margin-bottom-0">
-              <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 well">
-				  <%= f.collection_select :event_type, EventType.pluck(:event_type), :to_s, :to_s, {include_blank: false}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0" } %>
-				                </div><!--.col-md-9-->
-            </div><!--.row-->
           </div>
         </div>
-      </div>
 
-     
-
-      <div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
-        <div class="panel-body padding-right-40 padding-left-40">
-
-          <div class="row example-row">
-            <div class="col-md-12"><h4>Event Title</h4></div>
-            <div class="col-md-12">
-              <div class="inputer">
-                <div class="input-wrapper">
-                  <%= f.text_field :title, type: "text", class: "form-control", placeholder: ""%>
-                </div>
-              </div>
-            </div><!--.col-md-9-->
-          </div><!--.row-->
-
-          <div class="row example-row">
-            <div class="col-md-12"><h4>Facility</h4></div>
-            <div class="col-md-12">
-              <div class="inputer">
-                <%= f.collection_select :facility_ids, Facility.all, :id, :name, {:selected => ""}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", placeholder: "Select a Facility" } %>
-              </div>
-            </div><!--.col-md-9-->
-          </div><!--.row-->
-          
-          <% if @object.class.to_s == "Team" %>
-              <div class="row example-row">
-                <div class="col-md-12"><h4>Opponent</h4></div>
-                <div class="col-md-12">
-                  <div class="inputer">
-                    <%= f.collection_select :opponent_id, Team.all, :id, :name, {:prompt => "Select a Team"}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0"} %>
-                  </div>
-                </div><!--.col-md-9-->
-              </div><!--.row-->
-          <% end %>
-
-          <div class="row example-row">
-            <div class="col-md-12"><h4>Date and Time</h4></div>
-            <div class="col-md-12">
-              <div class="inputer">
-                <div class="input-wrapper">
-					<% if @event.new_record? %>
-                  <input type="text" style="width: 500px" name="event[reservation]" class="form-control bootstrap-daterangepicker-date-time" value="<%=Time.now.month %>/<%=Time.now.day %>/<%=Time.now.year %> <%=Time.now.strftime("%I:%M %p") %> - <%=Time.now.month %>/<%=Time.now.day %>/<%=Time.now.year %> <%=(Time.now + 1.hour).strftime("%I:%M %p") %>">
-				  <% else %>
-				   <input type="text" style="width: 500px" name="event[reservation]" class="form-control bootstrap-daterangepicker-date-time" value="<%= @event.starts_at.month %>/<%=@event.starts_at.day %>/<%=@event.starts_at.year %> <%=@event.starts_at.strftime("%I:%M %p") %> - <%= @event.ends_at.month %>/<%=@event.ends_at.day %>/<%=@event.ends_at.year %> <%=@event.ends_at.strftime("%I:%M %p") %>">
-				  
-				  <% end %>
-                </div>
-              </div>
-            </div><!--.col-md-9-->
-          </div><!--.row-->
-		  
-		  
-
-
-          <br/>
-          <!-- event checkbox options -->
-           <!-- event type -->
-          <div class="row example-row">
-            <div class="col-md-3">Options</div><!--.col-md-3-->
-              <div class="col-md-9">
-                <div class="clearfix margin-bottom-10">
-                  <div class="checkboxer form-inline">
-                    <%= f.check_box :all_day, id:"all_day"  %>
-                    <label for="all_day">All Day?</label>
-                  </div>
-                  <div class="checkboxer form-inline">
-                    <%= f.check_box :private, id: "private" %>
-                    <label for="private">Private?</label>
+        <div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+          <div class="panel-body padding-right-40 padding-left-40">
+            <div class="row example-row">
+              <div class="col-md-12"><h4>Event Title</h4></div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper">
+                    <%= f.text_field :title, type: "text", class: "form-control", placeholder: ""%>
                   </div>
                 </div>
-            </div><!--.col-md-9-->
-          </div><!--.row-->
+              </div>
+            </div>
 
-          <br/>
-
-
-          <div class="row example-row">
-            <div class="col-md-12"><h4>Description</h4></div>
-            <div class="col-md-12">
-              <div class="inputer">
-                <div class="input-wrapper">
-                  <%= f.text_area :description, type: "text", class: "form-control", placeholder: "" %>
+            <div class="row example-row">
+              <div class="col-md-12"><h4>Facility</h4></div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <%= f.collection_select :facility_ids, Facility.all, :id, :name, {:selected => ""}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", placeholder: "Select a Facility" } %>
                 </div>
               </div>
-            </div><!--.col-md-9-->
-          </div><!--.row-->
+            </div>
 
-          <%= f.hidden_field :user_id, value: current_user.id %>
-          
-		  <% if @event.new_record? %>
-		    <%= f.hidden_field :eventable_type, value: @object.class.to_s %>
-		  <% end %>
+            <div class="row example-row">
+              <div class="col-md-12"><h4>Repeat Type</h4></div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <%= f.select :facility_ids, options_for_select(Event.repeat_types.keys.map{ |type| [type.humanize, type] }), {:selected => ""}, {:multiple => false, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", placeholder: "Select repeat type" } %>
+                </div>
+              </div>
+            </div>
 
+            <div class="row example-row">
+              <div class="col-md-12"><h4>Repeat Until</h4></div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <input type="text" style="width: 500px" name="event[repeat_until]" class="form-control bootstrap-datepicker" data-provide="datepicker">
+                </div>
+              </div>
+            </div>
 
-          <!-- <div class="field">
-            <%#= f.label :starts_at %><br />
-            <%#= f.datetime_select :starts_at %>
+            <% if @object.class.to_s == "Team" %>
+                <div class="row example-row">
+                  <div class="col-md-12"><h4>Opponent</h4></div>
+                  <div class="col-md-12">
+                    <div class="inputer">
+                      <%= f.collection_select :opponent_id, Team.all, :id, :name, {:prompt => "Select a Team"}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0"} %>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+
+            <div class="row example-row">
+              <div class="col-md-12"><h4>Date and Time</h4></div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper">
+                    <% if @event.new_record? %>
+                      <input type="text" style="width: 500px" name="event[reservation]" class="form-control bootstrap-daterangepicker-date-time" value="<%=Time.now.month %>/<%=Time.now.day %>/<%=Time.now.year %> <%=Time.now.strftime("%I:%M %p") %> - <%=Time.now.month %>/<%=Time.now.day %>/<%=Time.now.year %> <%=(Time.now + 1.hour).strftime("%I:%M %p") %>">
+  				          <% else %>
+  				            <input type="text" style="width: 500px" name="event[reservation]" class="form-control bootstrap-daterangepicker-date-time" value="<%= @event.starts_at.month %>/<%=@event.starts_at.day %>/<%=@event.starts_at.year %> <%=@event.starts_at.strftime("%I:%M %p") %> - <%= @event.ends_at.month %>/<%=@event.ends_at.day %>/<%=@event.ends_at.year %> <%=@event.ends_at.strftime("%I:%M %p") %>">
+  				          <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <br/>
+            <div class="row example-row">
+              <div class="col-md-3">Options</div>
+                <div class="col-md-9">
+                  <div class="clearfix margin-bottom-10">
+                    <div class="checkboxer form-inline">
+                      <%= f.check_box :all_day, id:"all_day"  %>
+                      <label for="all_day">All Day?</label>
+                    </div>
+                    <div class="checkboxer form-inline">
+                      <%= f.check_box :private, id: "private" %>
+                      <label for="private">Private?</label>
+                    </div>
+                  </div>
+              </div>
+            </div>
+
+            <br/>
+
+            <div class="row example-row">
+              <div class="col-md-12"><h4>Description</h4></div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper">
+                    <%= f.text_area :description, type: "text", class: "form-control", placeholder: "" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <%= f.hidden_field :user_id, value: current_user.id %>
+  		      <% if @event.new_record? %>
+  		        <%= f.hidden_field :eventable_type, value: @object.class.to_s %>
+  		      <% end %>
           </div>
-          <div class="field">
-            <%#= f.label :ends_at %><br />
-            <%#= f.datetime_select :ends_at %>
-          </div> -->
         </div>
-      </div>
-      
-    
         <div class="panel-body padding-right-40 padding-left-40 bg-cyan">
           <div class="row example-row margin-bottom-0">
             <div class="col-md-12 text-center">
               <h3 class="text-white margin-bottom-0">Have and Questions?</h3>
-              <p class="text-white semi-bold">Please check out our 
-                <a href="#" class="text-white">   
+              <p class="text-white semi-bold">Please check out our
+                <a href="#" class="text-white">
                   <u>Events FAQ.</u>
                 </a>
               </p>
             </div>
-          </div><!--.row-->
+          </div>
         </div>
 
         <div class="form-buttons no-margin">
@@ -166,7 +160,7 @@
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>  
+</div>

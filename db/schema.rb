@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225152007) do
+ActiveRecord::Schema.define(version: 20160315105413) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "addresses", force: true do |t|
     t.integer  "addressable_id"
@@ -139,12 +142,12 @@ ActiveRecord::Schema.define(version: 20160225152007) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "latitude",               limit: 24
-    t.float    "longitude",              limit: 24
+    t.float    "latitude"
+    t.float    "longitude"
     t.boolean  "gmaps"
     t.date     "last_payment"
     t.boolean  "premium"
-    t.float    "price",                  limit: 24
+    t.float    "price"
     t.string   "colors"
     t.string   "mascot"
     t.string   "motto"
@@ -207,6 +210,15 @@ ActiveRecord::Schema.define(version: 20160225152007) do
     t.datetime "updated_at"
   end
 
+  create_table "event_schedules", force: true do |t|
+    t.integer  "event_id"
+    t.time     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_schedules", ["event_id"], name: "index_event_schedules_on_event_id", using: :btree
+
   create_table "event_types", force: true do |t|
     t.string   "event_type"
     t.datetime "created_at"
@@ -231,6 +243,8 @@ ActiveRecord::Schema.define(version: 20160225152007) do
     t.datetime "updated_at"
     t.integer  "opponent_id"
     t.string   "opponent_type"
+    t.integer  "repeat_type"
+    t.date     "repeat_until"
   end
 
   add_index "events", ["eventable_id", "eventable_type"], name: "index_events_on_eventable_id_and_eventable_type", using: :btree
@@ -255,7 +269,7 @@ ActiveRecord::Schema.define(version: 20160225152007) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "price",               limit: 24
+    t.float    "price"
     t.string   "facility_owner_type"
     t.integer  "facility_owner_id"
   end
@@ -491,7 +505,7 @@ ActiveRecord::Schema.define(version: 20160225152007) do
     t.string   "email"
     t.string   "website"
     t.string   "phone_number"
-    t.float    "price",             limit: 24
+    t.float    "price"
     t.string   "classification"
     t.string   "category"
   end
@@ -552,7 +566,7 @@ ActiveRecord::Schema.define(version: 20160225152007) do
   create_table "options", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.float    "price",       limit: 24
+    t.float    "price"
     t.integer  "form_id"
     t.string   "object"
     t.datetime "created_at"
@@ -695,7 +709,7 @@ ActiveRecord::Schema.define(version: 20160225152007) do
     t.date     "last_payment"
     t.string   "stripe_subscription_id"
     t.boolean  "premium"
-    t.float    "price",                  limit: 24
+    t.float    "price"
     t.string   "facebook"
     t.string   "twitter"
     t.string   "linkedin"
@@ -791,7 +805,7 @@ ActiveRecord::Schema.define(version: 20160225152007) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "price",              limit: 24
+    t.float    "price"
     t.text     "description"
     t.string   "teamable_type"
     t.integer  "teamable_id"

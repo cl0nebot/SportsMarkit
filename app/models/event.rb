@@ -1,20 +1,24 @@
 class Event < ActiveRecord::Base
-  # scope :between, ->(start_time, end_time){ where("? < starts_at < ?", Event.format_date(start_time), Event.format_date(end_time)) }
-  # scope :between, lambda {{ :conditions => ["starts_at >= ? AND starts_at <= ?", Event.format_date(start_time), Event.format_date(end_time)] }}
-  belongs_to :eventable, polymorphic: true
-  belongs_to :user
   include Access
   extend FriendlyId
-  friendly_id :use_for_slug, use: [:slugged, :finders]
+
+  belongs_to :eventable, polymorphic: true
+  belongs_to :user
+
+  has_one :event_facility, dependent: :destroy
+
   has_many :attendees, dependent: :destroy
-  
+  has_many :event_schedules
+  has_many :connects, as: :ownerable, dependent: :destroy
+
+  friendly_id :use_for_slug, use: [:slugged, :finders]
+
+  enum repeat_type: { single: 0, every_day: 1, every_week: 2, every_month: 3 }
+
   def fake_id
     @fake_id ||= id || SecureRandom.hex
   end
-  
-  has_one :event_facility, dependent: :destroy
-  has_many :connects, as: :ownerable, dependent: :destroy 
-  
+
   def self.between(start_time, end_time)
     where('starts_at >= ?', Event.format_date(start_time)).where('starts_at <= ?', Event.format_date(end_time)).where.not('starts_at > ?', Event.format_date(end_time)).uniq
   end
