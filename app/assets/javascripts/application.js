@@ -128,6 +128,7 @@
 //= require ./ready
 //= require registrations
 //= require hamlcoffee
+//= require event_form
 //= require_tree ./templates
 
 $(document).click(function(event) {
@@ -178,6 +179,8 @@ $(function() {
 $(function(){
   $(".bootstrap-datepicker").datetimepicker({
     format: 'MM/DD/YYYY',
-    pickTime: false
+    pickTime: false,
+    minDate: moment(),
+    maxDate: moment().add(1, "year").toDate()
   });
 });

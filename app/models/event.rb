@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
 
   has_one :event_facility, dependent: :destroy
 
-  has_many :attendees, dependent: :destroy
+  has_many :attendees, through: :event_schedules, dependent: :destroy
   has_many :event_schedules
   has_many :connects, as: :ownerable, dependent: :destroy
 

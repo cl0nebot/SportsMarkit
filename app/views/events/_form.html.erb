@@ -67,11 +67,13 @@
               </div>
             </div>
 
-            <div class="row example-row">
+            <div class="row repeat-until example-row">
               <div class="col-md-12"><h4>Repeat Until</h4></div>
               <div class="col-md-12">
                 <div class="inputer">
-                  <input type="text" style="width: 500px" name="event[repeat_until]" class="form-control bootstrap-datepicker" data-provide="datepicker" value="<%= @event.repeat_until %>">
+                  <div class="input-wrapper">
+                    <input type="text" style="width: 500px" name="event[repeat_until]" class="form-control bootstrap-datepicker" data-provide="datepicker" value="<%= @event.repeat_until %>">
+                  </div>
                 </div>
               </div>
             </div>
