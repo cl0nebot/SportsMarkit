@@ -29,7 +29,7 @@ class EventSchedulesController < ApplicationController
     attendee.save
     respond_to do |format|
       format.json {
-        render json: ""
+        render json: { status: :ok, id: attendee.event_schedule_id, type: params[:attend_type] }
       }
     end
   end

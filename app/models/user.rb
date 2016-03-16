@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
   has_many :events, as: :eventable
   
   has_many :attendees, dependent: :destroy
+  has_many :event_schedules, through: :attendees
   has_many :classifications, dependent: :destroy
   has_many :measurables, dependent: :destroy
   has_many :certificates, dependent: :destroy
