@@ -938,11 +938,13 @@ if(!String.prototype.formatNum) {
 		$('*[data-toggle="tooltip"]').tooltip({container: 'body'});
 
 		$('*[data-cal-date]').click(function() {
+			return; // don't show day view
 			var view = $(this).data('cal-view');
 			self.options.day = $(this).data('cal-date');
 			self.view(view);
 		});
 		$('.cal-cell').dblclick(function() {
+			return; // don't show day view
 			var view = $('[data-cal-date]', this).data('cal-view');
 			self.options.day = $('[data-cal-date]', this).data('cal-date');
 			self.view(view);
@@ -1054,6 +1056,7 @@ if(!String.prototype.formatNum) {
 		var start = this.options.position.start.getFullYear() + '-' + this.options.position.start.getMonthFormatted() + '-';
 		$('.cal-month-box .cal-row-fluid')
 			.on('mouseenter', function() {
+				return; //do not show week number
 				var p = new Date(self.options.position.start);
 				var child = $('.cal-cell1:first-child .cal-month-day', this);
 				var day = (child.hasClass('cal-month-first-row') ? 1 : $('[data-cal-date]', child).text());

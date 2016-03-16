@@ -10,6 +10,7 @@ class EventSchedule < ActiveRecord::Base
   def as_json(options={})
     {
       id: id,
+      event_id: event_id,
       title: title,
       url: "remove later",
       class: "event-important",

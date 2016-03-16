@@ -3,10 +3,9 @@
 	<ul class="unstyled list-unstyled">
 		<% _.each(events, function(event) { %>
 			<li>
-				<span class="pull-left event <%= event['class'] %>"></span>&nbsp;
-				<a href="<%= event.url ? event.url : 'javascript:void(0)' %>" data-event-id="<%= event.id %>"
-					data-event-class="<%= event['class'] %>" class="event-item">
-					<%= event.title %></a>
+				<a href="#" class="attend-event" data-href="/events/<%= event.event_id %>/rsvp?event_schedule_id=<%= event.id %>&page=show&rsvp=yes&user_id=1">Going</a>
+				<a href="#" class="attend-event" data-href="/events/<%= event.event_id %>/rsvp?event_schedule_id=<%= event.id %>&page=show&rsvp=maybe&user_id=1">Maybe</a>
+				<a href="#" class="attend-event" data-href="/events/<%= event.event_id %>/rsvp?event_schedule_id=<%= event.id %>&page=show&rsvp=no&user_id=1">Not Going</a>
 			</li>
 		<% }) %>
 	</ul>

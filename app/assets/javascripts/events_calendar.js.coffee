@@ -4,3 +4,6 @@ $ ->
     $("#event-schedules-calendar").calendar
       tmpl_path: "/assets/pleasure/globals/plugins/bootstrap-calendar/tmpls/"
       events_source: data
+
+  $(document).on "click", "#cal-slide-content .attend-event", (e) ->
+    debugger;
