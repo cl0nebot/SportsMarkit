@@ -24,9 +24,5 @@
   </div>
 </div>
 <div class="social-buttons" id="social-buttons">
-  <% @event.event_schedules.each do |event_schedule| %>
-    <div class="rsvp-buttons-<%= event_schedule.id %>">
-      <%= render 'rsvp_buttons', event_schedule: event_schedule %>
-    </div>
-  <% end %>
+  <%= render 'rsvp_buttons', event_schedule: @event.event_schedules.upcoming.first %>
 </div>
