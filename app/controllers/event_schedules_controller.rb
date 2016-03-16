@@ -22,6 +22,18 @@ class EventSchedulesController < ApplicationController
     @json = @facility.address.to_gmaps4rails
   end
 
+  def attend
+    attendee = Attendee.find_or_initialize_by(event_schedule_id: @event_schedule.id, user_id: current_user.id)
+    attendee.assign_attributes(yes: nil, maybe: nil, no: nil)
+    attendee.assign_attributes(params[:attend_type].to_sym => true)
+    attendee.save
+    respond_to do |format|
+      format.json {
+        render json: ""
+      }
+    end
+  end
+
   private
 
   def find_event

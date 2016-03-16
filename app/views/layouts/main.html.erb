@@ -33,6 +33,7 @@
 
 		<%= csrf_meta_tags %>
 		<%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLISHABLE_KEY'] %>
+		<%= Gon::Base.render_data %>
 	</head>
 
 	<body class="one-page mt0">

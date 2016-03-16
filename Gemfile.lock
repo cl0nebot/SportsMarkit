@@ -211,6 +211,11 @@ GEM
       jquery-rails (>= 3.1.1, < 5.0.0)
       momentjs-rails (~> 2.8, >= 2.8.4)
     gmaps4rails (1.5.6)
+    gon (6.0.1)
+      actionpack (>= 3.0)
+      json
+      multi_json
+      request_store (>= 1.0)
     google-webfonts (0.2.0)
       actionpack (>= 3.0.0)
     haml_coffee_assets (1.16.0)
@@ -338,6 +343,7 @@ GEM
       polyamorous (~> 1.2)
     rdoc (4.2.0)
     remotipart (1.2.1)
+    request_store (1.2.0)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
@@ -430,6 +436,7 @@ DEPENDENCIES
   friendly_id
   fullcalendar-rails
   gmaps4rails (~> 1.5.6)
+  gon
   google-webfonts
   haml_coffee_assets
   interactor (~> 3.0)
