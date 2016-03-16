@@ -57,21 +57,28 @@
                   <div class="card-body pl40 pr40 pb0">
                     <div class="profile-text light capitalize">
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                           <span class="h5 bold">
                             <span class="text-primary">
                               <i class="ion-clock mr5"></i>
-                              Starts:</span> <%= format(@event.starts_at, 4) %>
+                              Starts:
+                            </span>
+                            <%= format(@event.starts_at, 4) %>
                             <%= format(@event.starts_at, 9) %>
                           </span>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                           <span class="h5 bold">
                             <span class="text-danger">
                               <i class="ion-clock mr5"></i>
-                              Ends:</span> <%= format(@event.ends_at, 4) %>
+                              Ends:
+                            </span>
+                            <%= format(@event.ends_at, 4) %>
                             <%= format(@event.ends_at, 9) %>
                           </span>
+                        </div>
+                        <div class="col-md-2">
+                          <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#event-schedules-modal">Next</button>
                         </div>
                       </div>
                       <hr class="light mt0 mb10"/>
@@ -153,3 +160,13 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="event-schedules-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+
