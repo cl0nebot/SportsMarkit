@@ -117,6 +117,8 @@
 
 //= require moment
 //= require pleasure/globals/plugins/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min
+//= require pleasure/globals/plugins/underscore/underscore-min
+//= require pleasure/globals/plugins/bootstrap-calendar/js/calendar
 //= require fullcalendar
 //= require ./full_calendar
 //= require gmaps4rails/gmaps4rails.base
@@ -129,6 +131,7 @@
 //= require registrations
 //= require hamlcoffee
 //= require event_form
+//= require events_calendar
 //= require_tree ./templates
 
 $(document).click(function(event) {

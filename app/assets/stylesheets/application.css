@@ -49,6 +49,7 @@
 
  *= require pleasure/globals/plugins/video.js/dist/video-js/video-js.min
  *= require pleasure/globals/plugins/video.js/themes/sublime/videojs-sublime-skin.min
+ *= require pleasure/globals/plugins/bootstrap-calendar/css/calendar
  
  *= require pleasure/globals/css/plugins
  *= require pleasure/custom
