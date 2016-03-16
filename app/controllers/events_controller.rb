@@ -166,9 +166,6 @@ class EventsController < ApplicationController
     end
   end
 
-
-
-
   def rsvp
     @event = Event.find(params[:event_id])
     @event_schedule = @event.event_schedules.find(params[:event_schedule_id])

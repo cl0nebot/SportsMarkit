@@ -1,6 +1,16 @@
 class EventSchedulesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :find_event_schedule
+  before_action :find_event
+  before_action :find_event_schedule, except: :index
+
+  def index
+    @event_schedules = @event.event_schedules
+    respond_to do |format|
+      format.json {
+        render json: @event_schedules
+      }
+    end
+  end
 
   def show
     @event.starts_at = @event_schedule.starts_at
@@ -14,8 +24,11 @@ class EventSchedulesController < ApplicationController
 
   private
 
-  def find_event_schedule
+  def find_event
     @event = Event.friendly.find(params[:event_id])
+  end
+
+  def find_event_schedule
     @event_schedule = @event.event_schedules.find(params[:id])
   end
 end

@@ -6,4 +6,15 @@ class EventSchedule < ActiveRecord::Base
   scope :upcoming, -> { where('ends_at >= ?', Time.now).order('starts_at ASC') }
 
   delegate :title, :event_type, :user, to: :event
+
+  def as_json(options={})
+    {
+      id: id,
+      title: title,
+      url: "remove later",
+      class: "event-important",
+      start: starts_at.to_datetime.strftime('%Q'),
+      end: ends_at.to_datetime.strftime('%Q')
+    }
+  end
 end
