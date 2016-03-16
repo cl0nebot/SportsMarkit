@@ -6,14 +6,17 @@ $ ->
       events_source: data
 
   $(document).on "click", ".cal-cell", ->
-    $("#cal-slide-content .attend-event").on "click", (e) ->
-      url = $(this).data("href")
-      auth_token = $('meta[name=csrf-token]').attr('content')
-      $.post "#{url}&authenticity_token=#{auth_token}", (response)=>
-        $(@).parent().find('a').removeAttr('disabled')
-        $(@).attr('disabled', 'disabled')
-        gon.visiting_ids.yes = _.without(gon.visiting_ids.yes, response.id)
-        gon.visiting_ids.no = _.without(gon.visiting_ids.no, response.id)
-        gon.visiting_ids.maybe = _.without(gon.visiting_ids.maybe, response.id)
-        gon.visiting_ids[response.type].push(response.id)
-
+    $('.cal-cell.active').removeClass('active')
+    $(@).addClass('active')
+    setTimeout ->
+        $("#cal-slide-content .attend-event").on "click", (e) ->
+          url = $(this).data("href")
+          auth_token = $('meta[name=csrf-token]').attr('content')
+          $.post "#{url}&authenticity_token=#{auth_token}", (response)=>
+            $(@).parent().find('a').removeAttr('disabled')
+            $(@).attr('disabled', 'disabled')
+            gon.visiting_ids.yes = _.without(gon.visiting_ids.yes, response.id)
+            gon.visiting_ids.no = _.without(gon.visiting_ids.no, response.id)
+            gon.visiting_ids.maybe = _.without(gon.visiting_ids.maybe, response.id)
+            gon.visiting_ids[response.type].push(response.id)
+      , 500

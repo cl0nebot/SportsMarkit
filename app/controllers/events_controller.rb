@@ -73,19 +73,14 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.friendly.find(params[:id])
-    @attendees = @event.attendees.where(yes: true)
-    @maybes = @event.attendees.where(maybe: true)
-    @nos = @event.attendees.where(no: true)
-    @facility = @event.facility
+    @event_schedule = Event.friendly.find(params[:id]).event_schedules.upcoming.first
+    presenter = EventPresenter.new(@event_schedule, current_user)
+    @attendees = presenter.attendees
+    @maybes = presenter.maybes
+    @nos = presenter.nos
+    @facility = presenter.facility
     @json = @facility.address.to_gmaps4rails
-    gon.push(
-        visiting_ids: {
-          no: current_user.event_schedules.joins(:attendees).where(attendees: { no: true }, event_id: @event.id).pluck(:id),
-          maybe: current_user.event_schedules.joins(:attendees).where(attendees: { maybe: true }, event_id: @event.id).pluck(:id),
-          yes: current_user.event_schedules.joins(:attendees).where(attendees: { yes: true }, event_id: @event.id).pluck(:id)
-        }
-    )
+    gon.push(presenter.user_visits)
   end
 
   def edit

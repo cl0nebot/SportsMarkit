@@ -80,3 +80,7 @@
 #event-schedules-modal .modal-body{
     max-height: 100%
 }
+
+.cal-cell.active .cal-day-inmonth{
+  background: darkgray !important;
+}

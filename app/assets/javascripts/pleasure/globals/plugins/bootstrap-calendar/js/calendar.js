@@ -1051,7 +1051,6 @@ if(!String.prototype.formatNum) {
 				showEventsList(event, downbox, slider, self);
 			})
 		;
-
 		var slider = $(document.createElement('div')).attr('id', 'cal-slide-box');
 		slider.hide().click(function(event) {
 			event.stopPropagation();
@@ -1081,7 +1080,6 @@ if(!String.prototype.formatNum) {
 	function showEventsList(event, that, slider, self) {
 
 		// event.stopPropagation();
-
 		var that = $(that);
 		var cell = that.closest('.cal-cell');
 		var row = cell.closest('.cal-before-eventlist');

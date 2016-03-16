@@ -1,25 +1,24 @@
 class EventSchedulesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :find_event
-  before_action :find_event_schedule, except: :index
+  before_filter :find_event_schedule, except: :index
 
   def index
-    @event_schedules = @event.event_schedules
     respond_to do |format|
       format.json {
-        render json: @event_schedules
+        render json: Event.find(params[:event_id]).event_schedules
       }
     end
   end
 
   def show
-    @event.starts_at = @event_schedule.starts_at
-    @event.ends_at = @event_schedule.ends_at
-    @attendees = @event_schedule.attendees.where(yes: true)
-    @maybes = @event_schedule.attendees.where(maybe: true)
-    @nos = @event_schedule.attendees.where(no: true)
-    @facility = @event.facility
+    presenter = EventPresenter.new(@event_schedule, current_user)
+    @attendees = presenter.attendees
+    @maybes = presenter.maybes
+    @nos = presenter.nos
+    @facility = presenter.facility
     @json = @facility.address.to_gmaps4rails
+    gon.push(presenter.user_visits)
+    render 'events/show'
   end
 
   def attend
@@ -34,13 +33,7 @@ class EventSchedulesController < ApplicationController
     end
   end
 
-  private
-
-  def find_event
-    @event = Event.friendly.find(params[:event_id])
-  end
-
   def find_event_schedule
-    @event_schedule = @event.event_schedules.find(params[:id])
+    @event_schedule = EventSchedule.find(params[:id])
   end
 end
