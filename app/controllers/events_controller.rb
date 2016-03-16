@@ -79,7 +79,6 @@ class EventsController < ApplicationController
     @nos = @event.attendees.where(no: true)
     @facility = @event.facility
     @json = @facility.address.to_gmaps4rails
-
   end
 
   def edit

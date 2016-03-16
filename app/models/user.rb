@@ -467,28 +467,10 @@ class User < ActiveRecord::Base
   end
   
   def self.send_mobile_invitation(user, password)
-    receiving_number = user.mobile_phone_number
-    Rails.logger.info("Sending text invitation to #{user.mobile_phone_number}")
-
-    twilio_sid = ENV['TWILIO_SID']
-    twilio_token = ENV['TWILIO_AUTH_TOKEN']
-    twilio_phone_number = "2027590519"
-
-    twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
-   begin
-    twilio_client.account.messages.create(
-      :from => "+1#{twilio_phone_number}",
-      :to => receiving_number,
-      :body => "#{user.first_name}, Coach has created your new team hub! 
-      
-http://www.sportsmarkit.com/login 
-Login: #{user.mobile_phone_number} 
-Password: #{password}"
-    )
-    rescue Twilio::REST::RequestError => e
-      Rails.logger.info("Error when attempting to send sms to #{user.mobile_phone_number}")
-      puts e.message
-    end
+    Messanger.send_sms(user.mobile_phone_number, "#{user.first_name}, Coach has created your new team hub!
+                http://www.sportsmarkit.com/login
+                Login: #{user.mobile_phone_number}
+                Password: #{password}")
   end
   
   
