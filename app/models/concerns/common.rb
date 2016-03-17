@@ -6,6 +6,9 @@ module Common
     has_one :address, as: :addressable, dependent: :destroy
     accepts_nested_attributes_for :address, :allow_destroy => true
     
+   
+    has_many :taggings, as: :taggable, dependent: :destroy
+    
     has_many :announcements, as: :announceable, dependent: :destroy
     
     has_many :connects, as: :ownerable, dependent: :destroy
@@ -14,6 +17,7 @@ module Common
   end
   
   module ClassMethods
+    
     # class methods  
     def classifications
       school_ids = Team.all.pluck(:school_id).compact.uniq
@@ -59,6 +63,11 @@ module Common
        team_options =  ["Team Managers", "Athletes", "Coaches", "Trainers", "Guardians", "Admins" ].sort
     end
      
+  end
+  
+  def tags
+    tag_ids = Tagging.where(taggable_type: self.class.to_s, taggable_id: self.id).pluck(:tag_id)
+    tags = Tag.where(id: tag_ids )
   end
   
   
