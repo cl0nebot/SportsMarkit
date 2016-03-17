@@ -4,12 +4,12 @@
       <% if !params[:user_id].present? %>
         <%= "#{signed_document.try(:user).try(:first_name)} #{signed_document.try(:user).try(:last_name)}" %>
       <% else %>
-        <%= Document.find(signed_document.document_id).documentable.name %>
+        <%= signed_document.document.documentable.name %>
       <% end %>
     </h5>
   </td>
   <td class="v-align-middle">
-    <%= signed_document.try(:document).try(:description) %>
+    <%= link_to signed_document.try(:document).try(:description), signed_document.file_url, target: "_blank" %>
   </td>
   <td class="v-align-middle">
     <% if signed_document.signed %>
