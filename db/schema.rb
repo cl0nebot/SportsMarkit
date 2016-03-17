@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160315162023) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "addresses", force: true do |t|
     t.integer  "addressable_id"
     t.string   "addressable_type"
@@ -144,12 +141,12 @@ ActiveRecord::Schema.define(version: 20160315162023) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.float    "latitude",               limit: 24
+    t.float    "longitude",              limit: 24
     t.boolean  "gmaps"
     t.date     "last_payment"
     t.boolean  "premium"
-    t.float    "price"
+    t.float    "price",                  limit: 24
     t.string   "colors"
     t.string   "mascot"
     t.string   "motto"
@@ -272,7 +269,7 @@ ActiveRecord::Schema.define(version: 20160315162023) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "price"
+    t.float    "price",               limit: 24
     t.string   "facility_owner_type"
     t.integer  "facility_owner_id"
   end
@@ -475,6 +472,11 @@ ActiveRecord::Schema.define(version: 20160315162023) do
     t.datetime "updated_at"
   end
 
+  create_table "identity_checks", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "league_managers", force: true do |t|
     t.integer  "user_id"
     t.integer  "league_id"
@@ -508,7 +510,7 @@ ActiveRecord::Schema.define(version: 20160315162023) do
     t.string   "email"
     t.string   "website"
     t.string   "phone_number"
-    t.float    "price"
+    t.float    "price",             limit: 24
     t.string   "classification"
     t.string   "category"
   end
@@ -569,7 +571,7 @@ ActiveRecord::Schema.define(version: 20160315162023) do
   create_table "options", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.float    "price"
+    t.float    "price",       limit: 24
     t.integer  "form_id"
     t.string   "object"
     t.datetime "created_at"
@@ -712,7 +714,7 @@ ActiveRecord::Schema.define(version: 20160315162023) do
     t.date     "last_payment"
     t.string   "stripe_subscription_id"
     t.boolean  "premium"
-    t.float    "price"
+    t.float    "price",                  limit: 24
     t.string   "facebook"
     t.string   "twitter"
     t.string   "linkedin"
@@ -808,7 +810,7 @@ ActiveRecord::Schema.define(version: 20160315162023) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "price"
+    t.float    "price",              limit: 24
     t.text     "description"
     t.string   "teamable_type"
     t.integer  "teamable_id"
