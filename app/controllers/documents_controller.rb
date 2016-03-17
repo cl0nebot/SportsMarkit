@@ -5,7 +5,7 @@ class DocumentsController < ApplicationController
   before_action :find_document, only: %w[edit update]
 
   def index
-    @documents = Document.where(documentable_id: @object.id, documentable_type: @object.class.to_s)
+    @documents = Document.where(documentable: @object)
     @document = @object.documents.build
   end
 
@@ -16,7 +16,7 @@ class DocumentsController < ApplicationController
     else
       flash.now[:error] = document.errors.full_messages
     end
-    @documents = Document.where(documentable_id: @object.id, documentable_type: @object.class.to_s)
+    @documents = Document.where(documentable: @object)
     respond_to do |format|
       format.html{redirect_to :back}
       format.js
@@ -34,7 +34,7 @@ class DocumentsController < ApplicationController
     else
       flash.now[:error] = @document.errors.full_messages
     end
-    @documents = Document.where(documentable_id: @object.id, documentable_type: @object.class.to_s)
+    @documents = Document.where(documentable: @object)
     respond_to do |format|
       format.js
       format.html { redirect_to :back }

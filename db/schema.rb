@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315162023) do
+ActiveRecord::Schema.define(version: 20160317164903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -748,6 +748,8 @@ ActiveRecord::Schema.define(version: 20160315162023) do
     t.boolean  "signed"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "envelope_id"
+    t.string   "file"
   end
 
   create_table "sport_icons", force: true do |t|

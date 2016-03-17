@@ -8,19 +8,19 @@ class SignedDocumentsController < ApplicationController
     if @object.class.to_s == "User"
       @signed_documents = SignedDocument.where(user_id: @object.id)
     else
-      documents = Document.where(documentable_id: @object.id, documentable_type: @object.class.to_s)
-      @signed_documents = SignedDocument.where(document_id: documents)
+      documents = Document.where(documentable: @object)
+      @signed_documents = SignedDocument.where(document: documents)
     end
   end
 
   def create
-    signed_doc = SignedDocument.where(user_id: current_user.id, document_id: @document.id, signed: true).first
+    signed_doc = SignedDocument.find_by(user: current_user, document: @document, signed: true)
     if signed_doc.present?
       flash[:error] = "Document already signed."
       redirect_to :back
     else
       if @document.present?
-        doc_url = open(@document.try(:file).try(:url))
+        doc_url = open(@document.file_url)
         custom_path = "#{request.protocol}#{request.host}:#{request.port}/documents/#{@document.id}/signed_documents/new?path=#{params[:path]}"
         name = "#{current_user.first_name} #{current_user.last_name}"
         begin
@@ -43,6 +43,9 @@ class SignedDocumentsController < ApplicationController
             status: 'sent'
           )
 
+          signed_doc = SignedDocument.first_or_initialize(user: current_user, document: @document, signed: false)
+          signed_doc.update envelope_id: @envelope_response["envelopeId"]
+
           response = client.get_recipient_view(
             envelope_id: @envelope_response["envelopeId"],
             name: name,
@@ -63,15 +66,18 @@ class SignedDocumentsController < ApplicationController
 
   def new
     if params[:event] == "signing_complete"
-      signed_doc = SignedDocument.where(user_id: current_user.id, document_id: @document.id, signed: false).first
-      if signed_doc.present?
-        signed_doc.update(signed: true)
-      else
-        SignedDocument.create!(user_id: current_user.id, document_id: @document.id, signed: true)
-      end
+      signed_doc = SignedDocument.find_by!(user: current_user, document: @document)
+      client = DocusignRest::Client.new
+      file_path = Rails.root.join("docusign_docs/#{SecureRandom.hex}.pdf").to_s
+      file = client.get_document_from_envelope(
+        envelope_id: signed_doc.envelope_id,
+        document_id: signed_doc.document_id,
+        local_save_path: file_path
+      )
+      signed_doc.update(signed: true, file: File.open(file))
+      File.delete(file_path)
       flash[:success] = "Thanks! Successfully signed"
     else
-      SignedDocument.create!(user_id: current_user.id, document_id: @document.id, signed: false)
       flash[:error] = "Document not signed."
     end
     if params[:path].present?
