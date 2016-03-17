@@ -87,6 +87,46 @@
 			</ul>
 		</li>
 		<% end %>
+        
+        <% if current_user.all_clubs.any? %>
+ 		<li>
+ 			<a href="javascript:;"><i class="ion-university mr5"></i> My Clubs</a>
+ 			<ul class="child-menu">
+ 				<% current_user.all_clubs.each do |club| %>
+ 					<li>
+ 						<%= link_to club_path(club) do %>
+ 							<i class="ion-university mr5"></i> <%= club.name %>
+ 						<% end %>
+ 					</li>
+ 				  <% if club.can_be_edited_by_user?(current_user)%>
+ 				    <li>
+ 				    	<%= link_to edit_club_path(club) do %>
+ 								<i class="ion-gear-b mr5"></i> <%= "Edit #{club.name}" %>
+ 							<% end %>
+ 				    </li>
+ 				  <% end %>
+ 				<% end %>
+				
+ 					<%#= link_to "School New", new_school_path %>
+				
+ 				<!-- <li>
+ 					<a href="#" data-toggle="modal" data-target="#panel-new-school">
+ 					New School Panel Form</a>
+ 				</li> -->
+ 				<%# if School.any? %>
+ 					<li>
+ 						<%#= link_to "School Edit", edit_school_path(School.first)%>
+ 					</li>
+ 					<li>
+ 						<%#= link_to "School Profile", school_path(School.first)%>
+ 					</li>
+ 				<%# end %>
+ 				<li>
+ 					<%#= link_to "Schools Index", schools_path %>
+ 				</li>
+ 			</ul>
+ 		</li>
+ 		<% end %>
 
 
 		<!-- <li>

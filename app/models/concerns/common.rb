@@ -117,6 +117,10 @@ module Common
     end
   end
   
+  def all_clubs
+    Club.where(id: club_ids)
+  end
+  
   
   def league_ids
     if self.class.to_s == "User"
