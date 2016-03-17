@@ -79,7 +79,6 @@ class UsersController < ApplicationController
         format.json { respond_with_bip(@user) } 
       end
     elsif !params[:user][:password].present?
-      binding.pry
       @profile = @user.profile
       if @user.update_attributes!(user_params)
         @user.roles.update_all(mobile_phone_number: @user.mobile_phone_number)
