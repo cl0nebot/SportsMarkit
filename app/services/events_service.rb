@@ -44,7 +44,7 @@ class EventsService
   def create_attendees
     if @event.eventable_type == "Team"
       user_ids = Team.find(@event.eventable_id).roles.where(status: "Active").pluck(:user_id)
-      opponent_ids = Team.find(@event.opponent_id).roles.where(status: "Active").pluck(:user_id)
+      opponent_ids = @event.opponent_id.present? ? Team.find(@event.opponent_id).roles.where(status: "Active").pluck(:user_id) : []
       all_ids = (user_ids + opponent_ids).uniq
       @event.event_schedules.each do |event_schedule|
         all_ids.each do |i|
