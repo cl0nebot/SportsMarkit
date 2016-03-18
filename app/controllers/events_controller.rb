@@ -1,12 +1,13 @@
 require 'twilio-ruby'
 class EventsController < ApplicationController
+  serialization_scope :current_user
+
   before_action :authenticate_user!, except: [:show]
   before_action :find_object, except: [:show, :destroy, :edit, :update, :index, :rsvp]
 
   def index
     @events = Event.all
     @upcoming_events = @events.upcoming_events
-    @upcoming_event_schedules = EventSchedule.upcoming
     @user = current_user
   end
 
@@ -73,8 +74,8 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event_schedule = Event.friendly.find(params[:id]).event_schedules.upcoming.first
-    presenter = EventPresenter.new(@event_schedule, current_user)
+    @event = Event.friendly.find(params[:id])
+    presenter = EventPresenter.new(@event, current_user)
     @attendees = presenter.attendees
     @maybes = presenter.maybes
     @nos = presenter.nos
@@ -168,18 +169,18 @@ class EventsController < ApplicationController
 
   def rsvp
     @event = Event.find(params[:event_id])
-    @event_schedule = @event.event_schedules.find(params[:event_schedule_id])
-    @user = User.find(params[:user_id])
+    @user = current_user
     boolean = params[:rsvp]
-    @rsvp = Attendee.find_or_initialize_by(event_schedule_id: @event_schedule.id, user_id: @user.id)
+    @rsvp = Attendee.find_or_initialize_by(event_id: @event.id, user_id: @user.id)
     @rsvp.update_attributes(yes: nil, maybe: nil, no: nil)
     @rsvp.update_attributes(boolean.to_sym => true)
-    @attendees = @event_schedule.attendees.where(yes: true)
-    @maybes = @event_schedule.attendees.where(maybe: true)
-    @nos = @event_schedule.attendees.where(no: true)
+    @attendees = @event.attendees.where(yes: true)
+    @maybes = @event.attendees.where(maybe: true)
+    @nos = @event.attendees.where(no: true)
     respond_to do |format|
       format.html{redirect_to :back}
       format.js
+      format.json { render json: { status: :ok, id: params[:event_id], type: params[:rsvp] } }
     end
   end
 

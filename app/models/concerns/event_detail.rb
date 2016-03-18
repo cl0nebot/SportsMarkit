@@ -42,8 +42,4 @@ module EventDetail
   def upcoming_events
     all_events.where('ends_at >= ?', Time.now).order('starts_at ASC')
   end
-  
- 
-  
-  
 end

@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  include ActiveModel::Serialization
+
   include Access
   extend FriendlyId
 
@@ -7,9 +9,10 @@ class Event < ActiveRecord::Base
 
   has_one :event_facility, dependent: :destroy
 
-  has_many :event_schedules, dependent: :destroy
   has_many :attendees, through: :event_schedules, dependent: :destroy
   has_many :connects, as: :ownerable, dependent: :destroy
+  has_many :child_events, class_name: "Event", foreign_key: :parent_id
+  has_many :attendees, dependent: :destroy
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
 
@@ -67,6 +70,14 @@ class Event < ActiveRecord::Base
     Time.parse(date_time).to_formatted_s(:db)
   end
 
+  def similar
+    if parent_id
+      Event.where.not(id: id).where("parent_id = :parent or id = :parent", parent: parent_id)
+    else
+      child_events
+    end
+  end
+
   def reservation=(val)
     starts, ends = val.split('-')
     self.starts_at = Time.strptime(starts.strip, '%m/%d/%Y %H:%M %P')
@@ -104,6 +115,10 @@ class Event < ActiveRecord::Base
       "#{facility.name} #{facility.address.city_and_state}"
     end
     
+  end
+
+  def has_similar?
+    !single? || parent_id
   end
 
 end

@@ -9,12 +9,12 @@
     margin-left: 180px;
   }
 </style>
-<div class="content" data-event-id="<%= @event_schedule.event_id %>">
+<div class="content" data-event-id="<%= @event.id %>">
   <div class="page-header full-content bg-primary mb0" style="min-height: 141px;">
     <div class="row">
       <div class="col-sm-6">
         <h1 class="capitalize semi-bold">
-          <%= @event_schedule.title %>
+          <%= @event.title %>
           <small></small>
         </h1>
       </div>
@@ -22,21 +22,21 @@
         <ol class="breadcrumb">
           <li><a href="/"><i class="ion-home"></i></a></li>
           <li><a href="<%= events_path %>">Events</a></li>
-          <li><a href="<%= event_path(@event_schedule) %>"><%= @event_schedule.title %></a></li>
+          <li><a href="<%= event_path(@event) %>"><%= @event.title %></a></li>
         </ol>
       </div>
     </div>
     <div class="header-tabs scrollable-tabs sticky">
-      <% if @event_schedule.can_be_edited_by_user?(current_user) %>
-        <%= link_to edit_event_path(@event_schedule), class: "mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20" do %>
+      <% if @event.can_be_edited_by_user?(current_user) %>
+        <%= link_to edit_event_path(@event), class: "mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20" do %>
           <i class="ion-gear-b fs_16 mr5"></i> Edit Event
         <% end %>
       <% end %>
       <a class="mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20">
         <i class="ion-speakerphone fs_16 mr5"></i> View Announcements
     	</a>
-      <%= link_to eval("#{@event_schedule.eventable_type.downcase}_path(@event_schedule.eventable.friendly_id)"), class: "mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
-        <i class="ion-gear-b fs_16 mr5"></i> Return to <%= @event_schedule.eventable.name %>
+      <%= link_to eval("#{@event.eventable_type.downcase}_path(@event.eventable.friendly_id)"), class: "mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
+        <i class="ion-gear-b fs_16 mr5"></i> Return to <%= @event.eventable.name %>
       <% end %>
       <ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
         <li class="active"><a href="#about" data-toggle="tab" class="btn-ripple">Location</a></li>
@@ -63,8 +63,8 @@
                               <i class="ion-clock mr5"></i>
                               Starts:
                             </span>
-                            <%= format(@event_schedule.starts_at, 4) %>
-                            <%= format(@event_schedule.starts_at, 9) %>
+                            <%= format(@event.starts_at, 4) %>
+                            <%= format(@event.starts_at, 9) %>
                           </span>
                         </div>
                         <div class="col-md-5">
@@ -73,36 +73,38 @@
                               <i class="ion-clock mr5"></i>
                               Ends:
                             </span>
-                            <%= format(@event_schedule.ends_at, 4) %>
-                            <%= format(@event_schedule.ends_at, 9) %>
+                            <%= format(@event.ends_at, 4) %>
+                            <%= format(@event.ends_at, 9) %>
                           </span>
                         </div>
                         <div class="col-md-2">
-                          <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#event-schedules-modal">Next</button>
+                          <% if @event.has_similar? %>
+                            <%= link_to image_tag('calendar.png'), "#", data: { toggle: "modal", target: "#event-schedules-modal" }%>
+                          <% end %>
                         </div>
                       </div>
                       <hr class="light mt0 mb10"/>
                       <h4 class="text-grey">
-                        <%= @event_schedule.event_type %>
+                        <%= @event.event_type %>
                       </h4>
                     </div>
                     <h4 class="semi-bold capitalize text-black no-margin">
-                      <%= @event_schedule.title %>
+                      <%= @event.title %>
                     </h4>
                     <p class="no-margin">
                       <span class="caption fs_12">
-                        Created By: <%= link_to @event_schedule.eventable.name, eval("#{@event_schedule.eventable_type.downcase}_path(@event_schedule.eventable.friendly_id)") %>
+                        Created By: <%= link_to @event.eventable.name, eval("#{@event.eventable_type.downcase}_path(@event.eventable.friendly_id)") %>
                       </span>
                     </p>
                     <p class="fs_12 mt10">
                       <span class="caption">
-                        <%= @event_schedule.description %>
+                        <%= @event.description %>
                       </span>
                     </p>
                   </div>
                   <hr class="light mt10 mb10"/>
                   <div class="card-body pl40 pr40 pb40">
-                    <h5 class="bold no-margin"><%= @event_schedule.facility.name %></h5>
+                    <h5 class="bold no-margin"><%= @event.facility.name %></h5>
                     <p class="author lh_26 mt5 fs_14">
                       <a href="#" class="semi-bold"><i class="ion-map mr10"></i>Location & Map</a>
                     </p>
@@ -122,7 +124,7 @@
                 <div class="col-md-12">
                   <div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
                     <div class="card-heading">
-                      <h6 class="semi-bold fs_14 mb0"><%= @event_schedule.title %></h6>
+                      <h6 class="semi-bold fs_14 mb0"><%= @event.title %></h6>
                       <h3 class="card-title">Attending</h3>
                     </div>
                     <div id="yes">
@@ -133,7 +135,7 @@
                 <div class="col-md-12">
                   <div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
                     <div class="card-heading">
-                      <h6 class="semi-bold fs_14 mb0"><%= @event_schedule.title %></h6>
+                      <h6 class="semi-bold fs_14 mb0"><%= @event.title %></h6>
                       <h3 class="card-title">Not Attending</h3>
                     </div>
                     <div id="no">
@@ -144,7 +146,7 @@
                 <div class="col-md-12">
                   <div class="card card-meal card-meal-indigo card-square card-hover-shadow" >
                     <div class="card-heading">
-                      <h6 class="semi-bold fs_14 mb0"><%= @event_schedule.title %></h6>
+                      <h6 class="semi-bold fs_14 mb0"><%= @event.title %></h6>
                       <h3 class="card-title">Possibly Attending</h3>
                     </div>
                     <div id="maybe">

@@ -1,11 +1,10 @@
 class AttendeesController < ApplicationController
 
   def create
-    @attendee = Attendee.create(user_id: params[:attendee][:user_id], event_schedule_id: params[:attendee][:event_schedule_id], yes: params[:attendee][:yes], maybe: params[:attendee][:maybe], no: params[:attendee][:no])
+    @attendee = Attendee.create(user_id: params[:attendee][:user_id], event_id: params[:attendee][:event_id], yes: params[:attendee][:yes], maybe: params[:attendee][:maybe], no: params[:attendee][:no])
     @user = User.friendly.find(params[:attendee][:user_id])
     @attendee.save
-    @event_schedule = EventSchedule.find(@attendee.event_schedule_id)
-    @event = @event_schedule.event
+    @event = Event.find(params[:attendee][:event_id])
     respond_to do |format|
       format.js
       format.html
@@ -14,10 +13,9 @@ class AttendeesController < ApplicationController
 
   def update
     @attendee = Attendee.find(params[:id])
-    @attendee.update_attributes(user_id: params[:attendee][:user_id], event_schedule_id: params[:attendee][:event_schedule_id], yes: params[:attendee][:yes], maybe: params[:attendee][:maybe], no: params[:attendee][:no])
+    @attendee.update_attributes(user_id: params[:attendee][:user_id], event_id: params[:attendee][:event_id], yes: params[:attendee][:yes], maybe: params[:attendee][:maybe], no: params[:attendee][:no])
     @user = User.friendly.find(params[:attendee][:user_id])
-    @event_schedule = EventSchedule.find(@attendee.event_schedule_id)
-    @event = @event_schedule.event
+    @event = Event.find(params[:attendee][:event_id])
     respond_to do |format|
       format.js
       format.html

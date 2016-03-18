@@ -3,25 +3,29 @@ require 'gon'
 class EventPresenter
   attr_accessor :event, :schedule
 
-  delegate :facility, :event_id, to: :@event_schedule
+  delegate :facility, to: :@event
 
-  def initialize(event_schedule, user)
-    @event_schedule = event_schedule
+  def initialize(event, user)
+    @event = event
     @user = user
   end
 
   def user_visits
    {
       visiting_ids: {
-          no: @user.event_schedules.joins(:attendees).where(attendees: { no: true }, event_id: event_id).pluck(:id),
-          maybe: @user.event_schedules.joins(:attendees).where(attendees: { maybe: true }, event_id: event_id).pluck(:id),
-          yes: @user.event_schedules.joins(:attendees).where(attendees: { yes: true }, event_id: event_id).pluck(:id)
+          no: @user.attendees.where(no: true, event_id: similar_ids).pluck(:event_id),
+          maybe: @user.attendees.where(maybe: true, event_id: similar_ids).pluck(:event_id),
+          yes: @user.attendees.where(yes: true, event_id: similar_ids).pluck(:event_id)
       }
    }
   end
 
+  def similar_ids
+    @similar_ids ||= @event.similar.pluck(:id)
+  end
+
   def all_attendees
-    @event_schedule.attendees
+    @event.attendees
   end
 
   def attendees

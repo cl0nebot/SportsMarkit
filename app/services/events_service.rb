@@ -8,8 +8,9 @@ class EventsService
     @event = @object.events.build(event_params)
     @event.opponent_type = "Team"
     if @event.save
-      create_event_schedules
-      create_connection
+      @events = [@event]
+      create_child_events
+      create_connections
       create_attendees
       send_notifications
     end
@@ -19,26 +20,29 @@ class EventsService
 
   private
 
-  def create_event_schedules
-    @event.event_schedules.destroy_all
-    if @event.single?
-      @event.event_schedules.create(starts_at: @event.starts_at, ends_at: @event.ends_at)
-    else
-      match = @event.repeat_type.match /every_(\w+)/
-      return unless match[1]
-      interval = 1.send(match[1])
-      starts_at = @event.starts_at
-      ends_at = @event.ends_at
-      while ends_at <= @event.repeat_until
-        @event.event_schedules.create(starts_at: starts_at, ends_at: ends_at)
-        starts_at += interval
-        ends_at += interval
-      end
+  def create_child_events
+    return if @event.single?
+    match = @event.repeat_type.match /every_(\w+)/
+    return unless match[1]
+    interval = 1.send(match[1])
+    starts_at = @event.starts_at + interval
+    ends_at = @event.ends_at + interval
+    while ends_at <= @event.repeat_until
+      event = @event.dup
+      event.assign_attributes(starts_at: starts_at, ends_at: ends_at, repeat_type: 0, repeat_until: nil, parent_id: @event.id)
+      event.save
+      @events << event
+      starts_at += interval
+      ends_at += interval
     end
   end
 
-  def create_connection
-    Connect.create(ownerable: @event, connectable_type: "Facility", connectable_id: @params[:event][:facility_ids])
+  def create_connections
+    @events.each{ |event| create_connection(event) }
+  end
+
+  def create_connection(event)
+    Connect.create(ownerable: event, connectable_type: "Facility", connectable_id: @params[:event][:facility_ids])
   end
 
   def create_attendees
@@ -46,9 +50,9 @@ class EventsService
       user_ids = Team.find(@event.eventable_id).roles.where(status: "Active").pluck(:user_id)
       opponent_ids = @event.opponent_id.present? ? Team.find(@event.opponent_id).roles.where(status: "Active").pluck(:user_id) : []
       all_ids = (user_ids + opponent_ids).uniq
-      @event.event_schedules.each do |event_schedule|
+      @events.flatten.each do |event|
         all_ids.each do |i|
-          Attendee.create(user_id: i, event_schedule: event_schedule, yes: true)
+          Attendee.create(user_id: i, event_id: event.id, yes: true)
         end
       end
     end
