@@ -84,3 +84,8 @@
 .cal-cell.active .cal-day-inmonth{
   background: darkgray !important;
 }
+
+.schedule-event{
+  width: 19px;
+  height: 22px;
+}

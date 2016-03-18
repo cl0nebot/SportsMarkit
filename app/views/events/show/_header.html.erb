@@ -6,10 +6,10 @@
     <h1>
       <i class="ion-calendar m-r-5"></i>
       <small>
-        <%= @event_schedule.title %>
-        <% if @event_schedule.can_be_edited_by_user?(current_user) %>
-          <%= link_to "Cancel", @event_schedule.event, method: :delete, class: "ml20 btn btn-danger btn-xs" %>
-          <%= link_to "Reschedule", edit_event_path(@event_schedule.event), class: "btn btn-white btn-xs" %>
+        <%= @event.title %>
+        <% if @event.can_be_edited_by_user?(current_user) %>
+          <%= link_to "Cancel", @event, method: :delete, class: "ml20 btn btn-danger btn-xs" %>
+          <%= link_to "Reschedule", edit_event_path(@event), class: "btn btn-white btn-xs" %>
         <% end %>
       </small>
     </h1>
@@ -17,7 +17,7 @@
   <div class="col-sm-6">
     <ol class="breadcrumb">
       <li><a href="<%= teams_path %>">Events</a></li>
-      <li><a href="#" class="active"><%= @event_schedule.title %></a></li>
+      <li><a href="#" class="active"><%= @event.title %></a></li>
     </ol>
   </div>
   <div class="col-sm-1 text-right">
@@ -25,5 +25,5 @@
 </div>
 
 <div class="social-buttons" id="social-buttons">
-  <%= render 'rsvp_buttons', event_schedule: @event_schedule %>
+  <%= render 'rsvp_buttons', event: @event %>
 </div>

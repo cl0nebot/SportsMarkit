@@ -9,12 +9,7 @@ class EventSchedule < ActiveRecord::Base
 
   def as_json(options={})
     {
-      id: id,
-      event_id: event_id,
-      title: title,
-      class: "event-important",
-      start: starts_at.to_datetime.strftime('%Q'),
-      end: ends_at.to_datetime.strftime('%Q')
+
     }
   end
 end

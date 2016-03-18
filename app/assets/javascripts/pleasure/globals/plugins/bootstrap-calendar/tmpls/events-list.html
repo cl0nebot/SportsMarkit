@@ -3,12 +3,13 @@
 	<ul class="unstyled list-unstyled">
 		<% _.each(events, function(event) { %>
 			<li>
+        <% debugger %>
         <% if($.inArray(event.id, gon.visiting_ids.yes) >= 0){
           disabled = 'disabled="disabled"'
         }else{
           disabled = ''
         } %>
-        <a href="#" <%=disabled%> class="attend-event btn btn btn-white  text-success btn-ripple" data-href="/events/<%= event.event_id %>/event_schedules/<%= event.id %>/attend.json?&attend_type=yes">
+        <a href="#" <%=disabled%> class="attend-event btn btn btn-white  text-success btn-ripple" data-href="/events/<%= event.id %>/rsvp.json?&rsvp=yes">
           <span class="ion-checkmark-circled mr5 text-green"></span>
           Going
         </a>
@@ -17,7 +18,7 @@
         }else{
           disabled = ''
         } %>
-				<a href="#" <%=disabled%> class="attend-event btn btn text-warning btn-white btn-ripple" data-href="/events/<%= event.event_id %>/event_schedules/<%= event.id %>/attend.json?&attend_type=maybe">
+				<a href="#" <%=disabled%> class="attend-event btn btn text-warning btn-white btn-ripple" data-href="/events/<%= event.id%>/rsvp.json?&rsvp=maybe">
           <span class="ion-minus-circled mr5 text-amber"></span>
           Maybe</a>
         <% if($.inArray(event.id, gon.visiting_ids.no) >= 0){
@@ -25,11 +26,11 @@
         }else{
           disabled = ''
         } %>
-        <a href="#" <%=disabled%> class="attend-event btn btn-white btn-ripple" data-href="/events/<%= event.event_id %>/event_schedules/<%= event.id %>/attend.json?&attend_type=no">
+        <a href="#" <%=disabled%> class="attend-event btn btn-white btn-ripple" data-href="/events/<%= event.id %>/rsvp.json?&rsvp=no">
           <span class="ion-close-circled mr5 text-danger"></span>
           Not Going
         </a>
-        <a href="/events/<%= event.event_id %>/event_schedules/<%= event.id %>" class="btn btn-white">
+        <a href="/events/<%= event.id %>" class="btn btn-white">
           <span class="ion-information-circled mr5 text-primary"></span>
           Show
         </a>

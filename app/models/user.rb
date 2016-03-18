@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   has_many :events, as: :eventable
   
   has_many :attendees, dependent: :destroy
-  has_many :event_schedules, through: :attendees
+  has_many :attending_events, through: :attendees, source: :events
   has_many :classifications, dependent: :destroy
   has_many :measurables, dependent: :destroy
   has_many :certificates, dependent: :destroy
@@ -494,5 +494,16 @@ class User < ActiveRecord::Base
   def fix_phone
     self.mobile_phone_number = mobile_phone_number.to_s.gsub(/[^\d]/, "")
   end
-  
+
+  def attend_event?(event)
+    attendees.where(event_id: event.id, yes: true).present?
+  end
+
+  def maybe_attend_event?(event)
+    attendees.where(event_id: event.id, maybe: true).present?
+  end
+
+  def dont_attend_event?(event)
+    attendees.where(event_id: event.id, no: true).present?
+  end
 end
