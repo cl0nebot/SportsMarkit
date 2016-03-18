@@ -1,6 +1,6 @@
 <div id='certificate-<%= m.fake_id %>' class="row margin-top-20">
   <%= form_for [u, m], remote: true do |f| %>
-    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)%>
+    <%= hidden_field_tag request_forgery_protection_token, value: form_authenticity_token %>
     <div class="row">
       <div class="col-md-1">
         <div class="list-action-left">

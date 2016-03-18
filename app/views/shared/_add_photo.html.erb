@@ -1,16 +1,12 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-
 <%= link_to "#", class: "btn btn-floating btn-indigo btn-ripple", "data-toggle" => "modal", "data-target" => "#pPhoto" do %>
-	  <i class="ion-image"></i>
+  <i class="ion-image"></i>
 <% end %>
 <% if false %>
   <% unless @pictures.empty? %>
-    <%#= render 'users/delete_user_profile_picture_modal', photo: @picture %>
     <button class="btn btn-floating btn-indigo btn-ripple" data-toggle="modal" data-target="#p<%=@picture.id %>">
-    Remove
+      Remove
     </button>
   <% end %>
 <% end %>
-
-			
