@@ -1,8 +1,10 @@
 $ ->
   validate_new_form = ->
-    formHasInvalidInputs = $("#new_form input.required").toArray().some (el) ->
+    formInvalid = $("#new_form input.required").toArray().some (el) ->
       el.value == ""
-    $("#new_form input[type=submit]").attr("disabled", formHasInvalidInputs)
+    if $("[name=registration_options]").length and !$("[name=registration_options]:checked").val()
+      formInvalid = true
+    $("#new_form input[type=submit]").attr("disabled", formInvalid)
 
   $("#new_form").on "change keyup", ->
     validate_new_form()
