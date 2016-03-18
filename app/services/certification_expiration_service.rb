@@ -11,7 +11,7 @@ module CertificationExpirationService
   def send(certs, message)
     certs.each do |cert|
       Messanger.send_sms(user_phone(cert), message)
-      SendEmail.certificate_expiration(cert.user, message)
+      SendEmail.certificate_expiration(cert.user, message).deliver
     end
   end
 
