@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
   end
   
   def attending_events
-    attendances.joins(:event_schedule).pluck(:event_id).uniq
+    attendances.pluck(:event_id)
   end
   
   def self.athletes
