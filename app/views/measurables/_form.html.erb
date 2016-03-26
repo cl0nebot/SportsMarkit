@@ -3,33 +3,33 @@
     <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)%>
     <div class="col-md-12">
       <div class="row example-row">
-        <div class="col-md-12">Sport </div><!--.col-md-3-->
+        <div class="col-md-12">Sport </div>
         <div class="col-md-12">
           <div class="inputer">
             <%= f.select(:sport, Sport.pluck(:sport), {}, {:class => 'selecter', :required => 'true'}) %>
           </div>
-        </div><!--.col-md-9-->
+        </div>
       </div>
       <div class="row example-row">
-        <div class="col-md-12">Measurable </div><!--.col-md-3-->
+        <div class="col-md-12">Measurable </div>
         <div class="col-md-12">
           <div class="inputer">
             <div class="input-wrapper">
               <%= f.text_field :measurable, class: "form-control", placeholder: "" %>
             </div>
           </div>
-        </div><!--.col-md-9-->
+        </div>
       </div>
       <div class="row example-row">
-        <div class="col-md-12">Result </div><!--.col-md-3-->
+        <div class="col-md-12">Result </div>
         <div class="col-md-12">
           <div class="inputer">
             <div class="input-wrapper">
               <%= f.text_field :result, class: "form-control", placeholder: ""  %>
             </div>
           </div>
-        </div><!--.col-md-9-->
-      </div><!--.row-->
+        </div>
+      </div>
     </div>
     <div class="col-md-12">
       <%= f.hidden_field :user_id %>

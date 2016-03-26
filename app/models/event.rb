@@ -4,11 +4,14 @@ class Event < ActiveRecord::Base
   include Access
   extend FriendlyId
 
+  mount_uploader :file, PdfUploader
+
   belongs_to :eventable, polymorphic: true
   belongs_to :user
 
   has_one :event_facility, dependent: :destroy
 
+  has_many :event_schedules, dependent: :destroy
   has_many :attendees, through: :event_schedules, dependent: :destroy
   has_many :connects, as: :ownerable, dependent: :destroy
   has_many :child_events, class_name: "Event", foreign_key: :parent_id

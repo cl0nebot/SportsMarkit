@@ -43,7 +43,18 @@
               <div class="col-md-12">
                 <div class="inputer">
                   <div class="input-wrapper">
-                    <%= f.text_field :title, type: "text", class: "form-control", placeholder: ""%>
+                    <%= f.text_field :title, class: "form-control" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row example-row">
+              <div class="col-md-12"><h4>Attachment</h4></div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper">
+                    <%= f.file_field :file, class: "form-control" %>
                   </div>
                 </div>
               </div>

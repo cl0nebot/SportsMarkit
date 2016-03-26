@@ -24,6 +24,6 @@ class CertificatesController < ApplicationController
   private
 
   def certificate_params
-    params[:certificate].permit(:certification_id, :expiration, :user_id, :expires)
+    params[:certificate].permit(:certification_id, :expiration, :user_id, :expires, :file)
   end
 end
