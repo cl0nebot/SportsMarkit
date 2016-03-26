@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160317220535) do
-=======
-ActiveRecord::Schema.define(version: 20160317200630) do
->>>>>>> d314f670541aa5691b1d2b5653ac18e943edf5ce
 
   create_table "addresses", force: true do |t|
     t.integer  "addressable_id"
@@ -477,6 +473,11 @@ ActiveRecord::Schema.define(version: 20160317200630) do
     t.datetime "updated_at"
   end
 
+  create_table "identity_checks", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "league_managers", force: true do |t|
     t.integer  "user_id"
     t.integer  "league_id"
@@ -832,80 +833,3 @@ ActiveRecord::Schema.define(version: 20160317200630) do
     t.integer  "teamable_id"
   end
 
-  create_table "tournaments", force: true do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "sport"
-    t.string   "level"
-    t.text     "description"
-    t.boolean  "active"
-    t.boolean  "director_paid"
-    t.string   "slug"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "tournaments", ["slug"], name: "index_tournaments_on_slug", unique: true, using: :btree
-
-  create_table "user_profile_pictures", force: true do |t|
-    t.integer  "user_id",    null: false
-    t.string   "photo",      null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "user_profile_pictures", ["photo"], name: "index_user_profile_pictures_on_photo", using: :btree
-  add_index "user_profile_pictures", ["user_id"], name: "index_user_profile_pictures_on_user_id", using: :btree
-
-  create_table "userless_roles", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "role"
-    t.integer  "userless_id"
-    t.string   "userless_type"
-    t.datetime "date_added"
-    t.integer  "accepting_user_id"
-    t.string   "status"
-    t.string   "mobile_phone_number"
-    t.string   "level"
-    t.string   "nickname"
-    t.string   "jersey_number"
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users", force: true do |t|
-    t.string   "password_digest",         default: "", null: false
-    t.string   "email",                   default: "", null: false
-    t.string   "username"
-    t.string   "prefix"
-    t.string   "first_name"
-    t.string   "middle_name"
-    t.string   "last_name"
-    t.string   "suffix"
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.string   "authentication_token"
-    t.string   "slug"
-    t.boolean  "admin"
-    t.string   "categories"
-    t.integer  "invited_by_id"
-    t.integer  "invitation_count"
-    t.string   "stripe_customer_id"
-    t.string   "stripe_recipient_id"
-    t.string   "stripe_subscription_ids"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "mobile_phone_number"
-    t.integer  "temporary_school_ids"
-    t.integer  "signin_count",            default: 0
-  end
-
-  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
-
-end
