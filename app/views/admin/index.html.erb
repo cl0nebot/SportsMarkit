@@ -1,0 +1,5 @@
+<% Admin.managed_objects.each do |object| %>
+<%= link_to "Manage #{object.capitalize}", manage_admin_index_path(value: object) %>
+</br>
+<% end %>
+

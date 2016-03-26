@@ -47,7 +47,10 @@ Rails.application.routes.draw do
 
   resources :admin do
     collection do
-      get :users
+      # [:users, :schools, :teams, :leagues, :clubs, :facilities].each do |model|
+   #      get model
+   #    end
+      get :manage
       get :upload
     end
   end

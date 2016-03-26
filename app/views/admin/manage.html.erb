@@ -1,0 +1,21 @@
+<h3>Manage <%= @value.capitalize %></h3>
+
+<table>
+    <tr>
+        <% Admin.attributes(@value).each do |k,v| %>
+            <th><%= v.first %></th>
+        <% end %>
+    </tr>
+        <% @objects.each do |object|%>
+    <tr>
+        <% Admin.attributes(@value).each do |k,v| %>
+            <td>
+            <% if v.first == "Manage" %>
+              <%= link_to "Delete", admin_path(object.send(v.last), object_type: Admin.model(@value).to_s), method: :delete %>
+            <% else %>   
+              <%= object.send(v.last) %>
+            <% end %></td>
+        <% end %>
+    </tr>
+    <% end %>
+</table>
