@@ -12,6 +12,7 @@ module Common
     has_many :announcements, as: :announceable, dependent: :destroy
     
     has_many :connects, as: :ownerable, dependent: :destroy
+    has_one :bank_account, as: :bankable, dependent: :destroy
     
     
   end

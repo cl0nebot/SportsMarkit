@@ -58,6 +58,10 @@ Rails.application.routes.draw do
   concern :documentable do
     resources :documents, except: %w[destroy show]
   end
+  
+  concern :bankable do
+    resources :bank_account
+  end
 
   concern :announceable do
     resources :announcements
@@ -102,7 +106,8 @@ Rails.application.routes.draw do
   resources :sessions
   resources :password_resets
 
-  resources :schools, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
+  resources :schools, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable] do
+    resources :dashboard
     resources :uploads do
       collection do
         post :import
@@ -131,7 +136,7 @@ Rails.application.routes.draw do
     patch :upgrade_school
   end
 
-  resources :teams, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
+  resources :teams, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable] do
     resources :uploads do
       collection do
         post :import
@@ -164,7 +169,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :facilities, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
+  resources :facilities, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable] do
     resources :uploads do
       collection do
         post :import
@@ -194,7 +199,7 @@ Rails.application.routes.draw do
   end
 
   resources :tournaments
-  resources :leagues, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
+  resources :leagues, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable] do
     resources :uploads do
       collection do
         post :import
@@ -250,7 +255,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :clubs, concerns: [:documentable, :announceable, :eventable, :signed_documentable] do
+  resources :clubs, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable] do
     resources :uploads do
       collection do
         post :import

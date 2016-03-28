@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318140232) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20160327232253) do
 
   create_table "addresses", force: true do |t|
     t.integer  "addressable_id"
@@ -89,6 +86,15 @@ ActiveRecord::Schema.define(version: 20160318140232) do
     t.datetime "updated_at"
   end
 
+  create_table "bank_accounts", force: true do |t|
+    t.integer  "bankable_id",     null: false
+    t.string   "bankable_type",   null: false
+    t.string   "name_on_account", null: false
+    t.string   "category",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "certificates", force: true do |t|
     t.integer  "user_id"
     t.integer  "certification_id"
@@ -111,7 +117,6 @@ ActiveRecord::Schema.define(version: 20160318140232) do
     t.string   "issuer"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "file"
   end
 
   create_table "chatrooms", force: true do |t|
@@ -146,12 +151,12 @@ ActiveRecord::Schema.define(version: 20160318140232) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.float    "latitude",               limit: 24
+    t.float    "longitude",              limit: 24
     t.boolean  "gmaps"
     t.date     "last_payment"
     t.boolean  "premium"
-    t.float    "price"
+    t.float    "price",                  limit: 24
     t.string   "colors"
     t.string   "mascot"
     t.string   "motto"
@@ -173,6 +178,7 @@ ActiveRecord::Schema.define(version: 20160318140232) do
     t.integer  "oldest_athlete_age"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "stripe_recipient_id"
   end
 
   create_table "connects", force: true do |t|
@@ -276,9 +282,10 @@ ActiveRecord::Schema.define(version: 20160318140232) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "price"
+    t.float    "price",               limit: 24
     t.string   "facility_owner_type"
     t.integer  "facility_owner_id"
+    t.integer  "stripe_recipient_id"
   end
 
   add_index "facilities", ["slug"], name: "index_facilities_on_slug", unique: true, using: :btree
@@ -517,9 +524,10 @@ ActiveRecord::Schema.define(version: 20160318140232) do
     t.string   "email"
     t.string   "website"
     t.string   "phone_number"
-    t.float    "price"
+    t.float    "price",               limit: 24
     t.string   "classification"
     t.string   "category"
+    t.integer  "stripe_recipient_id"
   end
 
   add_index "leagues", ["name"], name: "index_leagues_on_name", using: :btree
@@ -578,7 +586,7 @@ ActiveRecord::Schema.define(version: 20160318140232) do
   create_table "options", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.float    "price"
+    t.float    "price",       limit: 24
     t.integer  "form_id"
     t.string   "object"
     t.datetime "created_at"
@@ -721,7 +729,7 @@ ActiveRecord::Schema.define(version: 20160318140232) do
     t.date     "last_payment"
     t.string   "stripe_subscription_id"
     t.boolean  "premium"
-    t.float    "price"
+    t.float    "price",                  limit: 24
     t.string   "facebook"
     t.string   "twitter"
     t.string   "linkedin"
@@ -739,6 +747,7 @@ ActiveRecord::Schema.define(version: 20160318140232) do
     t.integer  "founded"
     t.integer  "enrollment"
     t.integer  "faculty"
+    t.integer  "stripe_recipient_id"
   end
 
   add_index "schools", ["slug"], name: "index_schools_on_slug", unique: true, using: :btree
@@ -833,9 +842,87 @@ ActiveRecord::Schema.define(version: 20160318140232) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "price"
+    t.float    "price",               limit: 24
     t.text     "description"
     t.string   "teamable_type"
     t.integer  "teamable_id"
+    t.integer  "stripe_recipient_id"
   end
 
+  create_table "tournaments", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "sport"
+    t.string   "level"
+    t.text     "description"
+    t.boolean  "active"
+    t.boolean  "director_paid"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tournaments", ["slug"], name: "index_tournaments_on_slug", unique: true, using: :btree
+
+  create_table "user_profile_pictures", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.string   "photo",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_profile_pictures", ["photo"], name: "index_user_profile_pictures_on_photo", using: :btree
+  add_index "user_profile_pictures", ["user_id"], name: "index_user_profile_pictures_on_user_id", using: :btree
+
+  create_table "userless_roles", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "role"
+    t.integer  "userless_id"
+    t.string   "userless_type"
+    t.datetime "date_added"
+    t.integer  "accepting_user_id"
+    t.string   "status"
+    t.string   "mobile_phone_number"
+    t.string   "level"
+    t.string   "nickname"
+    t.string   "jersey_number"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "password_digest",         default: "", null: false
+    t.string   "email",                   default: "", null: false
+    t.string   "username"
+    t.string   "prefix"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "suffix"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.string   "authentication_token"
+    t.string   "slug"
+    t.boolean  "admin"
+    t.string   "categories"
+    t.integer  "invited_by_id"
+    t.integer  "invitation_count"
+    t.string   "stripe_customer_id"
+    t.string   "stripe_recipient_id"
+    t.string   "stripe_subscription_ids"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "mobile_phone_number"
+    t.integer  "temporary_school_ids"
+    t.integer  "signin_count",            default: 0
+  end
+
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
+
+end
