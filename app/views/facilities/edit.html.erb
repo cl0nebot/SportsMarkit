@@ -1,16 +1,8 @@
 <div class="content">
- <%= render 'facilities/edit_form', object: @object, pictures: @pictures, videos: @videos, articles: @articles, address: @address %>
+  <%= render 'facilities/edit_form', object: @object, pictures: @pictures, videos: @videos, articles: @articles, address: @address %>
 </div>
 <!--.content-->
-                        
-
 <%= render 'shared/picture_modal', object: @object, picture: @picture %>
-
-<div id="x-profile-picture-modal">      
-<%= render 'shared/profile_picture_modal', object: @object, profile_picture: @profile_picture  %>
+<div id="x-profile-picture-modal">
+  <%= render 'shared/profile_picture_modal', object: @object, profile_picture: @profile_picture  %>
 </div>
-
-                            
-
-
-

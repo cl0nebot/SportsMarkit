@@ -1,61 +1,59 @@
 <br/>
 <div class="row">
-	<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-		<div class="panel box-shadow-ccc">
-			<div class="panel-header bg-cyan">
-				<br/>
-				<h5 class="text-right text-white semi-bold">Add or Create a New Facility
+  <div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+    <div class="panel box-shadow-ccc">
+      <div class="panel-header bg-cyan">
+        <br/>
+        <h5 class="text-right text-white semi-bold">Add or Create a New Facility
 					<i class="ion-plus-circled margin-right-10 margin-left-10 text-white"></i>
-				</h5>
-				<hr class="margin-top-0"/>
-			</div>
-			<%= form_for Facility.new, html: {id: 'new-facility-form'} do |f|   %>
-
-			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
-					 	<div class="row text-center">
-							<div class="col-md-12">
-								<h3 class="semi-bold text-primary">Setup a new facility</h3>
-								<h4>What type of facility?</h4>
-							</div>
-						</div>
-						<div class="row margin-bottom-0">
-							<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 well">
-								<%= f.collection_select :facility_type, FacilityType.pluck(:facility_type), :to_s, :to_s, {include_blank: false}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0" } %>
-						
-							</div><!--.col-md-9-->
-						</div><!--.row-->
-					</div>
-				</div>
-			</div>
-
-			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
-				<div class="panel-body padding-right-40 padding-left-40">
-
-					<h5 class="semi-bold text-muted text-center">Simply complete the form to create a new facility.</h5>
-					<br/>
-						
-					<br/>
-					<h4 class="text-blue semi-bold">
-						<i class="ion-ios-location margin-right-10"></i> General Info
-					</h4>
-					<br/>
-					
-					<div class="row example-row">
-						<div class="col-md-12"><h4>Name</h4></div>
-						<div class="col-md-12">
-							<div class="inputer">
-								<div class="input-wrapper">
-									<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
-								</div>
-							</div>
-						</div><!--.col-md-9-->
-					</div><!--.row-->
-
-					
-          <div class="row example-row">
-           <div class="col-md-12"><h4>Accessibility</h4></div>
+        </h5>
+        <hr class="margin-top-0"/>
+      </div>
+      <%= form_for Facility.new, html: { id: 'new-facility-form', data: { toggle: "validator", disable: false } } do |f|   %>
+        <div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
+              <div class="row text-center">
+                <div class="col-md-12">
+                  <h3 class="semi-bold text-primary">Setup a new facility</h3>
+                  <h4>What type of facility?</h4>
+                </div>
+              </div>
+              <div class="row margin-bottom-0">
+                <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 well form-group">
+                  <%= f.collection_select :facility_type, FacilityType.pluck(:facility_type), :to_s, :to_s, { include_blank: false }, { multiple: false, "data-live-search" => true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", required: true } %>
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+          <div class="panel-body padding-right-40 padding-left-40">
+            <h5 class="semi-bold text-muted text-center">Simply complete the form to create a new facility.</h5>
+            <br/>
+            <br/>
+            <h4 class="text-blue semi-bold">
+              <i class="ion-ios-location margin-right-10"></i> General Info
+            </h4>
+            <br/>
+            <div class="row example-row">
+              <div class="col-md-12">
+                <h4>Name</h4>
+              </div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper form-group">
+                    <%= f.text_field :name, class: "form-control", required: true %>
+                    <div class="help-block with-errors"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row example-row">
+              <div class="col-md-12">
+                <h4>Accessibility</h4>
+              </div>
               <div class="col-md-12">
                 <div class="clearfix margin-bottom-10">
                   <div class="checkboxer form-inline">
@@ -67,170 +65,166 @@
                     <label for="facility_publicly_visible">Publicly Visible</label>
                   </div>
                 </div>
-            </div><!--.col-md-9-->
-          </div><!--.row-->
-		
-		
-				</div>
-			</div>
-
-           <%= render 'shared/new_address', f: f, object: Facility.new %>
-			
-			
-			
-			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
-				<div class="panel-body padding-right-40 padding-left-40">
-					<br/>
-					<h4 class="text-blue semi-bold">
-						<i class="ion-email margin-right-10"></i> Contact Information
+              </div>
+            </div>
+          </div>
+        </div>
+        <%= render 'shared/new_address', f: f, object: Facility.new, required: true %>
+        <div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+          <div class="panel-body padding-right-40 padding-left-40">
+            <br/>
+            <h4 class="text-blue semi-bold">
+              <i class="ion-email margin-right-10"></i> Contact Information
 					</h4>
-					<br/>
-
-					<div class="row example-row">
-						<div class="col-md-12"><h4>Website</h4></div><!--.col-md-3-->
-						<div class="col-md-12">
-							<div class="inputer">
-								<div class="input-wrapper">
-									<%= f.text_field :website, type: "text", class: "form-control", placeholder: "", value: (@school.website if @school.present?) %>
-								</div>
-							</div>
-						</div><!--.col-md-9-->
-					</div><!--.row-->
-
-					<div class="row example-row">
-						<div class="col-md-12"><h4>Email</h4></div><!--.col-md-3-->
-						<div class="col-md-12">
-							<div class="inputer">
-								<div class="input-wrapper">
-									<%= f.text_field :email, type: "text", class: "form-control", value: (@school.email if @school.present?) %>
-								</div>
-							</div>
-						</div><!--.col-md-9-->
-					</div><!--.row-->
-
-					<div class="row example-row">
-						<div class="col-md-12"><h4>Phone</h4></div><!--.col-md-3-->
-						<div class="col-md-12">
-							<div class="inputer">
-								<div class="input-wrapper">
-									<%= f.text_field :phone_number, type: "text", class: "form-control" %>
-								</div>
-							</div>
-						</div><!--.col-md-9-->
-					</div><!--.row-->
-				</div>
-			</div>
-			
-			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
-				<div class="panel-body padding-right-40 padding-left-40">
-					<br/>
-					<h4 class="text-blue semi-bold">
-						<i class="ion-email margin-right-10"></i> Social Media
+            <br/>
+            <div class="row example-row">
+              <div class="col-md-12">
+                <h4>Website</h4>
+              </div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper form-group">
+                    <%= f.text_field :website, class: "form-control", required: true %>
+                    <div class="help-block with-errors"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row example-row">
+              <div class="col-md-12">
+                <h4>Email</h4>
+              </div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper form-group">
+                    <%= f.text_field :email, class: "form-control", required: true %>
+                    <div class="help-block with-errors"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row example-row">
+              <div class="col-md-12">
+                <h4>Phone</h4>
+              </div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper form-group">
+                    <%= f.text_field :phone_number, class: "form-control", required: true %>
+                    <div class="help-block with-errors"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+          <div class="panel-body padding-right-40 padding-left-40">
+            <br/>
+            <h4 class="text-blue semi-bold">
+              <i class="ion-email margin-right-10"></i> Social Media
 					</h4>
-					<br/>
-
-					<div class="row example-row">
-						<div class="col-md-12"><h4>Facebook</h4></div><!--.col-md-3-->
-						<div class="col-md-12">
-							<div class="inputer">
-								<div class="input-wrapper">
-									<%= f.text_field :facebook, type: "text", class: "form-control", placeholder: "" %>
-								</div>
-							</div>
-						</div><!--.col-md-9-->
-					</div><!--.row-->
-
-					<div class="row example-row">
-						<div class="col-md-12"><h4>Twitter</h4></div><!--.col-md-3-->
-						<div class="col-md-12">
-							<div class="inputer">
-								<div class="input-wrapper">
-									<%= f.text_field :twitter, type: "text", class: "form-control" %>
-								</div>
-							</div>
-						</div><!--.col-md-9-->
-					</div><!--.row-->
-
-					<div class="row example-row">
-						<div class="col-md-12"><h4>LinkedIn</h4></div><!--.col-md-3-->
-						<div class="col-md-12">
-							<div class="inputer">
-								<div class="input-wrapper">
-									<%= f.text_field :linkedin, type: "text", class: "form-control" %>
-								</div>
-							</div>
-						</div><!--.col-md-9-->
-					</div><!--.row-->
-					
-					<div class="row example-row">
-						<div class="col-md-12"><h4>Youtube</h4></div><!--.col-md-3-->
-						<div class="col-md-12">
-							<div class="inputer">
-								<div class="input-wrapper">
-									<%= f.text_field :youtube, type: "text", class: "form-control" %>
-								</div>
-							</div>
-						</div><!--.col-md-9-->
-					</div><!--.row-->
-					
-					<div class="row example-row">
-						<div class="col-md-12"><h4>Pinterest</h4></div><!--.col-md-3-->
-						<div class="col-md-12">
-							<div class="inputer">
-								<div class="input-wrapper">
-									<%= f.text_field :pinterest, type: "text", class: "form-control" %>
-								</div>
-							</div>
-						</div><!--.col-md-9-->
-					</div><!--.row-->
-					
-					<div class="row example-row">
-						<div class="col-md-12"><h4>Instagram</h4></div><!--.col-md-3-->
-						<div class="col-md-12">
-							<div class="inputer">
-								<div class="input-wrapper">
-									<%= f.text_field :instagram, type: "text", class: "form-control" %>
-								</div>
-							</div>
-						</div><!--.col-md-9-->
-					</div><!--.row-->
-					
-				</div>
-			</div>
-
-				<div class="panel-body padding-right-40 padding-left-40 bg-cyan">
-					<div class="row example-row margin-bottom-0">
-						<div class="col-md-12 text-center">
-							<h3 class="text-white margin-bottom-0">Have and Questions?</h3>
-							<p class="text-white semi-bold">Please check out our 
-								<a href="#" class="text-white">		
-									<u>Facility FAQ.</u>
-								</a>
-							</p>
-						</div>
-					</div><!--.row-->
-				</div>
-                
-                <% if @object.new_record? %>
-                  <%= f.hidden_field :facility_owner_type, value: @owner_type %>
-                  <%= f.hidden_field :facility_owner_id,  value: @owner_id %>
-                <% end %>
-
-				<div class="form-buttons no-margin">
-					<div class="row">
-						<div class="col-lg-8 col-lg-offset-2">
-							<br/>
-							<%= f.submit "Awesome. Let's create a facility!", class: "btn btn-blue btn-lg btn-block btn-ripple" %>
-							<br/>
-						</div>
-					</div>
-				</div>
-			</div>
-		
-		<% end %>
-	</div>
-</div>  
-
-<%#= @id %>
-<%#= @class %>
-
+            <br/>
+            <div class="row example-row">
+              <div class="col-md-12">
+                <h4>Facebook</h4>
+              </div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper">
+                    <%= f.text_field :facebook, class: "form-control" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row example-row">
+              <div class="col-md-12">
+                <h4>Twitter</h4>
+              </div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper">
+                    <%= f.text_field :twitter, class: "form-control" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row example-row">
+              <div class="col-md-12">
+                <h4>LinkedIn</h4>
+              </div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper">
+                    <%= f.text_field :linkedin, class: "form-control" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row example-row">
+              <div class="col-md-12">
+                <h4>Youtube</h4>
+              </div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper">
+                    <%= f.text_field :youtube, class: "form-control" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row example-row">
+              <div class="col-md-12">
+                <h4>Pinterest</h4>
+              </div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper">
+                    <%= f.text_field :pinterest, class: "form-control" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row example-row">
+              <div class="col-md-12">
+                <h4>Instagram</h4>
+              </div>
+              <div class="col-md-12">
+                <div class="inputer">
+                  <div class="input-wrapper">
+                    <%= f.text_field :instagram, class: "form-control" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body padding-right-40 padding-left-40 bg-cyan">
+          <div class="row example-row margin-bottom-0">
+            <div class="col-md-12 text-center">
+              <h3 class="text-white margin-bottom-0">Have and Questions?</h3>
+              <p class="text-white semi-bold">Please check out ours
+								<a href="#" class="text-white">
+                  <u>Facility FAQ.</u>
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <% if @object.new_record? %>
+          <%= f.hidden_field :facility_owner_type, value: @owner_type %>
+          <%= f.hidden_field :facility_owner_id,  value: @owner_id %>
+        <% end %>
+        <div class="form-buttons no-margin">
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+              <br/>
+              <%= f.submit "Awesome. Let's create a facility!", class: "btn btn-blue btn-lg btn-block btn-ripple" %>
+              <br/>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
