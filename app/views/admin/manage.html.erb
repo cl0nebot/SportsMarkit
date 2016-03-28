@@ -11,7 +11,12 @@
         <% Admin.attributes(@value).each do |k,v| %>
             <td>
             <% if v.first == "Manage" %>
+              <%= link_to "Edit", eval("edit_#{Admin.model(@value)}_path(object.send(v.last))".downcase) %>
               <%= link_to "Delete", admin_path(object.send(v.last), object_type: Admin.model(@value).to_s), method: :delete %>
+            <% elsif v.first == "Profile" %>
+              <%= link_to "View Profile", eval("#{Admin.model(@value)}_path(object.send(v.last))".downcase) %>
+            <% elsif v.first == "Dashboard" %>
+             <%= link_to "Dashboard", eval("#{Admin.model(@value)}_dashboard_index_path(object.send(v.last))".downcase) %>
             <% else %>   
               <%= object.send(v.last) %>
             <% end %></td>

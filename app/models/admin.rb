@@ -19,35 +19,35 @@ class Admin
   end
   
   def self.users
-    [['Name', 'full_name'], ['Email', 'email'],['Manage', 'id']]
+    [['Name', 'full_name'], ['Email', 'email'],['Profile', 'slug'],["Dashboard", "slug"],['Manage', 'id']]
   end
   
   def self.schools
-     [['Name', 'name'], ['Email', 'email'],['Manage', 'id']]
+     [['Name', 'name'], ['Email', 'email'],['Profile', 'id'],["Dashboard", "slug"],['Manage', 'id']]
   end
   
   def self.teams
-     [['Name', 'name'], ['Email', 'email'],['Manage', 'id']]
+     [['Name', 'name'], ['Email', 'email'],['Profile', 'id'],["Dashboard", "slug"],['Manage', 'id']]
   end
   
   def self.facilities
-     [['Name', 'name'], ['Email', 'email'],['Manage', 'id']]
+     [['Name', 'name'], ['Email', 'email'],['Profile', 'id'],["Dashboard", "slug"],['Manage', 'id']]
   end
   
   def self.clubs
-     [['Name', 'name'], ['Email', 'email'],['Manage', 'id']]
+     [['Name', 'name'], ['Email', 'email'],['Profile', 'id'],["Dashboard", "slug"],['Manage', 'id']]
   end
   
   def self.leagues
-     [['Name', 'name'], ['Email', 'email'],['Manage', 'id']]
+     [['Name', 'name'], ['Email', 'email'],['Profile', 'id'],["Dashboard", "slug"],['Manage', 'id']]
   end
   
   def self.events
-    [['Name', 'title'], ['Type', 'event_type'], ['Slug', 'slug'],['Manage', 'id']]
+    [['Name', 'title'], ['Type', 'event_type'], ['Slug', 'slug'],['Profile', 'id'],['Manage', 'id']]
   end
   
   def self.documents
-    [['Name', 'name'], ['Description', 'description'], ['Slug', 'slug'],['Manage', 'id']]
+    [['Name', 'name'], ['Description', 'description'], ['Slug', 'slug'],['Profile', 'id'],['Manage', 'id']]
   end
   
 
