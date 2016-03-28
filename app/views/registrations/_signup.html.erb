@@ -1,0 +1,42 @@
+<!-- Modal -->
+<div class="modal fade slide-up disable-scroll" id="signup-user-on-registration-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-md ">
+    <div class="modal-content-wrapper">
+      <div class="modal-content  bgcolor-light-grey">
+        <span class="pull-left h4 bold text-muted ml20 pt10">
+          <%= object.name %>
+        </span>
+        <div class="container-xs-height bg-menu">
+          <div class="row-xs-height">
+            <div class="modal-body col-xs-height pr50 pl50 pb10 pt20 no-border">
+              <!-- START PANEL -->
+              <h3 class="semi-bold">Ready to signup?</h3>
+              <h5 class="semi-bold text-muted fs_14 lh_20">
+              
+              </h5>
+            </div>
+          </div>
+          <hr class="no-margin"/>
+          <div class="row">
+            <div class="col-sm-12 shopping_cart">
+              <div class="panel panel-default bgcolor-light-grey no-border">
+                <%= form_for User.new do |f| %>
+                <%= hidden_field_tag :registration, true %>
+                
+                <%= f.text_field :first_name %></br>
+                <%= f.text_field :last_name %></br>
+                <%= f.text_field :email %></br>
+                <%= f.text_field :password %></br>
+                <%= f.submit %>                
+                <% end %>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.modal -->

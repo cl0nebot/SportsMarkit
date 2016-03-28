@@ -1,12 +1,12 @@
 class RegistrationsController < ApplicationController
   before_action :load_form, only: [:register, :change_submitter, :pay]
-  before_action :load_master, only: [:change_submitter]
+  before_action :load_master, only: [:change_submitter], :if => :current_user?
   
   
   def new
     load_object
     @form = @object.forms.first
-    @master = Form.where(submittable_type: "User", submittable_id: current_user.id, master: true).last
+    @master = current_user? ? Form.where(submittable_type: "User", submittable_id: current_user.id, master: true).last : Form.new
   end
   
   def register
@@ -65,6 +65,10 @@ class RegistrationsController < ApplicationController
   
   def load_master
     @master = Form.where(submittable_type: "User", submittable_id: params[:user_id], master: true).last
+  end
+  
+  def current_user?
+    current_user.present?
   end
   
     

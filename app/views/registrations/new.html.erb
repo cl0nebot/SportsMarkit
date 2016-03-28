@@ -1,3 +1,12 @@
+<% if current_user.nil? %>
+<script>
+$(function() {
+  $("#signup-user-on-registration-form").modal('show')
+});
+
+</script>
+<% end %>
+
 <div class="content">
 
   <div class="page-header full-content bg-primary mb0" style="min-height: 121px;">
@@ -61,3 +70,5 @@
     </div>
   </div>
 </div>
+
+<%= render 'signup', object: @object %>
