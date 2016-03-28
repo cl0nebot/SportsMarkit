@@ -11,6 +11,11 @@ class Announcement < ActiveRecord::Base
   serialize   :default_user_groups, Array
   
   
+  def self.validate_user_group(params)
+    ((params[:specific_role_names].try(:first).try(:length).to_i > 1) || (params[:default_role_names].try(:first).try(:length).to_i > 1) ) ? false : true
+  end
+  
+  
   def specific_sent_to
     if specific_user_groups.include?("All")
       sent = "All users"
