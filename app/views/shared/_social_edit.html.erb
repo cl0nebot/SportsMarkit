@@ -7,8 +7,9 @@
   </div>
   <div class="col-md-12 mt10">
     <div class="inputer">
-      <div class="input-wrapper">
-        <%= f.text_field :linkedin, class: "form-control", placeholder: "" %>
+      <div class="input-wrapper form-group">
+        <%= f.text_field :linkedin, class: "form-control", placeholder: "https://www.linkedin.com/in/account_name", class: "form-control", pattern: "(https:\\/\\/)?(www.)?linkedin\\.com\\/in\\/[\\w_\\-\\d\\.\\/]+", "data-error" => "Please use: \"https://www.linkedin.com/in/[account_name]\"" %>
+        <div class="help-block with-errors"></div>
       </div>
     </div>
   </div>
@@ -22,8 +23,9 @@
   </div>
   <div class="col-md-12 mt10">
     <div class="inputer">
-      <div class="input-wrapper">
-        <%= f.text_field :facebook, class: "form-control", placeholder: "" %>
+      <div class="input-wrapper form-group">
+        <%= f.text_field :facebook, class: "form-control", placeholder: "https://wwww.facebook.com/account_name", pattern: "(https:\\/\\/)?(www.)?facebook\\.com\\/[\\w_\\-\\d\\.\\/]+", "data-error" => "Please use: \"https://www.facebook.com/[account_name]\"" %>
+        <div class="help-block with-errors"></div>
       </div>
     </div>
   </div>
@@ -37,8 +39,9 @@
   </div>
   <div class="col-md-12 mt10">
     <div class="inputer">
-      <div class="input-wrapper">
-        <%= f.text_field :twitter, class: "form-control", placeholder: "" %>
+      <div class="input-wrapper form-group">
+        <%= f.text_field :twitter, class: "form-control", placeholder: "https://wwww.twitter.com/account_name", pattern: "(https:\\/\\/)?(www.)?twitter\\.com\\/[\\w_\\-\\d\\.\\/]+", "data-error" => "Please use: \"https://www.twitter.com/[account_name]\"" %>
+        <div class="help-block with-errors"></div>
       </div>
     </div>
   </div>
@@ -52,8 +55,9 @@
   </div>
   <div class="col-md-12 mt10">
     <div class="inputer">
-      <div class="input-wrapper">
-        <%= f.text_field :instagram, class: "form-control", placeholder: "" %>
+      <div class="input-wrapper form-group">
+        <%= f.text_field :instagram, class: "form-control", placeholder: "https://wwww.instagram.com/account_name", pattern: "(https:\\/\\/)?(www.)?instagram\\.com\\/[\\w_\\-\\d\\.\\/]+", "data-error" => "Please use: \"https://www.instagram.com/[account_name]\"" %>
+        <div class="help-block with-errors"></div>
       </div>
     </div>
   </div>
@@ -67,8 +71,9 @@
   </div>
   <div class="col-md-12 mt10">
     <div class="inputer">
-      <div class="input-wrapper">
-        <%= f.text_field :pinterest, class: "form-control", placeholder: "" %>
+      <div class="input-wrapper form-group">
+        <%= f.text_field :pinterest, class: "form-control", placeholder: "https://www.pinterest.com/account_name", pattern: "(https:\\/\\/)?(www.)?pinterest\\.com\\/[\\w_\\-\\d\\.\\/]+", "data-error" => "Please use: \"https://www.pinterest.com/[account_name]\"" %>
+        <div class="help-block with-errors"></div>
       </div>
     </div>
   </div>
@@ -83,8 +88,9 @@
     </div>
     <div class="col-md-12 mt10">
       <div class="inputer">
-        <div class="input-wrapper">
-          <%= f.text_field :foursquare, class: "form-control", placeholder: "" %>
+        <div class="input-wrapper form-group">
+          <%= f.text_field :foursquare, class: "form-control", placeholder: "https://foursquare.com/user/user_id", pattern: "(https:\\/\\/)?(www.)?foursquare\\.com\\/user\\/[\\w_\\-\\d\\.\\/]+", "data-error" => "Please use: \"https://foursquare.com/user/[account_id]\"" %>
+          <div class="help-block with-errors"></div>
         </div>
       </div>
     </div>

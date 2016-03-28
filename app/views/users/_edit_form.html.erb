@@ -197,7 +197,7 @@
                 </div>
                 <div class="tab-pane text-style" id="social-media">
                   <div class="panel-body ">
-                    <%= form_for user, html: { class: "form-horizontal parsley-validate", data: { remote: true }} do |f| %>
+                    <%= form_for user, html: { class: "form-horizontal parsley-validate", data: { remote: true, toggle: 'validator', disable: false }} do |f| %>
                       <h4 class="text-right">Social Media Profiles</h4>
                       <hr class="margin-top-0"/>
                       <h5 class="bold text-primary">Add Social Media Accounts</h5>
