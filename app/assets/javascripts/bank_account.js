@@ -1,4 +1,4 @@
-  $('document').ready(function() {
+$('document').ready(function() {
 
   jQuery.externalScript = function(url, options) {
     options = $.extend(options || {}, {
@@ -8,7 +8,6 @@
     });
     return jQuery.ajax(options);
   };
-
   $.externalScript('https://js.stripe.com/v2/').done(function(script, textStatus) {
       Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
       var account = {
@@ -35,7 +34,7 @@
         handleStripeResponse: function(status, response) {
           if (response.error === undefined) {
             $('#stripe_token').val(response.id)
-            $('.account_form')[0].submit()
+            $('.bank_account_form')[0].submit()
           } else {
             $('#stripe_error').text(response.error.message).removeClass('hidden').show();
             return $('input[type=submit]').prop('disabled', false);

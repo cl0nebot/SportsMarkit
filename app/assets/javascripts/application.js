@@ -133,6 +133,7 @@
 //= require registrations
 //= require hamlcoffee
 //= require event_form
+//= require bank_account
 //= require events_calendar
 //= require_tree ./templates
 

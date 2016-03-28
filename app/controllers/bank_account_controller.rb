@@ -66,7 +66,7 @@ class BankAccountController < ApplicationController
   end
   
   def bank_account_params
-    params.require(:recipient).permit(:name_on_account, :category, :bankable_id, :bankable_type, :stripe_token)
+    params.require(:bank_account).permit(:name_on_account, :category, :bankable_id, :bankable_type, :stripe_token)
   end
   
   
