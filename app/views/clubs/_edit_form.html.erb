@@ -1,323 +1,308 @@
-	<div class="page-header full-content bg-primary" style="min-height: 141px;">
-		<div class="row">
-			<div class="col-md-6">
-				<%= link_to club_path(object) do %>
-					<div class="pull-left margin-right-20">
-						<div class="profile-photo-wrapper" style="height: 85px; overflow: hidden;" id="edit-header-avatar">
-							<%= image_tag(object.avatar, class: "img-thumbnail img-responsive", style: "height: 100%; width: 100%:") %>
-						</div>
-					</div>
-					<div class="pull-left">
-						<h1 class="capitalize h1-xlarge">
-							<%= object.name %> 
-						</h1>
-						<h6 class="capitalize h1-xlarge text-white">
-							<i class="ion-map mr5"></i> <%= object.address.street_1 %>, <%= object.address.city %>, <%= object.address.state %> 
-						</h6>
-					</div>
-				<% end %>
-			</div><!--.col-->
-			<div class="col-sm-6">
-				<ol class="breadcrumb">
-					<li><a href="/"><i class="ion-home"></i></a></li>
-					<li><a href="<%= clubs_path %>">Clubs </a></li>
-					<li><a href="<%= club_path %>"><%=object.name %> </a></li>
-					<li><a href="#" class="active">Edit</a></li>
-				</ol>
-			</div><!--.col-->
-		</div><!--.row-->
-
-		<br/>
-		<br/>
-		<div class="clearfix"></div>
-
-		<div class="header-tabs scrollable-tabs sticky">
-            <%= link_to club_uploads_path(object), class: "mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
-               <i class="ion-plus-circled fs_16 mr5"></i> Upload a New Team
-            <% end %>
-            
-			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
-				<li class="active"><a href="#general" data-toggle="tab">General</a></li>
-				<li><a href="#social-media" data-toggle="tab">Social Media</a></li>
-				<li><a href="#location" data-toggle="tab">Location</a></li>
-				<li><a href="#contact" data-toggle="tab">Contact</a></li>
-				<li><a href="#admin" data-toggle="tab">Admin</a></li>
-				<li><a href="#media" data-toggle="tab">Upload Media</a></li>
-			</ul>
-		</div>
-	</div><!--.page-header-->
-	
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1 col-sm-12">
-  		<div class="row">
-  			
-				<div class="col-md-3">
-          <div id="profile-picture">
-            <%= render 'shared/profile_picture', object: object, profile_pictures: @profile_pictures, profile_picture: @profile_picture %>
+<div class="page-header full-content bg-primary" style="min-height: 141px;">
+  <div class="row">
+    <div class="col-md-6">
+      <%= link_to club_path(object) do %>
+        <div class="pull-left margin-right-20">
+          <div class="profile-photo-wrapper" style="height: 85px; overflow: hidden;" id="edit-header-avatar">
+            <%= image_tag(object.avatar, class: "img-thumbnail img-responsive", style: "height: 100%; width: 100%:") %>
           </div>
-				</div>
-	
-				<div class="col-md-9">
-					<div class="panel box-shadow-ccc">
-					<div class="panel-body no-padding form-layout">
-						<%= form_for object, html: {id: 'new-club-form', data: {remote: true}} do |f|   %>
-							<div class="tab-content with-panel">
-								
-								<div class="tab-pane active text-style" id="general">
-									<div class="panel-header">
-										<h4 class="text-right semi-bold text-primary">General</h4>
-									</div>
-									<hr class="margin-top-0"/>
-									<div class="panel-body">
-										<div class="row">
-											<div class="col-md-8 col-md-offset-2 col-sm-12">
-
-
-												<div class="row example-row">
-													<div class="col-md-12">Name</div><!--.col-md-3-->
-													<div class="col-md-12">
-														<div class="inputer">
-															<div class="input-wrapper">
-																<%= f.text_field :name, class: "form-control", placeholder: "" %>
-															</div>
-														</div>
-													</div><!--.col-md-9-->
-												</div><!--.row-->
-
-												<div class="row example-row">
-													<div class="col-md-12">Description</div><!--.col-md-3-->
-													<div class="col-md-12">
-														<div class="inputer">
-															<div class="input-wrapper">
-																<%= f.text_area :description, class: "form-control", rows: "4",placeholder: "" %>
-															</div>
-														</div>
-													</div><!--.col-md-9-->
-												</div><!--.row-->
-
-												<div class="row example-row">
-													<div class="col-md-12">Classification</div><!--.col-md-3-->
-													<div class="col-md-12">
-														<div class="inputer">
-															<%= f.select(:classification, club_types, {}, { :class => 'selecter' }) %>
-														</div>
-													</div><!--.col-md-9-->
-												</div><!--.row-->
-
-												<div class="row example-row">
-													<div class="col-md-12">Abbreviation</div><!--.col-md-3-->
-													<div class="col-md-12">
-														<div class="inputer">
-															<div class="input-wrapper">
-																<%= f.text_field :abbreviation, class: "form-control", placeholder: "" %>
-															</div>
-														</div>
-													</div><!--.col-md-9-->
-												</div><!--.row-->
-												
-												<div class="row example-row">
-													<div class="col-md-12"><h4>Founded</h4></div>
-													<div class="col-md-3">
-														<div class="inputer">
-															<div class="input-wrapper">
-																<%= f.text_field :founded, type: "text", class: "form-control", placeholder: "" %>
-															</div>
-														</div>
-													</div><!--.col-md-9-->
-												</div><!--.row-->
-					
-												<div class="row example-row">
-													<div class="col-md-12"><h4>Enrollment</h4></div>
-													<div class="col-md-3">
-														<div class="inputer">
-															<div class="input-wrapper">
-																<%= f.text_field :enrollment, type: "text", class: "form-control", placeholder: "" %>
-															</div>
-														</div>
-													</div><!--.col-md-9-->
-												</div><!--.row-->
-					
-												<div class="row example-row">
-													<div class="col-md-12"><h4>Faculty</h4></div>
-													<div class="col-md-3">
-														<div class="inputer">
-															<div class="input-wrapper">
-																<%= f.text_field :faculty, type: "text", class: "form-control", placeholder: "" %>
-															</div>
-														</div>
-													</div><!--.col-md-9-->
-												</div><!--.row-->
-											</div>
-										</div>
-
-									</div>
-								</div><!--tab-pane-->
-								
-								<div class="tab-pane text-style" id="social-media">
-									<div class="panel-body pr40 pl40">
-										<h4 class="text-right">Social Media Profiles</h4>
-										<hr class="margin-top-0"/>
-										<h5 class="bold text-primary">Add Social Media Accounts</h5>
-										<br/>
-										<%= render 'shared/social_edit', f: f %>
-									</div>
-								</div><!--tab-pane-->
-
-								<div class="tab-pane text-style" id="location">
-									<div class="panel-header">
-										<h4 class="text-right semi-bold text-primary">Location</h4>
-									</div>
-									<hr class="margin-top-0"/>
-									<div class="panel-body">
-										<div class="row">
-											<div class="col-md-8 col-md-offset-2 col-sm-12">
-                                                <%= f.fields_for :address, address do |address|%>
-  												<div class="row example-row">
-  													<div class="col-md-12">Street 1</div><!--.col-md-3-->
-  													<div class="col-md-12">
-  														<div class="inputer">
-  															<div class="input-wrapper">
-  																<%= address.text_field :street_1, type: "text", class: "form-control", placeholder: "" %>
-  															</div>
-  														</div>
-  													</div><!--.col-md-9-->
-  												</div><!--.row-->
-
-  												<div class="row example-row">
-  													<div class="col-md-12">Street 2</div><!--.col-md-3-->
-  													<div class="col-md-12">
-  														<div class="inputer">
-  															<div class="input-wrapper">
-  																<%= address.text_field :street_2,  type: "text", class: "form-control", placeholder: "" %>
-  															</div>
-  														</div>
-  													</div><!--.col-md-9-->
-  												</div><!--.row-->
-
-
-  												<div class="row example-row">
-  													<div class="col-md-12">City</div><!--.col-md-3-->
-  													<div class="col-md-12">
-  														<div class="inputer">
-  															<div class="input-wrapper">
-  																<%= address.text_field :city, type: "text", class: "form-control", placeholder: "" %>
-  															</div>
-  														</div>
-  													</div><!--.col-md-9-->
-  												</div><!--.row-->
-
-  												<div class="row example-row">
-  													<div class="col-md-12">State</div><!--.col-md-3-->
-  													<div class="col-md-12">
-  														<div class="inputer">
-  															<div class="input-wrapper">
-  																<%= address.text_field :state, type: "text", class: "form-control", placeholder: "" %>
-  															</div>
-  														</div>
-  													</div><!--.col-md-9-->
-  												</div><!--.row-->
-
-
-  												<div class="row example-row">
-  													<div class="col-md-12">Zipcode</div><!--.col-md-3-->
-  													<div class="col-md-12">
-  														<div class="inputer">
-  															<div class="input-wrapper">
-  																<%= address.text_field :postcode,type: "text",  class: "form-control payment-restrict", :restrict => true, placeholder: "" %>
-  															</div>
-  														</div>
-  													</div><!--.col-md-9-->
-  												</div><!--.row-->
-
-							
-  												<% end %>
-											</div>
-										</div>
-									</div>
-								</div><!--tab-pane-->
-
-								<div class="tab-pane text-style" id="contact">
-									<div class="panel-header">
-										<h4 class="text-right semi-bold text-primary">Contact Information</h4>
-									</div>
-									<hr class="margin-top-0"/>
-									<div class="panel-body">
-										<div class="row">
-											<div class="col-md-8 col-md-offset-2 col-sm-12">
-												<div class="row example-row">
-													<div class="col-md-12">Website</div><!--.col-md-3-->
-													<div class="col-md-12">
-														<div class="inputer">
-															<div class="input-wrapper">
-																<%= f.text_field :website, class: "form-control", placeholder: "" %>
-															</div>
-														</div>
-													</div><!--.col-md-9-->
-												</div><!--.row-->
-
-
-												<div class="row example-row">
-													<div class="col-md-12">Email</div><!--.col-md-3-->
-													<div class="col-md-12">
-														<div class="inputer">
-															<div class="input-wrapper">
-																<%= f.text_field :email, class: "form-control", placeholder: "" %>
-															</div>
-														</div>
-													</div><!--.col-md-9-->
-												</div><!--.row-->
-
-												<div class="row example-row">
-													<div class="col-md-12">Phone Number</div><!--.col-md-3-->
-													<div class="col-md-12">
-														<div class="inputer">
-															<div class="input-wrapper">
-																<%= f.text_field :phone_number, class: "form-control", placeholder: "" %>
-															</div>
-														</div>
-													</div><!--.col-md-9-->
-												</div><!--.row-->
-											</div>
-										</div>
-									</div>
-								</div><!--.tab-pane-->
-
-								<div class="tab-pane text-style" id="admin">
-									<div class="panel-header">
-										<h4 class="text-right semi-bold text-primary">Admin</h4>
-									</div>
-									<hr class="margin-top-0"/>
-									<div class="row">
-										<div class="col-md-8 col-md-offset-2 col-sm-12">
-											<p class="text-center">
-												<%= link_to "Add Teams", new_club_team_path(object),  class: "btn btn-primary"%>
-											</p>
-										</div>
-									</div>
-								</div><!--.tab-pane-->
-
-										<div class="tab-pane text-style" id="media">
-		                  	
-						                  	<div class="panel-header">
-												<h4 class="text-right semi-bold text-primary">Upload Media</h4>
-											</div>
-											<hr class="margin-top-0"/>
-											<div class="panel-body pr40 pl40">
-												<%= render 'shared/edit_media', object: object, pictures: pictures %>
-											</div>
-										</div><!--.tab-pane-->
-									</div><!--.tab-content-->
-								</div><!--.panel-body-->
-					<div class="panel-footer form-layout">
-						<br/>
-						<p class="text-right">
-							<%= f.submit "Update", class: "btn btn-primary" %>
-						</p>
-
-					<% end %>
-					</div><!--.panel-body-->
-				</div><!--.panel-->
-			</div>
-		</div>
-	</div><!--.col-md-12-->
-</div><!--.row-->
+        </div>
+        <div class="pull-left">
+          <h1 class="capitalize h1-xlarge">
+            <%= object.name %>
+          </h1>
+          <h6 class="capitalize h1-xlarge text-white">
+            <i class="ion-map mr5"></i> <%= object.address.street_1 %>, <%= object.address.city %>, <%= object.address.state %>
+          </h6>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-sm-6">
+      <ol class="breadcrumb">
+        <li><a href="/"><i class="ion-home"></i></a></li>
+        <li><a href="<%= clubs_path %>">Clubs </a></li>
+        <li><a href="<%= club_path %>"><%=object.name %> </a></li>
+        <li><a href="#" class="active">Edit</a></li>
+      </ol>
+    </div>
+  </div>
+  <br/>
+  <br/>
+  <div class="clearfix"></div>
+  <div class="header-tabs scrollable-tabs sticky">
+    <%= link_to club_uploads_path(object), class: "mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
+      <i class="ion-plus-circled fs_16 mr5"></i> Upload a New Team
+    <% end %>
+    <ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+      <li class="active"><a href="#general" data-toggle="tab">General</a></li>
+      <li><a href="#social-media" data-toggle="tab">Social Media</a></li>
+      <li><a href="#location" data-toggle="tab">Location</a></li>
+      <li><a href="#contact" data-toggle="tab">Contact</a></li>
+      <li><a href="#admin" data-toggle="tab">Admin</a></li>
+      <li><a href="#media" data-toggle="tab">Upload Media</a></li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-12">
+    <div class="row">
+      <div class="col-md-3">
+        <div id="profile-picture">
+          <%= render 'shared/profile_picture', object: object, profile_pictures: @profile_pictures, profile_picture: @profile_picture %>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="panel box-shadow-ccc">
+          <%= form_for object, html: { id: 'new-club-form', data: { remote: true, toggle: 'validator', disable: false }} do |f| %>
+            <div class="panel-body no-padding form-layout">
+              <div class="tab-content with-panel">
+                <div class="tab-pane active text-style" id="general">
+                  <div class="panel-header">
+                    <h4 class="text-right semi-bold text-primary">General</h4>
+                  </div>
+                  <hr class="margin-top-0"/>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-8 col-md-offset-2 col-sm-12">
+                        <div class="row example-row">
+                          <div class="col-md-12">Name</div>
+                          <div class="col-md-12">
+                            <div class="inputer">
+                              <div class="input-wrapper form-group">
+                                <%= f.text_field :name, class: "form-control", required: true %>
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row example-row">
+                          <div class="col-md-12">Description</div>
+                          <div class="col-md-12">
+                            <div class="inputer">
+                              <div class="input-wrapper form-group">
+                                <%= f.text_area :description, class: "form-control", rows: "4" %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row example-row">
+                          <div class="col-md-12">Classification</div>
+                          <div class="col-md-12">
+                            <div class="inputer form-group">
+                              <%= f.select :classification, club_types, {}, { class: 'selecter', required: true } %>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row example-row">
+                          <div class="col-md-12">Abbreviation</div>
+                          <div class="col-md-12">
+                            <div class="inputer">
+                              <div class="input-wrapper form-group">
+                                <%= f.text_field :abbreviation, class: "form-control", required: true %>
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row example-row">
+                          <div class="col-md-12">
+                            <h4>Founded</h4>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="inputer">
+                              <div class="input-wrapper form-group">
+                                <%= f.text_field :founded, class: "form-control", required: true %>
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row example-row">
+                          <div class="col-md-12">
+                            <h4>Enrollment</h4>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="inputer">
+                              <div class="input-wrapper form-group">
+                                <%= f.text_field :enrollment, class: "form-control", required: true %>
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row example-row">
+                          <div class="col-md-12">
+                            <h4>Faculty</h4>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="inputer">
+                              <div class="input-wrapper form-group">
+                                <%= f.text_field :faculty, class: "form-control", required: true %>
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane text-style" id="social-media">
+                  <div class="panel-body pr40 pl40">
+                    <h4 class="text-right">Social Media Profiles</h4>
+                    <hr class="margin-top-0"/>
+                    <h5 class="bold text-primary">Add Social Media Accounts</h5>
+                    <br/>
+                    <%= render 'shared/social_edit', f: f %>
+                  </div>
+                </div>
+                <div class="tab-pane text-style" id="location">
+                  <div class="panel-header">
+                    <h4 class="text-right semi-bold text-primary">Location</h4>
+                  </div>
+                  <hr class="margin-top-0"/>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-8 col-md-offset-2 col-sm-12">
+                        <%= f.fields_for :address, address do |address|%>
+                          <div class="row example-row">
+                            <div class="col-md-12">Street 1</div>
+                            <div class="col-md-12">
+                              <div class="inputer">
+                                <div class="input-wrapper form-group">
+                                  <%= address.text_field :street_1, class: "form-control", required: true %>
+                                  <div class="help-block with-errors"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row example-row">
+                            <div class="col-md-12">Street 2</div>
+                            <div class="col-md-12">
+                              <div class="inputer">
+                                <div class="input-wrapper form-group">
+                                  <%= address.text_field :street_2, class: "form-control"%>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row example-row">
+                            <div class="col-md-12">City</div>
+                            <div class="col-md-12">
+                              <div class="inputer">
+                                <div class="input-wrapper form-group">
+                                  <%= address.text_field :city, class: "form-control", required: true %>
+                                  <div class="help-block with-errors"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row example-row">
+                            <div class="col-md-12">State</div>
+                            <div class="col-md-12">
+                              <div class="inputer">
+                                <div class="input-wrapper form-group">
+                                  <%= address.text_field :state, class: "form-control", required: true %>
+                                  <div class="help-block with-errors"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row example-row">
+                            <div class="col-md-12">Zipcode</div>
+                            <div class="col-md-12">
+                              <div class="inputer">
+                                <div class="input-wrapper form-group">
+                                  <%= address.text_field :postcode, class: "form-control payment-restrict", restrict: true, required: true %>
+                                  <div class="help-block with-errors"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane text-style" id="contact">
+                  <div class="panel-header">
+                    <h4 class="text-right semi-bold text-primary">Contact Information</h4>
+                  </div>
+                  <hr class="margin-top-0"/>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-8 col-md-offset-2 col-sm-12">
+                        <div class="row example-row">
+                          <div class="col-md-12">Website</div>
+                          <div class="col-md-12">
+                            <div class="inputer">
+                              <div class="input-wrapper form-group">
+                                <%= f.text_field :website, class: "form-control", required: true %>
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row example-row">
+                          <div class="col-md-12">Email</div>
+                          <div class="col-md-12">
+                            <div class="inputer">
+                              <div class="input-wrapper form-group">
+                                <%= f.text_field :email, class: "form-control", required: true %>
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row example-row">
+                          <div class="col-md-12">Phone Number</div>
+                          <div class="col-md-12">
+                            <div class="inputer">
+                              <div class="input-wrapper form-group">
+                                <%= f.text_field :phone_number, class: "form-control", required: true %>
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane text-style" id="admin">
+                  <div class="panel-header">
+                    <h4 class="text-right semi-bold text-primary">Admin</h4>
+                  </div>
+                  <hr class="margin-top-0"/>
+                  <div class="row">
+                    <div class="col-md-8 col-md-offset-2 col-sm-12">
+                      <p class="text-center">
+                        <%= link_to "Add Teams", new_club_team_path(object),  class: "btn btn-primary"%>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane text-style" id="media">
+                  <div class="panel-header">
+                    <h4 class="text-right semi-bold text-primary">Upload Media</h4>
+                  </div>
+                  <hr class="margin-top-0"/>
+                  <div class="panel-body pr40 pl40">
+                    <%= render 'shared/edit_media', object: object, pictures: pictures %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer form-layout">
+              <br/>
+              <p class="text-right">
+                <%= f.submit "Update", class: "btn btn-primary" %>
+              </p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
