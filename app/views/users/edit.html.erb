@@ -1,23 +1,7 @@
 <div class="content">
   <%= render 'users/edit_form', user: @user, user_profile_pictures: @user_profile_pictures, user_profile_picture: @user_profile_picture, object: @object, pictures: @pictures, videos: @videos, articles: @articles %>
 </div>
-
 <div id="user-profile-picture-modal">
-<%= render 'user_profile_picture_modal', user_profile_picture: @user_profile_picture %>
+  <%= render 'user_profile_picture_modal', user_profile_picture: @user_profile_picture %>
 </div>
 <%= render 'shared/picture_modal', object: @object, picture: @picture %>
-                        
-
-	<!-- PLUGINS INITIALIZATION AND SETTINGS -->
-	<script src="../../assets/globals/scripts/forms-validations-parsley.js"></script>
-	<!-- END PLUGINS INITIALIZATION AND SETTINGS -->
-
-	<!-- BEGIN INITIALIZATION-->
-	<script>
-	$(document).ready(function () {
-		Pleasure.init();
-		Layout.init();
-		FormsValidationsParsley.init();
-	});
-	</script>
-	<!-- END INITIALIZATION-->

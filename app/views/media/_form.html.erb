@@ -4,66 +4,59 @@
   <%= form_for m, remote: true, url: url, method: method, html: {id: "add-media-form"} do |f| %>
     <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)%>
     <div class="col-md-12">
-      
-
       <div class="row example-row"></div>
-
       <div class="">
         <div class="radioer form-inline">
-		 <% if m.new_record? %>
-          <%= f.radio_button :category, 'Article', 'data-label'=>'article_label', type: "radio", id: "article-#{m.fake_id}", checked: (params[:object] == 'article' ? true : "" ) %>
-          <label for="article-<%= m.fake_id%>">Article</label>
-		  <% else %>
-          <%= f.radio_button :category, 'Article', 'data-label'=>'article_label', type: "radio", id: "article-#{m.id}" %>
-          <label for="article-<%= m.id%>">Article</label>
-		  
-		  <% end %>
+          <% if m.new_record? %>
+            <%= f.radio_button :category, 'Article', 'data-label'=>'article_label', type: "radio", id: "article-#{m.fake_id}", checked: (params[:object] == 'article' ? true : "" ) %>
+            <label for="article-<%= m.fake_id%>">Article</label>
+          <% else %>
+            <%= f.radio_button :category, 'Article', 'data-label'=>'article_label', type: "radio", id: "article-#{m.id}" %>
+            <label for="article-<%= m.id%>">Article</label>
+          <% end %>
         </div>
         <div class="radioer form-inline">
-		  <% if m.new_record? %>
-          <%= f.radio_button :category, 'Video', 'data-label'=>'video_label', type: "radio", id: "video-#{m.fake_id}", checked: (params[:object] == 'video' ? true : "" ) %>
-          <label for="video-<%= m.fake_id%>">Video</label>
-		  <% else %>
-          <%= f.radio_button :category, 'Video', 'data-label'=>'video_label', type: "radio", id: "video-#{m.id}" %>
-          <label for="video-<%= m.id%>">Video</label>
-		  
-		  <% end %>
+          <% if m.new_record? %>
+            <%= f.radio_button :category, 'Video', 'data-label'=>'video_label', type: "radio", id: "video-#{m.fake_id}", checked: (params[:object] == 'video' ? true : "" ) %>
+            <label for="video-<%= m.fake_id%>">Video</label>
+          <% else %>
+            <%= f.radio_button :category, 'Video', 'data-label'=>'video_label', type: "radio", id: "video-#{m.id}" %>
+            <label for="video-<%= m.id%>">Video</label>
+          <% end %>
         </div>
       </div>
       <br/>
       <div class="row example-row">
-        <div class="col-md-12">Title </div><!--.col-md-3-->
+        <div class="col-md-12">Title </div>
         <div class="col-md-12">
           <div class="inputer">
             <div class="input-wrapper">
               <%= f.text_field :title, class: "form-control media-title", placeholder: "", required: true %>
             </div>
           </div>
-        </div><!--.col-md-9-->
+        </div>
       </div>
       <div class="row example-row">
-        <div class="col-md-12">Url</div><!--.col-md-3-->
+        <div class="col-md-12">Url</div>
         <div class="col-md-12">
           <div class="inputer">
             <div class="input-wrapper">
               <%= f.text_field :url, class: "form-control", placeholder: "", required: true %>
             </div>
           </div>
-        </div><!--.col-md-9-->
+        </div>
       </div>
       <div class="row example-row">
-        <div class="col-md-12">Publication date</div><!--.col-md-3-->
+        <div class="col-md-12">Publication date</div>
         <div class="col-md-12">
           <div class="inputer">
             <div class="input-wrapper">
               <%= f.text_field :publish_date, class: "form-control  bootstrap-daterangepicker-basic active", placeholder: "", required: true  %>
             </div>
           </div>
-        </div><!--.col-md-9-->
+        </div>
       </div>
-      <!--.row-->
     </div>
-
     <div class="col-md-12">
       <%= f.hidden_field :mediable_id, value: u.id %>
       <%= f.hidden_field :mediable_type, value: u.class.to_s %>

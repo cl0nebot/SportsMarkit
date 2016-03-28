@@ -1,5 +1,4 @@
 //= require ./validation/multiple_events_validation
-//= require ./validation/user_edit_validation
 //= require ./validation/team_admin_validation
 //= require ./validation/teams_registration_validation
 
