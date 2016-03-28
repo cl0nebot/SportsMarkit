@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= reuqire validator
 //= require pleasure/globals/js/global-vendors
 //= require pleasure/globals/plugins/scrollMonitor/scrollMonitor
 //=  pleasure/globals/plugins/skrollr/skrollr.min

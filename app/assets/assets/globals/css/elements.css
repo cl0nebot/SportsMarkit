@@ -5322,7 +5322,7 @@ label {
   display: block;
 }
 .selecter + .help-block {
-  display: none;
+  /*display: none;*/
 }
 select[data-style="btn-primary"] + .bootstrap-select .btn,
 select[data-style="btn-primary"] + .bootstrap-select .btn:hover,

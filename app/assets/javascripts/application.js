@@ -16,6 +16,7 @@
 //= require jquery-ui
 //= require validation
 //= require jquery.remotipart
+//= require validator
 
 // <!-- BEGIN GLOBAL AND THEME VENDORS -->
 //= require pleasure/globals/js/global-vendors

@@ -1,169 +1,150 @@
 <div class="content">
-
-	<br/>
-<%= form_for League.new, url: leagues_path, html: {id: 'new-league-form', method: :post} do |f| %>
-	<div class="row">
-		<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-			<div class="panel box-shadow-ccc">
-				<div class="panel-header bg-cyan">
-					<br/>
-					<h5 class="text-right text-white semi-bold">Add or Create a New League
-						<i class="ion-plus-circled margin-right-10 margin-left-10 text-white"></i>
-					</h5>
-					<hr class="margin-top-0"/>
-				</div>
-
-				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
-
-					<div class="row">
-						<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
-						 	<div class="row text-center">
-								<div class="col-md-12">
-									<h3 class="semi-bold text-primary">Setup your new league</h3>
-									<h4>What type of league?</h4>
-								</div>
-							</div>
-						<div class="row example-row">
-							<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 well margin-bottom-0">
-								<%= f.select :classification, [ 'School District', 'Recreational: Adult', 'Recreational: Youth'], {}, {:class => 'selecter bg-white margin-bottom-0', :prompt=>'select level', :required => 'true', data:{live_search: 'true', width: '100%'}} %>
-							</div><!--.col-md-9-->
-						</div><!--.row-->
-						</div>
-					</div>
-				</div>
-
-
-				<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
-					
-					
-
-					<div class="panel-body padding-right-40 padding-left-40">
-
-						<h5 class="semi-bold text-primary text-center">Simply complete the form to create a new league.</h5>
-						<br/>
-							
-						<div class="row example-row">
-							<div class="col-md-12"><h4>Name</h4></div>
-							<div class="col-md-12">
-								<div class="inputer">
-									<div class="input-wrapper">
-										<%= f.text_field :name, type: "text", class: "form-control", placeholder: ""%>
-									</div>
-								</div>
-							</div><!--.col-md-9-->
-						</div><!--.row-->
-
-						<div class="row example-row">
-							<div class="col-md-12"><h4>Sport</h4></div>
-							<div class="col-md-12">
-								<div class="inputer">
-									<div class="input-wrapper">
-										<%= f.collection_select :sport_ids, Sport.all, :id, :sport, {:selected => ""}, {:multiple => true, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0" } %>
-										<!--<script src="../../assets/globals/scripts/forms-select.js"></script>-->
-										
-									</div>
-								</div>
-							</div><!--.col-md-9-->
-						</div><!--.row-->
-
-						<div class="row example-row">
-							<div class="col-md-12"><h4>Description</h4></div><!--.col-md-3-->
-							<div class="col-md-12">
-								<div class="inputer">
-									<div class="input-wrapper">
-										<%= f.text_area :description, type: "text", class: "form-control", placeholder: "", row: "6" %>
-									</div>
-								</div>
-							</div><!--.col-md-9-->
-						</div><!--.row-->
-					</div>
-				</div>		
-
-
-            <%= render 'shared/new_address', f: f, object: League.new %>
-			
-			
-			
-   			<div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
-   				<div class="panel-body padding-right-40 padding-left-40">
-   					<br/>
-   					<h4 class="text-blue semi-bold">
-   						<i class="ion-email margin-right-10"></i> Contact Information
-   					</h4>
-   					<br/>
-
-   					<div class="row example-row">
-   						<div class="col-md-12"><h4>Website</h4></div><!--.col-md-3-->
-   						<div class="col-md-12">
-   							<div class="inputer">
-   								<div class="input-wrapper">
-   									<%= f.text_field :website, type: "text", class: "form-control", placeholder: ""  %>
-   								</div>
-   							</div>
-   						</div><!--.col-md-9-->
-   					</div><!--.row-->
-
-   					<div class="row example-row">
-   						<div class="col-md-12"><h4>Email</h4></div><!--.col-md-3-->
-   						<div class="col-md-12">
-   							<div class="inputer">
-   								<div class="input-wrapper">
-   									<%= f.text_field :email, type: "text", class: "form-control" %>
-   								</div>
-   							</div>
-   						</div><!--.col-md-9-->
-   					</div><!--.row-->
-
-   					<div class="row example-row">
-   						<div class="col-md-12"><h4>Phone</h4></div><!--.col-md-3-->
-   						<div class="col-md-12">
-   							<div class="inputer">
-   								<div class="input-wrapper">
-   									<%= f.text_field :phone_number, type: "text", class: "form-control" %>
-   								</div>
-   							</div>
-   						</div><!--.col-md-9-->
-   					</div><!--.row-->
-   				</div>
-   			</div>
-			
-			
-					<div class="panel-body padding-right-40 padding-left-40 bg-cyan">
-						<div class="row example-row margin-bottom-0">
-							<div class="col-md-12 text-center">
-								<h3 class="text-white margin-bottom-0">Have and Questions?</h3>
-								<p class="text-white semi-bold">Please check out our 
-									<a href="#" class="text-white">		
-										<u>League FAQ.</u>
-									</a>
-								</p>
-							</div>
-						</div><!--.row-->
-					</div>
-
-					<div class="form-buttons no-margin">
-						<div class="row">
-							<div class="col-lg-8 col-lg-offset-2">
-								<br/>
-								<%= f.submit "Awesome. Let's create a league!", class: "btn btn-blue btn-lg btn-block btn-ripple" %>
-								<br/>
-							</div>
-						</div>
-					</div>
-				</div>
-			<% end %>
-		</div>
-	</div>
-
+  <br/>
+  <%= form_for League.new, url: leagues_path, html: { id: 'new-league-form', method: :post, "data-toggle" => "validator", "data-disable" => false } do |f| %>
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="panel box-shadow-ccc">
+          <div class="panel-header bg-cyan">
+            <br/>
+            <h5 class="text-right text-white semi-bold">Add or Create a New League
+              <i class="ion-plus-circled margin-right-10 margin-left-10 text-white"></i>
+            </h5>
+            <hr class="margin-top-0"/>
+          </div>
+          <div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #ddd;">
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
+                <div class="row text-center">
+                  <div class="col-md-12">
+                    <h3 class="semi-bold text-primary">Setup your new league</h3>
+                    <h4>What type of league?</h4>
+                  </div>
+                </div>
+                <div class="row example-row form-group">
+                  <div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 well margin-bottom-0">
+                    <%= f.select :classification, [ 'School District', 'Recreational: Adult', 'Recreational: Youth'], {}, {class: 'selecter bg-white margin-bottom-0', prompt: 'select level', required: 'true', data: {live_search: 'true', width: '100%' }} %>
+                    <div class="help-block with-errors"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+            <div class="panel-body padding-right-40 padding-left-40">
+              <h5 class="semi-bold text-primary text-center">Simply complete the form to create a new league.</h5>
+              <br/>
+              <div class="row example-row">
+                <div class="col-md-12">
+                  <h4>Name</h4>
+                </div>
+                <div class="col-md-12">
+                  <div class="inputer">
+                    <div class="input-wrapper form-group">
+                      <%= f.text_field :name, class: "form-control", required: true %>
+                      <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row example-row">
+                <div class="col-md-12">
+                  <h4>Sport</h4>
+                </div>
+                <div class="col-md-12">
+                  <div class="inputer">
+                    <div class="input-wrapper form-group">
+                      <%= f.collection_select :sport_ids, Sport.all, :id, :sport, { selected: "" }, { multiple: true, "data-live-search" => true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", required: true } %>
+                      <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row example-row">
+                <div class="col-md-12">
+                  <h4>Description</h4>
+                </div>
+                <div class="col-md-12">
+                  <div class="inputer">
+                    <div class="input-wrapper">
+                      <%= f.text_area :description, class: "form-control", row: "6" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%= render 'shared/new_address', f: f, object: League.new, required: true %>
+          <div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+            <div class="panel-body padding-right-40 padding-left-40">
+              <br/>
+              <h4 class="text-blue semi-bold">
+                <i class="ion-email margin-right-10"></i> Contact Information
+              </h4>
+              <br/>
+              <div class="row example-row">
+                <div class="col-md-12">
+                  <h4>Website</h4>
+                </div>
+                <div class="col-md-12">
+                  <div class="inputer">
+                    <div class="input-wrapper form-group">
+                      <%= f.text_field :website, class: "form-control", required: true %>
+                      <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row example-row">
+                <div class="col-md-12">
+                  <h4>Email</h4>
+                </div>
+                <div class="col-md-12">
+                  <div class="inputer">
+                    <div class="input-wrapper form-group">
+                      <%= f.text_field :email, type: "email", class: "form-control", required: true %>
+                      <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row example-row">
+                <div class="col-md-12">
+                  <h4>Phone</h4>
+                </div>
+                <div class="col-md-12">
+                  <div class="inputer">
+                    <div class="input-wrapper form-group">
+                      <%= f.text_field :phone_number, class: "form-control", required: true %>
+                      <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body padding-right-40 padding-left-40 bg-cyan">
+            <div class="row example-row margin-bottom-0">
+              <div class="col-md-12 text-center">
+                <h3 class="text-white margin-bottom-0">Have and Questions?</h3>
+                <p class="text-white semi-bold">Please check out our
+                  <a href="#" class="text-white">
+                    <u>League FAQ.</u>
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="form-buttons no-margin">
+            <div class="row">
+              <div class="col-lg-8 col-lg-offset-2">
+                <br/>
+                <%= f.submit "Awesome. Let's create a league!", class: "btn btn-blue btn-lg btn-block btn-ripple" %>
+                <br/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
-
-
-
-
-<%#= @id %>
-<%#= @class %>
-
-
-
-
-
