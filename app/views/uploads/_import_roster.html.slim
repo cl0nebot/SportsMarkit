@@ -34,4 +34,4 @@
         = hidden_field_tag "teamable_id", @object.id
         =  select_tag :importer, options_for_select([['Upload teams', "Team"], ['Uploads teams with rosters', "TeamRoster"]])
 
-      = submit_tag "Import Roster", class: "btn btn-primary btn-block", disabled: true, id: "file-submit"
+      = submit_tag "Import", class: "btn btn-primary btn-block", disabled: true, id: "file-submit"
