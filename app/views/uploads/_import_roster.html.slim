@@ -1,0 +1,37 @@
+/conditionals if @object is team, import roster
+/if @object is school, two options: upload teams, uploads teams w/ roster
+/if @object is club, two options: upload teams, uploads teams w/ roster
+/if @object if league, hide for now if @object is facility, hide for now
+- unless [Facility, League].include?(@object.class)
+  = form_tag [@object, :uploads], multipart: true do
+    hr.no-margin
+    .panel-body
+      h5.mb0.text-primary.semi-bold Upload your excel file
+      p.h6.mt0
+        small
+          span.text-black Please click the button below to upload your file.
+      .fileinput.fileinput-new.input-group.well.mb0 data-provides="fileinput"
+        .form-control data-trigger="fileinput"
+          i.glyphicon.glyphicon-file.fileinput-exists
+          span.fileinput-filename
+        span.input-group-addon.btn.btn-default.btn-file.btn-block
+          span.fileinput-new Select file
+          span.fileinput-exists Change
+          = file_field_tag :file, id: "file-field"
+        a.input-group-addon.btn.btn-default.fileinput-exists.btn-block data-dismiss="fileinput" href="#"
+          | Remove
+      br
+      #invalid-message style=("display: none")
+        .alert.alert-danger role="alert"
+          | Oops. Invalid file type. Please try again.
+    hr.no-margin
+    .panel-body
+      = hidden_field_tag :object, @object.class
+      - if @object.is_a? Team
+        = hidden_field_tag :team_id, @object.id
+        = hidden_field_tag :importer, "Roster"
+      - elsif @object.is_a? School or @object.is_a? Club
+        = hidden_field_tag "teamable_id", @object.id
+        =  select_tag :importer, options_for_select([['Upload teams', "Team"], ['Uploads teams with rosters', "TeamRoster"]])
+
+      = submit_tag "Import Roster", class: "btn btn-primary btn-block", disabled: true, id: "file-submit"

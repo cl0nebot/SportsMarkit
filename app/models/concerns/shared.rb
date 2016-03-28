@@ -2,9 +2,9 @@ module Shared
   extend ActiveSupport::Concern
   
   included do
-     has_many :fans, as: :fannable, dependent: :destroy
-     has_many :teams, as: :teamable, dependent: :destroy
-     has_many :medias, as: :mediable
+    has_many :fans, as: :fannable, dependent: :destroy
+    has_many :teams, as: :teamable, dependent: :destroy
+    has_many :medias, as: :mediable
   end
   
   module ClassMethods
