@@ -10,16 +10,10 @@ class AmenitiesController < ApplicationController
   def create
     @amenity = Amenity.new(amenity_params)
     if @amenity.save
-      respond_to do |format|
-        format.html{redirect_to :back}
-        format.js
-      end
+      respond_and_redirect_back
     else
       flash.now[:error] =  @amenity.errors.full_messages
-      respond_to do |format|
-        format.html{redirect_to :back}
-        format.js
-      end
+      respond_and_redirect_back
     end
   end
   
@@ -30,16 +24,10 @@ class AmenitiesController < ApplicationController
     @result = @amenity.update_attributes(amenity_params)
     if @result
       flash[:success] = "Amenity has been updated."
-      respond_to do |format|
-        format.js
-        format.html { redirect_to :back }
-      end
+      respond_and_redirect_back
     else
       flash.now[:error] = @amenity.errors.full_messages
-      respond_to do |format|
-        format.js
-        format.html { redirect_to :back }
-      end
+      respond_and_redirect_back
     end
   end
   
@@ -47,10 +35,7 @@ class AmenitiesController < ApplicationController
     @amenity = Amenity.find(params[:id])
     @index = @amenity.index_position
     @amenity.destroy
-    respond_to do |format|
-      format.js
-      format.html { redirect_to :back }
-    end
+    respond_and_redirect_back
   end
   
   
@@ -58,6 +43,13 @@ class AmenitiesController < ApplicationController
   
   def amenity_params
     params.require(:amenity).permit(:amenity)
+  end
+  
+  def respond_and_redirect_back
+    respond_to do |format|
+      format.js
+      format.html { redirect_to :back }
+    end
   end
 end
   
