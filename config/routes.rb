@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, concerns: [:signed_documentable] do
+    resources :dashboard
     get :email
     get :phone
     resources :photos
@@ -137,6 +138,7 @@ Rails.application.routes.draw do
   end
 
   resources :teams, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable] do
+    resources :dashboard
     resources :uploads do
       collection do
         post :import
@@ -167,9 +169,13 @@ Rails.application.routes.draw do
       get :join_league
       get :leave_league
     end
+    get :upgrade
+    get :plan
+    patch :upgrade_school
   end
 
   resources :facilities, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable] do
+    resources :dashboard
     resources :uploads do
       collection do
         post :import
@@ -196,10 +202,17 @@ Rails.application.routes.draw do
     resources :media
     resources :photos
     get :remove_facility
+    get :upgrade
+    get :plan
+    patch :upgrade_school
   end
 
   resources :tournaments
   resources :leagues, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable] do
+    resources :dashboard
+    resources :teams
+    resources :facilities
+    get :upgrade
     resources :uploads do
       collection do
         post :import
@@ -253,9 +266,13 @@ Rails.application.routes.draw do
     member do
       patch :approve
     end
+    get :upgrade
+    get :plan
+    patch :upgrade_school
   end
 
   resources :clubs, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable] do
+    resources :dashboard
     resources :uploads do
       collection do
         post :import
