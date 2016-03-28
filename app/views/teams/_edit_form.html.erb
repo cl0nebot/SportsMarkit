@@ -35,9 +35,9 @@
 
 
 		<div class="header-tabs scrollable-tabs sticky">
-			<a class="mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
+			<%= link_to team_uploads_path(object), class: "mt10 pull-right btn btn-blue-grey button-striped button-full-striped btn-ripple mr20" do %>
 	      		<i class="ion-plus-circled fs_16 mr5"></i> Upload Team Roster
-	    	</a>
+            <% end %>
 
 			<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
 				<li class="active"><a href="#general" data-toggle="tab">General</a></li>
