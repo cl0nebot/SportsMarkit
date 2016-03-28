@@ -21,7 +21,11 @@ class UsersController < ApplicationController
       @user.increment!(:signin_count)
       flash[:success] = "Signed up."
       #Emails.user_signup(@user).deliver
-      redirect_to user_overview_path(@user)
+      if params[:registration]
+        redirect_to :back
+      else
+        redirect_to user_overview_path(@user)
+      end
     else
       render 'new'
     end
