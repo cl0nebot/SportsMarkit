@@ -1,45 +1,42 @@
-<%# cache ["v1", "v1", @cache_key] do %>
 <style>
   .sample-bg-image13:before {
-    background-image: url('<%=background_url(@user) %>');
-  }
-  .card-clickable {
-    padding-bottom: 0;
-  }
-  .sample-member9 {
-    background-image: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');
-  }
+      background-image: url('<%=background_url(@user) %>');
+    }
+    .card-clickable {
+      padding-bottom: 0;
+    }
+    .sample-member9 {
+      background-image: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');
+    }
 
-  .card-friend .user-photo {
-    float: left;
-    width: 161px;
-    height: auto;
-    border-radius: 3px 0 0 3px;
-  }
-  .card-friend .friend-content {
-    margin-left: 180px;
-  }
+    .card-friend .user-photo {
+      float: left;
+      width: 161px;
+      height: auto;
+      border-radius: 3px 0 0 3px;
+    }
+    .card-friend .friend-content {
+      margin-left: 180px;
+    }
 
-  .card.card-meal .card-body .users {
-    width: 100%;
-    height: 64px;
-    padding: 3px 20px;
-    border-top: none;
-    border-bottom: 1px solid #eee;
-    overflow: hidden;
-    text-align: center;
-    background-color: #f5f5f5;
-  }
-  .timeline .frame .timeline-date {
-    display: block;
-    color: #337ab7;
-    font-style: normal;
-    font-size: 14px;
-    margin: 10px 30px 0 30px;
-  }
+    .card.card-meal .card-body .users {
+      width: 100%;
+      height: 64px;
+      padding: 3px 20px;
+      border-top: none;
+      border-bottom: 1px solid #eee;
+      overflow: hidden;
+      text-align: center;
+      background-color: #f5f5f5;
+    }
+    .timeline .frame .timeline-date {
+      display: block;
+      color: #337ab7;
+      font-style: normal;
+      font-size: 14px;
+      margin: 10px 30px 0 30px;
+    }
 </style>
-
-
 <div class="content">
   <div class="page-header full-content bg-primary mb0" style="min-height: 141px;">
     <div class="row">
@@ -48,7 +45,7 @@
           <%= @user.name %>
           <small></small>
         </h1>
-      </div><!--.col-->
+      </div>
       <div class="col-sm-6">
         <ol class="breadcrumb">
           <li><a href="/"><i class="ion-home"></i></a></li>
@@ -60,66 +57,44 @@
               <li><a href="#" class="active"><%= @user.full_name %></a></li>
             <% end %>
           <% else %>
-             <li><a href="#" class="active"><%= @user.full_name %></a></li>
+            <li><a href="#" class="active"><%= @user.full_name %></a></li>
           <% end %>
         </ol>
       </div>
-    </div><!--.row-->
-
+    </div>
     <div class="header-tabs scrollable-tabs sticky">
       <% if @object.can_be_edited_by_user?(current_user) %>
         <%= link_to edit_user_path(@user), class: "mt10 pull-right btn-primary btn button-striped button-full-striped btn-ripple mr20" do %>
-            <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
-        <% end %>
+          <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
       <% end %>
-
-     <%= render 'shared/view_announcement_button', object: @object %>
-
-     <%= render 'shared/show_navigations'%>
+      <% end %>
+      <%= render 'shared/view_announcement_button', object: @object %>
+      <%= render 'shared/show_navigations'%>
     </div>
-  </div><!--.page-header-->
-
-
-   <!-- main content div -->
+  </div>
   <div class="row">
     <div class="col-md-12">
       <div class="tab-content without-border">
         <!-- teams -->
         <%= render 'users/show/about_tab' %>
-
         <!-- teammates -->
         <%= render 'users/show/teams_tab' %>
-
         <!-- teammates -->
         <%= render 'users/show/teammates_tab' %>
-
         <!-- calendar -->
         <%= render 'users/show/calendar_tab' %>
-        
         <!-- facilities -->
         <%= render 'users/show/facilities_tab' %>
-
         <!-- media -->
         <%= render 'users/show/media_tab' %>
-
         <!-- media -->
         <%= render 'users/show/photo_tab' %>
-
         <!-- following -->
         <%= render 'users/show/following_tab' %>
-
         <!-- fans -->
         <%= render 'users/show/fans_tab' %>
-      </div><!--.tab-content-->
+      </div>
     </div>
   </div>
-  <!-- main content div -->
-
   <%= render "shared/modals/boostrap_image_gallery_lightbox" %>
-
-  <%#= render "shared/panels/new_event" %>
-
-</div><!--.content-->
-
-<%#= render "shared/panels/new_event"%>
-<%# end %>
+</div>

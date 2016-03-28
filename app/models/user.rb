@@ -11,13 +11,13 @@ class User < ActiveRecord::Base
   friendly_id :use_for_slug, use: [:slugged, :finders]
   before_update :update_slug
   has_secure_password
-  
+
   validates_presence_of :password, :on => :create
   validates :first_name, :presence => true, length: {minimum: 2, maximum: 20}
   validates :last_name, :presence => true, length: {minimum: 2, maximum: 20}
   validates :email, :uniqueness => true, allow_blank: true
   validates :username, :uniqueness => true, allow_blank: true
-  validates :mobile_phone_number, :uniqueness => true, allow_blank: true 
+  validates :mobile_phone_number, :uniqueness => true, allow_blank: true
 
   before_save { self.email = email.downcase }
 
@@ -27,9 +27,9 @@ class User < ActiveRecord::Base
 
   after_update :password_changed?, :on => :update
   before_save :encrypt_password
-  
+
   has_many :roles, dependent: :destroy
-  
+
   # user profile
   has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile, :reject_if => :all_blank, :allow_destroy => true
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :user_profile_pictures, :reject_if => :all_blank, :allow_destroy => true
 
   has_many :events, as: :eventable
-  
+
   has_many :attendees, dependent: :destroy
   has_many :attending_events, through: :attendees, source: :events
   has_many :classifications, dependent: :destroy
@@ -45,17 +45,14 @@ class User < ActiveRecord::Base
   has_many :certificates, dependent: :destroy
   has_many :certifications, through: :certificates
   has_many :medias, as: :mediable
-  
+
   has_one :online_status
   has_many :signed_documents, dependent: :destroy
-  
+
   def self.user_types
-    ["Student Athlete", "Athlete", "Coach", "Guardian", "Athletic Director", "Club Director", "School Manager", "Team Manager"] 
-    # ["Student Athlete", "Athlete", "Coach", "Parent", "Athletic Director", "Tournament Director" ] 
-    #["Athlete", "Coach", "Parent", "Athletic Director", "Sports Blogger", "Sports Photographer", "Sports Writer", "Enthusiast", "Trainer", "Former Athlete"]  
-    
+    ["Student Athlete", "Athlete", "Coach", "Guardian", "Athletic Director", "Club Director", "School Manager", "Team Manager"]
   end
-  
+
   def self.smart_order(current_user)
     if current_user.nil?
       User.all
@@ -63,30 +60,30 @@ class User < ActiveRecord::Base
       ids = User.pluck(:id) - [current_user.id]
       new_ids = [current_user.id] << ids
       User.where(id: new_ids)
-    end 
+    end
   end
-  
+
   def minus_self
     User.where.not(id: id)
   end
-  
+
   def follows
     Fan.where(user_id: id)
   end
-  
+
   def attendances
     Attendee.where(user_id: id)
   end
-  
+
   def attending_events
     attendances.pluck(:event_id)
   end
-  
+
   def self.athletes
     user_ids = Classification.where(classification: "Athlete").pluck(:user_id)
     users = User.where(id: user_ids)
   end
-  
+
   def all_events
     Event.where("(eventable_id = ? AND eventable_type = 'User') OR (id in (?))", id, attending_events)
   end
@@ -104,7 +101,7 @@ class User < ActiveRecord::Base
     end
     type_filters.sort{|a,b| b[:count] <=> a[:count]}
   end
-  
+
   def created_by_filters
     person_to_count = Hash.new(0)
     all_events.each do |event|
@@ -123,16 +120,12 @@ class User < ActiveRecord::Base
     end
     person_filters.sort{|a,b| b[:count] <=> a[:count]}
   end
-  
+
   attr_accessor :stripe_token, :current_password
 
   def password_changed?
-    #if (provider.nil? || provider.try(:empty?))
-      if password_digest_changed?
-        # self.update_attributes(old_password: "example")
-         #Emails.password_changed(self).deliver
-      end
-      #end
+    if password_digest_changed?
+    end
   end
 
   def full_name
@@ -147,7 +140,7 @@ class User < ActiveRecord::Base
       "#{first_name} #{last_name}"
     end
   end
-  
+
   def update_slug
     if (first_name_changed? || last_name_changed?)
       existing_user = minus_self.where('first_name = ?', self.first_name).where('last_name = ?', self.last_name)
@@ -178,11 +171,11 @@ class User < ActiveRecord::Base
   def name=(val)
     self.first_name, self.middle_name, self.last_name = val.split
   end
-  
+
   def formatted_mobile_phone_number
     "#{self.profile.mobile_phone_number}"
   end
-  
+
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64
@@ -195,9 +188,8 @@ class User < ActiveRecord::Base
     save!
     SendEmail.password_reset(self).deliver
   end
-  
+
   def self.from_omniauth(auth)
-    #return nil if auth.nil?
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
@@ -205,15 +197,11 @@ class User < ActiveRecord::Base
       user.last_name = auth.info.last_name
       user.email = "#{auth.info.nickname}@facebook.com"
       user.password = SecureRandom.urlsafe_base64
-      # user.nearest_city = "New York, NY" # Default
-      #user.oauth_token = auth.credentials.token
-      #user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       if user.save
-        #UserProfilePicture.create!(user_id: user.id, remote_photo_url: auth.info.image )
       end
     end
   end
-  
+
   def is_parent?
     if Classification.where(user_id: id, classification: "Parent").present?
       true
@@ -223,7 +211,7 @@ class User < ActiveRecord::Base
       false
     end
   end
-  
+
   def is_athlete?
     if Classification.where(user_id: id, classification: "Athlete").present?
       true
@@ -233,7 +221,7 @@ class User < ActiveRecord::Base
       false
     end
   end
-  
+
   def is_coach?
     if Classification.where(user_id: id, classification: "Coach").present?
       true
@@ -241,9 +229,9 @@ class User < ActiveRecord::Base
       true
     else
       false
-    end 
+    end
   end
-  
+
   def is_athletic_director?
     if Classification.where(user_id: id, classification: "Athletic Director").present?
       true
@@ -253,23 +241,14 @@ class User < ActiveRecord::Base
       false
     end
   end
-  
-  
-  # def teammates
-  #   team_ids = relationships.where(accepted: true).pluck(:team_id)
-  #   teammate_ids = Relationship.where(team_id: team_ids, accepted: true).pluck(:user_id)
-  #   teammates = User.where(id: teammate_ids).uniq - [self]
-  # end
-  
+
   def shared_teams(user_id)
     user = User.find(user_id)
     user_team_ids = teams.pluck(:id)
     teammate_team_ids = user.teams.pluck(:id)
     user_team_ids & teammate_team_ids
   end
-  
-  
-  
+
   def self.user_names
     array = []
     User.all.each do |user|
@@ -277,7 +256,7 @@ class User < ActiveRecord::Base
     end
     array
   end
-  
+
   def self.user_json
     array = []
     User.all.each do |user|
@@ -285,7 +264,7 @@ class User < ActiveRecord::Base
     end
     array
   end
-  
+
   def self.athlete_names
     array = []
     User.athletes.each do |user|
@@ -293,7 +272,7 @@ class User < ActiveRecord::Base
     end
     array
   end
-  
+
   def pending_team?(team)
     if Relationship.where(team_id: team.id, user_id: id, accepted: nil).present?
       true
@@ -301,13 +280,13 @@ class User < ActiveRecord::Base
       false
     end
   end
-  
+
   def coached_teams
     coached_team_ids = Relationship.where(user_id: id, head: true).pluck(:team_id)
     coached_teams = Team.where(id: coached_team_ids)
   end
-  
-  
+
+
   def age
     if profile.date_of_birth.present?
       days = (Date.today - profile.date_of_birth).to_i
@@ -316,40 +295,40 @@ class User < ActiveRecord::Base
       "N/A"
     end
   end
-  
+
   def classification_list(count=0)
     if count == 0
-     classifications.pluck(:classification).join(", ")
-   else
-     classifications.pluck(:classification).first(count).join(", ")
-   end
+      classifications.pluck(:classification).join(", ")
+    else
+      classifications.pluck(:classification).first(count).join(", ")
+    end
   end
-  
+
   def classification_list_with_space(count=0)
     if count == 0
-     classifications.pluck(:classification).join(",").gsub(" ", "-").gsub(","," ").downcase
-   else
-     classifications.pluck(:classification).first(count).join(" ")
-   end
+      classifications.pluck(:classification).join(",").gsub(" ", "-").gsub(","," ").downcase
+    else
+      classifications.pluck(:classification).first(count).join(" ")
+    end
   end
-  
+
   def certification_list(count=0)
-    c = certificates.where('expiration >= ?', Time.now).pluck(:certification_id).uniq  
+    c = certificates.where('expiration >= ?', Time.now).pluck(:certification_id).uniq
     if count == 0
       Certification.where(id: c).pluck(:name).join(", ")
     else
       Certification.where(id: c).pluck(:name).first(count).join(", ")
     end
   end
-  
+
   def has_profile_picture?
     user_profile_pictures.present?
   end
-    
+
   def event_notifications
     team_ids = Relationship.where(user_id: id).pluck(:team_id)
     all_team_events_after_today = Event.where(eventable_type: "Team", eventable_id: team_ids).where('starts_at >= ?', Time.now)
-    
+
     array = []
     all_team_events_after_today.each do |event|
       unless event.attendees.where(user_id: id).present?
@@ -358,11 +337,11 @@ class User < ActiveRecord::Base
     end
     Event.where(id: array)
   end
-  
+
   def schools_and_teams
     all_schools + all_teams
   end
-  
+
   def lead_affiliation
     if all_schools.empty?
       all_teams.first
@@ -370,15 +349,15 @@ class User < ActiveRecord::Base
       all_schools.first
     end
   end
-  
+
   def image
     avatar
   end
-  
+
   def name
     full_name
   end
-  
+
   def chatroom_ids
     array = []
     rels = relationships.where.not(id: nil).each do |rel|
@@ -386,11 +365,11 @@ class User < ActiveRecord::Base
         if rel.athlete? && chatroom.specific_id == 1
           array << chatroom.id
         end
-      
+
         if rel.coach? && chatroom.specific_id == 2
           array << chatroom.id
         end
-      
+
         if parent_relationship_with_team?(chatroom.team) && chatroom.specific_id == 3
           array << chatroom.id
         end
@@ -398,8 +377,6 @@ class User < ActiveRecord::Base
     end
     array
   end
-  
-  
 
   def chatroom
     if relationships.where(accepted: true).present?
@@ -408,24 +385,22 @@ class User < ActiveRecord::Base
         if rel.athlete? && chatroom.specific_id == 1
           return chatroom.id
         end
-      
+
         if rel.coach? && chatroom.specific_id == 2
           return chatroom.id
         end
-      
+
         if parent_relationship_with_team?(chatroom.team) && chatroom.specific_id == 3
           return chatroom.id
         end
       end
     end
   end
-  
-  
-  def chatroom_group 
-    #relationships.first.athlete? ? "Athlete"
+
+  def chatroom_group
   end
-  
-  
+
+
   def online?
     if online_status.present?
       -(online_status.last_seen - Time.now) < 300
@@ -433,9 +408,9 @@ class User < ActiveRecord::Base
       false
     end
   end
-  
+
   def self.generate_temporary_password(first_name)
-    alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    alpha = ('a'..'z').to_a
     first_part = first_name.delete(' ').downcase.reverse
     name_array = first_name.split("")
     array = []
@@ -444,7 +419,7 @@ class User < ActiveRecord::Base
     end
     first_part.last(3) + array.join.last(5) + first_part.first(3)
   end
-  
+
   def self.create_new_user_and_roster_spot(first_name,last_name, mobile_number, array, params)
     password = User.generate_temporary_password(first_name)
     new_user = User.new(first_name: first_name, last_name: last_name, mobile_phone_number: mobile_number, password: password)
@@ -457,7 +432,7 @@ class User < ActiveRecord::Base
       User.send_mobile_invitation(new_user, password)
     end
   end
-  
+
   def self.create_role_from_excel(params)
     password = User.generate_temporary_password(params[:first_name])
     if params[:mobile_phone_number].present?
@@ -470,23 +445,23 @@ class User < ActiveRecord::Base
       UserlessRole.create_new_roles(["Athlete"], params)
     end
   end
-  
+
   def self.send_mobile_invitation(user, password)
     Messanger.send_sms(user.mobile_phone_number, "#{user.first_name}, Coach has created your new team hub!
                 http://www.sportsmarkit.com/login
                 Login: #{user.mobile_phone_number}
                 Password: #{password}")
   end
-  
-  
+
+
   def create_profile
     Profile.create(user_id: self.id, focus: [], specialties: [], skills: [], injuries: [], current_ailments: [])
   end
-  
+
   def pending_object?(classification, object)
     Role.where(user_id: id, roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", status: classification)
   end
-  
+
   def find_registration(object)
     object.forms.where(submittable_id: id, submittable_type: "User").last
   end

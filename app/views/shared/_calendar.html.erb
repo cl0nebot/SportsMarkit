@@ -1,41 +1,35 @@
 <div class="row">
-	<% if current_user %>
-		<% if @object.can_be_edited_by_user?(current_user) %>
-     
-		<p class="text-right">
-			<%= link_to "New Event", eval("new_#{@object.class.to_s.downcase}_event_path(@object.friendly_id)"), class: "btn btn-pink" %>
-            <%= link_to "Manage Events", eval("add_#{@object.class.to_s.downcase}_events_path(@object.friendly_id)"), class: "btn btn-pink" %>
-		</p>
-      
-		<% end %>
-	<% end %>
+  <% if current_user %>
+    <% if @object.can_be_edited_by_user?(current_user) %>
+      <p class="text-right">
+        <%= link_to "New Event", eval("new_#{@object.class.to_s.downcase}_event_path(@object.friendly_id)"), class: "btn btn-pink" %>
+        <%= link_to "Manage Events", eval("add_#{@object.class.to_s.downcase}_events_path(@object.friendly_id)"), class: "btn btn-pink" %>
+      </p>
+    <% end %>
+  <% end %>
   <div class="col-md-3">
     <div class="filters">
-    <%= form_tag "", method: :get, id: "calendar_filter", remote: true do %>
-
-      <h4 class="semi-bold no-margin">Filters</h4>
-      <hr class="mt0 mb10"/>
-    
-      <h6 class="semi-bold">Events</h6>
-      <% eventable.all_events.pluck(:event_type).uniq.each do |e_type| %>
-        <label class="btn btn-alizarin btn-block btn-white fs_16 text-left">
-          <%= check_box_tag "q[event_type_in][]", e_type %>
-          <span class="mrl5"><%= e_type %></span>
-        </label>
+      <%= form_tag "", method: :get, id: "calendar_filter", remote: true do %>
+        <h4 class="semi-bold no-margin">Filters</h4>
+        <hr class="mt0 mb10"/>
+        <h6 class="semi-bold">Events</h6>
+        <% eventable.all_events.pluck(:event_type).uniq.each do |e_type| %>
+          <label class="btn btn-alizarin btn-block btn-white fs_16 text-left">
+            <%= check_box_tag "q[event_type_in][]", e_type %>
+            <span class="mrl5"><%= e_type %></span>
+          </label>
+        <% end %>
+        <hr class="mt10 mb10"/>
+        <h6 class="semi-bold">People</h6>
+        <% eventable.all_events.includes(:user).map(&:user).uniq.compact.each do |user| %>
+          <label class="btn btn-alizarin btn-block btn-white fs_14 text-left capitalize">
+            <%= check_box_tag "q[user_id_in][]", user.id %>
+            <span class="ml5"><%= creator_name(user) %></span>
+          </label>
+        <% end %>
+        <br>
+        <%= button_tag "Clear all Filters", id: "reset_filters", class: "btn btn-white btn-block" %>
       <% end %>
-
-      <hr class="mt10 mb10"/>
-
-     <h6 class="semi-bold">People</h6>
-      <% eventable.all_events.includes(:user).map(&:user).uniq.compact.each do |user| %>
-         <label class="btn btn-alizarin btn-block btn-white fs_14 text-left capitalize">
-          <%= check_box_tag "q[user_id_in][]", user.id %>
-          <span class="ml5"><%= creator_name(user) %></span>
-        </label>
-      <% end %>
-      <br>
-    <%= button_tag "Clear all Filters", id: "reset_filters", class: "btn btn-white btn-block" %>
-  <% end %>
     </div>
   </div>
   <div class="col-md-9">

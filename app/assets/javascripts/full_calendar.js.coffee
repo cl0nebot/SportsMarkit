@@ -10,11 +10,15 @@ $(document).ready ->
     defaultView: 'month',
     height: 500,
     slotMinutes: 30,
-
-    eventSources: [{
-      url: currentSource,
-    }],
-
+    eventSources: (start, end, timezone, callback) ->
+      $.ajax
+        url: currentSource
+        dataType: 'json'
+        data:
+          start: start.toDate()
+          end: end.toDate()
+        success: (data) ->
+          callback data.calendars
     timeFormat: 'h:mmt',
     dragOpacity: "0.5"
 
