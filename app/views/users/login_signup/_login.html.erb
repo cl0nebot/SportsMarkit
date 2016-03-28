@@ -1,21 +1,21 @@
 <% cache ["v1", "v1", "login_page"] do %>
   <h5 class="text-muted semi-bold text-center">LOGIN BELOW</h5>
   <hr class="hr-333 mt10"/>
-  <%= form_tag sessions_path, id: 'login-form' do |f|   %>
+  <%= form_tag sessions_path, id: 'login-form', data: { toggle: 'validator', disable: false } do |f|   %>
     <div class="form-group">
       <div class="inputer">
-        <div class="input-wrapper">
-          <%= text_field_tag(:identifier, nil, {placeholder: "Phone number or email.", class: "form-control"}) %>
+        <div class="input-wrapper form-group">
+          <%= text_field_tag :identifier, nil, { placeholder: "Phone number or email.", class: "form-control", required: true } %>
+          <div class="help-block with-errors"></div>
         </div>
-        <div class="identifier_field"></div>
       </div>
     </div>
     <div class="form-group">
       <div class="inputer">
-        <div class="input-wrapper">
-          <%= password_field_tag(:password, nil, {placeholder: "Password", class: "form-control"}) %>
+        <div class="input-wrapper form-group">
+          <%= password_field_tag :password, nil, { placeholder: "Password", class: "form-control", required: true } %>
+          <div class="help-block with-errors"></div>
         </div>
-        <div class="password_field"></div>
       </div>
     </div>
     <div class="form-buttons clearfix m-t-10">
@@ -29,7 +29,7 @@
           <span class="text-primary semi-bold">
             <i class="fa fa-facebook"></i>
             Facebook
-					</span>
+          </span>
         <% end %>
       </div>
     </div>
