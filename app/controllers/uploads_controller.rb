@@ -45,3 +45,39 @@ class UploadsController < ApplicationController
   end
   
 end
+
+
+# class UploadsController < ApplicationController
+#   before_action :find_object, only: [:index]
+#
+#   def index
+#
+#   end
+#
+#   def import
+#     model = params[:object].constantize
+#     if params[:school_id].present?
+#       model.import_team(params[:file], params[:school_id])
+#     else
+#       model.import(params[:file], model)
+#     end
+#     redirect_to :back, notice: "Uploaded."
+#   end
+#
+#   def roster
+#     model = params[:object].constantize
+#     if params[:team_id].present?
+#       model.import_team(params[:file], params[:team_id])
+#     else
+#     end
+#     redirect_to :back, notice: "Uploaded."
+#   end
+#
+#   private
+#
+#   def find_object
+#     param = params.keys.find{|key| key =~ /(\w+)_id/}
+#     @object = $1.capitalize.constantize.find(params[param])
+#   end
+#
+# end

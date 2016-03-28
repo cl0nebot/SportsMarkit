@@ -35,59 +35,7 @@ if @object is facility, hide for now
 						</div>
 					</div>
 					<div class="panel-body">
-						<%= form_tag import_uploads_path, multipart: true do %>
-			  			<h5 class="mb0 text-primary semi-bold">1. What kind of account is the excel upload for?</h5>
-							<p class="h6 mt0">
-								<small>
-									<span class="text-black">Please select from the dropdown menu below.</span>
-								</small>
-							</p>	
-							<div class="well mb0">
-								<%= select_tag :object, options_for_select([ "School", "Team", "Club", "League", "Facility" ], "School"), id: "object-field", class: "form-control bg-white" %>
-							</div>
-						</div>
-			  		<hr class="no-margin"/>
-			  		<div class="panel-body">
-		      		<h5 class="mb0 text-primary semi-bold">2. Which account?</h5>
-							<p class="h6 mt0">
-								<small>
-									<span class="text-black">Please select the account from the dropdown menu below.</span>
-								</small>
-							</p>	
-		      		<div class="well mb0">
-		      			<%= select_tag :school_id, options_for_select(School.all.collect{ |school| [school.name, school.id] }), {:multiple => false, include_blank: true, class: "form-control bg-white"} %>
-		      		</div>
-		      	</div>
-		      	<hr class="no-margin"/>
-			  		<div class="panel-body">
-			  			<h5 class="mb0 text-primary semi-bold">3. Upload your excel file</h5>
-							<p class="h6 mt0">
-								<small>
-									<span class="text-black">Please click the button below to upload your file.</span>
-								</small>
-							</p>	
-							<div class="fileinput fileinput-new input-group well mb0" data-provides="fileinput">
-			    			<div class="form-control" data-trigger="fileinput">
-			    				<i class="glyphicon glyphicon-file fileinput-exists"></i> 
-			    				<span class="fileinput-filename"></span></div>
-			    				<span class="input-group-addon btn btn-default btn-file btn-block">
-			    				<span class="fileinput-new">Select file</span>
-			    				<span class="fileinput-exists">Change</span><%= file_field_tag :file, id: "file-field" %></span>
-			    				<a href="#" class="input-group-addon btn btn-default fileinput-exists btn-block" data-dismiss="fileinput">
-			    					Remove
-			    				</a>
-			  				</div>
-			    			<br/>
-			    			<div id="invalid-message" style="display: none">
-									<div class="alert alert-danger" role="alert">
-										Oops. Invalid file type. Please try again.
-									</div>
-								</div>
-							</div>
-			    	<hr class="no-margin"/>
-			  		<div class="panel-body">
-			    		<%= submit_tag "Import Schools",class: "btn btn-primary btn-block", disabled: true, id: "file-submit" %>
-	  				<% end %>
+						<%= render 'uploads/import_roster'%>
 					</div>
 				</div>
 			</div>

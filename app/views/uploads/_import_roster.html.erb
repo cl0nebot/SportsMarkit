@@ -1,0 +1,36 @@
+						<%= form_tag roster_uploads_path, multipart: true do %>
+			  		
+			  		
+		
+		      	<hr class="no-margin"/>
+			  		<div class="panel-body">
+			  			<h5 class="mb0 text-primary semi-bold">Upload your excel file</h5>
+							<p class="h6 mt0">
+								<small>
+									<span class="text-black">Please click the button below to upload your file.</span>
+								</small>
+							</p>	
+							<div class="fileinput fileinput-new input-group well mb0" data-provides="fileinput">
+			    			<div class="form-control" data-trigger="fileinput">
+			    				<i class="glyphicon glyphicon-file fileinput-exists"></i> 
+			    				<span class="fileinput-filename"></span></div>
+			    				<span class="input-group-addon btn btn-default btn-file btn-block">
+			    				<span class="fileinput-new">Select file</span>
+			    				<span class="fileinput-exists">Change</span><%= file_field_tag :file, id: "file-field" %></span>
+			    				<a href="#" class="input-group-addon btn btn-default fileinput-exists btn-block" data-dismiss="fileinput">
+			    					Remove
+			    				</a>
+			  				</div>
+			    			<br/>
+			    			<div id="invalid-message" style="display: none">
+									<div class="alert alert-danger" role="alert">
+										Oops. Invalid file type. Please try again.
+									</div>
+								</div>
+							</div>
+			    	<hr class="no-margin"/>
+			  		<div class="panel-body">
+                        <%= hidden_field_tag :object, "Team" %>
+                        <%= hidden_field_tag :team_id, @object.id %>
+			    		<%= submit_tag "Import Roster",class: "btn btn-primary btn-block", disabled: true, id: "file-submit" %>
+	  				<% end %>
