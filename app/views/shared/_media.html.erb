@@ -1,41 +1,36 @@
 <div class="row image-row masonry padding-50">
-	<% @pictures.each do |p| %>
-		<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
-			<a href="<%= p.image %>" title="" data-gallery="#user-gallery">
-				<img src="<%= p.image %>" alt="" class="img-responsive">
-			</a>
-		</div><!--.col-->
-	<% end %>
-
-	<% @videos.each do |vid| %>
-		<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-			<div class="card card-video card-player-orange mb15">
-				<div class="card-heading">
-					<video id="<%= vid.title %>" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" data-width="640" data-height="360" data-setup='{ "techOrder": ["youtube"], "src": "<%= vid.url %>" }'></video>
-				</div><!--.card-heading-->
-				<div class="card-body">
-					<h5 class="semi-bold no-margin"><%= vid.title %></h5>
-					<p class="small text-muted">
-						<small>Published on <%= format(vid.publish_date, 2)%></small>
-					</p>
-				</div><!--.card-body-->
-
-			</div><!--.card-->
-		</div><!--.col-md-6-->
-	<% end %>
-	<% @articles.each do |art| %>
-		<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 mb15">
-			<div class="panel panel-white box-shadow-ccc">
-				<div class="panel-header">
-				</div>
-				<div class="panel-body">
-					<h4 class="lh_28 mb0"><%= link_to art.title, art.url, :target => '_blank' %></h4>
-					<small class="text-muted fs_12">Published on <%= format(art.publish_date, 2)%></small>
-				</div>
-			</div>
-		</div>
-	<% end %>
-</div><!--.row-->
-
-
-
+  <% @pictures.each do |p| %>
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+      <a href="<%= p.image %>" title="" data-gallery="#user-gallery">
+        <img src="<%= p.image %>" alt="" class="img-responsive">
+      </a>
+    </div>
+  <% end %>
+  <% @videos.each do |vid| %>
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+      <div class="card card-video card-player-orange mb15">
+        <div class="card-heading">
+          <video id="<%= vid.title %>" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" data-width="640" data-height="360" data-setup='{ "techOrder": ["youtube"], "src": "<%= vid.url %>" }'></video>
+        </div>
+        <div class="card-body">
+          <h5 class="semi-bold no-margin"><%= vid.title %></h5>
+          <p class="small text-muted">
+            <small>Published on <%= format(vid.publish_date, 2)%></small>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <% @articles.each do |art| %>
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 mb15">
+      <div class="panel panel-white box-shadow-ccc">
+        <div class="panel-header">
+        </div>
+        <div class="panel-body">
+          <h4 class="lh_28 mb0"><%= link_to art.title, art.url, :target => '_blank' %></h4>
+          <small class="text-muted fs_12">Published on <%= format(art.publish_date, 2)%></small>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
