@@ -131,11 +131,20 @@
                 <li class="has-action-left has-action-right">
                   <%= link_to eval("edit_#{klass}_path(@object)"), class: "visible" do %>
                     <div class="list-action-left">
-                      <i class="ion-calendar icon-circle"></i>
+                      <i class="ion-person icon-circle"></i>
                     </div>
                     <div class="list-content">
                       <span class="title">Edit Your Profile</span>
-                      <span class="caption">Complete all the information.</span>
+                      <span class="caption">Update or complete your public profile.</span>
+                      <span class="caption">
+                        <ol class="small list">
+                          <li>General</li>
+                          <li>Social Media</li>
+                          <li>Measurables</li>
+                          <li>Privacy Settings</li>
+                          <li>Set Password</li>
+                        </ol> 
+                      </span>
                     </div>
                     <div class="list-action-right">
                       <span class="top">15 min</span>
@@ -146,11 +155,18 @@
                 <li class="has-action-left has-action-right">
                   <%= link_to "/#{klass.pluralize}/#{@object.slug}/edit#tab_media",  class: "visible" do %>
                     <div class="list-action-left">
-                      <i class="ion-calendar icon"></i>
+                      <i class="ion-android-upload icon"></i>
                     </div>
                     <div class="list-content">
                       <span class="title">Add Photo, Articles, and Video</span>
-                      <span class="caption">Dynamically procrastinate B2C users after installed base benefits.</span>
+                      <span class="caption">Enhance your profile with media.</span>
+                      <span class="caption">
+                        <ol class="small list">
+                          <li>Photos</li>
+                          <li>Videos</li>
+                          <li>Articles and Links</li>
+                        </ol> 
+                      </span>
                     </div>
                     <div class="list-action-right">
                       <span class="top">2 hr</span>
@@ -159,22 +175,6 @@
                   <% end %>
                 </li>
               </ul>
-             
-              <%#= link_to "View/Manage Registrations", eval("#{klass}_registrations_path(@object)") %>
-              <hr/>
-              
-              <h5>User Flow</h5>
-              <ol>
-                <li>setup (change classification)</li>
-                <li>build league, build team, build school, build facility, build club</li>
-                <li>claim all.</li>
-                <li>chat with friends</li>
-                <li>accept parents</li>
-                <li>privacy settings</li>
-                <li>measurables</li>
-                <li>manage teams groups i'm apart of</li>
-                <li>Events (?)</li>
-              </ol> 
 
             <% end %>
           </div>
@@ -298,42 +298,6 @@
                 
             <% else %>
 
-              <ul class="list-material">
-                <%= link_to "Return to Profile",  eval("edit_#{klass}_path(@object)") %></br>
-                <li class="has-action-left has-action-right">
-                  <%= link_to eval("edit_#{klass}_path(@object)"), class: "visible" do %>
-                    <div class="list-action-left">
-                      <i class="ion-calendar icon-circle"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">Edit Your Profile</span>
-                      <span class="caption">Complete all the information.</span>
-                    </div>
-                    <div class="list-action-right">
-                      <span class="top">15 min</span>
-                      <i class="ion-android-done bottom"></i>
-                    </div>
-                  <% end %>
-                </li>
-                <li class="has-action-left has-action-right">
-                  <%= link_to "/#{klass.pluralize}/#{@object.slug}/edit#tab_media",  class: "visible" do %>
-                    <div class="list-action-left">
-                      <i class="ion-calendar icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">Add Photo, Articles, and Video</span>
-                      <span class="caption">Dynamically procrastinate B2C users after installed base benefits.</span>
-                    </div>
-                    <div class="list-action-right">
-                      <span class="top">2 hr</span>
-                      <i class="ion-android-done bottom"></i>
-                    </div>
-                  <% end %>
-                </li>
-              </ul>
-
-
-              <br/>
               <h5 class="bold">Account Management</h5>
               <ul class="list-material">
                 <!-- add event -->
@@ -358,17 +322,7 @@
               <hr/>
               
               <h5>User Flow</h5>
-              <ol>
-                <li>setup (change classification)</li>
-                <li>build league, build team, build school, build facility, build club</li>
-                <li>claim all.</li>
-                <li>chat with friends</li>
-                <li>accept parents</li>
-                <li>privacy settings</li>
-                <li>measurables</li>
-                <li>manage teams groups i'm apart of</li>
-                <li>Events (?)</li>
-              </ol> 
+              
 
             <% end %>
 
