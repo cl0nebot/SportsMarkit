@@ -44,7 +44,7 @@
         <div class="panel box-shadow-ccc">
           <div class="panel-heading">
             <div class="panel-title">
-              <h4 class="text-primary">Build Your Organization</h4>
+              <h4 class="text-primary">Build Your Account</h4>
             </div>
           </div>
           <div class="panel-body">
@@ -55,6 +55,31 @@
               <h5 class="bold">Public Profile</h5>
               <ul class="list-material">
                 <li class="has-action-left has-action-right">
+                  <a href="#" class="visible">
+                    <div class="list-action-left">
+                      <i class="ion-person icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">View Profile</span>
+                      <span class="caption">Update or complete your public profile.</span>
+                      <span class="caption pt10">
+                        <ol class="small list">
+                          <li>Home</li>
+                          <li>Media</li>
+                          <li>Following</li>
+                          <li>Fans</li>
+                          <li>Teams</li>
+                          <li>Teammates</li>
+                        </ol> 
+                      </span>
+                    </div>
+                    <div class="list-action-right">
+                      <span class="top">15 min</span>
+                      <i class="ion-android-done bottom"></i>
+                    </div>
+                  </a>
+                </li>
+                <li class="has-action-left has-action-right">
                   <%= link_to eval("edit_#{klass}_path(@object)"), class: "visible" do %>
                     <div class="list-action-left">
                       <i class="ion-gear-a icon"></i>
@@ -62,6 +87,13 @@
                     <div class="list-content">
                       <span class="title">Edit Your Profile</span>
                       <span class="caption">Update or complete your organization profile.</span>
+                      <span class="caption pt10">
+                        <ol class="small list">
+                          <li>General</li>
+                          <li>Social Media</li>
+                          <li>Upload Media</li>
+                        </ol> 
+                      </span>
                     </div>
                     <div class="list-action-right">
                       <span class="top">15 min</span>
@@ -132,8 +164,8 @@
                       <i class="ion-android-clipboard icon"></i>
                     </div>
                     <div class="list-content">
-                      <span class="title">Mange Roster</span>
-                      <span class="caption">Update or complete your organization profile.</span>
+                      <span class="title">Manage Roster</span>
+                      <span class="caption">Build and modify your player roster.</span>
                     </div>
                     <div class="list-action-right">
                       <span class="top">15 min</span>
@@ -148,7 +180,42 @@
                     </div>
                     <div class="list-content">
                       <span class="title">Manage Team Admins</span>
-                      <span class="caption">Enhance your profile with media.</span>
+                      <span class="caption">Invite new admins and assign privileges.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+
+              <br/>
+              <h5 class="bold">Affiliate Accounts</h5>
+              <ul class="list-material">
+                <li class="has-action-left has-action-right">
+                  <a href="#" class="visible">
+                    <div class="list-action-left">
+                      <i class="ion-plus-circled icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">Create or Add Facilities</span>
+                      <span class="caption">Create a new facility or add an existing facility to your account.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <span class="top">15 min</span>
+                      <i class="ion-android-done bottom"></i>
+                    </div>
+                  </a>
+                </li>
+                <li class="has-action-left has-action-right">
+                  <a href="#" class="visible">
+                    <div class="list-action-left">
+                      <i class="ion-plus-circled icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">Join Leagues</span>
+                      <span class="caption">Add an existing league to your account.</span>
                     </div>
                     <div class="list-action-right">
                       <span class="top">2 hr</span>
@@ -179,7 +246,7 @@
                           <li>Following</li>
                           <li>Fans</li>
                           <li>Teams</li>
-                          <li>Teammages</li>
+                          <li>Teammates</li>
                         </ol> 
                       </span>
                     </div>
