@@ -33,7 +33,7 @@
 				<!-- panel body -->
 				<div class="panel-body m-b-30 pr40 pl40">
 
-					<%= form_for [@form], url: registration_pay_path(@form.id), html:{class: ""} do |f| %>
+					<%= form_for [@form], url: registration_pay_path(@form.id), html:{class: "registration_card_form"} do |f| %>
 
 						<div class="form-row text-center">
 	        		<div class="row example-row no-margin">
@@ -43,6 +43,7 @@
 		            		<%= @form.selected_option.option.name %>
 		            	</label>
 		            	<h1 class="text-center no-margin semi-bold"><%= number_to_currency(@form.selected_option.option.price, precision: 0) %> <small class="small h6">/year</small></h1>
+                                  <%= hidden_field_tag :amount, @form.selected_option.option.price %>
 									
 								</div><!--.col-md-9-->
 							</div><!--.row-->
@@ -132,7 +133,7 @@
 				<div class="panel-footer form-layout">
 					<br/>
 						<%= f.submit value: "Upgrade Account", class: "btn btn-primary btn-block "%>	
-  					<%= f.hidden_field :stripe_token %>
+  					<%= hidden_field_tag :stripe_token %>
   					<br/>
 				</div><!--.panel-body-->
 				<% end %>

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   include ClassificationCount
   include EventDetail
   include Common
+  include StripeRegistration
 
   extend FriendlyId
   friendly_id :use_for_slug, use: [:slugged, :finders]
