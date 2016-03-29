@@ -1,3 +1,4 @@
+<% klass = @object.class.to_s.downcase %>
 <div class="content">
   
   <!-- page header -->
@@ -12,7 +13,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb">
           <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="<%= teams_path %>">teams</a></li>
+          <li><a href="<%= eval("#{klass.pluralize}_path") %>"><%= klass.pluralize %></a></li>
           <li><a href="#">Dashboard</a></li>
           <li><a href="#" class="active">Edit</a></li>
         </ol>
@@ -28,13 +29,11 @@
   <h3 class="text-center">
     Everything you need to manage your account.
   </h3>
-  <% klass = @object.class.to_s.downcase %>
+  
     <p class="small-text text-center">
-      <% unless klass == "user"%>
         <%= link_to eval("#{klass}_path(@object)") do %>
           <i class="ion-home"></i>  Return to Profile
         <% end %> 
-      <% end %> 
     </p>
 
     <hr class="no-margin"/>
@@ -48,14 +47,14 @@
             </div>
           </div>
           <div class="panel-body">
-            <% klass = @object.class.to_s.downcase %>
+
 
             <% unless klass == "user"%>
               
               <h5 class="bold">Public Profile</h5>
               <ul class="list-material">
                 <li class="has-action-left has-action-right">
-                  <a href="#" class="visible">
+                   <a href="<%= eval("#{klass}_path(@object)") %>" class="visible">
                     <div class="list-action-left">
                       <i class="ion-person icon"></i>
                     </div>
@@ -156,10 +155,11 @@
               <% end %>
 
               <br/>
+              <% if @object.instance_of? Team%>
               <h5 class="bold">Player Roster and Staff</h5>
               <ul class="list-material">
                 <li class="has-action-left has-action-right">
-                  <a href="#" class="visible">
+                  <a href="/teams/<%= @object.id %>/#tab_roster" class="visible">
                     <div class="list-action-left">
                       <i class="ion-android-clipboard icon"></i>
                     </div>
@@ -174,7 +174,7 @@
                   </a>
                 </li>
                 <li class="has-action-left has-action-right">
-                  <a href="#" class="visible">
+                  <a href="/teams/<%= @object.id %>/#tab_admin" class="visible">
                     <div class="list-action-left">
                       <i class="ion-locked icon"></i>
                     </div>
@@ -189,6 +189,8 @@
                   </a>
                 </li>
               </ul>
+              <% end %>
+              
 
               <br/>
               <h5 class="bold">Affiliate Accounts</h5>
@@ -224,15 +226,35 @@
                   </a>
                 </li>
               </ul>
+              
+              
+              
+              
+              
+              
+              
+              
 
 
             <% else %>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
 
               <h5 class="bold">Public Profile</h5>
 
               <ul class="list-material">
+                  
                 <li class="has-action-left has-action-right">
-                  <a href="#" class="visible">
+                  <a href="<%= eval("#{klass}_path(@object)") %>" class="visible">
                     <div class="list-action-left">
                       <i class="ion-person icon"></i>
                     </div>
