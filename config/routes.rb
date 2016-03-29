@@ -180,7 +180,7 @@ Rails.application.routes.draw do
     end
     get :upgrade
     get :plan
-    patch :upgrade_school
+    patch :upgrade_team
   end
 
   resources :facilities, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable] do
@@ -214,14 +214,13 @@ Rails.application.routes.draw do
     get :remove_facility
     get :upgrade
     get :plan
-    patch :upgrade_school
+    patch :upgrade_facility
   end
 
   resources :tournaments
   resources :leagues, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :teamable] do
     resources :dashboard
     resources :facilities
-    get :upgrade
     resources :uploads do
       collection do
         post :import
@@ -244,6 +243,9 @@ Rails.application.routes.draw do
     end
     resources :media
     resources :photos
+    get :upgrade
+    get :plan
+    patch :upgrade_league
   end
   resources :fans
   resources :attendees
@@ -276,9 +278,6 @@ Rails.application.routes.draw do
     member do
       patch :approve
     end
-    get :upgrade
-    get :plan
-    patch :upgrade_school
   end
 
   resources :clubs, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :teamable] do
