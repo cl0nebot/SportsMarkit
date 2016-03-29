@@ -20,6 +20,7 @@
     <div class="inputer">
       <div class="input-wrapper form-group">
         <input class="form-control street_2" id="<%= "#{model}_address_attributes_street_2"%>" name="<%= "#{model}[address_attributes][street_2]"%>" required="required" type="text" value="<%= params[:parent_address].present? ? owner.address.street_2 : "" %>">
+        <div class="help-block with-errors"></div>
       </div>
     </div>
   </div>
