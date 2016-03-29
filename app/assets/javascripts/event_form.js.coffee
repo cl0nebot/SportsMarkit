@@ -14,7 +14,7 @@ eventTypeTrigger = ->
     type = $('#event_event_type').val()
     if type is 'Game' or type is 'Scrimmage'
       $('.opponent-row').removeClass('hide')
-      $('.repeat-type-row').toggleClass('hide')
+      $('.repeat-type-row').addClass('hide')
       $('#event_repeat_type').val('single')
     else
       $('.repeat-type-row').removeClass('hide')
