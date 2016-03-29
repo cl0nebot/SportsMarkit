@@ -43,9 +43,8 @@ class SignedDocumentsController < ApplicationController
             status: 'sent'
           )
 
-          signed_doc = SignedDocument.first_or_initialize(user: current_user, document: @document, signed: false)
+          signed_doc = SignedDocument.where(user: current_user, document: @document, signed: false).first_or_initialize
           signed_doc.update envelope_id: @envelope_response["envelopeId"]
-
           response = client.get_recipient_view(
             envelope_id: @envelope_response["envelopeId"],
             name: name,
@@ -71,7 +70,7 @@ class SignedDocumentsController < ApplicationController
       file_path = Rails.root.join("docusign_docs/#{SecureRandom.hex}.pdf").to_s
       file = client.get_document_from_envelope(
         envelope_id: signed_doc.envelope_id,
-        document_id: signed_doc.document_id,
+        document_id: 1,
         local_save_path: file_path
       )
       signed_doc.update(signed: true, file: File.open(file))
