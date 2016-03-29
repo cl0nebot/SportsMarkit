@@ -4,10 +4,16 @@
 													<%= image_tag(registration.registrant.avatar, class: "face-radius", alt:"") %>
 												</div>
 												<div class="list-content">
-													<span class="title"><%= registration.registrant.full_name %></span>
+													<span class="title"><%= registration.registrant.full_name %> </span>
+                                                    <% if registration.registrant.has_registered_for?(@object) %>
+                                                     <small><%= link_to "(View Details)", "/#{registration.formable_type.underscore.pluralize}/#{registration.formable.slug}/registrations/#{registration.id}/registrant" %></small>
+                                                    <% end %>
+                                                    
+                                                   
                                                     <span class="caption">
                                                     <% if registration.selected_option.present? %>
-													 <%= registration.selected_option.option.name  %>, <%= number_to_currency(registration.selected_option.option.price) %>                                                        <% else %> 
+													 <%= registration.selected_option.option.name  %>, <%= number_to_currency(registration.selected_option.option.price) %>                                                        
+                                                     <% else %> 
                                                       No option selected.
                                                       <% end %>
                                                   </span>

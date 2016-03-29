@@ -59,7 +59,7 @@
 								<div class="panel-body without-padding">
 									<ul class="list-material wide">
                                         <% @registrations.each do |registration| %>
-                                            <%= render 'registrations/registrant', registration: registration %>
+                                            <%= render 'registrations/registrant', registration: registration, object: @object %>
                                         <% end %>
 									</ul>
 								</div><!--.panel-body-->

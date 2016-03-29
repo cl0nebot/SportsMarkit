@@ -125,6 +125,7 @@ Rails.application.routes.draw do
     end
     resources :registrations do
       get :register
+      get :registrant
     end
     resources :forms do
       resources :options
@@ -160,6 +161,7 @@ Rails.application.routes.draw do
     end
     resources :registrations do
       get :register
+      get :registrant
     end
     resources :photos
     resources :profile_pictures, only: %w[create update destroy]
@@ -191,6 +193,7 @@ Rails.application.routes.draw do
     end
     resources :registrations do
       get :register
+      get :registrant
     end
     resources :forms do
       resources :options
@@ -227,6 +230,7 @@ Rails.application.routes.draw do
     end
     resources :registrations do
       get :register
+      get :registrant
     end
     resources :forms do
       resources :options
@@ -287,6 +291,7 @@ Rails.application.routes.draw do
     end
     resources :registrations do
       get :register
+      get :registrant
     end
     resources :forms do
       resources :options

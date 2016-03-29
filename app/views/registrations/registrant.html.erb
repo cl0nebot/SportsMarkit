@@ -1,0 +1,23 @@
+<h3><%= @form.selected_option.option.name %></h3>
+
+<h3>Account Paid: <%= number_to_currency(@form.selected_option.option.price) %></h3>
+
+<% @form.attributes.each do |attribute|  %>
+
+    <% unless @form.send(attribute.first).blank? %>
+        <% unless  ["id", "formable_type", "formable_id", "submittable_id", "submittable_type", "created_at"].include? attribute.first %>
+            <% if attribute.first == "submitter_id" %>
+            <b> Submitted By:</b> <%= User.find(attribute.last).name %> 
+            <% elsif attribute.first == "updated_at" %>
+            <b> Registration Date:</b> <%= format(attribute.last, 4) %> 
+            
+            <% else %>
+           <b> <%= pretty_column(attribute.first).titleize %>:</b>
+          <%= @form.send(attribute.first) %>
+          <% end %>
+      
+      </br>
+        <% end%>
+    <% end %>
+
+<% end %>
