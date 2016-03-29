@@ -27,7 +27,7 @@ module Access
       
     elsif self.class.to_s == "Team"
       if self.teamable.present? 
-        if Role.where(user_id: current_user.id, status: "Active", roleable_type: self.teamable.class.to_s, roleable_id: self.teamable.id, role: ["Athletic Director", "League Manager", "Admin"] ).present?
+        if Role.where(user_id: current_user.id, status: "Active", roleable_type: self.teamable.class.to_s, roleable_id: self.teamable.id, role: ["Athletic Director", "League Manager", "Admin", "Club Director"] ).present?
           true
         else
           false
