@@ -212,6 +212,7 @@
       this.defer($el, function () {
         var data = {}
         data[$el.data('remote-param')] = getValue($el)
+        $.extend(data, $el.data('remote-additional-params'))
         var el = $(el)
         $.get($el.data('validation-remote'), data)
           .fail(function (jqXHR, textStatus, error) { errors.push(getErrorMessage('validation-remote') || jqXHR.responseJSON.error) })

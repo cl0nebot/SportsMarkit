@@ -152,7 +152,10 @@ class UsersController < ApplicationController
     number = params[:number].to_s.gsub(/[^\d]/, "")
     email = params[:email].to_s.downcase
     if number.present? || email.present?
-      @users = User.where("mobile_phone_number = '#{number}' or email = '#{email}'")
+      conditions = []
+      conditions << "mobile_phone_number = '#{number}'" if number.present?
+      conditions << "email = '#{email}'" if email.present?
+      @users = User.where(conditions.join(" or "))
       if current_user.present? && params[:type] != "other"
         if @users.include? current_user
           user_exists = false

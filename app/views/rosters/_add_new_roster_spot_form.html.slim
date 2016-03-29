@@ -44,7 +44,7 @@
         .col-md-12
           .inputer
             .input-wrapper.form-group
-              = f.text_field :mobile_phone_number, class: "form-control", required: true, "data-validation-remote" => "/checkemail", "data-remote-param" => "type=other&number", "data-phone" => true
+              = f.text_field :mobile_phone_number, class: "form-control", required: true, "data-validation-remote" => "/checkemail", "data-remote-param" => "number", "data-phone" => true, "data-remote-additional-params" => { type: "other" }.to_json
               .help-block.with-errors
     .col-md-6
       .row.example-row
