@@ -1,0 +1,94 @@
+javascript:
+  $(function() {
+   var qsRegex;
+   var $grid = $('.facilities').isotope({
+     itemSelector: '.element-item',
+     layoutMode: 'fitRows',
+     filter: function() {
+       return qsRegex ? $(this).text().match(qsRegex) : true;
+     }
+   });
+   var $quicksearch = $('.quicksearch-facilities').keyup(debounce(function() {
+     qsRegex = new RegExp($quicksearch.val(), 'gi');
+     $grid.isotope();
+   }, 200));
+  });
+  function debounce(fn, threshold) {
+    var timeout;
+    return function debounced() {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+      function delayed() {
+        fn();
+        timeout = null;
+      }
+      timeout = setTimeout(delayed, threshold || 100);
+    }
+  }
+- if current_user
+  - if @object.can_be_edited_by_user?(current_user)
+    #admin.tab-pane.tab-top-margin
+      .row
+        .col-md-8.col-md-offset-2
+          .pull-right
+            a.mr10.btn.btn-primary data-toggle="collapse" href="#add_user"
+              i.ion-person-add.mr5
+              | Add User
+            a.btn.btn-primary.mr10 data-toggle="modal" href="#panel-new-facility"
+              i.ion-plus-circled.mr5
+              | Add Facility
+            a.btn.btn-primary data-toggle="modal" href="#panel-new-team-league"
+              i.ion-plus-circled.mr5
+              | Add League
+      .pt40
+        .row
+          .col-md-8.col-md-offset-2
+            .panel.panel-transparent.box-shadow-ccc
+              .panel-heading.no-margin
+                #admin-count.panel-title
+                  = render 'rosters/admin_count', admins: @admins
+                  h3.semi-bold.fs_20.mb0
+                    | Administrative Users
+              hr.no-margin/
+              #admins-of-team.panel-body.no-padding
+                = render 'rosters/admins_of_team', admins: @admins
+            br/
+            #add_user.collapse
+              .panel.box-shadow-ccc
+                .panel-heading.no-margin
+                  #admin-count.panel-title
+                    h3.semi-bold.fs_20.mb0
+                      | Add a New User
+                .panel-body.padding-40
+                  .row
+                    .col-md-3
+                      .row.example-row
+                        .col-md-12
+                          h5 Does this user already have a SportsMarkit Account?
+                          br/
+                        h5.bold 1. Find User
+                        .inputer
+                          .input-wrapper
+                            = form_tag find_user_rosters_path, method: :get, remote: true
+                              = select_tag  'user_id', options_from_collection_for_select(User.smart_order(current_user), "id", "name"), {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0 autosubmit"  }
+                              = hidden_field_tag :team_id, @team.id
+                        br/
+                        h5.bold 2. Complete Form
+                    .col-md-offset-1.col-md-8
+                      #new-roster-spot-form
+                        .border
+                          = render 'rosters/add_new_roster_spot_form', user: @new_user, team: @team
+        br/
+        .row
+          .col-md-8.col-md-offset-2
+            .panel.panel-transparent.box-shadow-ccc
+              .panel-heading.no-margin
+                #coach-count.panel-title
+                  span.ion-clipboard.mr5.pull-right
+                  h3.semi-bold.fs_20.mb0
+                    | Pending Users
+              .panel-body.no-padding
+                ul.list-material.has-hidden.pending-members
+                  - @join_requests.each do |m|
+                    = render 'rosters/pending', m: m
