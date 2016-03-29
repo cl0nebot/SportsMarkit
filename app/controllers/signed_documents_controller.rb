@@ -52,9 +52,9 @@ class SignedDocumentsController < ApplicationController
             return_url: custom_path
           )
           redirect_to response["url"]
-        rescue
-          flash[:error] = "Document file not found."
-          redirect_to :back
+        # rescue
+        #   flash[:error] = "Document file not found."
+        #   redirect_to :back
         end
       else
         flash[:error] = "Document not found."
