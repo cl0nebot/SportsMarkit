@@ -16,6 +16,11 @@ class OptionsController < ApplicationController
     @option.save
   end
   
+  def update
+    @option = Option.find(params[:id])
+    @option.update_attributes(option_params)
+  end
+  
   def destroy
     @option = Option.find(params[:id])
     @option.destroy
