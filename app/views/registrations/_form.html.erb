@@ -7,11 +7,13 @@
   <%= f.hidden_field :submitter_id, value: current_user.nil? ? nil : current_user.id %>
   <% end %>
   
-  <% user = User.find(submitter.id) %>
-  <% if user.has_registered_for?(object) %>
-      <%= user.name %> has already registered for <%= object.name %>
+  <% if current_user %>
+      <% user = User.find(submitter.id) %>
+      <% if user.has_registered_for?(object) %>
+          <%= user.name %> has already registered for <%= object.name %>
+      <% end %>
   <% end %>
-
+  
   <h4 class="text-primary semi-bold">2. Which option are you registering for?</h4>
   <div class="well">
     <h6 class="semi-bold text-muted">Registration Options</h6>
@@ -219,11 +221,12 @@
   
  
   <br/>
- 
-  <% unless user.has_registered_for?(object) %>
-    <%= submit_tag "Submit Registration", class: "btn btn-primary pull-right" %>
-  <% else %>
-    <%= button_tag "#{user.name} has already registered for #{object.name}", class: "btn btn-primary pull-right", disabled: true %>
+ <% if current_user %>
+      <% unless user.has_registered_for?(object) %>
+        <%= submit_tag "Submit Registration", class: "btn btn-primary pull-right" %>
+      <% else %>
+        <%= button_tag "#{user.name} has already registered for #{object.name}", class: "btn btn-primary pull-right", disabled: true %>
+      <% end %>
   <% end %>
 
 <% end %>
