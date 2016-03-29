@@ -120,7 +120,6 @@ ActiveRecord::Schema.define(version: 20160327232253) do
     t.string   "issuer"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "file"
   end
 
   create_table "chatrooms", force: true do |t|
@@ -916,7 +915,6 @@ ActiveRecord::Schema.define(version: 20160327232253) do
     t.string   "provider"
     t.string   "uid"
     t.string   "mobile_phone_number"
-    t.integer  "temporary_school_ids"
     t.integer  "signin_count",            default: 0
   end
 
