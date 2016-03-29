@@ -1,0 +1,70 @@
+<div class="row example-row">
+    <div class="col-md-12">
+        <h4>Street 1</h4>
+    </div>
+    <div class="col-md-12">
+        <div class="inputer">
+            <div class="input-wrapper form-group">
+                <input class="form-control" id="team_address_attributes_street_1" name="team[address_attributes][street_1]" required="required" type="text" value="<%= params[:parent_address].present? ? owner.address.street_1 : "" %> ">
+                <div class="help-block with-errors"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row example-row">
+    <div class="col-md-12">
+        <h4>Street 2</h4>
+    </div>
+    <div class="col-md-12">
+        <div class="inputer">
+            <div class="input-wrapper form-group">
+                <input class="form-control" id="team_address_attributes_street_2" name="team[address_attributes][street_2]" required="required" type="text" value="<%= params[:parent_address].present? ? owner.address.street_2 : "" %> ">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row example-row">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="col-md-12">
+                <h4>City</h4>
+            </div>
+            <div class="col-md-12">
+                <div class="inputer">
+                    <div class="input-wrapper form-group">
+                        <input class="form-control" id="team_address_attributes_city" name="team[address_attributes][city]" required="required" type="text" value="<%= params[:parent_address].present? ? owner.address.city : "" %> ">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="col-md-12">
+                <h4>State</h4>
+            </div>
+            <div class="col-md-12">
+                <div class="inputer">
+                    <div class="input-wrapper form-group">
+                        <input class="form-control" id="team_address_attributes_state" name="team[address_attributes][state]" required="required" type="text" value="<%= params[:parent_address].present? ? owner.address.state : "" %> ">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-12">
+                <h4>Zipcode</h4>
+            </div>
+            <div class="col-md-12">
+                <div class="inputer">
+                    <div class="input-wrapper form-group">
+                        <input class="form-control" id="team_address_attributes_postcode" name="team[address_attributes][postcode]" required="required" type="text" value="<%= params[:parent_address].present? ? owner.address.postcode : "" %> ">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

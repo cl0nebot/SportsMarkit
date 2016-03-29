@@ -41,13 +41,19 @@
     <% end %>
     <%= yield %>
     <!-- side panels -->
-    <%= render "shared/panels/new_club" %>
-    <% unless params[:controller] == "setup"%>
+    <% unless params[:action] == "new" %>
+      <%= render "shared/panels/new_club" %>
+    <% end %>
+    
+    <% unless params[:controller] == "setup" or params[:action] == "new" %>
       <%= render "shared/panels/new_school" %>
       <%= render "shared/panels/new_team" %>
     <% end %>
+    
+    <% unless params[:action] == "new" %>
     <%= render "shared/panels/new_facility" %>
     <%= render "shared/panels/new_league" %>
+    <% end %>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <%= render "shared/sidebar_nav" %>
     <!-- BEGIN INITIALIZATION-->

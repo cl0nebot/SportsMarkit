@@ -108,6 +108,10 @@ class TeamsController < ApplicationController
     
   end
   
+  def parent_address
+    @owner = params[:object_type].constantize.find(params[:object_id])
+  end
+  
   protected
   
   def find_teamable

@@ -27,8 +27,15 @@ class RegistrationsController < ApplicationController
   end
   
   def pay
-    stripe_token = params[:form][:stripe_token]
-    @form.update_attributes(paid: true)
+    stripe_token = params[:stripe_token]
+    amount = params[:amount].to_i * 100
+    
+    begin
+      raise "Stripe token not present. Cannot process transaction." if stripe_token.blank?
+      current_user.process_transaction(params, amount)
+    
+      @form.update_attributes(paid: true)
+    end
     redirect_to eval("#{@form.formable.class.to_s.underscore}_registrations_path(@form.formable)")
   end
   
