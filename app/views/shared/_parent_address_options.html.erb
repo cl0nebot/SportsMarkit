@@ -1,7 +1,7 @@
 <% if owner.present? %>
     <% if params[:parent_address].present? %>
-        (<%= link_to "Clear", parent_address_school_teams_path(owner_type: owner.class.to_s, owner_id: owner.id, object: object), remote: true %>)
+        (<%= link_to "Clear", eval("parent_address_#{owner.class.to_s.downcase}_teams_path(owner_type: owner.class.to_s, owner_id: owner.id, object: object)"), remote: true %>)
     <% else %>
-        (<%= link_to "Use Address from #{owner.name}", parent_address_school_teams_path(parent_address: true, owner_type: owner.class.to_s, owner_id: owner.id, object: object), remote: true %>)
+        (<%= link_to "Use Address from #{owner.name}", eval("parent_address_#{owner.class.to_s.downcase}_teams_path(parent_address: true, owner_type: owner.class.to_s, owner_id: owner.id, object: object)"), remote: true %>)
     <% end %>
 <% end %>
