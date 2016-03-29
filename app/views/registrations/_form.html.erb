@@ -10,7 +10,9 @@
   <% if current_user %>
       <% user = User.find(submitter.id) %>
       <% if user.has_registered_for?(object) %>
-          <%= user.name %> has already registered for <%= object.name %>
+          <div class="alert alert-danger-transparent" role="alert">
+            <strong><%= user.name %></stron> has already registered for <%= object.name %>
+          </div>
       <% end %>
   <% end %>
   
