@@ -1,7 +1,4 @@
 								
-                                     
-                                    
-
 <%= form_for new_user, url: rosters_path, method: :post, html: {id: "roster-form", data: {remote: true}} do |f| %>
 <div class="pull-right" id="roster-spot-success" style="display: none">
 <font size="2" color="green">Successfully created roster spot.</font>
@@ -69,8 +66,13 @@
 			<div class="col-md-12">
 				<div class="inputer">
 					<div class="input-wrapper">
-						<%= text_field_tag :phone_number,"", type: "text", class: "form-control", placeholder: "" %>
-						<%= hidden_field_tag :mobile_phone_number,"", type: "text", class: "form-control", placeholder: "" %>
+                        <% if user.persisted? %>
+  						  <%= text_field_tag :phone_number, user.hidden_phone_number, type: "text", class: "form-control", placeholder: "" %>
+  						  <%= hidden_field_tag :mobile_phone_number, user.mobile_phone_number, type: "text", class: "form-control", placeholder: "" %>
+                        <% else %>
+    						<%= text_field_tag :phone_number,"", type: "text", class: "form-control", placeholder: "" %>
+    						<%= hidden_field_tag :mobile_phone_number,"", type: "text", class: "form-control", placeholder: "" %>
+                        <% end %>
 						
 					</div>
 					<div class="mobile_phone_number_field"></div>
@@ -107,14 +109,14 @@
 					<%= hidden_field_tag :team_id,"", value: team.id %>
 
 					<div class="checkboxer form-inline mb5">
-                      	<%= check_box_tag :athlete, 1,false, id: "athlete"%>
+                      	<%= check_box_tag :athlete, 1, user.persisted? ? (user.classifications.pluck(:classification) & ["Athlete", "Student Athlete"]).present? : false , id: "athlete"%>
                       	<label for="athlete">
                       		Athlete?
                       	</label>
                     </div>
 					
 					<div class="checkboxer form-inline mb5">
-                      	<%= check_box_tag :coach, 1,false, id: "coach"%>
+                      	<%= check_box_tag :coach, 1, user.persisted? ? user.classifications.pluck(:classification).include?("Coach") : false , id: "coach"%>
                       	<label for="coach">Coach?
                       	</label>
                     </div>

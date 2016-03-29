@@ -48,6 +48,15 @@ class RostersController < ApplicationController
     end
   end
   
+  def find_user
+    @user = User.find(params[:user_id])
+    @team = Team.find(params[:team_id])
+    respond_to do |format|
+      format.js
+      format.html { redirect_to :back }
+    end
+  end
+  
   #Parameters: {"utf8"=>"✓", "authenticity_token"=>"c9leG2pZ+ByyH1nxaILKu1av2lDp5GLriI/z4E0PHmk=", "close_admin"=>"true", "role"=>{"title"=>""}, "coach"=>"true", "commit"=>"Update Team Member", "object_type"=>"Role", "id"=>"21319"}
   
   def update

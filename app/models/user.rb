@@ -485,4 +485,9 @@ class User < ActiveRecord::Base
   def dont_attend_event?(event)
     attendees.where(event_id: event.id, no: true).present?
   end
+  
+  def hidden_phone_number
+    last_4 = mobile_phone_number.last(4)
+    "xxx-xxx-#{last_4}"
+  end
 end

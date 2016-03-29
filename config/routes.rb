@@ -334,6 +334,9 @@ Rails.application.routes.draw do
     get "close_roster_view" => "rosters#close_roster_view", as: :close_roster_view
     get :accept
     get :reject
+    collection do 
+      get :find_user
+    end
   end
 
   resources :roles
