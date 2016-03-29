@@ -5,5 +5,4 @@ DocusignRest.configure do |config|
   config.password       = ENV["DOCUSIGN_PASSWORD"]
   config.integrator_key = ENV["DOCUSIGN_INTEGRATOR_KEY"]
   config.account_id     = ENV["DOCUSIGN_ACCOUND_ID"]
-  config.endpoint       = ENV["DOCUSIGN_ACCOUND_ID"] if ENV["DOCUSIGN_ACCOUND_ID"]
 end
