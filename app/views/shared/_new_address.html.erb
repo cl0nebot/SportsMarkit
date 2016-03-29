@@ -6,14 +6,13 @@
         <br/>
         <h4 class="text-blue semi-bold">
           <i class="ion-ios-location margin-right-10"></i> Address and Location Info
-          <div id="parent-address-option">
-            <%= render 'shared/parent_address_options', owner: owner.nil? ? nil: owner , object: object %>
-          </div>
-        </h4>
-        <br/>
-        <div id="changeable-address-fields">
-          <%= render 'shared/address_fields', owner: owner.nil? ? nil: owner, object: object %>
-        </div>
+      </h4>
+      <div id="parent-address-option">
+        <%= render 'shared/parent_address_options', owner: owner.nil? ? nil: owner , object: object %>
+      </div>
+      <br/>
+      <div id="changeable-address-fields">
+        <%= render 'shared/address_fields', owner: owner.nil? ? nil: owner, object: object %>
       </div>
     </div>
   <% else %>

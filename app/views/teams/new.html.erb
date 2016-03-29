@@ -23,11 +23,17 @@
                             <div class="row example-row">
                                 <div class="col-sm-12 well margin-bottom-0">
                                     <div class="row">
-                                        <div class="col-md-6 form-group">
+                                        <div class="col-md-12 form-group">
+                                            <h4 class="text-muted text-center">
+                                              What Sport?
+                                            </h4>
                                             <%= f.select :sport, Sport.pluck(:sport), { include_blank: 'Select Sport' }, { class: 'selecter bg-white margin-bottom-0', required: true, data: { live_search: 'true', width: '100%' }} %>
                                             <div class="help-block with-errors"></div>
                                         </div>
-                                        <div class="col-md-6 form-group">
+                                        <div class="col-md-12 form-group">
+                                            <h4 class="text-muted text-center">
+                                              What type of team?
+                                            </h4>
                                             <%= f.select :classification, [ 'School District', 'Recreational: Adult', 'Recreational: Youth'], {}, {class: 'selecter bg-white margin-bottom-0', prompt:'select level', required: 'true', data:{live_search: 'true', width: '100%'}} %>
                                             <div class="help-block with-errors"></div>
                                         </div>
