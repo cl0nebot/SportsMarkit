@@ -7,7 +7,7 @@ module Messanger
     log_sending(receiving_number)
 
     begin
-      twilio_client.account.messages.create(:from => "+1#{twilio_phone_number}", to: receiving_number, body: body)
+      twillio_client.account.messages.create(:from => "+1#{twilio_phone_number}", to: receiving_number, body: body)
     rescue Twilio::REST::RequestError => e
       log_error(number, e)
     end
