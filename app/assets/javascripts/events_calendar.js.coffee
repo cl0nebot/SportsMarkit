@@ -2,9 +2,20 @@ $ ->
   if $("#event-schedules-calendar").length
     eventId = $(".content").data("eventId")
     $.get "/events/#{eventId}/event_schedules.json", (data) ->
-      $("#event-schedules-calendar").calendar
+      calendar = $("#event-schedules-calendar").calendar
         tmpl_path: "/assets/pleasure/globals/plugins/bootstrap-calendar/tmpls/"
         events_source: data
+        display_week_numbers: false
+        weekbox: false
+        onAfterViewLoad: (view) ->
+          $("#event-schedules-calendar").prev().text(this.getTitle())
+          $('.btn-group button').removeClass('active')
+          $('button[data-calendar-view="' + view + '"]').addClass('active')
+
+      $('.btn-group button[data-calendar-nav]').each ->
+        $this = $(this)
+        $this.click ->
+          calendar.navigate $this.data('calendar-nav')
 
     $(document).on "click", ".cal-cell", ->
       $('.cal-cell.active').removeClass('active')
