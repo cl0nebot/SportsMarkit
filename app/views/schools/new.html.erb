@@ -107,7 +107,7 @@
             </div>
           </div>
         </div>
-        <%= render 'shared/new_address', f: f, object: School.new, required: true %>
+        <%= render 'shared/new_address', f: f, object: School.new, required: true, owner: nil %>
         <div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
           <div class="panel-body padding-right-40 padding-left-40">
             <br/>
@@ -148,7 +148,7 @@
               <div class="col-md-12">
                 <div class="inputer">
                   <div class="input-wrapper form-group">
-                    <%= f.text_field :phone_number, class: "form-control", required: true %>
+                    <%= f.text_field :phone_number, class: "form-control", required: true, owner: nil %>
                     <div class="help-block with-errors"></div>
                   </div>
                 </div>

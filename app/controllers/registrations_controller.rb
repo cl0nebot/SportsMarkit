@@ -1,5 +1,5 @@
 class RegistrationsController < ApplicationController
-  before_action :load_form, only: [:register, :change_submitter, :pay]
+  before_action :load_form, only: [:registrant, :register, :change_submitter, :pay]
   before_action :load_master, only: [:change_submitter], :if => :current_user?
   
   
@@ -10,6 +10,10 @@ class RegistrationsController < ApplicationController
   end
   
   def register
+    load_object
+  end
+  
+  def registrant
     load_object
   end
   

@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
   before_action :find_teamable, only: [:new]
   before_action :find_team, only: [:show, :edit, :destroy]
   require 'twilio-ruby'
-  
+
   def index
     if stale?(:etag => ["teams-index", "v0"], :last_modified => Team.maximum(:updated_at))
       if params[:school_id]
@@ -15,12 +15,12 @@ class TeamsController < ApplicationController
       end
     end
   end
-  
+
   def new
     @teamable.present? ? @object = @teamable.teams.build : @object = Team.new
     @address = @object.build_address
   end
-  
+
   def create
     if (params[:team][:address_attributes][:street_1].present? && params[:team][:address_attributes][:city].present? || params[:team][:address_attributes][:state].present?)
       @teamable = params[:team][:teamable_type].try(:constantize).try(:find, params[:team][:teamable_id]) rescue nil
@@ -40,7 +40,7 @@ class TeamsController < ApplicationController
       redirect_to :back
     end
   end
-  
+
   def show
     @object = @team
     shared_variables
@@ -60,7 +60,7 @@ class TeamsController < ApplicationController
     @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
     profile_picture_insert
   end
-  
+
   def update
     if params[:id].present?
       @object = Team.where(slug: params[:id]).first
@@ -76,61 +76,62 @@ class TeamsController < ApplicationController
       respond_to do |format|
         format.html {redirect_to :back}
         format.js
-        format.json { respond_with_bip(@object) } 
+        format.json { respond_with_bip(@object) }
       end
     else
       respond_to do |format|
         format.html {redirect_to :back}
         format.js
-        format.json { respond_with_bip(@object) } 
+        format.json { respond_with_bip(@object) }
       end
-      
+
     end
   end
-  
+
   def destroy
-    
+
   end
-  
+
   def add_facility
-    
+
   end
-  
+
   def remove_facility
-    
+
   end
-  
+
   def join_league
-    
+
   end
-  
+
   def leave_league
-    
+
   end
-  
+
   def parent_address
-    @owner = params[:object_type].constantize.find(params[:object_id])
+    @owner = params[:owner_type].constantize.find(params[:owner_id])
+    @object = params[:object]
   end
-  
+
   protected
-  
+
   def find_teamable
     param = params.keys.find{|key| key =~ /(\w+)_id/}
     @teamable = $1.try(:capitalize).try(:constantize).try(:find, params[param])
   end
-  
+
   def find_team
     @team = Team.friendly.find(params[:id])
   end
-  
+
   def team_params
-    params.require(:team).permit(:name, :sport, :league_id, :classification, :description, :abbreviation, :phone_number, :email, :website, :slug, :facebook, :twitter, :linkedin, :pinterest, :instagram, :foursquare, :youtube, {address_attributes: [:id, :addressable_id, :addressable_type, :street_1, :street_2, :city, :state, :country, :postcode, :suite, :nickname, :default, :county, :latitude, :longitude, :gmaps]})  
+    params.require(:team).permit(:name, :sport, :league_id, :classification, :description, :abbreviation, :phone_number, :email, :website, :slug, :facebook, :twitter, :linkedin, :pinterest, :instagram, :foursquare, :youtube, {address_attributes: [:id, :addressable_id, :addressable_type, :street_1, :street_2, :city, :state, :country, :postcode, :suite, :nickname, :default, :county, :latitude, :longitude, :gmaps]})
   end
-  
+
   def user_params
     params.require(:user).permit(:prefix, :first_name, :middle_name, :last_name, :suffix, :email, :username,  :password, :password_confirmation, :current_password, :mobile_phone_number, {relationships_attributes: [:id, :user_id, :team_id, :head, :head_title, :mobile_phone_number, :position, :jersey_number, :participant, :participant_classification, :username ]})
   end
-    
+
   def send_mobile_invitation(user, password)
     receiving_number = user.mobile_phone_number
 
@@ -140,18 +141,17 @@ class TeamsController < ApplicationController
 
     @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
     begin
-    @twilio_client.account.messages.create(
-      :from => "+1#{twilio_phone_number}",
-      :to => receiving_number,
-      :body => "#{user.first_name}, Coach #{current_user.last_name.capitalize} has created your new team hub! 
+      @twilio_client.account.messages.create(
+        :from => "+1#{twilio_phone_number}",
+        :to => receiving_number,
+        :body => "#{user.first_name}, Coach #{current_user.last_name.capitalize} has created your new team hub!
       
 http://www.sportsmarkit.com/login 
 Login: #{user.mobile_phone_number} 
 Password: #{password}"
-    )
+      )
     rescue Twilio::REST::RequestError => e
       puts e.message
     end
   end
 end
-

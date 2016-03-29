@@ -1,2 +1,6 @@
-$('#parent-address-option').html("<%= j render 'shared/parent_address_options', owner: @owner %>")
-$('#changeable-address-fields').html("<%= j render 'shared/address_fields', owner: @owner %>")
+$('#parent-address-option').html("<%= j render 'shared/parent_address_options', owner: @owner, object: @object %>")
+$('#changeable-address-fields .street_1').val("<%= params[:parent_address] ? @owner.address.street_1 : '' %>").trigger("change")
+$('#changeable-address-fields .street_2').val("<%= params[:parent_address] ? @owner.address.street_2 : '' %>").trigger("change")
+$('#changeable-address-fields .city').val("<%= params[:parent_address] ? @owner.address.city : '' %>").trigger("change")
+$('#changeable-address-fields .state').val("<%= params[:parent_address] ? @owner.address.state : '' %>").trigger("change")
+$('#changeable-address-fields .postcode').val("<%= params[:parent_address] ? @owner.address.postcode : '' %>").trigger("change")

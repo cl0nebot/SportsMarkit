@@ -488,6 +488,9 @@ module ApplicationHelper
     array.join(" ").downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '').gsub("- ", "").gsub("--", "-")
   end
     
+  def pretty_column(col) 
+    col.gsub("_", " ")
+  end  
   
 
 end

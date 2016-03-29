@@ -125,6 +125,7 @@ Rails.application.routes.draw do
     end
     resources :registrations do
       get :register
+      get :registrant
     end
     resources :forms do
       resources :options
@@ -160,6 +161,7 @@ Rails.application.routes.draw do
     end
     resources :registrations do
       get :register
+      get :registrant
     end
     resources :photos
     resources :profile_pictures, only: %w[create update destroy]
@@ -191,6 +193,7 @@ Rails.application.routes.draw do
     end
     resources :registrations do
       get :register
+      get :registrant
     end
     resources :forms do
       resources :options
@@ -215,9 +218,8 @@ Rails.application.routes.draw do
   end
 
   resources :tournaments
-  resources :leagues, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable] do
+  resources :leagues, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :teamable] do
     resources :dashboard
-    resources :teams
     resources :facilities
     get :upgrade
     resources :uploads do
@@ -228,6 +230,7 @@ Rails.application.routes.draw do
     end
     resources :registrations do
       get :register
+      get :registrant
     end
     resources :forms do
       resources :options
@@ -278,7 +281,7 @@ Rails.application.routes.draw do
     patch :upgrade_school
   end
 
-  resources :clubs, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable] do
+  resources :clubs, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :teamable] do
     resources :dashboard
     resources :uploads do
       collection do
@@ -288,6 +291,7 @@ Rails.application.routes.draw do
     end
     resources :registrations do
       get :register
+      get :registrant
     end
     resources :forms do
       resources :options
@@ -297,7 +301,6 @@ Rails.application.routes.draw do
     end
     resources :facilities
     resources :media
-    resources :teams
     resources :photos
     resources :profile_pictures, only: %w[create update destroy]
     resource :calendar do

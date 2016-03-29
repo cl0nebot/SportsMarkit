@@ -57,7 +57,7 @@
               </div>
             </div>
           </div>
-          <%= render 'shared/new_address', f: f, object: Club.new, required: true %>
+          <%= render 'shared/new_address', f: f, object: Club.new, required: true, owner: nil %>
           <br/>
           <%= f.submit "Awesome. Let's create a club!", class: "btn btn-blue btn-lg btn-block btn-ripple" %>
           <br/>
