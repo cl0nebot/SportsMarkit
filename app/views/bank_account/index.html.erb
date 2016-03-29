@@ -9,13 +9,15 @@
       <div class="col-sm-6">
         <ol class="breadcrumb">
           <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="<%= teams_path %>">[Schools]</a></li>
-          <li><a href="#">[Name]</a></li>
+          <li><a href="<%= eval("#{@bankable.class.to_s.downcase.pluralize}_path") %>"><%= @bankable.class.to_s.pluralize %></a></li>
+          <li><a href="#"><%= @bankable.name %></a></li>
           <li><a href="#" class="active">Bank Information</a></li>
         </ol>
       </div><!--.col-->
     </div><!--.row-->
   </div><!--.page-header-->
+  
+  
 
   <div class="row">
     <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-md-offset-2">
