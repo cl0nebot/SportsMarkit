@@ -1,104 +1,93 @@
 <div id="roster" class="tab-pane pt40">
-	<div class="row bgcolor-white box-shadow-ccc pt20 pr20 pl20 mb20 pb30">
-		<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
-			<h1 class="text-indigo no-margin bold"><%= @coaches.count %></h1>
-			<h6 class="text-grey semi-bold no-margin "><%= (@coaches.count > 1 or @coaches.count == 0) ? "Coaches" : "Coach" %></h6>
-		</div>
-		<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
-			<h1 class="text-indigo no-margin bold"><%= @team.athletes.count + @team.userless_athletes.count %></h1>
-			<h6 class="text-grey semi-bold no-margin"><%= ((@team.athletes.count + @team.userless_athletes.count) > 1 or (@team.athletes.count + @team.userless_athletes.count) == 0) ? "Athletes" : "Athlete" %></h6>
-		</div>
-		<div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
-			<h1 class="text-indigo no-margin bold"><%= @team.team_managers.count + @team.userless_team_managers.count %></h1>
-			<h6 class="text-grey semi-bold no-margin"><%= ((@team.team_managers.count + @team.userless_team_managers.count) > 1 or (@team.team_managers.count + @team.userless_team_managers.count) == 0) ? "Team Managers" : "Team Manager" %></h6>
-		</div>
-		<div class="col-lg-2 col-md-4 col-sm-6 text-center">
-			<h1 class="text-indigo no-margin bold"><%= @team.trainers.count + @team.userless_trainers.count %></h1>
-			<h6 class="text-grey semi-bold no-margin"><%= ((@team.trainers.count + @team.userless_trainers.count) > 1 or (@team.trainers.count + @team.userless_trainers.count) == 0) ? "Athletic Trainers" : "Athletic Trainer" %></h6>
-		</div>
-		<div class="col-lg-2 col-md-4 col-sm-6 mt5">
-			<div class="well bgcolor-light-grey no-margin">
-				<div class="btn-group btn-block">
-					<button type="button" class="fs_16 btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-					Find an Athlete <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu">
-						<% @team.athletes.each do |user| %>
-							<li>
-								<%= link_to user_path(user) do %>
-					  			<%= user.full_name %>
-					  		<% end %>
-					  	</li>
-						<% end %>
-					</ul>
-				</div><!--.btn-group-->
-			</div>
-		</div>
-		<div class="col-lg-2 col-md-4 col-sm-6 mt5">
-			<div class="well bgcolor-light-grey no-margin">
-				<div class="btn-group btn-block">
-					<button type="button" class="fs_16 btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
-					Find a Staff Member <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu">
-						<% @team.accepted_staff_members.each do |user| %>
-							<li>
-								<%= link_to user_path(user) do %>
-					  			<%= user.full_name %>
-					  		<% end %>
-					  	</li>
-						<% end %>
-					</ul>
-				</div><!--.btn-group-->
-			</div>
-		</div>
-	</div>
-
-
-
-	<div class="row mt20" style="min-height: 800px;">
-		<div class="row">
-			
-			<div class="col-lg-4">
-				<!-- coaches and staff -->
-				<div class="panel panel-transparent border-ddd">
-					<div class="panel-heading no-margin">
-						<div class="panel-title" id="coach-count">
-					       <h3 class="semi-bold fs_20 mb0 text-black">
-								Coaches and Staff Members
+  <div class="row bgcolor-white box-shadow-ccc pt20 pr20 pl20 mb20 pb30">
+    <div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
+      <h1 class="text-indigo no-margin bold"><%= @coaches.count %></h1>
+      <h6 class="text-grey semi-bold no-margin "><%= (@coaches.count > 1 or @coaches.count == 0) ? "Coaches" : "Coach" %></h6>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
+      <h1 class="text-indigo no-margin bold"><%= @team.athletes.count + @team.userless_athletes.count %></h1>
+      <h6 class="text-grey semi-bold no-margin"><%= ((@team.athletes.count + @team.userless_athletes.count) > 1 or (@team.athletes.count + @team.userless_athletes.count) == 0) ? "Athletes" : "Athlete" %></h6>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6 text-center b-r-ddd">
+      <h1 class="text-indigo no-margin bold"><%= @team.team_managers.count + @team.userless_team_managers.count %></h1>
+      <h6 class="text-grey semi-bold no-margin"><%= ((@team.team_managers.count + @team.userless_team_managers.count) > 1 or (@team.team_managers.count + @team.userless_team_managers.count) == 0) ? "Team Managers" : "Team Manager" %></h6>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6 text-center">
+      <h1 class="text-indigo no-margin bold"><%= @team.trainers.count + @team.userless_trainers.count %></h1>
+      <h6 class="text-grey semi-bold no-margin"><%= ((@team.trainers.count + @team.userless_trainers.count) > 1 or (@team.trainers.count + @team.userless_trainers.count) == 0) ? "Athletic Trainers" : "Athletic Trainer" %></h6>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6 mt5">
+      <div class="well bgcolor-light-grey no-margin">
+        <div class="btn-group btn-block">
+          <button type="button" class="fs_16 btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+            Find an Athlete <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <% @team.athletes.each do |user| %>
+              <li>
+                <%= link_to user_path(user) do %>
+                  <%= user.full_name %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6 mt5">
+      <div class="well bgcolor-light-grey no-margin">
+        <div class="btn-group btn-block">
+          <button type="button" class="fs_16 btn btn-block btn-white dropdown-toggle" data-toggle="dropdown">
+            Find a Staff Member <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <% @team.accepted_staff_members.each do |user| %>
+              <li>
+                <%= link_to user_path(user) do %>
+                  <%= user.full_name %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt20" style="min-height: 800px;">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="panel panel-transparent border-ddd">
+          <div class="panel-heading no-margin">
+            <div class="panel-title" id="coach-count">
+              <h3 class="semi-bold fs_20 mb0 text-black">
+                Coaches and Staff Members
 							</h3>
-							<%= render 'rosters/coach_count', heads: @heads %>
-						</div>
-					</div><!--.panel-heading-->
-					<hr class="no-margin"/>
-					<div class="panel-body no-padding" id="heads-of-team">
-						<%= render 'rosters/heads_of_team', heads: @heads %>
-					</div><!--.panel-body-->
-				</div><!--.panel-->
-				<br/>
-				<!-- coaches and staff -->
-				
-				
-			</div>
-
-			<div class="col-lg-8" style="">
-				<!-- team roster -->
-				<div class="panel panel-transparent box-shadow-ccc">
-					<div class="panel-heading no-margin">
-						<div class="panel-title" id="athlete-count">
-						  	<h3 class="semi-bold fs_20 mb0 text-black">
-							Active and Inactive Athletes
+              <%= render 'rosters/coach_count', heads: @heads %>
+            </div>
+          </div>
+          <hr class="no-margin"/>
+          <div class="panel-body no-padding" id="heads-of-team">
+            <%= render 'rosters/heads_of_team', heads: @heads %>
+          </div>
+        </div>
+        <br/>
+      </div>
+      <div class="col-lg-8" style="">
+        <div class="panel panel-transparent box-shadow-ccc">
+          <div class="panel-heading no-margin">
+            <div class="panel-title" id="athlete-count">
+              <h3 class="semi-bold fs_20 mb0 text-black">
+                Active and Inactive Athletes
 							</h3>
-							<%= render 'rosters/athlete_count', members: @members%>
-						</div>
-					</div><!--.panel-heading-->
-					<hr class="no-margin"/>
-					<div class="panel-body no-padding" id="athletes-of-team">
-			         	<%= render 'rosters/athletes_of_team', members: @members, team: @team %>
-					</div><!--.panel-body-->
-				</div><!--.panel-->
-				<!-- team roster -->
-			</div>
-		</div>
-	</div>
+              <%= render 'rosters/athlete_count', members: @members %>
+            </div>
+          </div>
+          <hr class="no-margin"/>
+          <div class="panel-body no-padding" id="athletes-of-team">
+            <%= render 'rosters/athletes_of_team', members: @members, team: @team %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

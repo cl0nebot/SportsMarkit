@@ -1,0 +1,95 @@
+= form_for new_user, url: rosters_path, method: :post, html: {id: "roster-form", data: {remote: true}} do |f|
+  #roster-spot-success.pull-right style=("display: none")
+    font color="green" size="2"  Successfully created roster spot.
+  .row
+    .col-md-6
+      .row.example-row
+        .col-md-12
+          h4 First Name
+        .col-md-12
+          .inputer
+            .input-wrapper
+              = text_field_tag :first_name, user.first_name, class: "form-control", name: "first_name"
+            .first_name_field
+    .col-md-6
+      .row.example-row
+        .col-md-12
+          h4 Last Name
+        .col-md-12
+          .inputer
+            .input-wrapper
+              = text_field_tag :last_name,user.last_name, class: "form-control", name: "last_name"
+            .last_name_field
+  .row
+    .col-md-6
+      .row.example-row
+        .col-md-12
+          h4 Classification
+        .col-md-12
+          .inputer
+            .input-wrapper
+              = text_field_tag :level, "", class: "form-control", name: "level"
+    .col-md-6
+      .row.example-row
+        .col-md-12
+          h4 Position
+        .col-md-12
+          .inputer
+            = select_tag :position_ids, options_for_select(Position.pluck(:position, :id)), class: "selecter bg-white margin-bottom-0", multiple: true, "data-live-search" =>  true, name: "position_ids[]"
+  .row
+    .col-md-6
+      .row.example-row
+        .col-md-12
+          h4 Cell Phone
+        .col-md-12
+          .inputer
+            .input-wrapper
+              - if user.persisted?
+                = text_field_tag :phone_number, user.hidden_phone_number, class: "form-control"
+                = hidden_field_tag :mobile_phone_number, user.mobile_phone_number, class: "form-control"
+              - else
+                = text_field_tag :phone_number, "", class: "form-control"
+                = hidden_field_tag :mobile_phone_number, "", class: "form-control"
+            .mobile_phone_number_field
+            #invalid-phone-message style=("display: none")
+              font color="red" size="2"  Phone Number is Invalid. Please enter 10 digits.
+    .col-md-6
+      .row.example-row
+        .col-md-12
+          h4 Jersey Number
+        .col-md-12
+          .inputer
+            .input-wrapper
+              = text_field_tag :jersey_number, "", class: "form-control", name: "jersey_number"
+  .row
+    .col-md-12
+      .row.example-row
+        .col-md-12
+          h4 Assignments
+        .col-md-12
+          = hidden_field_tag :team_id,"", value: team.id
+          .checkboxer.form-inline.mb5
+            = check_box_tag :athlete, 1, user.persisted? ? (user.classifications.pluck(:classification) & ["Athlete", "Student Athlete"]).present? : false , id: "athlete"
+            label for="athlete"  Athlete?
+          .checkboxer.form-inline.mb5
+            = check_box_tag :coach, 1, user.persisted? ? user.classifications.pluck(:classification).include?("Coach") : false , id: "coach"
+            label for="coach"  Coach?
+          .checkboxer.form-inline.mb5
+            = check_box_tag :trainer, 1, false, id: "trainer"
+            label for="trainer"  Trainer?
+          .checkboxer.form-inline.mb5
+            = check_box_tag :manager, 1, false, id: "manager"
+            label for="manager"  Manager?
+          .checkboxer.form-inline.mb5
+            = check_box_tag :admin, 1, false, id: "access"
+            label for="access"  Admin?
+        #blank-role-message-new style=("display: none")
+          font color="red" size="2"  You must assign at least one role.
+  hr.mt0/
+  = f.submit "Add New Team Member", class: "btn btn-primary pull-right add_team_member"
+  br/
+  br/
+  #roster-spot-created.pull-right style=("display: none")
+    font color="green" size="2"  Roster spot created.
+  #roster-spot-not-created.pull-right style=("display: none")
+    font color="red" size="2"  Roster spot not created.

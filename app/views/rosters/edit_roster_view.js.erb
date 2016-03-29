@@ -12,3 +12,4 @@
   $('#admin-<%= @class %><%= @id %>').empty()
   $('#admin-<%= @class %><%= @id %>').append('<%= j render 'rosters/edit_admin', m: @object, team: @team %>')
 <% end %>
+$('select.selecter').selectpicker();

@@ -1,0 +1,65 @@
+li id="member-#{m.class.to_s}#{m.id}"
+  .list-content
+    .row
+      .col-sm-2
+        .center
+          - if m.class.to_s == "Role"
+            = image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 150px; height: 150px; border: 2px solid #ddd;"
+          - else
+            = image_tag "http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png", class: "face-radius pl", alt: "", style: "width: 150px; height: 150px; border: 2px solid #ddd;"
+      .col-sm-10
+        .row
+          .col-md-8
+            h3.no-margin.capitalize.text-black.semi-bold
+              - if m.class.to_s == "Role"
+                = m.user.try(:full_name)
+              - else
+                = m.first_name
+                = m.last_name
+            p.small.text-grey
+              small
+                | Name
+          .col-md-4
+            - if m.class.to_s == "Role"
+              = link_to roster_path(id: m, class: "Role", roster_spot: "Athlete"), method: :delete, remote: true, class: "btn btn-orange pull-right", data: {confirm: "Are you sure?"} do
+                span.ion-trash-b
+            - else
+              = link_to roster_path(id: m, class: "UserlessRole", roster_spot: "Athlete"), method: :delete, remote: true, class: "btn btn-orange pull-right", data: {confirm: "Are you sure?"} do
+                span.ion-trash-b
+            = link_to roster_edit_roster_view_path(roster_id: @team.id, class: m.class, id: m.id, status: "member"), remote: true, class: "btn btn-primary pull-right mr10" do
+              span.ion-ios-gear
+      .row
+        .col-sm-2
+          h5.no-margin.semi-bold
+            = m.level.present? ? m.level : "TBD"
+          p.small.text-grey
+            small
+              | Year
+        .col-sm-2
+          h5.no-margin.capitalize.semi-bold
+            = m.nickname.present? ? m.nickname : "TBD"
+          p.small.text-grey
+            small
+              | Nickname
+        .col-sm-2
+          h5.no-margin.semi-bold
+            - if m.jersey_number.present?
+              | \##{m.jersey_number}
+            - else
+              | TBD
+          p.small.text-grey
+            small
+              | Jersey No.
+        .col-sm-2
+          h5.no-margin.semi-bold
+            = m.positions.present? ? m.position_list : "TBD"
+          p.small.text-grey
+            small
+              | Position(s)
+        .col-sm-1
+          - if m.class.to_s == "Role"
+            h5.no-margin.semi-bold
+              = m.user.age.present? ? m.user.age : "TBD"
+            p.small.text-grey
+              small
+                | Age
