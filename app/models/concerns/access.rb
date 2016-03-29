@@ -35,7 +35,13 @@ module Access
       else
         false
       end
-   
+      
+    elsif self.class.to_s == "Club"
+      if Role.where(user_id: current_user.id, status: "Active", roleable_type: "Club", roleable_id: self.id, role: ["Club Director"] ).present?
+        true
+      else
+        false
+      end
     elsif self.class.to_s == "Facility"
       if Role.where(user_id: current_user.id, status: "Active", roleable_type: "Facility", roleable_id: self.id, role: ["Facility Manager"] ).present?
         true
