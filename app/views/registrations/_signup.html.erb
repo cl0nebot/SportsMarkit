@@ -1,42 +1,92 @@
-<!-- Modal -->
-<div class="modal fade slide-up disable-scroll" id="signup-user-on-registration-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog modal-md ">
-    <div class="modal-content-wrapper">
-      <div class="modal-content  bgcolor-light-grey">
-        <span class="pull-left h4 bold text-muted ml20 pt10">
-          <%= object.name %>
-        </span>
-        <div class="container-xs-height bg-menu">
-          <div class="row-xs-height">
-            <div class="modal-body col-xs-height pr50 pl50 pb10 pt20 no-border">
-              <!-- START PANEL -->
-              <h3 class="semi-bold">Ready to signup?</h3>
-              <h5 class="semi-bold text-muted fs_14 lh_20">
-              
-              </h5>
-            </div>
-          </div>
-          <hr class="no-margin"/>
-          <div class="row">
-            <div class="col-sm-12 shopping_cart">
-              <div class="panel panel-default bgcolor-light-grey no-border">
-                <%= form_for User.new do |f| %>
-                <%= hidden_field_tag :registration, true %>
-                
-                <%= f.text_field :first_name %></br>
-                <%= f.text_field :last_name %></br>
-                <%= f.text_field :email %></br>
-                <%= f.text_field :password %></br>
-                <%= f.submit %>                
-                <% end %>
-                
-                
-              </div>
-            </div>
-          </div>
+<!-- Modals -->
+<div class="modal scale fade slide-up disable-scroll" id="signup-user-on-registration-form" tabindex="-1" role="dialog" aria-hidden="true">
+  <%= form_for User.new do |f| %>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title bold">Create a SportsMarkit account or login.</h4>
+          <h5 class="semi-bold small mt5">To Complete Registration For: 
+            <strong class="text-primary"><%= object.name %></strong>
+            </h5>
         </div>
-      </div>
-    </div>
-  </div>
+        <hr class="mt10"/>
+        <div class="modal-body pt0" style="max-height: none;">
+          <!-- <h6 class="semi-bold text-center no-margin">Registering</h6>
+          <h3 class="semi-bold text-center"></h3>
+ -->
+          <div class="pr40 pl40">
+            <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">
+              Login to My Account
+            </button>
+          </div>
+
+          <h5 class="semi-bold text-center bold  mt20">Or</h5>
+
+          <h5 class="bold text-center">Create a SportsMarkit Account</h5>
+
+          <div class="pr40 pl40">
+            <div class="well bgcolor-white">
+              <%= hidden_field_tag :registration, true %>
+              <div class="form-row">
+                <div class="row example-row">
+                  <div class="col-md-12">First Name</div>
+                  <div class="col-md-12">
+                    <div class="inputer">
+                      <div class="input-wrapper">
+                        <%= text_field_tag :first_name, nil, required: true, class: "form-control", placeholder: "John" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="row example-row">
+                  <div class="col-md-12">Last Name</div>
+                  <div class="col-md-12">
+                    <div class="inputer">
+                      <div class="input-wrapper">
+                        <%= text_field_tag :last_name, nil, required: true, class: "form-control", placeholder: "Smith" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="row example-row">
+                  <div class="col-md-12">Email</div>
+                  <div class="col-md-12">
+                    <div class="inputer">
+                      <div class="input-wrapper">
+                        <%= text_field_tag :email, nil, required: true, class: "form-control", placeholder: "name@account.com" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="row example-row">
+                  <div class="col-md-12">Passowrd</div>
+                  <div class="col-md-12">
+                    <div class="inputer">
+                      <div class="input-wrapper">
+                        <%= text_field_tag :password, nil, required: true, class: "form-control", placeholder: "********" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <%= f.submit "Create an Account", class: "btn btn-block btn-primary" %>                
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="modal-footer bg-light-grey">
+          <button type="button" class="btn btn-flat btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!--.modal-content-->
+    </div><!--.modal-dialog-->
+  <% end %>
+</div><!--.modal-->
 </div>
-<!-- /.modal -->
+
+
