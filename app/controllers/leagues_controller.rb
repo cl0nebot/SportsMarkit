@@ -77,6 +77,11 @@ class LeaguesController < ApplicationController
     end
   end
   
+  def upgrade
+    @league = League.friendly.find(params[:league_id])
+    @object = @league
+  end
+  
   def destroy
     @league.destroy
     redirect_to :back
