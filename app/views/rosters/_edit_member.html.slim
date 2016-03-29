@@ -1,0 +1,64 @@
+= form_for m, url: roster_path(id: m.id, object_type: m.class.to_s, team_id: team.id), html: {data: {remote: true}} do |f|
+  li id="edit-member-#{m.class.to_s}#{m.id}"
+    = hidden_field_tag :member, true
+    = hidden_field_tag :close_member, true
+    .list-content.no-padding.pt20
+      .row
+        .col-sm-2
+          .center
+            - if m.class.to_s == "Role"
+              = image_tag m.user.try(:avatar), class: "face-radius", alt: "", style: "width: 150px; height: 150px; border: 2px solid #ddd;"
+            - else
+              = image_tag "http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png", class: "face-radius", alt: "", style: "width: 150px; height: 150px; border: 2px solid #ddd;"
+        .col-sm-9
+          .row
+            .col-md-12
+              - if m.class.to_s == "Role"
+                h3.semi-bold.capitalize
+                  = m.user.try(:full_name)
+              - else
+                .row
+                  .col-md-6
+                    = f.text_field :first_name, type: "text", class: "form-control"
+                    p.small
+                      small
+                        | First Name
+                  .col-md-6
+                    = f.text_field :last_name, type: "text", class: "form-control"
+                    p.small
+                      small
+                        | Last Name
+            .col-md-12
+              = f.text_field :level, type: "text", class: "form-control"
+              p.small
+                small
+                  | Class / Year
+            .col-md-12
+              = f.collection_select :position_ids, Position.all, :id, :position, { selected: m.positions.pluck(:id)}, {  multiple: true, style: "width:100%", placeholder: "Add Positions", class: "selecter chosen-select form-control"}
+              p.small
+                small
+                  | Position
+            .col-md-12
+              .row
+                .col-md-4
+                  = f.text_field :jersey_number, type: "text", class: "form-control"
+                  p.small
+                    small
+                      | Jersey Number
+                .col-md-4
+                  = f.text_field :nickname, type: "text", class: "form-control"
+                  p.small
+                    small
+                      | Nickname
+                - unless m.class.to_s == "Role"
+                  .col-md-4
+                    = f.text_field :mobile_phone_number, type: "text", class: "form-control"
+                    p.small
+                      small
+                        | Mobile Phone Number
+        .col-sm-1
+          = link_to roster_close_roster_view_path(roster_id: team.id, class: m.class, id: m.id, status: "member"), remote: true, class: "btn btn-floating btn-default btn-ripple mr20" do
+            i.ion-close-round
+      .row.bgcolor-light-grey.padding-20
+        .col-md-12
+          = f.submit "Update", class: "btn btn-primary pull-right"

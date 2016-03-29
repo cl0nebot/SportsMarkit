@@ -1,9 +1,0 @@
-<ul class="list-material has-hidden">
-	<% members.each do |m| %>
-	<% if team.can_be_edited_by_user?(current_user) %>
-   		<%= render 'rosters/admin_view_member', m: m%>
-	<% else %>
-		<%= render 'rosters/member', m: m%>
-	<% end %>
-	<% end %>
-</ul>
