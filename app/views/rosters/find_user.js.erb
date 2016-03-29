@@ -1,2 +1,3 @@
 $('#new-roster-spot-form').html("<%= j render 'rosters/add_new_roster_spot_form', user: @user, team: @team %>")
+$('#new-roster-spot-form form').validator({ disable: false })
 Layout.initSelectPicker();

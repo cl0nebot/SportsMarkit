@@ -17,6 +17,7 @@
 //= require validation
 //= require jquery.remotipart
 //= require validator
+//= require moment
 
 // <!-- BEGIN GLOBAL AND THEME VENDORS -->
 //= require pleasure/globals/js/global-vendors
@@ -117,7 +118,6 @@
 // <!-- ADMIN 1 -->
 //= require pleasure/admin/js/layout
 
-//= require moment
 //= require pleasure/globals/plugins/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min
 //= require pleasure/globals/plugins/underscore/underscore-min
 //= require pleasure/globals/plugins/bootstrap-calendar/js/calendar
