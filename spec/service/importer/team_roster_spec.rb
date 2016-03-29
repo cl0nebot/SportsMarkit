@@ -7,7 +7,6 @@ RSpec.describe Importer::TeamRoster do
 
   let(:school){ create :school }
   let(:run_import){ Importer::TeamRoster.call(file: file, teamable: school) }
-
   context 'valid file' do
     let(:file){ uploaded_file('import/valid_teams_with_user_role.xlsx') }
 

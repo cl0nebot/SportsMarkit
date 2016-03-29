@@ -10,7 +10,7 @@ class UploadsController < ApplicationController
     importer = "Importer::#{params[:importer]}".constantize
 
     if model == Team
-      @import = importer.call(file: params[:file], team_id: params[:team_id])
+      @import = importer.call(file: params[:file], team_id: Team.find(params[:team_id]).id)
     elsif [School, Club].include?(model)
       @import = importer.call(file: params[:file], teamable: model.find(params[:teamable_id]))
     end

@@ -44,7 +44,7 @@
         <div class="panel box-shadow-ccc">
           <div class="panel-heading">
             <div class="panel-title">
-              <h4 class="text-primary">Build Your Profile</h4>
+              <h4 class="text-primary">Build Your Account</h4>
             </div>
           </div>
           <div class="panel-body">
@@ -55,6 +55,31 @@
               <h5 class="bold">Public Profile</h5>
               <ul class="list-material">
                 <li class="has-action-left has-action-right">
+                  <a href="#" class="visible">
+                    <div class="list-action-left">
+                      <i class="ion-person icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">View Profile</span>
+                      <span class="caption">Update or complete your public profile.</span>
+                      <span class="caption pt10">
+                        <ol class="small list">
+                          <li>Home</li>
+                          <li>Media</li>
+                          <li>Following</li>
+                          <li>Fans</li>
+                          <li>Teams</li>
+                          <li>Teammates</li>
+                        </ol> 
+                      </span>
+                    </div>
+                    <div class="list-action-right">
+                      <span class="top">15 min</span>
+                      <i class="ion-android-done bottom"></i>
+                    </div>
+                  </a>
+                </li>
+                <li class="has-action-left has-action-right">
                   <%= link_to eval("edit_#{klass}_path(@object)"), class: "visible" do %>
                     <div class="list-action-left">
                       <i class="ion-gear-a icon"></i>
@@ -62,6 +87,13 @@
                     <div class="list-content">
                       <span class="title">Edit Your Profile</span>
                       <span class="caption">Update or complete your organization profile.</span>
+                      <span class="caption pt10">
+                        <ol class="small list">
+                          <li>General</li>
+                          <li>Social Media</li>
+                          <li>Upload Media</li>
+                        </ol> 
+                      </span>
                     </div>
                     <div class="list-action-right">
                       <span class="top">15 min</span>
@@ -86,10 +118,10 @@
                 </li>
               </ul>
 
-              <br/>
-              <h5 class="bold">Add New Accounts</h5>
-              <ul class="list-material">
-                <% unless ["team", "facility"].include? klass %>
+              <% unless ["team", "facility"].include? klass %>
+                <br/>
+                <h5 class="bold">Add New Accounts</h5>
+                <ul class="list-material">
                   <li class="has-action-left has-action-right">
                     <%= link_to eval("new_#{klass}_team_path(@object)"), class: "visible" do %>
                       <div class="list-action-left">
@@ -105,8 +137,6 @@
                       </div>
                     <% end %>
                   </li>
-                <% end %>
-                <% unless ["team", "facility"].include? klass %>
                   <li class="has-action-left has-action-right">
                     <%= link_to eval("new_#{klass}_facility_path(@object)"), class: "visible" do %>
                       <div class="list-action-left">
@@ -122,20 +152,129 @@
                       </div>
                     <% end %>
                   </li>
-                <% end %>
+                </ul>
+              <% end %>
+
+              <br/>
+              <h5 class="bold">Player Roster and Staff</h5>
+              <ul class="list-material">
+                <li class="has-action-left has-action-right">
+                  <a href="#" class="visible">
+                    <div class="list-action-left">
+                      <i class="ion-android-clipboard icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">Manage Roster</span>
+                      <span class="caption">Build and modify your player roster.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <span class="top">15 min</span>
+                      <i class="ion-android-done bottom"></i>
+                    </div>
+                  </a>
+                </li>
+                <li class="has-action-left has-action-right">
+                  <a href="#" class="visible">
+                    <div class="list-action-left">
+                      <i class="ion-locked icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">Manage Team Admins</span>
+                      <span class="caption">Invite new admins and assign privileges.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    </div>
+                  </a>
+                </li>
               </ul>
+
+              <br/>
+              <h5 class="bold">Affiliate Accounts</h5>
+              <ul class="list-material">
+                <li class="has-action-left has-action-right">
+                  <a href="#" class="visible">
+                    <div class="list-action-left">
+                      <i class="ion-plus-circled icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">Create or Add Facilities</span>
+                      <span class="caption">Create a new facility or add an existing facility to your account.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <span class="top">15 min</span>
+                      <i class="ion-android-done bottom"></i>
+                    </div>
+                  </a>
+                </li>
+                <li class="has-action-left has-action-right">
+                  <a href="#" class="visible">
+                    <div class="list-action-left">
+                      <i class="ion-plus-circled icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">Join Leagues</span>
+                      <span class="caption">Add an existing league to your account.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+
 
             <% else %>
 
+              <h5 class="bold">Public Profile</h5>
+
               <ul class="list-material">
+                <li class="has-action-left has-action-right">
+                  <a href="#" class="visible">
+                    <div class="list-action-left">
+                      <i class="ion-person icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">View Profile</span>
+                      <span class="caption">Update or complete your public profile.</span>
+                      <span class="caption pt10">
+                        <ol class="small list">
+                          <li>Home</li>
+                          <li>Media</li>
+                          <li>Following</li>
+                          <li>Fans</li>
+                          <li>Teams</li>
+                          <li>Teammates</li>
+                        </ol> 
+                      </span>
+                    </div>
+                    <div class="list-action-right">
+                      <span class="top">15 min</span>
+                      <i class="ion-android-done bottom"></i>
+                    </div>
+                  </a>
+                </li>
+
                 <li class="has-action-left has-action-right">
                   <%= link_to eval("edit_#{klass}_path(@object)"), class: "visible" do %>
                     <div class="list-action-left">
-                      <i class="ion-calendar icon-circle"></i>
+                      <i class="ion-ios-gear icon"></i>
                     </div>
                     <div class="list-content">
                       <span class="title">Edit Your Profile</span>
-                      <span class="caption">Complete all the information.</span>
+                      <span class="caption">Update or complete your public profile.</span>
+                      <span class="caption pt10">
+                        <ol class="small list">
+                          <li>General</li>
+                          <li>Social Media</li>
+                          <li>Upload Media</li>
+                          <li>Sports Resume</li>
+                          <li>Favorites</li>
+                          <li>Password</li>
+                        </ol> 
+                      </span>
                     </div>
                     <div class="list-action-right">
                       <span class="top">15 min</span>
@@ -146,11 +285,18 @@
                 <li class="has-action-left has-action-right">
                   <%= link_to "/#{klass.pluralize}/#{@object.slug}/edit#tab_media",  class: "visible" do %>
                     <div class="list-action-left">
-                      <i class="ion-calendar icon"></i>
+                      <i class="ion-android-upload icon"></i>
                     </div>
                     <div class="list-content">
                       <span class="title">Add Photo, Articles, and Video</span>
-                      <span class="caption">Dynamically procrastinate B2C users after installed base benefits.</span>
+                      <span class="caption">Enhance your profile with media.</span>
+                      <span class="caption pt10">
+                        <ol class="small list">
+                          <li>Photos</li>
+                          <li>Videos</li>
+                          <li>Articles and Links</li>
+                        </ol> 
+                      </span>
                     </div>
                     <div class="list-action-right">
                       <span class="top">2 hr</span>
@@ -159,22 +305,6 @@
                   <% end %>
                 </li>
               </ul>
-             
-              <%#= link_to "View/Manage Registrations", eval("#{klass}_registrations_path(@object)") %>
-              <hr/>
-              
-              <h5>User Flow</h5>
-              <ol>
-                <li>setup (change classification)</li>
-                <li>build league, build team, build school, build facility, build club</li>
-                <li>claim all.</li>
-                <li>chat with friends</li>
-                <li>accept parents</li>
-                <li>privacy settings</li>
-                <li>measurables</li>
-                <li>manage teams groups i'm apart of</li>
-                <li>Events (?)</li>
-              </ol> 
 
             <% end %>
           </div>
@@ -193,11 +323,6 @@
 
             <% unless klass == "user"%>
               
-              <% if false %>
-                <%= link_to "join league or conference", "" %></br>
-                <%= link_to "Invite" %></br>
-              <% end %>
-
               <h5 class="bold">Events and Communication</h5>
               <ul class="list-material">
                 <!-- add event -->
@@ -216,6 +341,22 @@
                     </div>
                   <% end %>
                 </li>
+                <!-- add event -->
+                <li class="has-action-left has-action-right">
+                  <%= link_to eval("new_#{klass}_event_path(@object)"), class: "visible" do %>
+                    <div class="list-action-left">
+                      <i class="ion-calendar icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">View and Manage Calendar</span>
+                      <span class="caption">View and manage all events on your sports calendar.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    </div>
+                  <% end %>
+                </li>
 
                 <!-- send announcement -->
                 <li class="has-action-left has-action-right">
@@ -225,7 +366,7 @@
                     </div>
                     <div class="list-content">
                       <span class="title">Send Announcement</span>
-                      <span class="caption">Get importantant message out quickly.</span>
+                      <span class="caption">Get important messages out quickly.</span>
                     </div>
                     <div class="list-action-right">
                       <span class="top">2 hr</span>
@@ -298,53 +439,91 @@
                 
             <% else %>
 
+              <h5 class="bold">Sports Teams</h5>
               <ul class="list-material">
-                <%= link_to "Return to Profile",  eval("edit_#{klass}_path(@object)") %></br>
                 <li class="has-action-left has-action-right">
-                  <%= link_to eval("edit_#{klass}_path(@object)"), class: "visible" do %>
+                  <a href="#" class="visible">
                     <div class="list-action-left">
-                      <i class="ion-calendar icon-circle"></i>
+                      <i class="ion-plus-circled icon"></i>
                     </div>
                     <div class="list-content">
-                      <span class="title">Edit Your Profile</span>
-                      <span class="caption">Complete all the information.</span>
-                    </div>
-                    <div class="list-action-right">
-                      <span class="top">15 min</span>
-                      <i class="ion-android-done bottom"></i>
-                    </div>
-                  <% end %>
-                </li>
-                <li class="has-action-left has-action-right">
-                  <%= link_to "/#{klass.pluralize}/#{@object.slug}/edit#tab_media",  class: "visible" do %>
-                    <div class="list-action-left">
-                      <i class="ion-calendar icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">Add Photo, Articles, and Video</span>
-                      <span class="caption">Dynamically procrastinate B2C users after installed base benefits.</span>
+                      <span class="title">Add Teams</span>
+                      <span class="caption">Create a new team or join an existing team.</span>
                     </div>
                     <div class="list-action-right">
                       <span class="top">2 hr</span>
                       <i class="ion-android-done bottom"></i>
                     </div>
-                  <% end %>
+                  </a>
+                </li>
+                <li class="has-action-left has-action-right">
+                  <a href="#" class="visible">
+                    <div class="list-action-left">
+                      <i class="ion-plus-circled icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">View and Manage Teams</span>
+                      <span class="caption">View all current teams connected to your account.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    </div>
+                  </a>
                 </li>
               </ul>
 
 
               <br/>
-              <h5 class="bold">Account Management</h5>
+              <h5 class="bold">Calendar and Events</h5>  
+
               <ul class="list-material">
                 <!-- add event -->
                 <li class="has-action-left has-action-right">
                   <%= link_to eval("new_#{klass}_event_path(@object)"), class: "visible" do %>
                     <div class="list-action-left">
-                      <i class="ion-calendar icon"></i>
+                      <i class="ion-plus-circled icon"></i>
                     </div>
                     <div class="list-content">
                       <span class="title">Add Event</span>
-                      <span class="caption">Dynamically procrastinate B2C users after installed base benefits.</span>
+                      <span class="caption">Create a new event.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    </div>
+                  <% end %>
+                </li>
+                 <li class="has-action-left has-action-right">
+                  <a href="#" class="visible">
+                    <div class="list-action-left">
+                      <i class="ion-calendar icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">Your Sports Calendar</span>
+                      <span class="caption">View and manage your sports calendar.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+
+
+              <br/>
+              <h5 class="bold">Messaging</h5>  
+
+              <ul class="list-material">
+                <li class="has-action-left has-action-right">
+                  <%= link_to eval("new_#{klass}_event_path(@object)"), class: "visible" do %>
+                    <div class="list-action-left">
+                      <i class="ion-chatboxes icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">Instant Message Connection</span>
+                      <span class="caption">Chat with people in your sports community.</span>
                     </div>
                     <div class="list-action-right">
                       <span class="top">2 hr</span>
@@ -353,23 +532,6 @@
                   <% end %>
                 </li>
               </ul>
-
-              <%#= link_to "View/Manage Registrations", eval("#{klass}_registrations_path(@object)") %>
-              <hr/>
-              
-              <h5>User Flow</h5>
-              <ol>
-                <li>setup (change classification)</li>
-                <li>build league, build team, build school, build facility, build club</li>
-                <li>claim all.</li>
-                <li>chat with friends</li>
-                <li>accept parents</li>
-                <li>privacy settings</li>
-                <li>measurables</li>
-                <li>manage teams groups i'm apart of</li>
-                <li>Events (?)</li>
-              </ol> 
-
             <% end %>
 
           </div>
@@ -380,7 +542,7 @@
         <div class="panel box-shadow-ccc">
           <div class="panel-heading">
             <div class="panel-title">
-              <h4 class="text-primary">Administrative Management</h4>
+              <h4 class="text-primary">Account Management</h4>
             </div>
           </div>
           <div class="panel-body">
@@ -472,25 +634,46 @@
                 </ul>
                   
               <% else %>
-               
 
-                <hr/>
+                <h5 class="bold">Plan & Payments</h5>
+                <ul class="list-material">
                 
-                <h5>User Flow</h5>
-                <ol>
-                  <li>setup (change classification)</li>
-                  <li>build league, build team, build school, build facility, build club</li>
-                  <li>claim all.</li>
-                  <li>chat with friends</li>
-                  <li>accept parents</li>
-                  <li>privacy settings</li>
-                  <li>measurables</li>
-                  <li>manage teams groups i'm apart of</li>
-                  <li>Events (?)</li>
-                </ol> 
+                 <!-- Create Registration -->
+                  <li class="has-action-left has-action-right">
+                    <a href="#" class="visible">
+                      <div class="list-action-left">
+                        <i class="ion-calendar icon"></i>
+                      </div>
+                      <div class="list-content">
+                        <span class="title">Upgrade Account</span>
+                        <span class="caption">Go Pro! Upgrade today to get the most out of SportMarkit.</span>
+                      </div>
+                      <div class="list-action-right">
+                        <span class="top">2 hr</span>
+                        <i class="ion-android-done bottom"></i>
+                      </div>
+                    </a>
+                  </li>
+
+                  <!-- Manage Registration -->
+                  <li class="has-action-left has-action-right">
+                    <a href="#" class="visible">
+                      <div class="list-action-left">
+                        <i class="ion-social-usd icon"></i>
+                      </div>
+                      <div class="list-content">
+                        <span class="title">Bank Account</span>
+                        <span class="caption">Last updated: March 29, 2016.</span>
+                      </div>
+                      <div class="list-action-right">
+                        <span class="top">2 hr</span>
+                        <i class="ion-android-done bottom"></i>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
 
               <% end %>
-
 
             </div>
           </div>
