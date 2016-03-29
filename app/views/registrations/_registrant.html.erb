@@ -1,30 +1,32 @@
-										<li class="has-action-left has-action-right has-long-story">
-											<a href="#" class="visible">
-												<div class="list-action-left">
-													<%= image_tag(registration.registrant.avatar, class: "face-radius", alt:"") %>
-												</div>
-												<div class="list-content">
-													<span class="title"><%= registration.registrant.full_name %> </span>
-                                                    <% if registration.registrant.has_registered_for?(@object) %>
-                                                     <small><%= link_to "(View Details)", "/#{registration.formable_type.underscore.pluralize}/#{registration.formable.slug}/registrations/#{registration.id}/registrant" %></small>
-                                                    <% end %>
-                                                    
-                                                   
-                                                    <span class="caption">
-                                                    <% if registration.selected_option.present? %>
-													 <%= registration.selected_option.option.name  %>, <%= number_to_currency(registration.selected_option.option.price) %>                                                        
-                                                     <% else %> 
-                                                      No option selected.
-                                                      <% end %>
-                                                  </span>
-												</div>
-												<div class="list-action-right">
-													<span class="top"><%= format(registration.updated_at,1) %> <%= format(registration.updated_at,9) %></span>
-                                                    <% if registration.paid? %>
-													<span class="bottom  text-green"><i class="ion-android-done inline fs_22"></i>  Paid</span>
-                                                    <% else %>
-                                                    <span class="bottom  text-red"><i class="ion-card inline fs_22 mr5"></i>  Not Paid</span>
-                                                    <% end %>
-												</div>
-											</a>
-										</li>
+<li class="has-action-right has-long-story">
+	<div class="list-content">
+		<span class="h5 bold"><%= registration.registrant.full_name %> </span>
+		<span class="caption">
+    	<% if registration.selected_option.present? %>
+		 		<strong>Option:</strong> <%= registration.selected_option.option.name  %>, 
+		 		<strong>Price:</strong> <%= number_to_currency(registration.selected_option.option.price) %>,
+      <% else %> 
+        No option selected.
+      <% end %>
+      <span class="inline">
+      	<% if registration.registrant.has_registered_for?(@object) %>
+       		<strong>Registration:</strong> <%= link_to "View Details", "/#{registration.formable_type.underscore.pluralize}/#{registration.formable.slug}/registrations/#{registration.id}/registrant" %>
+      	<% end %>
+      </span>
+    </span>
+	</div>
+	<div class="list-action-right">
+		<span class="top">
+			<%= format(registration.updated_at,1) %> <%= format(registration.updated_at,9) %>
+			<% if registration.paid? %>
+				<span class="mt10 text-green"><i class="ion-android-done inline fs_22"></i>  
+					Paid
+				</span>
+    	<% else %>
+    		<span class="mt0 text-red"><i class="ion-card inline fs_22 mr5"></i>  
+    			Not Paid
+    		</span>
+  		<% end %>
+		</span>	
+	</div>
+</li>

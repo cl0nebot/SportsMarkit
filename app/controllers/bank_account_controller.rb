@@ -1,21 +1,20 @@
 class BankAccountController < ApplicationController
   before_action :authenticate_user!
-  # before_action :correct_user
   before_action :find_bankable
-  
+
   def index
     @bank_account = @bankable.bank_account.nil? ? @bankable.build_bank_account : @bankable.bank_account
   end
-  
+
   def create
     stripe_token = params[:stripe_token]
-    category = BankAccount.set_category(params)
-    
+    category = params[:bank_account][:category]
+
     begin
       if @bankable.stripe_recipient_id.nil?
         raise "Stripe token not present. Cannot process transaction."  if !stripe_token.present?
         recipient = Stripe::Recipient.create(:name => params[:bank_account][:name_on_account], :type => category, :bank_account => stripe_token)
-        @bank_account = @bankabke.build_bank_account(bank_account_params)
+        @bank_account = @bankable.build_bank_account(bank_account_params)
         if @bank_account.save
           flash[:success] = "Bank Account added."
           redirect_to root_path
@@ -27,13 +26,13 @@ class BankAccountController < ApplicationController
       end
     end
 
-    rescue Stripe::StripeError => e
-      # A generic stripe error message
-      @error = e
-      flash[:error] = "We could not accept your request."
-      redirect_to root_path
+  rescue Stripe::StripeError => e
+    # A generic stripe error message
+    @error = e
+    flash[:error] = "We could not accept your request."
+    redirect_to root_path
   end
-  
+
   def update
     @bank_account = @bankable.bank_account
 
@@ -57,27 +56,15 @@ class BankAccountController < ApplicationController
     end
 
   end
-  
+
   protected
-  
+
   def find_bankable
     param = params.keys.find{|key| key =~ /(\w+)_id/}
     @bankable = $1.capitalize.constantize.find(params[param])
   end
-  
+
   def bank_account_params
     params.require(:bank_account).permit(:name_on_account, :category, :bankable_id, :bankable_type, :stripe_token)
   end
-  
-  
 end
-  
- 
-   
-    
-
-  
-
-    
-
-

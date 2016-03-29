@@ -1,0 +1,67 @@
+.content
+  .page-header.full-content.bg-blue
+    .row
+      .col-sm-6
+        h1
+          | Bank Account Information
+          small.m-l-10.inline-block Payment information
+      .col-sm-6
+        ol.breadcrumb
+          li
+            a href="/"
+              i.ion-home
+          li
+            a href="#{eval("#{@bankable.class.to_s.downcase.pluralize}_path")}" = @bankable.class.to_s.pluralize
+          li
+            a href="#" = @bankable.name
+          li
+            a.active href="#"  Bank Information
+  .row
+    .col-lg-4.col-lg-offset-4.col-md-6.col-md-offset-3.col-sm-8.col-md-offset-2
+      .panel.box-shadow-ccc
+        .panel-heading
+          .panel-title.text-center
+            br/
+            h3 Add Bank Account.
+        .panel-body.m-b-30.pr40.pl40
+          = form_for([@bankable, @bank_account], :url => {:controller => "bank_account",:action => :create}, role: "form", html:{class: "bank_account_form"}) do |f|
+            h5.text-muted.text-center Please enter your bank information below.
+            .panel-body.m-b-30.pr40.pl40
+              .form-row
+                .row.example-row
+                  .col-md-12 Name on Account
+                  .col-md-12
+                    .inputer
+                      .input-wrapper
+                        = f.text_field :name_on_account, required: true, class: "form-control", placeholder: "John Smith"
+              .form-row
+                .row.example-row
+                  .col-md-12 Routing Number
+                  .col-md-12
+                    .inputer
+                      .input-wrapper
+                        = text_field_tag :routing_number, nil, required: true, class: "form-control", placeholder: "#########"
+              .form-row
+                .row.example-row
+                  .col-md-12 Account Number
+                  .col-md-12
+                    .inputer
+                      .input-wrapper
+                        = text_field_tag :account_number, nil, required: true, class: "form-control", placeholder: "####-####-####-#####"
+              .form-group.m-t-30
+                .form-row
+                  .controls
+                    .form-group.p-t-10
+                      div clas=("row clearfix form-row")
+                        .col-md-6.text-center
+                          = f.radio_button :category, 'individual'
+                          label.form-label.ml5 Individual
+                        .col-md-6.text-center
+                          = f.radio_button :category, 'corporation'
+                          label.form-label.ml5 Corporation
+            .panel-footer.form-layout
+              br/
+              = f.submit value: "Add Bank Account", class: "btn btn-primary btn-block "
+              = hidden_field_tag :country, 'US', required: true
+              = hidden_field_tag :stripe_token
+              br/
