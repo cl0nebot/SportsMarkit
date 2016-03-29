@@ -88,15 +88,43 @@
 					
 						<div id="add_user" class="collapse">
 							<div class="panel box-shadow-ccc">
-                                 <%= form_tag find_user_rosters_path, method: :get, remote: true do %>
-                                
-                                <%= select_tag  'user_id', options_from_collection_for_select(User.smart_order(current_user), "id", "name"), {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0 autosubmit"  } %>
-                                <%= hidden_field_tag :team_id, @team.id %>
-                                <% end %>
-                                <div class="panel-body padding-40" id="new-roster-spot-form">
-                                    <%= render 'rosters/add_new_roster_spot_form', user: @new_user, team: @team %>
-                                </div>
-								
+								<div class="panel-heading no-margin">
+									<div class="panel-title" id="admin-count">
+							      <h3 class="semi-bold fs_20 mb0">
+											Add a New User
+										</h3>
+									</div>
+								</div><!--.panel-heading-->
+								<div class="panel-body padding-40">
+									<div class="row">
+										<div class="col-md-3">
+											<div class="row example-row">
+												<div class="col-md-12">
+													<h5>Does this user already have a SportsMarkit Account?</h5>
+													<br/>
+												</div><!--.col-md-3-->
+												<h5 class="bold">1. Find User</h5>
+												<div class="inputer">
+													<div class="input-wrapper">
+														<%= form_tag find_user_rosters_path, method: :get, remote: true do %>
+															<%= select_tag  'user_id', options_from_collection_for_select(User.smart_order(current_user), "id", "name"), {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0 autosubmit"  } %>
+						                <%= hidden_field_tag :team_id, @team.id %>
+						                <% end %>
+													</div>
+												</div>
+
+												<br/>
+												<h5 class="bold">2. Complete Form</h5>
+											</div>
+										</div>
+										<div class="col-md-offset-1 col-md-8">
+										<div id="new-roster-spot-form">
+	                  	<div class="border">
+	                  		<%= render 'rosters/add_new_roster_spot_form', user: @new_user, team: @team %>
+	                  	</div>
+	                  </div>
+	                </div>
+              	</div>
 							</div><!--.panel-->
 						</div>
 					</div>
