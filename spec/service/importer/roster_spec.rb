@@ -13,7 +13,7 @@ RSpec.describe Importer::Roster do
       end
 
       it "should create 1 role" do
-        expect{ run_import }.to change{ Role.count }.by(1)
+        expect{ run_import }.to change{ team.roles.count }.by(1)
       end
     end
 
@@ -25,11 +25,11 @@ RSpec.describe Importer::Roster do
       end
 
       it "should create 0 role" do
-        expect{ run_import }.to change{ Role.count }.by(0)
+        expect{ run_import }.to change{ team.roles.count }.by(0)
       end
 
       it "should create 1 userless role" do
-        expect{ run_import }.to change{ UserlessRole.count }.by(1)
+        expect{ run_import }.to change{ team.userless_roles.count }.by(1)
       end
     end
   end
@@ -43,11 +43,11 @@ RSpec.describe Importer::Roster do
       end
 
       it 'should create 0 role' do
-        expect{ run_import }.to change{Role.count}.by(0)
+        expect{ run_import }.to change{team.roles.count}.by(0)
       end
 
       it 'should create 0 userless role' do
-        expect{ run_import }.to change{UserlessRole.count}.by(0)
+        expect{ run_import }.to change{team.userless_roles.count}.by(0)
       end
     end
   end

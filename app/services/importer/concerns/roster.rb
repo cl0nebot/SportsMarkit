@@ -8,14 +8,14 @@ module Importer::Concerns::Roster
       if user.update_attributes(user_params)
         user.create_profile unless user.profile.present?
         unless role_exists?(user, team_id, attributes)
-          role = Role.create_new_role(user.id, "Athlete", attributes)
+          role = Role.create_new_role(user.id, "Athlete", attributes.merge({team_id: team_id}))
           yield role unless role.persisted?
         end
       else
         yield user
       end
     else
-      role = UserlessRole.create_new_role("Athlete", attributes)
+      role = UserlessRole.create_new_role("Athlete", attributes.merge({team_id: team_id}))
       yield role unless role.persisted?
     end
   end
