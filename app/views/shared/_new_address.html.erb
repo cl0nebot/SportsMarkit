@@ -1,137 +1,75 @@
 <% required ||= false %>
 <%= f.fields_for :address, object.build_address do |address|%>
-  <% if params[:action] == "new" %>
-    <div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
-      <div class="panel-body padding-right-40 padding-left-40">
-        <br/>
-        <h4 class="text-blue semi-bold">
-          <i class="ion-ios-location margin-right-10"></i> Address and Location Info
-        </h4>
-        <br/>
-        <div class="row example-row">
-          <div class="col-md-12">
-            <h4>Street 1</h4>
-          </div>
-          <div class="col-md-12">
-            <div class="inputer">
-              <div class="input-wrapper form-group">
-                <%= address.text_field :street_1, class: "form-control", required: required %>
-                <div class="help-block with-errors"></div>
-              </div>
+    <% if params[:action] == "new" %>
+        <div class="panel-body padding-right-40 padding-left-40" style="border-bottom: 1px solid #e5e5e5;">
+            <div class="panel-body padding-right-40 padding-left-40">
+                <br/>
+                <h4 class="text-blue semi-bold">
+                    <i class="ion-ios-location margin-right-10"></i> Address and Location Info
+                    <div id="parent-address-option">
+                        <%= render 'shared/parent_address_options', owner: owner.present? ? owner : nil %>
+                    </div>
+                </h4>
+                <br/>
+                <div id="changeable-address-fields">
+                    <%= render 'shared/address_fields', owner: owner %>
+                </div>
             </div>
-          </div>
         </div>
+    <% else %>
         <div class="row example-row">
-          <div class="col-md-12">
-            <h4>Street 2</h4>
-          </div>
-          <div class="col-md-12">
-            <div class="inputer">
-              <div class="input-wrapper form-group">
-                <%= address.text_field :street_2, class: "form-control" %>
-              </div>
+            <div class="col-md-3">Street 1 <font size='2' color='red'> <sup>*</sup></font></div>
+            <div class="col-md-9">
+                <div class="inputer">
+                    <div class="input-wrapper form-group">
+                        <%= address.text_field :street_1, class: "form-control", required: required %>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
         <div class="row example-row">
-          <div class="row">
-            <div class="col-md-5">
-              <div class="col-md-12">
-                <h4>City</h4>
-              </div>
-              <div class="col-md-12">
+            <div class="col-md-3">Street 2 </div>
+            <div class="col-md-9">
                 <div class="inputer">
-                  <div class="input-wrapper form-group">
-                    <%= address.text_field :city, class: "form-control", required: required %>
-                    <div class="help-block with-errors"></div>
-                  </div>
+                    <div class="input-wrapper form-group">
+                        <%= address.text_field :street_2, class: "form-control" %>
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="col-md-3">
-              <div class="col-md-12">
-                <h4>State</h4>
-              </div>
-              <div class="col-md-12">
+        </div>
+        <div class="row example-row">
+            <div class="col-md-3">City<font size='2' color='red'> <sup>*</sup></font></div>
+            <div class="col-md-9">
                 <div class="inputer">
-                  <div class="input-wrapper form-group">
-                    <%= address.text_field :state, class: "form-control", required: required %>
-                    <div class="help-block with-errors"></div>
-                  </div>
+                    <div class="input-wrapper form-group">
+                        <%= address.text_field :city, class: "form-control", required: required %>
+                        <div class="help-block with-errors"></div>
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="col-md-4">
-              <div class="col-md-12">
-                <h4>Zipcode</h4>
-              </div>
-              <div class="col-md-12">
+        </div>
+        <div class="row example-row">
+            <div class="col-md-3">State<font size='2' color='red'> <sup>*</sup></font></div>
+            <div class="col-md-9">
                 <div class="inputer">
-                  <div class="input-wrapper form-group">
-                    <%= address.text_field :postcode, class: "form-control payment-restrict", restrict: true, required: required %>
-                    <div class="help-block with-errors"></div>
-                  </div>
+                    <div class="input-wrapper form-group">
+                        <%= address.text_field :state, class: "form-control", required: required %>
+                        <div class="help-block with-errors"></div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  <% else %>
-    <div class="row example-row">
-      <div class="col-md-3">Street 1 <font size='2' color='red'> <sup>*</sup></font></div>
-      <div class="col-md-9">
-        <div class="inputer">
-          <div class="input-wrapper form-group">
-            <%= address.text_field :street_1, class: "form-control", required: required %>
-            <div class="help-block with-errors"></div>
-          </div>
+        <div class="row example-row">
+            <div class="col-md-3">Zipcode</div>
+            <div class="col-md-9">
+                <div class="inputer">
+                    <div class="input-wrapper form-group">
+                        <%= address.text_field :postcode, class: "form-control payment-restrict", restrict: true, required: required %>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row example-row">
-      <div class="col-md-3">Street 2 </div>
-      <div class="col-md-9">
-        <div class="inputer">
-          <div class="input-wrapper form-group">
-            <%= address.text_field :street_2, class: "form-control" %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row example-row">
-      <div class="col-md-3">City<font size='2' color='red'> <sup>*</sup></font></div>
-      <div class="col-md-9">
-        <div class="inputer">
-          <div class="input-wrapper form-group">
-            <%= address.text_field :city, class: "form-control", required: required %>
-            <div class="help-block with-errors"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row example-row">
-      <div class="col-md-3">State<font size='2' color='red'> <sup>*</sup></font></div>
-      <div class="col-md-9">
-        <div class="inputer">
-          <div class="input-wrapper form-group">
-            <%= address.text_field :state, class: "form-control", required: required %>
-            <div class="help-block with-errors"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row example-row">
-      <div class="col-md-3">Zipcode</div>
-      <div class="col-md-9">
-        <div class="inputer">
-          <div class="input-wrapper form-group">
-            <%= address.text_field :postcode, class: "form-control payment-restrict", restrict: true, required: required %>
-            <div class="help-block with-errors"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
 <% end %>

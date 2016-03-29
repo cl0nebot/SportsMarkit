@@ -1,0 +1,7 @@
+<% if owner.present? %>
+    <% if params[:parent_address].present? %>
+        (<%= link_to "Clear", parent_address_school_teams_path(object_type: owner.class.to_s, object_id: owner.id), remote: true %>)
+    <% else %>
+        (<%= link_to "Use Address from #{owner.name}", parent_address_school_teams_path(parent_address: true, object_type: owner.class.to_s, object_id: owner.id), remote: true %>)
+    <% end %>
+<% end %>

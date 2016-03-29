@@ -64,6 +64,14 @@ Rails.application.routes.draw do
     resources :bank_account
   end
 
+  concern :teamable do
+    resources :teams do
+      collection do
+        get :parent_address
+      end
+    end
+  end
+
   concern :announceable do
     resources :announcements
   end
@@ -107,7 +115,7 @@ Rails.application.routes.draw do
   resources :sessions
   resources :password_resets
 
-  resources :schools, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable] do
+  resources :schools, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :teamable] do
     resources :dashboard
     resources :uploads do
       collection do
@@ -126,7 +134,6 @@ Rails.application.routes.draw do
     end
     resources :facilities
     resources :media
-    resources :teams
     resources :photos
     resources :profile_pictures, only: %w[create update destroy]
     resource :calendar do
