@@ -462,10 +462,6 @@ class User < ActiveRecord::Base
     Role.where(user_id: id, roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", status: classification)
   end
 
-  def find_registration(object)
-    object.forms.where(submittable_id: id, submittable_type: "User").last
-  end
-
   def fix_email
     self.email = email.to_s.downcase
   end
@@ -490,4 +486,24 @@ class User < ActiveRecord::Base
     last_4 = mobile_phone_number.last(4)
     "xxx-xxx-#{last_4}"
   end
+  
+  def find_registration(object)
+    object.forms.where(submittable_id: id, submittable_type: "User").last
+  end
+  
+  def has_registered_for?(object)
+    if find_registration(object).present?
+      find_registration(object).paid?
+    end
+  end
+  
+  def has_incomplete_registration?(object)
+    !has_registered_for?(object)
+  end
+  
+  def all_registration_forms
+    Form.where(submittable_id: id, submittable_type: "User")
+  end
+  
+  
 end
