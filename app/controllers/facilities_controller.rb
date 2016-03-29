@@ -123,6 +123,54 @@ class FacilitiesController < ApplicationController
     
   end
   
+  def upgrade
+    @facility = Facility.friendly.find(params[:facility_id])
+    @object = @facility
+  end
+  
+  def upgrade_facility
+    @facility = Facility.friendly.find(params[:facility_id])
+    stripe_token = params[:stripe_token]
+    
+    begin
+      if @facility.stripe_customer_id.nil?
+        
+        if !stripe_token.present?
+          #Emails.subscription_error(@school).deliver
+          raise "Stripe token not present. Cannot process transaction."  
+        end
+        
+        customer = Stripe::Customer.create(
+          :email => @facility.try(:email),
+          :description => "#{@facility.name} - #{@facility.id}", #TODO make method
+          :card => stripe_token,
+          :plan => params[:facility][:plan])
+          
+    #@school = @school.build_subscription(school_params)
+    #@school.plan = params[:school][:plan]
+    if @facility.save
+      #Emails.successful_subscription(@school, current_user).deliver
+      #Emails.subscription_notification(@school).deliver
+      redirect_to facility_path(@facility)
+    else
+      #flash[:error] = "Oops. Something went wrong. Let's try again." 
+      redirect_to :back
+    end
+    
+    # @school.update_attributes(premium: true, stripe_customer_id: customer.id, stripe_subscription_id: customer.subscription.id)
+    #@school.update_attributes(premium: true, stripe_customer_id: customer.id)
+          
+    end
+          
+    rescue Stripe::CardError => e
+      # The card has been declined or
+      # some other error has occured
+      @error = e
+      render :new
+    end
+  
+  end 
+  
   protected
   
   def find_facility

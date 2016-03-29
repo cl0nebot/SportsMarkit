@@ -1,6 +1,6 @@
 class ClubsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :upgrade]
-  before_action :correct_user!, only: [:edit, :destroy, :upgrade]
+  before_action :correct_user!, only: [:edit, :destroy]
   before_action :find_club, except: [:index, :new, :create, :upgrade, :upgrade_club, :plan, :update]
   
   
@@ -91,9 +91,10 @@ class ClubsController < ApplicationController
   
   def upgrade
     @club = Club.friendly.find(params[:club_id])
+    @object = @club
   end
   
-  def upgrade_school
+  def upgrade_club
     @club = Club.friendly.find(params[:club_id])
     stripe_token = params[:club][:stripe_token]
     

@@ -9,8 +9,8 @@
       <div class="col-sm-6">
         <ol class="breadcrumb">
           <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="<%= clubs_path %>">Clubs</a></li>
-          <li><a href="#"><%= @object.name %></a></li>
+          <li><a href="<%= facilities_path %>">facilities</a></li>
+          <li><a href="#"><%= @facility.name %></a></li>
           <li><a href="#" class="active">Upgrade</a></li>
         </ol>
       </div><!--.col-->
@@ -33,16 +33,16 @@
 				<!-- panel body -->
 				<div class="panel-body m-b-30 pr40 pl40">
 
-					<%= form_for [@object], url: club_upgrade_club_path(@object), role: "form", html:{class: "card_form"} do |f| %>
+					<%= form_for [@object], url: facility_upgrade_facility_path(@object), role: "form", html:{class: "card_form"} do |f| %>
 
 						<div class="form-row text-center">
 	        		<div class="row example-row no-margin">
 								<div class="col-md-12">Upgrade Plan </div><!--.col-md-3-->
 								<div class="col-md-12">
 									<label class="text-primary semi-bold text-center h4 MB0">
-		            		Premium Club Plan
+		            		Premium Facility Plan
 		            	</label>
-		            	<h1 class="text-center no-margin semi-bold"><%= number_to_currency(@club.price, precision: 0) %> <small class="small h6">/year</small></h1>
+		            	<h1 class="text-center no-margin semi-bold"><%= number_to_currency(@facility.price, precision: 0) %> <small class="small h6">/year</small></h1>
 									<%#= f.hidden_field :total_price, value: @cart.total_price(current_user)%>
 								</div><!--.col-md-9-->
 							</div><!--.row-->
