@@ -326,6 +326,7 @@ Rails.application.routes.draw do
 
   resources :uploads, except: [:index, :new, :create, :show, :edit, :update, :destroy] do
     collection do
+      get :download_errors
       post :import
       post :roster
     end

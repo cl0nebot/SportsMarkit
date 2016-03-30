@@ -2,7 +2,6 @@ class UploadsController < ApplicationController
   before_action :find_object, only: [:index]
 
   def index
-
   end
 
   def create
@@ -16,11 +15,21 @@ class UploadsController < ApplicationController
     end
 
     if @import.failure?
-      binding.pry
-      redirect_to :back, alert: @import.errors
+      if @import.error_xls
+        file = Tempfile.new(["import-error"], Rails.root.join("tmp"))
+        file.binmode
+        file.write(@import.error_xls.read)
+        file.close
+        redirect_to :back, flash: { alert: @import.errors, file_with_errors_path: file.path }
+      end
     else
       redirect_to :back, notice: 'Uploaded'
     end
+  end
+
+  def download_errors
+    file = open(params[:path])
+    send_data(file.read, type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', filename: "import-error-#{Time.now}.xlsx")
   end
 
   def find_object
