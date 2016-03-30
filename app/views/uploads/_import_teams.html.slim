@@ -1,0 +1,39 @@
+= form_tag import_uploads_path, multipart: true
+  .panel-body
+    h5.mb0.text-primary.semi-bold 1. What kind of account is the excel upload for?
+    p.h6.mt0
+      small
+        span.text-black Please select from the dropdown menu below.
+    .well.mb0
+      = select_tag :object, options_for_select([ "School", "Team", "Club", "League", "Facility" ], "School"), id: "object-field", class: "form-control bg-white"
+  hr.no-margin/
+  .panel-body
+    h5.mb0.text-primary.semi-bold 2. Which account?
+    p.h6.mt0
+      small
+        span.text-black Please select the account from the dropdown menu below.
+    .well.mb0
+      = select_tag :school_id, options_for_select(School.all.collect{ |school| [school.name, school.id] }), {:multiple => false, include_blank: true, class: "form-control bg-white"}
+  hr.no-margin/
+  .panel-body
+    h5.mb0.text-primary.semi-bold 3. Upload your excel file
+    p.h6.mt0
+      small
+        span.text-black Please click the button below to upload your file.
+    .fileinput.fileinput-new.input-group.well.mb0 data-provides="fileinput"
+      .form-control data-trigger="fileinput"
+        i.glyphicon.glyphicon-file.fileinput-exists
+        span.fileinput-filename
+      span.input-group-addon.btn.btn-default.btn-file.btn-block
+        span.fileinput-new Select file
+        span.fileinput-exists Change
+        = file_field_tag :file, id: "file-field"
+      a.input-group-addon.btn.btn-default.fileinput-exists.btn-block data-dismiss="fileinput" href="#"
+        | Remove
+    br/
+    #invalid-message style=("display: none")
+      .alert.alert-danger role="alert"
+        | Oops. Invalid file type. Please try again.
+  hr.no-margin/
+  .panel-body
+    = submit_tag "Import Schools",class: "btn btn-primary btn-block", disabled: true, id: "file-submit"
