@@ -1,0 +1,42 @@
+- if current_user.nil?
+  javascript:
+    $(function() {
+      $("#signup-user-on-registration-form").modal('show')
+    });
+.content
+  .page-header.full-content.bg-primary.mb0 style=("min-height: 121px;")
+    .row
+      .col-sm-6
+        h1.capitalize.semi-bold
+          = @object.name
+          small Team Registration
+      .col-sm-6
+        ol.breadcrumb
+          li
+            a href="/"
+              i.ion-home
+          li
+            a href="#{eval("#{@object.class.to_s.downcase.pluralize}_path")}" = @object.class.to_s.pluralize
+          li= link_to @object.name, @object
+    = render "shared/show_navigation_admin"
+  br/
+  br/
+  .row
+    .col-lg-6.col-lg-offset-3.col-md-10.col-md-offset-1.col-sm-12
+      .panel.box-shadow-ccc
+        .panel-body.pr50.pl50.pt50.pb50.labels-light.labels-16
+          h3 Please complete the form below.
+          p.text-muted.fs_16 Please complete the information below to complete the registration process.
+          hr/
+          = form_tag change_submitter_registrations_path, method: :get, remote: true do
+            = hidden_field_tag :form_id, @form.id
+            = hidden_field_tag :object_id, @object.id
+            = hidden_field_tag :object_type, @object.class.to_s
+            h4.text-primary.semi-bold 1. Who is this registration for?
+            .well
+              h6.semi-bold.text-muted Select User
+              = select_tag 'user_id', options_from_collection_for_select(User.smart_order(current_user), "id", "name"), {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0 autosubmit"  }
+          br/
+          #form-reg
+            = render 'registrations/form', form: @form, master: @master, object: @object, submitter: current_user
+= render 'signup', object: @object
