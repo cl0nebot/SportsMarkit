@@ -1,20 +1,20 @@
 class LeaguesController < ApplicationController
   before_action :correct_user!, only: [:edit]
   before_action :find_league, only: [:show, :edit, :destroy]
-  
+
   def index
     if stale?(:etag => ["leagues-index", "v0"], :last_modified => League.maximum(:updated_at))
       @leagues = League.all
       @object = League.new
-      @address = @object.build_address 
+      @address = @object.build_address
     end
   end
-  
+
   def new
     @object = League.new
-    @address = @object.build_address 
+    @address = @object.build_address
   end
-  
+
   def create
     if (params[:league][:address_attributes][:street_1].present? && params[:league][:address_attributes][:city].present? || params[:league][:address_attributes][:state].present?)
       @league = League.new(league_params)
@@ -34,7 +34,7 @@ class LeaguesController < ApplicationController
       redirect_to :back
     end
   end
-  
+
   def show
     @object = @league
     shared_variables
@@ -45,15 +45,14 @@ class LeaguesController < ApplicationController
     @userless_admins = @league.userless_admins
     @facilities = @league.facilities
   end
-  
-  
+
   def edit
     @object = @league
     @picture =  @object.photos.build
     @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
     profile_picture_insert
   end
-  
+
   def update
     @object = League.find_by_slug!(request.referrer.split("leagues/").last.split("/").first)
     @profile_picture =  ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s).last
@@ -65,41 +64,34 @@ class LeaguesController < ApplicationController
       respond_to do |format|
         format.html {redirect_to :back}
         format.js
-        format.json { respond_with_bip(@object) } 
+        format.json { respond_with_bip(@object) }
       end
     else
       respond_to do |format|
         format.html {redirect_to :back}
         format.js
-        format.json { respond_with_bip(@object) } 
+        format.json { respond_with_bip(@object) }
       end
-      
+
     end
   end
-  
-  def upgrade
-    @league = League.friendly.find(params[:league_id])
-    @object = @league
-  end
-  
+
   def destroy
     @league.destroy
     redirect_to :back
   end
-  
+
   def managers
     @league_managers = Role.where(roleable_type: "League", role: "League Manager", status: "Active")
   end
-  
+
   protected
-  
+
   def find_league
     @league = League.friendly.find(params[:id])
   end
-  
+
   def league_params
-    params.require(:league).permit({:sport_ids => []}, :name, :description, :sport, :website, :emails, :slug, :classification, :category, :facebook, :twitter, :linkedin, :pinterest, :instagram, :youtube, :phone_number, {address_attributes: [:id, :addressable_id, :addressable_type, :street_1, :street_2, :city, :state, :country, :postcode, :suite, :nickname, :default, :county, :latitude, :longitude, :gmaps]})  
+    params.require(:league).permit({:sport_ids => []}, :name, :description, :sport, :website, :emails, :slug, :classification, :category, :facebook, :twitter, :linkedin, :pinterest, :instagram, :youtube, :phone_number, {address_attributes: [:id, :addressable_id, :addressable_type, :street_1, :street_2, :city, :state, :country, :postcode, :suite, :nickname, :default, :county, :latitude, :longitude, :gmaps]})
   end
-  
-  
 end

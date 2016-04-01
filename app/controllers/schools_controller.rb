@@ -1,7 +1,7 @@
 class SchoolsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :upgrade]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :correct_user!, only: [:edit, :destroy]
-  before_action :find_school, except: [:index, :new, :create, :upgrade, :upgrade_school, :plan, :update]
+  before_action :find_school, except: [:index, :new, :create, :plan, :update]
 
   def index
     if stale?(:etag => ["schools-index", "v0"], :last_modified => School.maximum(:updated_at))
@@ -87,43 +87,6 @@ class SchoolsController < ApplicationController
 
   def plan
     @school = School.friendly.find(params[:school_id])
-  end
-
-  def upgrade
-    @school = School.friendly.find(params[:school_id])
-    @object = @school
-  end
-
-  def upgrade_school
-    @school = School.friendly.find(params[:school_id])
-    stripe_token = params[:school][:stripe_token]
-
-    begin
-      if @school.stripe_customer_id.nil?
-
-        if !stripe_token.present?
-          raise "Stripe token not present. Cannot process transaction."
-        end
-
-        customer = Stripe::Customer.create(
-          :email => @school.try(:email),
-          :description => "#{@school.name} - #{@school.id}", #TODO make method
-          :card => stripe_token,
-        :plan => params[:school][:plan])
-
-        if @school.save
-          redirect_to school_path(@school)
-        else
-          redirect_to :back
-        end
-      end
-
-    rescue Stripe::CardError => e
-      # The card has been declined or
-      # some other error has occured
-      @error = e
-      render :new
-    end
   end
 
   protected

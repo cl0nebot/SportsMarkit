@@ -1,7 +1,7 @@
 class ClubsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :upgrade]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :correct_user!, only: [:edit, :destroy]
-  before_action :find_club, except: [:index, :new, :create, :upgrade, :upgrade_club, :plan, :update]
+  before_action :find_club, except: [:index, :new, :create, :plan, :update]
 
   def index
     if stale?(:etag => ["clubs-index", "v0"], :last_modified => Club.maximum(:updated_at))
@@ -86,44 +86,6 @@ class ClubsController < ApplicationController
 
   def plan
     @club = Club.friendly.find(params[:club_id])
-  end
-
-  def upgrade
-    @club = Club.friendly.find(params[:club_id])
-    @object = @club
-  end
-
-  def upgrade_club
-    @club = Club.friendly.find(params[:club_id])
-    stripe_token = params[:club][:stripe_token]
-
-    begin
-      if @club.stripe_customer_id.nil?
-
-        if !stripe_token.present?
-          raise "Stripe token not present. Cannot process transaction."
-        end
-
-        customer = Stripe::Customer.create(
-          :email => @club.try(:email),
-          :description => "#{@club.name} - #{@club.id}", #TODO make method
-          :card => stripe_token,
-        :plan => params[:club][:plan])
-
-        if @club.save
-          redirect_to club_path(@club)
-        else
-          redirect_to :back
-        end
-      end
-
-    rescue Stripe::CardError => e
-      # The card has been declined or
-      # some other error has occured
-      @error = e
-      render :new
-    end
-
   end
 
   protected

@@ -2,8 +2,8 @@ class FacilitiesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   before_action :correct_user!, only: [:edit]
   before_action :find_facility, only: [:show, :edit, :destroy]
-  
-  
+
+
   def index
     if stale?(:etag => ["facilites-index", "v0"], :last_modified => Facility.maximum(:updated_at))
       if params[:school_id]
@@ -14,7 +14,7 @@ class FacilitiesController < ApplicationController
       end
     end
   end
-  
+
   def new
     param = params.keys.find{|key| key =~ /(\w+)_id/}
     @owner = $1.try(:capitalize).try(:constantize).try(:find, params[param])
@@ -23,17 +23,17 @@ class FacilitiesController < ApplicationController
     @object = Facility.new
     @address = @object.build_address
   end
-  
+
   def create
     @object = Facility.new(facility_params)
     if @object.save
       redirect_to @object.facility_owner if @object.facility_owner.present?
-      redirect_to @object unless @object.facility_owner.present? 
+      redirect_to @object unless @object.facility_owner.present?
     else
       render 'new'
     end
   end
-  
+
   def create_from_modal
     if (params[:facility][:address_attributes][:street_1].present? && params[:facility][:address_attributes][:city].present? || params[:facility][:address_attributes][:state].present?)
       @object = Facility.new(facility_params)
@@ -62,26 +62,22 @@ class FacilitiesController < ApplicationController
       end
     end
   end
-  
 
-  
-  
-  
   def show
     @class = @facility.class
     @object = @facility
     @teams = @facility.all_teams
-    @users_of_facility = @facility.people 
+    @users_of_facility = @facility.people
     shared_variables
   end
-  
+
   def edit
     @object = @facility
     @picture =  @object.photos.build
     @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
     profile_picture_insert
   end
-  
+
   def update
     @object = Facility.find_by_slug!(request.referrer.split("facilities/").last.split("/").first)
     @profile_picture =  ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s).last
@@ -93,18 +89,18 @@ class FacilitiesController < ApplicationController
       respond_to do |format|
         format.html {redirect_to :back}
         format.js
-        format.json { respond_with_bip(@object) } 
+        format.json { respond_with_bip(@object) }
       end
     else
       respond_to do |format|
         format.html {redirect_to :back}
         format.js
-        format.json { respond_with_bip(@object) } 
+        format.json { respond_with_bip(@object) }
       end
-      
+
     end
   end
-  
+
   def remove_facility
     @facility = Facility.find(params[:id])
     @facility.destroy
@@ -113,71 +109,22 @@ class FacilitiesController < ApplicationController
       format.js
     end
   end
-  
+
   def destroy
     @facility.destroy
     redirect_to :destroy
   end
-  
+
   def selection_option
-    
   end
-  
-  def upgrade
-    @facility = Facility.friendly.find(params[:facility_id])
-    @object = @facility
-  end
-  
-  def upgrade_facility
-    @facility = Facility.friendly.find(params[:facility_id])
-    stripe_token = params[:stripe_token]
-    
-    begin
-      if @facility.stripe_customer_id.nil?
-        
-        if !stripe_token.present?
-          #Emails.subscription_error(@school).deliver
-          raise "Stripe token not present. Cannot process transaction."  
-        end
-        
-        customer = Stripe::Customer.create(
-          :email => @facility.try(:email),
-          :description => "#{@facility.name} - #{@facility.id}", #TODO make method
-          :card => stripe_token,
-          :plan => params[:facility][:plan])
-          
-    #@school = @school.build_subscription(school_params)
-    #@school.plan = params[:school][:plan]
-    if @facility.save
-      #Emails.successful_subscription(@school, current_user).deliver
-      #Emails.subscription_notification(@school).deliver
-      redirect_to facility_path(@facility)
-    else
-      #flash[:error] = "Oops. Something went wrong. Let's try again." 
-      redirect_to :back
-    end
-    
-    # @school.update_attributes(premium: true, stripe_customer_id: customer.id, stripe_subscription_id: customer.subscription.id)
-    #@school.update_attributes(premium: true, stripe_customer_id: customer.id)
-          
-    end
-          
-    rescue Stripe::CardError => e
-      # The card has been declined or
-      # some other error has occured
-      @error = e
-      render :new
-    end
-  
-  end 
-  
+
   protected
-  
+
   def find_facility
     @facility = Facility.friendly.find(params[:id])
   end
-  
+
   def facility_params
-    params.require(:facility).permit(:school_id, :team_id, :name, :field_type, :is_private, :publicly_visible, :facility_type, :phone_number, :email, :website, {address_attributes: [:id, :addressable_id, :addressable_type, :street_1, :street_2, :city, :state, :country, :postcode, :suite, :nickname, :default, :county, :latitude, :longitude, :gmaps]}, :slug, :facility_owner_id, :facility_owner_type, :facebook, :twitter, :linkedin, :pinterest, :instagram, :foursquare, :youtube)  
+    params.require(:facility).permit(:school_id, :team_id, :name, :field_type, :is_private, :publicly_visible, :facility_type, :phone_number, :email, :website, {address_attributes: [:id, :addressable_id, :addressable_type, :street_1, :street_2, :city, :state, :country, :postcode, :suite, :nickname, :default, :county, :latitude, :longitude, :gmaps]}, :slug, :facility_owner_id, :facility_owner_type, :facebook, :twitter, :linkedin, :pinterest, :instagram, :foursquare, :youtube)
   end
 end

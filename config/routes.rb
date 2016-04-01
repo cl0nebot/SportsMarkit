@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     resources :signed_documents2, only: %w[index]
   end
 
+  concern :upgradeable do
+    resources :upgrades, only: [:new, :create]
+  end
+
   resources :users, concerns: [:signed_documentable] do
     resources :dashboard
     get :email
@@ -48,9 +52,6 @@ Rails.application.routes.draw do
 
   resources :admin do
     collection do
-      # [:users, :schools, :teams, :leagues, :clubs, :facilities].each do |model|
-   #      get model
-   #    end
       get :manage
       get :upload
     end
@@ -59,7 +60,7 @@ Rails.application.routes.draw do
   concern :documentable do
     resources :documents, except: %w[destroy show]
   end
-  
+
   concern :bankable do
     resources :bank_account
   end
@@ -115,7 +116,7 @@ Rails.application.routes.draw do
   resources :sessions
   resources :password_resets
 
-  resources :schools, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :teamable] do
+  resources :schools, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :teamable, :upgradeable] do
     resources :dashboard
     resources :uploads do
       collection do
@@ -140,12 +141,10 @@ Rails.application.routes.draw do
     resource :calendar do
       get :events, on: :member
     end
-    get :upgrade
     get :plan
-    patch :upgrade_school
   end
 
-  resources :teams, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable] do
+  resources :teams, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :upgradeable] do
     resources :dashboard
     resources :uploads do
       collection do
@@ -178,12 +177,10 @@ Rails.application.routes.draw do
       get :join_league
       get :leave_league
     end
-    get :upgrade
     get :plan
-    patch :upgrade_team
   end
 
-  resources :facilities, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable] do
+  resources :facilities, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :upgradeable] do
     resources :dashboard
     resources :uploads do
       collection do
@@ -212,13 +209,11 @@ Rails.application.routes.draw do
     resources :media
     resources :photos
     get :remove_facility
-    get :upgrade
     get :plan
-    patch :upgrade_facility
   end
 
   resources :tournaments
-  resources :leagues, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :teamable] do
+  resources :leagues, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :teamable, :upgradeable] do
     resources :dashboard
     resources :facilities
     resources :uploads do
@@ -243,9 +238,7 @@ Rails.application.routes.draw do
     end
     resources :media
     resources :photos
-    get :upgrade
     get :plan
-    patch :upgrade_league
   end
   resources :fans
   resources :attendees
@@ -280,7 +273,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :clubs, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :teamable] do
+  resources :clubs, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :teamable, :upgradeable] do
     resources :dashboard
     resources :uploads do
       collection do
@@ -305,10 +298,7 @@ Rails.application.routes.draw do
     resource :calendar do
       get :events, on: :member
     end
-    get :upgrade
     get :plan
-    patch :upgrade_club
-
   end
 
   resources :forms do

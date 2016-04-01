@@ -1,7 +1,5 @@
 <% klass = @object.class.to_s.downcase %>
 <div class="content">
-  
-  <!-- page header -->
   <div class="page-header full-content bg-primary mb0" style="min-height: 141px;">
     <div class="row">
       <div class="col-sm-6">
@@ -9,163 +7,158 @@
           Dashboard
           <small><%= @object.name.to_s.downcase %></small>
         </h1>
-      </div><!--.col-->
+      </div>
       <div class="col-sm-6">
         <ol class="breadcrumb">
           <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="<%= eval("#{klass.pluralize}_path") %>"><%= klass.pluralize %></a></li>
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#" class="active">Edit</a></li>
+          <li>
+            <%= link_to klass.pluralize, send("#{klass.pluralize}_path") %>
+          </li>
+          <li>
+            <%= link_to "Dashboard", "#" %>
+          </li>
+          <li>
+            <%= link_to "Edit", "#", class: "active" %>
+          </li>
         </ol>
-      </div><!--.col-->
-    </div><!--.row-->
-
+      </div>
+    </div>
     <div class="header-tabs scrollable-tabs sticky">
     </div>
-  </div><!--.page-header-->
-
-  <!-- main content div -->
+  </div>
   <br/>
   <h3 class="text-center">
     Everything you need to manage your account.
   </h3>
-  
-    <p class="small-text text-center">
-        <%= link_to eval("#{klass}_path(@object)") do %>
-          <i class="ion-home"></i>  Return to Profile
-        <% end %> 
-    </p>
-
-    <hr class="no-margin"/>
-              
-    <div class="row pt40">
-      <div class="col-md-4">
-        <div class="panel box-shadow-ccc">
-          <div class="panel-heading">
-            <div class="panel-title">
-              <h4 class="text-primary">Build Your Account</h4>
-            </div>
+  <p class="small-text text-center">
+    <%= link_to eval("#{klass}_path(@object)") do %>
+      <i class="ion-home"></i>  Return to Profile
+    <% end %>
+  </p>
+  <hr class="no-margin"/>
+  <div class="row pt40">
+    <div class="col-md-4">
+      <div class="panel box-shadow-ccc">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <h4 class="text-primary">Build Your Account</h4>
           </div>
-          <div class="panel-body">
-
-
-            <% unless klass == "user"%>
-              
-              <h5 class="bold">Public Profile</h5>
+        </div>
+        <div class="panel-body">
+          <% unless klass == "user" %>
+            <h5 class="bold">Public Profile</h5>
+            <ul class="list-material">
+              <li class="has-action-left has-action-right">
+                <a href="<%= eval("#{klass}_path(@object)") %>" class="visible">
+                  <div class="list-action-left">
+                    <i class="ion-person icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">View Profile</span>
+                    <span class="caption">Update or complete your public profile.</span>
+                    <span class="caption pt10">
+                      <ol class="small list">
+                        <li>Home</li>
+                        <li>Media</li>
+                        <li>Following</li>
+                        <li>Fans</li>
+                        <li>Teams</li>
+                        <li>Teammates</li>
+                      </ol>
+                    </span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">15 min</span>
+                      <i class="ion-android-done bottom"></i>
+                    <% end %>
+                  </div>
+                </a>
+              </li>
+              <li class="has-action-left has-action-right">
+                <%= link_to eval("edit_#{klass}_path(@object)"), class: "visible" do %>
+                  <div class="list-action-left">
+                    <i class="ion-gear-a icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">Edit Your Profile</span>
+                    <span class="caption">Update or complete your organization profile.</span>
+                    <span class="caption pt10">
+                      <ol class="small list">
+                        <li>General</li>
+                        <li>Social Media</li>
+                        <li>Upload Media</li>
+                      </ol>
+                    </span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">15 min</span>
+                      <i class="ion-android-done bottom"></i>
+                    <% end %>
+                  </div>
+                <% end %>
+              </li>
+              <li class="has-action-left has-action-right">
+                <%= link_to "/#{klass.pluralize}/#{@object.slug}/edit#tab_media",  class: "visible" do %>
+                  <div class="list-action-left">
+                    <i class="ion-android-upload icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">Add Photo, Articles, and Video</span>
+                    <span class="caption">Enhance your profile with media.</span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    <% end %>
+                  </div>
+                <% end %>
+              </li>
+            </ul>
+            <% unless ["team", "facility"].include? klass %>
+              <br/>
+              <h5 class="bold">Add New Accounts</h5>
               <ul class="list-material">
                 <li class="has-action-left has-action-right">
-                   <a href="<%= eval("#{klass}_path(@object)") %>" class="visible">
+                  <%= link_to eval("new_#{klass}_team_path(@object)"), class: "visible" do %>
                     <div class="list-action-left">
-                      <i class="ion-person icon"></i>
+                      <i class="ion-plus-circled icon"></i>
                     </div>
                     <div class="list-content">
-                      <span class="title">View Profile</span>
-                      <span class="caption">Update or complete your public profile.</span>
-                      <span class="caption pt10">
-                        <ol class="small list">
-                          <li>Home</li>
-                          <li>Media</li>
-                          <li>Following</li>
-                          <li>Fans</li>
-                          <li>Teams</li>
-                          <li>Teammates</li>
-                        </ol> 
-                      </span>
+                      <span class="title">Add Team</span>
+                      <span class="caption">Add or create a new team.</span>
                     </div>
                     <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">15 min</span>
-                      <i class="ion-android-done bottom"></i>
-                      <% end %>
-                    </div>
-                  </a>
-                </li>
-                <li class="has-action-left has-action-right">
-                  <%= link_to eval("edit_#{klass}_path(@object)"), class: "visible" do %>
-                    <div class="list-action-left">
-                      <i class="ion-gear-a icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">Edit Your Profile</span>
-                      <span class="caption">Update or complete your organization profile.</span>
-                      <span class="caption pt10">
-                        <ol class="small list">
-                          <li>General</li>
-                          <li>Social Media</li>
-                          <li>Upload Media</li>
-                        </ol> 
-                      </span>
-                    </div>
-                    <div class="list-action-right">
-                        <% if false %>
-                      <span class="top">15 min</span>
-                      <i class="ion-android-done bottom"></i>
+                      <% if false %>
+                        <span class="top">2 hr</span>
+                        <i class="ion-android-done bottom"></i>
                       <% end %>
                     </div>
                   <% end %>
                 </li>
                 <li class="has-action-left has-action-right">
-                  <%= link_to "/#{klass.pluralize}/#{@object.slug}/edit#tab_media",  class: "visible" do %>
+                  <%= link_to eval("new_#{klass}_facility_path(@object)"), class: "visible" do %>
                     <div class="list-action-left">
-                      <i class="ion-android-upload icon"></i>
+                      <i class="ion-plus-circled icon"></i>
                     </div>
                     <div class="list-content">
-                      <span class="title">Add Photo, Articles, and Video</span>
-                      <span class="caption">Enhance your profile with media.</span>
+                      <span class="title">Add Facility</span>
+                      <span class="caption">Add or create a new facility.</span>
                     </div>
                     <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">2 hr</span>
-                      <i class="ion-android-done bottom"></i>
+                      <% if false %>
+                        <span class="top">2 hr</span>
+                        <i class="ion-android-done bottom"></i>
                       <% end %>
                     </div>
                   <% end %>
                 </li>
               </ul>
-
-              <% unless ["team", "facility"].include? klass %>
-                <br/>
-                <h5 class="bold">Add New Accounts</h5>
-                <ul class="list-material">
-                  <li class="has-action-left has-action-right">
-                    <%= link_to eval("new_#{klass}_team_path(@object)"), class: "visible" do %>
-                      <div class="list-action-left">
-                        <i class="ion-plus-circled icon"></i>
-                      </div>
-                      <div class="list-content">
-                        <span class="title">Add Team</span>
-                        <span class="caption">Add or create a new team.</span>
-                      </div>
-                      <div class="list-action-right">
-                           <% if false %>
-                        <span class="top">2 hr</span>
-                        <i class="ion-android-done bottom"></i>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  </li>
-                  <li class="has-action-left has-action-right">
-                    <%= link_to eval("new_#{klass}_facility_path(@object)"), class: "visible" do %>
-                      <div class="list-action-left">
-                        <i class="ion-plus-circled icon"></i>
-                      </div>
-                      <div class="list-content">
-                        <span class="title">Add Facility</span>
-                        <span class="caption">Add or create a new facility.</span>
-                      </div>
-                      <div class="list-action-right">
-                           <% if false %>
-                        <span class="top">2 hr</span>
-                        <i class="ion-android-done bottom"></i>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  </li>
-                </ul>
-              <% end %>
-
-              <br/>
-              <% if @object.instance_of? Team%>
+            <% end %>
+            <br/>
+            <% if @object.instance_of? Team%>
               <h5 class="bold">Player Roster and Staff</h5>
               <ul class="list-material">
                 <li class="has-action-left has-action-right">
@@ -178,9 +171,9 @@
                       <span class="caption">Build and modify your player roster.</span>
                     </div>
                     <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">15 min</span>
-                      <i class="ion-android-done bottom"></i>
+                      <% if false %>
+                        <span class="top">15 min</span>
+                        <i class="ion-android-done bottom"></i>
                       <% end %>
                     </div>
                   </a>
@@ -195,18 +188,16 @@
                       <span class="caption">Invite new admins and assign privileges.</span>
                     </div>
                     <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">2 hr</span>
-                      <i class="ion-android-done bottom"></i>
+                      <% if false %>
+                        <span class="top">2 hr</span>
+                        <i class="ion-android-done bottom"></i>
                       <% end %>
                     </div>
                   </a>
                 </li>
               </ul>
-              <% end %>
-              
-              
-              <% if false %>
+            <% end %>
+            <% if false %>
               <br/>
               <h5 class="bold">Affiliate Accounts</h5>
               <ul class="list-material">
@@ -220,9 +211,9 @@
                       <span class="caption">Create a new facility or add an existing facility to your account.</span>
                     </div>
                     <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">15 min</span>
-                      <i class="ion-android-done bottom"></i>
+                      <% if false %>
+                        <span class="top">15 min</span>
+                        <i class="ion-android-done bottom"></i>
                       <% end %>
                     </div>
                   </a>
@@ -237,535 +228,461 @@
                       <span class="caption">Add an existing league to your account.</span>
                     </div>
                     <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">2 hr</span>
-                      <i class="ion-android-done bottom"></i>
+                      <% if false %>
+                        <span class="top">2 hr</span>
+                        <i class="ion-android-done bottom"></i>
                       <% end %>
                     </div>
                   </a>
-                </li>
-              </ul>
-              <% end %>
-              
-              
-              
-              
-              
-              
-              
-
-
-            <% else %>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-
-              <h5 class="bold">Public Profile</h5>
-
-              <ul class="list-material">
-                  
-                <li class="has-action-left has-action-right">
-                  <a href="<%= eval("#{klass}_path(@object)") %>" class="visible">
-                    <div class="list-action-left">
-                      <i class="ion-person icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">View Profile</span>
-                      <span class="caption">Update or complete your public profile.</span>
-                      <span class="caption pt10">
-                        <ol class="small list">
-                          <li>Home</li>
-                          <li>Media</li>
-                          <li>Following</li>
-                          <li>Fans</li>
-                          <li>Teams</li>
-                          <li>Teammates</li>
-                        </ol> 
-                      </span>
-                    </div>
-                    <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">15 min</span>
-                      <i class="ion-android-done bottom"></i>
-                      <% end %>
-                    </div>
-                  </a>
-                </li>
-
-                <li class="has-action-left has-action-right">
-                  <%= link_to eval("edit_#{klass}_path(@object)"), class: "visible" do %>
-                    <div class="list-action-left">
-                      <i class="ion-ios-gear icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">Edit Your Profile</span>
-                      <span class="caption">Update or complete your public profile.</span>
-                      <span class="caption pt10">
-                        <ol class="small list">
-                          <li>General</li>
-                          <li>Social Media</li>
-                          <li>Upload Media</li>
-                          <li>Sports Resume</li>
-                          <li>Favorites</li>
-                          <li>Password</li>
-                        </ol> 
-                      </span>
-                    </div>
-                    <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">15 min</span>
-                      <i class="ion-android-done bottom"></i>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </li>
-                <li class="has-action-left has-action-right">
-                  <%= link_to "/#{klass.pluralize}/#{@object.slug}/edit#tab_media",  class: "visible" do %>
-                    <div class="list-action-left">
-                      <i class="ion-android-upload icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">Add Photo, Articles, and Video</span>
-                      <span class="caption">Enhance your profile with media.</span>
-                      <span class="caption pt10">
-                        <ol class="small list">
-                          <li>Photos</li>
-                          <li>Videos</li>
-                          <li>Articles and Links</li>
-                        </ol> 
-                      </span>
-                    </div>
-                    <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">2 hr</span>
-                      <i class="ion-android-done bottom"></i>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </li>
-              </ul>
-
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="panel box-shadow-ccc">
-          <div class="panel-heading">
-            <div class="panel-title">
-              <h4 class="text-primary">Manage Your Sports Community</h4>
-            </div>
-          </div>
-          <div class="panel-body">
-            <% klass = @object.class.to_s.downcase %>
-
-            <% unless klass == "user"%>
-              
-              <h5 class="bold">Events and Communication</h5>
-              <ul class="list-material">
-                <!-- add event -->
-                <li class="has-action-left has-action-right">
-                  <%= link_to eval("new_#{klass}_event_path(@object)"), class: "visible" do %>
-                    <div class="list-action-left">
-                      <i class="ion-plus-circled icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">Add Event</span>
-                      <span class="caption">Create a new event for your organization.</span>
-                    </div>
-                    <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">2 hr</span>
-                      <i class="ion-android-done bottom"></i>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </li>
-                <!-- add event -->
-                <li class="has-action-left has-action-right">
-                  <%= link_to eval("new_#{klass}_event_path(@object)"), class: "visible" do %>
-                    <div class="list-action-left">
-                      <i class="ion-calendar icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">View and Manage Calendar</span>
-                      <span class="caption">View and manage all events on your sports calendar.</span>
-                    </div>
-                    <div class="list-action-right">
-                        <% if false %>
-                      <span class="top">2 hr</span>
-                      <i class="ion-android-done bottom"></i>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </li>
-
-                <!-- send announcement -->
-                <li class="has-action-left has-action-right">
-                  <%= link_to eval("#{klass}_announcements_path(@object)"), class: "visible" do %>
-                    <div class="list-action-left">
-                      <i class="ion-android-phone-portrait icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">Send Announcement</span>
-                      <span class="caption">Get important messages out quickly.</span>
-                    </div>
-                    <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">2 hr</span>
-                      <i class="ion-android-done bottom"></i>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </li>
-              </ul>
-              
-              <br/>
-              <h5 class="bold">Registrations</h5>
-              <ul class="list-material">
-              
-                <!-- Create Registration -->
-                <li class="has-action-left has-action-right">
-                  <%= link_to eval("new_#{klass}_form_path(@object)"), class: "visible" do %>
-                    <div class="list-action-left">
-                      <i class="ion-document icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">Create Registration Form</span>
-                      <span class="caption">Create a customized registration form in minutes.</span>
-                    </div>
-                    <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">2 hr</span>
-                      <i class="ion-android-done bottom"></i>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </li>
-
-                <!-- Manage Registration -->
-                <li class="has-action-left has-action-right">
-                  <%= link_to eval("#{klass}_registrations_path(@object)"), class: "visible" do %>
-                    <div class="list-action-left">
-                      <i class="ion-clipboard icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">View and Manage Registrations</span>
-                      <span class="caption">Manage paid, unpaid, roster and all other registrations.</span>
-                    </div>
-                    <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">2 hr</span>
-                      <i class="ion-android-done bottom"></i>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </li>
-              </ul>
-
-              <br/>
-              <h5 class="bold">Certifications</h5>
-              <ul class="list-material">
-              
-                <!-- View Certification -->
-                <li class="has-action-left has-action-right">
-                  <%= link_to "/#{klass.pluralize}/#{@object.slug}#tab_certifications", class: "visible" do %>
-                    <div class="list-action-left">
-                      <i class="ion-android-bookmark icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">View Certifications</span>
-                      <span class="caption">View the status and credentials of all certified users.</span>
-                    </div>
-                    <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">2 hr</span>
-                      <i class="ion-android-done bottom"></i>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </li>
-              </ul>
-                
-            <% else %>
-
-              <h5 class="bold">Sports Teams</h5>
-              <ul class="list-material">
-                <li class="has-action-left has-action-right">
-                  <a href="#" class="visible">
-                    <div class="list-action-left">
-                      <i class="ion-plus-circled icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">Add Teams</span>
-                      <span class="caption">Create a new team or join an existing team.</span>
-                    </div>
-                    <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">2 hr</span>
-                      <i class="ion-android-done bottom"></i>
-                      <% end %>
-                    </div>
-                  </a>
-                </li>
-                <li class="has-action-left has-action-right">
-                  <a href="#" class="visible">
-                    <div class="list-action-left">
-                      <i class="ion-plus-circled icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">View and Manage Teams</span>
-                      <span class="caption">View all current teams connected to your account.</span>
-                    </div>
-                    <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">2 hr</span>
-                      <i class="ion-android-done bottom"></i>
-                      <% end %>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-
-
-              <br/>
-              <h5 class="bold">Calendar and Events</h5>  
-
-              <ul class="list-material">
-                <!-- add event -->
-                <li class="has-action-left has-action-right">
-                  <%= link_to eval("new_#{klass}_event_path(@object)"), class: "visible" do %>
-                    <div class="list-action-left">
-                      <i class="ion-plus-circled icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">Add Event</span>
-                      <span class="caption">Create a new event.</span>
-                    </div>
-                    <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">2 hr</span>
-                      <i class="ion-android-done bottom"></i>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </li>
-                 <li class="has-action-left has-action-right">
-                  <a href="#" class="visible">
-                    <div class="list-action-left">
-                      <i class="ion-calendar icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">Your Sports Calendar</span>
-                      <span class="caption">View and manage your sports calendar.</span>
-                    </div>
-                    <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">2 hr</span>
-                      <i class="ion-android-done bottom"></i>
-                      <% end %>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-
-
-              <br/>
-              <h5 class="bold">Messaging</h5>  
-
-              <ul class="list-material">
-                <li class="has-action-left has-action-right">
-                  <%= link_to eval("new_#{klass}_event_path(@object)"), class: "visible" do %>
-                    <div class="list-action-left">
-                      <i class="ion-chatboxes icon"></i>
-                    </div>
-                    <div class="list-content">
-                      <span class="title">Instant Message Connection</span>
-                      <span class="caption">Chat with people in your sports community.</span>
-                    </div>
-                    <div class="list-action-right">
-                         <% if false %>
-                      <span class="top">2 hr</span>
-                      <i class="ion-android-done bottom"></i>
-                      <% end %>
-                    </div>
-                  <% end %>
                 </li>
               </ul>
             <% end %>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="panel box-shadow-ccc">
-          <div class="panel-heading">
-            <div class="panel-title">
-              <h4 class="text-primary">Account Management</h4>
-            </div>
-          </div>
-          <div class="panel-body">
-
-            <% klass = @object.class.to_s.downcase %>
-
-              <% unless klass == "user"%>
-                
-                <% if false %>
-                  <%= link_to "join league or conference", "" %></br>
-                  <%= link_to "Invite" %></br>
+          <% else %>
+            <h5 class="bold">Public Profile</h5>
+            <ul class="list-material">
+              <li class="has-action-left has-action-right">
+                <a href="<%= eval("#{klass}_path(@object)") %>" class="visible">
+                  <div class="list-action-left">
+                    <i class="ion-person icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">View Profile</span>
+                    <span class="caption">Update or complete your public profile.</span>
+                    <span class="caption pt10">
+                      <ol class="small list">
+                        <li>Home</li>
+                        <li>Media</li>
+                        <li>Following</li>
+                        <li>Fans</li>
+                        <li>Teams</li>
+                        <li>Teammates</li>
+                      </ol>
+                    </span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">15 min</span>
+                      <i class="ion-android-done bottom"></i>
+                    <% end %>
+                  </div>
+                </a>
+              </li>
+              <li class="has-action-left has-action-right">
+                <%= link_to eval("edit_#{klass}_path(@object)"), class: "visible" do %>
+                  <div class="list-action-left">
+                    <i class="ion-ios-gear icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">Edit Your Profile</span>
+                    <span class="caption">Update or complete your public profile.</span>
+                    <span class="caption pt10">
+                      <ol class="small list">
+                        <li>General</li>
+                        <li>Social Media</li>
+                        <li>Upload Media</li>
+                        <li>Sports Resume</li>
+                        <li>Favorites</li>
+                        <li>Password</li>
+                      </ol>
+                    </span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">15 min</span>
+                      <i class="ion-android-done bottom"></i>
+                    <% end %>
+                  </div>
                 <% end %>
-
-                <h5 class="bold">Document Management</h5>
-                <ul class="list-material">
-                  
-                  <!-- add event -->
-                  <li class="has-action-left has-action-right">
-                    <%= link_to eval("#{klass}_documents_path(@object)"), class: "visible" do %>
-                      <div class="list-action-left">
-                        <i class="ion-document-text icon"></i>
-                      </div>
-                      <div class="list-content">
-                        <span class="title">View Documents</span>
-                        <span class="caption">Stored documents available.</span>
-                      </div>
-                      <div class="list-action-right">
-                           <% if false %>
-                        <span class="top">2 hr</span>
-                        <i class="ion-android-done bottom"></i>
-                        <% end %>
-                      </div>
+              </li>
+              <li class="has-action-left has-action-right">
+                <%= link_to "/#{klass.pluralize}/#{@object.slug}/edit#tab_media",  class: "visible" do %>
+                  <div class="list-action-left">
+                    <i class="ion-android-upload icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">Add Photo, Articles, and Video</span>
+                    <span class="caption">Enhance your profile with media.</span>
+                    <span class="caption pt10">
+                      <ol class="small list">
+                        <li>Photos</li>
+                        <li>Videos</li>
+                        <li>Articles and Links</li>
+                      </ol>
+                    </span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
                     <% end %>
-                  </li>
-
-                  <!-- send announcement -->
-                  <li class="has-action-left has-action-right">
-                    <%= link_to eval("#{klass}_signed_documents_path(@object)"), class: "visible" do %>
-                      <div class="list-action-left">
-                        <i class="ion-android-checkbox-outline icon"></i>
-                      </div>
-                      <div class="list-content">
-                        <span class="title">View Signed Documents</span>
-                        <span class="caption">Signed documents available.</span>
-                      </div>
-                      <div class="list-action-right">
-                           <% if false %>
-                        <span class="top">2 hr</span>
-                        <i class="ion-android-done bottom"></i>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  </li>
-                </ul>
-                
-                <br/>
-                <h5 class="bold">Plan & Payments</h5>
-                <ul class="list-material">
-                
-                 <!-- Create Registration -->
-                  <li class="has-action-left has-action-right">
-                    <%= link_to eval("#{klass}_upgrade_path(@object)"), class: "visible" do %>
-                      <div class="list-action-left">
-                        <i class="ion-calendar icon"></i>
-                      </div>
-                      <div class="list-content">
-                        <span class="title">Upgrade Account</span>
-                        <span class="caption">Go Pro! Upgrade today to get the most out of SportMarkit.</span>
-                      </div>
-                      <div class="list-action-right">
-                           <% if false %>
-                        <span class="top">2 hr</span>
-                        <i class="ion-android-done bottom"></i>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  </li>
-
-                  <!-- Manage Registration -->
-                  <li class="has-action-left has-action-right">
-                    <%= link_to eval("#{klass}_bank_account_index_path(@object)"), class: "visible" do %>
-                      <div class="list-action-left">
-                        <i class="ion-social-usd icon"></i>
-                      </div>
-                      <div class="list-content">
-                        <span class="title">Bank Account</span>
-                         <% if false %>
-                        <span class="caption">Last updated: March 29, 2016.</span>
-                        <% end %>
-                      </div>
-                      <div class="list-action-right">
-                           <% if false %>
-                        <span class="top">2 hr</span>
-                        <i class="ion-android-done bottom"></i>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  </li>
-                </ul>
-                  
-              <% else %>
-
-                <h5 class="bold">Plan & Payments</h5>
-                <ul class="list-material">
-                
-                 <!-- Create Registration -->
-                  <li class="has-action-left has-action-right">
-                    <a href="#" class="visible">
-                      <div class="list-action-left">
-                        <i class="ion-calendar icon"></i>
-                      </div>
-                      <div class="list-content">
-                        <span class="title">Upgrade Account</span>
-                        <span class="caption">Go Pro! Upgrade today to get the most out of SportMarkit.</span>
-                      </div>
-                      <div class="list-action-right">
-                           <% if false %>
-                        <span class="top">2 hr</span>
-                        <i class="ion-android-done bottom"></i>
-                        <% end %>
-                      </div>
-                    </a>
-                  </li>
-
-                  <!-- Manage Registration -->
-                  <li class="has-action-left has-action-right">
-                    <a href="#" class="visible">
-                      <div class="list-action-left">
-                        <i class="ion-social-usd icon"></i>
-                      </div>
-                      <div class="list-content">
-                        <span class="title">Bank Account</span>
-                         <% if false %>
-                        <span class="caption">Last updated: March 29, 2016.</span>
-                        <% end %>
-                      </div>
-                      <div class="list-action-right">
-                           <% if false %>
-                        <span class="top">2 hr</span>
-                        <i class="ion-android-done bottom"></i>
-                        <% end %>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-
-              <% end %>
-
-            </div>
-          </div>
+                  </div>
+                <% end %>
+              </li>
+            </ul>
+          <% end %>
         </div>
       </div>
     </div>
+    <div class="col-md-4">
+      <div class="panel box-shadow-ccc">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <h4 class="text-primary">Manage Your Sports Community</h4>
+          </div>
+        </div>
+        <div class="panel-body">
+          <% klass = @object.class.to_s.downcase %>
+          <% unless klass == "user"%>
+            <h5 class="bold">Events and Communication</h5>
+            <ul class="list-material">
+              <li class="has-action-left has-action-right">
+                <%= link_to eval("new_#{klass}_event_path(@object)"), class: "visible" do %>
+                  <div class="list-action-left">
+                    <i class="ion-plus-circled icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">Add Event</span>
+                    <span class="caption">Create a new event for your organization.</span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    <% end %>
+                  </div>
+                <% end %>
+              </li>
+              <li class="has-action-left has-action-right">
+                <%= link_to eval("new_#{klass}_event_path(@object)"), class: "visible" do %>
+                  <div class="list-action-left">
+                    <i class="ion-calendar icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">View and Manage Calendar</span>
+                    <span class="caption">View and manage all events on your sports calendar.</span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    <% end %>
+                  </div>
+                <% end %>
+              </li>
+              <li class="has-action-left has-action-right">
+                <%= link_to eval("#{klass}_announcements_path(@object)"), class: "visible" do %>
+                  <div class="list-action-left">
+                    <i class="ion-android-phone-portrait icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">Send Announcement</span>
+                    <span class="caption">Get important messages out quickly.</span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    <% end %>
+                  </div>
+                <% end %>
+              </li>
+            </ul>
+            <br/>
+            <h5 class="bold">Registrations</h5>
+            <ul class="list-material">
+              <li class="has-action-left has-action-right">
+                <%= link_to eval("new_#{klass}_form_path(@object)"), class: "visible" do %>
+                  <div class="list-action-left">
+                    <i class="ion-document icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">Create Registration Form</span>
+                    <span class="caption">Create a customized registration form in minutes.</span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    <% end %>
+                  </div>
+                <% end %>
+              </li>
+              <li class="has-action-left has-action-right">
+                <%= link_to eval("#{klass}_registrations_path(@object)"), class: "visible" do %>
+                  <div class="list-action-left">
+                    <i class="ion-clipboard icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">View and Manage Registrations</span>
+                    <span class="caption">Manage paid, unpaid, roster and all other registrations.</span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    <% end %>
+                  </div>
+                <% end %>
+              </li>
+            </ul>
+            <br/>
+            <h5 class="bold">Certifications</h5>
+            <ul class="list-material">
+              <li class="has-action-left has-action-right">
+                <%= link_to "/#{klass.pluralize}/#{@object.slug}#tab_certifications", class: "visible" do %>
+                  <div class="list-action-left">
+                    <i class="ion-android-bookmark icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">View Certifications</span>
+                    <span class="caption">View the status and credentials of all certified users.</span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    <% end %>
+                  </div>
+                <% end %>
+              </li>
+            </ul>
+          <% else %>
+            <h5 class="bold">Sports Teams</h5>
+            <ul class="list-material">
+              <li class="has-action-left has-action-right">
+                <a href="#" class="visible">
+                  <div class="list-action-left">
+                    <i class="ion-plus-circled icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">Add Teams</span>
+                    <span class="caption">Create a new team or join an existing team.</span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    <% end %>
+                  </div>
+                </a>
+              </li>
+              <li class="has-action-left has-action-right">
+                <a href="#" class="visible">
+                  <div class="list-action-left">
+                    <i class="ion-plus-circled icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">View and Manage Teams</span>
+                    <span class="caption">View all current teams connected to your account.</span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    <% end %>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            <br/>
+            <h5 class="bold">Calendar and Events</h5>
+            <ul class="list-material">
+              <li class="has-action-left has-action-right">
+                <%= link_to eval("new_#{klass}_event_path(@object)"), class: "visible" do %>
+                  <div class="list-action-left">
+                    <i class="ion-plus-circled icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">Add Event</span>
+                    <span class="caption">Create a new event.</span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    <% end %>
+                  </div>
+                <% end %>
+              </li>
+              <li class="has-action-left has-action-right">
+                <a href="#" class="visible">
+                  <div class="list-action-left">
+                    <i class="ion-calendar icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">Your Sports Calendar</span>
+                    <span class="caption">View and manage your sports calendar.</span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    <% end %>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            <br/>
+            <h5 class="bold">Messaging</h5>
+            <ul class="list-material">
+              <li class="has-action-left has-action-right">
+                <%= link_to eval("new_#{klass}_event_path(@object)"), class: "visible" do %>
+                  <div class="list-action-left">
+                    <i class="ion-chatboxes icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">Instant Message Connection</span>
+                    <span class="caption">Chat with people in your sports community.</span>
+                  </div>
+                  <div class="list-action-right">
+                    <% if false %>
+                      <span class="top">2 hr</span>
+                      <i class="ion-android-done bottom"></i>
+                    <% end %>
+                  </div>
+                <% end %>
+              </li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="panel box-shadow-ccc">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <h4 class="text-primary">Account Management</h4>
+          </div>
+        </div>
+        <div class="panel-body">
+          <% klass = @object.class.to_s.downcase %>
+          <% unless klass == "user"%>
+            <% if false %>
+              <%= link_to "join league or conference", "" %></br>
+            <%= link_to "Invite" %></br>
+        <% end %>
+        <h5 class="bold">Document Management</h5>
+        <ul class="list-material">
+          <li class="has-action-left has-action-right">
+            <%= link_to eval("#{klass}_documents_path(@object)"), class: "visible" do %>
+              <div class="list-action-left">
+                <i class="ion-document-text icon"></i>
+              </div>
+              <div class="list-content">
+                <span class="title">View Documents</span>
+                <span class="caption">Stored documents available.</span>
+              </div>
+              <div class="list-action-right">
+                <% if false %>
+                  <span class="top">2 hr</span>
+                  <i class="ion-android-done bottom"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </li>
+          <li class="has-action-left has-action-right">
+            <%= link_to eval("#{klass}_signed_documents_path(@object)"), class: "visible" do %>
+              <div class="list-action-left">
+                <i class="ion-android-checkbox-outline icon"></i>
+              </div>
+              <div class="list-content">
+                <span class="title">View Signed Documents</span>
+                <span class="caption">Signed documents available.</span>
+              </div>
+              <div class="list-action-right">
+                <% if false %>
+                  <span class="top">2 hr</span>
+                  <i class="ion-android-done bottom"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </li>
+        </ul>
+        <br/>
+        <h5 class="bold">Plan & Payments</h5>
+        <ul class="list-material">
+          <li class="has-action-left has-action-right">
+            <%= link_to send("new_#{klass}_upgrade_path", @object), class: "visible" do %>
+              <div class="list-action-left">
+                <i class="ion-calendar icon"></i>
+              </div>
+              <div class="list-content">
+                <span class="title">Upgrade Account</span>
+                <span class="caption">Go Pro! Upgrade today to get the most out of SportMarkit.</span>
+              </div>
+              <div class="list-action-right">
+                <% if false %>
+                  <span class="top">2 hr</span>
+                  <i class="ion-android-done bottom"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </li>
+          <li class="has-action-left has-action-right">
+            <%= link_to eval("#{klass}_bank_account_index_path(@object)"), class: "visible" do %>
+              <div class="list-action-left">
+                <i class="ion-social-usd icon"></i>
+              </div>
+              <div class="list-content">
+                <span class="title">Bank Account</span>
+                <% if false %>
+                  <span class="caption">Last updated: March 29, 2016.</span>
+                <% end %>
+              </div>
+              <div class="list-action-right">
+                <% if false %>
+                  <span class="top">2 hr</span>
+                  <i class="ion-android-done bottom"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </li>
+        </ul>
+      <% else %>
+        <h5 class="bold">Plan & Payments</h5>
+        <ul class="list-material">
+          <li class="has-action-left has-action-right">
+            <a href="#" class="visible">
+              <div class="list-action-left">
+                <i class="ion-calendar icon"></i>
+              </div>
+              <div class="list-content">
+                <span class="title">Upgrade Account</span>
+                <span class="caption">Go Pro! Upgrade today to get the most out of SportMarkit.</span>
+              </div>
+              <div class="list-action-right">
+                <% if false %>
+                  <span class="top">2 hr</span>
+                  <i class="ion-android-done bottom"></i>
+                <% end %>
+              </div>
+            </a>
+          </li>
+          <li class="has-action-left has-action-right">
+            <a href="#" class="visible">
+              <div class="list-action-left">
+                <i class="ion-social-usd icon"></i>
+              </div>
+              <div class="list-content">
+                <span class="title">Bank Account</span>
+                <% if false %>
+                  <span class="caption">Last updated: March 29, 2016.</span>
+                <% end %>
+              </div>
+              <div class="list-action-right">
+                <% if false %>
+                  <span class="top">2 hr</span>
+                  <i class="ion-android-done bottom"></i>
+                <% end %>
+              </div>
+            </a>
+          </li>
+        </ul>
+      <% end %>
+    </div>
   </div>
 </div>
-
-
+</div>
+</div>
+</div>
+</div>

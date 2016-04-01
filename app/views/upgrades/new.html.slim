@@ -3,7 +3,7 @@
     .row
       .col-sm-6
         h1
-          | Account Upgrade
+          = "Account Upgrade "
           small.m-l-10.inline-block Payment information
       .col-sm-6
         ol.breadcrumb
@@ -11,7 +11,7 @@
             a href="/"
               i.ion-home
           li
-            = link_to "Clubs", clubs_path
+            = link_to "#{@object.class.name.pluralize}", send("#{@object.class.name.downcase.pluralize}_path")
           li
             = link_to "#{@object.name}", "#"
           li
@@ -23,16 +23,15 @@
           .panel-title.text-center
             br/
             h3 Account Upgrade.
-        = form_for [@object], url: club_upgrade_club_path(@object), role: "form", html:{class: "card_form"} do |f|
+        = form_for [@object], url: send("#{@object.class.name.downcase}_upgrades_path", @object), role: "form", html: { class: "card_form", method: :post } do |f|
           .panel-body.m-b-30.pr40.pl40
             .form-row.text-center
               .row.example-row.no-margin
                 .col-md-12 Upgrade Plan
                 .col-md-12
-                  label.text-primary.semi-bold.text-center.h4.MB0
-                    | Premium Club Plan
+                  label.text-primary.semi-bold.text-center.h4.MB0 = "Premium #{@object.class.name} Plan"
                   h1.text-center.no-margin.semi-bold
-                    = number_to_currency(@club.price, precision: 0)
+                    = number_to_currency(@object.price, precision: 0)
                     small.small.h6
                       | /year
           hr.no-margin/
