@@ -62,7 +62,7 @@
                         .col-md-12
                           .inputer
                             .input-wrapper
-                              = text_field_tag :card_month, nil, name: nil, required: true, class: "form-control", placeholder: "January"
+                              = select_tag :card_month, options_for_select(Date::MONTHNAMES.compact.each_with_index.map{|m, i| [m,i+1]}), required: true, class: "form-control"
                     .col-md-4
                       .row.example-row
                         .col-md-12 Expiration Year
@@ -76,7 +76,7 @@
                         .col-md-12
                           .inputer
                             .input-wrapper
-                              = text_field_tag :card_year, nil, name: nil, required: true, class: "form-control", placeholder: "035"
+                              = text_field_tag :card_code, nil, name: nil, required: true, class: "form-control", placeholder: "035"
           .panel-footer.form-layout
             br/
             = f.submit value: "Upgrade Account", class: "btn btn-primary btn-block "
