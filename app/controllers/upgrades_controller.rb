@@ -20,7 +20,7 @@ class UpgradesController < ApplicationController
         :plan => params[:plan])
 
         if @object.save
-          redirect_to send("#{object.class.name.downcase}_path", @object)
+          redirect_to send("#{@object.class.name.downcase}_path", @object)
         else
           redirect_to :back
         end

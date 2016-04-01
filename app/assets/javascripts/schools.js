@@ -24,8 +24,7 @@ $('document').ready(function() {
           });
         },
         processCard: function() {
-          var card;
-          card = {
+          var card = {
             name: $('#name_on_card').val(),
             number: $('#card_number').val(),
             cvc: $('#card_code').val(),
@@ -36,7 +35,7 @@ $('document').ready(function() {
         },
         handleStripeResponse: function(status, response) {
           if (response.error === undefined) {
-            $('#school_stripe_token').val(response.id)
+            $('#stripe_token').val(response.id)
             $('.card_form')[0].submit()
           } else {
             $('#stripe_error').text(response.error.message).removeClass('hidden').show();
