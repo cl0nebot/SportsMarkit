@@ -1,0 +1,84 @@
+.content
+  .page-header.full-content.bg-blue
+    .row
+      .col-sm-6
+        h1
+          = "Account Upgrade "
+          small.m-l-10.inline-block Payment information
+      .col-sm-6
+        ol.breadcrumb
+          li
+            a href="/"
+              i.ion-home
+          li
+            = link_to "#{@object.class.name.pluralize}", send("#{@object.class.name.downcase.pluralize}_path")
+          li
+            = link_to "#{@object.name}", "#"
+          li
+            = link_to "Upgrade", "#"
+  .row
+    .col-lg-4.col-lg-offset-4.col-md-6.col-md-offset-3.col-sm-8.col-md-offset-2
+      .panel.box-shadow-ccc
+        .panel-heading
+          .panel-title.text-center
+            br/
+            h3 Account Upgrade.
+        = form_for [@object], url: send("#{@object.class.name.downcase}_upgrades_path", @object), role: "form", html: { class: "card_form", method: :post } do |f|
+          .panel-body.m-b-30.pr40.pl40
+            .form-row.text-center
+              .row.example-row.no-margin
+                .col-md-12 Upgrade Plan
+                .col-md-12
+                  label.text-primary.semi-bold.text-center.h4.MB0 = "Premium #{@object.class.name} Plan"
+                  h1.text-center.no-margin.semi-bold
+                    = number_to_currency(@object.price, precision: 0)
+                    small.small.h6
+                      | /year
+          hr.no-margin/
+          br/
+          h5.text-muted.text-center Please enter your payment information below.
+          .panel-body.m-b-30.pr40.pl40
+            .form-row
+              .row.example-row
+                .col-md-12 Name on Card
+                .col-md-12
+                  .inputer
+                    .input-wrapper
+                      = text_field_tag :name_on_card, nil, name: nil, required: true, class: "form-control", placeholder: "John Smith"
+            .form-row
+              .row.example-row
+                .col-md-12 Credit card number
+                .col-md-12
+                  .inputer
+                    .input-wrapper
+                      = text_field_tag :card_number, nil, name: nil, required: true, class: "form-control", placeholder: "4242 4242 4242 4242"
+            .form-group.m-t-30
+              .form-row
+                .controls
+                  div clas=("row clearfix form-row")
+                    .col-md-5
+                      .row.example-row
+                        .col-md-12 Expiration Month
+                        .col-md-12
+                          .inputer
+                            .input-wrapper
+                              = select_tag :card_month, options_for_select(Date::MONTHNAMES.compact.each_with_index.map{|m, i| [m,i+1]}), required: true, class: "form-control"
+                    .col-md-4
+                      .row.example-row
+                        .col-md-12 Expiration Year
+                        .col-md-12
+                          .inputer
+                            .input-wrapper
+                              = text_field_tag :card_year, nil, name: nil, required: true, class: "form-control", placeholder: "2020"
+                    .col-md-3
+                      .row.example-row
+                        .col-md-12 CVC Number
+                        .col-md-12
+                          .inputer
+                            .input-wrapper
+                              = text_field_tag :card_code, nil, name: nil, required: true, class: "form-control", placeholder: "035"
+          .panel-footer.form-layout
+            br/
+            = f.submit value: "Upgrade Account", class: "btn btn-primary btn-block "
+            = hidden_field_tag :stripe_token
+            br/

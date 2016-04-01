@@ -1,0 +1,32 @@
+.content
+  .page-header.full-content.bg-blue.mb0
+    .row
+      .col-sm-6
+        h1
+          = params[:controller].capitalize
+          | \:
+          small Excel Uploads
+      .col-sm-6
+        ol.breadcrumb
+          li
+            a href="/"
+              i.ion-home
+          li
+            a.active href=users_path  all users
+  .pt60
+    .row
+      .col-lg-4.col-lg-offset-4
+        .panel
+          .panel-heading
+            .panel-title
+              h3.no-margin.bold Populate Account Information
+              h6.no-margin Use the form below to upload data using an MS Excel spreadsheet.
+          -if flash[:alert]
+            .h3
+              = link_to "File with errors", download_errors_uploads_path(path: flash[:file_with_errors_path]), class: "btn btn-danger"
+            .panel-body
+              ul
+                - flash[:alert].each do |key, value|
+                  li = "#{key}: #{value}"
+          .panel-body
+            = render 'uploads/import_roster'

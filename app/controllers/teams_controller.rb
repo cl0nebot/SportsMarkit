@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :upgrade]
-  before_action :correct_user!, only: [:edit, :destroy, :upgrade]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :correct_user!, only: [:edit, :destroy]
   before_action :find_teamable, only: [:new]
   before_action :find_team, only: [:show, :edit, :destroy]
   require 'twilio-ruby'

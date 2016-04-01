@@ -1,9 +1,5 @@
-/conditionals if @object is team, import roster
-/if @object is school, two options: upload teams, uploads teams w/ roster
-/if @object is club, two options: upload teams, uploads teams w/ roster
-/if @object if league, hide for now if @object is facility, hide for now
 - unless [Facility, League].include?(@object.class)
-  = form_tag [@object, :uploads], multipart: true do
+  = form_tag [@object, :uploads], multipart: true
     hr.no-margin
     .panel-body
       h5.mb0.text-primary.semi-bold Upload your excel file

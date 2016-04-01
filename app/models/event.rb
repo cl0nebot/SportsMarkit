@@ -20,6 +20,20 @@ class Event < ActiveRecord::Base
 
   enum repeat_type: { single: 0, every_day: 1, every_week: 2, every_month: 3 }
 
+  def link_to_google
+    uri = Addressable::URI.parse("https://calendar.google.com/calendar/render")
+    if starts_at and ends_at
+      dates = "#{starts_at.strftime("%G%m%dT%H%M%SZ")}/#{ends_at.strftime("%G%m%dT%H%M%SZ")}"
+    end
+    uri.query_values = {
+      action: "TEMPLATE",
+      dates: dates,
+      text: title,
+      details: description
+    }
+    uri.to_s
+  end
+
   def fake_id
     @fake_id ||= id || SecureRandom.hex
   end
