@@ -3,10 +3,9 @@ class RostersController < ApplicationController
 
   def create
     variables
-    @blank = @array.compact.blank?
-    @valid_phone_number = @mobile_number.present? ? (Math.log10(@mobile_number.to_i).to_i + 1) == 10  : true
+    @valid_phone_number = @mobile_number.present? ? @mobile_number =~ /\d{3}-\d{3}-\d{4}/ : true
     Rails.logger.info("Phone number is invalid.") unless @valid_phone_number
-    if (@blank == false || @valid_phone_numnber == true)
+    if @array.compact.blank? || !!@valid_phone_number
       Rails.logger.info("Phone number is valid.") if @valid_phone_number
       @mobile_number.present? ? (@user_exists ? add_existing_user_to_roster : create_new_user_and_roster_spot) : create_userlesss_roster_spot
       Rails.logger.info("User already exists") if @user_exists
