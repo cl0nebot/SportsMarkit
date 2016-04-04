@@ -1,6 +1,7 @@
 module Access
   extend ActiveSupport::Concern
-  
+  #TODO we need it at all ?
+
   def can_be_edited_by_user?(current_user)
     return false if current_user.nil?
     return true if current_user.admin?
@@ -9,11 +10,7 @@ module Access
     end
     return false
   end
-  
-  def can_verify_user?(current_user)
-    true
-  end
-  
+
   def team_can_be_edited_by_user?(current_user)
     if self.instance_of?(Team)
       if self.teamable.present?
@@ -74,8 +71,4 @@ module Access
       return false
     end
   end
-  
-  
-  
-
 end

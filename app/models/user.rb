@@ -46,6 +46,8 @@ class User < ActiveRecord::Base
   has_many :certificates, dependent: :destroy
   has_many :certifications, through: :certificates
   has_many :medias, as: :mediable
+  has_many :verifications
+  has_many :verified_measurables, through: :verifications, :source_type => 'Measurable', source: :verifiable
 
   has_one :online_status
   has_many :signed_documents, dependent: :destroy

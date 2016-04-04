@@ -1,0 +1,30 @@
+table.table.table-hover.bgcolor-white.box-shadow-ccc
+  thead
+    th
+      span.text-muted.semi-bold.fs_12 Measurement
+    th
+      span.text-muted.semi-bold.fs_12 Sport
+    th
+      span.text-muted.semi-bold.fs_12 Score
+    th
+      span.text-muted.semi-bold.fs_12 Verified
+    th
+      span.text-muted.semi-bold.fs_12 Verify
+  tbody
+    - object.measurables.each do |measurable|
+      tr
+        td
+          span.fs_12= measurable.measurable
+        td
+          span.fs_12= measurable.sport
+        td
+          span.fs_12= measurable.result
+        td
+          - if measurable.verified?
+            span.fs_12
+              i.ion-checkmark-circled.fs_16.text-primary= measurable.verifications_count
+        td
+          span.fs_12
+            - if can? :verify, measurable
+              = link_to measurable_verify_path(measurable), remote: true do
+                i id="verify-#{"#{measurable.id}"}"  Verify

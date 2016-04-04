@@ -24,7 +24,7 @@ class MeasurablesController < ApplicationController
   def verify
     @measurable = Measurable.find(params[:measurable_id])
     @object = User.find(@measurable.user_id)
-    @measurable.update_attributes(verified: true)
+    current_user.verified_measurables << @measurable
     respond_to do |format|
       format.html{redirect_to :back}
       format.js
