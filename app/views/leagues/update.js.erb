@@ -1,3 +1,1 @@
-<% slug = "/leagues/#{@object.slug}/edit" %>
-history.replaceState("", "", "<%= slug %>");
-$('#content').html("<%= j render 'leagues/edit_form', object: @object, pictures: @pictures, videos: @videos, articles: @articles, address: @address %>")
+<%=render 'shared/update_with_notification'%>
