@@ -1,0 +1,44 @@
+#login-user-on-registration-form.modal.scale.fade.slide-up.disable-scroll aria-hidden="true" data-backdrop="static" data-keyboard="false" role="dialog" tabindex="-1"
+  = form_tag sessions_path, data: { toggle: 'validator', disable: false } do |f|
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h4.modal-title.bold Login to your SportsMarkit account.
+        hr.mt10
+        .modal-body.pt0 style=("max-height: none;")
+          h3.semi-bold.text-center
+          .pr40.pl40
+            button.btn.btn-primary.btn-block data-dismiss="modal" type="button" data-toggle='modal' data-target='#signup-user-on-registration-form'
+              | Create account
+          h5.semi-bold.text-center.bold.mt20 Or
+          h5.bold.text-center Login with your credentials
+          .pr40.pl40
+            .well.bgcolor-white
+              .form-row.form-group
+                .row.example-row
+                  .col-md-12 Phone number or email
+                  .col-md-12
+                    .inputer
+                      .input-wrapper
+                        = text_field_tag :identifier, nil, { placeholder: "Phone number or email.", class: "form-control", required: true }
+                        .help-block.with-errors
+              .form-row.form-group
+                .row.example-row
+                  .col-md-12 Password
+                  .col-md-12
+                    .inputer
+                      .input-wrapper
+                        = password_field_tag :password, nil, { placeholder: "Password", class: "form-control", required: true }
+                        .help-block.with-errors
+              = submit_tag "Login", class: "btn btn-block btn-primary"
+          .clearfix
+          ul.extra-links.mt5
+            li
+              = link_to new_password_reset_path, class:"text-muted pull-right" do
+                h6.no-margin
+                  a.show-pane-forgot-password href="#"  Forgot your password ?
+
+        .modal-footer.bg-light-grey
+          button.btn.btn-flat.btn-default data-dismiss="modal" type="button"  Close
+
+

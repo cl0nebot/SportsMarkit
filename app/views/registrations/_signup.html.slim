@@ -1,0 +1,56 @@
+#signup-user-on-registration-form.modal.scale.fade.slide-up.disable-scroll aria-hidden="true" data-backdrop="static" data-keyboard="false" role="dialog" tabindex="-1" 
+  = form_for User.new, html: { data: { toggle: 'validator', disable: false } } do |f|
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h4.modal-title.bold Create a SportsMarkit account.
+          h5.semi-bold.small.mt5
+            | To Complete Registration For:
+            strong.text-primary= object.name
+        hr.mt10
+        .modal-body.pt0 style=("max-height: none;")
+          h3.semi-bold.text-center
+          .pr40.pl40
+            button.btn.btn-primary.btn-block data-dismiss="modal" type="button" data-toggle='modal' data-target='#login-user-on-registration-form'
+              | Login to My Account
+          h5.semi-bold.text-center.bold.mt20 Or
+          h5.bold.text-center Create a SportsMarkit Account
+          .pr40.pl40
+            .well.bgcolor-white
+              = hidden_field_tag :registration, true
+              .form-row.form-group
+                .row.example-row
+                  .col-md-12 First Name
+                  .col-md-12
+                    .inputer
+                      .input-wrapper
+                        = f.text_field :first_name, required: true, class: "form-control", placeholder: "John"
+                        .help-block.with-errors
+              .form-row.form-group
+                .row.example-row
+                  .col-md-12 Last Name
+                  .col-md-12
+                    .inputer
+                      .input-wrapper
+                        = f.text_field :last_name, required: true, class: "form-control", placeholder: "Smith"
+                        .help-block.with-errors
+              .form-row.form-group
+                .row.example-row
+                  .col-md-12 Email
+                  .col-md-12
+                    .inputer
+                      .input-wrapper
+                        = f.text_field :email, required: true, class: "form-control", placeholder: "name@account.com", 'data-email' => true
+                        .help-block.with-errors
+              .form-row.form-group
+                .row.example-row
+                  .col-md-12 Password
+                  .col-md-12
+                    .inputer
+                      .input-wrapper
+                        = f.password_field :password, required: true, class: "form-control", placeholder: "********", 'data-minlength' => 6
+                        .help-block.with-errors
+              = f.submit "Create an Account", class: "btn btn-block btn-primary"
+          .clearfix
+        .modal-footer.bg-light-grey
+          button.btn.btn-flat.btn-default data-dismiss="modal" type="button"  Close

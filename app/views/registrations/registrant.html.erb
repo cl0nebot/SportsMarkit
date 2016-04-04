@@ -19,15 +19,15 @@
     </div><!--.row-->
 
    <%= render "shared/show_navigation_admin" %>
-          
+
     <script>
-    onclick="theFunction(event)"
+     onclick="theFunction(event)"
     </script>
   </div><!--.page-header-->
 
   <br/><br/>
-    
-  
+
+
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <div class="panel box-shadow-ccc">
@@ -47,18 +47,18 @@
                     <p class="no-margin"><b> Submitted By:</b> <%= User.find(attribute.last).name %></p>
                   <% elsif attribute.first == "updated_at" %>
                     <p class="no-margin"><b> Registration Date:</b> <%= format(attribute.last, 4) %></p>
-                  
+
                   <% else %>
                   <p class="no-margin capitalize"><b> <%= pretty_column(attribute.first).titleize %>:</b> <%= @form.send(attribute.first) %></p>
                 <% end %>
               <% end%>
             <% end %>
           <% end %>
-          <p class="no-margin"><b> Option:</b> 
+          <p class="no-margin"><b> Option:</b>
             <%= @form.selected_option.option.name %>
           </p>
 
-          <p class="no-margin"><b> Amount Paid:</b> 
+          <p class="no-margin"><b> Amount Paid:</b>
             <%= number_to_currency(@form.selected_option.option.price) %>
           </p>
         </div>
