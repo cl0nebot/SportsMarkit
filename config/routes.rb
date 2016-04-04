@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :users, concerns: [:signed_documentable] do
     resources :dashboard
+    resources :registrations, only: [:index]
     get :email
     get :phone
     resources :photos
