@@ -1,0 +1,42 @@
+    						<% if object.unique_staff_roles.present? %>
+                            <h6 class="semi-bold mb0 fs_14"><%= object.name %></h6>
+    						<h5 class="semi-bold mt0 mb0 text-black">Directors, Coaches, and Management</h3>
+            					<div class="card-body pr40">
+            						<ul class="list-material borderless">
+            							<% object.unique_staff_roles.each do |head| %>
+            								<li class="has-action-left">
+            									<a href="<%= head.class.to_s == "Role" ? user_path(head.user) : "javascript: void(0)" %>" class="visible">
+            										<div class="pull-right pt20">
+            											<% if head.mobile_phone_number.present? %>
+            											<span class="text-muted fs_11">
+            												<i class="ion-ios-telephone text-primary mr5"></i>
+            												<%= head.mobile_phone_number %> 
+            											</span>
+            											<% end %>
+            											<% unless head.class.to_s == "UserlessRole"%>
+            											<span class="text-muted fs_11">
+            												<i class="ion-email text-primary mr5"></i>
+            												<%= head.user.email %> 
+            											</span>
+            											<% end %>
+            										</div>
+
+            										<div class="list-action-left">
+            											<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
+            										</div>
+            										<div class="list-content">
+											
+            											<% if head.class.to_s == "Role" %>
+            											  <span class="title"><%= head.user.full_name %></span>
+            											<% else %>
+            											  <span class="title"><%= head.first_name %> <%= head.last_name %></span>
+            											<% end %>
+            										</div>
+
+            									</a>
+            								</li>
+            								<li class="divider with-border no-padding no-margin"></li>
+            							<% end %>
+            						</ul>
+            					</div><!--.card-body-->
+                                <% end %>
