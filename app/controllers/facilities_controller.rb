@@ -79,7 +79,7 @@ class FacilitiesController < ApplicationController
   end
 
   def update
-    @object = Facility.find_by_slug!(request.referrer.split("facilities/").last.split("/").first)
+    @object = Facility.friendly.find(params[:id])
     @profile_picture =  ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s).last
     @profile_pictures = ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s)
     @videos = @object.medias.where(category: "Video")

@@ -18,6 +18,8 @@
 //= require jquery.remotipart
 //= require validator
 //= require moment
+//= require bootstrap-notify
+
 
 // <!-- BEGIN GLOBAL AND THEME VENDORS -->
 //= require pleasure/globals/js/global-vendors
@@ -136,6 +138,7 @@
 //= require bank_account
 //= require events_calendar
 //= require_tree ./templates
+//= require ./notify
 
 $(document).click(function(event) {
   var ClickedVariable = $(event.target).text();
@@ -190,3 +193,4 @@ $(function(){
     maxDate: moment().add(1, "year").toDate()
   });
 });
+
