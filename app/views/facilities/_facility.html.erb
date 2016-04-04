@@ -19,9 +19,9 @@
       		<h4 class="card-title capitalize fs_14 lh_20 absolute bottom bold">
 	        	<a href="#">
 		        	<% if facility.school.present? %>
-					  		<%= truncate("#{facility.school.name} #{facility.name}", length: 35) %>
+					  		<%= link_to truncate("#{facility.school.name} #{facility.name}", length: 35), facility %>
 							<% else %>
-					   		<%= truncate(facility.name, length: 31) %>
+					   		<%= link_to truncate(facility.name, length: 31), facility %>
 							<% end %>
 						</a>
 					<br/>
