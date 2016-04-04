@@ -3,4 +3,7 @@ window.notifySuccess = (message)->
     message: message
   },{
     type: 'success'
+
+    offset:
+      y: 50
   });

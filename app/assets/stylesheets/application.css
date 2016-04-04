@@ -57,6 +57,7 @@
  *= require fullcalendar
  *= require pleasure/globals/plugins/jquery.flexselect-0.7.0/flexselect.css
  *= require jquery.guillotine
+ *= require animate
  */
  
 .preview-container.fileinput-preview{
