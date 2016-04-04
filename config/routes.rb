@@ -109,6 +109,7 @@ Rails.application.routes.draw do
   resources :certificates
   resources :media
   resources :events do
+    resources :photos
     resources :event_schedules do
       post :attend, on: :member
     end

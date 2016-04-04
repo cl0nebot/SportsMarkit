@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
   include ActiveModel::Serialization
   include Access
+  include Images
+
   extend FriendlyId
 
   mount_uploader :file, PdfUploader
