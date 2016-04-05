@@ -1,0 +1,298 @@
+.page-header.full-content.bg-primary style=("min-height: 141px;") 
+  .row
+    .col-md-6
+      = link_to user_path(user) do
+        #edit-header-avatar.pull-left.margin-right-20
+          = image_tag(user.avatar, class: "img-thumbnail img-responsive", height: "", width: "100")
+        .pull-left
+          h1.capitalize.h1-xlarge
+            = user.full_name
+          h6.capitalize.h1-xlarge.text-white
+            = user.classification_list
+    .col-md-6
+      ol.breadcrumb
+        li
+          a href="/"
+            i.ion-home
+        li
+          a href=users_path  users
+        li
+          a href=user_path
+            = user.full_name
+        li
+          a.active href=edit_user_path  Edit
+  br/
+  br/
+  .clearfix
+  .header-tabs.scrollable-tabs.sticky
+    ul.nav.nav-tabs.tabs-active-text-white.tabs-active-border-yellow
+      li.active
+        a data-toggle="tab" href="#general"  General
+      li
+        a data-toggle="tab" href="#social-media"  Social Media
+      li
+        a data-toggle="tab" href="#media"  Upload Media
+      li
+        a data-toggle="tab" href="#stats"  Sports Resume
+      - if user.is_coach?
+        li
+          a data-toggle="tab" href="#certifications"  Certifications
+      li
+        a data-toggle="tab" href="#favorites"  Favorites
+      li
+        a data-toggle="tab" href="#password"  Password
+.col-md-10.col-md-offset-1.col-sm-12
+  .row
+    .col-md-3
+      #user-profile-picture
+        = render 'user_profile_picture', user: user, user_profile_pictures: user_profile_pictures, user_profile_picture: user_profile_picture
+    .col-md-9
+      .row
+        .col-md-12
+          .panel.box-shadow-ccc
+            .panel-body
+              .tab-content.with-panel.transparent
+                #general.tab-pane.active.text-style
+                  = form_for user, html: { class: "form-horizontal", data: { remote: true, toggle: 'validator', disable: false }} do |f|
+                    .panel-body
+                      h4.text-right General
+                      hr.margin-top-0
+                      h5.bold.text-primary The Basics
+                      br
+                      .col-md-12
+                        .row.example-row
+                          .col-md-12
+                            .row.example-row
+                              .col-md-12 First Name
+                              .col-md-12
+                                .inputer
+                                  .input-wrapper.form-group
+                                    = f.text_field :first_name, class: "form-control", required: true
+                                    .help-block.with-errors
+                            .row.example-row
+                              .col-md-12 Middle Name
+                              .col-md-12
+                                .inputer
+                                  .input-wrapper.form-group
+                                    = f.text_field :middle_name, class: "form-control"
+                            .row.example-row
+                              .col-md-12 Last Name
+                              .col-md-12
+                                .inputer
+                                  .input-wrapper.form-group
+                                    = f.text_field :last_name, class: "form-control", required: true
+                                    .help-block.with-errors
+                            = f.fields_for :profile, @profile do |builder|
+                              .row
+                                .col-md-6.row
+                                  .row.example-row
+                                    .col-md-12 Gender
+                                    .col-md-12
+                                      .inputer
+                                        = builder.select :sex, [ 'Male', 'Female'], { prompt: "Select Gender" }, { class: "selecter" }
+                                .col-md-6
+                                  .row.example-row
+                                    .col-md-12 Birthday
+                                    .col-md-12
+                                      .inputer
+                                        .input-wrapper.form-group
+                                          = builder.date_field :date_of_birth, class: "form-control"
+                        br/
+                        h5.bold.text-primary Contact Information
+                        br/
+                        .row.example-row
+                          .col-md-12 Email
+                          .col-md-12
+                            .inputer
+                              .input-wrapper.form-group
+                                = f.email_field :email, class: "form-control", required: true, "data-email" => true, "data-validation-remote" => "/checkemail", "data-remote-param" => "email"
+                                .help-block.with-errors
+                        .row.example-row
+                          .col-md-12 Phone Number
+                          .col-md-12
+                            .inputer
+                              .input-wrapper.form-group
+                                = f.text_field :mobile_phone_number, class: "form-control", placeholder: "5556667777", "data-phone" => true, required: true, "data-validation-remote" => "/checkemail", "data-remote-param" => "number"
+                                .help-block.with-errors
+                        .row.example-row
+                          .col-md-12.margin-bottom-10 Location
+                          .col-md-12
+                            .inputer.margin-bottom-10
+                              = f.fields_for :profile, @profile do |builder|
+                                = builder.text_field :city, :class => 'city-preloader form-control'
+                        .row.example-row
+                          .col-md-12 Username
+                          .col-md-12
+                            .inputer
+                              .input-wrapper.form-group
+                                = f.text_field :username, class: "form-control"
+                        br/
+                        h5.bold.text-primary Description
+                        br/
+                        .row.example-row
+                          .col-md-12 About Me
+                          .col-md-12
+                            .inputer
+                              .input-wrapper.form-group
+                                = f.fields_for :profile, @profile do |builder|
+                                  = builder.text_field :description, class: "form-control"
+                    .form-buttons
+                      .row
+                        .col-lg-8.col-lg-offset-2
+                          = f.submit "Update Profile", class: "btn btn-large btn-blue btn-block"
+                #social-media.tab-pane.text-style
+                  .panel-body
+                    = form_for user, html: { class: "form-horizontal parsley-validate", data: { remote: true, toggle: 'validator', disable: false }} do |f|
+                      h4.text-right Social Media Profiles
+                      hr.margin-top-0/
+                      h5.bold.text-primary Add Social Media Accounts
+                      br/
+                      = f.fields_for :profile, @profile do |builder|
+                        = render 'shared/social_edit', f: builder
+                      .form-buttons
+                        .row
+                          .col-lg-8.col-lg-offset-2
+                            = f.submit "Update Social Media", class: "btn btn-large btn-blue btn-block"
+                #stats.tab-pane.text-style
+                  .panel-body
+                    = form_for user, html: {class: "form-horizontal", data: { remote: true } } do |f|
+                      h4.text-right Sports Resume
+                      hr.margin-top-0/
+                      h5.bold.text-primary Athletic Profile
+                      .col-md-12
+                        = f.fields_for :profile, @profile do |builder|
+                          br/
+                          .row
+                            .col-md-3
+                              .row.example-row
+                                .col-md-12 Height (Ft.)
+                                .col-md-12
+                                  .inputer
+                                    .input-wrapper.form-group
+                                      = builder.text_field :height_ft, class: "form-control", placeholder: "Feet", "data-parsley-type" => "number"
+                            .col-md-3
+                              .row.example-row
+                                .col-md-12 Height (In.)
+                                .col-md-12
+                                  .inputer
+                                    .input-wrapper.form-group
+                                      = builder.text_field :height_in, class: "form-control", placeholder: "Inches", "data-parsley-type" => "number"
+                            .col-md-3
+                              .row.example-row
+                                .col-md-12 Weight
+                                .col-md-12
+                                  .inputer
+                                    .input-wrapper.form-group
+                                      = builder.text_field :weight, class: "form-control", placeholder: "lbs.", "data-parsley-type" => "number"
+                          br/
+                          h5.bold.text-primary Online Athletic Profiles
+                          br/
+                          = f.fields_for :profile, @profile do |builder|
+                            .row.example-row
+                              .col-md-12 Hudl Profile
+                              .col-md-12
+                                .inputer
+                                  .input-wrapper.form-group
+                                    = builder.text_field :hudl, class: "form-control"
+                            .row.example-row
+                              .col-md-12 Youtube Channel
+                              .col-md-12
+                                .inputer
+                                  .input-wrapper.form-group
+                                    = builder.text_field :youtube, class: "form-control"
+                          br/
+                          br/
+                      br/
+                      h5.bold.text-primary Add Athletic Profiles
+                      h4.text-right Measurables
+                      hr/
+                      = link_to "Add Measure", new_user_measurable_path(user), method: :get ,remote: true, class: 'btn btn-large btn-blue pull-right'
+                      #measures
+                        - user.measurables.each do |m|
+                          = render 'measurables/form', m: m, u: user
+                      .form-buttons
+                        .row
+                          .col-lg-8.col-lg-offset-2
+                            = f.submit "Update Profile", class: "btn btn-large btn-blue btn-block"
+                - if user.is_coach?
+                  #certifications.tab-pane.text-style
+                    .panel-body
+                      h4.text-right Certifications
+                      hr.margin-top-0/
+                      h5.bold.text-primary My Certifications
+                      br/
+                      #certificates
+                        - user.certificates.each do |m|
+                          = render 'certificates/form', m: m, u: user
+                    .form-buttons
+                      .row
+                        .col-lg-8.col-lg-offset-2
+                          = link_to new_user_certificate_path(user), method: :get ,remote: true, class: 'btn btn-large btn-blue btn-block' do
+                            | Add New Certificate
+                            i.ion-plus-circled.margin-left-10
+                #favorites.tab-pane.text-style
+                  = form_for user, html: {id: "favorite-form", class: "form-horizontal parsley-validate", data: {remote: true }} do |f|
+                    .panel-body
+                      h4.text-right Sports Favorites
+                      .col-md-12
+                        hr.margin-top-0/
+                        h5.bold.text-primary
+                          | Add Fan Sports Profiles
+                        br/
+                        = f.fields_for :profile, @profile do |builder|
+                          .row.example-row
+                            .col-md-12 Favorite Pro Team
+                            .col-md-12
+                              .inputer
+                                .input-wrapper.form-group
+                                  = builder.text_field :favorite_pro_team, class: "form-control"
+                          .row.example-row
+                            .col-md-12 Favorite College Team
+                            .col-md-12
+                              .inputer
+                                .input-wrapper.form-group
+                                  = builder.text_field :favorite_college_team, class: "form-control"
+                          .row.example-row
+                            .col-md-12 Favorite Pro Athlete
+                            .col-md-12
+                              .inputer
+                                .input-wrapper.form-group
+                                  = builder.text_field :favorite_pro_athlete, class: "form-control"
+                    .form-buttons
+                      .row
+                        .col-lg-8.col-lg-offset-2
+                          = f.submit "Update Profile", class: "btn btn-large btn-blue btn-block"
+                #password.tab-pane.text-style
+                  = form_for user, html: {id: "password-form", class: "form-horizontal parsley-validate", data: {remote: true }} do |f|
+                    .panel-body
+                      h4.text-right Password
+                      hr.margin-top-0/
+                      h5.bold.text-primary Reset Your Password
+                      br/
+                      .row.example-row
+                        .col-md-12 Current Password
+                        .col-md-12
+                          .inputer
+                            .input-wrapper.form-group
+                              = f.password_field :current_password, class: "form-control"
+                      .row.example-row
+                        .col-md-12 New Password
+                        .col-md-12
+                          .inputer
+                            .input-wrapper.form-group
+                              = f.password_field :password, class: "form-control"
+                      .row.example-row
+                        .col-md-12 Verify Password
+                        .col-md-12
+                          .inputer
+                            .input-wrapper.form-group
+                              = f.password_field :password_confirmation, class: "form-control"
+                    .form-buttons
+                      .row
+                        .col-lg-8.col-lg-offset-2
+                          = f.submit "Reset password", class: "btn btn-large btn-blue btn-block"
+                #media.tab-pane.text-style
+                  .panel-body
+                    h4.text-right Upload Media
+                    hr.margin-top-0/
+                    = render 'shared/edit_media', videos: videos, pictures: pictures, articles: articles, object: object
