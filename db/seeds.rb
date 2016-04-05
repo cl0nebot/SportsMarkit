@@ -98,10 +98,10 @@ Array(1..100).each do |i|
   
   profile.update(description: "How my name is #{full_name} and I am #{user.age} years old.")
   
-  Measurable.create(user_id: user.id, verified: [true,false].sample, measurable: "Mile Run", result: "#{[4,5,6,7].sample}:#{(1..59).to_a.sample}", sport: "Track & Field")
-  Measurable.create(user_id: user.id, verified: [true,false].sample, measurable: "Bench Press", result: "#{(120..300).to_a.sample} lbs.", sport: "Weightlifting")
-  Measurable.create(user_id: user.id, verified: [true,false].sample, measurable: "Fastball", result: "#{(50..99).to_a.sample} mph", sport: "Baseball")
-  Measurable.create(user_id: user.id, verified: [true,false].sample, measurable: "Vertical", result: "#{(10..50).to_a.sample} inches", sport: "Basketball")
+  Measurable.create(user_id: user.id,  measurable: "Mile Run", result: "#{[4,5,6,7].sample}:#{(1..59).to_a.sample}", sport: "Track & Field")
+  Measurable.create(user_id: user.id,  measurable: "Bench Press", result: "#{(120..300).to_a.sample} lbs.", sport: "Weightlifting")
+  Measurable.create(user_id: user.id,  measurable: "Fastball", result: "#{(50..99).to_a.sample} mph", sport: "Baseball")
+  Measurable.create(user_id: user.id,  measurable: "Vertical", result: "#{(10..50).to_a.sample} inches", sport: "Basketball")
 
 end
 

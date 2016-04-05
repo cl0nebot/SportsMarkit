@@ -139,7 +139,8 @@
 //= require events_calendar
 //= require_tree ./templates
 //= require ./notify
-
+//= require_tree ./formbuilder1
+//= require form_build_init
 $(document).click(function(event) {
   var ClickedVariable = $(event.target).text();
   if (ClickedVariable == "Upload Media") {

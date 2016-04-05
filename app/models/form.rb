@@ -143,4 +143,8 @@ class Form < ActiveRecord::Base
       button_style = "btn btn"
     end
   end
+
+  def get_data
+    (data.try(:[], 'fields').try(:values) || {}).to_json
+  end
 end

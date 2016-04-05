@@ -58,6 +58,7 @@
  *= require pleasure/globals/plugins/jquery.flexselect-0.7.0/flexselect.css
  *= require jquery.guillotine
  *= require animate
+ *= require formbuilder/style
  */
  
 .preview-container.fileinput-preview{

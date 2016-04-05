@@ -305,6 +305,7 @@ Rails.application.routes.draw do
 
   resources :forms do
     collection do
+      post :create_or_update_form
       get :change_field
     end
   end
