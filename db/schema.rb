@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404184440) do
+ActiveRecord::Schema.define(version: 20160405215238) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "addresses", force: true do |t|
     t.integer  "addressable_id"
@@ -151,12 +154,12 @@ ActiveRecord::Schema.define(version: 20160404184440) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "latitude",               limit: 24
-    t.float    "longitude",              limit: 24
+    t.float    "latitude"
+    t.float    "longitude"
     t.boolean  "gmaps"
     t.date     "last_payment"
     t.boolean  "premium"
-    t.float    "price",                  limit: 24
+    t.float    "price"
     t.string   "colors"
     t.string   "mascot"
     t.string   "motto"
@@ -282,7 +285,7 @@ ActiveRecord::Schema.define(version: 20160404184440) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "price",               limit: 24
+    t.float    "price"
     t.string   "facility_owner_type"
     t.integer  "facility_owner_id"
     t.integer  "stripe_recipient_id"
@@ -320,164 +323,6 @@ ActiveRecord::Schema.define(version: 20160404184440) do
     t.string   "submittable_type"
     t.integer  "submittable_id"
     t.integer  "submitter_id"
-    t.string   "section_1"
-    t.string   "form_name"
-    t.text     "form_description"
-    t.string   "object"
-    t.string   "section_2"
-    t.string   "first_name",                           limit: 30
-    t.string   "middle_name",                          limit: 30
-    t.string   "last_name",                            limit: 30
-    t.string   "prefix",                               limit: 10
-    t.string   "suffix",                               limit: 15
-    t.date     "date_of_birth"
-    t.string   "mobile_phone_number",                  limit: 20
-    t.string   "home_phone_number",                    limit: 20
-    t.string   "sex",                                  limit: 10
-    t.text     "address"
-    t.string   "ethnicity"
-    t.string   "lives_with"
-    t.string   "t_shirt_size",                         limit: 15
-    t.string   "section_3",                            limit: 30
-    t.string   "membership_status"
-    t.string   "membership_status_options"
-    t.string   "section_4",                            limit: 30
-    t.text     "allergies"
-    t.text     "medical_conditions"
-    t.text     "medications"
-    t.string   "section_5",                            limit: 30
-    t.string   "school_name"
-    t.string   "school_district"
-    t.string   "section_6",                            limit: 30
-    t.string   "guardian_1_name"
-    t.string   "guardian_1_relationship"
-    t.string   "guardian_1_address"
-    t.string   "guardian_1_phone"
-    t.string   "guardian_1_email"
-    t.string   "guardian_2_name"
-    t.string   "guardian_2_relationship"
-    t.string   "guardian_2_address"
-    t.string   "guardian_2_phone"
-    t.string   "guardian_2_email"
-    t.string   "section_7",                            limit: 30
-    t.string   "emergency_1_name"
-    t.string   "emergency_1_relationship"
-    t.string   "emergency_1_address"
-    t.string   "emergency_1_phone"
-    t.string   "emergency_1_email"
-    t.string   "emergency_2_name"
-    t.string   "emergency_2_relationship"
-    t.string   "emergency_2_address"
-    t.string   "emergency_2_phone"
-    t.string   "emergency_2_email"
-    t.string   "section_8",                            limit: 30
-    t.string   "insurance_company"
-    t.string   "insurance_policy_number"
-    t.string   "insurance_group_number"
-    t.boolean  "employer_insurance"
-    t.string   "employer_name"
-    t.string   "section_9",                            limit: 30
-    t.text     "special_assistance_programs"
-    t.string   "annual_family_income"
-    t.integer  "number_in_household"
-    t.string   "section_10",                           limit: 30
-    t.text     "waiver"
-    t.boolean  "accept_waiver"
-    t.text     "agreements"
-    t.boolean  "first_name_required"
-    t.boolean  "middle_name_required"
-    t.boolean  "last_name_required"
-    t.boolean  "prefix_required"
-    t.boolean  "suffix_required"
-    t.boolean  "date_of_birth_required"
-    t.boolean  "mobile_phone_number_required"
-    t.boolean  "home_phone_number_required"
-    t.boolean  "sex_required"
-    t.boolean  "address_required"
-    t.boolean  "ethnicity_required"
-    t.boolean  "lives_with_required"
-    t.boolean  "t_shirt_size_required"
-    t.boolean  "membership_status_required"
-    t.boolean  "allergies_required"
-    t.boolean  "medical_conditions_required"
-    t.boolean  "medications_required"
-    t.boolean  "school_name_required"
-    t.boolean  "school_district_required"
-    t.boolean  "guardian_1_name_required"
-    t.boolean  "guardian_1_relationship_required"
-    t.boolean  "guardian_1_address_required"
-    t.boolean  "guardian_1_phone_required"
-    t.boolean  "guardian_1_email_required"
-    t.boolean  "guardian_2_name_required"
-    t.boolean  "guardian_2_relationship_required"
-    t.boolean  "guardian_2_address_required"
-    t.boolean  "guardian_2_phone_required"
-    t.boolean  "guardian_2_email_required"
-    t.boolean  "emergency_1_name_required"
-    t.boolean  "emergency_1_relationship_required"
-    t.boolean  "emergency_1_address_required"
-    t.boolean  "emergency_1_phone_required"
-    t.boolean  "emergency_1_email_required"
-    t.boolean  "emergency_2_name_required"
-    t.boolean  "emergency_2_relationship_required"
-    t.boolean  "emergency_2_address_required"
-    t.boolean  "emergency_2_phone_required"
-    t.boolean  "emergency_2_email_required"
-    t.boolean  "insurance_company_required"
-    t.boolean  "insurance_policy_number_required"
-    t.boolean  "insurance_group_number_required"
-    t.boolean  "employer_insurance_required"
-    t.boolean  "employer_name_required"
-    t.boolean  "special_assistance_programs_required"
-    t.boolean  "annual_family_income_required"
-    t.boolean  "number_in_household_required"
-    t.boolean  "first_name_display"
-    t.boolean  "middle_name_display"
-    t.boolean  "last_name_display"
-    t.boolean  "prefix_display"
-    t.boolean  "suffix_display"
-    t.boolean  "date_of_birth_display"
-    t.boolean  "mobile_phone_number_display"
-    t.boolean  "home_phone_number_display"
-    t.boolean  "sex_display"
-    t.boolean  "address_display"
-    t.boolean  "ethnicity_display"
-    t.boolean  "lives_with_display"
-    t.boolean  "t_shirt_size_display"
-    t.boolean  "membership_status_display"
-    t.boolean  "allergies_display"
-    t.boolean  "medical_conditions_display"
-    t.boolean  "medications_display"
-    t.boolean  "school_name_display"
-    t.boolean  "school_district_display"
-    t.boolean  "guardian_1_name_display"
-    t.boolean  "guardian_1_relationship_display"
-    t.boolean  "guardian_1_address_display"
-    t.boolean  "guardian_1_phone_display"
-    t.boolean  "guardian_1_email_display"
-    t.boolean  "guardian_2_name_display"
-    t.boolean  "guardian_2_relationship_display"
-    t.boolean  "guardian_2_address_display"
-    t.boolean  "guardian_2_phone_display"
-    t.boolean  "guardian_2_email_display"
-    t.boolean  "emergency_1_name_display"
-    t.boolean  "emergency_1_relationship_display"
-    t.boolean  "emergency_1_address_display"
-    t.boolean  "emergency_1_phone_display"
-    t.boolean  "emergency_1_email_display"
-    t.boolean  "emergency_2_name_display"
-    t.boolean  "emergency_2_relationship_display"
-    t.boolean  "emergency_2_address_display"
-    t.boolean  "emergency_2_phone_display"
-    t.boolean  "emergency_2_email_display"
-    t.boolean  "insurance_company_display"
-    t.boolean  "insurance_policy_number_display"
-    t.boolean  "insurance_group_number_display"
-    t.boolean  "employer_insurance_display"
-    t.boolean  "employer_name_display"
-    t.boolean  "special_assistance_programs_display"
-    t.boolean  "annual_family_income_display"
-    t.boolean  "number_in_household_display"
     t.string   "stripe_customer_id"
     t.string   "stripe_subscription_id"
     t.boolean  "paid"
@@ -519,7 +364,7 @@ ActiveRecord::Schema.define(version: 20160404184440) do
     t.string   "email"
     t.string   "website"
     t.string   "phone_number"
-    t.float    "price",               limit: 24
+    t.float    "price"
     t.string   "classification"
     t.string   "category"
     t.integer  "stripe_recipient_id"
@@ -581,7 +426,7 @@ ActiveRecord::Schema.define(version: 20160404184440) do
   create_table "options", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.float    "price",       limit: 24
+    t.float    "price"
     t.integer  "form_id"
     t.string   "object"
     t.datetime "created_at"
@@ -693,6 +538,16 @@ ActiveRecord::Schema.define(version: 20160404184440) do
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
+  create_table "questions", force: true do |t|
+    t.integer "position",        default: 0
+    t.json    "options"
+    t.string  "title"
+    t.integer "field_type"
+    t.integer "registration_id"
+  end
+
+  add_index "questions", ["registration_id"], name: "index_questions_on_registration_id", using: :btree
+
   create_table "roles", force: true do |t|
     t.integer  "user_id"
     t.string   "role"
@@ -724,7 +579,7 @@ ActiveRecord::Schema.define(version: 20160404184440) do
     t.date     "last_payment"
     t.string   "stripe_subscription_id"
     t.boolean  "premium"
-    t.float    "price",                  limit: 24
+    t.float    "price"
     t.string   "facebook"
     t.string   "twitter"
     t.string   "linkedin"
@@ -837,7 +692,7 @@ ActiveRecord::Schema.define(version: 20160404184440) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "price",               limit: 24
+    t.float    "price"
     t.text     "description"
     t.string   "teamable_type"
     t.integer  "teamable_id"
