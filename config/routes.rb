@@ -334,7 +334,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :roles
+  resources :roles do
+    get :manage
+  end
   get "roleable" => "roles#roleable", as: :roleable
   get "assign" => "roles#assign", as: :assign_role
   post "admin_assign_role" => "roles#admin_assign_role", as: :admin_assign_role

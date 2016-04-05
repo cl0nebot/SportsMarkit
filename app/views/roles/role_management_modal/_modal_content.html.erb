@@ -1,0 +1,36 @@
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel-body">
+                            <% if object.instance_of? User %>
+                              <% Role.where(roleable_id: object.id, roleable_type: "User", role: "Guardian").each do |role| %>
+                              
+                                <div id="parent-roles-<%= role.id %>">
+ 								  <%= render 'roles/role_management_modal/role_as_child', object: object, role: role %>
+ 							    </div>
+                              
+                              <% end %>
+                        
+                              
+                     
+                            
+                            <% end %>
+                            
+                            
+							<!-- regular && parent relationships-->
+							<% object.roles.each do |role| %>
+
+                               <div id="roles-<%= role.id %>">
+								  <%= render 'roles/role_management_modal/relationship', object: object, role: role %>
+							    </div>
+
+					        <% end %>
+
+						
+
+							
+							</div><!--.panel-body-->
+						</div><!--.panel-->
+					</div><!--.col-md-12-->
+				</div><!--.row-->
+

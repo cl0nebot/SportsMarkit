@@ -1,0 +1,15 @@
+<% if role.status == "Active" %>
+    <%= link_to role_manage_path(role, roleable_type: object.class.to_s, roleable_id: object.id, command: "remove", child: true), remote: true, class: "btn btn-sm btn-danger pull-right" do %>
+       Remove <i class="ion-close-circled pull-right margin-left-10"></i> 
+    <% end %> 
+<% else %>
+    <%= link_to "ACCEPT", role_manage_path(role, roleable_type: object.class.to_s, roleable_id: object.id, command: "accept", child: true), remote: true, class: "btn btn-sm btn-success pull-right"%>
+<% end %>
+
+<%= User.find(role.user_id).name %></br>
+<small><%= role.role %></small>
+<div class="clearfix"></div>
+<hr/>
+                            
+                               
+                               

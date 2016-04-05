@@ -36,4 +36,19 @@ class RolesController < ApplicationController
   def roleable
 
   end
+  
+  def manage
+    unless params[:child]
+      @object = params[:object_type].constantize.find(params[:object_id])
+    else
+      @object = params[:roleable_type].constantize.find(params[:roleable_id])
+    end
+    @role = Role.find(params[:role_id])
+    if params[:command] == "remove"
+      @role.destroy
+    else
+      @role.update_attributes(status: "Active")
+    end
+  end
+  
 end
