@@ -76,6 +76,7 @@
     <div class="col-md-12">
       <div class="tab-content without-border">
           <%= render 'shared/manage_relationships', object: @object %>
+          <%= link_to "My registrations", user_registrations_path(@object)%>
         <!-- teams -->
         <%= render 'users/show/about_tab' %>
         <!-- teammates -->
