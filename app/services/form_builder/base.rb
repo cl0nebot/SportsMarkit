@@ -19,7 +19,7 @@ class FormBuilder::Base
     content_tag :div, nil, class: "help-block with-errors"
   end
 
-  def base_options
+  def base_options(options={})
     { class: "form-control #{ 'required' if required?}", required: required? }
   end
 
@@ -42,5 +42,9 @@ class FormBuilder::Base
 
   def label
     label_tag @data["label"].parameterize('_'), @data["label"]
+  end
+
+  def field_options
+    @data["field_options"]["options"].values
   end
 end

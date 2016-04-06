@@ -1,12 +1,15 @@
 class FormBuilder::Dropdown < FormBuilder::Base
+  include ActionView::Helpers::FormOptionsHelper
   def field_tag
-    options = @data["field_options"]["options"].values.map do |radio|
-      radio_button_tag field_name, radio["label"], radio["checked"] == "checked", base_options
-    end.join
-    select_tag field_name, options, include_blank: include_blank?, required: required?
+    options = field_options.map do |option|
+      [option["label"], option["label"]]
+    end
+    select_tag field_name, options_for_select(options), base_options
   end
 
-  def include_blank?
-    @data["field_options"]["include_blank_option"] == "true"
+  def base_options
+    options = { required: required? }
+    options.merge! include_blank: true if @data["field_options"]["include_blank_option"] == "true"
+    options
   end
 end
