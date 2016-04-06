@@ -1,5 +1,6 @@
 class Form < ActiveRecord::Base
   belongs_to :formable, polymorphic: true
+  belongs_to :submittable, polymorphic: true
   has_many :options
   has_one :selected_option
 

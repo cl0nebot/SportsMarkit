@@ -13,7 +13,11 @@ class FormsController < ApplicationController
   def create_or_update_form
     @form = Form.where(formable_id: params[:formable_id], formable_type: params[:formable_type], object: params[:object]).first_or_create
     @form.update_attributes(data: params[:data])
-    redirect_to eval("#{@form.formable.class.to_s.downcase}_form_options_path(@form.formable_id, @form.id)")
+    @url = eval("#{@form.formable.class.to_s.downcase}_form_options_path(@form.formable_id, @form.id)")
+    respond_to do |format|
+      format.html{ redirect_to @url }
+      format.js
+    end
   end
 
   def change_field
