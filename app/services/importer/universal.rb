@@ -2,10 +2,15 @@ class Importer::Universal < Importer::Base
   delegate :model, :failed_content, :failed_records, to: :context
 
   def call
-    init_spreadsheet
-    context.failed_records = []
-    run_import
-    handle_errors
+    begin
+      init_spreadsheet
+      context.failed_records = []
+      run_import
+      handle_errors
+    rescue Exception => e
+      context.errors = ["File is invalid"]
+      context.fail!
+    end
   end
 
   def run_import
