@@ -123,7 +123,7 @@ class Form < ActiveRecord::Base
   end
 
   def registrant
-    submittable_type.constantize.find(submittable_id)
+    submittable
   end
 
   def select_pricing_option(id, params={})
