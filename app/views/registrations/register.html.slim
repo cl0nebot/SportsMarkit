@@ -30,6 +30,11 @@
                 .col-md-12
                   | Register for #{@object.name}
                 .col-md-12
+                 ul.text-left
+                  - @form.user_data.each do |key, value|
+                    li = "#{key.humanize}: #{value}"
+                  end
+                .col-md-12
                   label.text-primary.semi-bold.text-center.h4.MB0
                     = @form.selected_option.option.name
                   h1.text-center.no-margin.semi-bold

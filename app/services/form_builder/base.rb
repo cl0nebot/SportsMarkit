@@ -20,7 +20,7 @@ class FormBuilder::Base
   end
 
   def base_options(options={})
-    { class: "form-control #{ 'required' if required?}", required: required? }
+    { class: "form-control #{ 'required' if required?}", required: required?, name: "user_data[#{field_name}]" }
   end
 
   def value
