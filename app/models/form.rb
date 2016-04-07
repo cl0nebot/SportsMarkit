@@ -1,6 +1,7 @@
 class Form < ActiveRecord::Base
   belongs_to :formable, polymorphic: true
   belongs_to :submittable, polymorphic: true
+  belongs_to :submitter, class_name: "User", foreign_key: "submitter_id"
   has_many :options
   has_one :selected_option
 
