@@ -1,4 +1,5 @@
 $(document).ready ->
+  return unless $("#fb-template").length
   fb = new Formbuilder(
     selector: '#fb-template'
     bootstrapData:  $('#fb-template').data('form')
