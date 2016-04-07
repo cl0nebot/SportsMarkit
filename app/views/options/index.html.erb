@@ -22,6 +22,10 @@
   </div>
   <div class="row">
     <div class="col-md-3">
+      <label for="notify_about_registration">
+        I would like to receive email updates for this registration
+        <%= check_box_tag :notify_about_registration, "yes", false, "data-form-id" => @form.id %>
+      </label>
       <h4>Preview your Form</h4>
       <p class="fs_14 text-muted">
         Curious what your form is looking like? No problem, click the button below to take peek launch the form or use the live preview below.
