@@ -304,6 +304,9 @@ Rails.application.routes.draw do
   end
 
   resources :forms do
+    member do
+      post :toggle_notification
+    end
     collection do
       post :create_or_update_form
       get :change_field

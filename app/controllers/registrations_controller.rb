@@ -17,8 +17,11 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    Form.create_master(params, form_params)
+    master_form = Form.create_master(params, form_params)
     @form = Form.find_or_create_by(formable_id: params[:form][:formable_id], formable_type: params[:form][:formable_type], object: params[:object], submittable_id: params[:form][:submittable_id], submittable_type: params[:form][:submittable_type] )
+    if master_form.notify_creator
+      SendEmail.new_registration(master_form.submitter, @form.submitter).deliver
+    end
     @form.update_attributes(form_params)
     @form.select_pricing_option(@form.id, params)
     redirect_to "/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/registrations/#{@form.id}/register"
