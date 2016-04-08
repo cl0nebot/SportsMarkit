@@ -4,7 +4,7 @@ class RegistrationsController < ApplicationController
 
   def new
     load_object
-    @form = @object.forms.first
+    @form = @object.forms.where(master: true).first
     @master = current_user? ? Form.where(submittable_type: "User", submittable_id: current_user.id, master: true).last : Form.new
   end
 
@@ -52,6 +52,11 @@ class RegistrationsController < ApplicationController
   def index
     load_object
     load_registrants
+  end
+
+  def pay_manual
+    @registrant = Form.find(params[:id])
+    @registrant.update(params.permit(:paid, :payment_type))
   end
 
   private

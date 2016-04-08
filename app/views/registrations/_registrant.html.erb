@@ -1,19 +1,26 @@
-<li class="has-action-right has-long-story">
+<li class="has-action-right has-long-story registrant-<%= registration.id %>">
   <div class="list-content">
-    <span class="h5 bold"><%= registration.registrant.full_name %> </span>
-    <span class="caption">
-      <% if registration.selected_option.present? %>
-        <strong>Option:</strong> <%= registration.selected_option.option.name  %>,
-        <strong> Price:</strong> <%= number_to_currency(registration.selected_option.option.price) %>,
-      <% else %>
-        No option selected.
-      <% end %>
-      <span class="inline">
-        <% if registration.registrant.has_registered_for?(@object) %>
-          <strong>Registration:</strong> <%= link_to "View Details", "/#{registration.formable_type.underscore.pluralize}/#{registration.formable.slug}/registrations/#{registration.id}/registrant" %>
+    <% unless registration.paid? %>
+      <div class="pull-left manual-payment-link">
+        <%= link_to "Pay manual", pay_manual_registration_path(registration, paid: true, payment_type: :manual), method: :patch, class: "btn btn-primary", data: { remote: true, confirm: "Are you sure?" } %>
+      </div>
+    <% end %>
+    <div class="pull-left margin-left-20">
+      <span class="h5 bold"><%= registration.registrant.full_name %> </span>
+      <span class="caption">
+        <% if registration.selected_option.present? %>
+          <strong>Option:</strong> <%= registration.selected_option.option.name  %>,
+          <strong> Price:</strong> <%= number_to_currency(registration.selected_option.option.price) %>
+        <% else %>
+          No option selected.
         <% end %>
+        <span class="inline">
+          <% if registration.registrant.has_registered_for?(@object) %>
+            <strong>Registration:</strong> <%= link_to "View Details", "/#{registration.formable_type.underscore.pluralize}/#{registration.formable.slug}/registrations/#{registration.id}/registrant" %>
+          <% end %>
+        </span>
       </span>
-    </span>
+    </div>
   </div>
   <div class="list-action-right">
     <span class="top">

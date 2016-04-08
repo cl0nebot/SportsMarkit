@@ -5,6 +5,8 @@ class Form < ActiveRecord::Base
   has_many :options
   has_one :selected_option
 
+  enum payment_type: { online: 0, manual: 1 }
+
   attr_accessor :stripe_token
 
   def self.create_master(params={}, form_params)

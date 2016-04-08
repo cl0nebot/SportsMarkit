@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407174728) do
+ActiveRecord::Schema.define(version: 20160408173631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -334,6 +334,7 @@ ActiveRecord::Schema.define(version: 20160407174728) do
     t.string   "object"
     t.json     "user_data",              default: {}
     t.boolean  "notify_creator"
+    t.integer  "payment_type",           default: 0
   end
 
   create_table "league_managers", force: true do |t|
