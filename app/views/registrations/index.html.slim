@@ -1,0 +1,38 @@
+.content
+  .page-header.full-content.bg-primary.mb0 style=("min-height: 121px;")
+    .row
+      .col-sm-6
+        h1.capitalize.semi-bold
+          = @object.name
+          small Manage Registrations
+      .col-sm-6
+        ol.breadcrumb
+          li
+            a href="/"
+              i.ion-home
+          li
+            a href="#{eval("#{@object.class.to_s.downcase.pluralize}_path")}" = @object.class.to_s.pluralize
+          li= link_to @object.name, @object
+    = render "shared/show_navigation_admin"
+  br/
+  br/
+  .row
+    .col-md-6.col-md-offset-3
+      .panel.box-shadow-ccc
+        .panel-body.pr50.pl50.pt50.pb50.labels-light.labels-16
+          h3
+            = @object.class.to_s
+            | Registrations
+          p.text-muted.fs_16
+            | View the status of your #{@object.class.to_s.downcase}'s registrations below.
+          ul.nav.nav-tabs.fs_16.no-border.no-adding role="tablist"
+            li.active role="presentation"
+              a aria-controls="home" data-toggle="tab" href="#all" role="tab" All
+            li role="presentation"
+              a aria-controls="profile" data-toggle="tab" href="#paid" role="tab" Paid
+            li role="presentation"
+              a aria-controls="messages" data-toggle="tab" href="#unpaid" role="tab" Unpaid
+            li role="presentation"
+              a aria-controls="settings" data-toggle="tab" href="#roster" role="tab" Roster
+          .tab-content.no-border.no-padding
+            = render "registrations/tabs"

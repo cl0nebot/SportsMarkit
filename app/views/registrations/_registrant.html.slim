@@ -1,0 +1,33 @@
+li class=("has-action-right has-long-story registrant-#{registration.id}")
+  .list-content
+    - unless registration.paid?
+      .pull-left.manual-payment-link
+        = link_to "Pay manual", pay_manual_registration_path(registration, paid: true, payment_type: :manual, @object.class.name.foreign_key => @object.id), method: :patch, class: "btn btn-primary", data: { remote: true, confirm: "Are you sure?" }
+    .pull-left.margin-left-20
+      span.h5.bold
+        = registration.registrant.full_name
+      span.caption
+        - if registration.selected_option.present?
+          strong Option:
+          = registration.selected_option.option.name
+          | ,
+          strong Price:
+          = number_to_currency(registration.selected_option.option.price)
+        - else
+          | No option selected.
+        span.inline
+          - if registration.registrant.has_registered_for?(@object)
+            strong Registration:
+            = link_to "View Details", "/#{registration.formable_type.underscore.pluralize}/#{registration.formable.slug}/registrations/#{registration.id}/registrant"
+  .list-action-right
+    span.top
+      = format(registration.updated_at, 1)
+      = format(registration.updated_at, 9)
+      - if registration.paid?
+        span.mt10.text-green
+          i.ion-android-done.inline.fs_22
+          | Paid
+      - else
+        span.mt0.text-red
+          i.ion-card.inline.fs_22.mr5
+          | Not Paid

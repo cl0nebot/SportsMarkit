@@ -1,19 +1,21 @@
 class RegistrationsController < ApplicationController
   before_action :load_form, only: [:registrant, :register, :change_submitter, :pay]
   before_action :load_master, only: [:change_submitter], :if => :current_user?
+  before_action :load_object, only: [:new, :register, :registrant, :index, :pay_manual]
+  before_action :load_registrants, only: [:index, :pay_manual]
+
+  def index
+  end
 
   def new
-    load_object
     @form = @object.forms.where(master: true).first
     @master = current_user? ? Form.where(submittable_type: "User", submittable_id: current_user.id, master: true).last : Form.new
   end
 
   def register
-    load_object
   end
 
   def registrant
-    load_object
   end
 
   def create
@@ -45,24 +47,19 @@ class RegistrationsController < ApplicationController
     redirect_to eval("#{@form.formable.class.to_s.underscore}_registrations_path(@form.formable)")
   end
 
-  def form_params
-    params.require(:form).permit!.merge(user_data: params.require(:user_data).permit!.as_json)
-  end
-
-  def index
-    load_object
-    load_registrants
-  end
-
   def pay_manual
-    @registrant = Form.find(params[:id])
-    @registrant.update(params.permit(:paid, :payment_type))
+    registrant = Form.find(params[:id])
+    registrant.update(params.permit(:paid, :payment_type))
   end
 
   private
 
+  def form_params
+    params.require(:form).permit!.merge(user_data: params.require(:user_data).permit!.as_json)
+  end
+
   def load_registrants
-    @registrations = Form.where(formable_type: @object.class.to_s, formable_id: @object.id).where.not(submittable_type: nil, submittable_id: nil)
+    @registrations = Form.where(formable: @object).where.not(submittable_type: nil, submittable_id: nil)
   end
 
   def load_object
