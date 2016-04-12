@@ -36,7 +36,12 @@ class RegistrationsController < ApplicationController
     
     begin
       raise "Stripe token not present. Cannot process transaction." if stripe_token.blank?
-      current_user.process_transaction(params, amount)
+      if amount == 0
+        
+      else
+        current_user.process_transaction(params, amount)  
+      end
+      
     
       @form.update_attributes(paid: true)
     end
