@@ -16,11 +16,7 @@ class UploadsController < ApplicationController
 
     if @import.failure?
       if @import.error_xls
-        file = Tempfile.new(["import-error"], Rails.root.join("tmp"))
-        file.binmode
-        file.write(@import.error_xls.read)
-        file.close
-        redirect_to :back, flash: { alert: @import.errors, file_with_errors_path: file.path }
+        redirect_to :back, flash: { alert: @import.errors, file_with_errors_path: @import.error_xls }
       end
     else
       redirect_to :back, notice: 'Uploaded'
