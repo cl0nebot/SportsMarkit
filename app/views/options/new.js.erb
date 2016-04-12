@@ -1,2 +1,3 @@
 $('#new-options').append('<%= j(render 'options/form', form: @form, o: @option)%>');
 Layout.initSelectPicker();
+$('#new-options form:last').validator({ disable: false })

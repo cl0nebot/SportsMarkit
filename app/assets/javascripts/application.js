@@ -131,6 +131,7 @@
 //= require parsley
 //= require jquery.cropit
 //= require schools
+//= require forms
 //= require ./ready
 //= require registrations
 //= require hamlcoffee

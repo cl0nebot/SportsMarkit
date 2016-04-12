@@ -110,6 +110,7 @@ Rails.application.routes.draw do
   resources :media
   resources :events do
     resources :photos
+    resources :invites
     resources :event_schedules do
       post :attend, on: :member
     end
@@ -120,6 +121,7 @@ Rails.application.routes.draw do
 
   resources :schools, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :teamable, :upgradeable] do
     resources :dashboard
+    resources :invites
     resources :uploads do
       collection do
         post :import
@@ -148,6 +150,7 @@ Rails.application.routes.draw do
 
   resources :teams, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :upgradeable] do
     resources :dashboard
+    resources :invites
     resources :uploads do
       collection do
         post :import
@@ -184,6 +187,7 @@ Rails.application.routes.draw do
 
   resources :facilities, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :upgradeable] do
     resources :dashboard
+    resources :invites
     resources :uploads do
       collection do
         post :import
@@ -217,6 +221,7 @@ Rails.application.routes.draw do
   resources :tournaments
   resources :leagues, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :teamable, :upgradeable] do
     resources :dashboard
+    resources :invites
     resources :facilities
     resources :uploads do
       collection do
@@ -277,6 +282,7 @@ Rails.application.routes.draw do
 
   resources :clubs, concerns: [:documentable, :announceable, :eventable, :signed_documentable, :bankable, :teamable, :upgradeable] do
     resources :dashboard
+    resources :invites
     resources :uploads do
       collection do
         post :import
@@ -304,6 +310,9 @@ Rails.application.routes.draw do
   end
 
   resources :forms do
+    member do
+      post :toggle_notification
+    end
     collection do
       get :change_field
     end
@@ -329,7 +338,7 @@ Rails.application.routes.draw do
     get "close_roster_view" => "rosters#close_roster_view", as: :close_roster_view
     get :accept
     get :reject
-    collection do 
+    collection do
       get :find_user
     end
   end

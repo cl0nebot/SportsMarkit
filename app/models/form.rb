@@ -1,5 +1,6 @@
 class Form < ActiveRecord::Base
   belongs_to :formable, polymorphic: true
+  belongs_to :submitter, class_name: "User", foreign_key: "submitter_id"
   has_many :options
   has_one :selected_option
 
@@ -116,10 +117,11 @@ class Form < ActiveRecord::Base
     if !master_form.present?
       master = Form.new(submittable_type: params[:submittable_type], submittable_id: params[:submittable_id], master: true)
       master.save
-    elsif master_form.present?
+    else
       master_form.update_attributes(form_params)
       master_form.update_attributes(formable_type: nil, formable_id: nil, master: true)
     end
+    master_form
   end
 
   def registrant
