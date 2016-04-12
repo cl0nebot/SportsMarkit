@@ -8,7 +8,6 @@
   .sample-member9 {
     background-image: url('http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif');
   }
-
   .card-friend .user-photo {
     float: left;
     width: 160px;
@@ -18,9 +17,7 @@
   .card-friend .friend-content {
     margin-left: 180px;
   }
-
 </style>
-
 <div class="content">
   <div class="page-header full-content bg-primary mb0" style="min-height: 141px;">
     <div class="row">
@@ -29,94 +26,50 @@
           <%= @team.name %>
           <small></small>
         </h1>
-      </div><!--.col-->
-      <div class="col-sm-6">
-       	<ol class="breadcrumb">
-					<li><a href="/"><i class="ion-home"></i></a></li>
-					<li><a href="<%= teams_path %>">Teams</a></li>
-					<% if @team.teamable.present? %>
-				  		<li><a href="#"><%= @team.teamable.name %></a></li>
-				  		<!-- add path for linking -->
-					<% end %>
-					<li><a href="#" class="active"><%= @team.name %></a></li>
-				</ol>
       </div>
-    </div><!--.row-->
-
-    <div class="header-tabs scrollable-tabs sticky">
-      
-      <%= render 'shared/register_button' %>
-
-        <% if @object.can_be_edited_by_user?(current_user) %>
-        <%= link_to edit_team_path(@team), class: "mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20" do %>
-            <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
-        <% end %>
-      <% end %> 
-
-      <%= render 'shared/view_announcement_button', object: @object %>
-
-      <div class="pull-right mr10 mt10" id="join-button">
-		    <%= join_object_button(current_user, @object.class.to_s, @object.id) %>
-	   </div>
-
-
-
-
-     	<%= render 'shared/show_navigations'%>
-
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="<%= teams_path %>">Teams</a></li>
+          <% if @team.teamable.present? %>
+            <li><a href="#"><%= @team.teamable.name %></a></li>
+          <% end %>
+          <li><a href="#" class="active"><%= @team.name %></a></li>
+        </ol>
+      </div>
     </div>
-  </div><!--.page-header-->
-	
-	<div class="row">
+    <div class="header-tabs scrollable-tabs sticky">
+      <%= render 'shared/register_button' %>
+      <% if @object.can_be_edited_by_user?(current_user) %>
+        <%= link_to edit_team_path(@team), class: "mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20" do %>
+          <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
+        <% end %>
+      <% end %>
+      <%= render 'shared/view_announcement_button', object: @object %>
+      <div class="pull-right mr10 mt10" id="join-button">
+        <%= join_object_button(current_user, @object.class.to_s, @object.id) %>
+      </div>
+      <%= render 'shared/show_navigations'%>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-12">
       <div class="tab-content without-border">
-							
-				<!-- about -->
-				<%= render "teams/show/about_tab" %>
-
-				<!-- roster -->
-				<%= render "teams/show/roster_tab" %>
-
-				<!-- facilities -->
-				<%= render "teams/show/facilities_tab" %>
-
-				<!-- calendar -->
-				<%= render "teams/show/calendar_tab" %>
-			
-				<!-- media -->
-				<%= render "teams/show/media_tab" %>
-
-			 	<!-- following -->
-			 	<%= render "teams/show/following_tab" %>
-				      
-      	<!-- fans -->
-      	<%= render "teams/show/fans_tab" %>
-
-      	<!-- admin -->
-      	<%= render "teams/show/admin_tab" %>
-
-	      		<!-- payments -->
-				<!-- <div id="payments" class="tab-pane">
-				</div> -->
-				<!--#payments.tab-pane-->
-
-				<%#= render 'shared/photo_tab', photo_owner: @team %>
-
-			</div><!--.tab-content-->
-		</div><!--.col-->
-	</div><!--.row-->
-
-	<%= render "shared/modals/boostrap_image_gallery_lightbox" %>
-
-</div><!--.content-->
-
+        <%= render "teams/show/about_tab" %>
+        <%= render "teams/show/roster_tab" %>
+        <%= render "teams/show/facilities_tab" %>
+        <%= render "teams/show/calendar_tab" %>
+        <%= render "teams/show/media_tab" %>
+        <%= render "teams/show/following_tab" %>
+        <%= render "teams/show/fans_tab" %>
+        <%= render "teams/show/admin_tab" %>
+      </div>
+    </div>
+  </div>
+  <%= render "shared/modals/boostrap_image_gallery_lightbox" %>
+</div>
 <% if current_user %>
-<%= render "shared/panels/new_team" %>
-<%= render "shared/panels/new_team_league" %>
-<%= render "shared/panels/new_event" %>
+  <%= render "shared/panels/new_team" %>
+  <%= render "shared/panels/new_team_league" %>
+  <%= render "shared/panels/new_event" %>
 <% end %>
-
-
-	
-
-      		

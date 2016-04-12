@@ -4,14 +4,19 @@ class Importer::TeamRoster < Importer::Base
   delegate :error_xls, :spreadsheet, :failure?, :file, :failed_athletes, :failed_teams, :school_id, :school, to: :context
 
   def call
-    init_spreadsheet
-    check_for_spreadsheets
-    return if failure?
-    context.failed_teams = []
-    context.failed_athletes = []
-    import_teams
-    import_athletes
-    handle_errors
+    begin
+      init_spreadsheet
+      check_for_spreadsheets
+      return if failure?
+      context.failed_teams = []
+      context.failed_athletes = []
+      import_teams
+      import_athletes
+      handle_errors
+    rescue Exception => e
+      context.errors = ["File is invalid"]
+      context.fail!
+    end
   end
 
   def check_for_spreadsheets

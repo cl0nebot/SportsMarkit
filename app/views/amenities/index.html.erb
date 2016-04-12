@@ -1,4 +1,3 @@
-
 <div class="page-content condensed">
   <div class="content">
     <div class="row">
@@ -6,34 +5,33 @@
         <div class="grid simple no-border">
           <div class="grid-body">
             <div class="clearfix">
-				<h4 class="semi-bold">Create a New Amenity</h4>
-				<%= form_for @amenity, html: {id: 'amenity-form', data: {remote: true}} do |f| %>
-					<div class="row">
-						<div class="col-md-6">
-							<%= f.text_field :amenity, class: "col-md-12", placeholder: "" %>
-						</div>
-						<%= f.submit %>
-				<% end %>
-				<br/>
-				<br/>
-				<br/>
-      			<table id="amenity-list" class="table table-hover table-condensed" id="example">
-	                <thead>
-	                  <tr>
-	                    <th style="width:25%" class="gf_muli">Name</th>
-	                    <th style="width:20%" class="gf_muli"># Facilities </th>
-	                    <th style="width:22%" class="gf_muli">Actions</th>
-	                  </tr>
-	                </thead>
-	                <tbody>
-		                <%= render @amenities %>
-	                </tbody>
-	              </table>
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-
+              <h4 class="semi-bold">Create a New Amenity</h4>
+              <%= form_for @amenity, html: {id: 'amenity-form', data: {remote: true}} do |f| %>
+                <div class="row">
+                  <div class="col-md-6">
+                    <%= f.text_field :amenity, class: "col-md-12", placeholder: "" %>
+                  </div>
+                  <%= f.submit %>
+                <% end %>
+                <br/>
+                <br/>
+                <br/>
+                <table id="amenity-list" class="table table-hover table-condensed" id="example">
+                  <thead>
+                    <tr>
+                      <th style="width:25%" class="gf_muli">Name</th>
+                      <th style="width:20%" class="gf_muli"># Facilities </th>
+                      <th style="width:22%" class="gf_muli">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%= render @amenities %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -175,7 +175,7 @@ class RostersController < ApplicationController
   end
 
   def create_new_user_and_roster_spot
-    User.create_new_user_and_roster_spot(@first_name,@last_name, @mobile_number, @array, params)
+    User.create_new_user_and_roster_spot(@first_name, @last_name, @mobile_number, @array, params)
   end
 
   def create_userlesss_roster_spot

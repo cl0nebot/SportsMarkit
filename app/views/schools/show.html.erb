@@ -1,8 +1,7 @@
 <style>
-	.card-friend .friend-content {
-	  margin-left: 180px;
-	}
-
+  .card-friend .friend-content {
+  	margin-left: 180px;
+  }
 	.card-friend .user-photo {
 	  float: left;
 	  height: 160px;
@@ -10,83 +9,51 @@
 	  border-radius: 3px 0 0 3px;
 	}
 </style>
-
 <div class="content">
-	
-	<div class="page-header full-content bg-primary mb0" style="min-height: 141px;">
-		<div class="row">
-			<div class="col-sm-6">
-				<h1 class="capitalize semi-bold">
-					<%= @school.name %>
-					<small></small>
-				</h1>
-			</div><!--.col-->
-			<div class="col-sm-6">
-				<ol class="breadcrumb">
-					<li><a href="/"><i class="ion-home"></i></a></li>
-					<li><a href="<%= schools_path %>">Schools</a></li>
-					<li><a href="<%= school_path(@school) %>"><%= @school.name %></a></li>
-					<li><a href="#" class="active">Edit</a></li>
-				</ol>
-			</div><!--.col-->
-		</div><!--.row-->
-
-		<div class="header-tabs scrollable-tabs sticky">
-			
-        <%= render 'shared/register_button' %>
-        
-        <% if @object.can_be_edited_by_user?(current_user) %>
-          <%= link_to edit_school_path(@school), class: "mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20" do %>
-              <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
+  <div class="page-header full-content bg-primary mb0" style="min-height: 141px;">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1 class="capitalize semi-bold">
+          <%= @school.name %>
+          <small></small>
+        </h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="<%= schools_path %>">Schools</a></li>
+          <li><a href="<%= school_path(@school) %>"><%= @school.name %></a></li>
+          <li><a href="#" class="active">Edit</a></li>
+        </ol>
+      </div>
+    </div>
+    <div class="header-tabs scrollable-tabs sticky">
+      <%= render 'shared/register_button' %>
+      <% if @object.can_be_edited_by_user?(current_user) %>
+        <%= link_to edit_school_path(@school), class: "mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20" do %>
+          <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
           <% end %>
-        <% end %>
-
-            <%= render 'shared/view_announcement_button', object: @object %>
-        
-  		
-			<%= render 'shared/show_navigations'%>
-		</div>
-	</div><!--.page-header-->
-
-
-	<!-- main content div -->
+      <% end %>
+      <%= render 'shared/view_announcement_button', object: @object %>
+      <%= render 'shared/show_navigations'%>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-12">
       <div class="tab-content without-border">
-
-			<!-- about -->
-			<%= render "schools/show/about_tab" %>
-			
-			<!-- teams -->
-			<%= render "schools/show/teams_tab" %>
-			
-			<!-- people -->
-			<%= render "schools/show/people_tab" %>
-
-			<!-- facilities -->
-			<%= render "schools/show/facilities_tab" %>
-
-			<!-- facilities -->
-			<%= render "schools/show/calendar_tab" %>
-			
-			<!-- media -->
-			<%= render "schools/show/media_tab" %>
-
-			<% if false %>	<!-- following -->
-		    <%= render "schools/show/following_tab" %>
-			<% end %>
-			
-			<%= render "schools/show/certifications_tab"%>
-
-	      <!-- fans -->
-	      <%= render "schools/show/fans_tab" %>
-			
-			</div><!--.tab-content-->
-		</div><!--.col-->
-	</div><!--.row-->
-
-	<%= render "shared/modals/boostrap_image_gallery_lightbox" %>
-
-</div><!--.content-->
-
-
+        <%= render "schools/show/about_tab" %>
+        <%= render "schools/show/teams_tab" %>
+        <%= render "schools/show/people_tab" %>
+        <%= render "schools/show/facilities_tab" %>
+        <%= render "schools/show/calendar_tab" %>
+        <%= render "schools/show/media_tab" %>
+        <% if false %>
+          <%= render "schools/show/following_tab" %>
+        <% end %>
+        <%= render "schools/show/certifications_tab"%>
+        <%= render "schools/show/fans_tab" %>
+      </div>
+    </div>
+  </div>
+  <%= render "shared/modals/boostrap_image_gallery_lightbox" %>
+</div>

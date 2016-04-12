@@ -29,7 +29,7 @@
 		
 		<div class="card-footer">
 			<ul>
-				<li class="fs_14"><span class="mr5"><%= pluralize @object.upcoming_events.count, "Upcoming Event" %> </span></li>
+				<li class="fs_14"><span class="mr5"><%= pluralize @object.upcoming_events.take(5).count, "Upcoming Event" %> </span></li>
 				
 				<% if current_user %>
 				

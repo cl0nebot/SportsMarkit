@@ -1,4 +1,4 @@
-<% object.upcoming_events.each do |event| %>
+<% object.upcoming_events.take(5).each do |event| %>
 <%= link_to event_path(event.friendly_id) do %>
 	<div class="frame">
 		<div class="timeline-badge">
