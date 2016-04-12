@@ -1,0 +1,92 @@
+.content
+  .page-header.full-content.bg-primary.mb0 style=("min-height: 141px;")
+    .row
+      .col-sm-6
+        h1.capitalize.semi-bold
+          = @object.name
+          small
+      .col-sm-6
+        ol.breadcrumb
+          li
+            a href="/"
+              i.ion-home
+          li
+            = link_to @object.class.name.pluralize, send("#{@object.class.name.downcase.pluralize}_path")
+
+  .page-content.condensed
+    .content
+      .row
+        .col-md-10.col-md-offset-1
+          .grid.simple.no-border
+            .grid-body
+              .clearfix
+                h4.semi-bold Create New Invite
+                = form_for Role.new, url: send("#{@object.class.name.downcase}_invites_path", @object), data: { toggle: 'validator', disable: false } do |f|
+                  .row
+                    .col-md-6
+                      .row.example-row
+                        .col-md-12
+                          h4 User
+                        .col-md-12
+                          .inputer
+                            .input-wrapper.form-group
+                              = f.select :user_id, options_from_collection_for_select(User.all, :id, :name), {}, class: "selecter bg-white", required: true, "data-live-search" => true
+                              .help-block.with-errors
+                  .row
+                    .col-md-6
+                      .row.example-row
+                        .col-md-12
+                          h4 Classification
+                        .col-md-12
+                          .inputer
+                            .input-wrapper
+                              = f.text_field :level, class: "form-control"
+                    .col-md-6
+                      .row.example-row
+                        .col-md-12
+                          h4 Position
+                        .col-md-12
+                          .inputer
+                            = f.select :position_ids, options_for_select(Position.pluck(:position, :id)), {}, class: "selecter bg-white margin-bottom-0", multiple: true, "data-live-search" => true
+                  .row
+                    .col-md-6
+                      .row.example-row
+                        .col-md-12
+                          h4 Cell Phone
+                        .col-md-12
+                          .inputer
+                            .input-wrapper.form-group
+                              = f.text_field :mobile_phone_number, class: "form-control", required: true, "data-validation-remote" => "/checkemail", "data-remote-param" => "number", "data-phone" => true, "data-remote-additional-params" => { type: "other" }.to_json
+                              .help-block.with-errors
+                    .col-md-6
+                      .row.example-row
+                        .col-md-12
+                          h4 Jersey Number
+                        .col-md-12
+                          .inputer
+                            .input-wrapper
+                              = f.text_field :jersey_number, class: "form-control"
+                  .row
+                    .col-md-12
+                      .row.example-row
+                        .col-md-12
+                          h4 Assignments
+                        .col-md-12.form-group
+                          .checkboxer.form-inline.mb5
+                            = f.check_box :role, { multiple: true, id: "athlete", class: "assignments", "data-required-any" => ".assignments" }, "Athlete", nil
+                            label for="athlete" Athlete?
+                          .checkboxer.form-inline.mb5
+                            = f.check_box :role, { multiple: true, id: "coach", class: "assignments", "data-required-any" => ".assignments" }, "Coach", nil
+                            label for="coach" Coach?
+                          .checkboxer.form-inline.mb5
+                            = f.check_box :role, { multiple: true, id: "trainer", class: "assignments", "data-required-any" => ".assignments" }, "Trainer", nil
+                            label for="trainer" Trainer?
+                          .checkboxer.form-inline.mb5
+                            = f.check_box :role, { multiple: true, id: "manager", class: "assignments", "data-required-any" => ".assignments" }, "Manager", nil
+                            label for="manager" Manager?
+                          .checkboxer.form-inline.mb5
+                            = f.check_box :role, { multiple: true, id: "admin", class: "assignments", "data-required-any" => ".assignments" }, "Admin", nil
+                            label for="admin" Admin?
+                          .help-block.with-errors
+                  hr.mt0
+                    = f.submit "Invite User", class: "btn btn-primary margin-bottom-20"

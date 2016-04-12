@@ -1,7 +1,6 @@
 <div id="image-cropper" class="parallax-bg" src="<%=background_url(photo_owner)%>" data-settings="<%= photo_owner.main_photo.settings.to_json %>">
   <div class="cropit-image-preview" style="width:100%; height: 500px"></div>
   <div style="position: absolute; bottom: 110px; z-index: 100;" />
-    
   </div>
   <div id="bg-photo" class='crop-ui' style="background: rgba(0,0,0, .75); padding: 20px 50px 20px; border-radius: 6px; margin-right: 10%; position: absolute; top: 20px; right: 0px; display:none">
     <%= form_for [photo_owner, photo_owner.main_photo], html: { multipart: true, id: 'bg_image' } do |f| %>
@@ -26,7 +25,6 @@
         <h5 class="text-white mb10 semi-bold">
           <i class="ion-arrow-expand mr5"></i> Drag Photo to Reposition
         </h5>
-
         <h5 class="text-white mb15 mt20 semi-bold">
           <i class="ion-arrow-resize mr5"></i> Adjust Background Photo Zoom
         </h5>
@@ -34,4 +32,4 @@
       </div>
     <% end %>
   </div>
-</div> 
+</div>

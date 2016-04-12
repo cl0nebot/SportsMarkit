@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404184440) do
+ActiveRecord::Schema.define(version: 20160407174728) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "addresses", force: true do |t|
     t.integer  "addressable_id"
@@ -117,6 +120,7 @@ ActiveRecord::Schema.define(version: 20160404184440) do
     t.string   "issuer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "file"
   end
 
   create_table "chatrooms", force: true do |t|
@@ -151,12 +155,12 @@ ActiveRecord::Schema.define(version: 20160404184440) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "latitude",               limit: 24
-    t.float    "longitude",              limit: 24
+    t.float    "latitude"
+    t.float    "longitude"
     t.boolean  "gmaps"
     t.date     "last_payment"
     t.boolean  "premium"
-    t.float    "price",                  limit: 24
+    t.float    "price"
     t.string   "colors"
     t.string   "mascot"
     t.string   "motto"
@@ -258,6 +262,7 @@ ActiveRecord::Schema.define(version: 20160404184440) do
     t.date     "repeat_until"
     t.integer  "parent_id"
     t.string   "file"
+    t.boolean  "registration_required"
   end
 
   add_index "events", ["eventable_id", "eventable_type"], name: "index_events_on_eventable_id_and_eventable_type", using: :btree
@@ -282,7 +287,7 @@ ActiveRecord::Schema.define(version: 20160404184440) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "price",               limit: 24
+    t.float    "price"
     t.string   "facility_owner_type"
     t.integer  "facility_owner_id"
     t.integer  "stripe_recipient_id"
@@ -484,6 +489,15 @@ ActiveRecord::Schema.define(version: 20160404184440) do
     t.boolean  "master"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.json     "data"
+    t.string   "object"
+    t.json     "user_data",              default: {}
+    t.boolean  "notify_creator"
+  end
+
+  create_table "identity_checks", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "league_managers", force: true do |t|
@@ -519,7 +533,7 @@ ActiveRecord::Schema.define(version: 20160404184440) do
     t.string   "email"
     t.string   "website"
     t.string   "phone_number"
-    t.float    "price",               limit: 24
+    t.float    "price"
     t.string   "classification"
     t.string   "category"
     t.integer  "stripe_recipient_id"
@@ -581,7 +595,7 @@ ActiveRecord::Schema.define(version: 20160404184440) do
   create_table "options", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.float    "price",       limit: 24
+    t.float    "price"
     t.integer  "form_id"
     t.string   "object"
     t.datetime "created_at"
@@ -724,7 +738,7 @@ ActiveRecord::Schema.define(version: 20160404184440) do
     t.date     "last_payment"
     t.string   "stripe_subscription_id"
     t.boolean  "premium"
-    t.float    "price",                  limit: 24
+    t.float    "price"
     t.string   "facebook"
     t.string   "twitter"
     t.string   "linkedin"
@@ -837,7 +851,7 @@ ActiveRecord::Schema.define(version: 20160404184440) do
     t.string   "instagram"
     t.string   "foursquare"
     t.string   "youtube"
-    t.float    "price",               limit: 24
+    t.float    "price"
     t.text     "description"
     t.string   "teamable_type"
     t.integer  "teamable_id"

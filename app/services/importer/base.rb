@@ -17,7 +17,14 @@ class Importer::Base
   end
 
   def header(sheet)
-    Hash[sheet.row(1).map{ |column| [column.gsub(" ", "_").downcase, column] unless column == "Errors"}.compact ]
+    unless sheet.row(1).all?
+      context.errors = {}
+      sheet.row(1).each_with_index do |header, i|
+        context.errors["Column #{i + 1}"] = "Header is missing" if header.blank?
+      end
+      context.fail!
+    end
+    Hash[sheet.row(1).map{ |column| [column.gsub(" ", "_").downcase, column] unless column == "Errors"}.compact]
   end
 
   def address_attributes

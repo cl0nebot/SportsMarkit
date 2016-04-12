@@ -1,0 +1,10 @@
+                     <%= link_to role_manage_path(role, object_type: object.class.to_s, object_id: object.id, command: "remove"), remote: true, class: "btn btn-sm btn-danger pull-right"%>
+                                 <%= User.find(role.user_id).name %></br>
+                                 <small><%= role.role %></small>
+                                 <div class="clearfix"></div>
+   
+                               <hr/>
+                               
+                              
+                               
+                               

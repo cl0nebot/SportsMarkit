@@ -1,3 +1,47 @@
+<% if @object.instance_of?(User) %>
+
+<% @object.all_registration_forms.where.not(formable: nil).each do |form| %>
+
+<%= form.formable.name  %><br>
+Status: <%= form.paid? ? "Paid" : "Not Paid"%>
+
+<li class="has-action-right has-long-story">
+	<div class="list-content">
+		<span class="h5 bold"><%= form.registrant.full_name %> </span>
+		<span class="caption">
+    	<% if form.selected_option.present? %>
+		 		<strong>Option:</strong> <%= form.selected_option.option.name  %>, 
+		 		<strong>Price:</strong> <%= number_to_currency(form.selected_option.option.price) %>,
+      <% else %> 
+        No option selected.
+      <% end %>
+      <span class="inline">
+      	<%# if form.registrant.has_registered_for?(@object) %>
+       		<strong>form:</strong> <%= link_to "View Details", "/#{form.formable_type.underscore.pluralize}/#{form.formable.slug}/registrations/#{form.id}/registrant" %>
+      	<%# end %>
+      </span>
+    </span>
+	</div>
+	<div class="list-action-right">
+		<span class="top">
+			<%= format(form.updated_at,1) %> <%= format(form.updated_at,9) %>
+			<% if form.paid? %>
+				<span class="mt10 text-green"><i class="ion-android-done inline fs_22"></i>  
+					Paid
+				</span>
+    	<% else %>
+    		<span class="mt0 text-red"><i class="ion-card inline fs_22 mr5"></i>  
+    			Not Paid
+    		</span>
+  		<% end %>
+		</span>	
+	</div>
+</li>
+
+<% end %>
+
+
+<% else %>
 <div class="content">
 
   <div class="page-header full-content bg-primary mb0" style="min-height: 121px;">
@@ -160,3 +204,4 @@
 </div>
 
 
+<% end %>

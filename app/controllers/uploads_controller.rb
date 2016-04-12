@@ -21,6 +21,8 @@ class UploadsController < ApplicationController
         file.write(@import.error_xls.read)
         file.close
         redirect_to :back, flash: { alert: @import.errors, file_with_errors_path: file.path }
+      else
+        redirect_to :back, flash: { alert: @import.errors }
       end
     else
       redirect_to :back, notice: 'Uploaded'

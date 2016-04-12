@@ -2,74 +2,58 @@
   <div class="page-header full-content bg-primary" style="min-height: 141px;">
     <div class="row">
       <div class="col-md-6">
-          <div class="pull-left margin-right-20" id="edit-header-avatar">
-            <%#= image_tag(user.avatar, class: "img-thumbnail img-responsive", height: "", width: "100") %>
-          </div>
-          <div class="pull-left">
-            <h1 class="capitalize h1-xlarge">
-              <%= @form.formable.class.to_s %> Registration
+        <div class="pull-left margin-right-20" id="edit-header-avatar">
+        </div>
+        <div class="pull-left">
+          <h1 class="capitalize h1-xlarge">
+            <%= @form.formable.class.to_s %> Registration
             </h1>
-            <h6 class="bold capitalize h1-xlarge text-white">
-              <%= @form.formable.name %>
-            </h6>
-          </div>
-        
-      </div><!--.col-->
+          <h6 class="bold capitalize h1-xlarge text-white">
+            <%= @form.formable.name %>
+          </h6>
+        </div>
+      </div>
       <div class="col-md-6">
         <ol class="breadcrumb">
           <li><a href="/"><i class="ion-home"></i></a></li>
         </ol>
-      </div><!--.col-->
-    </div><!--.row-->
-  </div><!--.page-header-->
-  
-
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-3">
-    	<h4>Preview your Form</h4>
-    	<p class="fs_14 text-muted">
-    		Curious what your form is looking like? No problem, click the button below to take peek launch the form or use the live preview below.
-    	</p>
-    	<%= link_to "Launch Registration Form", "/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/registrations/new", class: "btn btn-large btn-white" %>
-
-    	<br/><br/>
-<%# if false %>
-    	<h5>Live Preview</h5>
-
-    	<div id="wrapper">
+      <label for="notify_about_registration">
+        I would like to receive email updates for this registration
+        <%= check_box_tag :notify_about_registration, "yes", false, "data-form-id" => @form.id %>
+      </label>
+      <h4>Preview your Form</h4>
+      <p class="fs_14 text-muted">
+        Curious what your form is looking like? No problem, click the button below to take peek launch the form or use the live preview below.
+      </p>
+      <%= link_to "Launch Registration Form", "/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/registrations/new", class: "btn btn-large btn-white" %>
+      <br/>
+      <br/>
+      <h5>Live Preview</h5>
+      <div id="wrapper">
         <iframe id="scaled-frame" src="<%= "/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/registrations/new" %>" allowtransparency="true" frameborder="0" scrolling="yes"></iframe>
       </div>
-
-<%# end %>
     </div>
     <div class="col-md-6 col-md-offset-1">
       <div class="panel box-shadow-ccc">
         <div class="panel-body pr50 pl50 pt50 pb50 labels-light labels-16">
-
-          <h3>Add options to your registration form.</h3> <br>
-
-         	<%= link_to eval("new_#{@form.formable.class.to_s.downcase.underscore}_form_option_path(@form.formable, @form)"), method: :get ,remote: true, class: 'btn btn-large btn-blue' do %>
-				   	<i class="ion ion-plus-circled mr5"></i> Add Registration Option
-				 	<% end %>
-
-				 	<hr/>
-
+          <h3>Add options to your registration form.</h3>
+           <br>
+          <%= link_to eval("new_#{@form.formable.class.to_s.downcase.underscore}_form_option_path(@form.formable, @form)"), method: :get ,remote: true, class: 'btn btn-large btn-blue' do %>
+            <i class="ion ion-plus-circled mr5"></i> Add Registration Option
+          <% end %>
+          <hr/>
           <div id="new-options">
-				   	<% @form.options.each do |o| %> 
-				     	<%= render 'options/form', form: @form, o: o %>
-				   	<% end %>
-					</div>
-
-					
+            <% @form.options.each do |o| %>
+              <%= render 'options/form', form: @form, o: o %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-    
   </div>
 </div>
-
-
-
-
-
-
