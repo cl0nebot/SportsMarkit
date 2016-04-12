@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404184440) do
+ActiveRecord::Schema.define(version: 20160405172819) do
 
   create_table "addresses", force: true do |t|
     t.integer  "addressable_id"
@@ -258,6 +258,7 @@ ActiveRecord::Schema.define(version: 20160404184440) do
     t.date     "repeat_until"
     t.integer  "parent_id"
     t.string   "file"
+    t.boolean  "registration_required"
   end
 
   add_index "events", ["eventable_id", "eventable_type"], name: "index_events_on_eventable_id_and_eventable_type", using: :btree
@@ -482,6 +483,11 @@ ActiveRecord::Schema.define(version: 20160404184440) do
     t.string   "stripe_subscription_id"
     t.boolean  "paid"
     t.boolean  "master"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "identity_checks", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
