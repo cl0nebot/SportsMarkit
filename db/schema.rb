@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407174728) do
+ActiveRecord::Schema.define(version: 20160408173631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20160407174728) do
     t.string   "issuer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "file"
   end
 
   create_table "chatrooms", force: true do |t|
@@ -261,7 +262,6 @@ ActiveRecord::Schema.define(version: 20160407174728) do
     t.date     "repeat_until"
     t.integer  "parent_id"
     t.string   "file"
-    t.boolean  "registration_required"
   end
 
   add_index "events", ["eventable_id", "eventable_type"], name: "index_events_on_eventable_id_and_eventable_type", using: :btree
@@ -332,7 +332,9 @@ ActiveRecord::Schema.define(version: 20160407174728) do
     t.datetime "updated_at"
     t.json     "data"
     t.string   "object"
+    t.json     "user_data",              default: {}
     t.boolean  "notify_creator"
+    t.integer  "payment_type",           default: 0
   end
 
   create_table "league_managers", force: true do |t|
@@ -541,16 +543,6 @@ ActiveRecord::Schema.define(version: 20160407174728) do
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
-
-  create_table "questions", force: true do |t|
-    t.integer "position",        default: 0
-    t.json    "options"
-    t.string  "title"
-    t.integer "field_type"
-    t.integer "registration_id"
-  end
-
-  add_index "questions", ["registration_id"], name: "index_questions_on_registration_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.integer  "user_id"

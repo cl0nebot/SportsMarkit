@@ -8,7 +8,7 @@ class FormBuilder::Dropdown < FormBuilder::Base
   end
 
   def base_options
-    options = { required: required? }
+    options = { required: required?, name: "user_data[#{field_name}]" }
     options.merge! include_blank: true if @data["field_options"]["include_blank_option"] == "true"
     options
   end

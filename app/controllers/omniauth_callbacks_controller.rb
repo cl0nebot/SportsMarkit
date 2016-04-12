@@ -1,5 +1,4 @@
 class OmniauthCallbacksController < ApplicationController
-  
   def facebook
     user = User.from_omniauth(env["omniauth.auth"])
     if user.persisted?
@@ -11,5 +10,4 @@ class OmniauthCallbacksController < ApplicationController
     end
     redirect_to request.referrer
   end
-  
 end

@@ -1,0 +1,4 @@
+var activePaneId = $(".tab-content .tab-pane.active")[0].id;
+$(".tab-content").html("<%= j render 'registrations/tabs' %>");
+$(".tab-content .tab-pane.active").removeClass('active');
+$("#" + activePaneId).addClass('active');

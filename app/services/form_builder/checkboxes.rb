@@ -10,7 +10,7 @@ class FormBuilder::Checkboxes < FormBuilder::Base
     options = {
       class: "#{field_name} #{ 'required' if required?}",
       id: "#{field_name}_#{opt[:index]}",
-      name: "#{field_name}[]"
+      name: "user_data[#{field_name}][]"
     }
     options.merge!({ "data-required-any" => ".#{field_name}" }) if required?
     options

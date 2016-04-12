@@ -1,0 +1,59 @@
+#all.tab-pane.active role="tabpanel"
+  .panel
+    .panel-heading
+    .panel-body.without-padding
+      ul.list-material.wide
+        - @registrations.each do |registration|
+          = render 'registrations/registrant', registration: registration, object: @object
+#paid.tab-pane role="tabpanel"
+  .panel
+    .panel-heading
+    .panel-body.without-padding
+      ul.list-material.wide
+        - @registrations.where(paid: true).each do |registration|
+          = render 'registrations/registrant', registration: registration
+#unpaid.tab-pane role="tabpanel"
+  .panel
+    .panel-heading
+    .panel-body.without-padding
+      ul.list-material.wide
+        - @registrations.where(paid: nil).each do |registration|
+          = render 'registrations/registrant', registration: registration
+#roster.tab-pane role="tabpanel"
+  .panel
+    .panel-heading
+    .panel-body.without-padding
+      ul.list-material.wide
+        - @object.athletes.each do |user|
+          li.has-action-left.has-action-right.has-long-story
+            a.visible href="#"
+              .list-action-left
+                = image_tag(user.avatar, class: "face-radius")
+              .list-content
+                span.title= user.full_name
+                span.caption
+                  - if user.find_registration(@object).present?
+                    - if user.find_registration(@object).selected_option.present?
+                      = user.find_registration(@object).selected_option.option.name
+                      | , #{number_to_currency(user.find_registration(@object).selected_option.option.price)}
+                    - else
+                      | No option selected.
+                  - else
+                    | Registration not started.
+              .list-action-right
+                - if user.find_registration(@object).present?
+                  span.top
+                    = format(user.find_registration(@object).updated_at, 1)
+                    = format(user.find_registration(@object).updated_at, 9)
+                  - if user.find_registration(@object).paid?
+                    span.bottom.text-green
+                      i.ion-android-done.inline.fs_22
+                      | Paid
+                  - else
+                    span.bottom.text-red
+                      i.ion-card.inline.fs_22.mr5
+                      | Not Paid
+                - else
+                  span.bottom.text-red
+                    i.ion-card.inline.fs_22.mr5
+                    | Not Paid

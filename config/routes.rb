@@ -320,6 +320,9 @@ Rails.application.routes.draw do
   end
 
   resources :registrations do
+    member do
+      patch :pay_manual
+    end
     collection do
       get :change_submitter
     end
