@@ -163,21 +163,25 @@ $(document).click(function(event) {
   }
 });
 
-$(function () {
-  var whitelist = ["xls", "xlsx", "csv"];
-  $('#file-field').on('change.bs.fileinput', function() {
-    var ext = $('#file-field').val().split('.').pop().toLowerCase();
+window.FileValidation = function () {
+  $('.file-field, #file-field').on('change.bs.fileinput', function() {
+    var whitelist = $(this).data('whitelist');
+    var ext = $(this).val().split('.').pop().toLowerCase();
     var extensionisgood = (whitelist.indexOf(ext) > -1);
     if (extensionisgood) {
-      $('#file-submit').removeAttr('disabled');
-      $('#invalid-message').hide()
+      $(this).parents('form').find('input[type="submit"]').removeAttr('disabled');
+      $(this).parents('form').find('#invalid-message').hide();
 
     } else {
-      $('#file-submit').attr('disabled', true);
-      $('#file-field').val("")
-      $('#invalid-message').css({ display: "block" });
+      $(this).parents('form').find('input[type="submit"]').attr('disabled', true);
+      $(this).val("")
+      $(this).parents('form').find('#invalid-message').css({ display: "block" });
     }
   });
+};
+
+$(document).ready(function() {
+  window.FileValidation();
 });
 
 $(function() {

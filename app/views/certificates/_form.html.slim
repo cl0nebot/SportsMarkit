@@ -1,0 +1,62 @@
+.row.margin-top-20 id="certificate-#{m.fake_id}" 
+  = form_for [u, m], remote: true do |f|
+    = hidden_field_tag request_forgery_protection_token, form_authenticity_token
+    .row
+      .col-md-1
+        .list-action-left
+          - if m.persisted?
+            = link_to certificate_path(m), class: "btn btn-floating btn-orange btn-sm btn-ripple margin-top-10", method: :delete, remote: :true  do
+              i.ion-close
+          - if m.new_record?
+            a.btn.btn-floating.btn-orange.btn-sm.btn-ripple.margin-top-10.remove-form
+              i.ion-android-close
+      .col-md-11
+        .row
+          .col-md-5
+            .row.example-row
+              .col-md-12 Certification Name
+              .col-md-12
+                .inputer
+                  = f.select(:certification_id, Certification.pluck(:name, :id), {}, {:class => 'selecter', :required => 'true', data:{live_search: 'true', width: '100%'}})
+          .col-md-5
+            .row.example-row
+              .fileinput.fileinput-new.input-group data-provides="fileinput"
+                .form-control data-trigger="fileinput"
+                  i.glyphicon.glyphicon-file.fileinput-exists
+                  span.fileinput-filename
+                span.input-group-addon.btn.btn-default.btn-file.btn-block
+                  span.fileinput-new Select file
+                  span.fileinput-exists Change
+                  = f.file_field :file, class: "file-field", 'data-whitelist' => ['pdf'].to_json
+                a.input-group-addon.btn.btn-default.fileinput-exists.btn-block data-dismiss="fileinput" href="#"
+                  | Remove
+                br
+                #invalid-message style=("display: none")
+                  .alert.alert-danger role="alert"
+                    | Oops. Invalid file type. Please try again.
+          .col-md-2
+            .row.example-row
+              .col-md-12
+              .col-md-12
+                = f.hidden_field :user_id
+                - if m.persisted?
+                  input.margin-top-20.btn.btn-blue.btn-ripple type="submit" value="Update" /
+                - else
+                  input.btn.btn-blue type="submit" value="Create" /
+                  = f.hidden_field :fake_id
+        .col-md-11
+          .col-md-2
+            .row.example-row
+              .col-md-12 Expires
+              .col-md-12
+                .checkboxer.form-inline
+                  = f.check_box :expires, id: "certificate_expires_#{m.fake_id}"
+                  label for="certificate_expires_#{m.fake_id}"
+          .col-md-4
+            .row.example-row
+              .col-md-12 Expiration Date
+              .col-md-12
+                .inputer
+                  .input-wrapper
+                    = f.text_field :expiration, class: "form-control  bootstrap-daterangepicker-basic active", placeholder: "", required: true
+    .row
