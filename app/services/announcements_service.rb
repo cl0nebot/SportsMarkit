@@ -15,7 +15,7 @@ class AnnouncementsService
     if @params[:sms].present?
       announcement_users.each do |user|
         Messanger.send_sms(user.mobile_phone_number,
-          "#{user.first_name}, you have a message from #{@current_user.full_name}: #{@params[:message]}")
+          "#{user.first_name}, you have a message from #{@current_user.full_name}: #{@params[:message]}") if user.mobile_phone_number.present?
       end
     end
   end
