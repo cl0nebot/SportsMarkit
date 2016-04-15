@@ -129,7 +129,19 @@
     'required-any': function($el) { // for checkboxes
       return $($el.parents("form")[0])
         .find($el.data("required-any")).toArray()
-        .some(function(el){return el.checked});
+        .some(function(el) {
+          var result = false;
+          switch (el.type) {
+            case "checkbox":
+              result = el.checked
+              break;
+            case "select":
+            case "select-multiple":
+              result = el.value != null && el.value != ""
+              break;
+          }
+          return result;
+        });
     },
     'phone': function($el) {
       var phone = $el.val();

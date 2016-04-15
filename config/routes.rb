@@ -77,6 +77,7 @@ Rails.application.routes.draw do
   concern :announceable do
     resources :announcements
   end
+  resources :announcements
 
   resources :documents, only: %w[destroy show]
   resources :documents do

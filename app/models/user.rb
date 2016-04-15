@@ -48,6 +48,7 @@ class User < ActiveRecord::Base
   has_many :medias, as: :mediable
   has_many :verifications
   has_many :verified_measurables, through: :verifications, :source_type => 'Measurable', source: :verifiable
+  has_many :announcements
 
   has_one :online_status
   has_many :signed_documents, dependent: :destroy
@@ -56,14 +57,9 @@ class User < ActiveRecord::Base
     ["Student Athlete", "Athlete", "Coach", "Guardian", "Athletic Director", "Club Director", "School Manager", "Team Manager"]
   end
 
-  def self.smart_order(current_user)
-    if current_user.nil?
-      User.all
-    else
-      ids = User.pluck(:id) - [current_user.id]
-      new_ids = [current_user.id] << ids
-      User.where(id: new_ids)
-    end
+  def self.smart_order(user)
+    id = user.try(:id) || 0
+    User.order("id = #{id} desc")
   end
 
   def minus_self
@@ -462,7 +458,7 @@ class User < ActiveRecord::Base
   end
 
   def pending_object?(classification, object)
-    Role.where(user_id: id, roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", status: classification)
+    roles.where(roleable: object, status: classification)
   end
 
   def fix_email
@@ -484,29 +480,29 @@ class User < ActiveRecord::Base
   def dont_attend_event?(event)
     attendees.where(event_id: event.id, no: true).present?
   end
-  
+
   def hidden_phone_number
     last_4 = mobile_phone_number.last(4)
     "xxx-xxx-#{last_4}"
   end
-  
+
   def find_registration(object)
-    object.forms.where(submittable_id: id, submittable_type: "User").last
+    object.forms.where(submittable: self).last
   end
-  
+
   def has_registered_for?(object)
     if find_registration(object).present?
       find_registration(object).paid?
     end
   end
-  
+
   def has_incomplete_registration?(object)
     !has_registered_for?(object)
   end
-  
+
   def all_registration_forms
-    Form.where(submittable_id: id, submittable_type: "User")
+    Form.where(submittable: self)
   end
-  
-  
+
+
 end

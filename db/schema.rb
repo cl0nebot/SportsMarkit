@@ -120,7 +120,6 @@ ActiveRecord::Schema.define(version: 20160407174728) do
     t.string   "issuer"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "file"
   end
 
   create_table "chatrooms", force: true do |t|
@@ -489,15 +488,7 @@ ActiveRecord::Schema.define(version: 20160407174728) do
     t.boolean  "master"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.json     "data"
-    t.string   "object"
-    t.json     "user_data",              default: {}
     t.boolean  "notify_creator"
-  end
-
-  create_table "identity_checks", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "league_managers", force: true do |t|

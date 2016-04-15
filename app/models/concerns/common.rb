@@ -1,25 +1,25 @@
 module Common
   extend ActiveSupport::Concern
-  
+
   included do
-    
+
     has_one :address, as: :addressable, dependent: :destroy
     accepts_nested_attributes_for :address, :allow_destroy => true
-    
-   
+
+
     has_many :taggings, as: :taggable, dependent: :destroy
-    
+
     has_many :announcements, as: :announceable, dependent: :destroy
-    
+
     has_many :connects, as: :ownerable, dependent: :destroy
     has_one :bank_account, as: :bankable, dependent: :destroy
-    
-    
+
+
   end
-  
+
   module ClassMethods
-    
-    # class methods  
+
+    # class methods
     def classifications
       school_ids = Team.all.pluck(:school_id).compact.uniq
       classifications = School.where(id: school_ids).pluck(:classification).compact.uniq
@@ -27,7 +27,7 @@ module Common
       more = Team.all.pluck(:classification).compact.uniq
       classifications + categories + more
     end
-    
+
     def role_types
       if self.to_s == "League"
         ["League Manager"]
@@ -43,7 +43,7 @@ module Common
         ["Club Director"]
       end
     end
-    
+
     def custom_message_groups
       if self.to_s == "League"
         ["League Managers", "School Managers", "Athletic Directors"].sort
@@ -59,19 +59,18 @@ module Common
         ["Club Director"].sort
       end
     end
-    
+
     def default_message_groups
-       team_options =  ["Team Managers", "Athletes", "Coaches", "Trainers", "Guardians", "Admins" ].sort
+      team_options =  ["Team Managers", "Athletes", "Coaches", "Trainers", "Guardians", "Admins" ].sort
     end
-     
   end
-  
+
   def tags
     tag_ids = Tagging.where(taggable_type: self.class.to_s, taggable_id: self.id).pluck(:tag_id)
     tags = Tag.where(id: tag_ids )
   end
-  
-  
+
+
   #connected teams, connected clubs, connected schools. right now. they all connect to leagues, but not to each other via 'CONNECT'
   ["Team", "School", "Club"].each do |model|
     formatted_type = model.gsub(" ", "_").downcase.pluralize
@@ -80,28 +79,28 @@ module Common
       #TODO both ways
     end
   end
-  
+
   def connected_leagues
     league_ids = Connect.where(ownerable_type: self.class.to_s, ownerable_id: id, connectable_type: "League")
     #TODO both ways
   end
-  
-  
+
+
   def owned_teams
     Team.where(teamable_type: self.class.to_s, teamable_id: id)
   end
-  
+
   def team_ids
     if self.class.to_s == "User"
       (owned_teams.pluck(:id) + roles.where(status: "Active", roleable_type: "Team").pluck(:roleable_id)).uniq
     elsif self.class.to_s == "Team"
       [self.id]
-    else 
+    else
       (owned_teams.pluck(:id) + connected_teams.pluck(:ownerable_id)).uniq
     end
   end
 
-  
+
   def school_ids
     if self.class.to_s == "User"
       (all_teams.where(teamable_type: "School").pluck(:teamable_id) + roles.where(status: "Active", roleable_type: "School").pluck(:roleable_id)).uniq
@@ -110,11 +109,11 @@ module Common
     elsif self.class.to_s == "Team"
       teamable_type == "School" ? [teamable_id] : []
     else
-       (connected_schools.pluck(:ownerable_id) + all_teams.where(teamable_type: "School").pluck(:teamable_id)).uniq
+      (connected_schools.pluck(:ownerable_id) + all_teams.where(teamable_type: "School").pluck(:teamable_id)).uniq
     end
   end
 
-  
+
   def club_ids
     if self.class.to_s == "User"
       (all_teams.where(teamable_type: "Club").pluck(:teamable_id) + roles.where(status: "Active", roleable_type: "Club").pluck(:roleable_id)).uniq
@@ -123,15 +122,15 @@ module Common
     elsif self.class.to_s == "Team"
       teamable_type == "Club" ? [teamable_id] : []
     else
-       (connected_clubs.pluck(:ownerable_id) + all_teams.where(teamable_type: "Club").pluck(:teamable_id)).uniq
+      (connected_clubs.pluck(:ownerable_id) + all_teams.where(teamable_type: "Club").pluck(:teamable_id)).uniq
     end
   end
-  
+
   def all_clubs
     Club.where(id: club_ids)
   end
-  
-  
+
+
   def league_ids
     if self.class.to_s == "User"
       joined_league_ids = (all_teams.where(teamable_type: "League").pluck(:teamable_id) + roles.where(status: "Active", roleable_type: "League").pluck(:roleable_id)).uniq
@@ -151,23 +150,23 @@ module Common
       connected_league_ids = array.flatten.flatten
     end
   end
-  
+
   def leagues
     League.where(id: league_ids)
   end
-  
+
   def all_schools
     School.where(id: school_ids)
   end
-  
+
   def league_names
     leagues.pluck(:name).join(", ")
   end
-  
+
   def owned_facilities
     Facility.where(facility_owner_id: id, facility_owner_type: self.class.to_s)
   end
-  
+
   def used_facilities
     facility_ids = Connect.where(ownerable_type: self.class.to_s, ownerable_id: id, connectable_type: "Facility").pluck(:connectable_id)
     #facilities through teams
@@ -179,82 +178,82 @@ module Common
       (owned_facilities.pluck(:id) + roles.where(status: "Active", roleable_type: "Facility").pluck(:roleable_id)).uniq
     elsif self.class.to_s == "Facility"
       [self.id]
-    else 
+    else
       (owned_facilities.pluck(:id) + used_facilities.pluck(:id)).uniq
     end
   end
-  
+
   def facilities
     Facility.where(id: facility_ids)
   end
-  
+
   def all_teams
     Team.where(id: team_ids)
   end
-  
+
   def teammates
     user_ids = Role.where(roleable_id: team_ids, status: "Active", roleable_type: "Team").pluck(:user_id)
     User.where(id: user_ids).uniq - [self]
   end
-  
+
   def user_teams
     teams = Team.where(id: team_ids)
   end
   # "All","Facility Managers", "League Managers"]
-  
+
   ["Athlete", "Coach", "Team Manager", "Admin", "Trainer", "Guardian", "School Manager", "Athletic Director", "Club Director", "League Manager", "Facility Manager"].each do |type|
-    
+
     if ["Athlete", "Coach", "Team Manager", "Admin", "Trainer", "Guardian"].include?(type)
       owner = { owner: "Team", ids: "team_ids" }
     end
-    
+
     if ["School Manager", "Athletic Director"].include?(type)
       owner = { owner: "School", ids: "school_ids" }
     end
-    
+
     if ["Club Director"].include?(type)
       owner = { owner: "Club", ids: "club_ids" }
     end
-    
+
     if ["League Manager"].include?(type)
       owner = { owner: "League", ids: "league_ids" }
     end
-    
+
     if ["Facility Manager"].include?(type)
       owner = { owner: "Facility", ids: "facility_ids" }
     end
-    
+
     formatted_type = type.gsub(" ", "_").downcase
-    
+
     define_method "#{formatted_type}_roles" do
       Role.where(id: roles.send(formatted_type.pluralize).pluck(:id) + Role.where(roleable_type: owner[:owner], roleable_id: self.send(owner[:ids])).send(formatted_type.pluralize).pluck(:id))
     end
-    
+
     define_method "pending_#{formatted_type}_roles" do
       Role.where(id: roles.send("pending_#{formatted_type.pluralize}") + Role.where(roleable_type: owner[:owner], roleable_id: self.send(owner[:ids])).send("pending_#{formatted_type.pluralize}").pluck(:id))
     end
-    
+
     define_method "userless_#{formatted_type}_roles" do
       UserlessRole.where(id: userless_roles.send(formatted_type.pluralize) + UserlessRole.where(userless_type: owner[:owner], userless_id: self.send(owner[:ids])).send(formatted_type.pluralize).pluck(:id))
     end
-    
+
     define_method "all_#{formatted_type}_roles" do
       send("#{formatted_type}_roles") + send("pending_#{formatted_type}_roles") + send("userless_#{formatted_type}_roles")
     end
-    
+
     define_method formatted_type.pluralize do
       user_ids = send("#{formatted_type}_roles").pluck(:user_id) - [self.class.to_s == "User" ? self.id : ""]
-      User.where(id: user_ids.uniq) 
+      User.where(id: user_ids.uniq)
     end
 
     define_method "pending_#{formatted_type.pluralize}" do
       user_ids = send("pending_#{formatted_type}_roles").pluck(:user_id) - [self.class.to_s == "User" ? self.id : ""]
-      User.where(id: user_ids).uniq 
+      User.where(id: user_ids).uniq
     end
 
-    define_method "userless_#{formatted_type.pluralize}" do      
+    define_method "userless_#{formatted_type.pluralize}" do
       UserlessRole.where(id: userless_roles.send(formatted_type.pluralize) + UserlessRole.where(userless_type: owner[:owner], userless_id: self.send(owner[:ids])).send(formatted_type.pluralize).pluck(:id))
-    end        
+    end
   end
 
   def staff_roles
@@ -263,29 +262,29 @@ module Common
     elsif self.instance_of? School
       user_ids = roles.staff_roles + userless_roles.staff_roles
     else
-      user_ids = roles.staff_roles + Role.where(roleable_type: "Team", roleable_id: self.team_ids).staff_roles + userless_roles.staff_roles + UserlessRole.where(userless_type: "Team", userless_id: self.team_ids).staff_roles 
+      user_ids = roles.staff_roles + Role.where(roleable_type: "Team", roleable_id: self.team_ids).staff_roles + userless_roles.staff_roles + UserlessRole.where(userless_type: "Team", userless_id: self.team_ids).staff_roles
     end
   end
-  
+
   def unique_staff_roles
     if self.class.to_s == "Team"
       user_ids = roles.unique_staff_roles + userless_roles.unique_staff_roles
     elsif self.instance_of? School
       user_ids = roles.unique_staff_roles + userless_roles.unique_staff_roles
     else
-      user_ids = roles.unique_staff_roles + Role.where(roleable_type: "Team", roleable_id: self.team_ids).unique_staff_roles + userless_roles.unique_staff_roles + UserlessRole.where(userless_type: "Team", userless_id: self.team_ids).unique_staff_roles 
+      user_ids = roles.unique_staff_roles + Role.where(roleable_type: "Team", roleable_id: self.team_ids).unique_staff_roles + userless_roles.unique_staff_roles + UserlessRole.where(userless_type: "Team", userless_id: self.team_ids).unique_staff_roles
     end
   end
-  
+
   def accepted_staff_members
     user_ids = roles.staff_roles.pluck(:user_id) + Role.where(roleable_type: "Team", roleable_id: self.team_ids).staff_roles.pluck(:user_id) - [self.class.to_s == "User" ? self.id : ""]
-    User.where(id: user_ids).uniq 
+    User.where(id: user_ids).uniq
   end
-  
+
   def people
     User.where(id: Role.where(roleable_type: "Team", roleable_id: team_ids, status: "Active").pluck(:user_id).uniq)
   end
-  
+
   def userless_people
     UserlessRole.where(userless_type: "Team", userless_id: team_ids, status: "Active")
   end
@@ -294,26 +293,9 @@ module Common
     user_ids = (team_managers.pluck(:id) + trainers.pluck(:id)).uniq
     User.where(id: user_ids)
   end
-  
+
   def userless_managers_and_trainers
     UserlessRole.where(userless_type: "Team", userless_id: team_ids, role: ["Trainer", "Manager"], status: "Active")
     #(manager_relationships.pluck(:first_name, :last_name) + trainer_relationships.pluck(:first_name, :last_name)).uniq
   end
-  
-
-    
- 
-  
-  # def is_athletic_director?(user)
- #    roles.where(status: "Active", role: "Athletic Director", user_id: user.id).present?
- #  end
-  
-
-  # def self.team_names
-  #   self.school_team_names + self.non_school_team_names
-  # end
-  #
-  
-
-  
 end

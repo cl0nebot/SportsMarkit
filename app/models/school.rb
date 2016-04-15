@@ -10,30 +10,29 @@ class School < ActiveRecord::Base
   include Access
   include Import
   include Seed
-  
+
   has_many :forms, as: :formable, dependent: :destroy
   has_many :registrations, as: :registerable, dependent: :destroy
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
-  
+
   has_many :events, as: :eventable
   #has_many :event_facilities, as: :reservable
-  
+
   has_many :roles, as: :roleable, dependent: :destroy
   has_many :userless_roles, as: :userless, dependent: :destroy
-  
+
   validates :name, presence: true
-  
+
   before_update :update_slug
-  
+
   has_many :documents, as: :documentable, dependent: :destroy
 
   attr_accessor :stripe_token
-  
+
   def minus_self
     School.where.not(id: id)
   end
-
 
   def use_for_slug
     existing_school = School.where('slug = ?', self.slug)
@@ -43,7 +42,7 @@ class School < ActiveRecord::Base
       "#{name} #{self.address.city_and_state}"
     end
   end
-  
+
   def update_slug
     if (name_changed? || address.city_changed? || address.state_changed?)
       existing_school = self.minus_self.where('slug = ?', self.slug)
@@ -54,11 +53,10 @@ class School < ActiveRecord::Base
       end
     end
   end
-  
+
   def school_certifications
     Certificate.where(user_id: coaches.pluck(:id))
   end
-
 
   def self.claimable_schools
     where.not( id: Role.where(roleable_type: "School", status: "Active", role: ["Athletic Director", "School Manager"]).pluck(:roleable_id))
@@ -67,30 +65,23 @@ class School < ActiveRecord::Base
   def self.cached_claimable_schools(last_update)
     Rails.cache.fetch([self, last_update, "claimable_schools", "v1"]) { self.claimable_schools }
   end
-  
-  
+
+
   def classification_with_hyphen
     if classification.present?
       classification.downcase.gsub(" ","-")
     end
   end
-  
+
   def category_and_classification
     "#{classification_with_hyphen} #{category.try(:downcase)}"
   end
-  
+
   def self.search(term)
     if term.length >= 1
       where("LOWER(name) LIKE ? OR LOWER(name) LIKE ?", "#{term.downcase}%", "% #{term.downcase}%")
     else
       all
     end
-    # arr = []
-    # ["first_name", "last_name", "email_address", "company_name", "phone_number"].each do |column|
-    #   arr << where("LOWER(#{column}) ~ ?", "#{term.downcase}").pluck(:id)
-    # end
-    # where(id: arr.flatten.uniq)
   end
-    
-    
 end
