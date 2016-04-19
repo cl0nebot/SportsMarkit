@@ -18,11 +18,11 @@ class User < ActiveRecord::Base
   validates :last_name, :presence => true, length: {minimum: 2, maximum: 20}
   validates :email, :uniqueness => true, allow_blank: true, if: -> { is_parent? }
   validates :username, :uniqueness => true, allow_blank: true
-  validates :mobile_phone_number, :uniqueness => true, allow_blank: true
+  validates :mobile_phone_number, :uniqueness => true, allow_blank: true, if: -> { is_parent? }
 
   before_create { generate_token(:authentication_token) }
   before_save :fix_email
-  before_create :fix_phone
+  before_save :fix_phone
 
   after_update :password_changed?, :on => :update
   before_save :encrypt_password
@@ -54,16 +54,24 @@ class User < ActiveRecord::Base
   has_one :online_status
   has_many :signed_documents, dependent: :destroy
 
-  def is_parent?
-    parent_id.nil?
-  end
-
   def is_child?
     parent_id.present?
   end
 
   def email
-    super || parent.email
+    if is_child?
+      parent.email
+    else
+      super
+    end
+  end
+
+  def mobile_phone_number
+    if is_child?
+      parent.mobile_phone_number
+    else
+      super
+    end
   end
 
   def self.user_types
@@ -479,7 +487,7 @@ class User < ActiveRecord::Base
   end
 
   def fix_phone
-    self.mobile_phone_number = mobile_phone_number.to_s.gsub(/[^\d]/, "")
+    self.mobile_phone_number = mobile_phone_number.to_s.gsub(/[^\d]/, "") if is_parent?
   end
 
   def attend_event?(event)
