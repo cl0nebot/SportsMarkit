@@ -1,4 +1,5 @@
 = form_for new_user, url: rosters_path, method: :post, html: {id: "roster-form", data: { remote: true, toggle: 'validator', disable: false }} do |f|
+  = hidden_field_tag :existing_user_id, user.id
   #roster-spot-success.pull-right style=("display: none")
     font color="green" size="2" Successfully created roster spot.
   .row

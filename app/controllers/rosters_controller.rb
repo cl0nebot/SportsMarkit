@@ -3,13 +3,8 @@ class RostersController < ApplicationController
 
   def create
     variables
-    @valid_phone_number = @mobile_number.present? ? @mobile_number =~ /\d{3}-\d{3}-\d{4}/ : true
-    Rails.logger.info("Phone number is invalid.") unless @valid_phone_number
-    if @array.compact.blank? || !!@valid_phone_number
-      Rails.logger.info("Phone number is valid.") if @valid_phone_number
-      @mobile_number.present? ? (@user_exists ? add_existing_user_to_roster : create_new_user_and_roster_spot) : create_userlesss_roster_spot
-      Rails.logger.info("User already exists") if @user_exists
-    end
+    @mobile_number.present? ? (@user_exists ? add_existing_user_to_roster : create_new_user_and_roster_spot) : create_userlesss_roster_spot
+    Rails.logger.info("User already exists") if @user_exists
   end
 
   def accept
@@ -150,7 +145,7 @@ class RostersController < ApplicationController
   def variables
     @team = Team.friendly.find(params[:team_id])
     @mobile_number = params[:mobile_phone_number]
-    @user_exists = User.exists?(mobile_phone_number: @mobile_number)
+    @user_exists = params[:existing_user_id].present?
     @first_name = params[:first_name]
     @last_name = params[:last_name]
     @title = params[:title]
@@ -167,8 +162,8 @@ class RostersController < ApplicationController
   end
 
   def add_existing_user_to_roster
-    @existing_user = User.find_by_mobile_phone_number(@mobile_number)
-    if @existing_user.roles.where(roleable_type: "Team", roleable_id: @team.id).present?
+    @existing_user = User.find(params[:existing_user_id])
+    if @existing_user.roles.where(roleable: @team).present?
     else
       Role.create_new_roles(@existing_user.id, @array, params)
     end
