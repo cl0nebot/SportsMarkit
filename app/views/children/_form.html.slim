@@ -1,0 +1,13 @@
+= form_for @child, url: url, html: { id: 'signup-form', 'data-toggle' => "validator", 'data-disable' => false } do |f|
+  .row
+    .col-sm-6
+      .form-group.form-group-default
+        = f.label :first_name, "First Name"
+        = f.text_field :first_name, type: "text", placeholder: "John", class: "form-control", 'data-minlength' => 2, required: true,  "data-minlength-error" => "Must be at least 2 characters."
+        .help-block.with-errors
+    .col-sm-6
+      .form-group.form-group-default
+        = f.label :last_name, "Last Name"
+        = f.text_field :last_name, type: "text", placeholder: "Smith", class: "form-control", 'data-minlength' => 2, required: true,  "data-minlength-error" => "Must be at least 2 characters."
+        .help-block.with-errors
+  = f.submit class: "btn btn-primary btn-block m-t-10 fs_18 bold ls0 ws3"

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, concerns: [:signed_documentable] do
+    resources :children
     resources :dashboard
     resources :registrations, only: [:index]
     get :email

@@ -1,67 +1,50 @@
 <% cache user do %>
-	<%= link_to user_path(user) do %>
-	<div class="col-lg-2 col-md-6 col-sm-12 element-item <%= user.classification_list_with_space %> all" data-category="<%= user.classification_list_with_space %> all">
-		<div class="card card-user card-clickable card-clickable-over-content">
-
-	      <div class="card-heading heading-full">
-	        <div class="user-image sample-member9" style="background: url('<%= user.avatar %>');"></div>
-			
-              <% if user.can_be_edited_by_user?(current_user)%>     
-	          <div class="clickable-button">
-	            <%= link_to edit_user_path(user), class: "btn btn-floating btn-orange initial-position floating-open" do %>
-	              <i class="ion-gear-b"></i>
-	          <% end %>
-	          </div>
+  <%= link_to user_path(user) do %>
+    <div class="col-lg-2 col-md-6 col-sm-12 element-item <%= user.classification_list_with_space %> all" data-category="<%= user.classification_list_with_space %> all">
+      <div class="card card-user card-clickable card-clickable-over-content">
+        <div class="card-heading heading-full">
+          <div class="user-image sample-member9" style="background: url('<%= user.avatar %>');"></div>
+          <% if user.can_be_edited_by_user?(current_user)%>
+            <div class="clickable-button">
+              <%= link_to edit_user_path(user), class: "btn btn-floating btn-orange initial-position floating-open" do %>
+                <i class="ion-gear-b"></i>
               <% end %>
-	      </div><!--.card-heading-->
-
-	      <div class="card-body">
-	        <div style="height: 30px; position: relative;">
-	        	<h4 class="card-title capitalize fs_14 lh_20 absolute bottom bold">
-				      <%= user.first_name %> <%= user.last_name %>
-	        	</h4>
-	        </div>
-
-	        <hr class="light no-margin mt5 mb10"/>
-
-            <!-- <span class="text-muted">
-            	Member since: <%= format(user.created_at, 4) %>
-         	</span> -->
-            
+            </div>
+          <% end %>
+        </div>
+        <div class="card-body">
+          <div style="height: 30px; position: relative;">
+            <h4 class="card-title capitalize fs_14 lh_20 absolute bottom bold">
+              <%= user.first_name %> <%= user.last_name %>
+            </h4>
+          </div>
+          <hr class="light no-margin mt5 mb10"/>
           <div class="subhead">
-	          <p class="mb0 fs_12">
-		          <span class="text-muted">
-		            <i class="ion-location mr5"></i> 
-		            <%= user.profile.location_description.present? ? user.profile.location_description : "USA" %>
-		        	</span>
-
-                    <% if current_user %>
-		        	<% if current_user.admin? %>
-			        	<span class="text-muted">
-			            <i class="ion-email margin-right-5"></i>
-			            <%= user.email.present? ? user.email : "NA" %>
-			        	</span>
-
-			        	<span class="text-muted">
-			            <i class="ion-ios-telephone margin-right-5"></i>
-			           	<%= user.mobile_phone_number.present? ? number_to_phone(user.mobile_phone_number) : "NA" %>
-			        	</span>
-		      		<% end %>
-					<% end %>
-		      	</p>
-	        </div>
-	      </div><!--.card-body-->
-		  
-          <% if current_user %>
-	      <% if current_user.admin? %>
-	      <!-- <div class="card-footer">
-    
-	        <%#= link_to "Delete", user, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-sm btn-danger" %>
-	      </div> --><!--.card-footer-->
-		  <% end %>
-		  <% end %>
-
-	    </div><!--.card-->
-	  </div><!--.col-md-4-->
-	<% end %>
+            <p class="mb0 fs_12">
+              <span class="text-muted">
+                <i class="ion-location mr5"></i>
+                <%= user.profile.location_description.present? ? user.profile.location_description : "USA" %>
+              </span>
+              <% if current_user %>
+                <% if current_user.admin? %>
+                  <span class="text-muted">
+                    <i class="ion-email margin-right-5"></i>
+                    <%= user.email.present? ? user.email : "NA" %>
+                  </span>
+                  <span class="text-muted">
+                    <i class="ion-ios-telephone margin-right-5"></i>
+                    <%= user.mobile_phone_number.present? ? number_to_phone(user.mobile_phone_number) : "NA" %>
+                  </span>
+                <% end %>
+              <% end %>
+            </p>
+          </div>
+        </div>
+        <% if current_user %>
+          <% if current_user.admin? %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 <% end %>
