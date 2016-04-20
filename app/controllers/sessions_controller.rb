@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
           redirect_to user_overview_path(user)
         else
           user.increment!(:signin_count)
-          redirect_to edit_user_path(user)
+          redirect_to user_dashboard_index_path(user)
         end 
       end
     else
