@@ -11,20 +11,18 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :use_for_slug, use: [:slugged, :finders]
   before_update :update_slug
-  has_secure_password
+  has_secure_password validations: false
 
-  validates_presence_of :password, :on => :create
+  validates_presence_of :password, :on => :create, if: -> { is_parent? }
   validates :first_name, :presence => true, length: {minimum: 2, maximum: 20}
   validates :last_name, :presence => true, length: {minimum: 2, maximum: 20}
-  validates :email, :uniqueness => true, allow_blank: true
+  validates :email, :uniqueness => true, allow_blank: true, if: -> { is_parent? }
   validates :username, :uniqueness => true, allow_blank: true
-  validates :mobile_phone_number, :uniqueness => true, allow_blank: true
-
-  before_save { self.email = email.downcase }
+  validates :mobile_phone_number, :uniqueness => true, allow_blank: true, if: -> { is_parent? }
 
   before_create { generate_token(:authentication_token) }
-  before_create :fix_email
-  before_create :fix_phone
+  before_save :fix_email
+  before_save :fix_phone
 
   after_update :password_changed?, :on => :update
   before_save :encrypt_password
@@ -37,6 +35,8 @@ class User < ActiveRecord::Base
   has_many :user_profile_pictures, dependent: :destroy
   accepts_nested_attributes_for :user_profile_pictures, :reject_if => :all_blank, :allow_destroy => true
 
+  belongs_to :parent, class_name: "User"
+
   has_many :events, as: :eventable
 
   has_many :attendees, dependent: :destroy
@@ -48,22 +48,39 @@ class User < ActiveRecord::Base
   has_many :medias, as: :mediable
   has_many :verifications
   has_many :verified_measurables, through: :verifications, :source_type => 'Measurable', source: :verifiable
+  has_many :announcements
+  has_many :children, class_name: "User", foreign_key: :parent_id
 
   has_one :online_status
   has_many :signed_documents, dependent: :destroy
+
+  def is_child?
+    parent_id.present?
+  end
+
+  def email
+    if is_child?
+      parent.email
+    else
+      super
+    end
+  end
+
+  def mobile_phone_number
+    if is_child?
+      parent.mobile_phone_number
+    else
+      super
+    end
+  end
 
   def self.user_types
     ["Student Athlete", "Athlete", "Coach", "Guardian", "Athletic Director", "Club Director", "School Manager", "Team Manager"]
   end
 
-  def self.smart_order(current_user)
-    if current_user.nil?
-      User.all
-    else
-      ids = User.pluck(:id) - [current_user.id]
-      new_ids = [current_user.id] << ids
-      User.where(id: new_ids)
-    end
+  def self.smart_order(user)
+    id = user.try(:id) || 0
+    User.order("id = #{id} desc")
   end
 
   def minus_self
@@ -462,15 +479,15 @@ class User < ActiveRecord::Base
   end
 
   def pending_object?(classification, object)
-    Role.where(user_id: id, roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", status: classification)
+    roles.where(roleable: object, status: classification)
   end
 
   def fix_email
-    self.email = email.to_s.downcase
+    self.email = email.to_s.downcase if is_parent?
   end
 
   def fix_phone
-    self.mobile_phone_number = mobile_phone_number.to_s.gsub(/[^\d]/, "")
+    self.mobile_phone_number = mobile_phone_number.to_s.gsub(/[^\d]/, "") if is_parent?
   end
 
   def attend_event?(event)
@@ -484,29 +501,29 @@ class User < ActiveRecord::Base
   def dont_attend_event?(event)
     attendees.where(event_id: event.id, no: true).present?
   end
-  
+
   def hidden_phone_number
     last_4 = mobile_phone_number.last(4)
     "xxx-xxx-#{last_4}"
   end
-  
+
   def find_registration(object)
-    object.forms.where(submittable_id: id, submittable_type: "User").last
+    object.forms.where(submittable: self).last
   end
-  
+
   def has_registered_for?(object)
     if find_registration(object).present?
       find_registration(object).paid?
     end
   end
-  
+
   def has_incomplete_registration?(object)
     !has_registered_for?(object)
   end
-  
+
   def all_registration_forms
-    Form.where(submittable_id: id, submittable_type: "User")
+    Form.where(submittable: self)
   end
-  
-  
+
+
 end

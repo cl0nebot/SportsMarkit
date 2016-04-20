@@ -1,0 +1,9 @@
+.register-container.sm-p-t-30 style=("background: rgba(255), 255, 255, .8);")
+  .container-sm-height.full-height
+    .row
+      .col-sm-12
+        .pr30.pl30
+          h5.text-center.text-muted.semi-bold Complete the form below to begin.
+          #signup_form
+            .center
+              = render "form", url: user_children_path(@user)

@@ -1,0 +1,111 @@
+.content
+  .page-header.full-content.bg-blue.mb0
+    .row
+      .col-sm-6
+        h1
+          = params[:controller].capitalize
+          | \:
+          small Group Communication
+      .col-sm-6
+        ol.breadcrumb
+          li
+            a href="/"
+              i.ion-home
+          li
+            a.active href=users_path  all users
+  .pt60
+    .row
+      .col-lg-4
+        = form_for Announcement.new, html: { data: { toggle: "validator", disable: false, remote: true }} do |f|
+          .panel.box-shadow-ccc
+            .panel-heading
+              .panel-title
+                h3.no-margin.bold Send a Message
+                h6.no-margin Use the form below to communicate with coaches, teammates, players, etc.
+            .panel-body
+              h5.text-primary 1. What type of messsage are you sending?
+              .row.form-group
+                .col-lg-2.col-md-6
+                  .checkboxer.form-inline.mb5
+                    = f.check_box :sms, { id: "sms", class: "delivery-method", "data-required-any" => ".delivery-method" }, true, nil
+                    label for="sms" SMS
+                .col-lg-2.col-md-6
+                  .checkboxer.form-inline.mb5
+                    = f.check_box :email, { id: "email", class: "delivery-method", "data-required-any" => ".delivery-method" }, true, nil
+                    label for="email" Email
+                .help-block.with-errors.col-xs-12
+            hr.no-margin/
+            .panel-body
+              h5.mb0.text-primary 2. Who should receive this message?
+              p.h6.mt0
+                small
+                  span.text-black Select the users that should receive this message.
+              .no-margin.well.form-group
+                - unless @object.is_a? Team
+                  h6.h6.mt10.mb10 Applicable admin groups:
+                  = f.select :specific_user_groups, options_for_select(["All"] + @object.class.custom_message_groups), {}, { multiple: true, "data-live-search" => true, "data-width"=> "100%", class: 'selecter bg-white margin-bottom-0 user-group', "data-required-any" => ".user-group", "data-required-any-error" => "You must assign at least one user group." }
+                  br/
+                  h6.h6.mt10.mb10 Applicable user profiles:
+                = f.select :default_user_groups, options_for_select(["All"] + @object.class.default_message_groups), {},  {multiple: true, "data-live-search" => true, "data-width"=> "100%", class: 'selecter bg-white margin-bottom-0 user-group', "data-required-any" => ".user-group", "data-required-any-error" => "You must assign at least one user group." }
+                .help-block.with-errors
+            hr.no-margin/
+            .panel-body
+              .well.form-group
+                - unless @object.is_a? Team
+                  h6 Applicable sports:
+                  = f.select :sports, options_for_select(["All"] + @object.teams.pluck(:sport).uniq), {}, { multiple: true, "data-live-search" => true, "data-width"=> "100%", class: 'selecter bg-white margin-bottom-0 sports-or-teams', "data-required-any" => ".sports-or-teams", "data-required-any-error" => "You must assign at least one sport or team." }
+                  br/
+                  h6 Applicable teams:
+                  = f.select :team_ids, options_from_collection_for_select(@object.teams, :id, :name), {}, { multiple: true, "data-live-search" => true, "data-width"=> "100%", class: 'selecter bg-white margin-bottom-0 sports-or-teams', "data-required-any" => ".sports-or-teams", "data-required-any-error" => "You must assign at least one sport or team." }
+                  br/
+                  .help-block.with-errors
+              h5.text-primary.mb0 3. Write your message.
+              p.h6.mt0
+                small
+                  span.text-black Messages must be less than 480 characters.
+              h6.text-danger.semi-bold.fs_12
+                | Characters left:
+                span#counter data-maximum-length=480 480
+              .inputer
+                .input-wrapper.well.form-group
+                  = f.text_area :message, id: 'review_text', rows: 5, placeholder: "Start typing here...", class: "form-control", "data-minlength" => 10, maxlength: 480, required: true
+                  .help-block.with-errors
+            hr.no-margin/
+            .panel-body
+              = f.hidden_field :announceable_type, value: @object.class
+              = f.hidden_field :announceable_id, value: @object.id
+              = submit_tag "Send Message", class: "btn btn-blue btn-block mt20", data: { disable_with: "Sending out messages. Please wait..." }
+              #sent-message.pull-right
+      .col-lg-8
+        .panel.box-shadow-ccc
+          .panel-heading
+            .panel-title
+              h4.semi-bold All Messages
+          .panel-body.pb40
+            div
+              table#announcement-list.table.table-hover.table-condensed
+                thead
+                  tr
+                    th.semi-bold.h6.text-muted style="width:8%" Date
+                    th.semi-bold.h6.text-muted style="width:28%" Message
+                    th.semi-bold.h6.text-muted style="width:21%" Sent To
+                    - unless @object.is_a? Team
+                      th.semi-bold.h6.text-muted style="width:8%" Sports
+                      th.semi-bold.h6.text-muted style="width:8%" Teams
+                    th.semi-bold.h6.text-muted style="width:7%" Sent As
+                tbody
+                  = render @objects
+
+javascript:
+  $(document).ready(function() {
+    var review_text = $("#review_text");
+    var counter     = $("#counter");
+    var max_length  = review_text.attr("maxlength");
+
+    review_text.keyup(function() {
+      var value = $(this).val();
+      var newLines = value.match(/(\r\n|\n|\r)/g);
+      var addition = newLines ? newLines.length : 0;
+      counter.text(max_length - value.length - addition);
+    });
+  });

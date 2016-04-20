@@ -50,76 +50,63 @@ Array(1..100).each do |i|
   website = "http://www.#{full_name}.com"
   email = i == 1 ? "cordis.stanfield@gmail.com" : (i == 2 ? "khadijah.coakley@gmail.com" : (i == 3 ? "dwgjr3@gmail.com" : (i == 4 ? "tpayton13@gmail.com" : ( i == 5 ? "jamela.black@gmail.com" : "#{first_name.downcase}.#{last_name.downcase}#{i}@email.com"))))
   business_email = "#{full_name}#{i}@businessemail.com"
-  #sport = [sports.sample]
   phone_number_1 = "#{(200..999).to_a.sample}#{(200..999).to_a.sample}#{(1000..9999).to_a.sample}"
   phone_number_2 = "#{(200..999).to_a.sample}#{(200..999).to_a.sample}#{(1000..9999).to_a.sample}"
-  #languages = ["English", non_english_languages.sample, non_english_languages.sample]
-  #fake_schools = ["#{school_prefixes.sample}#{school_suffixes.sample}", "#{school_prefixes.sample}#{school_suffixes.sample}"]
-  #fake_certs = ["#{fake_cert_prefixes.sample}#{fake_cert_suffixes.sample}", "#{fake_cert_prefixes.sample}#{fake_cert_suffixes.sample}"]
-  #assign_classification = ["Athlete", "Athlete", "Athlete", "Athlete", "Athlete", "Athlete", "Athlete","Coach","Coach", "Coach", "Manager", "Manager", "Scout", ].sample
   height_ft = [5,6].sample
-  
+
   user = User.create(
-  first_name: first_name, 
-  last_name:  last_name, 
-  email: email, 
-  password: "testtest",
-  username: "#{full_name}#{i}",
+    first_name: first_name,
+    last_name:  last_name,
+    email: email,
+    password: "testtest",
+    username: "#{full_name}#{i}",
   mobile_phone_number: phone_number_1)
 
-  # classification = Classification.create(
-  # user_id: user.id,
-  # athlete: (true if assign_classification == "Athlete"),
-  # coach: (true if assign_classification == "Coach"),
-  # manager: (true if assign_classification == "Manager"),
-  # scout: (true if assign_classification == "Scout"))
-  
-  
   profile = Profile.create(
-  user_id: user.id, 
-  height_ft: height_ft, 
-  height_in: Array(0..11).sample, 
-  weight: height_ft == 5 ? Array(100..200).sample : Array(200..300).sample,
-  date_of_birth:  [Date.today - (1..365).to_a.sample.days - [14,15,16,17,18].sample.years, Date.today - (1..365).to_a.sample.days - (22..65).to_a.sample.years, Date.today - (1..365).to_a.sample.days - [14,15,16,17,18].sample.years, Date.today - (1..365).to_a.sample.days - [14,15,16,17,18].sample.years].sample,
-  linkedin: "http://www.linkedin.com/#{full_name}#{i}", 
-  facebook: "http://www.facebook.com/#{full_name}#{i}", 
-  instagram: "http://www.instagram.com/#{full_name}#{i}", 
-  twitter: "http://www.twitter.com/#{full_name}#{i}",
-  hudl: "http://www.hudl.com/#{full_name}#{i}", 
-  youtube: "http://www.youtube.com/#{full_name}#{i}", 
-  pinterest: "http://www.pinterest.com/#{full_name}#{i}", 
-  foursquare: "http://www.foursquare.com/#{full_name}#{i}",
-  city: CITIES.sample,
-  website: website,
-  sex: i.odd? ? "Male" : "Female",
-  favorite_pro_team: "", 
-  favorite_college_team: "", 
+    user_id: user.id,
+    height_ft: height_ft,
+    height_in: Array(0..11).sample,
+    weight: height_ft == 5 ? Array(100..200).sample : Array(200..300).sample,
+    date_of_birth:  [Date.today - (1..365).to_a.sample.days - [14,15,16,17,18].sample.years, Date.today - (1..365).to_a.sample.days - (22..65).to_a.sample.years, Date.today - (1..365).to_a.sample.days - [14,15,16,17,18].sample.years, Date.today - (1..365).to_a.sample.days - [14,15,16,17,18].sample.years].sample,
+    linkedin: "http://www.linkedin.com/#{full_name}#{i}",
+    facebook: "http://www.facebook.com/#{full_name}#{i}",
+    instagram: "http://www.instagram.com/#{full_name}#{i}",
+    twitter: "http://www.twitter.com/#{full_name}#{i}",
+    hudl: "http://www.hudl.com/#{full_name}#{i}",
+    youtube: "http://www.youtube.com/#{full_name}#{i}",
+    pinterest: "http://www.pinterest.com/#{full_name}#{i}",
+    foursquare: "http://www.foursquare.com/#{full_name}#{i}",
+    city: CITIES.sample,
+    website: website,
+    sex: i.odd? ? "Male" : "Female",
+    favorite_pro_team: "",
+    favorite_college_team: "",
   favorite_pro_athlete: "",)
-  
+
   profile.update(description: "How my name is #{full_name} and I am #{user.age} years old.")
-  
-  Measurable.create(user_id: user.id, verified: [true,false].sample, measurable: "Mile Run", result: "#{[4,5,6,7].sample}:#{(1..59).to_a.sample}", sport: "Track & Field")
-  Measurable.create(user_id: user.id, verified: [true,false].sample, measurable: "Bench Press", result: "#{(120..300).to_a.sample} lbs.", sport: "Weightlifting")
-  Measurable.create(user_id: user.id, verified: [true,false].sample, measurable: "Fastball", result: "#{(50..99).to_a.sample} mph", sport: "Baseball")
-  Measurable.create(user_id: user.id, verified: [true,false].sample, measurable: "Vertical", result: "#{(10..50).to_a.sample} inches", sport: "Basketball")
+
+  Measurable.create(user_id: user.id, measurable: "Mile Run", result: "#{[4,5,6,7].sample}:#{(1..59).to_a.sample}", sport: "Track & Field")
+  Measurable.create(user_id: user.id, measurable: "Bench Press", result: "#{(120..300).to_a.sample} lbs.", sport: "Weightlifting")
+  Measurable.create(user_id: user.id, measurable: "Fastball", result: "#{(50..99).to_a.sample} mph", sport: "Baseball")
+  Measurable.create(user_id: user.id, measurable: "Vertical", result: "#{(10..50).to_a.sample} inches", sport: "Basketball")
 
 end
 
 Array(1..10).each do |i|
   suffix = SCHOOL_SUFFIXES.sample
   school_name = "#{[PRESIDENTS.sample, PRESIDENTS.sample.split(" ").last, BLACK_PEOPLE.sample].sample} #{suffix}"
-  
-  
+
+
   school = School.new(
     name: school_name,
     classification: suffix,
     abbreviation: school_name.split.map(&:first).join.upcase,
-    linkedin: "http://www.linkedin.com/#{school_name.delete(' ')}#{i}", 
-    facebook: "http://www.facebook.com/#{school_name.delete(' ')}#{i}", 
-    instagram: "http://www.instagram.com/#{school_name.delete(' ')}#{i}", 
+    linkedin: "http://www.linkedin.com/#{school_name.delete(' ')}#{i}",
+    facebook: "http://www.facebook.com/#{school_name.delete(' ')}#{i}",
+    instagram: "http://www.instagram.com/#{school_name.delete(' ')}#{i}",
     twitter: "http://www.twitter.com/#{school_name.delete(' ')}#{i}",
-    youtube: "http://www.youtube.com/#{school_name.delete(' ')}#{i}", 
-    pinterest: "http://www.pinterest.com/#{school_name.delete(' ')}#{i}", 
+    youtube: "http://www.youtube.com/#{school_name.delete(' ')}#{i}",
+    pinterest: "http://www.pinterest.com/#{school_name.delete(' ')}#{i}",
     foursquare: "http://www.foursquare.com/#{school_name.delete(' ')}#{i}",
     email: "#{school_name.delete(' ').downcase}@gmail.com",
     website: "http://www.#{i}-#{school_name.split.map(&:first).join.downcase}.com",
@@ -133,11 +120,11 @@ Array(1..10).each do |i|
     colors: "Red, White, Blue",
     description: "This is a description of a school to see what it looks like!",
     number_of_teams: rand(3..5),
-    )
-    
-    school.build_address(street_1: "1600 Pennsylvania Ave NW", city: "Washington", state: "District of Columbia", postcode: 20050)
-    school.save!
-    
+  )
+
+  school.build_address(street_1: "1600 Pennsylvania Ave NW", city: "Washington", state: "District of Columbia", postcode: 20050)
+  school.save!
+
 end
 
 School.all.each do |school|
@@ -149,154 +136,20 @@ School.all.each do |school|
       teamable_id: school.id,
       teamable_type: "School",
       name: team_name,
-      linkedin: "http://www.linkedin.com/#{team_name.delete(' ')}#{school.abbreviation}", 
-      facebook: "http://www.facebook.com/#{team_name.delete(' ')}#{school.abbreviation}", 
-      instagram: "http://www.instagram.com/#{team_name.delete(' ')}#{school.abbreviation}", 
+      linkedin: "http://www.linkedin.com/#{team_name.delete(' ')}#{school.abbreviation}",
+      facebook: "http://www.facebook.com/#{team_name.delete(' ')}#{school.abbreviation}",
+      instagram: "http://www.instagram.com/#{team_name.delete(' ')}#{school.abbreviation}",
       twitter: "http://www.twitter.com/#{team_name.delete(' ')}#{school.abbreviation}",
-      youtube: "http://www.youtube.com/#{team_name.delete(' ')}#{school.abbreviation}", 
-      pinterest: "http://www.pinterest.com/#{team_name.delete(' ')}#{school.abbreviation}", 
+      youtube: "http://www.youtube.com/#{team_name.delete(' ')}#{school.abbreviation}",
+      pinterest: "http://www.pinterest.com/#{team_name.delete(' ')}#{school.abbreviation}",
       foursquare: "http://www.foursquare.com/#{team_name.delete(' ')}#{school.abbreviation}",
       email: "#{team_name.delete(' ').downcase}@gmail.com",
       phone_number: "#{(200..999).to_a.sample}-#{(200..999).to_a.sample}-#{(1000..9999).to_a.sample}",
       website: "http://www.#{school.abbreviation.downcase}-#{team_name.split.map(&:first).join.downcase}.com",
       sport: sport,
       description: "This is another description to see what it looks like for a team.",
-      )
-      team.build_address(street_1: "1600 Pennsylvania Ave NW", city: "Washington", state: "District of Columbia", postcode: 20050)
-      team.save!
+    )
+    team.build_address(street_1: "1600 Pennsylvania Ave NW", city: "Washington", state: "District of Columbia", postcode: 20050)
+    team.save!
   end
 end
-
-# Array(1..40).each do |i|
-#   club_name = "#{[PRESIDENTS.sample, PRESIDENTS.sample.split(" ").last, BLACK_PEOPLE.sample].sample}"
-#   level = LEVEL.sample
-#   sports = [SPORTS.sample, SPORTS.sample, SPORTS.sample]
-  
-#   club = Club.new(
-#     name: club_name,
-#     abbreviation: club_name.split.map(&:first).join.upcase,
-#     linkedin: "http://www.linkedin.com/#{club_name.delete(' ')}#{i}", 
-#     facebook: "http://www.facebook.com/#{club_name.delete(' ')}#{i}", 
-#     instagram: "http://www.instagram.com/#{club_name.delete(' ')}#{i}", 
-#     twitter: "http://www.twitter.com/#{club_name.delete(' ')}#{i}",
-#     youtube: "http://www.youtube.com/#{club_name.delete(' ')}#{i}", 
-#     pinterest: "http://www.pinterest.com/#{club_name.delete(' ')}#{i}", 
-#     foursquare: "http://www.foursquare.com/#{club_name.delete(' ')}#{i}",
-#     email: "#{club_name.delete(' ').downcase}@gmail.com",
-#     website: "http://www.#{i}-#{club_name.split.map(&:first).join.downcase}.com",
-#     phone_number: "#{(200..999).to_a.sample}-#{(200..999).to_a.sample}-#{(1000..9999).to_a.sample}",
-#     enrollment: rand(500..3000),
-#     faculty: rand(40..120),
-#     year_founded: rand(1900..2015),
-#     category: "",
-#     motto: "Strive for Excellence.",
-#     mascot: "Bears",
-#     colors: "Red, White, Blue",
-#     description: "This is a description of a school to see what it looks like!",
-#     number_of_teams: rand(4..20),
-#     level: level,
-#     selection_criteria: SELECTION_CRITERIA.sample,
-#     gender: ["Male", "Female", "Co-Ed"],
-#     age_range: AGE_RANGE.sample,
-#     sports: sports,
-#     )
-#     club.build_address(street_1: "1585 Broadway", city: "New York", state: "New York", postcode: 10036)
-#     club.save!
-# end
-
-# Club.all.each do |club|
-#   club.number_of_teams.times do
-#     sex = SEX.sample
-#     sport = SPORTS.sample
-#     team_name = "#{club.name} #{sex} #{sport}"
-#     team = Team.new(
-#       teamable_id: club.id,
-#       teamable_type: "Club",
-#       name: team_name,
-#       linkedin: "http://www.linkedin.com/#{team_name.delete(' ')}#{club.abbreviation}", 
-#       facebook: "http://www.facebook.com/#{team_name.delete(' ')}#{club.abbreviation}", 
-#       instagram: "http://www.instagram.com/#{team_name.delete(' ')}#{club.abbreviation}", 
-#       twitter: "http://www.twitter.com/#{team_name.delete(' ')}#{club.abbreviation}",
-#       youtube: "http://www.youtube.com/#{team_name.delete(' ')}#{club.abbreviation}", 
-#       pinterest: "http://www.pinterest.com/#{team_name.delete(' ')}#{club.abbreviation}", 
-#       foursquare: "http://www.foursquare.com/#{team_name.delete(' ')}#{club.abbreviation}",
-#       email: "#{team_name.delete(' ').downcase}@gmail.com",
-#       phone_number: "#{(200..999).to_a.sample}-#{(200..999).to_a.sample}-#{(1000..9999).to_a.sample}",
-#       website: "http://www.#{club.abbreviation.downcase}-#{team_name.split.map(&:first).join.downcase}.com",
-#       sport: sport,
-#       description: "This is another description to see what it looks like for a team.",
-#       )
-#       team.build_address(street_1: "2400 Sixth St NW", city: "Washington", state: "District of Columbia", postcode: 20059)
-#       team.save!
-#   end
-# end
-
-# CITIES.each_with_index do |city, i|
-#     league_name = "#{city} #{["Public School League", "AAU Association", "Private School League", "Recreational", "Intramural"].sample}"
-
-#     league = League.new(
-#     name: league_name,
-#     linkedin: "http://www.linkedin.com/#{league_name.delete(' ')}#{i}",
-#     facebook: "http://www.facebook.com/#{league_name.delete(' ')}#{i}",
-#     instagram: "http://www.instagram.com/#{league_name.delete(' ')}#{i}",
-#     twitter: "http://www.twitter.com/#{league_name.delete(' ')}#{i}",
-#     youtube: "http://www.youtube.com/#{league_name.delete(' ')}#{i}",
-#     pinterest: "http://www.pinterest.com/#{league_name.delete(' ')}#{i}",
-#     email: "#{league_name.delete(' ').downcase}@gmail.com",
-#     phone_number: "#{(200..999).to_a.sample}-#{(200..999).to_a.sample}-#{(1000..9999).to_a.sample}",
-#     website: "http://www.#{league_name.downcase}-#{league_name.split.map(&:first).join.downcase}.com",
-#     classification: "",
-#     category: "",
-#     school_affiliated: league_name.split(" ").include?("School") ? true : false,
-#     description: "Lorem Isum - jk. We write custom fake text 'round here."
-#     )
-#     league.build_address(street_1: "1025 5th St NW", city: "Washington", state: "District of Columbia", postcode: 20001)
-#     league.save!
-# end
-
-
-# girls = Profile.where(sex: "Female").where("date_of_birth >= ?", 19.years.ago) 
-# boys =  Profile.where(sex: "Male").where("date_of_birth >= ?", 19.years.ago) 
-# girl_teams = Team.where("name LIKE ?", "%#{'girl'}%")
-# boy_teams = Team.where("name LIKE ?", "%#{'boy'}%")
-
-# girls.each do |object|
-#   4.times do
-#     Role.create(user_id: object.id, roleable_type: "Team", roleable_id: girl_teams.sample.id, status: "Active", role: "Athlete", jersey_number: (1..99).to_a.sample, level: ["Freshman", "Sophomore", "Junior", "Senior"].sample)
-#   end
-# end
-
-# boys.each do |object|
-#   4.times do
-#     Role.create(user_id: object.id, roleable_type: "Team", roleable_id: boy_teams.sample.id, status: "Active", role: "Athlete", jersey_number: (1..99).to_a.sample, level: ["Freshman", "Sophomore", "Junior", "Senior"].sample)
-#   end
-# end
-
-# adults = Profile.where("date_of_birth <= ?", 19.years.ago)
-
-# adults.each do |object|
-#   3.times do
-#     Role.create(user_id: object.id, roleable_type: "Team", roleable_id: adults.sample.id, status: "Active", role: ["Trainer", "Team Manager", "Coach"].sample, jersey_number: (1..99).to_a.sample, level: "")
-#   end
-# end
-
-
-# 400.times do
-#   Fan.create(user_id: Profile.where("date_of_birth >= ?", 19.years.ago).sample.id, fannable_id: User.all.sample.id, fannable_type: "User")
-# end
-
-# 400.times do
-#   Fan.create(user_id: User.all.sample.id, fannable_id: Team.all.sample.id, fannable_type: "Team")
-#   Fan.create(user_id: User.all.sample.id, fannable_id: School.all.sample.id, fannable_type: "School")
-#   Fan.create(user_id: User.all.sample.id, fannable_id: School.all.sample.id, fannable_type: "Club")
-#  # Fan.create(user_id: User.all.sample.id, fannable_id: Team.all.sample.id, fannable_type: "Facility")
-#  # Fan.create(user_id: User.all.sample.id, fannable_id: Team.all.sample.id, fannable_type: "")
-# end
-
-
-
-
-
-
-
-

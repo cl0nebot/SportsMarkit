@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, concerns: [:signed_documentable] do
+    resources :children
     resources :dashboard
     resources :registrations, only: [:index]
     get :email
@@ -77,6 +78,7 @@ Rails.application.routes.draw do
   concern :announceable do
     resources :announcements
   end
+  resources :announcements
 
   resources :documents, only: %w[destroy show]
   resources :documents do

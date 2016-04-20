@@ -1,23 +1,5 @@
-<% if @delivery_method_is_not_selected %>
-  $('#delivery-method').css({ display: "block" })
-<% end %>
-<% if @user_group_is_not_selected %>
-  $('#user-group').css({ display: "block" })
-<% end %>
-<% unless @object.class.to_s == "Team" %>
-    <% if @sport_or_team_not_selected  %>
-    $('#sport-or-team').css({ display: "block" })
-    <% end %>
-<% end %>
-<% if params[:message].length < 10 %>
-$('#atleast-ten').css({ display: "block" })
-<% end %>
-<% if @characters_greater_than_ten %>
-  $('#less-than-max-char').css({ display: "block" })
-<% end %>
-
-<% if !@object.nil? %>
-  $('#announcement-list > tbody').append('<%= j render(@object) %>');
-  $('#announcement-form')[0].reset()
-  $('#sent-message').html("<%= j render 'announcements/successfully_sent', object: @object, count: @user_count, time_elapsed: @time_elapsed %>")
+<% if @announcement.persisted? %>
+  $('#announcement-list > tbody').append('<%= j render(@announcement) %>');
+  $('#new_announcement')[0].reset()
+  $('#sent-message').html("<%= j render 'announcements/successfully_sent', object: @announcement, count: @user_count %>")
 <% end %>

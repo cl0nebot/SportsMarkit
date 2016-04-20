@@ -1,13 +1,7 @@
-	<%# unless Connect.where(ownerable_id: team.id, ownerable_type: team.class.to_s, connectable_type: "League", connectable_id: league.id ).present? %>
-	  <%#= render 'connects/team_leagues/join_league', team: team, league: league %>
-	<%# else %>
-	  <%#= render 'connects/team_leagues/leave_league', team: team, league: league %>
-	<%# end %>
-      <%= link_to role_manage_path(role, object_type: object.class.to_s, object_id: object.id, command: "remove"), remote: true, class: "btn btn-sm btn-danger pull-right" do %>
-        	Remove <i class="ion-close-circled pull-right margin-left-10"></i> 
-      <% end %>
-      <%= role.roleable.name %></br>
-      <small><%= role.roleable.class.to_s %>, <%= role.role %></small>
-      <div class="clearfix"></div>
-   
-    <hr/>
+<%= link_to role_manage_path(role, object_type: object.class.to_s, object_id: object.id, command: "remove"), remote: true, class: "btn btn-sm btn-danger pull-right" do %>
+  Remove <i class="ion-close-circled pull-right margin-left-10"></i>
+<% end %>
+<%= role.roleable.name %></br>
+<small><%= role.roleable.class.to_s %>, <%= role.role %></small>
+<div class="clearfix"></div>
+<hr/>
