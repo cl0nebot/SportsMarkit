@@ -1,0 +1,71 @@
+            <ul class="list-material">
+              <li class="has-action-left has-action-right">
+                <a href="<%= eval("#{klass}_path(@object)") %>" class="visible">
+                  <div class="list-action-left">
+                    <i class="ion-person icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">View Profile</span>
+                    <span class="caption">Update or complete your public profile.</span>
+                    <span class="caption pt10">
+                      <ol class="small list">
+                        <li>Home</li>
+                        <li>Media</li>
+                        <li>Following</li>
+                        <li>Fans</li>
+                        <li>Teams</li>
+                        <li>Teammates</li>
+                      </ol>
+                    </span>
+                  </div>
+                  <div class="list-action-right">
+                    <%= render 'dashboard/timestamp', klass: klass, object: object %>
+                  </div>
+                </a>
+              </li>
+              <li class="has-action-left has-action-right">
+                <%= link_to eval("edit_#{klass}_path(@object)"), class: "visible" do %>
+                  <div class="list-action-left">
+                    <i class="ion-ios-gear icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">Edit Your Profile</span>
+                    <span class="caption">Update or complete your public profile.</span>
+                    <span class="caption pt10">
+                      <ol class="small list">
+                        <li>General</li>
+                        <li>Social Media</li>
+                        <li>Upload Media</li>
+                        <li>Sports Resume</li>
+                        <li>Favorites</li>
+                        <li>Password</li>
+                      </ol>
+                    </span>
+                  </div>
+                  <div class="list-action-right">
+                    <%= render 'dashboard/timestamp', klass: klass, object: object %>
+                  </div>
+                <% end %>
+              </li>
+              <li class="has-action-left has-action-right">
+                <%= link_to "/#{klass.pluralize}/#{@object.slug}/edit#tab_media",  class: "visible" do %>
+                  <div class="list-action-left">
+                    <i class="ion-android-upload icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">Add Photo, Articles, and Video</span>
+                    <span class="caption">Enhance your profile with media.</span>
+                    <span class="caption pt10">
+                      <ol class="small list">
+                        <li>Photos</li>
+                        <li>Videos</li>
+                        <li>Articles and Links</li>
+                      </ol>
+                    </span>
+                  </div>
+                  <div class="list-action-right">
+                    <%= render 'dashboard/timestamp', klass: klass, object: object %>
+                  </div>
+                <% end %>
+              </li>
+            </ul>

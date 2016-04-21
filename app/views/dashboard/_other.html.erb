@@ -1,0 +1,196 @@
+    <div class="col-md-4">
+      <div class="panel box-shadow-ccc">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <h4 class="text-primary">Build Your Account</h4>
+          </div>
+        </div>
+        <div class="panel-body">
+          <% unless klass == "user" %>
+          
+            <%= render 'dashboard/manage_profile', klass: klass, object: @object %>
+            <% unless ["team", "facility"].include? klass %>
+                <br/>
+                <h5 class="bold">Add New Accounts</h5>
+                <ul class="list-material">
+                    <%= render 'dashboard/add_account', klass: klass, object: @object, new_account_type: "team" %>
+                    <%= render 'dashboard/add_account', klass: klass, object: @object, new_account_type: "facility" %>
+                </ul>
+            <% end %>
+            <br/>
+            <%= render 'dashboard/manage_team_roster', klass: klass, object: @object %> 
+                 
+            <% if false %>
+              <br/>
+              <h5 class="bold">Affiliate Accounts</h5>
+              <ul class="list-material">
+                <li class="has-action-left has-action-right">
+                  <a href="#" class="visible">
+                    <div class="list-action-left">
+                      <i class="ion-plus-circled icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">Create or Add Facilities</span>
+                      <span class="caption">Create a new facility or add an existing facility to your account.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <% if false %>
+                        <span class="top">15 min</span>
+                        <i class="ion-android-done bottom"></i>
+                      <% end %>
+                    </div>
+                  </a>
+                </li>
+                <li class="has-action-left has-action-right">
+                  <a href="#" class="visible">
+                    <div class="list-action-left">
+                      <i class="ion-plus-circled icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">Join Leagues</span>
+                      <span class="caption">Add an existing league to your account.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <% if false %>
+                        <span class="top">2 hr</span>
+                        <i class="ion-android-done bottom"></i>
+                      <% end %>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    
+    
+        <div class="col-md-4">
+          <div class="panel box-shadow-ccc">
+            <div class="panel-heading">
+              <div class="panel-title">
+                <h4 class="text-primary">Manage Your Sports Community</h4>
+              </div>
+            </div>
+            <div class="panel-body">
+              <h5 class="bold">Events and Communication</h5>
+              <ul class="list-material">
+                <li class="has-action-left has-action-right">
+                  <%= link_to eval("new_#{klass}_event_path(@object)"), class: "visible" do %>
+                    <div class="list-action-left">
+                      <i class="ion-plus-circled icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">Add Event</span>
+                      <span class="caption">Create a new event for your organization.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <% if false %>
+                        <span class="top">2 hr</span>
+                        <i class="ion-android-done bottom"></i>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </li>
+                <li class="has-action-left has-action-right">
+                  <%= link_to eval("new_#{klass}_event_path(@object)"), class: "visible" do %>
+                    <div class="list-action-left">
+                      <i class="ion-calendar icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">View and Manage Calendar</span>
+                      <span class="caption">View and manage all events on your sports calendar.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <% if false %>
+                        <span class="top">2 hr</span>
+                        <i class="ion-android-done bottom"></i>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </li>
+                <li class="has-action-left has-action-right">
+                  <%= link_to eval("#{klass}_announcements_path(@object)"), class: "visible" do %>
+                    <div class="list-action-left">
+                      <i class="ion-android-phone-portrait icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">Send Announcement</span>
+                      <span class="caption">Get important messages out quickly.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <% if false %>
+                        <span class="top">2 hr</span>
+                        <i class="ion-android-done bottom"></i>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </li>
+              </ul>
+              <br/>
+              <h5 class="bold">Registrations</h5>
+              <ul class="list-material">
+                <li class="has-action-left has-action-right">
+                  <%= link_to eval("new_#{klass}_form_path(@object)"), class: "visible" do %>
+                    <div class="list-action-left">
+                      <i class="ion-document icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">Create Registration Form</span>
+                      <span class="caption">Create a customized registration form in minutes.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <% if false %>
+                        <span class="top">2 hr</span>
+                        <i class="ion-android-done bottom"></i>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </li>
+                <li class="has-action-left has-action-right">
+                  <%= link_to eval("#{klass}_registrations_path(@object)"), class: "visible" do %>
+                    <div class="list-action-left">
+                      <i class="ion-clipboard icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">View and Manage Registrations</span>
+                      <span class="caption">Manage paid, unpaid, roster and all other registrations.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <% if false %>
+                        <span class="top">2 hr</span>
+                        <i class="ion-android-done bottom"></i>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </li>
+              </ul>
+              <br/>
+              <h5 class="bold">Certifications</h5>
+              <ul class="list-material">
+                <li class="has-action-left has-action-right">
+                  <%= link_to "/#{klass.pluralize}/#{@object.slug}#tab_certifications", class: "visible" do %>
+                    <div class="list-action-left">
+                      <i class="ion-android-bookmark icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">View Certifications</span>
+                      <span class="caption">View the status and credentials of all certified users.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <% if false %>
+                        <span class="top">2 hr</span>
+                        <i class="ion-android-done bottom"></i>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </li>
+              </ul>
+
+
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
