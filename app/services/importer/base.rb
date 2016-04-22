@@ -52,20 +52,16 @@ class Importer::Base
 
   def generate_error_csv
     package = Axlsx::Package.new
-
-    errors = {}
     failed_content.each do |label, rows|
       package.workbook.add_worksheet(:name => label) do |sheet|
         sheet.add_row(header_for(label).values << 'Errors')
-        rows.each_with_index do |row, index|
+        rows.each do |row|
           sheet.add_row row
-          errors["Line #{index}"] = row[-1]
         end
       end
     end
-
-    context.errors = errors
-
-    context.error_xls = package.to_stream
+    path = Rails.root.join('tmp', "#{SecureRandom.hex}-errors.xlsx").to_s
+    package.serialize(path)
+    context.error_xls = path
   end
 end

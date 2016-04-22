@@ -99,3 +99,4 @@ $(document).ready ->
             @input.closest('form').change()
 
   new googleAutocomplete('.city-preloader')
+

@@ -1,89 +1,31 @@
 <div class="content">
-  <div class="page-header full-content bg-primary mb0" style="min-height: 121px;">
-    <div class="row">
-      <div class="col-sm-6">
-        <h1 class="capitalize semi-bold">
-          <%= @object.name %>
-          <small>Customize Your Form</small>
-        </h1>
-      </div>
-      <div class="col-sm-6">
-        <ol class="breadcrumb">
-          <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="<%= eval("#{@object.class.to_s.downcase.pluralize}_path")%>"><%= @object.class.to_s.pluralize %></a></li>
-          <li><%= link_to @object.name, @object %></li>
-        </ol>
-      </div>
-    </div>
-    <%= render "shared/show_navigation_admin" %>
-    <script>
-      onclick="theFunction(event)"
-    </script>
-  </div>
-  <br/>
-  <br/>
+<div class="page-header full-content bg-primary mb0" style="min-height: 121px;">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <div class="panel box-shadow-ccc">
-        <div class="panel-body pr50 pl50 pt50 pb50">
-          <h4 class="bold">General</h4>
-          <% Form.general_fields.each do |field| %>
-            <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
-          <% end %>
-          <hr/>
-          <h4 class="bold">Guardian</h4>
-          <% Form.guardian_fields.each do |field| %>
-            <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
-            <% if field.first == "Guardian Email"%></br><% end %>
-        <% end %>
-        <hr/>
-        <h4 class="bold">Emergency</h4>
-        <% Form.emergency_fields.each do |field| %>
-          <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
-          <% if field.first == "Emergency Email"%></br><% end %>
-      <% end %>
-      <hr/>
-      <h4 class="bold">Insurance</h4>
-      <% Form.insurance_fields.each do |field| %>
-        <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
-      <% end %>
-      <hr/>
-      <h4 class="bold">Health</h4>
-      <% Form.health_fields.each do |field| %>
-        <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
-      <% end %>
-      <hr/>
-      <h4 class="bold">Membership</h4>
-      <% Form.membership_fields.each do |field| %>
-        <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
-      <% end %>
-      <hr/>
-      <h4 class="bold">School</h4>
-      <% Form.school_fields.each do |field| %>
-        <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
-      <% end %>
-      <hr/>
-      <h4 class="bold">Financial</h4>
-      <% Form.financial_fields.each do |field| %>
-        <%= render 'field', object: @object, label: field.first, field: field.last, button_style: button_styling(@object.class.to_s, @object.id, "Registration", field.last) %>
-      <% end %>
-      <hr/>
-      <%= form_tag create_or_update_form_team_forms_path(@object) do %>
-        <% existing_form = @object.forms.where(object: "Registration").last %>
-        <h4 class="bold">Waiver</h4>
-        <div class="well">
-          <%= text_area_tag :waiver, existing_form.present? ? existing_form.waiver : "" , size: "60x6", class: "form-control", placeholder: "Enter text here." %>
-        </div>
-        <hr/>
-        <h4 class="bold">Agreements</h4>
-        <div class="well">
-          <%= text_area_tag :agreements, existing_form.present? ? existing_form.agreements : "", size: "60x6", class: "form-control", placeholder: "Enter text here." %>
-        </div>
-        <%= hidden_field_tag :formable_id, @object.id %>
-        <%= hidden_field_tag :formable_type, @object.class.to_s %>
-        <%= hidden_field_tag :object, "Registration" %>
-        <%= submit_tag "Create Form", class: "btn btn-primary pull-right" %>
-      <% end %>
+    <div class="col-sm-6">
+      <h1 class="capitalize semi-bold">
+        <%= @object.name %>
+        <small>Customize Your Form</small>
+      </h1>
+    </div>
+    <div class="col-sm-6">
+      <ol class="breadcrumb">
+        <li><a href="/"><i class="ion-home"></i></a></li>
+        <li>
+          <a href="<%= eval("#{@object.class.to_s.downcase.pluralize}_path") %>"><%= @object.class.to_s.pluralize %></a>
+        </li>
+        <li><%= link_to @object.name, @object %></li>
+      </ol>
+    </div>
+  </div>
+  <%= render "shared/show_navigation_admin" %>
+</div>
+<br/>
+<br/>
+
+<div class="col-md-10 col-md-offset-2">
+  <div class="panel box-shadow-ccc">
+    <div class="panel-body pr50 pl50 pt50 pb50">
+      <div id="fb-template" data-url="<%= create_or_update_form_forms_path(formable_id: @object.id, formable_type: @object.class.to_s, object: "Registration") %>"  data-form='<%= @form.get_data %>'></div>
     </div>
   </div>
 </div>

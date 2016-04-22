@@ -1,5 +1,4 @@
 class OptionsController < ApplicationController
-
   def index
     @form = Form.find(params[:form_id])
     @option = Option.new

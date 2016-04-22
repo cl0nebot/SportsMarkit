@@ -21,16 +21,8 @@
             .panel-title
               h3.no-margin.bold Populate Account Information
               h6.no-margin Use the form below to upload data using an MS Excel spreadsheet.
-          -if flash[:alert]
-            - if flash[:file_with_errors_path]
-              .h3
-                = link_to "File with errors", download_errors_uploads_path(path: flash[:file_with_errors_path]), class: "btn btn-danger"
-            .panel-body
-              ul
-                - flash[:alert].each do |key, value|
-                  - if key and value
-                    li = "#{key}: #{value}"
-                  - else
-                    li = key
+          -if flash[:file_with_errors_path]
+            .h3
+              = link_to "File with errors", download_errors_uploads_path(path: flash[:file_with_errors_path]), class: "btn btn-danger"
           .panel-body
             = render 'uploads/import_roster'
