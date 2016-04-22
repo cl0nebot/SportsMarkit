@@ -16,12 +16,12 @@ class ChildrenController < ApplicationController
       @child.create_profile
       respond_to do |f|
         f.html { redirect_to :back }
-        f.json
+        f.js
       end
     else
       respond_to do |f|
         f.html { render :new }
-        f.json { render json: { errors: @child.errors_full_messages }, status: :unprocessable_entity }
+        f.js
       end
     end
   end

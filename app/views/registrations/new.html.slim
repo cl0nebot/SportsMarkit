@@ -38,7 +38,7 @@
               = select_tag 'user_id', options_from_collection_for_select(User.smart_order(current_user), "id", "name"), {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0 autosubmit" }
               h6
                 | Didn't find your child?
-                = link_to " Add new", "javascript:;", "data-toggle" => "collapse", "data-target" => "#new-child-form"
+                = link_to " Add new", "javascript:;", "data-toggle" => "collapse", "data-target" => "#new-child-form", id: "toggle-new-child-form"
           #new-child-form.collapse
             = render "children/form", url: user_children_path(current_user), child: current_user.children.build, remote: true
           br
