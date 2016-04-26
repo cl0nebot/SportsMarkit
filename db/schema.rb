@@ -330,11 +330,10 @@ ActiveRecord::Schema.define(version: 20160419140219) do
     t.boolean  "master"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "notify_creator"
     t.json     "data"
     t.string   "object"
-    t.boolean  "notify_creator"
     t.json     "user_data",              default: {}
+    t.boolean  "notify_creator"
     t.integer  "payment_type",           default: 0
   end
 
@@ -544,16 +543,6 @@ ActiveRecord::Schema.define(version: 20160419140219) do
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
-
-  create_table "questions", force: true do |t|
-    t.integer "position",        default: 0
-    t.json    "options"
-    t.string  "title"
-    t.integer "field_type"
-    t.integer "registration_id"
-  end
-
-  add_index "questions", ["registration_id"], name: "index_questions_on_registration_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.integer  "user_id"

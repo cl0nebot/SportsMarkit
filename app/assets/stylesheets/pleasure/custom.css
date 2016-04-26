@@ -382,8 +382,8 @@ textarea.form-control {font-size: 26px; line-height: 30px;}
 .margin-top-5     {margin-top: 5;}
 .margin-bottom-5     {margin-bottom: 5;}
 
-.bg-login .bg-blur:before {
-  background: url('http://marketing-cdn.teamsnap.com/iStock_000016157408Medium.jpg') fixed no-repeat;
+.bg-login {
+  background: url('https://wickphoto.files.wordpress.com/2010/10/wickerham_donbosco_11.jpg') fixed no-repeat;
   background-size: cover;
 }
 
