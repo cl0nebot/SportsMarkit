@@ -957,7 +957,7 @@ li.step h6 {
 }
 
 .list-material > li .list-content .caption {
-  color: rgba(0, 0, 0, 0.35);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .bg-image-overlay-dark:after {
@@ -967,7 +967,7 @@ li.step h6 {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background: rgba(0, 0, 0, 0.50);
+  background: rgba(0, 0, 0, 0.35);
   position: fixed;
 
 }
