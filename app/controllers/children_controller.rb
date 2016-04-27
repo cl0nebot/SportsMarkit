@@ -14,9 +14,15 @@ class ChildrenController < ApplicationController
     @child = @user.children.create child_params
     if @child.save
       @child.create_profile
-      redirect_to action: :index
+      respond_to do |f|
+        f.html { redirect_to :back }
+        f.js
+      end
     else
-      render :new
+      respond_to do |f|
+        f.html { render :new }
+        f.js
+      end
     end
   end
 

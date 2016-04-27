@@ -42,7 +42,7 @@
       <div class="panel box-shadow-ccc">
         <div class="panel-body pr50 pl50 pt50 pb50 labels-light labels-16">
           <h3>Add options to your registration form.</h3>
-           <br>
+          <br>
           <%= link_to eval("new_#{@form.formable.class.to_s.downcase.underscore}_form_option_path(@form.formable, @form)"), method: :get ,remote: true, class: 'btn btn-large btn-blue' do %>
             <i class="ion ion-plus-circled mr5"></i> Add Registration Option
           <% end %>

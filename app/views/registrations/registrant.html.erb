@@ -1,5 +1,4 @@
 <div class="content">
-
   <div class="page-header full-content bg-primary mb0" style="min-height: 121px;">
     <div class="row">
       <div class="col-sm-6">
@@ -7,48 +6,36 @@
           <%= @object.name %>
           <small>Manage Registrations</small>
         </h1>
-      </div><!--.col-->
+      </div>
       <div class="col-sm-6">
         <ol class="breadcrumb">
-         <ol class="breadcrumb">
-           <li><a href="/"><i class="ion-home"></i></a></li>
-           <li><a href="<%= eval("#{@object.class.to_s.downcase.pluralize}_path")%>"><%= @object.class.to_s.pluralize %></a></li>
-           <li><%= link_to @object.name, @object %></li>
-       </ol>
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li><a href="<%= eval("#{@object.class.to_s.downcase.pluralize}_path")%>"><%= @object.class.to_s.pluralize %></a></li>
+          <li><%= link_to @object.name, @object %></li>
+        </ol>
       </div>
-    </div><!--.row-->
-
-   <%= render "shared/show_navigation_admin" %>
-
-    <script>
-     onclick="theFunction(event)"
-    </script>
-  </div><!--.page-header-->
-
-  <br/><br/>
-
-
+    </div>
+    <%= render "shared/show_navigation_admin" %>
+  </div>
+  <br/>
+  <br/>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <div class="panel box-shadow-ccc">
         <div class="panel-body pr50 pl50 pt50 pb50 labels-light labels-16">
-
-
           <h3 class="mb5">Registration Details: </h3>
           <p class="text-muted fs_16 mt0">
             View registation details for this user below.
-          </p>
+        </p>
           <hr class="mt0"/>
-
           <% @form.attributes.each do |attribute|  %>
             <% unless @form.send(attribute.first).blank? %>
-              <% unless  ["id", "formable_type", "formable_id", "submittable_id", "submittable_type", "created_at"].include? attribute.first %>
-                  <% if attribute.first == "submitter_id" %>
-                    <p class="no-margin"><b> Submitted By:</b> <%= User.find(attribute.last).name %></p>
-                  <% elsif attribute.first == "updated_at" %>
-                    <p class="no-margin"><b> Registration Date:</b> <%= format(attribute.last, 4) %></p>
-
-                  <% else %>
+              <% unless ["id", "formable_type", "formable_id", "submittable_id", "submittable_type", "created_at"].include? attribute.first %>
+                <% if attribute.first == "submitter_id" %>
+                  <p class="no-margin"><b> Submitted By:</b> <%= User.find(attribute.last).name %></p>
+                <% elsif attribute.first == "updated_at" %>
+                  <p class="no-margin"><b> Registration Date:</b> <%= format(attribute.last, 4) %></p>
+                <% else %>
                   <p class="no-margin capitalize"><b> <%= pretty_column(attribute.first).titleize %>:</b> <%= @form.send(attribute.first) %></p>
                 <% end %>
               <% end%>
@@ -57,7 +44,6 @@
           <p class="no-margin"><b> Option:</b>
             <%= @form.selected_option.option.name %>
           </p>
-
           <p class="no-margin"><b> Amount Paid:</b>
             <%= number_to_currency(@form.selected_option.option.price) %>
           </p>
@@ -66,7 +52,3 @@
     </div>
   </div>
 </div>
-
-
-
-

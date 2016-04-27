@@ -1,32 +1,33 @@
 - cache ["v1", "v1", "login_page"] do
-  h5.text-muted.semi-bold.text-center LOGIN BELOW
-  hr.hr-333.mt10
   = form_tag sessions_path, id: 'login-form', data: { toggle: 'validator', disable: false } do |f|
-    .form-group
-      .inputer
-        .input-wrapper.form-group
-          = text_field_tag :identifier, nil, { placeholder: "Phone number or email.", class: "form-control", required: true }
+    .pr40.pl40.pt20.pb20
+      .form-group
+        h6.bold.no-margin.fs_14.text-primary Email or Mobile Number
+        .inputer
+          .input-wrapper.form-group
+            = text_field_tag :identifier, nil, { placeholder: "Phone number or email.", class: "form-control", required: true }
+            .help-block.with-errors
+      .form-group
+        h6.bold.no-margin.fs_14.text-primary Password
+        .inputer
+          .input-wrapper.form-group.mb0
+            = password_field_tag :password, nil, { placeholder: "Password", class: "form-control", required: true }
           .help-block.with-errors
-    .form-group
-      .inputer
-        .input-wrapper.form-group
-          = password_field_tag :password, nil, { placeholder: "Password", class: "form-control", required: true }
-          .help-block.with-errors
-    .form-buttons.clearfix.m-t-10
-      = submit_tag "Login", class: "btn btn-block btn-primary pull-right"
-    br
-    h5.text-muted.semi-bold.text-center Or, use one-click-login
-    .social-accounts
-      .btn-group-justified
-        = link_to "/auth/facebook", class: "btn-block btn btn-white" do
-          span.text-primary.semi-bold
-            i.fa.fa-facebook
-            | Facebook
-    ul.extra-links.mt5
-      li
-        = link_to new_password_reset_path, class:"text-muted pull-right" do
-          h6.no-margin
-            a.show-pane-forgot-password href="#"  Forgot your password ?
-      li
-        a.bold.show-pane-create-account.ls1 href="#"
-          u Create a new account
+          = link_to new_password_reset_path, class:"text-muted pull-right" do
+            p.no-margin.text-center.fs_14 
+              a.show-pane-forgot-password.text-muted href="#"  
+                | Forgot your password?
+    hr.no-margin
+    .pt20.pr40.pl40.pb40.b-rad-4-bottom style="background: #eee;"
+      .clearfix.m-t-10
+        = submit_tag "Login", class: "btn btn-block btn-white"
+      h6.text-muted.semi-bold.text-center Or, use Facebook one-click login
+      = link_to "/auth/facebook", class: "btn-block btn btn-primary" do
+        span.text-white.bold.fs_16 
+          i.fa.fa-facebook.mr10.text-white
+          | Facebook
+      ul.extra-links.mt5.text-muted
+        li.fs_14
+          | Don't have an account? 
+          a.bold.show-pane-create-account.inline href="#"
+            | Signup, it's free.

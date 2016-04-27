@@ -1,13 +1,12 @@
 class SessionsController < ApplicationController
   require 'twilio-ruby'
-
-
   respond_to :html, :json
 
   def new
     if current_user
       redirect_to root_path
     end
+    render layout: "minimal"
   end
 
   def create
@@ -28,7 +27,7 @@ class SessionsController < ApplicationController
         else
           user.increment!(:signin_count)
           redirect_to user_dashboard_index_path(user)
-        end 
+        end
       end
     else
       flash[:error] = "Email or password is incorrect."
@@ -54,32 +53,26 @@ class SessionsController < ApplicationController
       format.json { render json: result }
     end
   end
-  
+
   def send_mobile_notification(user)
     role_ids = user.roles.pluck(:roleable_id)
     coach_user_ids = Role.where(roleable_type: "Team", roleable_id: role_ids, status: "Active", role: "Coach").pluck(:user_id)
-    
-    User.where(id: coach_user_ids).each do |coach|
-      
-      receiving_number = coach.mobile_phone_number
 
+    User.where(id: coach_user_ids).each do |coach|
+      receiving_number = coach.mobile_phone_number
       twilio_sid = ENV['TWILIO_SID']
       twilio_token = ENV['TWILIO_AUTH_TOKEN']
       twilio_phone_number = "2027590519"
 
       @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
       begin
-      @twilio_client.account.messages.create(
-        :from => "+1#{twilio_phone_number}",
-        :to => receiving_number,
+        @twilio_client.account.messages.create(
+          :from => "+1#{twilio_phone_number}",
+          :to => receiving_number,
         :body => "Coach, #{user.first_name} has joined your SportsMarkit team!" )
-        rescue Twilio::REST::RequestError => e
-          puts e.message
-        end
+      rescue Twilio::REST::RequestError => e
+        puts e.message
       end
+    end
   end
-  
-  
-  
-  
 end

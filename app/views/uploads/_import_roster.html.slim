@@ -13,7 +13,7 @@
         span.input-group-addon.btn.btn-default.btn-file.btn-block
           span.fileinput-new Select file
           span.fileinput-exists Change
-          = file_field_tag :file, id: "file-field"
+          = file_field_tag :file, id: "file-field", 'data-whitelist' => ["xls", "xlsx", "csv"].to_json
         a.input-group-addon.btn.btn-default.fileinput-exists.btn-block data-dismiss="fileinput" href="#"
           | Remove
       br

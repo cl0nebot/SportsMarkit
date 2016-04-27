@@ -1,48 +1,35 @@
-<div class="col-md-2 element-item" data-category="" id="<%= classification %>-<%= object.class.to_s %>-<%= object.id %>" >
-	
+<div class="element-item col-md-6" data-category="" id="<%= classification %>-<%= object.class.to_s %>-<%= object.id %>" >
   <div class="card card-meal card-meal-blue card-square card-shadow">
-    <div class="card-heading pr10 pl10">
-      <h5 class="card-title fs_14 lh_18"><span class="bold"><%= object.proper_name %></span></h5>
-      <% if false %>
-      <% if object.address.city.present? && object.address.state.present? %>
-      <font size="2"><%= object.address.city_state unless object.instance_of?(User)%></font>
-      <% end %>
-      <% end %>
-      <div class="subhead">
-        <%# if object.age.present? %>
-           <%#= object.age %>
-        <%# end %>
-          <!-- <i class="ion-location"></i> -->
-        <%# if object.profile.city.present? %>
-        <%#= object.profile.residence %>
-        <%# end %>
-        <%# if object.teammates.count > 0 %>
-        <%#= pluralize object.teammates.count, "Teammate"%> 
-        <%# end %>
+    <div class="card-heading pl10">
+      <div class="row">
+        <div class="col-sm-9">
+          <div class="pull-left">
+            <h5 class="fs_14 lh_18 bold no-margin">
+              <%= object.proper_name %>
+            </h5>
+            <% if false %>
+              <% if object.address.city.present? && object.address.state.present? %>
+                <font size="2"><%= object.address.city_state unless object.instance_of?(User)%></font>
+              <% end %>
+            <% end %>
+          </div><!--.image-->
         </div>
-    </div><!--.card-heading-->
-    <div class="card-body">
-      <div class="image">
-        <a href="#">
-          <!-- placeholder image for school image -->
-          <%= image_tag("placeholders/classroom.jpg") %>
-        </a>
-      </div><!--.image-->
-    </div><!--.card-body-->
-    <div class="card-footer">
-      <div id="apply-for-school-team-<%= object.id %>">
-		  <% role = Role.where(roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", role: classification, user_id: user.id) %>
-		  
-		  <%= link_to add_role_path(id: user.id, roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", role: classification, user_id: user.id), class: "btn btn-block btn-sm btn-primary", remote: true, id: "#{classification.delete(" ")}-#{object.class.to_s}-#{object.id}-add-button", style: (role.present? ? "display: none" : "display: block") do %>
-        <span class="text-white"> Add</span>
-      <% end %>
-		  
-		  <%= link_to "#", class: "btn btn-block btn-sm btn-warning", remote: true, id: "#{classification.delete(" ")}-#{object.class.to_s}-#{object.id}-claimed-button", style: (role.present? ? "display: block" : "display: none"), disabled: true do %>
-		    <span class="text-white"> Claimed</span>
-      <% end %>
-		  
-      </div><!-- team id -->
-    </div><!--.card-footer-->
+        <div class="col-sm-3">
+
+          <div id="apply-for-school-team-<%= object.id %>">
+            <% role = Role.where(roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", role: classification, user_id: user.id) %>
+            
+              <%= link_to add_role_path(id: user.id, roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", role: classification, user_id: user.id), class: "btn btn-floating btn-orange btn-ripple", remote: true, id: "#{classification.delete(" ")}-#{object.class.to_s}-#{object.id}-add-button", style: (role.present? ? "display: none" : "display: block") do %>
+                <i class="text-white ion-plus-round"></i>
+              <% end %>
+              
+              <%= link_to "#", class: "btn btn-floating btn-orange btn-ripple", remote: true, id: "#{classification.delete(" ")}-#{object.class.to_s}-#{object.id}-claimed-button", style: (role.present? ? "display: block" : "display: none"), disabled: true do %>
+                <i class="text-white ion-checkmark"></i>
+              <% end %>
+          </div><!-- team id -->
+        </div>
+      </div>
+    </div>
   </div><!--.card-->
   <div class="clearfix"></div>
 </div>

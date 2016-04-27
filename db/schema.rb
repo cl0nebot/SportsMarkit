@@ -330,10 +330,10 @@ ActiveRecord::Schema.define(version: 20160419140219) do
     t.boolean  "master"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "notify_creator"
     t.json     "data"
     t.string   "object"
     t.json     "user_data",              default: {}
+    t.boolean  "notify_creator"
     t.integer  "payment_type",           default: 0
   end
 

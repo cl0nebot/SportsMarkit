@@ -1,41 +1,28 @@
-<div class="panel-body margin-top-10">
-	<div class="row">
-		<div class="col-lg-10 col-lg-offset-1">
-			<h3 class="bold text-primary margin-top-10">
-				Step 1: Find your <%= description.pluralize.downcase %>
-			</h3>
-			<h6 class="uppercase muted bold mb5"> <i class="ion-information-circled"></i> How it Works</h6>
-			<!-- <h5 class="semi-bold">Adding <%= description.pluralize.downcase %> to your <span class="capitalize"><%= classification.downcase %></span> profile.</h5> -->
-			<p class="small text-grey lh_22">
-				Use the search box below to find your <%= description.pluralize.downcase %>. Once added, the <%= description.downcase %> will be notified of your request and will have the ability to approve your request. In the meantime, your status will be pending.
-			</p>
-			<div class="inputer">
-				<!-- isotope filtering and typeahead-->
-				<textarea type="text" class="fs_30 lh_55 quicksearch-teams typeahead typeahead-<%= typeahead %> form-control" rows="1" placeholder="Start typing here..."></textarea>
-			</div>
-			<br/>
-		</div>
-		<div class="row">
-			<div class="col-lg-10 col-lg-offset-1 well">
-				<h5 class="bold text-black capitalize"><%= description.pluralize.downcase %> added</h5>
-                <ul class="list-material" id="<%= classification.delete(" ") %>-list">
-                	<%= render 'selected_objects', objects: selected_objects, classification: classification, user: @user %>	
-                </ul>
-                <% if ["Athlete", "Athletic Director", "School Manager", "Club Director"].include? classification  %>
-    				<h6 class="muted semi-bold">Can't find your <%= description.downcase %>?
-    					<a href="#" data-toggle="modal" data-target="#panel-new-<%= description.downcase %>-setup" class="open-modal"><u>Create a <%= description %></u></a>
-    				</h6>
-                <% end %>
-			</div>
-		</div>
+<div class="panel-body">
+	<div class="inputer">
+		<input type="text" class="fs_20 text-white quicksearch-teams typeahead typeahead-<%= typeahead %> form-control" rows="1" placeholder="Start typing here..."></input>
 	</div>
-	<div class="bg-muted padding-top-40 padding-right-40 padding-left-40" style="background: #F7F7F7; height: 500px; overflow: scroll;">
-		<div class="row teams images" id="list">
-			<%= render 'list', objects: objects, classification: classification, user: @user %>
-		</div>
-		<div class="clearfix"></div>
-	</div><!--.row-->
 </div>
+
+<!-- <h5 class="bold capitalize text-center"><%= description.pluralize.downcase %> added</h5>
+<hr class="no-margin"/>
+<ul class="list-material" id="<%#= classification.delete(" ") %>-list">
+	<%#= render 'selected_objects', objects: selected_objects, classification: classification, user: @user %>
+</ul> -->
+          
+
+<% if ["Athlete", "Athletic Director", "School Manager", "Club Director"].include? classification  %>
+	<h6 class="muted semi-bold">Can't find your <%= description.downcase %>?
+		<a href="#" data-toggle="modal" data-target="#panel-new-<%= description.downcase %>-setup" class="open-modal"><u>Create a <%= description %></u></a>
+	</h6>
+<% end %>
+<div class="bg-muted padding-20" style="background: #F7F7F7; height: 500px; overflow: scroll;">
+	<div class="row teams images" id="list">
+		<%= render 'list', objects: objects, classification: classification, user: @user %>
+	</div>
+	<div class="clearfix"></div>
+</div>
+
 
 <%= render "shared/panels/new_team_setup", role: role_for(classification), classification: classification %>
 <%= render "shared/panels/new_school_setup", role: role_for(classification), classification: classification %>

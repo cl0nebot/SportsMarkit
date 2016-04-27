@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SportsMarkit</title>
+    <meta name="description" content="SportsMarkit.com is a sports management company engaged in providing a reputable online platform for the global sports and fitness markets. ">
+    <meta name="author" content="Wildfyre">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag 'gmaps4rails' %>
+    <%= favicon_link_tag "favicons/favicon.ico" %>
+    <%= google_webfonts_link_tag "Muli", "Oswald", "Droid Serif", "Montserrat", "Lato", "Black Ops One" %>
+    <%= google_webfonts_link_tag 	:lato        		=> [100, 300, 500, 700],
+                         				:yanone_kaffeesatz 	=> [300, 400] %>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <%= csrf_meta_tags %>
+    <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLISHABLE_KEY'] %>
+    <%= Gon::Base.render_data %>
+  </head>
+  <%= javascript_include_tag 'application' %>
+  <body class="one-page mt0">
+    
+    <% unless flash.empty? %>
+      <script type="text/javascript">
+        <% flash.each do |f| %>
+		      <% type = f[0].gsub('alert', 'error').gsub('notice', 'info') %>
+					toastr['<%= type %>']('<%= f[1] %>', '<%= type %>');
+        <% end %>
+      </script>
+    <% end %>
+
+    <%= yield %>
+    <!-- side panels -->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <!-- BEGIN INITIALIZATION-->
+    <script>
+      $(document).ready(function () {
+        Pleasure.init();
+        Layout.init();
+        UserPages.profile();
+        TablesDataTables.init();
+        FormsTools.init();
+        FormsPickers.init();
+        FormsSelect.init();
+          UserPages.login();
+          FormsWizard.init();
+          WidgetVideo.init();
+          ContactUs.init();
+        });
+    </script>
+    <!-- END INITIALIZATION-->
+    <script type="text/javascript">
+      if (document.getElementsByTagName) {
+    		var inputElements = document.getElementsByTagName("input");
+    		for (i=0; inputElements[i]; i++) {
+    		  if (inputElements[i].className && (inputElements[i].className.indexOf("disableAutoComplete") != -1)) {
+    		    inputElements[i].setAttribute("autocomplete","off");
+    		  }
+    		}
+      }
+    </script>
+    <%= yield :scripts %>
+  </body>
+</html>

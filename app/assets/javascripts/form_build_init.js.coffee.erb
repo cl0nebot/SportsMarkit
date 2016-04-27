@@ -1,0 +1,13 @@
+$(document).ready ->
+  return unless $("#fb-template").length
+  fb = new Formbuilder(
+    selector: '#fb-template'
+    bootstrapData:  $('#fb-template').data('form')
+  )
+  fb.on 'save', (payload) ->
+    $.ajax
+      type: "POST",
+      url: $('#fb-template').data('url'),
+      data:
+        data: $.parseJSON(payload)
+      dataType: "script"

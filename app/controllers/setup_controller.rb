@@ -5,6 +5,7 @@ class SetupController < ApplicationController
     @athlete_teams = Team.where.not(id: @user.roles.where(status: "Active", role: "Athlete", roleable_type: "Team").pluck(:roleable_id))
     @coach_teams = Team.where.not(id: @user.roles.where(status: "Active", role: "Coach", roleable_type: "Team").pluck(:roleable_id))
     @athletes = User.athletes
+    render layout: "minimal"
   end
   
   def create_object
@@ -25,6 +26,7 @@ class SetupController < ApplicationController
   end
   
   def overview
+    render layout: "minimal"
   end
   
   def add_role

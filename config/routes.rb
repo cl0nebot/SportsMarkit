@@ -316,11 +316,15 @@ Rails.application.routes.draw do
       post :toggle_notification
     end
     collection do
+      post :create_or_update_form
       get :change_field
     end
   end
 
   resources :registrations do
+    member do
+      patch :pay_manual
+    end
     collection do
       get :change_submitter
     end
