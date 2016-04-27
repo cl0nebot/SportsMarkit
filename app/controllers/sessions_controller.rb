@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     if current_user
       redirect_to root_path
     end
+    render layout: "minimal"
   end
 
   def create
