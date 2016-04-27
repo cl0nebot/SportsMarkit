@@ -1,64 +1,41 @@
-<div class="content full-content no-padding">
-  
-  <!-- page header -->
-  <div class="page-header full-content bg-blue">
-    <div class="row">
-      <div class="col-sm-6">
-        <h1>Welcome <small> Let's Get Started</small></h1>
-      </div><!--.col-->
-      <div class="col-sm-6">
-        <ol class="breadcrumb">
-          <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="active">Account setup</a></li>
-          <li><a href="#" class="active">New</a></li>
-        </ol>
-      </div><!--.col-->
-    </div><!--.row-->
-  </div><!--.page-header-->
+<body class="bg-login" style="background: url(http://cdn.sklz.com.s3.amazonaws.com/wp-content/uploads/2015/07/MiniBands_Act2_s.jpg); background-size: cover;">
+  <div class="bg-overlay"></div>
+    <div class="container pt60">
+	  	<div class="row">
 
-<div class="row pb60">
-	<div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-6 col-md-6 col-sm-12">
-		<div class="panel">
-			
-			<!-- panel header -->
-			<div class="panel-heading">
-				<div class="panel-title">
-					<br/>
-					<h3 class="text-center semi-bold fs_20">Setup your account.</h3>
-					<div class="row">
-						<!-- <div class="text-center">
-							<%#= image_tag(@user.avatar, class: "img-circle margin-left-20 margin-right-20", height: "65", width: "65" ) %>
-						</div>
-						 -->
-						<div class="text-center">
-							<% if @user.first_name.present? %>
-							<h2 class="margin-bottom-5 semi-bold"><%= @user.full_name %></h2>
+			  <div class="col-lg-4 pt60">
+			  	<br/>
+			  	<h4 class="text-center h4 bold no-margin text-white">
+		      	<% if @user.first_name.present? %>
+							<%= @user.full_name %>
 							<!-- <p class="small"><%= @user.profile.location_description %></p> -->
-							<% end %>
+						<% end %>
+					</h4>
+		      <p class="text-white text-center no-margin small"><strong class="text-primary">Step 1:</strong> Select a Profile</p>
+			  </div>
+			  <div class="col-lg-4">
+
+	  			<div class="panel panel-transparent">
+			  		<h4 class="logo mt20 logo text-center text-white fs_28">
+				      <%= image_tag("icons/flag.png", height: "20", width: "auto", class: "margin-right-5", style: "margin-top: -3px;") %>
+				      <span class="text-white">SportsMarkit</span>
+				    </h4>
+			    </div>
+		        
+	  	
+			    <div class="panel b-rad-4">
+						<div id="type-list" class="bg-light-grey b-rad-4-top">
+							<%= render 'classifications/type', user: @user %>
 						</div>
-					</div>
-					</div>
-				</div>
-			
-			<!-- panel body -->
-			<div class="panel-body">
-				
-				<br/>
-				<div id="type-list">
-					<%= render 'classifications/type', user: @user %>
-				</div>
-			</div>
-			<!--.panel-body-->
+						<div class="padding-20 b-rad-4-bottom" style="background: #fff;">
+					    <%= link_to user_setup_path(@user), class: "btn btn-block btn-primary" do %> 
+					 			Next Step <span class="ml10 fs_14 ion ion-chevron-right"></span>
+							<% end %>
+			      </div>
+			    </div>
+			  </div>
+	    </div>
+	  </div>
+	</div>
+</body>
 
-		</div><!--.panel-->
-
-		<%= link_to user_setup_path(@user), class: "btn btn-block btn-primary" do %> 
-		 	Let's Customize Your Profiles <i class="margin-left-20 ion ion-chevron-right"></i>
-		<% end %>
-
-	</div><!--.col-md-12-->
-</div><!--.row-->
-
-</div>
-<%#= @id %>
-<%#= @class %>

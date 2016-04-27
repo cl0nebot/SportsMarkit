@@ -1,15 +1,13 @@
-<div class="row">
-	<div class="col-md-6">
-		<span class="h4 semi-bold text-black margin-left-20"><%= type %></span>
+<%= link_to user.classifications.where(classification: type).last, method: :delete, remote: true, class: "btn bg-white btn-lg mb0 text-left btn-block" do %>
+	<div class="row">
+		<div class="col-md-3">
+			<img src="http://www.rantlifestyle.com/wp-content/uploads/2013/04/youth.jpg" class="bg-grey img-responsive img-rounded">
+		</div>
+		<div class="col-md-9">
+			<span class="pull-right ion-checkmark h3 no-margin"></span>
+			<span class="bold fs_20 text-black"><%= type %></span>
+			<p class="fs_12 text-muted mb0">I manage sports teams</p>
+		</div>
 	</div>
-	<div class="col-md-6">
-		<%= link_to user.classifications.where(classification: type).last, method: :delete, remote: true, class: "btn btn-orange btn-block pull-right" do %>
-			Remove Profile <i class="ion-close-circled pull-right"></i> 
-		<% end %>
-		<br/>
-	</div>
-</div>
-<br/>
-
-
-
+<% end %>
+<hr class="no-margin"/>
