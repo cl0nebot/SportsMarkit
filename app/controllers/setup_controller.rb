@@ -25,6 +25,7 @@ class SetupController < ApplicationController
   end
   
   def overview
+    render layout: "minimal"
   end
   
   def add_role
