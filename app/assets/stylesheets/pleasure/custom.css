@@ -291,6 +291,8 @@ hr.light {border-top-color: #fff; border-bottom: 1px solid #eee;}
 .gf_nunito {font-family: 'Nunito' !important;}
 .gf_roboto {font-family: 'Roboto Condensed' !important;}
 
+v-align-middle
+
 
 
 .m-r-20 {margin-right: 20px;}
@@ -355,6 +357,7 @@ textarea.form-control {font-size: 26px; line-height: 30px;}
 .fs_10 {font-size: 10px !important;}
 .fs_11 {font-size: 11px !important;}
 .fs_12 {font-size: 12px !important;}
+.fs_13 {font-size: 13px !important;}
 .fs_14 {font-size: 14px !important;}
 .fs_16 {font-size: 16px !important;}
 .fs_18 {font-size: 18px !important;}
@@ -967,4 +970,18 @@ li.step h6 {
   background: rgba(0, 0, 0, 0.50);
   position: fixed;
 
+}
+
+.btn-floating.floating-small {
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+    border-radius: 50%;
+    border: 0;
+    font-size: 22px;
+}
+
+.material-icons {
+  line-height: inherit !important;
+  vertical-align: bottom !important;
 }

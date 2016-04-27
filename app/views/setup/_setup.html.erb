@@ -1,10 +1,4 @@
-<div class="panel-body">
-	<div class="inputer">
-		<input type="text" class="fs_20 text-white quicksearch-teams typeahead typeahead-<%= typeahead %> form-control" rows="1" placeholder="Start typing here..."></input>
-	</div>
-</div>
-
-<h5 class="bold capitalize text-white text-center"><%= description.pluralize.downcase %> added</h5>
+<h5 class="bold capitalize text-white text-center">Add Your <%= description.pluralize.downcase %></h5>
 <ul class="list-material b-rad-4-top" id="<%= classification.delete(" ") %>-list">
 	<%= render 'selected_objects', objects: selected_objects, classification: classification, user: @user %>
 </ul>
@@ -16,6 +10,22 @@
 	</h6>
 <% end %>
 <div class="padding-20" style="background: #eee; height: 500px; overflow: scroll;">
+	<div class="panel-body">
+		<div class="center">
+			<div class="input-group">
+				<span class="input-group-addon">
+					<i class="ion ion-ios-search-strong text-muted pull-left fs_24"></i>
+				</span>
+				<div class="inputer">
+					<div class="inputer-wrapper">
+						<input type="text" class="fs_20 quicksearch-teams typeahead typeahead-<%= typeahead %> form-control"placeholder="Search for your <%= description.downcase %>..."></input>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<div class="row teams images" id="list">
 		<%= render 'list', objects: objects, classification: classification, user: @user %>
 	</div>
