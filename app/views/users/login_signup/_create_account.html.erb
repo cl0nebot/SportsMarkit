@@ -1,5 +1,21 @@
-<div class="pr40 pl40 pb20 pt20">
+<div class="pr40 pl40 pb4020 pt20">
   <%= form_for User.new, html: { class: "parsley-validate no-margin", id: 'signup-form', data: { toggle: 'validator', disable: false }} do |f|   %>
+    <div class="form-group">
+      <div class="inputer">
+        <div class="input-wrapper form-group">
+          <%= f.text_field :first_name, class: "form-control", placeholder: "First Name", required: true %>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="inputer">
+        <div class="input-wrapper form-group">
+          <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name", required: true %>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+    </div>
     <div class="form-group">
       <h6 class="bold no-margin fs_14 text-primary">Mobile Phone</h6>
       <div class="inputer">
@@ -27,22 +43,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="form-group">
-      <div class="inputer">
-        <div class="input-wrapper form-group">
-          <%#= f.text_field :first_name, class: "form-control", placeholder: "First Name", required: true %>
-          <div class="help-block with-errors"></div>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="inputer">
-        <div class="input-wrapper form-group">
-          <%#= f.text_field :last_name, class: "form-control", placeholder: "Last Name", required: true %>
-          <div class="help-block with-errors"></div>
-        </div>
-      </div>
-    </div> -->
 </div>
 <hr class="no-margin"/>
 <div class="pt20 pr40 pl40 pb40 b-rad-4-bottom" style="background: #eee;">
