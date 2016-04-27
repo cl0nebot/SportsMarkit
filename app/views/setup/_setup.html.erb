@@ -1,4 +1,4 @@
-<h5 class="text-white text-center mt0 bold"><span class="text-orange mr5">Step 2:</span> Add Your <%= description.pluralize.downcase %></h5>
+<h4 class="text-white text-center mt0 bold"><span class="text-orange mr5">Step 2:</span> Add Your <%= description.pluralize.downcase %></h4>
 <ul class="list-material b-rad-4-top" id="<%= classification.delete(" ") %>-list">
 	<%= render 'selected_objects', objects: selected_objects, classification: classification, user: @user %>
 </ul>
