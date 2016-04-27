@@ -9,7 +9,7 @@
 .text-bottom {vertical-align: text-bottom;}
 .va-sub {vertical-align: sub;}
 .block {display: block;}
-.inline-block {display: inline-block;}
+.inline-block {display: inline-block !important;}
 .capitalize {text-transform: capitalize;}
 .center {margin-left: auto; margin-right: auto; display: table;}
 

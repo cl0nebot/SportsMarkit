@@ -6,21 +6,20 @@
 	    <a href="#" class="visible">
 	      <div class="list-action-left">
 	        <%= link_to delete_role_path(user_id: user.id, role_id: (Role.where(user_id: user.id, roleable_type: object.class.to_s, roleable_id: object.id, role: classification).last.id), classification: classification, roleable_type: object.class.to_s, roleable_id: object.id), class: 'btn btn-floating btn-orange btn-ripple', remote: true do %>
-			
 	          <i class="ion-android-close"></i>
 	        <% end %>
 	      </div>
-	      <div class="list-content padding-left-30">
-				<span class="title">
-					<%= object.name %>
-					<%#= object.with_school_name %>
-					<%#= object.proper_name %>
-				</span>
-				<span class="caption">
-					<i class="ion-location"></i>
-	        <%= object.address.city_state unless object.instance_of?(User)%>
-	        <%#= pluralize object.users.count, "member" %>
-				</span>
+	      <div class="list-content ml0 pl80">
+  				<span class="title">
+  					<%= object.name %>
+  					<%#= object.with_school_name %>
+  					<%#= object.proper_name %>
+  				</span>
+  				<span class="caption">
+  					<i class="ion-location"></i>
+  	        <%= object.address.city_state unless object.instance_of?(User)%>
+  	        <%#= pluralize object.users.count, "member" %>
+  				</span>
 	      </div>
 	      <div class="list-action-right">
 	        <% if current_user.pending_object?(classification, object) %>
@@ -31,6 +30,7 @@
 	      </div>
 	    </a>
 	  </li>
+    <hr class="no-margin"/>
 	<% end %>
 
 
@@ -38,55 +38,54 @@
 <% else %>
   
   <div class="note note-warning note-left-striped">
-  						<h4>You're already assigned to a school</h4>
-  						<p class="small text-grey">
-  							You can technically only are currently the athletic director of .You can only be an athletic director of one school at a time. If you wish to select another school, do so below.
-  						</p>
-  					</div>
-					
-  						<h5 class="bold text-black">Your School</h5>
+		<h4>You're already assigned to a school</h4>
+		<p class="small text-grey">
+			You can technically only are currently the athletic director of .You can only be an athletic director of one school at a time. If you wish to select another school, do so below.
+		</p>
+	</div>
 
-  		       			<div class="panel-body without-padding">
-  							<ul class="list-material">
-  								<li class="has-action-left has-action-right">
-  									<a href="#" class="visible">
-  										<div class="list-action-left">
-  											<% if user.athletic_directors.present? %>
-  									        <%= link_to user_remove_athletic_director_path(user_id: user.id, school_id: user.athletic_directors.last.try(:school).try(:id)) , class: 'btn btn-floating btn-orange btn-ripple', remote: true, method: :delete do %>
-  									          <i class="ion-android-close"></i>
-  									        <% end %>
-  											<% end %>
-  										</div>
-  										<div class="list-content padding-left-30">
-  											<% if user.athletic_directors.present? %>
-  											<span class="title">
-												
-  												  <%= user.athletic_directors.last.school.name %>
-						
-												
-  											</span>
-  											<span class="caption">
-  												<%= user.athletic_directors.last.school.city_and_state %> 
-  												,<%= pluralize user.athletic_directors.last.school.teams.count, "Team" %>
-  												,<%= pluralize user.athletic_directors.last.school.people.count, "User" %>  
-  											</span>
-  											<% end %>
-  										</div>
-										
-  										<div class="list-action-right">
-  											<% if user.athletic_directors.present? %>
-  											  <% unless user.athletic_directors.last.accepted? %>
-  											    <span class="top">Pending</span>
-  											<% else%>
-  											    <i class="ion-android-checkmark-circle bottom"></i>
-  											  <% end %>
-  											<% end %>
-  										</div>
-  									</a>
-  								</li>
-  							</ul>
-  						</div><!--.panel-body-->
-						
+		<h5 class="bold text-black">Your School</h5>
+
+   			<div class="panel-body without-padding">
+			<ul class="list-material">
+				<li class="has-action-left has-action-right">
+					<a href="#" class="visible">
+						<div class="list-action-left">
+							<% if user.athletic_directors.present? %>
+					        <%= link_to user_remove_athletic_director_path(user_id: user.id, school_id: user.athletic_directors.last.try(:school).try(:id)) , class: 'btn btn-floating btn-orange btn-ripple', remote: true, method: :delete do %>
+					          <i class="ion-android-close"></i>
+					        <% end %>
+							<% end %>
+						</div>
+						<div class="list-content padding-left-30">
+							<% if user.athletic_directors.present? %>
+							<span class="title">
+							
+								  <%= user.athletic_directors.last.school.name %>
+	
+							
+							</span>
+							<span class="caption">
+								<%= user.athletic_directors.last.school.city_and_state %> 
+								,<%= pluralize user.athletic_directors.last.school.teams.count, "Team" %>
+								,<%= pluralize user.athletic_directors.last.school.people.count, "User" %>  
+							</span>
+							<% end %>
+						</div>
+					
+						<div class="list-action-right">
+							<% if user.athletic_directors.present? %>
+							  <% unless user.athletic_directors.last.accepted? %>
+							    <span class="top">Pending</span>
+							<% else%>
+							    <i class="ion-android-checkmark-circle bottom"></i>
+							  <% end %>
+							<% end %>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div><!--.panel-body-->
+	
 <% end %>
-  
-  
+

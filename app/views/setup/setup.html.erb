@@ -1,3 +1,74 @@
+<body class="bg-login" style="background: url(http://elitesportsmiami.com/wp-content/uploads/2015/04/elitesportmiami-2.jpg); background-size: cover;">
+  <div class="bg-overlay"></div>
+    <div class="container pt60">
+    	<div class="panel panel-transparent bs-wizard bs-wizard-steps">
+		  	<div class="row">
+				   <div class="col-lg-3 pt60">
+				   	<br/><br/>
+				   	<h4 class="text-center h4 bold no-margin text-white">
+			      	<% if @user.first_name.present? %>
+								<%= @user.full_name %>
+								<!-- <p class="small"><%= @user.profile.location_description %></p> -->
+							<% end %>
+						</h4>
+			      <p class="text-white text-center no-margin small"><strong class="text-orange">Step 1:</strong> Select a Profile</p>
+			      <div class="steps">
+							<ul class="wizard-steps">
+								<% @user.classifications.each_with_index do |c, i| %>
+								<li class="step">
+									<% if i == 0 %>
+									<a href="#form2_tab<%= i + 1 %>" data-toggle="tab">
+										<% else %>
+										<a href="#form2_tab<%= i + 1 %>" data-toggle="tab">
+											<% end %>
+											<%= i + 1%>
+										</a>
+										<%= c.classification %>
+									</li>
+									<% end %>
+								</ul>
+							</div><!--.steps-pull-right-->
+				   </div>
+				   <div class="col-lg-6">
+				  	<div class="panel panel-transparent">
+				  		<h4 class="logo mt20 logo text-center text-white fs_28">
+					      <%= image_tag("icons/flag.png", height: "20", width: "auto", class: "margin-right-5", style: "margin-top: -3px;") %>
+					      <span class="text-white">SportsMarkit</span>
+					    </h4>
+				    </div>
+						<div class="panel panel-transparent bg-white b-rad-4 no-border">
+							<div id="form2">
+								<div class="tab-content no-border">
+									<% @user.classifications.each_with_index do |c, i| %>
+									<div class="tab-pane pane" id="form2_tab<%= i+1 %>">
+										<%= render "setup", classification: c.classification, objects: objects(c.classification, @user), selected_objects: selected_objects(c.classification, @user), description: object_description(c.classification), typeahead: typeahead(c.classification)  %>
+									</div><!--.tab-pane-->
+									<% end %>
+								</div><!--.tab-content-->
+							</div>
+							<div class="panel-footer">
+								<ul class="wizard clearfix">
+									<li class="bs-wizard-prev pull-left"><button class="btn btn-flat btn-default">Previous</button></li>
+									<li class="bs-wizard-next pull-right"><button class="btn btn-blue">Next</button></li>
+									<li class="bs-wizard-submit pull-right">
+										<%= link_to user_dashboard_index_path(@user), class: "btn btn-blue" do %> 
+										Complete setup
+										<% end %>
+									</li>
+								</ul>
+							</div><!--.panel-footer-->
+						</div>
+						</div>
+					</div>
+			  </div>
+	    </div>
+	  </div>
+	</div>
+</body>
+
+
+
+
 <style>
 .wizard-steps .step .btn {
   width: 50px;
@@ -74,83 +145,6 @@ li.step h6 {
 
 </script>
 
-<div class="content">
-<!-- page header -->
-	<div class="page-header full-content bg-blue">
-		<div class="row">
-			<div class="col-sm-6">
-				<h1>Welcome 
-					<small> Let's Get Started</small>
-				</h1>
-			</div><!--.col-->
-			<div class="col-sm-6">
-				<ol class="breadcrumb">
-					<li><a href="/"><i class="ion-home"></i></a></li>
-					<li><a href="<%= teams_path %>">Teams</a></li>
-					<li><a href="#" class="active">New</a></li>
-				</ol>
-			</div><!--.col-->
-		</div><!--.row-->
-	</div><!--.page-header-->
-	<div class="row">
-		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-md-10 col-md-offset-1">
-			<div class="row">
-				<div class="col-md-12">
-					<h6 class="bold text-orange">STEP BY STEP</h56>
-						<h3> Ok, now let's setup up your profiles</h3>
-						<br/>
-					</div>
-				</div>
-				<div class="panel bs-wizard bs-wizard-steps box-shadow-ccc">
-					<div class="panel-heading">
-						<div class="panel-title">
-							<div class="steps margin-top-20">
-								<ul class="wizard-steps">
-									<% @user.classifications.each_with_index do |c, i| %>
-									<li class="step">
-										<% if i == 0 %>
-										<a href="#form2_tab<%= i + 1 %>" data-toggle="tab" class="btn btn-primary">
-											<% else %>
-											<a href="#form2_tab<%= i + 1 %>" data-toggle="tab" class="btn btn-white">
-												<% end %>
-												<%= i + 1%>
-											</a>
-											<h6><%= c.classification %></h6>
-										</li>
-										<% end %>
-									</ul>
-								</div><!--.steps-pull-right-->
-							</div><!--.panel-title-->
-						</div><!--.panel-heading-->
-						<hr class="no-margin"/>
-						<div class="panel box-shadow-ccc">
-							<div class="">
-								<div id="form2">
-									<div class="tab-content">
-										<% @user.classifications.each_with_index do |c, i| %>
-										<div class="tab-pane pane padding-top-20" id="form2_tab<%= i+1 %>">
-											<%= render "setup", classification: c.classification, objects: objects(c.classification, @user), selected_objects: selected_objects(c.classification, @user), description: object_description(c.classification), typeahead: typeahead(c.classification)  %>
-										</div><!--.tab-pane-->
-										<% end %>
-									</div><!--.tab-content-->
-								</div>
-							</div><!--.panel-body-->
-							<div class="panel-footer">
-								<ul class="wizard clearfix">
-									<li class="bs-wizard-prev pull-left"><button class="btn btn-flat btn-default">Previous</button></li>
-									<li class="bs-wizard-next pull-right"><button class="btn btn-blue">Next</button></li>
-									<li class="bs-wizard-submit pull-right">
-										<%= link_to user_dashboard_index_path(@user), class: "btn btn-blue" do %> 
-										Complete setup
-										<% end %>
-									</li>
-								</ul>
-							</div><!--.panel-footer-->
-						</div>
-					</div>
-				</div>
-			</div><!--.row-->
-		</div>
 
 
 <%= render 'typeahead' %>
