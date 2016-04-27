@@ -1,6 +1,6 @@
-<body class="bg-login" style="background: url(http://elitesportsmiami.com/wp-content/uploads/2015/04/elitesportmiami-2.jpg); background-size: cover;">
-  <div class="bg-overlay"></div>
-    <div class="container pt60">
+<body class="bg-login bg-image-overlay-dark" style="background-image: url(http://elitesportsmiami.com/wp-content/uploads/2015/04/elitesportmiami-2.jpg); background-size: cover; background-repeat: no-repeat;
+    background-attachment: fixed;">
+	  <div class="container pt60">
     	<div class="panel panel-transparent bs-wizard bs-wizard-steps">
 		  	<div class="row">
 				   <div class="col-lg-3 pt60">
@@ -40,20 +40,27 @@
 							<div id="form2">
 								<div class="tab-content no-border">
 									<% @user.classifications.each_with_index do |c, i| %>
-									<div class="tab-pane pane" id="form2_tab<%= i+1 %>">
-										<%= render "setup", classification: c.classification, objects: objects(c.classification, @user), selected_objects: selected_objects(c.classification, @user), description: object_description(c.classification), typeahead: typeahead(c.classification)  %>
-									</div><!--.tab-pane-->
+										<div class="tab-pane pane" id="form2_tab<%= i+1 %>">
+											<%= render "setup", classification: c.classification, objects: objects(c.classification, @user), selected_objects: selected_objects(c.classification, @user), description: object_description(c.classification), typeahead: typeahead(c.classification)  %>
+										</div><!--.tab-pane-->
 									<% end %>
 								</div><!--.tab-content-->
 							</div>
-							<div class="panel-footer">
+							<hr class="no-margin"/>
+							<div class="b-rad-4-bottom bgcolor-white padding-20">
 								<ul class="wizard clearfix">
-									<li class="bs-wizard-prev pull-left"><button class="btn btn-flat btn-default">Previous</button></li>
-									<li class="bs-wizard-next pull-right"><button class="btn btn-blue">Next</button></li>
-									<li class="bs-wizard-submit pull-right">
-										<%= link_to user_dashboard_index_path(@user), class: "btn btn-blue" do %> 
-										Complete setup
-										<% end %>
+									<li class="bs-wizard-prev pull-left">
+										<button class="btn btn-white">Previous</button>
+									</li>
+									<li class="bs-wizard-next pull-right">
+										<button class="btn btn-primary text-white"><span class="text-white">Next</span></button>
+									</li>
+									<li class="bs-wizard-submit">
+										<p class="center mb0">
+											<%= link_to user_dashboard_index_path(@user), class: "btn btn-primary text-white" do %> 
+												<span class="text-white">Next Step <span class="ml10 fs_14 ion ion-chevron-right"></span></span>
+											<% end %>
+										</p>
 									</li>
 								</ul>
 							</div><!--.panel-footer-->
@@ -66,73 +73,7 @@
 	</div>
 </body>
 
-
-
-
-<style>
-.wizard-steps .step .btn {
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  padding: 1px 0;
-  font-size: 22px;
-  font-weight: bold;
-  border-radius: 50%;
-  -webkit-transition: background-color 400ms linear;
-}
-
-.panel .steps-centered .progress {
-  float: none;
-  position: absolute;
-  top: 40px;
-  width: 100%;
-  border-radius: 0;
-  height: 2px;
-}
-
-.panel > .panel-heading {
-  padding: 0;
-  border-radius: 0;
-  border-bottom: none; 
-}
-
-.panel > .panel-heading .panel-title {
-	font-size: 26px;
-}
-
-.panel .steps-centered {
-  position: absolute;
-  top: 80px;
-  left: 0;
-  width: 100%;
-}
-
-li.step {
-	width: 125px;
-}
-
-li.step h6 {
-	background: #ffffff;
-	color: #666;
-	margin-top: 10px;
-	line-height: 18px;
-	text-align: center;
-	font-weight: 400;
-}
-
-.wizard-steps {
-	width: 100%;
-}
-
-.list-material > li .list-content .caption {
-	color: rgba(0, 0, 0, 0.5);
-}
-
-</style>
-
 <script>
-
   $(document).ready(function() {
     $('a[data-toggle=tab]').each(function () {
       var $this = $(this);
@@ -142,9 +83,5 @@ li.step h6 {
       });
     });
   })
-
 </script>
-
-
-
 <%= render 'typeahead' %>

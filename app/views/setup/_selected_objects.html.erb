@@ -4,12 +4,12 @@
 	<% objects.each do |object| %>
 	  <li class="has-action-left has-action-right" id="non_school_object_<%= object.id %>">
 	    <a href="#" class="visible">
-	      <div class="list-action-left">
-	        <%= link_to delete_role_path(user_id: user.id, role_id: (Role.where(user_id: user.id, roleable_type: object.class.to_s, roleable_id: object.id, role: classification).last.id), classification: classification, roleable_type: object.class.to_s, roleable_id: object.id), class: 'btn btn-floating btn-orange btn-ripple', remote: true do %>
-	          <i class="ion-android-close"></i>
-	        <% end %>
-	      </div>
 	      <div class="list-content ml0 pl80">
+	      	<div class="list-action-left">
+		        <%= link_to delete_role_path(user_id: user.id, role_id: (Role.where(user_id: user.id, roleable_type: object.class.to_s, roleable_id: object.id, role: classification).last.id), classification: classification, roleable_type: object.class.to_s, roleable_id: object.id), class: 'btn btn-floating btn-orange btn-ripple', remote: true do %>
+		          <i class="ion-android-close text-white"></i>
+		        <% end %>
+		      </div>
   				<span class="title">
   					<%= object.name %>
   					<%#= object.with_school_name %>
@@ -23,9 +23,13 @@
 	      </div>
 	      <div class="list-action-right">
 	        <% if current_user.pending_object?(classification, object) %>
-	          <span class="top">Pending</span>
+	          <p class="mt15 text-primary ">
+	          	Pending
+	          	<br/>
+	      	    <i class="ion-ios-help-outline mr10"></i>
+	      		</p>
 	        <% else %>
-	          <i class="ion-android-checkmark-circle bottom"></i>
+	          <i class="ion-android-checkmark-circle"></i>
 	        <% end %>
 	      </div>
 	    </a>

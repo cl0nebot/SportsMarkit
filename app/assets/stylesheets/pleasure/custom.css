@@ -893,3 +893,78 @@ input:-webkit-autofill {
 .text-aaa {
   color: #aaa;
 }
+
+
+/*OVERVIEW AND SIGNUP PAGES*/
+
+
+.wizard-steps .step .btn {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  padding: 1px 0;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 50%;
+  -webkit-transition: background-color 400ms linear;
+}
+
+.panel .steps-centered .progress {
+  float: none;
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  border-radius: 0;
+  height: 2px;
+}
+
+.panel > .panel-heading {
+  padding: 0;
+  border-radius: 0;
+  border-bottom: none; 
+}
+
+.panel > .panel-heading .panel-title {
+  font-size: 26px;
+}
+
+.panel .steps-centered {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+}
+
+li.step {
+  width: 125px;
+}
+
+li.step h6 {
+  background: #ffffff;
+  color: #666;
+  margin-top: 10px;
+  line-height: 18px;
+  text-align: center;
+  font-weight: 400;
+}
+
+.wizard-steps {
+  width: 100%;
+}
+
+.list-material > li .list-content .caption {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.bg-image-overlay-dark:after {
+  content: ' ';
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.50);
+  position: fixed;
+
+}

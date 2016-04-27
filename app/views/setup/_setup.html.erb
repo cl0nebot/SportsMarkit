@@ -4,11 +4,10 @@
 	</div>
 </div>
 
-<!-- <h5 class="bold capitalize text-center"><%= description.pluralize.downcase %> added</h5>
-<hr class="no-margin"/>
-<ul class="list-material" id="<%#= classification.delete(" ") %>-list">
-	<%#= render 'selected_objects', objects: selected_objects, classification: classification, user: @user %>
-</ul> -->
+<h5 class="bold capitalize text-white text-center"><%= description.pluralize.downcase %> added</h5>
+<ul class="list-material b-rad-4-top" id="<%= classification.delete(" ") %>-list">
+	<%= render 'selected_objects', objects: selected_objects, classification: classification, user: @user %>
+</ul>
           
 
 <% if ["Athlete", "Athletic Director", "School Manager", "Club Director"].include? classification  %>
@@ -16,7 +15,7 @@
 		<a href="#" data-toggle="modal" data-target="#panel-new-<%= description.downcase %>-setup" class="open-modal"><u>Create a <%= description %></u></a>
 	</h6>
 <% end %>
-<div class="bg-muted padding-20" style="background: #F7F7F7; height: 500px; overflow: scroll;">
+<div class="padding-20" style="background: #eee; height: 500px; overflow: scroll;">
 	<div class="row teams images" id="list">
 		<%= render 'list', objects: objects, classification: classification, user: @user %>
 	</div>

@@ -15,7 +15,6 @@
           </div><!--.image-->
         </div>
         <div class="col-sm-3">
-
           <div id="apply-for-school-team-<%= object.id %>">
             <% role = Role.where(roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", role: classification, user_id: user.id) %>
             
