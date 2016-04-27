@@ -26,7 +26,6 @@
     <%= Gon::Base.render_data %>
   </head>
   <%= javascript_include_tag 'application' %>
-  <body class="one-page mt0">
     
     <% unless flash.empty? %>
       <script type="text/javascript">
@@ -68,5 +67,5 @@
       }
     </script>
     <%= yield :scripts %>
-  </body>
+  
 </html>
