@@ -13655,9 +13655,11 @@ pre .hljs {
     width: 400px;
     height: 490px;
     border-radius: 5px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    background: rgba(0, 0, 0, 0.4);
-    -webkit-transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px #333;
+    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #333;
+    background: #fff;
+    -webkit-transform: translate(-50% -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     z-index: 10;
@@ -13700,9 +13702,9 @@ pre .hljs {
     padding: 5px 30px;
 }
 .bg-login .panel-login .panel-body label {
-    margin: 7px 0 0 0;
+    margin: 0;
     font-size: 16px;
-    color: rgba(255, 255, 255, 0.87);
+    color: #333;
     font-weight: normal;
 }
 .bg-login .panel-login .panel-body label input {
@@ -13720,6 +13722,7 @@ pre .hljs {
     margin: 20px 0 0 0;
     padding: 0;
     list-style-type: none;
+    font-size: 16px;
 }
 .bg-login .panel-login .panel-body .extra-links li {
     margin: 0;
@@ -13727,8 +13730,7 @@ pre .hljs {
 }
 .bg-login .panel-login .panel-body .extra-links li a {
     padding: 5px 0;
-    display: block;
-    color: rgba(255, 255, 255, 0.8);
+    display: blo
 }
 .bg-login .panel-login .panel-body.active {
     display: block;

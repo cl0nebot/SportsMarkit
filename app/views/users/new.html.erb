@@ -1,20 +1,23 @@
 <body class="bg-login">
   <div class="bg-overlay"></div>
   <div class="login-screen">
-    <div class="panel-login">
-      <div class="logo">
-        <h2 class="logo text-light-shadow text-center">
-          <%= image_tag("icons/flag.png", height: "35", width: "auto", class: "margin-right-5", style: "margin-top: -3px;") %>
+    <div class="panel-login b-rad-4-top">
+      <div class="padding-10 b-rad-4-top" style="background: #888;">
+        <h4 class="logo mt20 logo text-light-shadow text-center text-muted fs_18">
+          <%= image_tag("icons/flag.png", height: "20", width: "auto", class: "margin-right-5", style: "margin-top: -3px;") %>
           <span class="text-white">SportsMarkit</span>
-        </h2>
+        </h4>
+        <h4 class="text-center h4 bold no-margin text-white">Create a free account.</h4>
+        <p class="text-white text-center no-margin small">Just takes a 30 seconds.</p>
       </div>
-      <div id="pane-login" class="panel-body">
+      <hr class="mb15 mt0"/>
+      <div id="pane-login" class="panel-body no-padding">
         <%= render "users/login_signup/login" %>
       </div>
       <div id="pane-forgot-password" class="panel-body">
         <%= render "users/login_signup/forgot_password" %>
       </div>
-      <div id="pane-create-account" class="panel-body active">
+      <div id="pane-create-account" class="panel-body no-padding active">
         <%= render "users/login_signup/create_account" %>
       </div>
     </div>

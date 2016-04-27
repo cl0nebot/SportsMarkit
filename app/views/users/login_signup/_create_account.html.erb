@@ -1,57 +1,63 @@
-<h5 class="text-muted semi-bold text-center">LOGIN BELOW</h5>
-<hr class="hr-333 mt10"/>
-<%= form_for User.new, html: { class: "form-horizontal parsley-validate", id: 'signup-form', data: { toggle: 'validator', disable: false }} do |f|   %>
-  <div class="form-group">
-    <div class="inputer">
-      <div class="input-wrapper form-group">
-        <%= f.text_field :first_name, class: "form-control", placeholder: "First Name", required: true %>
-        <div class="help-block with-errors"></div>
+<div class="pr40 pl40 pb20 pt20">
+  <%= form_for User.new, html: { class: "parsley-validate no-margin", id: 'signup-form', data: { toggle: 'validator', disable: false }} do |f|   %>
+    <div class="form-group">
+      <h6 class="bold no-margin fs_14 text-primary">Mobile Phone</h6>
+      <div class="inputer">
+        <div class="input-wrapper form-group">
+          <%= f.text_field :mobile_phone_number, class: "form-control", placeholder: "555-555-5555", id: "mobile_phone_number", required: true, "data-phone" => true %>
+          <div class="help-block with-errors"></div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <div class="inputer">
-      <div class="input-wrapper form-group">
-        <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name", required: true %>
-        <div class="help-block with-errors"></div>
+    <div class="form-group">
+      <h6 class="bold no-margin fs_14 text-primary">Email</h6>
+      <div class="inputer">
+        <div class="input-wrapper form-group">
+          <%= f.email_field :email, class: "form-control", placeholder: "Email address", required: true, "data-email" => true %>
+          <div class="help-block with-errors"></div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <div class="inputer">
-      <div class="input-wrapper form-group">
-        <%= f.email_field :email, class: "form-control", placeholder: "Email address", required: true, "data-email" => true %>
-        <div class="help-block with-errors"></div>
+    <div class="form-group mb0">
+      <h6 class="bold no-margin fs_14 text-primary">Password</h6>
+      <div class="inputer mb0">
+        <div class="input-wrapper form-group">
+          <%= f.password_field :password, class: "form-control", placeholder: "Password", required: true, minlength: 6 %>
+          <div class="help-block with-errors"></div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <div class="inputer">
-      <div class="input-wrapper form-group">
-        <%= f.text_field :mobile_phone_number, class: "form-control", placeholder: "Mobile Phone Number ex. 5556667777", id: "mobile_phone_number", required: true, "data-phone" => true %>
-        <div class="help-block with-errors"></div>
+    <!-- <div class="form-group">
+      <div class="inputer">
+        <div class="input-wrapper form-group">
+          <%#= f.text_field :first_name, class: "form-control", placeholder: "First Name", required: true %>
+          <div class="help-block with-errors"></div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <div class="inputer">
-      <div class="input-wrapper form-group">
-        <%= f.password_field :password, class: "form-control", placeholder: "Password", required: true, minlength: 6 %>
-        <div class="help-block with-errors"></div>
+    <div class="form-group">
+      <div class="inputer">
+        <div class="input-wrapper form-group">
+          <%#= f.text_field :last_name, class: "form-control", placeholder: "Last Name", required: true %>
+          <div class="help-block with-errors"></div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label><input type="checkbox" name="remember" value="1"> I have read and agree to the term of use.</label>
-  </div>
+    </div> -->
+</div>
+<hr class="no-margin"/>
+<div class="pt20 pr40 pl40 pb40 b-rad-4-bottom" style="background: #eee;">
   <div class="form-buttons clearfix">
     <%= f.submit "Create Account", class: "btn btn-block btn-primary pull-right" %>
+    <p class="small text-muted text-center fs_11 lh_14">
+      By clicking the button above you agree to the SportsMarkit user agreement and site policies. I have read and agree.
+    </p>
   </div>
   <div class="form-buttons clearfix">
-    <ul class="extra-links mt5">
+    <ul class="extra-links mt5 bold">
       <li>
-        <a href="#" class="bold show-pane-login ls1"><u>I have an Account</u></a>
+        Already have an account?<a href="#" class="bold show-pane-login inline"> Login.</a>
       </li>
     </ul>
   </div>
+</div>
 <% end %>

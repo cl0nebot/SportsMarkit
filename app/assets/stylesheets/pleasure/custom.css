@@ -306,7 +306,7 @@ hr.light {border-top-color: #fff; border-bottom: 1px solid #eee;}
 .bg-muted .example-row > div:first-child {color: #777777; font-weight: 500;}
 
 .example-row > div:first-child {font-size: 16px; color: #aaa;}
-input.form-control {font-size: 26px; line-height: 30px;}
+input.form-control {font-size: 20px; line-height: 30px;}
 textarea.form-control {font-size: 26px; line-height: 30px;}
 
 .bg-muted {background: #f7f7f7;}
@@ -435,7 +435,7 @@ textarea.form-control {font-size: 26px; line-height: 30px;}
   width: 100%;
   height: 100%;
   z-index: 0;
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.65);
 }
 
 .padding-bottom-0 {padding-bottom: 0 !important;}
@@ -471,15 +471,15 @@ textarea.form-control {font-size: 26px; line-height: 30px;}
 .hr-333 { border-top: 1px solid #333;}
 
 .bg-login .login-screen.create-account {
-  height: 610px;
+ /* height: 610px;*/
 }
 
 .bg-login .login-screen.create-account {
-  height: 575px;
+ 
 }
 
 .bg-login .login-screen  {
-  height: 580px !important;
+ /* height: 580px !important;*/
 }
 
 
@@ -872,3 +872,20 @@ ul.index-filters .btn.btn-block { text-align: left; margin-bottom: 10px;}
   }
 
 .text-666 {color: #666;}
+
+
+.b-rad-4-top {
+  border-radius: 4px 4px 0 0;
+}
+
+.b-rad-4-bottom {
+  border-radius: 0 0 4px 4px;
+}
+
+input:-webkit-autofill {
+    background-color: red !important;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
