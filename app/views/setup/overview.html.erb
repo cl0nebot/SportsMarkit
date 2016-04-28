@@ -1,30 +1,19 @@
-<body class="bg-login" style="background: url(http://cdn.sklz.com.s3.amazonaws.com/wp-content/uploads/2015/07/MiniBands_Act2_s.jpg); background-size: cover;">
-  <div class="bg-overlay"></div>
-    <div class="container pt60">
+<body class="bg-login bg-image-overlay-dark" style="background: url(http://cdn.sklz.com.s3.amazonaws.com/wp-content/uploads/2015/07/MiniBands_Act2_s.jpg) fixed no-repeat; background-size: cover;">
+    <div class="container">
 	  	<div class="row">
-
-			  <div class="col-lg-4 pt60">
-			  	<br/>
-			  	<h4 class="text-center h4 bold no-margin text-white">
-		      	<% if @user.first_name.present? %>
-							<%= @user.full_name %>
-							<!-- <p class="small"><%= @user.profile.location_description %></p> -->
-						<% end %>
-					</h4>
-		      <p class="text-white text-center no-margin small"><strong class="text-primary">Step 1:</strong> Select a Profile</p>
-			  </div>
-			  <div class="col-lg-4">
-
-	  			<div class="panel panel-transparent">
-			  		<h4 class="logo mt20 logo text-center text-white fs_28">
-				      <%= image_tag("icons/flag.png", height: "20", width: "auto", class: "margin-right-5", style: "margin-top: -3px;") %>
+			  <div class="col-lg-4 col-lg-offset-4">
+			  	<div class="panel panel-transparent">
+			  		<h4 class="logo mt20 logo text-center text-white fs_24">
+				      <%= image_tag("icons/flag.png", height: "17", width: "auto", class: "margin-right-5", style: "margin-top: -3px;") %>
 				      <span class="text-white">SportsMarkit</span>
 				    </h4>
 			    </div>
-		        
-	  	
+			    <div class="panel panel-transparent">
+			  		<h3 class="text-white text-center semi-bold"><%= @user.name %></h3>
+						<h4 class="text-white text-center no-margin bold"><span class="text-orange mr5">Step 1:</span> Select a Profile</h4>
+			    </div>
 			    <div class="panel b-rad-4">
-						<div id="type-list" class="bg-light-grey b-rad-4-top">
+				    <div id="type-list" class="bg-light-grey b-rad-4-top">
 							<%= render 'classifications/type', user: @user %>
 						</div>
 						<div class="padding-20 b-rad-4-bottom" style="background: #fff;">
@@ -38,4 +27,5 @@
 	  </div>
 	</div>
 </body>
+
 

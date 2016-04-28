@@ -1,14 +1,7 @@
-<div class="panel-body">
-	<div class="inputer">
-		<input type="text" class="fs_20 text-white quicksearch-teams typeahead typeahead-<%= typeahead %> form-control" rows="1" placeholder="Start typing here..."></input>
-	</div>
-</div>
-
-<!-- <h5 class="bold capitalize text-center"><%= description.pluralize.downcase %> added</h5>
-<hr class="no-margin"/>
-<ul class="list-material" id="<%#= classification.delete(" ") %>-list">
-	<%#= render 'selected_objects', objects: selected_objects, classification: classification, user: @user %>
-</ul> -->
+<h4 class="text-white text-center mt0 bold"><span class="text-orange mr5">Step 2:</span> Add Your <%= description.pluralize.downcase %></h4>
+<ul class="list-material b-rad-4-top" id="<%= classification.delete(" ") %>-list">
+	<%= render 'selected_objects', objects: selected_objects, classification: classification, user: @user %>
+</ul>
           
 
 <% if ["Athlete", "Athletic Director", "School Manager", "Club Director"].include? classification  %>
@@ -16,11 +9,29 @@
 		<a href="#" data-toggle="modal" data-target="#panel-new-<%= description.downcase %>-setup" class="open-modal"><u>Create a <%= description %></u></a>
 	</h6>
 <% end %>
-<div class="bg-muted padding-20" style="background: #F7F7F7; height: 500px; overflow: scroll;">
-	<div class="row teams images" id="list">
-		<%= render 'list', objects: objects, classification: classification, user: @user %>
+<div style="background: #eee; height: 500px; overflow: scroll;">
+  <div class="affix" style="z-index: 9999; background: #eee; width: 29%;">
+		<div class="panel-body pt20">
+			<div class="center">
+				<div class="input-group mb0">
+					<span class="input-group-addon">
+						<i class="ion ion-ios-search-strong text-muted pull-left fs_24"></i>
+					</span>
+					<div class="inputer">
+						<div class="inputer-wrapper">
+							<input type="text" class="fs_20 quicksearch-teams typeahead typeahead-<%= typeahead %> form-control"placeholder="Search for your <%= description.downcase %>..."></input>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="clearfix"></div>
+	<div class="panel-body pt80">
+		<div class="row teams images pt10" id="list">
+			<%= render 'list', objects: objects, classification: classification, user: @user %>
+		</div>
+		<div class="clearfix"></div>
+	</div>
 </div>
 
 

@@ -291,6 +291,8 @@ hr.light {border-top-color: #fff; border-bottom: 1px solid #eee;}
 .gf_nunito {font-family: 'Nunito' !important;}
 .gf_roboto {font-family: 'Roboto Condensed' !important;}
 
+v-align-middle
+
 
 
 .m-r-20 {margin-right: 20px;}
@@ -355,6 +357,7 @@ textarea.form-control {font-size: 26px; line-height: 30px;}
 .fs_10 {font-size: 10px !important;}
 .fs_11 {font-size: 11px !important;}
 .fs_12 {font-size: 12px !important;}
+.fs_13 {font-size: 13px !important;}
 .fs_14 {font-size: 14px !important;}
 .fs_16 {font-size: 16px !important;}
 .fs_18 {font-size: 18px !important;}
@@ -383,7 +386,7 @@ textarea.form-control {font-size: 26px; line-height: 30px;}
 .margin-bottom-5     {margin-bottom: 5;}
 
 .bg-login {
-  background: url('https://wickphoto.files.wordpress.com/2010/10/wickerham_donbosco_11.jpg') fixed no-repeat;
+  background-image: url('https://wickphoto.files.wordpress.com/2010/10/wickerham_donbosco_11.jpg');
   background-size: cover;
 }
 
@@ -892,4 +895,93 @@ input:-webkit-autofill {
 
 .text-aaa {
   color: #aaa;
+}
+
+
+/*OVERVIEW AND SIGNUP PAGES*/
+
+
+.wizard-steps .step .btn {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  padding: 1px 0;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 50%;
+  -webkit-transition: background-color 400ms linear;
+}
+
+.panel .steps-centered .progress {
+  float: none;
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  border-radius: 0;
+  height: 2px;
+}
+
+.panel > .panel-heading {
+  padding: 0;
+  border-radius: 0;
+  border-bottom: none; 
+}
+
+.panel > .panel-heading .panel-title {
+  font-size: 26px;
+}
+
+.panel .steps-centered {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+}
+
+li.step {
+  width: 125px;
+}
+
+li.step h6 {
+  background: #ffffff;
+  color: #666;
+  margin-top: 10px;
+  line-height: 18px;
+  text-align: center;
+  font-weight: 400;
+}
+
+.wizard-steps {
+  width: 100%;
+}
+
+.list-material > li .list-content .caption {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.bg-image-overlay-dark:after {
+  content: ' ';
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.35);
+  position: fixed;
+
+}
+
+.btn-floating.floating-small {
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+    border-radius: 50%;
+    border: 0;
+    font-size: 22px;
+}
+
+.material-icons {
+  line-height: inherit !important;
+  vertical-align: bottom !important;
 }
