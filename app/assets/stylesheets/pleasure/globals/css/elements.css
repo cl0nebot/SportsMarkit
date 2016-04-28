@@ -15185,6 +15185,14 @@ pre .hljs {
 
 /*custom*/
 
+.pricing-table {
+    box-shadow: 1px 1px 1px #ccc;
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    border-width: 1px;
+    border-radius: 6px;
+}
+
 .pricing-table table {
     margin: 50px 0;
 }
