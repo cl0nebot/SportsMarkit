@@ -13951,6 +13951,11 @@ pre .hljs {
     margin: 5% 0;
     }
 
+body.bg-login {
+    background-size: cover;
+    position: fixed;
+}
+
 .layout-device .bg-login .login-screen.signup, .bg-login .login-screen.signup  {
     margin-top: 27%;
     }
