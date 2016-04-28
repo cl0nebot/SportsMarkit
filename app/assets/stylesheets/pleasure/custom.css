@@ -386,7 +386,7 @@ textarea.form-control {font-size: 26px; line-height: 30px;}
 .margin-bottom-5     {margin-bottom: 5;}
 
 .bg-login {
-  background: url('https://wickphoto.files.wordpress.com/2010/10/wickerham_donbosco_11.jpg') fixed no-repeat;
+  background: url('https://wickphoto.files.wordpress.com/2010/10/wickerham_donbosco_11.jpg');
   background-size: cover;
 }
 
