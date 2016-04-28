@@ -25,6 +25,10 @@
 <div class="col-md-10 col-md-offset-2">
   <div class="panel box-shadow-ccc">
     <div class="panel-body pr50 pl50 pt50 pb50">
+      <%= text_field_tag :name, @form.name, id: 'form_name', placeholder: 'Input form name' %>
+      <% if current_user.try(:admin?) %>
+        <%= select_tag :master_form, options_for_select(Form.where.not(data: nil).pluck(:name, :id)), prompt: 'select master form' %>
+      <% end %>
       <div id="fb-template" data-url="<%= create_or_update_form_forms_path(formable_id: @object.id, formable_type: @object.class.to_s, object: "Registration") %>"  data-form='<%= @form.get_data %>'></div>
     </div>
   </div>
