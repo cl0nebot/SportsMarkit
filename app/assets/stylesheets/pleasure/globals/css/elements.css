@@ -13644,7 +13644,7 @@ pre .hljs {
 .bg-login {
     margin: 0;
 }
-.bg-login .bg-blur:before {
+.bg-login {
     background: url('https://wickphoto.files.wordpress.com/2010/10/wickerham_donbosco_11.jpg') fixed no-repeat;
     background-size: cover;
 }
@@ -13951,13 +13951,13 @@ pre .hljs {
     margin: 5% 0;
     }
 
-body.bg-login {
+.bg-login {
     background-size: cover;
-    position: fixed;
+    position: fixed
 }
 
 .layout-device .bg-login .login-screen.signup, .bg-login .login-screen.signup  {
-    margin-top: 27%;
+    
     }
 
 }
