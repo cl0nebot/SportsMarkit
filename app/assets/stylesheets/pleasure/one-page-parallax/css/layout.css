@@ -12994,7 +12994,7 @@ ul li {
   margin-top: 15px;
 } 
 .slide.home-hero {padding: 200px 0 200px 0; margin-top: -80px; z-index: 9;}
-.slide {padding: 100px 0; border-bottom: 3px solid #f5f5f5; border-top: 3px solid #f5f5f5;}
+.slide {padding: 75px 0 50px 0; border-bottom: 3px solid #f5f5f5; border-top: 3px solid #f5f5f5;}
 .text-black {color: black;}
 .bold {font-weight: bold;}
 .semi-bold {font-weight: 400;}
