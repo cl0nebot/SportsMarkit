@@ -13941,16 +13941,21 @@ pre .hljs {
 #external-events .legend {
     margin-top: 10px;
 }
+
+
+@media only screen and (max-device-width: 480px) {
+
 .layout-device .bg-login .login-screen, .bg-login .login-screen  {
     margin-top: 5%;
     width: 90%;
     margin: 5% 0;
-}
+    }
 
 .layout-device .bg-login .login-screen.signup, .bg-login .login-screen.signup  {
     margin-top: 27%;
-}
+    }
 
+}
 
 /*.layout-device.bg-login .login-screen {
     width: auto;
