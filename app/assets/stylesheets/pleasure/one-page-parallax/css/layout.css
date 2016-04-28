@@ -12690,8 +12690,6 @@ button.toast-close-button {
   background-color: #fff;
   position: relative;
   width: 100%;
-  border-bottom: 1px solid #f0f0f0;
-  padding: 100px 0;
 }
 .slide h1 {
   font-size: 40px;
@@ -12964,4 +12962,40 @@ button.toast-close-button {
 
 
 
-.slide h1 {font-size: 60px;}
+/*custom*/
+
+.header {z-index: 99999; border-bottom: 3px solid #ccc;}
+
+.header .navigation > li {
+    padding: 17px 15px;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.slide .list-vertical li .list-info span {
+  margin-top: 0;
+  line-height: 22px;
+  font-size: 14px;
+}
+
+ul li {
+  list-style: disc;
+  margin-left: 40px;
+  line-height: 26px;
+}
+
+.slide p.caption {
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 30px;
+}
+
+.margin-top-15 {
+  margin-top: 15px;
+} 
+.slide.home-hero {padding: 200px 0 200px 0; margin-top: -80px; z-index: 9;}
+.slide {padding: 100px 0; border-bottom: 3px solid #f5f5f5; border-top: 3px solid #f5f5f5;}
+.text-black {color: black;}
+.bold {font-weight: bold;}
+.semi-bold {font-weight: 400;}
+.no-letter-spacing {letter-spacing: 0;}
