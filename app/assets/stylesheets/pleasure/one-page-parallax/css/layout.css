@@ -12999,3 +12999,4 @@ ul li {
 .bold {font-weight: bold;}
 .semi-bold {font-weight: 400;}
 .no-letter-spacing {letter-spacing: 0;}
+.slide:nth-child(3) {z-index: 0;}
