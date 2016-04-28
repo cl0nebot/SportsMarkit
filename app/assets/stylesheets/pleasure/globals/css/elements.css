@@ -15185,16 +15185,26 @@ pre .hljs {
 
 /*custom*/
 
+.pricing-table thead {
+    background: #3b89ca;
+}
+
+.pricing-table thead tr.transparent th {
+    background: #fff;
+}
 .pricing-table {
     box-shadow: 1px 1px 1px #ccc;
     border-left: 1px solid #ddd;
     border-top: 1px solid #ddd;
     border-width: 1px;
     border-radius: 6px;
+    border-right: 0;
+
 }
 
 .pricing-table table {
-    margin: 50px 0;
+    margin:  50px 0;
+
 }
 
 .pricing-table table tbody td {
@@ -15217,12 +15227,21 @@ pre .hljs {
 .pricing-table table .price-container {
     padding: 0px 0 25px 0;
     font-size: 16px;
+    color: #ddd;
+    font-weight: 400;
+}
+
+.pricing-table table .active .price-container {
+    color: #555;
 }
 .pricing-table table .pack {
-    color: #337ab7;
+    color: #fff;
     font-size: 23px;
     font-weight: 800;
     padding-bottom: 0;
+}
+.pricing-table table .active .pack {
+    color: #fff;
 }
 .table > tbody > tr > td.active {
     box-shadow: 1px 5px 5px #ccc;
@@ -15237,6 +15256,7 @@ pre .hljs {
 }
 .table > thead:first-child > tr:first-child > th.active {
   box-shadow: 1px 5px 5px #ccc;
-  border: 1px solid #ddd;
+  background: #fec006;
   border-bottom: none
 }
+
