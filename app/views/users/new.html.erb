@@ -2,10 +2,19 @@
   <div class="login-screen signup">
     <div class="panel-login b-rad-4-top">
       <div class="padding-10 b-rad-4-top" style="background: #888;">
-        <h4 class="logo mt20 logo text-light-shadow text-center text-muted fs_18">
+        
+        <div class="panel panel-transparent">
+          <h4 class="logo mt20 logo text-center text-white fs_24">
+            <%= image_tag("icons/flag.png", height: "17", width: "auto", class: "margin-right-5", style: "margin-top: -3px;") %>
+            <span class="text-white">SportsMarkit</span>
+          </h4>
+        </div>
+
+        <h4 class="logo mt20 text-center text-muted fs_18">
           <%= image_tag("icons/flag.png", height: "20", width: "auto", class: "margin-right-5", style: "margin-top: -3px;") %>
           <span class="text-white">SportsMarkit</span>
         </h4>
+
         <h4 class="text-center h4 bold no-margin text-white">Create a free account.</h4>
         <p class="text-white text-center no-margin small">Just takes a 30 seconds.</p>
       </div>
