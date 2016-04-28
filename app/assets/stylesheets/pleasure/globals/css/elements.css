@@ -13941,6 +13941,17 @@ pre .hljs {
 #external-events .legend {
     margin-top: 10px;
 }
+.layout-device .bg-login .login-screen, .bg-login .login-screen  {
+    margin-top: 5%;
+    width: 90%;
+    margin: 5% 0;
+}
+
+.layout-device .bg-login .login-screen.signup, .bg-login .login-screen.signup  {
+    margin-top: 27%;
+}
+
+
 /*.layout-device.bg-login .login-screen {
     width: auto;
     box-shadow: none;
@@ -13949,8 +13960,7 @@ pre .hljs {
 /*.layout-device.bg-login .panel-body {
     padding: 5px 20px 20px 20px;
 }
-*/
-/*.layout-device.bg-login .panel-body h2 {
+*//*.layout-device.bg-login .panel-body h2 {
     margin: 0 -20px 25px -20px;
 }*/
 .layout-device.bg-login .bg-blur:before {
