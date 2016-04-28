@@ -1,6 +1,6 @@
 class UserProfilePicture < ActiveRecord::Base
   mount_uploader :photo, ImageUploader
-  belongs_to :user
+  belongs_to :user, touch: true
   validates :photo, :presence => true
   
   after_create :delete_existing_profile_picture
