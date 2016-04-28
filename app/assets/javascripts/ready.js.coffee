@@ -14,6 +14,10 @@ $(document).on  'click', '.submit-form', ->
   remoteSubmit($(@).closest('form'))
   false
 
+$(document).on 'click', '[data-submit]', ->
+  $($(@).data('submit')).trigger("submit.rails")
+  false
+
 $(document).ready ->
   $(".best_in_place").best_in_place();
 

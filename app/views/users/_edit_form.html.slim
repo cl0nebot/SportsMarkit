@@ -155,7 +155,7 @@
                             = f.submit "Update Social Media", class: "btn btn-large btn-blue btn-block"
                 #stats.tab-pane.text-style
                   .panel-body
-                    = form_for user, html: {class: "form-horizontal", data: { remote: true } } do |f|
+                    = form_for user, html: {class: "form-horizontal", data: { remote: true }, id: 'sport-resume' } do |f|
                       h4.text-right Sports Resume
                       hr.margin-top-0/
                       h5.bold.text-primary Athletic Profile
@@ -200,20 +200,21 @@
                                 .inputer
                                   .input-wrapper.form-group
                                     = builder.text_field :youtube, class: "form-control"
-                          br/
-                          br/
-                      br/
+                          br
+                          br
+                      br
+                      - binding.pry
+                    #measure-block
                       h5.bold.text-primary Add Athletic Profiles
                       h4.text-right Measurables
-                      hr/
                       = link_to "Add Measure", new_user_measurable_path(user), method: :get ,remote: true, class: 'btn btn-large btn-blue pull-right'
                       #measures
                         - user.measurables.each do |m|
                           = render 'measurables/form', m: m, u: user
-                      .form-buttons
-                        .row
-                          .col-lg-8.col-lg-offset-2
-                            = f.submit "Update Profile", class: "btn btn-large btn-blue btn-block"
+                    .form-buttons(style='position: inherit')
+                      .row
+                        .col-lg-8.col-lg-offset-2
+                          = link_to "Update Profile", '#', class: "btn btn-large btn-blue btn-block", 'data-submit' => '#sport-resume'
                 - if user.is_coach?
                   #certifications.tab-pane.text-style
                     .panel-body

@@ -65,8 +65,8 @@ class UsersController < ApplicationController
     @videos = @object.medias.where(category: "Video")
     @articles = @object.medias.where(category: "Article")
     @pictures = Photo.where(photo_owner_id: @object.id, photo_owner_type: @object.class.to_s, main: false)
-    @email_taken = @object.minus_self.exists?(:email => params[:user][:email])
-    @phone_taken = params[:user][:mobile_phone_number].present? ? @object.minus_self.exists?(:mobile_phone_number => params[:user][:mobile_phone_number]) : false
+    @email_taken = params[:user][:email] && @object.minus_self.exists?(:email => params[:user][:email])
+    @phone_taken = params[:user][:mobile_phone_number] && @object.minus_self.exists?(:mobile_phone_number => params[:user][:mobile_phone_number])
     p @email_taken
     p @phone_taken
     if @email_taken
