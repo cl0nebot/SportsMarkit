@@ -1,0 +1,20 @@
+<div class="page-header full-content bg-primary mb0" style="min-height: 141px;">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1 class="capitalize semi-bold"> Dashboard
+                <small><%= @object.name.to_s.downcase %></small>
+            </h1>
+        </div>
+        <div class="col-sm-6">
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="ion-home"></i></a></li>
+                <li><%= link_to klass.pluralize, send("#{klass.pluralize}_path") %></li>
+                <li><%= link_to "Dashboard", "#" %></li>
+                <li><%= link_to "Edit", "#", class: "active" %></li>
+            </ol>
+        </div>
+    </div>
+    <div class="header-tabs scrollable-tabs sticky">
+        
+    </div>
+</div>

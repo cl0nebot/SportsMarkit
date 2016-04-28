@@ -1,0 +1,17 @@
+<li class="has-action-left has-action-right">
+    <%= link_to eval("new_#{klass}_#{new_account_type}_path(object)"), class: "visible" do %>
+    <div class="list-action-left">
+        <i class="ion-plus-circled icon"></i>
+    </div>
+    <div class="list-content">
+        <span class="title">Add <%= "#{new_account_type.capitalize}" %></span>
+        <span class="caption">Add or create a new  <%= "#{new_account_type}" %>.</span>
+    </div>
+    <div class="list-action-right">
+        <% if false %>
+        <span class="top">2 hr</span>
+        <i class="ion-android-done bottom"></i>
+        <% end %>
+    </div>
+    <% end %>
+</li>

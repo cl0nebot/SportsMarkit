@@ -1,0 +1,31 @@
+            <h5 class="bold">Calendar and Events</h5>
+            <ul class="list-material">
+              <li class="has-action-left has-action-right">
+                <%= link_to eval("new_#{klass}_event_path(object)"), class: "visible" do %>
+                  <div class="list-action-left">
+                    <i class="ion-plus-circled icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">Add Event</span>
+                    <span class="caption">Create a new event.</span>
+                  </div>
+                  <div class="list-action-right">
+                    <%= render 'dashboard/timestamp', klass: klass, object: object %>
+                  </div>
+                <% end %>
+              </li>
+              <li class="has-action-left has-action-right">
+                <a href="#" class="visible">
+                  <div class="list-action-left">
+                    <i class="ion-calendar icon"></i>
+                  </div>
+                  <div class="list-content">
+                    <span class="title">Your Sports Calendar</span>
+                    <span class="caption">View and manage your sports calendar.</span>
+                  </div>
+                  <div class="list-action-right">
+                    <%= render 'dashboard/timestamp', klass: klass, object: object %>
+                  </div>
+                </a>
+              </li>
+            </ul>

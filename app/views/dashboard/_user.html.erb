@@ -1,0 +1,71 @@
+<!-- column 1 -->
+<div class="col-md-4">
+    <div class="panel box-shadow-ccc">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h4 class="text-primary">Build Your Account</h4>
+            </div>
+        </div>
+        <div class="panel-body">
+            <h5 class="bold">Public Profile</h5>
+            <%= render 'dashboard/user/profile', klass: klass, object: object %>
+        </div>
+    </div>
+</div>
+<!-- end column 1 -->
+
+<!-- column 2 -->
+<div class="col-md-4">
+    <div class="panel box-shadow-ccc">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h4 class="text-primary">Manage Your Sports Community</h4>
+            </div>
+        </div>
+        <div class="panel-body">
+            <h5 class="bold">Actions</h5>
+            <% if Classification.exists?(user_id: object.id, classification: "Athlete") %>
+               <%= render 'dashboard/user/manage', klass: klass, object: object  %>
+               <!-- add placeholder design for managing teams -->
+            <% elsif Classification.exists?(user_id: object.id, classification: "Student Athlete") %>
+              <!-- add placeholder design for managing school teams -->
+            <% elsif Classification.exists?(user_id: object.id, classification: "Coach") %>
+              <!-- add placeholder design for managing school teams -->
+            <% elsif Classification.exists?(user_id: object.id, classification: "Guardian") %>
+              <!-- add placeholder design for managing school children -->
+            <% elsif Classification.exists?(user_id: object.id, classification: "Athletic Director") %>
+               <!-- add placeholder design for managing school schools -->
+            <% elsif Classification.exists?(user_id: object.id, classification: "Club Director") %>
+               <!-- add placeholder design for managing school clubs -->
+            <% elsif Classification.exists?(user_id: object.id, classification: "School Manager") %>
+              <!-- add placeholder design for managing school schools -->
+            <% elsif Classification.exists?(user_id: object.id, classification: "Team Manager") %>
+              <!-- add placeholder design for managing school teams -->
+            <% end %>
+            <br/>
+            <%= render 'dashboard/user/events', klass: klass, object: object %>
+            <br/>
+            <%= render 'dashboard/user/chat', klass: klass, object: object %>
+        </div>
+    </div>
+</div>
+<!-- end column 2 -->
+
+<!-- column 3 -->
+<div class="col-md-4">
+    <div class="panel box-shadow-ccc">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h4 class="text-primary">Account Management</h4>
+            </div>
+        </div>
+        <div class="panel-body">
+            <%= render 'dashboard/user/documents', klass: klass, object: object %>
+            <br/>
+            <%= render 'dashboard/user/registrations', klass: klass, object: object %>
+        </div>
+    </div>
+</div>
+<!-- end column 3 -->
+
+

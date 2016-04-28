@@ -1,0 +1,17 @@
+            <h5 class="bold">Messaging</h5>
+            <ul class="list-material">
+                <li class="has-action-left has-action-right">
+                    <%= link_to eval("new_#{klass}_event_path(object)"), class: "visible" do %>
+                    <div class="list-action-left">
+                        <i class="ion-chatboxes icon"></i>
+                    </div>
+                    <div class="list-content">
+                        <span class="title">Instant Message Connection</span>
+                        <span class="caption">Chat with people in your sports community.</span>
+                    </div>
+                    <div class="list-action-right">
+                        <%= render 'dashboard/timestamp', klass: klass, object: object %>
+                    </div>
+                    <% end %>
+                </li>
+            </ul>

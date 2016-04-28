@@ -1,0 +1,8 @@
+<h3 class="text-center">
+    Everything you need to manage your <%= object.instance_of?(User) ? "account" : object.class.to_s.downcase %>.
+</h3>
+<p class="small-text text-center">
+    <%= link_to eval("#{klass}_path(object)") do %>
+    <i class="ion-home"></i>  Return to Profile
+    <% end %>
+</p>

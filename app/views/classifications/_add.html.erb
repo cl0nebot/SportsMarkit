@@ -1,10 +1,10 @@
 <%= form_for Classification.new, html: {method: :post, remote: true } do |f| %>
-	<%= button_tag class: "btn btn-lg mb0 text-left btn-block b-rad-0", style: "background: #e5e5e5;" do %>
+	<%= button_tag class: "btn btn-lg mb0 text-left btn-block b-rad-4-top", style: "background: #e5e5e5;" do %>
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-xs-3">
 				<img src="http://www.rantlifestyle.com/wp-content/uploads/2013/04/youth.jpg" class="padding-2 bg-grey img-responsive img-rounded">
 			</div>
-			<div class="col-md-9">
+			<div class="col-xs-9">
 				<h4 class="bold fs_20 mt10 text-aaa"><%= type %></h4>
 				<%= f.hidden_field :user_id, value: user.id %>
 				<%= f.hidden_field :classification, value: type %>

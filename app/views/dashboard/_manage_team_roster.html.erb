@@ -1,0 +1,39 @@
+            <% if object.instance_of? Team%>
+              <h5 class="bold">Player Roster and Staff</h5>
+              <ul class="list-material">
+                <li class="has-action-left has-action-right">
+                  <a href="/teams/<%= object.id %>/#tab_roster" class="visible">
+                    <div class="list-action-left">
+                      <i class="ion-android-clipboard icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">Manage Roster</span>
+                      <span class="caption">Build and modify your player roster.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <% if false %>
+                        <span class="top">15 min</span>
+                        <i class="ion-android-done bottom"></i>
+                      <% end %>
+                    </div>
+                  </a>
+                </li>
+                <li class="has-action-left has-action-right">
+                  <a href="/teams/<%= object.id %>/#tab_admin" class="visible">
+                    <div class="list-action-left">
+                      <i class="ion-locked icon"></i>
+                    </div>
+                    <div class="list-content">
+                      <span class="title">Manage Team Admins</span>
+                      <span class="caption">Invite new admins and assign privileges.</span>
+                    </div>
+                    <div class="list-action-right">
+                      <% if false %>
+                        <span class="top">2 hr</span>
+                        <i class="ion-android-done bottom"></i>
+                      <% end %>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            <% end %>
