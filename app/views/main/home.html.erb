@@ -1,304 +1,524 @@
-<!--
-* To change the hover link color and active selector border color,
-you can combine the header div with header-*(material-colors).
-For ex: <div class="header header-red"> or <div class="header header-teal">
--->
+	<div class="header transparent">
+		<div class="container">
 
+			<div class="logo text-black">
+				<%= image_tag("icons/flag.png", height: "20", class: "margin-right-5", style: "margin-top: -5px; width: 15px;") %>
+				SportsMarkit
+			</div><!--.logo-->
 
+			<!--
+			* data-nav-link attribute is necessary for data-anchor links.
+			* data-anchor="slide1" attribute is useful when user clicks the data-nav-link, the window moves the related slide.
+			-->
+			<div class="animated-selector">
+				<ul class="navigation">
+					<li class="active" data-anchor="slide1" data-nav-link>Schools</li>
+					<li data-anchor="slide2" data-nav-link>Clubs</li>
+					<li data-anchor="slide3" data-nav-link>Leagues</li>
+					<li data-anchor="slide4" data-nav-link>Teams</li>
+					<li data-anchor="slide5" data-nav-link>Parents</li>
+				</ul>
+				<div class="selector"></div>
+			</div><!--.animated-selector-->
 
-	<div class="page-wrapper">
-		<div class="header">
-			<div class="container">
-
-				<div class="logo text-white">
-					<%= image_tag("icons/flag.png", height: "15", class: "margin-right-5", style: "margin-top: -5px; width: 15px;") %>
-					SportsMarkit
-				</div><!--.logo-->
-
-				<!--
-				* data-nav-link attribute is necessary for data-anchor links.
-				* data-anchor="slide1" attribute is useful when user clicks the data-nav-link, the window moves the related slide.
-				-->
-				<div class="animated-selector">
-					<ul class="navigation">
-						<li class="active" href="#schools" role="tab" data-toggle="tab">
-							Schools
-						</li>
-						<li href="#athletes" role="tab" data-toggle="tab">
-							Athletes
-						</li>
-						<li href="#parents" role="tab" data-toggle="tab">
-							Parents
-						</li>
-						<li href="#fans" role="tab" data-toggle="tab">
-							Sports Fans
-						</li>
-						<li href="#leagues" role="tab" data-toggle="tab">
-							Leagues
-						</li>
-					</ul>
-					<div class="selector"></div>
-				</div><!--.animated-selector-->
-
-				<div class="btn-action">
-	        <% if current_user %>
-						<button type="button" class="btn btn-flat btn-ripple text-white dropdown-toggle ls0" data-toggle="dropdown">
-						<%= image_tag(current_user.avatar, class: "img-circle profile-mini", height: "35")%>
-						<%= current_user.full_name %> <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="<%= user_path(current_user) %>"><span class="ion-person mr5"></span> My profile</a></li>
-							<li><a href="<%= user_overview_path(current_user) %>"><span class="ion-gear-b mr5"></span> Account Setup</a></li>
-							<li class="divider"></li>
-							<li class="dropdown-submenu">
-			          <%= link_to session_path(current_user.id), method: :delete do %>
-			            <span class="ion-power mr5"></span> Logout
-			          <% end %>
-								<ul class="dropdown-menu">
-									<!-- <li><a href="#">Logout</a></li> -->
-								</ul>
-							</li>     
+			<% if current_user %>
+				<span class="pull-right margin-top-15">
+					<a href="" class="dropdown-toggle text-black bold" data-toggle="dropdown">
+						<%= image_tag(current_user.avatar, class: "img-circle profile-mini", height: "20")%>
+						<span class="bold h6"><%= current_user.full_name %></span>
+						<span class="caret text-muted"></span>
+					</a>
+				</span>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="<%= user_path(current_user) %>"><span class="ion-person mr5"></span> My profile</a></li>
+					<li><a href="<%= user_overview_path(current_user) %>"><span class="ion-gear-b mr5"></span> Account Setup</a></li>
+					<li class="divider"></li>
+					<li class="dropdown-submenu">
+	          <%= link_to session_path(current_user.id), method: :delete do %>
+	            <span class="ion-power mr5"></span> Logout
+	          <% end %>
+						<ul class="dropdown-menu">
+							<!-- <li><a href="#">Logout</a></li> -->
 						</ul>
-	        <% else %>
-					  <a href="/login" class="btn btn-white bold button-striped button-full-striped btn-ripple">Login</a>
-					  <a href="/signup" class="btn btn-warning bold button-striped button-full-striped btn-ripple">Signup</a>
-					<% end %>
+					</li>     
+				</ul>
+      <% else %>
+	      <div class="btn-action">
+					<a href="/login" class="btn btn-flat bold ">Login</a>
+					<a href="/signup" class="btn btn-indigo">Signup</a>
 				</div><!--.btn-action-->
+			<% end %>
+		</div><!--.container-->
+	</div><!--.header-->
 
-				<div class="hamburger-btn"></div><!--.hamburger-btn-->
+	<!--
+	* Each slide divs can be combined with these classes
 
-			</div><!--.container-->
-		</div><!--.header-->
-		
-		<%= cache ["homepage", Date.today] do %>
+	** Material colors: such as bg-pink, bg-indigo, bg-teal etc.
+	** bg-image: you just need to write inline css style in order to path to image.
+	** bg-image-with-shadow: same for bg-image class but in this time background-gradient floats the image.
+	** bg-pattern: same for the bg-image but in this time the pattern will be repeated for background.
 
-		<div class="tab-content no-padding no-border">
-			<div class="tab-pane active fade in" id="schools">
-				<div class="slide bg-image" style="background-image: url('http://www1.pgcps.org/uploadedImages/Offices/Communications/Press_Releases/2011_-_2012/June/Potomac%20Track%20Team.JPG');">
-
-					<div class="container z1">
-						<div class="row">
-							<div class="col-md-9">
-								<div class="logo text-white">
-									<%= image_tag("icons/flag.png", class: "margin-right-5", style: "margin-top: -5px; width: 17px;") %>
-									<span class="h2 text-white">SportsMarkit</span>
-								</div><!--.logo-->
-								<h1 class="h0 text-white text-light-shadow">
-									THE <span class="highlight ls1">EASIEST</span> WAY TO
-									<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">MANAGE</span><br>
-									SCHOOL ATHLETIC PROGRAMS.
-								</h1>
-								<p class="caption text-white text-light-shadow">Manage rosters, share calendars, centralize team communication, <br/> arrange payments, set notifications, invite fans, and much more...</p>
-							</div><!--.col-->
-						</div><!--.row-->
-
-						
-						<div class="row">
-							<div class="col-md-12">
-								<h4 class="text-white">MOBILE APP COMING SOON!</h4>
-								<h6 class="text-cyan bold ">Available In Stores Spring 2016</h6>
-								<ul class="store-list no-margin">
-									<li>
-										<a href="javascript:;">
-											<%= image_tag("one-page-parallax/on-appstore.png", alt: "") %>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:;">
-											<%= image_tag("one-page-parallax/on-googleplay.png", alt: "") %>
-										</a>
-									</li>
-								</ul>
-							</div><!--.col-->
-						</div><!--.row-->
-
-
-					</div><!--.container-->
-				</div><!--.slide-hero-->			
-			</div>
-
-			<div class="tab-pane fade" id="athletes">
-				<div class="slide bg-image"  style="background-image: url('<%= image_path("placeholders/athlete_bg.png") %>'); background-size: cover;">
-					<div class="container z1">
-						<div class="row">
-							<div class="col-md-9">
-								<h1 class="h0 text-white text-light-shadow">
-									THE <span class="highlight ls1">EASIEST</span> WAY TO
-									<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">MANAGE</span><br>
-									YOUR ENTIRE SPORTS LIFE ONLINE.
-								</h1>
-								<p class="caption text-white text-light-shadow">Unlimited team profiles, personalized sports calendars, videos and photo<br/>
-								uploads, text-message notifications, get followed by fans, and more...</p>
-							</div><!--.col-->
-						</div><!--.row-->
-
-						<div class="row">
-							<div class="col-md-12">
-								<h4 class="text-white">MOBILE APP COMING SOON!</h4>
-								<h6 class="text-cyan bold ">Available In Stores Spring 2016</h6>
-								<ul class="store-list no-margin">
-									<li>
-										<a href="javascript:;">
-											<%= image_tag("one-page-parallax/on-appstore.png", alt: "") %>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:;">
-											<%= image_tag("one-page-parallax/on-googleplay.png", alt: "") %>
-										</a>
-									</li>
-								</ul>
-							</div><!--.col-->
-						</div><!--.row-->
-					</div><!--.container-->
-				</div><!--.slide-hero-->
-			</div>
-
-			<div class="tab-pane fade" id="parents">
-				<div class="slide bg-image" data-nav="remove" style="background-image: url('<%= image_path("placeholders/parents_bg.png") %>'); background-size: cover;">
-
-					<div class="container z1">
-						<div class="row">
-							<div class="col-md-9">
-								<h1 class="h0 text-white text-light-shadow">
-									THE <span class="highlight ls1">EASIEST</span> WAY TO
-									<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">KEEP TRACK</span><br>OF YOUR KID'S SPORTS LIFE.
-								</h1>
-								<p class="caption text-white text-light-shadow">Access team contact information, coach and player profiles, team calendars, <br/>team photos and videos, get updates & notifications, and much more...
-							</div><!--.col-->
-						</div><!--.row-->
-
-						<div class="row">
-							<div class="col-md-12">
-								<h4 class="text-white">MOBILE APP COMING SOON!</h4>
-								<h6 class="text-cyan bold ">Available In Stores Spring 2016</h6>
-								<ul class="store-list no-margin">
-									<li>
-										<a href="javascript:;">
-											<%= image_tag("one-page-parallax/on-appstore.png", alt: "") %>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:;">
-											<%= image_tag("one-page-parallax/on-googleplay.png", alt: "") %>
-										</a>
-									</li>
-								</ul>
-							</div><!--.col-->
-						</div><!--.row-->
-
-					</div><!--.container-->
-				</div><!--.slide-hero-->
-			</div>
-
-			<div class="tab-pane fade" id="leagues">
-				<div class="slide bg-image" data-nav="remove" style="background-image: url(http://www.talbotcountymd.gov/uploads/images/Parks_and_Rec/Basketball%20pic.jpg); background-size: cover;">
-
-					<div class="container z1">
-						<div class="row">
-							<div class="col-md-9">
-
-								<h1 class="h0 text-white text-light-shadow">
-									THE <span class="highlight ls1">EASIEST</span> WAY TO
-									<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">MANAGE</span><br>
-									REC SPORTS TEAMS & LEAGUES.
-								</h1>
-								<p class="caption text-white text-light-shadow">Access team contact information, coach and player profiles, team calendars, <br/>team photos and videos, get updates & notifications, and much more...
-							</div><!--.col-->
-						</div><!--.row-->
-
-						<div class="row">
-							<div class="col-md-12">
-								<h4 class="text-white">MOBILE APP COMING SOON!</h4>
-								<h6 class="text-cyan bold ">Available In Stores Spring 2016</h6>
-								<ul class="store-list no-margin">
-									<li>
-										<a href="javascript:;">
-											<%= image_tag("one-page-parallax/on-appstore.png", alt: "") %>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:;">
-											<%= image_tag("one-page-parallax/on-googleplay.png", alt: "") %>
-										</a>
-									</li>
-								</ul>
-							</div><!--.col-->
-						</div><!--.row-->
-
-					</div><!--.container-->
-				</div><!--.slide-hero-->
-			</div>
-
-			<div class="tab-pane fade" id="fans">
-				<div class="slide bg-image" data-nav="remove" style="background-image: url(http://s3.amazonaws.com/vnn-aws-sites/24/files/2011/08/EGR-Crowd-Shot.png); background-size: cover;">
-
-					<div class="container z1">
-						<div class="row">
-							<div class="col-md-9">
-								<h1 class="h0 text-white text-light-shadow">
-									THE <span class="highlight ls1">EASIEST</span> WAY TO
-									<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">STAY UP</span> ON<br> YOUR LOCAL SPORTS COMMUNITY
-								</h1>
-								<p class="caption text-white text-light-shadow">
-									Follow local sports teams of all levels, buy merchandise and game tickets,<br/> 
-									view team profiles, get the latest videos and photos, and more...<br/>
-								</p>
-								
-							</div><!--.col-->
-						</div><!--.row-->
-
-						<div class="row">
-							<div class="col-md-12">
-								<h4 class="text-white">MOBILE APP COMING SOON!</h4>
-								<h6 class="text-cyan bold ">Available In Stores Spring 2016</h6>
-								<ul class="store-list no-margin">
-									<li>
-										<a href="javascript:;">
-											<%= image_tag("one-page-parallax/on-appstore.png", alt: "") %>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:;">
-											<%= image_tag("one-page-parallax/on-googleplay.png", alt: "") %>
-										</a>
-									</li>
-								</ul>
-							</div><!--.col-->
-						</div><!--.row-->
-
-					</div><!--.container-->
-				</div><!--.slide-hero-->
-
+	* data-nav="remove" attribute hides the active navigation border when this slide in viewport.
+	-->
+	<div class="slide home-hero bg-image" data-nav="remove" style="background-image: url('http://littlesportscoaching.co.uk/sites/default/files/course/jt.jpg');">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9">
+					<h1 class="h0 text-white text-light-shadow">
+						THE <span class="highlight ls1">EASIEST</span> WAY TO
+						<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">MANAGE</span><br>
+						SCHOOL ATHLETIC PROGRAMS.
+					</h1>
+					<p class="lead text-white">Faster. Cheaper. Easier.</p>
+					<button class="btn btn-white margin-right-10">
+						<span class="bold text-muted no-letter-spacing">Create a Free Account</span>
+					</button>
+					<button class="btn btn-primary">
+						<span class="bold">Watch a Video</span>
+					</button>
 					
-				</div>
-			</div>
+				</div><!--.col-->
+			</div><!--.row-->
 
-			
-		</div>
+		</div><!--.container-->
+		<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
+	</div><!--.slide-hero-->
+
+	<div class="slide" data-nav="slide1">
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-6 pull-right">
+						<div class="panel-body">
+							<h4 class="highlight ws2 semi-bold margin-bottom-5">
+								<i class="material-icons margin-right-10">&#xE80C;</i> SCHOOLS
+							</h4>
+							<!-- <h3 class="text-black ws2 margin-top-0">TAKE YOUR SCHOOL DIGITAL</h3> -->
+							<p class="lead">Give your sports administrators full access to the most powerful team management platform online.</p>
+							<div class="row">
+								<div class="col-sm-6">
+									<ul class="semi-bold text-muted h6 no-margin">
+										<li>Manage all team sports</li>
+										<li>Mass text-messaging (SMS)</li>
+										<li>Setup Automatic Notifications</li>
+										<li>Manage sports facilities</li>
+										<li>Reduce paperwork to zero</li>
+									</ul>
+								</div>
+								<div class="col-sm-6">
+									<ul class="semi-bold text-muted h6 no-margin">
+										<li>Track compliance and data</li>
+										<li>Easy registration process</li>
+										<li>Collect payments</li>
+										<li>Manage schedules</li>
+										<li>Real-time updates</li>
+									</ul>
+								</div>
+
+							</div>
+						</div>
+				</div><!--.col-->
+				<div class="col-sm-6">
+					<div class="row">
+						<div class="col-xs-6">
+							<%= image_tag("screens/setup.png", alt: "", class: "img-responsive thumbnail") %>
+						</div>
+						<div class="col-xs-6">
+							<%= image_tag("screens/teams.png", alt: "", class: "img-responsive thumbnail") %>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">
+							<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+						</div>
+						<div class="col-xs-6">
+							<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+						</div>
+					</div>
+
+				</div><!--.container-->
+			</div><!--.slide-->
+		</div><!--.slide-->
+	</div>
+
+	<div class="slide bg-image" data-nav="remove" style="background-image: url('<%= image_path("placeholders/athlete_bg.png") %>'); background-size: cover;">
+		<div class="container z1 text-center">
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="h0 text-white text-light-shadow">
+						GET YOUR TEAM ONLINE IN <span class="highlight ls1">MINUTES</span>
+					</h1>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+				</div><!--.col-->
+			</div><!--.row-->
+		</div><!--.container-->
+		<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
+	</div><!--.slide-->
+
+
+	<div class="slide" data-nav="slide2">
+
+		<div class="slide-image-vertical hide-on-mobile" data-bottom-top="top:-200px" data-center-bottom="top:100px"><img src="../../assets/one-page-parallax/img/bg-plans.jpg" alt=""></div><!--.slide-image-->
 
 		<div class="container">
-			<div class="footer" style="background: transparent; margin-top: -100px; z-index: 999999999; position: absolute; width: 100%;">
-				<ul class="social-list">
-					<li><a href="http://www.facebook.com/sportsmarkit" class="facebook"><i class="ion-social-facebook"></i></a></li>
-					<li><a href="http://www.twitter.com/sportsmarkit" class="twitter"><i class="ion-social-twitter"></i></a></li>
-					<li><a href="http://www.linkedin.com/company/sportsmarkit-llc" class="linkedin"><i class="ion-social-linkedin"></i></a></li>
-					<li><a href="https://www.youtube.com/channel/UCqUJWPlVMlspYN-xumCHIqw" class="youtube"><i class="ion-social-youtube"></i></a></li>
-				</ul>
-				<div class="copyright v-text semi-bold gf_oswald upper pull-right">
-
-					<span class="text-white fs_14">sportsmarkit &copy; 2015</span>
-					<span class="muted ml10 fs_14">|</span>
-					<span class="ml20 fs_14">
-						<%= link_to "Terms of Use and Privacy Agreement", "/SportsMarkit-Terms.pdf", class: "text-white" %> 
-					</span>
-					<span class="muted ml10 fs_14">|</span>
-					<span class="muted ml20 fs_14">
-						<%= link_to "contact us", "/contact", class: "text-white" %> 
-					</span>
+			<div class="row">
+				<div class="col-sm-6 pull-left">
+					<div class="">
+						<div class="panel-body">
+							<h4 class="highlight ws2 semi-bold margin-bottom-5">
+								<i class="material-icons margin-right-10">&#xE7EF;</i> CLUBS AND LEAGUES
+							</h4>
+							<!-- <h3 class="text-black ws2 margin-top-0">TAKE YOUR SCHOOL DIGITAL</h3> -->
+							<p class="lead">We provide scheduling, communication, registration, team websites and more so you can save time and your sanity.</p>
+							<div class="row">
+								<div class="col-sm-6">
+									<ul class="semi-bold text-muted h6 no-margin">
+										<li>Get setup in minutes</li>
+										<li>Text message notifications</li>
+										<li>Online calendar</li>
+										<li>Collect payments</li>
+										<li>Manage schedules</li>
+									</ul>
+								</div>
+								<div class="col-sm-6">
+									<ul class="semi-bold text-muted h6 no-margin">
+										<li>Get setup in minutes</li>
+										<li>Text message notifications</li>
+										<li>Online calendar</li>
+										<li>Collect payments</li>
+										<li>Manage schedules</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div><!--.col-->
+				</div><!--.row-->
+				<div class="col-sm-6">
+					<div class="row">
+						<div class="col-xs-6">
+							<%= image_tag("screens/setup.png", alt: "", class: "img-responsive thumbnail") %>
+						</div>
+						<div class="col-xs-6">
+							<%= image_tag("screens/teams.png", alt: "", class: "img-responsive thumbnail") %>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">
+							<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+						</div>
+						<div class="col-xs-6">
+							<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+						</div>
+					</div>
 				</div>
-				
-			</div><!--.container-->
-		</div><!--.footer-->
-	</div>
-	<% end %>
+			</div><!--.row-->
+		</div><!--.container-->
+	</div><!--.slide-->
+
+	<div class="slide bg-image" data-nav="remove" style="background-image: url('http://www.olgchs.org/uploaded/Athletics/Soccer-girls/2014_G_FR_Socc_WEB.jpg'); background-size: cover;">
+		<div class="container z1 text-center">
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="h0 text-white text-light-shadow">
+						GET YOUR TEAM ONLINE IN <span class="highlight ls1">MINUTES</span>
+					</h1>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+				</div><!--.col-->
+			</div><!--.row-->
+		</div><!--.container-->
+		<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
+	</div><!--.slide-->
+
+	<div class="slide" data-nav="slide4" style="background: #fefefe;">
+		<div class="container">
+
+			<h1 class="text-center">
+				GET STARTED FOR <span class="highlight ls1"><u>FREE</u></span>
+			</h1>
+			<p class="text-center lead">
+				The <span class="bold text-primary">ultimate, easy-to-use, all-in-one</span> team management and engagement tool.
+			</p>
+
+			<div class="row pricing-table">
+				<table class="table table-condensed table-hover table-striped">
+					<thead>
+						<tr class="transparent">
+							<th></th>
+							<th></th>
+							<th></th>
+							<th width="20%" class="active box-shadow" style="border-radius: 6px 6px 0 0 ;">
+								<span class="pack">Popular</span>
+							</th>
+							<th></th>
+						</tr>
+						<tr>
+							<th></th>
+							<th  width="20%" class="box-shadow">
+								<span class="pack">Schools</span>
+								<span class="price-container">
+									<h3 class="no-margin text-white">FREE</h3>
+									Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+								</span>
+							</th>
+							<th  width="20%" class="box-shadow">
+								<span class="pack">Clubs</span>
+								<span class="price-container">
+									<h3 class="no-margin text-white">FREE</h3>
+									Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+								</span>
+							</th>
+							<th width="20%" class="active">
+								<p class="padding-top-40 no-margin">
+									<span class="pack">Leagues</span>
+								</p>
+								<span class="price-container">
+									<h3 class="no-margin">FREE</h3>
+									Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+								</span>
+							</th>
+							<th  width="20%" class="box-shadow">
+								<span class="pack">Athletes</span>
+								<span class="price-container">
+									<h3 class="no-margin text-white">FREE</h3>
+									Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+								</span>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="categories">Roster</td>
+							<td>1 GB</td>
+							<td>1 GB</td>
+							<td class="active">2 GB</td>
+							<td>5 GB</td>
+						</tr>
+						<tr>
+							<td class="categories">Schedule</td>
+							<td>1 Core</td>
+							<td>1 GB</td>
+							<td class="active">2 Core</td>
+							<td>4 Core</td>
+						</tr>
+						<tr>
+							<td class="categories">Email Reminders</td>
+							<td>150 GB</td>
+							<td>1 GB</td>
+							<td class="active">200 GB</td>
+							<td>250 GB</td>
+						</tr>
+						<tr>
+							<td class="categories">Team Fansite</td>
+							<td>5 TB</td>
+							<td>1 GB</td>
+							<td class="active">10 TB</td>
+							<td>20 TB</td>
+						</tr>
+						<tr>
+							<td class="categories">Text Messaging</td>
+							<td>1 GB</td>
+							<td><i class="fa fa-times"></i></td>
+							<td class="active"><i class="fa fa-check"></i></td>
+							<td><i class="fa fa-check"></i></td>
+						</tr>
+						<tr>
+							<td class="categories">Availability</td>
+							<td>1 GB</td>
+							<td>5 TB</td>
+							<td class="active">10 TB</td>
+							<td>20 TB</td>
+						</tr>
+						<tr>
+							<td class="categories">Payment Tracking</td>
+							<td>1 GB</td>
+							<td>5 TB</td>
+							<td class="active">10 TB</td>
+							<td>20 TB</td>
+						</tr>
+						<tr>
+							<td class="categories">Online Collections</td>
+							<td>1 GB</td>
+							<td>5 TB</td>
+							<td class="active">10 TB</td>
+							<td>20 TB</td>
+						</tr>
+						<tr>
+							<td class="categories">Refreshments</td>
+							<td>1 GB</td>
+							<td>5 TB</td>
+							<td class="active">10 TB</td>
+							<td>20 TB</td>
+						</tr>
+						<tr>
+							<td class="categories">Track Anything</td>
+							<td>1 GB</td>
+							<td>5 TB</td>
+							<td class="active">10 TB</td>
+							<td>20 TB</td>
+						</tr>
+						<tr>
+							<td class="categories">Priority Email Support</td>
+							<td>1 GB</td>
+							<td>5 TB</td>
+							<td class="active">10 TB</td>
+							<td>20 TB</td>
+						</tr>
+						<tr>
+							<td class="categories">No Web Banner Ads</td>
+							<td>1 GB</td>
+							<td>5 TB</td>
+							<td class="active">10 TB</td>
+							<td>20 TB</td>
+						</tr>
+						<tr>
+							<td class="categories">Weather Forecasts</td>
+							<td>1 GB</td>
+							<td>5 TB</td>
+							<td class="active">10 TB</td>
+							<td>20 TB</td>
+						</tr>
+						<tr>
+							<td class="categories">Statistics</td>
+							<td>1 GB</td>
+							<td>5 TB</td>
+							<td class="active">10 TB</td>
+							<td>20 TB</td>
+						</tr>
+						<tr>
+							<td class="categories">Custom Domain Name</td>
+							<td>1 GB</td>
+							<td>5 TB</td>
+							<td class="active">10 TB</td>
+							<td>20 TB</td>
+						</tr>
+						<tr>
+							<td class="categories">Customized Team Logo</td>
+							<td>1 GB</td>
+							<td>5 TB</td>
+							<td class="active">10 TB</td>
+							<td>20 TB</td>
+						</tr>
+						<tr>
+							<td class="categories">Customized Team Colors</td>
+							<td>1 GB</td>
+							<td>5 TB</td>
+							<td class="active">10 TB</td>
+							<td>20 TB</td>
+						</tr>
+						<tr>
+							<td class="categories">Customized Player Fields</td>
+							<td>1 GB</td>
+							<td>5 TB</td>
+							<td class="active">10 TB</td>
+							<td>20 TB</td>
+						</tr>
+						<tr>
+							<td class="categories">Customized Player Fields</td>
+							<td>1 GB</td>
+							<td>5 TB</td>
+							<td class="active">10 TB</td>
+							<td>20 TB</td>
+						</tr>
+
+						<tr>
+							<td class="categories">SSL</td>
+							<td>1 GB</td>
+							<td><i class="fa fa-times"></i></td>
+							<td class="active"><i class="fa fa-times"></i></td>
+							<td><i class="fa fa-check"></i></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th></th>
+							<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
+							<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
+							<th class="active">
+								<p class="paddingp-bottom-60 padding-top-40">
+									<a href="#" class="btn btn-block btn-primary">Order Now</a>
+								</p>
+							</th>
+							<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
+						</tr>
+					</tfoot>
+				</table>
+			</div><!--.row-->
+		</div><!--.container-->
+	</div><!--.slide-->
+
+	<div class="slide" data-nav="slide5">
+		<div class="container">
+			<h3 class="text-black text-center">CONTACT</h3>
+			<p class="caption text-center">We will be glad if you write us.</p>
+			<div class="row">
+				<div class="col-md-6 col-xs-12">
+					<div class="form-group">
+						<div class="inputer inputer-teal floating-label">
+							<div class="input-wrapper">
+								<input type="text" name="" class="form-control">
+								<label>First name</label>
+							</div><!--.input-wrapper-->
+						</div><!--.inputer-->
+					</div><!--.form-group-->
+				</div><!--.col-->
+				<div class="col-md-6 col-xs-12">
+					<div class="form-group">
+						<div class="inputer inputer-teal floating-label">
+							<div class="input-wrapper">
+								<input type="text" name="" class="form-control">
+								<label>Last name</label>
+							</div><!--.input-wrapper-->
+						</div><!--.inputer-->
+					</div><!--.form-group-->
+				</div><!--.col-->
+			</div><!--.row-->
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<div class="inputer inputer-teal floating-label">
+							<div class="input-wrapper">
+								<textarea class="form-control js-auto-size" rows="1"></textarea>
+								<label>Your message</label>
+							</div>
+						</div>
+					</div><!--.form-group-->
+				</div><!--.col-->
+			</div><!--.row-->
+
+			<div class="row">
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-teal pull-right">SEND</button>
+				</div><!--.col-->
+			</div><!--.row-->
+
+		</div><!--.container-->
+
+	</div><!--.slide-->
+
+	<div class="footer bg-black">
+		<div class="container">
+
+			<ul class="social-list">
+				<li><a href="javascript:;" class="facebook"><i class="ion-social-facebook"></i></a></li>
+				<li><a href="javascript:;" class="twitter"><i class="ion-social-twitter"></i></a></li>
+				<li><a href="javascript:;" class="pinterest"><i class="ion-social-github"></i></a></li>
+			</ul>
+
+			<div class="copyright v-text">TEAMFOX &copy; 2015</div>
+
+		</div><!--.container-->
+	</div><!--.footer-->

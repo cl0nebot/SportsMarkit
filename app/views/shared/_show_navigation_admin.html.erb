@@ -15,12 +15,13 @@
 		    Signed Documents
           <% end %>
 		</li>
-        
+        <% unless @object.instance_of? User %>
 		<li>
           <%= link_to eval("#{@object.class.to_s.underscore.downcase}_documents_path(@object)") do %>
 		    Documents
           <% end %>
 		</li>
+        <% end %>
 		<li>
           <%= link_to eval("#{@object.class.to_s.underscore.downcase}_registrations_path(@object)") do %>
 		    Registrations

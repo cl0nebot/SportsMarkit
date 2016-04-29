@@ -15181,3 +15181,82 @@ pre .hljs {
         display: none !important;
     }
 }
+
+
+/*custom*/
+
+.pricing-table thead {
+    background: #3b89ca;
+}
+
+.pricing-table thead tr.transparent th {
+    background: #fff;
+}
+.pricing-table {
+    box-shadow: 1px 1px 1px #ccc;
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    border-width: 1px;
+    border-radius: 6px;
+    border-right: 0;
+
+}
+
+.pricing-table table {
+    margin:  50px 0;
+
+}
+
+.pricing-table table tbody td {
+  padding: 5px 20px !important;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 800;
+  color: #888;
+}
+
+.pricing-table table tbody {
+  border: 1px solid #eee;
+}
+
+.pricing-table table .pack {
+    color: #337ab7;
+    font-size: 23px;
+    font-weight: 800;
+}
+.pricing-table table .price-container {
+    padding: 0px 0 25px 0;
+    font-size: 16px;
+    color: #ddd;
+    font-weight: 400;
+}
+
+.pricing-table table .active .price-container {
+    color: #555;
+}
+.pricing-table table .pack {
+    color: #fff;
+    font-size: 23px;
+    font-weight: 800;
+    padding-bottom: 0;
+}
+.pricing-table table .active .pack {
+    color: #fff;
+}
+.table > tbody > tr > td.active {
+    box-shadow: 1px 5px 5px #ccc;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+.table > tfoot > tr > th.active {
+    border-radius: 0 0 4px 4px;
+    box-shadow: 1px 5px 5px #ccc;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+.table > thead:first-child > tr:first-child > th.active {
+  box-shadow: 1px 5px 5px #ccc;
+  background: #fec006;
+  border-bottom: none
+}
+
