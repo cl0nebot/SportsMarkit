@@ -422,6 +422,7 @@ PLATFORMS
 DEPENDENCIES
   actionpack-action_caching
   active_model_serializers
+  addressable
   american_date
   axlsx (= 2.1.0.pre)
   axlsx_rails

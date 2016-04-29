@@ -22,12 +22,14 @@ $(document).ready ->
 
   $('#master_form').change ->
     formId = $(@).val()
-    return if formId is ''
-    
-    $.ajax
-      type: "GET"
-      url: "/forms/#{formId}"
-      dataType: 'JSON'
-      success: (response) ->
-        formBuilder = initFormBuilder($.parseJSON(response.data))
-        formBuilder.mainView.handleFormUpdate()
+    if formId is ''
+      formBuilder = initFormBuilder($('#fb-template').data('form'))
+      formBuilder.mainView.handleFormUpdate()
+    else
+      $.ajax
+        type: "GET"
+        url: "/forms/#{formId}"
+        dataType: 'JSON'
+        success: (response) ->
+          formBuilder = initFormBuilder($.parseJSON(response.data))
+          formBuilder.mainView.handleFormUpdate()

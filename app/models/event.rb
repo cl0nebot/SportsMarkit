@@ -1,3 +1,5 @@
+require "addressable/uri"
+
 class Event < ActiveRecord::Base
   include ActiveModel::Serialization
   include Access
