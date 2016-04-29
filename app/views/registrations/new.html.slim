@@ -39,8 +39,9 @@
               h6
                 | Didn't find your child?
                 = link_to " Add new", "javascript:;", "data-toggle" => "collapse", "data-target" => "#new-child-form", id: "toggle-new-child-form"
-          #new-child-form.collapse
-            = render "children/form", url: user_children_path(current_user), child: current_user.children.build, remote: true
+          - if current_user
+            #new-child-form.collapse
+              = render "children/form", url: user_children_path(current_user), child: current_user.children.build, remote: true
           br
           #form-reg
             = render 'registrations/form', form: @form, master: @master, object: @object, submitter: current_user
