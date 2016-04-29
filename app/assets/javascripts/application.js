@@ -142,26 +142,20 @@
 //= require ./notify
 //= require_tree ./formbuilder1
 //= require form_build_init
-$(document).click(function(event) {
-  var ClickedVariable = $(event.target).text();
-  if (ClickedVariable == "Upload Media") {
-    $('#media-page').load(document.URL +  ' #media-page');
-  }
-});
 
 $(document).click(function(event) {
-  var ClickedVariable = $(event.target).text();
+  var ClickedVariable = $.trim($(event.target).text());
   if (ClickedVariable == "Media") {
     $('#load-masonry').load(document.URL +  ' #load-masonry');
   }
-});
-
-$(document).click(function(event) {
-  var ClickedVariable = $(event.target).text();
+  if (ClickedVariable == "Upload Media") {
+    $('#media-page').load(document.URL +  ' #media-page');
+  }
   if (ClickedVariable == "About") {
     $('#masonry-about-tab').load(document.URL +  ' #masonry-about-tab');
   }
 });
+
 
 window.FileValidation = function () {
   $('.file-field, #file-field').on('change.bs.fileinput', function() {
@@ -199,4 +193,6 @@ $(function(){
     maxDate: moment().add(1, "year").toDate()
   });
 });
+
+
 
