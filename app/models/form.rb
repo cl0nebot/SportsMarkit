@@ -9,16 +9,8 @@ class Form < ActiveRecord::Base
 
   attr_accessor :stripe_token
 
-  def self.create_master(params={}, form_params)
-    master_form = Form.where(submittable_type: params[:submittable_type], submittable_id: params[:submittable_id], master: true).last
-    if !master_form.present?
-      master = Form.new(submittable_type: params[:submittable_type], submittable_id: params[:submittable_id], master: true)
-      master.save
-    else
-      master_form.update_attributes(form_params)
-      master_form.update_attributes(formable_type: nil, formable_id: nil, master: true)
-    end
-    master_form
+  def self.master_form(form_params)
+    where(formable_type: form_params[:formable_type], formable_id: form_params[:formable_id], master: true).first_or_create
   end
 
   def registrant
