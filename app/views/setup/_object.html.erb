@@ -3,7 +3,7 @@
   <div class="card mb0" id="apply-for-school-team-<%= object.id %>">
     <div class="card-heading pl20 pt10 pr10 pb10">
       <div class="row">
-         <div class="col-sm-10">
+         <div class="col-xs-10">
             <h5 class="fs_14 lh_18 bold no-margin text-black">
               <%= truncate(object.proper_name, length: 38) %>
             </h5>
@@ -14,7 +14,7 @@
               <% end %>
             </p>
           </div>
-          <div class="col-sm-2">
+          <div class="col-xs-2">
             <% role = Role.where(roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", role: classification, user_id: user.id) %>
             <%= link_to add_role_path(id: user.id, roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", role: classification, user_id: user.id), class: "btn btn-floating btn-orange btn-sm btn-ripple", remote: true, id: "#{classification.delete(" ")}-#{object.class.to_s}-#{object.id}-add-button", style: (role.present? ? "display: none" : "display: block") do %>
               <i class="text-white ion-plus-round"></i>
