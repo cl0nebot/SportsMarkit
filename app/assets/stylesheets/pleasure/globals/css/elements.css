@@ -15262,3 +15262,12 @@ pre .hljs {
 
 .width-100p {width: 100%;}
 .padding-5 {padding: 5px;}
+
+.btn-floating.btn-sm {
+    width: 32px;
+    height: 32px;
+    padding: 2px;
+    border-radius: 50%;
+    border: 0;
+    font-size: 18px;
+}

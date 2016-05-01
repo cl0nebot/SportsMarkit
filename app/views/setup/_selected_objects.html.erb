@@ -2,36 +2,34 @@
 <% if ["Athlete", "Student Athlete", "Coach", "Team Manager", "Club Director", "School Manager", "Guardian", "Athletic Director"].include? classification %>
 	
 	<% objects.each do |object| %>
-	  <li class="has-action-left has-action-right" id="non_school_object_<%= object.id %>">
+	  <li class="has-action-left" id="non_school_object_<%= object.id %>">
 	    <a href="#" class="visible">
-	      <div class="list-content ml0 pl80">
+	      <div class="list-content ml0 pl60 pt0 pb10 pr5 b-rad-4">
 	      	<div class="list-action-left">
-		        <%= link_to delete_role_path(user_id: user.id, role_id: (Role.where(user_id: user.id, roleable_type: object.class.to_s, roleable_id: object.id, role: classification).last.id), classification: classification, roleable_type: object.class.to_s, roleable_id: object.id), class: 'btn btn-floating btn-orange btn-ripple', remote: true do %>
+		        <%= link_to delete_role_path(user_id: user.id, role_id: (Role.where(user_id: user.id, roleable_type: object.class.to_s, roleable_id: object.id, role: classification).last.id), classification: classification, roleable_type: object.class.to_s, roleable_id: object.id), class: 'btn btn-floating btn-sm btn-orange btn-ripple', remote: true do %>
 		          <i class="ion-android-close text-white"></i>
 		        <% end %>
 		      </div>
-  				<span class="text-muted bold">
-  					<%= object.name %>
+  				<span class=" bold fs_14 lh_18">
+  					<%= truncate(object.name, length: 40) %>
   					<%#= object.with_school_name %>
   					<%#= object.proper_name %>
   				</span>
-  				<span class="caption">
-  					<span class="material-icons fs_14 text-primary inline-block">&#xE8B4;</span>
+  				<span class="caption fs_12 lh_12">
+  					<span class="material-icons fs_12 text-primary inline-block">&#xE8B4;</span>
   	        <%= object.address.city_state unless object.instance_of?(User)%>
   	        <%#= pluralize object.users.count, "member" %>
   				</span>
 	      </div>
-	      <div class="list-action-right">
+	     <!--  <div class="list-action-right">
 	        <% if current_user.pending_object?(classification, object) %>
-	          <p class="mt15 text-primary ">
+	          <p class="mt15 text-muted ">
 	          	Pending
-	          	<br/>
-	      	    <i class="ion-ios-help-outline mr10"></i>
 	      		</p>
 	        <% else %>
 	          <i class="ion-android-checkmark-circle"></i>
 	        <% end %>
-	      </div>
+	      </div> -->
 	    </a>
 	  </li>
     <hr class="no-margin"/>
@@ -50,26 +48,23 @@
 
 		<h5 class="bold text-black">Your School</h5>
 
-   			<div class="panel-body without-padding">
+   <div class="panel-body without-padding">
 			<ul class="list-material">
 				<li class="has-action-left has-action-right">
 					<a href="#" class="visible">
 						<div class="list-action-left">
 							<% if user.athletic_directors.present? %>
-					        <%= link_to user_remove_athletic_director_path(user_id: user.id, school_id: user.athletic_directors.last.try(:school).try(:id)) , class: 'btn btn-floating btn-orange btn-ripple', remote: true, method: :delete do %>
+					        <%= link_to user_remove_athletic_director_path(user_id: user.id, school_id: user.athletic_directors.last.try(:school).try(:id)) , class: 'btn btn-floating btn-orange btn-ripple  btn-sm', remote: true, method: :delete do %>
 					          <i class="ion-android-close"></i>
 					        <% end %>
 							<% end %>
 						</div>
 						<div class="list-content padding-left-30">
 							<% if user.athletic_directors.present? %>
-							<span class="title">
-							
-								  <%= user.athletic_directors.last.school.name %>
-	
-							
+							<span class="title fs_14 bold">
+								<%= user.athletic_directors.last.school.name %>
 							</span>
-							<span class="caption">
+							<span class="caption fs_12">
 								<%= user.athletic_directors.last.school.city_and_state %> 
 								,<%= pluralize user.athletic_directors.last.school.teams.count, "Team" %>
 								,<%= pluralize user.athletic_directors.last.school.people.count, "User" %>  
@@ -77,7 +72,7 @@
 							<% end %>
 						</div>
 					
-						<div class="list-action-right">
+						<!-- <div class="list-action-right">
 							<% if user.athletic_directors.present? %>
 							  <% unless user.athletic_directors.last.accepted? %>
 							    <span class="top">Pending</span>
@@ -85,7 +80,7 @@
 							    <i class="ion-android-checkmark-circle bottom"></i>
 							  <% end %>
 							<% end %>
-						</div>
+						</div> -->
 					</a>
 				</li>
 			</ul>

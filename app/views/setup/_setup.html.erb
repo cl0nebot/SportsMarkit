@@ -1,7 +1,5 @@
 <h4 class="text-white text-center mt0 bold"><span class="text-orange mr5">Step 2:</span> Add Your <%= description.pluralize.downcase %></h4>
-<ul class="list-material b-rad-4-top" id="<%= classification.delete(" ") %>-list">
-	<%= render 'selected_objects', objects: selected_objects, classification: classification, user: @user %>
-</ul>
+
 <% if ["Athlete", "Athletic Director", "School Manager", "Club Director"].include? classification  %>
 	<h6 class="muted semi-bold">Can't find your <%= description.downcase %>?
 		<a href="#" data-toggle="modal" data-target="#panel-new-<%= description.downcase %>-setup" class="open-modal"><u>Create a <%= description %></u></a>
@@ -17,15 +15,24 @@
 				</span>
 				<div class="inputer">
 					<div class="inputer-wrapper">
-						<input type="text" class="fs_20 bold quicksearch-teams typeahead typeahead-<%= typeahead %> form-control"placeholder="Search for your <%= description.downcase %>"></input>
+						<input type="text" class="fs_18 bold quicksearch-teams typeahead typeahead-<%= typeahead %> form-control"placeholder="Search for your <%= description.downcase %>"></input>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<hr class="no-margin light"/>
-	<div class="panel-body pt15" style="background: #ddd; height: 400px; overflow: scroll;">
-		<div class="row teams images" id="list">
+	<div class="" style="background: #ddd; height: 400px; overflow: scroll;">
+		<div class="panel-body padding-20">
+			<div class="well b-rad-4 mb0">
+				<h6 class="text-muted text-center bold">Teams Added</h6>
+				<ul class="list-material" id="<%= classification.delete(" ") %>-list">
+					<%= render 'selected_objects', objects: selected_objects, classification: classification, user: @user %>
+				</ul>
+			</div>
+		</div>
+		<h6 class="text-muted text-center bold mb10">Search Results</h6>
+		<div class="teams images" id="list">
 			<%= render 'list', objects: objects, classification: classification, user: @user %>
 		</div>
 		<div class="clearfix"></div>
