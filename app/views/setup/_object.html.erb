@@ -1,34 +1,30 @@
-<div class="element-item col-md-12" data-category="" id="<%= classification %>-<%= object.class.to_s %>-<%= object.id %>" >
-  <div class="card card-meal card-meal-blue card-square card-shadow b-rad-4 mb10">
-    <div class="card-heading pl20 pr0 b-rad-4">
+
+<div class="element-item width-100p" data-category="" id="<%= classification %>-<%= object.class.to_s %>-<%= object.id %>">
+  <div class="card mb0" id="apply-for-school-team-<%= object.id %>">
+    <div class="card-heading pl20 pt10 pr10 pb10">
       <div class="row">
-        <div class="col-sm-10">
-          <h5 class="fs_14 lh_18 bold no-margin">
-            <%= object.proper_name %>
-          </h5>
-          <p class="small text-muted fs_12 mb0">
-            <span class="material-icons fs_14 text-primary inline-block">&#xE8B4;</span>
-            <% if object.address.city.present? && object.address.state.present? %>
-              <span class="inline-block"><%= object.address.city_state unless object.instance_of?(User)%></span>
-            <% end %>
-          </p>
-        </div>
-        <div class="col-sm-2">
-          <div id="apply-for-school-team-<%= object.id %>">
+         <div class="col-xs-10">
+            <h5 class="fs_14 lh_18 bold no-margin text-black">
+              <%= truncate(object.proper_name, length: 38) %>
+            </h5>
+            <p class="small text-muted fs_12 mb0">
+              <span class="material-icons fs_14 text-primary inline-block">&#xE8B4;</span>
+              <% if object.address.city.present? && object.address.state.present? %>
+                <span class="inline-block"><%= object.address.city_state unless object.instance_of?(User)%></span>
+              <% end %>
+            </p>
+          </div>
+          <div class="col-xs-2">
             <% role = Role.where(roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", role: classification, user_id: user.id) %>
-            
-            <%= link_to add_role_path(id: user.id, roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", role: classification, user_id: user.id), class: "btn btn-floating btn-orange btn-ripple floating-small", remote: true, id: "#{classification.delete(" ")}-#{object.class.to_s}-#{object.id}-add-button", style: (role.present? ? "display: none" : "display: block") do %>
+            <%= link_to add_role_path(id: user.id, roleable_type: object.class.to_s, roleable_id: object.id, status: "Pending", role: classification, user_id: user.id), class: "btn btn-floating btn-orange btn-sm btn-ripple", remote: true, id: "#{classification.delete(" ")}-#{object.class.to_s}-#{object.id}-add-button", style: (role.present? ? "display: none" : "display: block") do %>
               <i class="text-white ion-plus-round"></i>
             <% end %>
-            
-            <%= link_to "#", class: "btn btn-floating btn-orange btn-ripple floating-small", remote: true, id: "#{classification.delete(" ")}-#{object.class.to_s}-#{object.id}-claimed-button", style: (role.present? ? "display: block" : "display: none"), disabled: true do %>
+            <%= link_to "#", class: "btn btn-floating btn-sm btn-orange btn-ripple", remote: true, id: "#{classification.delete(" ")}-#{object.class.to_s}-#{object.id}-claimed-button", style: (role.present? ? "display: block" : "display: none"), disabled: true do %>
               <i class="text-white ion-checkmark"></i>
             <% end %>
-          </div><!-- team id -->
+          </div>
         </div>
+       
       </div>
     </div>
-  </div><!--.card-->
-  <div class="clearfix"></div>
-</div>
-
+  </div>

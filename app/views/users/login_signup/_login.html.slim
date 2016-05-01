@@ -27,7 +27,7 @@
           i.fa.fa-facebook.mr10.text-white
           | Facebook
       ul.extra-links.mt5.text-muted
-        li.fs_14
+        li
           | Don't have an account? 
-          a.bold.show-pane-create-account.inline href="#"
-            | Signup, it's free.
+          = link_to "Signup.", signup_path, class: "bold show-pane-login inline text-primary"
+
