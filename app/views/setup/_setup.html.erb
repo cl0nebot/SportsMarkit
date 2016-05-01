@@ -5,18 +5,15 @@
 		<a href="#" data-toggle="modal" data-target="#panel-new-<%= description.downcase %>-setup" class="open-modal"><u>Create a <%= description %></u></a>
 	</h6>
 <% end %>
-
-<div>
-  <div class="">
-		<div class="panel-body pt20 bg-white b-rad-4-top bg-light-grey">
-			<div class="input-group mb0">
-				<span class="input-group-addon">
-					<i class="ion ion-ios-search-strong text-primary fs_24"></i>
-				</span>
-				<div class="inputer">
-					<div class="inputer-wrapper">
-						<input type="text" class="fs_18 bold quicksearch-teams typeahead typeahead-<%= typeahead %> form-control"placeholder="Search for your <%= description.downcase %>"></input>
-					</div>
+<div style="box-shadow: 0 0 20px #333;">
+	<div class="panel-body pt20 bg-white b-rad-4-top bg-light-grey">
+		<div class="input-group mb0">
+			<span class="input-group-addon">
+				<i class="ion ion-ios-search-strong text-primary fs_24"></i>
+			</span>
+			<div class="inputer">
+				<div class="inputer-wrapper">
+					<input type="text" class="fs_18 bold quicksearch-teams typeahead typeahead-<%= typeahead %> form-control"placeholder="Search for your <%= description.downcase %>"></input>
 				</div>
 			</div>
 		</div>
@@ -37,7 +34,8 @@
 		</div>
 		<div class="clearfix"></div>
 	</div>
-</div>
+	
+
 
 
 <%= render "shared/panels/new_team_setup", role: role_for(classification), classification: classification %>

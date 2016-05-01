@@ -1,62 +1,56 @@
 <body class="bg-login bg-image-overlay-dark" style="background-image: url(http://elitesportsmiami.com/wp-content/uploads/2015/04/elitesportmiami-2.jpg); background-size: cover; background-repeat: no-repeat;
     background-attachment: fixed;">
 	  <div class="container">
+	  	<div class="col-lg-4 col-lg-offset-4">
     	<div class="panel panel-transparent bs-wizard bs-wizard-steps">
-		  	<div class="row">
-				  <div class="col-lg-12">
-		   	  	<div class="panel panel-transparent">
-				  		<h4 class="logo mt20 logo text-center text-white fs_24">
-					      <%= image_tag("icons/flag.png", height: "17", width: "auto", class: "margin-right-5", style: "margin-top: -3px;") %>
-					      <span class="text-white">SportsMarkit</span>
-					    </h4>
-				    </div>
-				    <h3 class="text-white text-center no-margin"><%= @user.name %></h3>
-						<div class="steps mb20">
-							<ul class="wizard-steps">
-								<% @user.classifications.each_with_index do |c, i| %>
-									<li class="step bold text-muted">
-										<a href="#form2_tab<%= i + 1 %>" data-toggle="tab"></a>
-										<span class="label label-primary"><%= c.classification %></span>
-									</li>
-								<% end %>
-							</ul>
-						</div><!--.steps-pull-right-->
+   	  	<div class="panel panel-transparent">
+		  		<h4 class="logo mt20 logo text-center text-white fs_24">
+			      <%= image_tag("icons/flag.png", height: "17", width: "auto", class: "margin-right-5", style: "margin-top: -3px;") %>
+			      <span class="text-white">SportsMarkit</span>
+			    </h4>
+		    </div>
+		    <h3 class="text-white text-center no-margin"><%= @user.name %></h3>
+				<div class="steps mb20">
+					<ul class="wizard-steps">
+						<% @user.classifications.each_with_index do |c, i| %>
+							<li class="step bold text-muted">
+								<a href="#form2_tab<%= i + 1 %>" data-toggle="tab"></a>
+								<span class="label label-primary"><%= c.classification %></span>
+							</li>
+						<% end %>
+					</ul>
+				</div><!--.steps-pull-right-->
 
-						<div class="row">
-				   		<div class="col-lg-4 col-lg-offset-4">
-								<div class="panel panel-transparent bg-white b-rad-4 no-border">
-									<div id="form2">
-										<div class="tab-content no-border">
-											<% @user.classifications.each_with_index do |c, i| %>
-												<div class="tab-pane pane" id="form2_tab<%= i+1 %>">
-													<%= render "setup", classification: c.classification, objects: objects(c.classification, @user), selected_objects: selected_objects(c.classification, @user), description: object_description(c.classification), typeahead: typeahead(c.classification)  %>
-												</div><!--.tab-pane-->
-											<% end %>
-										</div><!--.tab-content-->
-									</div>
-									<hr class="no-margin"/>
-									<div class="b-rad-4-bottom 	bgcolor-white padding-20">
-										<ul class="wizard clearfix">
-											<li class="bs-wizard-prev pull-left">
-												<button class="btn btn-white">Previous</button>
-											</li>
-											<li class="bs-wizard-next pull-right">
-												<button class="btn btn-primary text-white"><span class="text-white">Next</span></button>
-											</li>
-											<li class="bs-wizard-submit">
-												<p class="center mb0">
-													<%= link_to user_dashboard_index_path(@user), class: "btn btn-primary text-white" do %> 
-														<span class="text-white">Next Step <span class="ml10 fs_14 ion ion-chevron-right"></span></span>
-													<% end %>
-												</p>
-											</li>
-										</ul>
-									</div><!--.panel-footer-->
-								</div>
-							</div>
-						</div>
+				<div class="panel panel-transparent bg-white no-border b-rad-4">
+					<div id="form2">
+						<div class="tab-content no-border">
+							<% @user.classifications.each_with_index do |c, i| %>
+								<div class="tab-pane pane" id="form2_tab<%= i+1 %>">
+									<%= render "setup", classification: c.classification, objects: objects(c.classification, @user), selected_objects: selected_objects(c.classification, @user), description: object_description(c.classification), typeahead: typeahead(c.classification)  %>
+								</div><!--.tab-pane-->
+							<% end %>
+						</div><!--.tab-content-->
+					
+						<hr class="no-margin"/>
+						<div class="b-rad-4-bottom 	bgcolor-light-grey padding-20">
+							<ul class="wizard clearfix">
+								<li class="bs-wizard-prev pull-left">
+									<button class="btn btn-white">Previous</button>
+								</li>
+								<li class="bs-wizard-next pull-right">
+									<button class="btn btn-primary text-white"><span class="text-white">Next</span></button>
+								</li>
+								<li class="bs-wizard-submit">
+									<p class="center mb0">
+										<%= link_to user_dashboard_index_path(@user), class: "btn btn-primary text-white" do %> 
+											<span class="text-white">Next Step <span class="ml10 fs_14 ion ion-chevron-right"></span></span>
+										<% end %>
+									</p>
+								</li>
+							</ul>
+						</div><!--.panel-footer-->
 					</div>
-			  </div>
+				</div>
 	    </div>
 	  </div>
 	</div>
