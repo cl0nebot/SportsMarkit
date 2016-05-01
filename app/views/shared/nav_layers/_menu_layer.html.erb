@@ -156,15 +156,15 @@
  		<li>
  			<a href="javascript:;"><i class="ion-university mr5"></i> My Leagues</a>
  			<ul class="child-menu">
- 				<% current_user.leagues.each do |club| %>
+ 				<% current_user.leagues.each do |league| %>
  					<li>
- 						<%= link_to league_path(club) do %>
+ 						<%= link_to league_path(league) do %>
  							<i class="ion-university mr5"></i> <%= league.name %>
  						<% end %>
  					</li>
  				  <% if league.can_be_edited_by_user?(current_user)%>
  				    <li>
- 				    	<%= link_to edit_league_path(club) do %>
+ 				    	<%= link_to edit_league_path(league) do %>
  								<i class="ion-gear-b mr5"></i> <%= "Edit #{league.name}" %>
  							<% end %>
  				    </li>
