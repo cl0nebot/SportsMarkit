@@ -1,31 +1,30 @@
 <body class="bg-login bg-image-overlay-dark" style="background: url(http://cdn.sklz.com.s3.amazonaws.com/wp-content/uploads/2015/07/MiniBands_Act2_s.jpg) fixed no-repeat; background-size: cover;">
-    <div class="container">
-	  	<div class="row">
-			  <div class="col-lg-4 col-lg-offset-4">
-			  	<div class="panel panel-transparent">
-			  		<h4 class="logo mt20 logo text-center text-white fs_24">
-				      <%= image_tag("icons/flag.png", height: "17", width: "auto", class: "margin-right-5", style: "margin-top: -3px;") %>
-				      <span class="text-white">SportsMarkit</span>
-				    </h4>
-			    </div>
-			    <div class="panel panel-transparent">
-			  		<h3 class="text-white text-center semi-bold"><%= @user.name %></h3>
-						<h4 class="text-white text-center no-margin bold"><span class="text-orange mr5">Step 1:</span> Select a Profile</h4>
-			    </div>
-			    <div class="panel b-rad-4">
-				    <div id="type-list" class="bg-light-grey b-rad-4-top">
-							<%= render 'classifications/type', user: @user %>
-						</div>
-						<div class="padding-20 b-rad-4-bottom" style="background: #fff;">
-					    <%= link_to user_setup_path(@user), class: "btn btn-block btn-primary" do %> 
-					 			Next Step <span class="ml10 fs_14 ion ion-chevron-right"></span>
-							<% end %>
-			      </div>
-			    </div>
-			  </div>
-	    </div>
-	  </div>
-	</div>
+  <div class="container">
+  	<div class="row">
+		  <div class="col-lg-4 col-lg-offset-4">
+		  	<div class="panel panel-transparent">
+		  		<h4 class="logo mt20 logo text-center text-white fs_24">
+			      <%= image_tag("icons/flag.png", height: "17", width: "auto", class: "margin-right-5", style: "margin-top: -3px;") %>
+			      <span class="text-white">SportsMarkit</span>
+			    </h4>
+		    </div>
+		    <div class="panel panel-transparent">
+		  		<h3 class="text-white text-center semi-bold"><%= @user.name %></h3>
+					<h4 class="text-white text-center no-margin bold"><span class="text-orange mr5">Step 1:</span> Select a Profile</h4>
+		    </div>
+		    <div class="panel b-rad-4">
+			    <div id="type-list" class="bg-light-grey b-rad-4-top">
+						<%= render 'classifications/type', user: @user %>
+					</div>
+					<div class="padding-20 b-rad-4-bottom" style="background: #fff;">
+				    <%= link_to user_setup_path(@user), class: "btn btn-block btn-primary" do %> 
+				 			Next Step <span class="ml10 fs_14 ion ion-chevron-right"></span>
+						<% end %>
+		      </div>
+		    </div>
+		  </div>
+    </div>
+  </div>
 </body>
 
 
