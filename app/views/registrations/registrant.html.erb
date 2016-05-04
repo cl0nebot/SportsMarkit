@@ -26,7 +26,7 @@
           <h3 class="mb5">Registration Details: </h3>
           <p class="text-muted fs_16 mt0">
             View registation details for this user below.
-        </p>
+          </p>
           <hr class="mt0"/>
           <% @form.attributes.each do |attribute|  %>
             <% unless @form.send(attribute.first).blank? %>
@@ -46,6 +46,12 @@
           </p>
           <p class="no-margin"><b> Amount Paid:</b>
             <%= number_to_currency(@form.selected_option.option.price) %>
+          </p>
+          <p class="no-margin"><b> Ccnfirmation Code:</b>
+            <%#= number_to_currency(@form.selected_option.option.price) %>
+          </p>
+          <p class="no-margin"><b> Receipt number:</b>
+            <%#= number_to_currency(@form.selected_option.option.price) %>
           </p>
         </div>
       </div>
