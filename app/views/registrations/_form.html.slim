@@ -17,7 +17,7 @@
     h6.semi-bold.text-muted Registration Options
     .row
       - form.options.each_with_index do |option,i|
-        .radioer.col-md-4
+        .radioer.col-md-12
           = radio_button_tag 'registration_options', option.id, nil, type: "radio", name: "registration_options", id: "registration_options_#{i}", required: true
           label.text-black for="registration_options_#{i}"
             = "#{option.name}"
