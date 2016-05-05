@@ -6,7 +6,7 @@
                   </div>
                   <div class="list-content">
                     <span class="title">Add or Join <%= %> </span>
-                    <span class="caption">Create a new team or join an existing team.</span>
+                    <span class="caption"><%= User.user_type_subtitle(classification)%></span>
                   </div>
                   <div class="list-action-right">
                     <%= render 'dashboard/timestamp', klass: klass, object: object %>

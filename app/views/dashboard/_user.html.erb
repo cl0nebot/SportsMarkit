@@ -24,24 +24,15 @@
         </div>
         <div class="panel-body">
             <h5 class="bold">Actions</h5>
-            <% if Classification.exists?(user_id: object.id, classification: "Athlete") %>
-               <%= render 'dashboard/user/manage', klass: klass, object: object  %>
-               <!-- add placeholder design for managing teams -->
-            <% elsif Classification.exists?(user_id: object.id, classification: "Student Athlete") %>
-              <!-- add placeholder design for managing school teams -->
-            <% elsif Classification.exists?(user_id: object.id, classification: "Coach") %>
-              <!-- add placeholder design for managing school teams -->
-            <% elsif Classification.exists?(user_id: object.id, classification: "Guardian") %>
-              <!-- add placeholder design for managing school children -->
-            <% elsif Classification.exists?(user_id: object.id, classification: "Athletic Director") %>
-               <!-- add placeholder design for managing school schools -->
-            <% elsif Classification.exists?(user_id: object.id, classification: "Club Director") %>
-               <!-- add placeholder design for managing school clubs -->
-            <% elsif Classification.exists?(user_id: object.id, classification: "School Manager") %>
-              <!-- add placeholder design for managing school schools -->
-            <% elsif Classification.exists?(user_id: object.id, classification: "Team Manager") %>
-              <!-- add placeholder design for managing school teams -->
-            <% end %>
+          
+            <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Athlete") if Classification.exists?(user_id: object.id, classification: "Athlete") %>
+            <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Student Athlete") if Classification.exists?(user_id: object.id, classification: "Student Athlete") %>
+            <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Coach") if Classification.exists?(user_id: object.id, classification: "Coach") %>
+            <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Guardian") if ( Classification.exists?(user_id: object.id, classification: "Guardian") || User.find(object.id).children.present? ) %>
+            <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Athletic Director") if Classification.exists?(user_id: object.id, classification: "Athletic Director") %>
+            <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Club Director") if Classification.exists?(user_id: object.id, classification: "Club Director") %>
+            <%= render('dashboard/user/manage', klass: klass, object: object, classification: "School Manager") if Classification.exists?(user_id: object.id, classification: "School Manager") %>
+            <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Team Manager") if Classification.exists?(user_id: object.id, classification: "Team Manager") %>
             <br/>
             <%= render 'dashboard/user/events', klass: klass, object: object %>
             <br/>
