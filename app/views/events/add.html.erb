@@ -16,14 +16,14 @@
   <div class="row">
     <div class="col-md-12">
       <p>
-        <a href="#" class="btn btn-white">
+        <%= link_to @object, class: "btn btn-white" do %>
           <span class="material-icons valign-middle lh_12">&#xE314;</span>
           Back to My Profile
-        </a>
-        <a href="#" class="btn btn-white pull-right">
+        <% end %>
+        <%= link_to "/#{@object.class.to_s.pluralize.downcase.underscore}/#{@object.slug}#tab_calendar-tab", class: "btn btn-white pull-right" do %>
           <i class="material-icons valign-middle lh_12">&#xE8DF;</i>
           View Calendar
-        </a>
+        <% end %>
       </p>
       <div class="panel box-shadow-ccc pb50">
         <div class="panel-header bg-cyan pl20 pt20">

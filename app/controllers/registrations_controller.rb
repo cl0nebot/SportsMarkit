@@ -51,7 +51,8 @@ class RegistrationsController < ApplicationController
 
       @form.update_attributes(paid: true)
     end
-    redirect_to eval("#{@form.formable.class.to_s.underscore}_registrations_path(@form.formable)")
+    #redirect_to eval("#{@form.formable.class.to_s.underscore}_registrations_path(@form.formable)")
+    redirect_to user_registrations_path(@form.submitter_id)
   end
 
   def pay_manual
