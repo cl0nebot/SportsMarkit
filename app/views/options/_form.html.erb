@@ -29,7 +29,7 @@
         <div class="col-md-12">
           <div class="inputer">
             <div class="input-wrapper form-group">
-              <%= f.text_field :price, class: "form-control", required: true %>
+              <%= f.text_field :price, class: "form-control", required: true, disabled: o.selected_options.present? %>
               <div class="help-block with-errors"></div>
             </div>
           </div>
@@ -40,9 +40,11 @@
       <%= f.hidden_field :object, value: form.object %>
       <% if o.persisted? %>
         <button class="btn btn-large btn-blue" type="submit">Update</button>
-        <button class="btn btn-large btn-blue">
-          <%= link_to "Remove", eval("#{form.formable.class.to_s.downcase}_form_option_path(form.formable, form, o)"), method: :delete, remote: :true %>
-        </button>
+        <% unless o.selected_options.present? %>
+          <button class="btn btn-large btn-blue">
+            <%= link_to "Remove", eval("#{form.formable.class.to_s.downcase}_form_option_path(form.formable, form, o)"), method: :delete, remote: :true %>
+          </button>
+        <% end %>
       <% else %>
         <button class="btn btn-large btn-blue" type="submit">Create</button>
         <%= f.hidden_field :fake_id %>
