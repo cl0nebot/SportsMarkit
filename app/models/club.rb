@@ -50,7 +50,7 @@ class Club < ActiveRecord::Base
   
   
   def club_certifications
-    Certificate.where(user_id: [])#coaches.pluck(:id))
+    Certificate.where(user_id: coaches.pluck(:id))
   end
     
   def classification_with_hyphen
