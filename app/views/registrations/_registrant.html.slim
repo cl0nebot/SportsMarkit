@@ -16,6 +16,8 @@ li class=("has-action-right has-long-story registrant-#{registration.id}")
         - else
           | No option selected.
         span.inline
+          strong Confirmation Code:
+          = registration.confirmation
           - if registration.registrant.has_registered_for?(@object)
             strong Registration:
             = link_to "View Details", "/#{registration.formable_type.underscore.pluralize}/#{registration.formable.slug}/registrations/#{registration.id}/registrant"

@@ -25,4 +25,12 @@ class Form < ActiveRecord::Base
   def get_data
     (data.try(:[], 'fields').try(:values) || {}).to_json
   end
+  
+  def confirmation
+    if paid?
+      "#{formable_id}-#{id}-#{created_at.to_i}"
+    else
+      "N/A"
+    end
+  end
 end

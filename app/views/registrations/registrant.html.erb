@@ -38,11 +38,8 @@
           <p class="no-margin"><b> Amount Paid:</b>
             <%= number_to_currency(@form.selected_option.option.price) %>
           </p>
-          <p class="no-margin"><b> Ccnfirmation Code:</b>
-            <%#= number_to_currency(@form.selected_option.option.price) %>
-          </p>
-          <p class="no-margin"><b> Receipt number:</b>
-            <%#= number_to_currency(@form.selected_option.option.price) %>
+          <p class="no-margin"><b> Confirmation Code:</b>
+            <%= @form.confirmation %>
           </p>
           <p>Registrant info
             <% @form.user_data.values.each do |hash| %>
