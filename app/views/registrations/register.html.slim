@@ -23,21 +23,21 @@
           .panel-title.text-center
             br/
             h3 Registration Payment.
+            h6.bold Registration for #{@object.name}
+        hr.no-margin/
         = form_for [@form], url: registration_pay_path(@form.id), html:{class: "registration_card_form"} do |f|
           .panel-body.m-b-30.pr40.pl40
             .form-row.text-center
               .row.example-row.no-margin
                 .col-md-12
-                  | Register for #{@object.name}
-                .col-md-12
-                ul.text-left
-                  - @form.user_data.each do |key, value|
-                    li = "#{key.humanize}: #{value}"
-                  end
-                .col-md-12
-                  label.text-primary.semi-bold.text-center.h4.MB0
-                    = @form.selected_option.option.name
-                  h1.text-center.no-margin.semi-bold
+                  h6.mb0 Registrant
+                  h3.mt0 Cordis Stanfield
+                .col-md-10.col-md-offset-1
+                  p.mb10
+                    span.label.label-primary.bold.text-center.mb0
+                      | Option: 
+                      = @form.selected_option.option.name
+                  h2.text-center.no-margin.semi-bold
                     = number_to_currency(@form.selected_option.option.price, precision: 0)
                     small.small.h6
                       = "/year"

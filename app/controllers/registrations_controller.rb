@@ -20,7 +20,7 @@ class RegistrationsController < ApplicationController
 
   def create
     @form = Form.find_or_create_by(formable_id: params[:form][:formable_id], formable_type: params[:form][:formable_type], object: params[:object], submittable_id: params[:form][:submittable_id], submittable_type: params[:form][:submittable_type] )
-    SendEmail.new_registration(master_form.submitter, @form.submitter).deliver if Form.master_form(form_params).notify_creator
+    #SendEmail.new_registration(master_form.submitter, @form.submitter).deliver if Form.master_form(form_params).notify_creator
     @form.update_attributes(form_params)
     @form.select_pricing_option(@form.id, params)
     if @form.selected_option.option.price.zero?

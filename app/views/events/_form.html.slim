@@ -1,7 +1,7 @@
-div
+div.pt60
   .col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
     .panel.box-shadow-ccc
-      .panel-header.bg-cyan
+      / .panel-header.bg-cyan
         br
         - if @event.new_record?
           h5.text-right.text-white.semi-bold
@@ -12,19 +12,19 @@ div
         i.ion-plus-circled.margin-right-10.margin-left-10.text-white
         hr.margin-top-0
       = form_for [@object, @event], html: {id: 'event-form'} do |f|
-        .panel-body.padding-right-40.padding-left-40 style=("border-bottom: 1px solid #ddd;")
+        .panel-body.padding-right-40.padding-left-40.padding-bottom-40.bg-cyan
           .row
             .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.col-sm-12
               .row.text-center
                 .col-md-12
                   - if @event.new_record?
-                    h3.semi-bold.text-primary Create a new event
+                    h2.semi-bold.text-white Create a New Event
                   - else
                     h3.semi-bold.text-primary
                       | Update Event: #{@event.title}
-                  h4 What type of event?
+                  h4.text-white 1. What type of event?
               .row.margin-bottom-0
-                .col-lg-6.col-lg-offset-3.col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.well
+                .col-lg-6.col-lg-offset-3.col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1
                   = f.collection_select :event_type, EventType.pluck(:event_type), :to_s, :to_s, {include_blank: false}, {:multiple => false, "data-live-search" =>  true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0" }
         .panel-body.padding-right-40.padding-left-40 style=("border-bottom: 1px solid #e5e5e5;")
           .panel-body.padding-right-40.padding-left-40
@@ -101,7 +101,7 @@ div
             = f.hidden_field :user_id, value: current_user.id
             - if @event.new_record?
               = f.hidden_field :eventable_type, value: @object.class.to_s
-        .panel-body.padding-right-40.padding-left-40.bg-cyan
+        /.panel-body.padding-right-40.padding-left-40.bg-cyan
           .row.example-row.margin-bottom-0
             .col-md-12.text-center
               h3.text-white.margin-bottom-0 Have and Questions?
@@ -109,7 +109,7 @@ div
                 | Please check out our
                 a.text-white href="#"
                   u Events FAQ.
-        .form-buttons.no-margin
+        .form-buttons.no-margin.bgcolor-light-grey
           .row
             .col-lg-8.col-lg-offset-2
               br
