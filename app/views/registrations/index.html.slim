@@ -38,4 +38,5 @@
                 li role="presentation"
                   a aria-controls="settings" data-toggle="tab" href="#roster" role="tab" Roster
           .tab-content.no-border.no-padding
-            = render "registrations/tabs"
+            - unless @object.instance_of?(User)
+              = render "registrations/tabs"
