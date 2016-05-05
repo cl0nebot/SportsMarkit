@@ -9,8 +9,7 @@ class Club < ActiveRecord::Base
   include Import
   
   has_many :forms, as: :formable, dependent: :destroy
-  has_many :registrations, as: :registerable, dependent: :destroy
-  
+
   serialize :sports, Array
   has_many :roles, as: :roleable, dependent: :destroy
   has_many :userless_roles, as: :userless, dependent: :destroy
@@ -50,7 +49,7 @@ class Club < ActiveRecord::Base
   
   
   def club_certifications
-    Certificate.where(user_id: [])#coaches.pluck(:id))
+    Certificate.where(user_id: coaches.pluck(:id))
   end
     
   def classification_with_hyphen

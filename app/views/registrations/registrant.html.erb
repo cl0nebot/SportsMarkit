@@ -28,19 +28,10 @@
             View registation details for this user below.
           </p>
           <hr class="mt0"/>
-          <% @form.attributes.each do |attribute|  %>
-            <% unless @form.send(attribute.first).blank? %>
-              <% unless ["id", "formable_type", "formable_id", "submittable_id", "submittable_type", "created_at"].include? attribute.first %>
-                <% if attribute.first == "submitter_id" %>
-                  <p class="no-margin"><b> Submitted By:</b> <%= User.find(attribute.last).name %></p>
-                <% elsif attribute.first == "updated_at" %>
-                  <p class="no-margin"><b> Registration Date:</b> <%= format(attribute.last, 4) %></p>
-                <% else %>
-                  <p class="no-margin capitalize"><b> <%= pretty_column(attribute.first).titleize %>:</b> <%= @form.send(attribute.first) %></p>
-                <% end %>
-              <% end%>
-            <% end %>
-          <% end %>
+          <p class="no-margin"><b> Submitted By:</b> <%= @form.submitter.name %></p>
+          <p class="no-margin"><b> Registration Date:</b> <%= format(@form.created_at, 4) %></p>
+          <p class="no-margin"><b> Paid:</b> <%= @form.paid %></p>
+          <p class="no-margin"><b> Payment Type:</b> <%= @form.payment_type %></p>
           <p class="no-margin"><b> Option:</b>
             <%= @form.selected_option.option.name %>
           </p>
@@ -52,6 +43,14 @@
           </p>
           <p class="no-margin"><b> Receipt number:</b>
             <%#= number_to_currency(@form.selected_option.option.price) %>
+          </p>
+          <p>Registrant info
+            <% @form.user_data.values.each do |hash| %>
+              <p class="no-margin">
+                <b><%= hash.keys.first %>:</b>
+                <%= hash.values.join(', ') %>
+              </p>
+            <% end %>
           </p>
         </div>
       </div>

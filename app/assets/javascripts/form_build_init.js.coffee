@@ -8,13 +8,17 @@ $(document).ready ->
     )
 
     builder.on 'save', (payload) ->
-      $.ajax
-        type: "POST",
-        url: $('#fb-template').data('url'),
-        data:
-          data: $.parseJSON(payload)
-          name: $('#form_name').val()
-        dataType: "script"
+      if $('label>span:contains("Untitled")').length
+        $('label>span:contains("Untitled")').addClass('error')
+        alert('Please fill in titles for all fields')
+      else
+        $.ajax
+          type: "POST",
+          url: $('#fb-template').data('url'),
+          data:
+            data: $.parseJSON(payload)
+            name: $('#form_name').val()
+          dataType: "script"
 
     builder
 

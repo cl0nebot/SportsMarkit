@@ -77,6 +77,27 @@ class User < ActiveRecord::Base
   def self.user_types
     ["Student Athlete", "Athlete", "Coach", "Guardian", "Athletic Director", "Club Director", "School Manager", "Team Manager"]
   end
+  
+  def self.user_type_subtitle(type)
+    case type 
+    when "Student Athlete"
+      "Find your school team."
+    when "Athlete"
+      "Find your team."
+    when "Coach"
+      "Create a new team or find an existing team."
+    when "Guardian"
+      "Find your children."
+    when "Athletic Director"
+      "Create a new school or find an existing school."
+    when "Club Director"
+       "Create a new club or find an existing club."
+    when "School Manager"
+       "Create a new school or find an existing school."
+    when "Team Manager"
+       "Create a new team or find an existing team."
+    end
+  end
 
   def self.smart_order(user)
     id = user.try(:id) || 0
@@ -523,6 +544,10 @@ class User < ActiveRecord::Base
 
   def all_registration_forms
     Form.where(submittable: self)
+  end
+
+  def self.user_type_subtitle(classification)
+    classification
   end
 
 
