@@ -9,16 +9,16 @@ li class=("has-action-right has-long-story registrant-#{registration.id}")
       span.caption
         - if registration.selected_option.present?
           strong Option:
-          = registration.selected_option.option.name
+          |  #{registration.selected_option.option.name}
           | ,
-          strong Price:
-          = number_to_currency(registration.selected_option.option.price)
+          strong  Price:
+          |  #{number_to_currency(registration.selected_option.option.price)}
         - else
           | No option selected.
         span.inline
           - if registration.registrant.has_registered_for?(@object)
-            strong Registration:
-            = link_to "View Details", "/#{registration.formable_type.underscore.pluralize}/#{registration.formable.slug}/registrations/#{registration.id}/registrant"
+            strong  Registration:
+            = link_to " View Details", "/#{registration.formable_type.underscore.pluralize}/#{registration.formable.slug}/registrations/#{registration.id}/registrant"
   .list-action-right
     span.top
       = format(registration.updated_at, 1)
