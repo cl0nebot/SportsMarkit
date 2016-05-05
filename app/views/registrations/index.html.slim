@@ -25,14 +25,17 @@
             |  Registrations
           p.text-muted.fs_16
             | View the status of your #{@object.class.to_s.downcase}'s registrations below.
-          ul.nav.nav-tabs.fs_16.no-border.no-adding role="tablist"
-            li.active role="presentation"
-              a aria-controls="home" data-toggle="tab" href="#all" role="tab" All
-            li role="presentation"
-              a aria-controls="profile" data-toggle="tab" href="#paid" role="tab" Paid
-            li role="presentation"
-              a aria-controls="messages" data-toggle="tab" href="#unpaid" role="tab" Unpaid
-            li role="presentation"
-              a aria-controls="settings" data-toggle="tab" href="#roster" role="tab" Roster
+            - if @object.instance_of?(User)
+            
+            - else
+              ul.nav.nav-tabs.fs_16.no-border.no-adding role="tablist"
+                li.active role="presentation"
+                  a aria-controls="home" data-toggle="tab" href="#all" role="tab" All
+                li role="presentation"
+                  a aria-controls="profile" data-toggle="tab" href="#paid" role="tab" Paid
+                li role="presentation"
+                  a aria-controls="messages" data-toggle="tab" href="#unpaid" role="tab" Unpaid
+                li role="presentation"
+                  a aria-controls="settings" data-toggle="tab" href="#roster" role="tab" Roster
           .tab-content.no-border.no-padding
             = render "registrations/tabs"
