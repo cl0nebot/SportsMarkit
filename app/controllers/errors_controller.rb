@@ -1,6 +1,6 @@
 class ErrorsController < ApplicationController
   rescue_from Exception, :with => :server_error
-  layout false
+  render layout: "minimal"
   
   def not_found
     render :status => 404, :formats => [:html]

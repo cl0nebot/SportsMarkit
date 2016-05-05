@@ -1,36 +1,38 @@
 <div class="content">
-<div class="page-header full-content bg-primary mb0" style="min-height: 121px;">
-  <div class="row">
-    <div class="col-sm-6">
-      <h1 class="capitalize semi-bold">
-        <%= @object.name %>
-        <small>Customize Your Form</small>
-      </h1>
-    </div>
-    <div class="col-sm-6">
-      <ol class="breadcrumb">
-        <li><a href="/"><i class="ion-home"></i></a></li>
-        <li>
-          <a href="<%= eval("#{@object.class.to_s.downcase.pluralize}_path") %>"><%= @object.class.to_s.pluralize %></a>
-        </li>
-        <li><%= link_to @object.name, @object %></li>
-      </ol>
-    </div>
-  </div>
-  <%= render "shared/show_navigation_admin" %>
-</div>
-<br/>
-<br/>
 
-<div class="col-md-10 col-md-offset-2">
-  <div class="panel box-shadow-ccc">
-    <div class="panel-body pr50 pl50 pt50 pb50">
-      <%= text_field_tag :name, @form.name, id: 'form_name', placeholder: 'Input form name' %>
-      <% if current_user.try(:admin?) %>
-        <%= select_tag :master_form, options_for_select(Form.where.not(data: nil).where(master: true).pluck(:name, :id)), prompt: 'select master form' %>
-      <% end %>
-      <div id="fb-template" data-url="<%= create_or_update_form_forms_path(formable_id: @object.id, formable_type: @object.class.to_s, object: "Registration") %>"  data-form='<%= @form.get_data %>'></div>
+  <div class="page-header full-content bg-primary mb0" style="min-height: 121px;">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1 class="capitalize semi-bold">
+          <%= @object.name %>
+          <small>Customize Your Form</small>
+        </h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="ion-home"></i></a></li>
+          <li>
+            <a href="<%= eval("#{@object.class.to_s.downcase.pluralize}_path") %>"><%= @object.class.to_s.pluralize %></a>
+          </li>
+          <li><%= link_to @object.name, @object %></li>
+        </ol>
+      </div>
+    </div>
+    <%= render "shared/show_navigation_admin" %>
+  </div>
+
+  <br/>
+  <br/>
+
+  <div class="col-lg-10 col-lg-offset-1">
+    <div class="panel box-shadow-ccc">
+      <div class="panel-body pr50 pl50 pt50 pb50">
+        <%= text_field_tag :name, @form.name, id: 'form_name', placeholder: 'Input form name' %>
+        <% if current_user.try(:admin?) %>
+          <%= select_tag :master_form, options_for_select(Form.where.not(data: nil).where(master: true).pluck(:name, :id)), prompt: 'select master form' %>
+        <% end %>
+        <div id="fb-template" data-url="<%= create_or_update_form_forms_path(formable_id: @object.id, formable_type: @object.class.to_s, object: "Registration") %>"  data-form='<%= @form.get_data %>'></div>
+      </div>
     </div>
   </div>
-</div>
 </div>

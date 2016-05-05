@@ -4,18 +4,18 @@
 	  	<div class="col-lg-4 col-lg-offset-4">
     	<div class="panel panel-transparent bs-wizard bs-wizard-steps">
    	  	<div class="panel panel-transparent">
-		  		<h4 class="logo mt20 logo text-center text-white fs_24">
-			      <%= image_tag("icons/flag.png", height: "17", width: "auto", class: "margin-right-5", style: "margin-top: -3px;") %>
+		  		<h4 class="logo mt20 mb0 logo text-center text-white fs_22">
+			      <%= image_tag("icons/flag.png", height: "16", width: "auto", class: "margin-right-5", style: "margin-top: -3px;") %>
 			      <span class="text-white">SportsMarkit</span>
 			    </h4>
 		    </div>
-		    <h3 class="text-white text-center no-margin"><%= @user.name %></h3>
-				<div class="steps mb20">
+		    <!-- <h3 class="text-white text-center no-margin"><%= @user.name %></h3> -->
+				<div class="steps">
 					<ul class="wizard-steps">
 						<% @user.classifications.each_with_index do |c, i| %>
 							<li class="step bold text-muted">
 								<a href="#form2_tab<%= i + 1 %>" data-toggle="tab"></a>
-								<span class="label label-primary"><%= c.classification %></span>
+								<!-- <span class="label label-primary"><%= c.classification %></span> -->
 							</li>
 						<% end %>
 					</ul>
