@@ -291,7 +291,7 @@ hr.light {border-top-color: #fff; border-bottom: 1px solid #eee;}
 .gf_nunito {font-family: 'Nunito' !important;}
 .gf_roboto {font-family: 'Roboto Condensed' !important;}
 
-v-align-middle
+.valign-middle {vertical-align: middle !important}
 
 
 
@@ -985,3 +985,5 @@ li.step h6 {
   line-height: inherit !important;
   vertical-align: bottom !important;
 }
+
+.material-icons.valign-middle {vertical-align: middle !important}

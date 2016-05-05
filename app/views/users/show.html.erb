@@ -66,7 +66,7 @@
       <% if @object.can_be_edited_by_user?(current_user) %>
         <%= link_to edit_user_path(@user), class: "mt10 pull-right btn-primary btn button-striped button-full-striped btn-ripple mr20" do %>
           <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
-      <% end %>
+        <% end %>
       <% end %>
       <%= render 'shared/view_announcement_button', object: @object %>
       <%= render 'shared/show_navigations'%>
