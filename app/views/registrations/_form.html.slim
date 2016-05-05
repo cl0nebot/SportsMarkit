@@ -22,7 +22,7 @@
           label.text-black for="registration_options_#{i}"
             = "#{option.name}"
             | ,
-            span.bold= "#{number_to_currency(option.price)}"
+            span.bold= " #{number_to_currency(option.price)}"
     .help-block.with-errors
   br/
   h4.text-primary.semi-bold 3. Please complete a registration profile.

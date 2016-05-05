@@ -10,7 +10,10 @@ class RegistrationsController < ApplicationController
   def new
     @form = @object.forms.where(master: true).first
     @master = current_user? ? Form.where(submittable_type: "User", submittable_id: current_user.id, master: true).last : Form.new
-    redirect_to url_for(@object) if !@form.try(:options).present? && !params[:preview].present?
+    if !@form.try(:options).present? && !params[:preview].present?
+      flash[:error] = "Please add options" if params[:launch]
+      redirect_to_back(url_for(@object))
+    end
   end
 
   def register
