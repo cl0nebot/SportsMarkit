@@ -9,8 +9,10 @@
             </h5>
             <p class="small text-muted fs_12 mb0">
               <span class="material-icons fs_14 text-primary inline-block">&#xE8B4;</span>
-              <% if object.address.city.present? && object.address.state.present? %>
-                <span class="inline-block"><%= object.address.city_state unless object.instance_of?(User)%></span>
+              <% if object.address.present? %>
+                  <% if object.address.city.present? && object.address.state.present? %>
+                    <span class="inline-block"><%= object.address.city_state unless object.instance_of?(User)%></span>
+                  <% end %>
               <% end %>
             </p>
           </div>
