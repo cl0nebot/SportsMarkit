@@ -546,5 +546,9 @@ class User < ActiveRecord::Base
     Form.where(submittable: self)
   end
 
+  def self.user_type_subtitle(classification)
+    classification
+  end
+
 
 end
