@@ -25,7 +25,8 @@ class RegistrationsController < ApplicationController
     @form.select_pricing_option(@form.id, params)
     if @form.selected_option.option.price.zero?
       @form.update_attribute(:paid, true)
-      redirect_to url_for([@form.formable, :registrations])
+      #redirect_to url_for([@form.formable, :registrations])
+      redirect_to user_registrations_path(params[:form][:submittable_id])
     else
       redirect_to "/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/registrations/#{@form.id}/register"
     end
@@ -70,7 +71,11 @@ class RegistrationsController < ApplicationController
   end
 
   def load_form
-    @form = Form.find(params[:registration_id] || params[:form_id])
+    if params[:registration_id].present?
+      @form = Form.find(params[:registration_id])
+    elsif params[:form_id].present?
+      @form = Form.find(params[:form_id])
+    end
   end
 
   def load_master
