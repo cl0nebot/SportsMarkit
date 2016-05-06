@@ -24,9 +24,25 @@
             = @object.class.to_s
             |  Registrations
           p.text-muted.fs_16
-            | View the status of your #{@object.class.to_s.downcase}'s registrations below.
+            | View the status of your registrations below.
+          
+          br
+          table.table
+            thead
+              tr 
+                th Object Name
+                th Object Type
+                th Selected Option
+                th Price
+                th Confirmation Code
+            tbody
+              tr 
+                td Hylton
+                td Club
+                td Adult Registration
+                td 55
+            tfoot
             - if @object.instance_of?(User)
-            
             - else
               ul.nav.nav-tabs.fs_16.no-border.no-adding role="tablist"
                 li.active role="presentation"
