@@ -1,15 +1,16 @@
 <% klass = @object.class.to_s.downcase %>
 <div class="content">
-    <%= render 'dashboard/header', klass: klass %>
-    <br/>
-    <%= render 'dashboard/title', klass: klass, object: @object %>
+  <%= render 'dashboard/header', klass: klass %>
+  <br/>
+  <%= render 'dashboard/title', klass: klass, object: @object %>
   <hr class="no-margin"/>
+  
   <div class="row pt40">
-      <% unless klass == "user"%>
-          <%= render 'dashboard/other', klass: klass, object: @object %>
-      <% else %>
-          <%= render 'dashboard/user', klass: klass, object: @object %>
-      <% end %>
+    <% unless klass == "user"%>
+        <%= render 'dashboard/other', klass: klass, object: @object %>
+    <% else %>
+        <%= render 'dashboard/user', klass: klass, object: @object %>
+    <% end %>
       
 
     <!-- <div class="col-md-4">
@@ -22,10 +23,10 @@
         <div class="panel-body">
           <% klass = @object.class.to_s.downcase %>
           
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-</div>
-</div> -->
+  </div> -->
 </div>
 </div>
