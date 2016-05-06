@@ -549,6 +549,12 @@ class User < ActiveRecord::Base
   def self.user_type_subtitle(classification)
     classification
   end
+  
+  def kids
+    ids = Role.where(user_id: id, role: "Guardian", roleable_type: "User", status: "Active").pluck(:roleable_id)
+    kids = User.where(id: ids)
+    all = kids + children
+  end
 
 
 end
