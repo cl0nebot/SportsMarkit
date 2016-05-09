@@ -21,3 +21,5 @@
 
 en:
   hello: "Hello world"
+  uploads:
+    error: Oops. Invalid file type. Please select %{types} file.

@@ -33,7 +33,7 @@
     br/
     #invalid-message style=("display: none")
       .alert.alert-danger role="alert"
-        | Oops. Invalid file type. Please try again.
+        = t('uploads.error', types: 'xls, xlsx or csv')
   hr.no-margin/
   .panel-body
     = submit_tag "Import Schools",class: "btn btn-primary btn-block", disabled: true, id: "file-submit"

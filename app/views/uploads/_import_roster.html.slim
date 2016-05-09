@@ -19,7 +19,8 @@
       br
       #invalid-message style=("display: none")
         .alert.alert-danger role="alert"
-          | Oops. Invalid file type. Please try again.
+          = t('uploads.error', types: 'xls, xlsx or csv')
+
     hr.no-margin
     .panel-body
       = hidden_field_tag :object, @object.class

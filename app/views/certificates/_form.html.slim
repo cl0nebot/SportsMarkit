@@ -33,7 +33,7 @@
                 br
                 #invalid-message style=("display: none")
                   .alert.alert-danger role="alert"
-                    | Oops. Invalid file type. Please try again.
+                    = t('uploads.error', types: 'pdf')
           .col-md-2
             .row.example-row
               .col-md-12
