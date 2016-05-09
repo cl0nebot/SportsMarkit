@@ -23,7 +23,15 @@ class Form < ActiveRecord::Base
   end
 
   def get_data
-    (data.try(:[], 'fields').try(:values) || {}).to_json
+    form_data = (data.try(:[], 'fields').try(:values) || [])
+    form_data.each do |field|
+      if %w(checkboxes dropdown radio).include? field['field_type']
+        if field['field_options'].try(:[], 'options')
+          field['field_options']['options'] = field['field_options']['options'].values
+        end
+      end
+    end
+    form_data.to_json
   end
   
   def confirmation
