@@ -220,7 +220,9 @@ module Seed
       classification = Classification.create(classification: "Coach")
       role = Role.create(user_id: user.id, role: "Coach", status: "Active", roleable_type: "Team", roleable_id: Team.first.id)
       certification = Certification.create(name: "CPR", issuer: "Issuer Name")
+      certification_two = Certification.create(name: "FitPet", issuer: "FitPet")
       certificate = Certificate.create(user_id: user.id, certification_id: certification.id, expiration: (Date.today + 2.weeks), expires: true)
+      certificate_two = Certificate.create(user_id: user.id, certification_id: certification_two.id, expiration: (Date.today + 3.weeks), expires: true)
     end
     
     def convert_school_to_club(id)
