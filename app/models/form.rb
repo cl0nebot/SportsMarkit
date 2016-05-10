@@ -9,12 +9,19 @@ class Form < ActiveRecord::Base
 
   attr_accessor :stripe_token
 
-  def self.master_form(form_params)
-    where(formable_type: form_params[:formable_type], formable_id: form_params[:formable_id], master: true).first_or_create
-  end
-
   def registrant
     submittable
+  end
+
+  def pay!(payment_type = 'online')
+    update(paid: true, payment_type: payment_type)
+    send_registration_emails
+  end
+
+  def send_registration_emails
+    master_form = Form.where(formable_type: formable_type, formable_id: formable_id, master: true).first_or_create
+    SendEmail.new_registration(master_form.submitter).deliver if master_form.notify_creator
+    SendEmail.new_registration(submittable).deliver if submittable.email.present?
   end
 
   def select_pricing_option(id, params={})

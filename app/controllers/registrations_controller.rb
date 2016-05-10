@@ -9,13 +9,8 @@ class RegistrationsController < ApplicationController
   end
 
   def new
-    #form defined in load_and_restrict_registration method
+    #@form defined in load_and_restrict_registration method
     @master = current_user? ? Form.where(submittable_type: "User", submittable_id: current_user.id, master: true).last : Form.new
-    if !@form.try(:options).present? && !params[:preview].present?
-      flash[:error] = "Please add options" if params[:launch]
-      redirect_to_back(url_for(@object))
-    end
-
   end
 
   def load_and_restrict_registration
@@ -35,14 +30,10 @@ class RegistrationsController < ApplicationController
 
   def create
     @form = Form.find_or_create_by(formable_id: params[:form][:formable_id], formable_type: params[:form][:formable_type], object: params[:object], submittable_id: params[:form][:submittable_id], submittable_type: params[:form][:submittable_type] )
-    master_form = Form.master_form(form_params)
-    SendEmail.new_registration(master_form.submitter).deliver if master_form.notify_creator
-    SendEmail.new_registration(@form.submittable).deliver if @form.submittable.email.present?
     @form.update_attributes(form_params)
     @form.select_pricing_option(@form.id, params)
     if @form.selected_option.option.price.zero?
-      @form.update_attribute(:paid, true)
-      #redirect_to url_for([@form.formable, :registrations])
+      @form.pay!
       redirect_to user_registrations_path(params[:form][:submittable_id])
     else
       redirect_to "/#{@form.formable_type.underscore.pluralize}/#{@form.formable.slug}/registrations/#{@form.id}/register"
@@ -61,16 +52,14 @@ class RegistrationsController < ApplicationController
     begin
       raise "Stripe token not present. Cannot process transaction." if stripe_token.blank?
       current_user.process_transaction(params, amount)
-
-      @form.update_attributes(paid: true)
+      @form.pay!
     end
     #redirect_to eval("#{@form.formable.class.to_s.underscore}_registrations_path(@form.formable)")
     redirect_to user_registrations_path(@form.submitter_id)
   end
 
   def pay_manual
-    registrant = Form.find(params[:id])
-    registrant.update(params.permit(:paid, :payment_type))
+    Form.find(params[:id]).pay!('manual')
   end
 
   private
