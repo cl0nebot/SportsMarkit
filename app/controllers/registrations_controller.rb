@@ -3,15 +3,26 @@ class RegistrationsController < ApplicationController
   before_action :load_master, only: [:change_submitter], :if => :current_user?
   before_action :load_object, only: [:new, :register, :registrant, :index, :pay_manual]
   before_action :load_registrants, only: [:index, :pay_manual]
+  before_filter :load_and_restrict_registration, only: [:new]
 
   def index
   end
 
   def new
-    @form = @object.forms.where(master: true).first
+    #form defined in load_and_restrict_registration method
     @master = current_user? ? Form.where(submittable_type: "User", submittable_id: current_user.id, master: true).last : Form.new
     if !@form.try(:options).present? && !params[:preview].present?
       flash[:error] = "Please add options" if params[:launch]
+      redirect_to_back(url_for(@object))
+    end
+
+  end
+
+  def load_and_restrict_registration
+    @form = @object.forms.where(master: true).first
+    restrictor = Restrictors::Registration.call(form: @form, preview: params[:preview], launch: params[:launch])
+    if restrictor.failure?
+      flash[:error] = restrictor.error
       redirect_to_back(url_for(@object))
     end
   end

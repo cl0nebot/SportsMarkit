@@ -104,3 +104,6 @@ $(document).ready ->
 
   new googleAutocomplete('.city-preloader')
 
+$(document).ready ->
+  $('.datepicker').datetimepicker
+    format: 'M/D/YYYY'
