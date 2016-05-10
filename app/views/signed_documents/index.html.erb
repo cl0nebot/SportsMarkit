@@ -5,11 +5,14 @@
         <h1>Admin <small>Signed Documents</small></h1>
       </div>
       <div class="col-sm-6">
-        <ol class="breadcrumb">
-          <li><a href="/"><i class="ion-home"></i></a></li>
-          <li><a href="<%= eval("#{@object.class.to_s.downcase.pluralize}_path")%>"><%= @object.class.to_s.pluralize %></a></li>
-          <li><%= link_to @object.name, @object %></li>
-        </ol>
+        <% if @object.can_be_edited_by_user?(current_user) %>
+          <%= link_to edit_user_path(@user), class: "btn btn-floating btn-red btn-ripple mt5 pull-right mr10", title: "Edit Profile", :'data-toggle' => 'tooltip', :'data-placement' => 'left' do %>
+              <i class="material-icons">&#xE8B8;</i>
+          <% end %>
+        <% end %>
+        <a href="#" class="btn btn-floating btn-cyan btn-ripple mt5 pull-right mr15" data-toggle="tooltip" data-placement="left" title="My Dashboard">
+          <i class="material-icons">&#xE871;</i>
+        </a>
       </div>
     </div>
   </div>

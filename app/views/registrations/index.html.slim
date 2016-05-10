@@ -6,13 +6,11 @@
           = @object.name 
           small  Manage Registrations
       .col-sm-6
-        ol.breadcrumb
-          li
-            a href="/"
-              i.ion-home
-          li
-            a href="#{eval("#{@object.class.to_s.downcase.pluralize}_path")}" = @object.class.to_s.pluralize
-          li= link_to @object.name, @object
+        - if @object.can_be_edited_by_user?(current_user)
+          a href="<%=edit_user_path(@user)%>" class="btn btn-floating btn-red btn-ripple pull-right mr10" title="Edit Profile" data-toggle="tooltip" data-placement="left"
+            i.material-icons &#xE8B8;
+        a.btn.btn-floating.btn-cyan.btn-ripple.pull-right.mr15 data-placement="left" data-toggle="tooltip" href="#" title=("My Dashboard") 
+          i.material-icons &#xE871;
     = render "shared/show_navigation_admin"
   br/
   br/
