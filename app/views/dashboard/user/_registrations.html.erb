@@ -1,17 +1,11 @@
-        <h5 class="bold">Plan & Payments</h5>
-        <ul class="list-material">
-          <li class="has-action-left has-action-right">
-            <a href="<%= user_registrations_path(object) %>" class="visible">
-              <div class="list-action-left">
-                <i class="ion-calendar icon"></i>
-              </div>
-              <div class="list-content">
-                <span class="title">My Registrations</span>
-                <span class="caption">Go Pro! Upgrade today to get the most out of SportMarkit.</span>
-              </div>
-              <div class="list-action-right">
-                <%= render 'dashboard/timestamp', klass: klass, object: object %>
-              </div>
-            </a>
-          </li>
-        </ul>
+<li class="has-action-left divider with-border no-margin">
+  <div class="list-action-left">
+    <%= link_to user_registrations_path(@object), class: "btn btn-floating btn-cyan btn-ripple" do %>
+      <i class="material-icons">&#xE85D;</i>
+    <% end %>
+  </div>
+  <div class="list-content pl10">
+    <span class="title">My Registrations</span>
+    <span class="caption">Go Pro! Upgrade today to get the most out of SportMarkit.</span>
+  </div>
+</li>

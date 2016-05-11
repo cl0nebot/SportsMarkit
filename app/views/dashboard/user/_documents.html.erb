@@ -1,17 +1,11 @@
-        <h5 class="bold">Document Management</h5>
-        <ul class="list-material">
-          <li class="has-action-left has-action-right">
-            <%= link_to eval("#{klass}_signed_documents_path(@object)"), class: "visible" do %>
-              <div class="list-action-left">
-                <i class="ion-android-checkbox-outline icon"></i>
-              </div>
-              <div class="list-content">
-                <span class="title">View Signed Documents</span>
-                <span class="caption">Signed documents available.</span>
-              </div>
-              <div class="list-action-right">
-                <%= render 'dashboard/timestamp', klass: klass, object: object %>
-              </div>
-            <% end %>
-          </li>
-        </ul>
+<li class="has-action-left divider with-border no-margin">
+  <div class="list-action-left">
+    <%= link_to eval("#{klass}_signed_documents_path(@object)"), class: "btn btn-floating btn-cyan btn-ripple" do %>
+      <i class="ion-android-checkbox-outline icon"></i>
+    <% end %>
+  </div>
+  <div class="list-content pl10">
+    <span class="title">View Signed Documents</span>
+    <span class="caption">Signed documents available.</span>
+  </div>
+</li>

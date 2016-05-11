@@ -1,32 +1,39 @@
 <% klass = @object.class.to_s.downcase %>
 <div class="content">
   <%= render 'dashboard/header', klass: klass %>
-  <br/>
-  <%= render 'dashboard/title', klass: klass, object: @object %>
-  <hr class="no-margin"/>
-  
-  <div class="row pt40">
-    <% unless klass == "user"%>
+  <div class="container">
+    <%= render 'dashboard/title', klass: klass, object: @object %>
+    
+    
+    <div class="row pt40">
+
+      <% unless klass == "user"%>
         <%= render 'dashboard/other', klass: klass, object: @object %>
-    <% else %>
+      <% else %>
         <%= render 'dashboard/user', klass: klass, object: @object %>
-    <% end %>
+      <% end %>
+
+      <!-- 
+      <div class="col-md-4">
+        <div class="panel box-shadow-ccc">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h4 class="text-primary">Manage Your Sports Community</h4>
+            </div>
+          </div>
+          <div class="panel-body">
+            <% klass = @object.class.to_s.downcase %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      -->
+
       
 
-    <!-- <div class="col-md-4">
-      <div class="panel box-shadow-ccc">
-        <div class="panel-heading">
-          <div class="panel-title">
-            <h4 class="text-primary">Manage Your Sports Community</h4>
-          </div>
-        </div>
-        <div class="panel-body">
-          <% klass = @object.class.to_s.downcase %>
-          
-          </div>
-        </div>
-      </div>
     </div>
-  </div> -->
+  </div>
 </div>
-</div>
+
+

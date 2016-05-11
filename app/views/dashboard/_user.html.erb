@@ -1,67 +1,67 @@
 <!-- column 1 -->
 <div class="col-md-4">
-    <div class="panel box-shadow-ccc">
-        <div class="panel-heading">
-            <div class="panel-title">
-                <h4 class="text-primary">Build Your Account</h4>
-            </div>
-        </div>
-        <div class="panel-body">
-            <h5 class="bold">Public Profile</h5>
-            <%= render 'dashboard/user/profile', klass: klass, object: object %>
-            <%= render 'shared/manage_relationships', object: object %>
-            <br/>
-            <%= render 'shared/manage_relationships', object: @object %>
-        </div>
-    </div>
+  <%= render 'dashboard/user/profile', klass: klass, object: object %>  
 </div>
 <!-- end column 1 -->
 
 <!-- column 2 -->
 <div class="col-md-4">
-    <div class="panel box-shadow-ccc">
-        <div class="panel-heading">
-            <div class="panel-title">
-                <h4 class="text-primary">Manage Your Sports Community</h4>
-            </div>
-        </div>
-        <div class="panel-body">
-            <h5 class="bold">Actions</h5>
-          
-            <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Athlete") if Classification.exists?(user_id: object.id, classification: "Athlete") %>
-            <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Student Athlete") if Classification.exists?(user_id: object.id, classification: "Student Athlete") %>
-            <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Coach") if Classification.exists?(user_id: object.id, classification: "Coach") %>
-            <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Guardian") if ( Classification.exists?(user_id: object.id, classification: "Guardian") || User.find(object.id).children.present? ) %>
-            <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Athletic Director") if Classification.exists?(user_id: object.id, classification: "Athletic Director") %>
-            <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Club Director") if Classification.exists?(user_id: object.id, classification: "Club Director") %>
-            <%= render('dashboard/user/manage', klass: klass, object: object, classification: "School Manager") if Classification.exists?(user_id: object.id, classification: "School Manager") %>
-            <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Team Manager") if Classification.exists?(user_id: object.id, classification: "Team Manager") %>
-            <br/>
-            <%= render 'dashboard/user/events', klass: klass, object: object %>
-            <br/>
-            <%= render 'dashboard/user/chat', klass: klass, object: object %>
-        </div>
+  <div class="panel box-shadow-ccc">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <h3 class="fs_26 mb0">Management</h3>
+      </div> 
+    </div><!--.panel-heading-->
+    <div class="panel-body without-padding">
+
+      <ul class="list-material borderless">
+        <li class="has-action-left divider with-border no-margin">
+          <div class="list-action-left">
+            <%= render 'shared/manage_relationships', object: object %>
+          </div>
+          <div class="list-content pl10">
+            <span class="title">Manage all Relationships</span>
+            <span class="caption">Manage your clubs, teams, schools, etc.</span>
+          </div>
+        </li>  
+
+        <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Athlete") if Classification.exists?(user_id: object.id, classification: "Athlete") %>
+        <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Student Athlete") if Classification.exists?(user_id: object.id, classification: "Student Athlete") %>
+        <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Coach") if Classification.exists?(user_id: object.id, classification: "Coach") %>
+        <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Guardian") if ( Classification.exists?(user_id: object.id, classification: "Guardian") || User.find(object.id).children.present? ) %>
+        <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Athletic Director") if Classification.exists?(user_id: object.id, classification: "Athletic Director") %>
+        <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Club Director") if Classification.exists?(user_id: object.id, classification: "Club Director") %>
+        <%= render('dashboard/user/manage', klass: klass, object: object, classification: "School Manager") if Classification.exists?(user_id: object.id, classification: "School Manager") %>
+        <%= render('dashboard/user/manage', klass: klass, object: object, classification: "Team Manager") if Classification.exists?(user_id: object.id, classification: "Team Manager") %>
+        <%= render 'dashboard/user/events', klass: klass, object: object %>
+        <%#= render 'dashboard/user/chat', klass: klass, object: object %>
+      </ul>
+
     </div>
+  </div>
 </div>
 <!-- end column 2 -->
 
 <!-- column 3 -->
 <div class="col-md-4">
-    <div class="panel box-shadow-ccc">
-        <div class="panel-heading">
-            <div class="panel-title">
-                <h4 class="text-primary">Account Management</h4>
-            </div>
-        </div>
-        <div class="panel-body">
-            <%= render 'dashboard/user/documents', klass: klass, object: object %>
-            <br/>
-            <%= render 'dashboard/user/registrations', klass: klass, object: object %>
-            <br/>
-            <%= link_to "My Registrations", user_registrations_path(@object), class: "btn btn-sm btn-white" %>
-        </div>
+  <div class="panel box-shadow-ccc">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <h3 class="fs_26 mb0">Administrative</h3>
+      </div> 
+    </div><!--.panel-heading-->
+    <div class="panel-body without-padding">
+
+      <ul class="list-material borderless">
+        <%= render 'dashboard/user/documents', klass: klass, object: object %>
+        <%= render 'dashboard/user/registrations', klass: klass, object: object %>
+      </ul>
+
     </div>
+  </div>
 </div>
-<!-- end column 3 -->
 
 
+<div id="manage-all-roles">
+  <%= render 'shared/manage_relationships_modal', object: object  %>
+</div>
