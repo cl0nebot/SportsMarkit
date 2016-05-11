@@ -38,10 +38,10 @@
                       | Option: 
                       = @form.selected_option.option.name
                   h2.text-center.no-margin.semi-bold
-                    = number_to_currency(@form.selected_option.option.price, precision: 0)
+                    = number_to_currency(@form.price_option.grand_price, precision: 2)
                     small.small.h6
                       = "/year"
-                  = hidden_field_tag :amount, @form.selected_option.option.price
+                  = hidden_field_tag :amount, @form.price_option.grand_price.round(2)
           hr.no-margin/
           br/
           h5.text-muted.text-center Please enter your payment information below.

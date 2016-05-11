@@ -4,6 +4,7 @@ class Form < ActiveRecord::Base
   belongs_to :submitter, class_name: "User", foreign_key: "submitter_id"
   has_many :options
   has_one :selected_option
+  has_one :payment
 
   enum payment_type: { online: 0, manual: 1 }
 
@@ -15,7 +16,20 @@ class Form < ActiveRecord::Base
 
   def pay!(payment_type = 'online')
     update(paid: true, payment_type: payment_type)
+    track_payment
     send_registration_emails
+  end
+
+  def track_payment
+    if manual?
+      create_payment(price: price_option.price)
+    else
+      create_payment(price: price_option.price, sm_fee: price_option.sm_fee, stripe_fee: price_option.stripe_fee)
+    end
+  end
+
+  def price_option
+    selected_option.option
   end
 
   def send_registration_emails
