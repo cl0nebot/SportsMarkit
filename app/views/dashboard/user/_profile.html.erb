@@ -1,71 +1,62 @@
-            <ul class="list-material">
-              <li class="has-action-left has-action-right">
-                <a href="<%= eval("#{klass}_path(@object)") %>" class="visible">
-                  <div class="list-action-left">
-                    <i class="ion-person icon"></i>
-                  </div>
-                  <div class="list-content">
-                    <span class="title">View Profile</span>
-                    <span class="caption">Update or complete your public profile.</span>
-                    <span class="caption pt10">
-                      <ol class="small list">
-                        <li>Home</li>
-                        <li>Media</li>
-                        <li>Following</li>
-                        <li>Fans</li>
-                        <li>Teams</li>
-                        <li>Teammates</li>
-                      </ol>
-                    </span>
-                  </div>
-                  <div class="list-action-right">
-                    <%= render 'dashboard/timestamp', klass: klass, object: object %>
-                  </div>
-                </a>
-              </li>
-              <li class="has-action-left has-action-right">
-                <%= link_to eval("edit_#{klass}_path(@object)"), class: "visible" do %>
-                  <div class="list-action-left">
-                    <i class="ion-ios-gear icon"></i>
-                  </div>
-                  <div class="list-content">
-                    <span class="title">Edit Your Profile</span>
-                    <span class="caption">Update or complete your public profile.</span>
-                    <span class="caption pt10">
-                      <ol class="small list">
-                        <li>General</li>
-                        <li>Social Media</li>
-                        <li>Upload Media</li>
-                        <li>Sports Resume</li>
-                        <li>Favorites</li>
-                        <li>Password</li>
-                      </ol>
-                    </span>
-                  </div>
-                  <div class="list-action-right">
-                    <%= render 'dashboard/timestamp', klass: klass, object: object %>
-                  </div>
-                <% end %>
-              </li>
-              <li class="has-action-left has-action-right">
-                <%= link_to "/#{klass.pluralize}/#{@object.slug}/edit#tab_media",  class: "visible" do %>
-                  <div class="list-action-left">
-                    <i class="ion-android-upload icon"></i>
-                  </div>
-                  <div class="list-content">
-                    <span class="title">Add Photo, Articles, and Video</span>
-                    <span class="caption">Enhance your profile with media.</span>
-                    <span class="caption pt10">
-                      <ol class="small list">
-                        <li>Photos</li>
-                        <li>Videos</li>
-                        <li>Articles and Links</li>
-                      </ol>
-                    </span>
-                  </div>
-                  <div class="list-action-right">
-                    <%= render 'dashboard/timestamp', klass: klass, object: object %>
-                  </div>
-                <% end %>
-              </li>
-            </ul>
+<div class="panel box-shadow-ccc">
+  <div class="panel-heading">
+    <div class="panel-title">
+      <h3 class="fs_26 mb0">Your Profiles</h3>
+    </div> 
+  </div><!--.panel-heading-->
+  <div class="panel-body without-padding">
+    <ul class="list-material borderless">
+      <li class="has-action-left divider with-border no-margin">
+        <a href="#" class="visible">
+          <div class="list-action-left">
+            <a href="<%= eval("#{klass}_path(@object)") %>" class="btn btn-floating btn-blue btn-ripple">
+              <i class="material-icons">&#xE8A6;</i>
+            </a>
+          </div>
+          <div class="list-content pl10">
+            <span class="title"> View Profile</span>
+            <span class="caption">Update or complete your public profile.</span>
+          </div>
+        </a>
+      </li>      
+      <li class="has-action-left divider with-border no-margin">
+        <a href="#" class="visible">
+          <div class="list-action-left">
+            <%= link_to eval("edit_#{klass}_path(@object)"), class: "btn btn-floating btn-blue btn-ripple" do %>
+              <i class="material-icons">&#xE8B8;</i>
+            <% end %>
+          </div>
+          <div class="list-content pl10">
+            <span class="title">Edit Your Profile</span>
+            <span class="caption">Update or complete your public profile.</span>
+          </div>
+        </a>
+      </li>
+      <li class="has-action-left divider with-border no-margin">
+        <a href="#" class="visible">
+          <div class="list-action-left">
+            <%= link_to "/#{klass.pluralize}/#{@object.slug}/edit#tab_media",  class: "btn btn-floating btn-blue btn-ripple" do %>
+              <i class="material-icons">&#xE8A7;</i>
+            <% end %>
+          </div>
+          <div class="list-content pl10">
+            <span class="title">Add Photo, Articles, and Video</span>
+            <span class="caption">Enhance your profile with media.</span>
+          </div>
+        </a>
+      </li>
+      <li class="has-action-left divider with-border no-margin">
+        <a href="#" class="visible">
+          <div class="list-action-left">
+            <a href="#"  class="btn btn-floating btn-blue btn-ripple"><i class="material-icons">&#xE8D3;</i></a>
+          </div>
+          <div class="list-content pl10">
+            <span class="title">Manage other Profiles</span>
+            <span class="caption">Enhance your profile with media.</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div><!--.panel-body-->
+</div><!--.panel-->
+

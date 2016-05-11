@@ -1,30 +1,11 @@
-            <ul class="list-material">
-              <li class="has-action-left has-action-right">
-                <a href="#" class="visible">
-                  <div class="list-action-left">
-                    <i class="ion-plus-circled icon"></i>
-                  </div>
-                  <div class="list-content">
-                    <span class="title">Add or Join <%= %> </span>
-                    <span class="caption"><%= User.user_type_subtitle(classification)%></span>
-                  </div>
-                  <div class="list-action-right">
-                    <%= render 'dashboard/timestamp', klass: klass, object: object %>
-                  </div>
-                </a>
-              </li>
-              <li class="has-action-left has-action-right">
-                <a href="#" class="visible">
-                  <div class="list-action-left">
-                    <i class="ion-plus-circled icon"></i>
-                  </div>
-                  <div class="list-content">
-                    <span class="title">View and Manage Teams</span>
-                    <span class="caption">View all current teams connected to your account.</span>
-                  </div>
-                  <div class="list-action-right">
-                    <%= render 'dashboard/timestamp', klass: klass, object: object %>
-                  </div>
-                </a>
-              </li>
-            </ul>
+<li class="has-action-left divider with-border no-margin">
+  <div class="list-action-left">
+    <a href="<%= eval("#{klass}_path(@object)") %>" class="btn btn-floating btn-orange btn-ripple">
+      <i class="material-icons">&#xE145;</i>
+    </a>
+  </div>
+  <div class="list-content pl10">
+    <span class="title">Create a new team</span>
+    <span class="caption"><%= User.user_type_subtitle(classification)%></span>
+  </div>
+</li>   

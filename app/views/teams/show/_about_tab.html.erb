@@ -67,7 +67,17 @@
 							<% @heads.each do |head| %>
 								<li class="has-action-left">
 									<a href="<%= head.class.to_s == "Role" ? user_path(head.user) : "javascript: void(0)" %>" class="visible">
-										<div class="pull-right pt20">
+										<div class="list-action-left">
+											<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
+										</div>
+										<div class="list-content">
+											<% if head.class.to_s == "Role" %>
+											  <span class="title"><%= head.user.full_name %></span>
+											<% else %>
+											  <span class="title"><%= head.first_name %> <%= head.last_name %></span>
+											<% end %>
+											<br/>
+											<div class="pull-right pt10">
 											<% if head.mobile_phone_number.present? %>
 											<span class="text-muted fs_11">
 												<i class="ion-ios-telephone text-primary mr5"></i>
@@ -80,18 +90,8 @@
 												<%= head.user.email %> 
 											</span>
 											<% end %>
-										</div>
-
-										<div class="list-action-left">
-											<%= image_tag("http://hasslefreeliving.com/wp-content/uploads/2012/10/placeholder.gif", class: "face-radius")%>
-										</div>
-										<div class="list-content">
-											
-											<% if head.class.to_s == "Role" %>
-											  <span class="title"><%= head.user.full_name %></span>
-											<% else %>
-											  <span class="title"><%= head.first_name %> <%= head.last_name %></span>
-											<% end %>
+										
+										
 										</div>
 
 									</a>

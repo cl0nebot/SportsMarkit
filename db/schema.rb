@@ -332,8 +332,8 @@ ActiveRecord::Schema.define(version: 20160511140458) do
     t.datetime "updated_at"
     t.json     "data"
     t.string   "object"
-    t.boolean  "notify_creator"
     t.json     "user_data",              default: {}
+    t.boolean  "notify_creator"
     t.integer  "payment_type",           default: 0
     t.string   "name"
     t.date     "start_date"
