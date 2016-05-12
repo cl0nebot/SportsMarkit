@@ -23,13 +23,15 @@
                   h6.mb0 Registrant
                   h3.mt0 Cordis Stanfield
                 .col-md-10.col-md-offset-1
-                  h5.bold.text-black.mbo #{@object.name}
-                  p.fs_14.mb10.bold
-                    | Option: 
-                    = @form.selected_option.option.name
-                  h2.text-center.no-margin
-                    = number_to_currency(@form.price_option.grand_price, precision: 2)
-                  = hidden_field_tag :amount, @form.price_option.grand_price.round(2)
+                  h6 Registation Details
+                  .well
+                    h5.bold.text-black.mbo #{@object.name}
+                    p.fs_14.mb10.bold
+                      | Option: 
+                      = @form.selected_option.option.name
+                    h2.text-center.no-margin
+                      = number_to_currency(@form.price_option.grand_price, precision: 2)
+                    = hidden_field_tag :amount, @form.price_option.grand_price.round(2)
           hr.no-margin/
           br/
           h6.text-muted.bold.text-center Enter your payment information below.
