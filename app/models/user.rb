@@ -555,6 +555,10 @@ class User < ActiveRecord::Base
     kids = User.where(id: ids)
     all = kids + children
   end
+  
+  def all_registrations_as_submitter
+    Form.where(submitter_id: id).where.not(formable: nil)
+  end
 
 
 end
