@@ -4,26 +4,16 @@
       .col-sm-6
         h1
           | Registration
-          small.m-l-10.inline-block Payment information
+          small
+            |  Payment information
       .col-sm-6
-        ol.breadcrumb
-          li
-            a href="/"
-              i.ion-home
-          li
-            a href="" = @object.class.to_s.pluralize
-          li
-            a href="#"
-          li
-            a.active href="#"  Registration
+        
   .row
     .col-lg-4.col-lg-offset-4.col-md-6.col-md-offset-3.col-sm-8.col-md-offset-2
       .panel.box-shadow-ccc
         .panel-heading
-          .panel-title.text-center
-            br/
-            h3 Registration Payment.
-            h6.bold Registration for #{@object.name}
+          .panel-title.text-center.bg-light-grey
+            h4 Complete Your Registration Payment.
         hr.no-margin/
         = form_for [@form], url: registration_pay_path(@form.id), html:{class: "registration_card_form"} do |f|
           .panel-body.m-b-30.pr40.pl40
@@ -33,18 +23,16 @@
                   h6.mb0 Registrant
                   h3.mt0 Cordis Stanfield
                 .col-md-10.col-md-offset-1
-                  p.mb10
-                    span.label.label-primary.bold.text-center.mb0
-                      | Option: 
-                      = @form.selected_option.option.name
-                  h2.text-center.no-margin.semi-bold
+                  h5.bold.text-black.mbo #{@object.name}
+                  p.fs_14.mb10.bold
+                    | Option: 
+                    = @form.selected_option.option.name
+                  h2.text-center.no-margin
                     = number_to_currency(@form.price_option.grand_price, precision: 2)
-                    small.small.h6
-                      = "/year"
                   = hidden_field_tag :amount, @form.price_option.grand_price.round(2)
           hr.no-margin/
           br/
-          h5.text-muted.text-center Please enter your payment information below.
+          h6.text-muted.bold.text-center Enter your payment information below.
           .panel-body.m-b-30.pr40.pl40
             .form-row
               .row.example-row
@@ -87,6 +75,6 @@
                               = text_field_tag :card_code, nil, name: nil, required: true, class: "form-control", placeholder: "035"
           .panel-footer.form-layout
             br/
-            = f.submit value: "Upgrade Account", class: "btn btn-primary btn-block "
+            = f.submit value: "Complete Registration", class: "btn btn-primary btn-block "
             = hidden_field_tag :stripe_token
             br/

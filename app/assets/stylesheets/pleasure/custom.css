@@ -1010,3 +1010,7 @@ li.step h6 {
 .user-layer .list-material > li.has-long-story .list-action-left {
   top: 10px;
 }
+
+.page-header.full-content h1 small {
+  margin-left: 5px;
+}
