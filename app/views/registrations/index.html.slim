@@ -7,7 +7,7 @@
           small  Manage Registrations
       .col-sm-6
         - if @object.can_be_edited_by_user?(current_user)
-          a href="<%=edit_user_path(@user)%>" class="btn btn-floating btn-red btn-ripple pull-right mr10" title="Edit Profile" data-toggle="tooltip" data-placement="left"
+          a href=url_for([:edit, @object]) class="btn btn-floating btn-red btn-ripple pull-right mr10" title="Edit Profile" data-toggle="tooltip" data-placement="left"
             i.material-icons &#xE8B8;
         a.btn.btn-floating.btn-cyan.btn-ripple.pull-right.mr15 data-placement="left" data-toggle="tooltip" href="#" title=("My Dashboard") 
           i.material-icons &#xE871;

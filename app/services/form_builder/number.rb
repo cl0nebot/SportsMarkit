@@ -5,9 +5,11 @@ class FormBuilder::Number < FormBuilder::Base
 
   def base_options
     options = super
-    options.merge!({ min: @data["field_options"]["min"] }) if @data["field_options"]["min"]
-    options.merge!({ max: @data["field_options"]["max"] }) if @data["field_options"]["max"]
-    options.merge!({ step: "any" }) unless @data["field_options"]["integer_only"]
+    if @data["field_options"]
+      options.merge!({ min: @data["field_options"]["min"] }) if @data["field_options"]["min"]
+      options.merge!({ max: @data["field_options"]["max"] }) if @data["field_options"]["max"]
+      options.merge!({ step: "any" }) unless @data["field_options"]["integer_only"]
+    end
     options
   end
 end

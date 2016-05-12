@@ -1,6 +1,7 @@
 class SendEmail < ActionMailer::Base
-  def new_registration(user)
+  def new_registration(user, form)
     @user = user
+    @form = form
     mail(from: "donotreply@sportsmarkit.com", to: @user.email, subject: "New Registration")
   end
 

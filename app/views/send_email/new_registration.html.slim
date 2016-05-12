@@ -1,1 +1,7 @@
-p New Registration
+p #{@user.full_name} successfully registered for #{@form.formable_type.downcase} #{@form.formable.name}
+p
+  b Payment details:
+p Registration price: #{number_to_currency(@form.payment.price)}
+p Stripe fee: #{number_to_currency(@form.payment.stripe_fee)}
+p Sportsmarkit fee: #{number_to_currency(@form.payment.sm_fee)}
+p Total: #{number_to_currency(@form.payment.total)}
