@@ -12,35 +12,28 @@
         strong
           = user.name
           | has already registered for #{object.name}
-  h4.text-primary.semi-bold 2. Which option are you registering for?
+  h5.text-primary.semi-bold Which option are you registering for?
   .well.form-group
-    h6.semi-bold.text-muted Registration Options
+    h6.semi-bold.text-muted Available Options
     .row
       - form.options.each_with_index do |option,i|
         .radioer.col-md-12
           = radio_button_tag 'registration_options', option.id, nil, type: "radio", name: "registration_options", id: "registration_options_#{i}", required: true
           label.text-black for="registration_options_#{i}"
-            = "#{option.name}"
+            = "Please complete a registration profilePlease complete a registration profilePlease complete a registration profile"
             | ,
             span.bold= " #{number_to_currency(option.price)}"
     .help-block.with-errors
   br/
-  h4.text-primary.semi-bold 3. Please complete a registration profile.
-  .outline style=("border: 2px solid #ddd; padding: 45px; border-radius: 6px;")
-    p.text-muted.fs_16.mb5 We'll be sure to save your profile for future registrations.
-    p.text-muted.fs_12.clearfix.mt0
-      span.ion-android-alert.text-danger.fs_24.pull-left
-      span.pull-left.mt10.ml5
-        | = Required Entry
-    hr.mt0.mb30/
-    - form.data["fields"].values.each do |column|
-      = FormBuilder::Base.init(column, master).render
+  h5.text-primary.semi-bold.mb5 Please complete a registration profile.
+  p.text-muted.fs_12.mb40 We'll be sure to save your profile for future registrations.
+  - form.data["fields"].values.each do |column|
+    = FormBuilder::Base.init(column, master).render
   br/
   br/
-  h4.text-primary.semi-bold 4. Please review and accept the registration waiver.
+  h5.text-primary.semi-bold Registration waiver review
   p.fs_14.text-muted 
   .well
-    hr/
     h6.semi-bold I have reviewed and accept the terms and agreements of this registration waiver.
     .checkboxer.checkboxer-green.form-inline.form-group
       = check_box_tag :accept_waiver, "yes", false, class: "form-control", id: "accept_waiver", name: "accept_waiver", value: "1", required: true

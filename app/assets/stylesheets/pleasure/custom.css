@@ -987,3 +987,30 @@ li.step h6 {
 }
 
 .material-icons.valign-middle {vertical-align: middle !important}
+
+
+.radioer input[type="radio"] + label {
+     white-space: normal; 
+}
+
+@media (max-width: 767px) {
+.page-header.full-content.bg-primary {
+    min-height: 160px !important;
+}
+
+#messages .list-material > li .list-content {
+  padding: 15px 5px 5px 5px;
+  border-bottom: none;
+}
+
+#messages .list-material > li  {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.user-layer .list-material > li.has-long-story .list-action-left {
+  top: 10px;
+}
+
+.page-header.full-content h1 small {
+  margin-left: 5px;
+}
