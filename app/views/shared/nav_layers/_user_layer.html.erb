@@ -1,7 +1,13 @@
 <div class="user-layer">
   <ul class="nav nav-tabs nav-justified" role="tablist">
-    <li class="active"><a href="#messages" data-toggle="tab">Community</a></li>
-    <li><a href="#"><i class="material-icons valign-middle">&#xE8A6;</i> Profile</a></li>
+    <li class="active">
+      <a href="#messages" data-toggle="tab">Community</a>
+    </li>
+    <li>
+      <%= link_to user_path do %> 
+        <i class="material-icons valign-middle">&#xE8A6;</i> Profile
+      <% end %>
+    </li>
     <li><a href="#"><i class="material-icons valign-middle">&#xE871;</i> Dashboard</a></li>
   </ul>
 
