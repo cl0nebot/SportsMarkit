@@ -504,7 +504,7 @@ class User < ActiveRecord::Base
   end
 
   def fix_email
-    self.email = email.to_s.downcase if is_parent?
+    self.email = email.to_s.downcase
   end
 
   def fix_phone

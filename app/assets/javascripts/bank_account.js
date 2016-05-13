@@ -37,6 +37,7 @@ $('document').ready(function() {
             $('.bank_account_form')[0].submit()
           } else {
             $('#stripe_error').text(response.error.message).removeClass('hidden').show();
+            window.notifyError(response.error.message);
             return $('input[type=submit]').prop('disabled', false);
           }
         }

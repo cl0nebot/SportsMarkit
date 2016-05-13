@@ -10,7 +10,11 @@ class Restrictors::Registration
 
   def check_for_options
     context.fail! if !context.form.try(:options).present? && context.preview.blank? rescue false
-    context.error = 'Please add options' if context.launch
+    if context.launch
+      context.error = 'Please add payment options'
+    else
+      context.error = 'No payment options available yet'
+    end
   end
 
   def check_for_activity
