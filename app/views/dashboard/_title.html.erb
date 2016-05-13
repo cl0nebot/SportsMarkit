@@ -1,30 +1,40 @@
+<% if object.instance_of?(User) %>
 <div class="row pt60">
 	<div class="center">
 		<div class="profile-photo-wrapper pull-left pr20">
-			<%= image_tag(@object.avatar, class: "img-circle", style: "height: 100px; width: 100px;")%>
+			<%= image_tag(object.avatar, class: "img-circle", style: "height: 100px; width: 100px;")%>
 		</div>
 		<div class="pull-left">
 			<h6 class="mb0">Account Dashboard</h6>
 			<h3 class="semi-bold capitalize text-black no-margin lh_34 mt0">
-				<%= @object.first_name %> <%#= @user.middle_name %>
-				<%= @object.last_name %>
+				<%= object.first_name %> <%#= @user.middle_name %>
+				<%= object.last_name %>
 			</h3>
 			<p class="semi-bold text-muted mb5 mt5">
 				<span class="label label-primary h4 mr5">
-					<%= @object.classification_list %>
+					<%= object.classification_list %>
 				</span>
 				<span class="fs_14">(Primary Account)</span>
 			</p>
-			<% if @object.all_schools.present? %>
+			<% if object.all_schools.present? %>
 				<p class="semi-bold fs_14 text-muted no-margin">
 					<i class="ion-university fs_20 text-primary mr5"></i>
-					<%= @object.all_schools.first.name  %>
+					<%= object.all_schools.first.name  %>
 				</p>
 			<% end %>
 		</div>
 	</div>
 </div>
 
-<%#= link_to eval("#{klass}_path(object)") do %>
-   <!-- <i class="ion-home"></i>  Return to Profile -->
-<%# end %>
+<% else %>
+
+<h3 class="text-center">
+    Everything you need to manage your <%= object.instance_of?(User) ? "account" : object.class.to_s.downcase %>.
+</h3>
+<p class="small-text text-center">
+    <%= link_to eval("#{klass}_path(object)") do %>
+    <i class="ion-home"></i>  Return to Profile
+    <% end %>
+</p>
+
+<% end %>
