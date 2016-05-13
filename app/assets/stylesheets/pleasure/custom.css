@@ -994,10 +994,10 @@ li.step h6 {
 }
 
 @media (max-width: 767px) {
-.page-header.full-content.bg-primary {
-    min-height: 160px !important;
+    .page-header.full-content.bg-primary {
+        min-height: 160px !important;
+    }
 }
-
 #messages .list-material > li .list-content {
   padding: 15px 5px 5px 5px;
   border-bottom: none;
