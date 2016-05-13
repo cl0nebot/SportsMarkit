@@ -46,6 +46,17 @@ class Form < ActiveRecord::Base
   def get_data
     form_data = (data.try(:[], 'fields').try(:values) || [])
     form_data.each do |field|
+      field.delete('required') if field['required'] == 'false'
+      if field['field_options']
+        %w(include_other_option include_blank_option).each do |field_option_to_clear|
+          field['field_options'].delete(field_option_to_clear) if field['field_options'][field_option_to_clear] == 'false'
+        end
+        if field['field_options']['options']
+          field['field_options']['options'].each do |key, field_option|
+            field_option.delete('checked') if field_option['checked'] == 'false'
+          end
+        end
+      end
       if %w(checkboxes dropdown radio).include? field['field_type']
         if field['field_options'].try(:[], 'options')
           field['field_options']['options'] = field['field_options']['options'].values

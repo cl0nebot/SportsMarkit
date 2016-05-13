@@ -60,3 +60,4 @@ $(document).ready ->
         success: (response) ->
           formBuilder = initFormBuilder($.parseJSON(response.data))
           formBuilder.mainView.handleFormUpdate()
+

@@ -881,7 +881,6 @@ this["Formbuilder"]["templates"]["edit/checkboxes"] = function(obj) {
       '\' />\n  Required\n</label>\n<!-- label>\n  <input type=\'checkbox\' data-rv-checked=\'model.' +
       ((__t = ( Formbuilder.options.mappings.ADMIN_ONLY )) == null ? '' : __t) +
       '\' />\n  Admin only\n</label -->';
-
   }
   return __p
 };
@@ -1169,7 +1168,7 @@ this["Formbuilder"]["templates"]["view/label"] = function(obj) {
     __p += '<label>\n  <span>' +
       ((__t = ( Formbuilder.helpers.simple_format(rf.get(Formbuilder.options.mappings.LABEL)) )) == null ? '' : __t) +
       '\n  ';
-    if (rf.get(Formbuilder.options.mappings.REQUIRED)) { ;
+    if (rf.get(Formbuilder.options.mappings.REQUIRED) == 'true') { ;
       __p += '\n    <abbr title=\'required\'>*</abbr>\n  ';
     } ;
     __p += '\n</label>\n';

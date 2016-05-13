@@ -20,7 +20,7 @@
         .radioer.col-md-12
           = radio_button_tag 'registration_options', option.id, nil, type: "radio", name: "registration_options", id: "registration_options_#{i}", required: true
           label.text-black for="registration_options_#{i}"
-            = "Please complete a registration profilePlease complete a registration profilePlease complete a registration profile"
+            = option.name
             | ,
             span.bold= " #{number_to_currency(option.price)}"
     .help-block.with-errors

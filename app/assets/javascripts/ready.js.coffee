@@ -107,3 +107,17 @@ $(document).ready ->
 $(document).ready ->
   $('.datepicker').datetimepicker
     format: 'M/D/YYYY'
+
+$(document).ready ->
+  $('[data-other]').each ->
+    self = $(@)
+
+    radios = self.parents('.form-group').find('input:radio')
+    otherRadio = radios.select('[data-other-radio]')
+
+    self.click ->
+      radios.prop('checked', false)
+      otherRadio.prop('checked', true)
+
+    self.keyup ->
+      otherRadio.val(self.val())
