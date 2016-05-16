@@ -54,7 +54,7 @@ class School < ActiveRecord::Base
   end
 
   def school_certifications
-    Certificate.where(user_id: coaches.pluck(:id)).uniq { |cert| cert.user_id }
+    Certificate.where(user_id: coaches.pluck(:id))
   end
 
   def self.claimable_schools
