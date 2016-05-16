@@ -68,7 +68,7 @@
             <i class="material-icons">&#xE8B8;</i>
         <% end %>
       <% end %>
-      <a href="#" class="btn btn-floating btn-cyan btn-ripple mt5 pull-right mr15" data-toggle="tooltip" data-placement="left" title="My Dashboard">
+      <a href="/users/<%= @object.slug %>/dashboard" class="btn btn-floating btn-cyan btn-ripple mt5 pull-right mr15" data-toggle="tooltip" data-placement="left" title="My Dashboard">
         <i class="material-icons">&#xE871;</i>
       </a>
       <%= render 'shared/view_announcement_button', object: @object %>
