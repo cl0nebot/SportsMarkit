@@ -1,0 +1,9 @@
+#facilities.tab-pane.tab-top-margin
+  .col-lg-8.col-lg-offset-2
+    - if @object.can_be_edited_by_user?(current_user)
+      p.text-right
+        button.btn.btn-primary data-target="#panel-new-facility" data-toggle="modal"  New Facility
+    #facility-show-list
+      = render 'shared/facilities', facilities: @facilities
+  
+  
