@@ -64,7 +64,7 @@
     </div>
     <div class="header-tabs scrollable-tabs sticky pr30">
       <% if @object.can_be_edited_by_user?(current_user) %>
-        <%= link_to edit_user_path(@user), class: "btn btn-floating btn-red btn-ripple mt5 pull-right mr10", title: "Edit Profile", :'data-toggle' => 'tooltip', :'data-placement' => 'left' do %>
+        <%= link_to url_for([:edit, @object]), class: "btn btn-floating btn-red btn-ripple mt5 pull-right mr10", title: "Edit Profile", :'data-toggle' => 'tooltip', :'data-placement' => 'left' do %>
             <i class="material-icons">&#xE8B8;</i>
         <% end %>
       
