@@ -1,7 +1,7 @@
 class SchoolsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :correct_user!, only: [:edit, :destroy]
-  before_action :find_school, except: [:index, :new, :create, :plan, :update]
+  before_action :find_school, only: [:edit, :show, :destroy]
 
   def index
     if stale?(:etag => ["schools-index", "v0"], :last_modified => School.maximum(:updated_at))
