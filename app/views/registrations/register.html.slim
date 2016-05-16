@@ -30,6 +30,12 @@
                       | Option: 
                       = @form.selected_option.option.name
                     h2.text-center.no-margin
+                      = number_to_currency(@form.price_option.price, precision: 2)
+                      br stripe fee
+                      = number_to_currency((@form.price_option.price * 0.03), precision: 2)
+                      br transaction fee
+                      = number_to_currency((@form.price_option.price * 0.05), precision: 2)
+                      br total price
                       = number_to_currency(@form.price_option.grand_price, precision: 2)
                     = hidden_field_tag :amount, @form.price_option.grand_price.round(2)
           hr.no-margin/
