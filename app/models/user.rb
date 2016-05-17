@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   validates :mobile_phone_number, :uniqueness => true, allow_blank: true, unless: -> { is_child? }
 
   before_create { generate_token(:authentication_token) }
-  before_save :fix_email
+  before_save :fix_email, unless: -> { is_child? }
   before_save :fix_phone
 
   after_update :password_changed?, :on => :update

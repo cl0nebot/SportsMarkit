@@ -30,7 +30,7 @@
           h3 Please complete the form below.
           p.text-muted.fs_16 Please complete the information below to complete the registration process.
           hr
-          = form_tag change_submitter_registrations_path, method: :get, remote: true
+          = form_tag change_submitter_registrations_path, method: :get, remote: true, id: 'change-submitter-form'
             = hidden_field_tag :form_id, @form.id
             = hidden_field_tag :object_id, @object.id
             = hidden_field_tag :object_type, @object.class.to_s
