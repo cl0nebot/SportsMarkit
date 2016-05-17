@@ -13,12 +13,12 @@ class User < ActiveRecord::Base
   before_update :update_slug
   has_secure_password validations: false
 
-  validates_presence_of :password, :on => :create, if: -> { is_parent? }
+  validates_presence_of :password, :on => :create, unless: -> { is_child? }
   validates :first_name, :presence => true, length: {minimum: 2, maximum: 20}
   validates :last_name, :presence => true, length: {minimum: 2, maximum: 20}
-  validates :email, :uniqueness => true, allow_blank: true, if: -> { is_parent? }
+  validates :email, :uniqueness => true, allow_blank: true, unless: -> { is_child? }
   validates :username, :uniqueness => true, allow_blank: true
-  validates :mobile_phone_number, :uniqueness => true, allow_blank: true, if: -> { is_parent? }
+  validates :mobile_phone_number, :uniqueness => true, allow_blank: true, unless: -> { is_child? }
 
   before_create { generate_token(:authentication_token) }
   before_save :fix_email

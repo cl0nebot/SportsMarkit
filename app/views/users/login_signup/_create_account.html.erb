@@ -22,7 +22,7 @@
       <h6 class="bold no-margin fs_14 text-primary">Mobile Phone</h6>
       <div class="inputer">
         <div class="input-wrapper form-group">
-          <%= f.text_field :mobile_phone_number, class: "form-control", placeholder: "555-555-5555", id: "mobile_phone_number", required: true, "data-phone" => true %>
+          <%= f.text_field :mobile_phone_number, class: "form-control", placeholder: "555-555-5555", id: "mobile_phone_number", required: true, "data-phone" => true, 'data-validation-remote'=> '/checkemail.json', 'data-remote-param' => :number %>
           <div class="help-block with-errors"></div>
         </div>
       </div>
@@ -31,7 +31,7 @@
       <h6 class="bold no-margin fs_14 text-primary">Email</h6>
       <div class="inputer">
         <div class="input-wrapper form-group">
-          <%= f.email_field :email, class: "form-control", placeholder: "Email address", required: true, "data-email" => true %>
+          <%= f.email_field :email, class: "form-control", placeholder: "Email address", required: true, "data-email" => true, 'data-validation-remote'=> '/checkemail.json', 'data-remote-param' => :email %>
           <div class="help-block with-errors"></div>
         </div>
       </div>

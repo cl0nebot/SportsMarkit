@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: %w[index edit update destroy plans subscriptions]
   before_action :correct_user!, only: %w[edit]
   before_action :find_user, only: %w[show edit destroy store]
+  before_filter :redirect_current_user, only: :create
 
   def index
     if stale?(:etag => ["users-index", "v0"], :last_modified => User.maximum(:updated_at))
@@ -10,8 +11,12 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
-    render layout: "minimal"
+    if current_user
+      redirect_to user_path(current_user)
+    else
+      @user = User.new
+      render layout: "minimal"
+    end
   end
 
   def create
@@ -150,7 +155,7 @@ class UsersController < ApplicationController
   end
 
   def email_check
-    number = params[:number].to_s.gsub(/[^\d]/, "")
+    number = params[:number].to_s
     email = params[:email].to_s.downcase
     if number.present? || email.present?
       conditions = []
@@ -182,12 +187,8 @@ class UsersController < ApplicationController
     params.require(:user).permit({:team_ids => []}, :prefix, :name, :first_name, :middle_name, :last_name, :suffix, :email, :username,:mobile_phone_number,  :password, :password_confirmation, :current_password, {profile_attributes: [:id, :user_id, :instagram, :twitter, :facebook, :linkedin, :hudl, :youtube, :pinterest, :foursquare, :description, :date_of_birth, :favorite_pro_team, :favorite_college_team, :favorite_pro_athlete, :mobile_phone_number, :undergraduate_school, :graduate_school, :doctorate_school, :undergraduate_major, :graduate_major, :doctorate_major, :undergraduate_year, :graduate_year, :doctorate_year, :undergraduate_degree, :graduate_degree, :doctorate_degree, :height_ft, :height_in, :weight, :sex, :team, :league, :primary_position, :secondary_position, :level, :guardian, :guardian_phone_number, :company, :title, :website, :agency, :industries, :interests, :skills, :city, :offseason_city, :state, :zipcode, {sports: []}, {skills: []}, {specialties: []}, {injuries: []}, {current_ailments: []}, {focus: []}, :category, :mobile_phone_number ]},  {user_profile_pictures_attributes: [:id, :user_id, :photo]}, {user_addresses_attributes: [:id, :user_id, :street_1, :street_2, :city, :state, :country, :zip, :apt_no]} )
   end
 
-  def redirect_to_profile_if_current_user
-    if current_user
-      redirect_to user_path(current_user)
-    else
-      @user = User.new
-    end
+  def redirect_current_user
+    redirect_to user_overview_path(current_user) if current_user
   end
 
   def find_user
