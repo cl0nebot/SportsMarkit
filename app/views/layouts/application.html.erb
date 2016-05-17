@@ -28,63 +28,66 @@
     <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLISHABLE_KEY'] %>
     <%= Gon::Base.render_data %>
   </head>
-  <%= render 'shared/navbar' %>
-  <%= javascript_include_tag 'application' %>
-  <%# flash.each do |key, value| %>
-    <!-- <div class="alert alert-<%#= key %>"><%#= value %></div> -->
-    <%# end %>
-    <% unless flash.empty? %>
-      <script type="text/javascript">
-        <% flash.each do |f| %>
-        		      <% type = f[0].gsub('alert', 'error').gsub('notice', 'info') %>
-        					toastr['<%= type %>']('<%= f[1] %>', '<%= type %>');
-        			<% end %>
+  <body>
+    <%= render 'shared/navbar' %>
+    <%= javascript_include_tag 'application' %>
+    <%# flash.each do |key, value| %>
+      <!-- <div class="alert alert-<%#= key %>"><%#= value %></div> -->
+      <%# end %>
+      <% unless flash.empty? %>
+        <script type="text/javascript">
+          <% flash.each do |f| %>
+                    <% type = f[0].gsub('alert', 'error').gsub('notice', 'info') %>
+                    toastr['<%= type %>']('<%= f[1] %>', '<%= type %>');
+                <% end %>
+        </script>
+      <% end %>
+      <%= yield %>
+      <!-- side panels -->
+      <% unless params[:action] == "new" %>
+        <%= render "shared/panels/new_club" %>
+      <% end %>
+
+      <% unless params[:controller] == "setup" or params[:action] == "new" %>
+        <%= render "shared/panels/new_school" %>
+        <%= render "shared/panels/new_team" %>
+      <% end %>
+
+      <% unless params[:action] == "new" %>
+      <%= render "shared/panels/new_facility" %>
+      <%= render "shared/panels/new_league" %>
+      <% end %>
+      <script src='https://www.google.com/recaptcha/api.js'></script>
+      <%= render "shared/sidebar_nav" %>
+      <!-- BEGIN INITIALIZATION-->
+      <script>
+        $(document).ready(function () {
+          Pleasure.init();
+          Layout.init();
+          UserPages.profile();
+          TablesDataTables.init();
+          FormsTools.init();
+          FormsPickers.init();
+          FormsSelect.init();
+            UserPages.login();
+            FormsWizard.init();
+            WidgetVideo.init();
+            ContactUs.init();
+          });
       </script>
-    <% end %>
-    <%= yield %>
-    <!-- side panels -->
-    <% unless params[:action] == "new" %>
-      <%= render "shared/panels/new_club" %>
-    <% end %>
-    
-    <% unless params[:controller] == "setup" or params[:action] == "new" %>
-      <%= render "shared/panels/new_school" %>
-      <%= render "shared/panels/new_team" %>
-    <% end %>
-    
-    <% unless params[:action] == "new" %>
-    <%= render "shared/panels/new_facility" %>
-    <%= render "shared/panels/new_league" %>
-    <% end %>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-    <%= render "shared/sidebar_nav" %>
-    <!-- BEGIN INITIALIZATION-->
-    <script>
-      $(document).ready(function () {
-  			Pleasure.init();
-  			Layout.init();
-  			UserPages.profile();
-  			TablesDataTables.init();
-  			FormsTools.init();
-  			FormsPickers.init();
-  			FormsSelect.init();
-  	    	UserPages.login();
-  	    	FormsWizard.init();
-  	    	WidgetVideo.init();
-  	    	ContactUs.init();
-  	  	});
-    </script>
-    <!-- END INITIALIZATION-->
-    <script type="text/javascript">
-      if (document.getElementsByTagName) {
-    		var inputElements = document.getElementsByTagName("input");
-    		for (i=0; inputElements[i]; i++) {
-    		  if (inputElements[i].className && (inputElements[i].className.indexOf("disableAutoComplete") != -1)) {
-    		    inputElements[i].setAttribute("autocomplete","off");
-    		  }
-    		}
-      }
-    </script>
-    <%= yield :scripts %>
-    <%= javascript_include_tag 'video_loader' %>
+      <!-- END INITIALIZATION-->
+      <script type="text/javascript">
+        if (document.getElementsByTagName) {
+          var inputElements = document.getElementsByTagName("input");
+          for (i=0; inputElements[i]; i++) {
+            if (inputElements[i].className && (inputElements[i].className.indexOf("disableAutoComplete") != -1)) {
+              inputElements[i].setAttribute("autocomplete","off");
+            }
+          }
+        }
+      </script>
+      <%= yield :scripts %>
+      <%= javascript_include_tag 'video_loader' %>
+      <%= render 'shared/livechat' %>
+    </body>
   </html>

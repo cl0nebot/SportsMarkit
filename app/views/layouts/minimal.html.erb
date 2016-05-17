@@ -27,6 +27,7 @@
     <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLISHABLE_KEY'] %>
     <%= Gon::Base.render_data %>
   </head>
+  <body>
   <%= javascript_include_tag 'application' %>
     
     <% unless flash.empty? %>
@@ -68,6 +69,7 @@
     		}
       }
     </script>
+    <%= render 'shared/livechat' %>
     <%= yield :scripts %>
-  
+  </body>
 </html>
