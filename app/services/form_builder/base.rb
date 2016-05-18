@@ -2,13 +2,14 @@ class FormBuilder::Base
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::FormTagHelper
 
-  def initialize(data, object)
+  def initialize(data, object, user)
     @data = data
     @object = object
+    @user = user
   end
 
-  def self.init(column, object)
-    ("FormBuilder::" + column["field_type"].camelize).constantize.new(column, object)
+  def self.init(column, object, user)
+    ("FormBuilder::" + column["field_type"].camelize).constantize.new(column, object, user)
   end
 
   def render
@@ -24,7 +25,8 @@ class FormBuilder::Base
   end
 
   def value
-    @object.try(field_name)
+    prefill = @data.fetch("field_options",{})['prefill_with']
+    @user.send(prefill) if prefill.present? && @user
   end
 
   def required?

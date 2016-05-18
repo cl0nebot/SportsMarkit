@@ -28,7 +28,7 @@
   h5.text-primary.semi-bold.mb5 Please complete a registration profile.
   p.text-muted.fs_12.mb40 We'll be sure to save your profile for future registrations.
   - form.data["fields"].values.each do |column|
-    = FormBuilder::Base.init(column, master).render
+    = FormBuilder::Base.init(column, master, current_user).render
   br/
   br/
   h5.text-primary.semi-bold Registration waiver review

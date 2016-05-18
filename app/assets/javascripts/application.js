@@ -140,7 +140,10 @@
 //= require events_calendar
 //= require_tree ./templates
 //= require ./notify
-//= require_tree ./formbuilder1
+//= require ./formbuilder1/1vendor
+//= require ./formbuilder1/src/scripts/main
+//= require_directory ./formbuilder1/src/scripts/fields
+
 //= require form_build_init
 
 $(document).click(function(event) {
