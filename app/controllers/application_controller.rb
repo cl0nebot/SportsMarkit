@@ -52,7 +52,12 @@ class ApplicationController < ActionController::Base
   def correct_user!
     authenticate_user!
     if current_user
-      unless params[:controller].camelcase.singularize.constantize.friendly.find(params[:id]).can_be_edited_by_user?(current_user)
+      if params['user_id'].present?
+        if User.friendly.find(params[:user_id]).can_be_edited_by_user?(current_user) == false
+          flash[:message] = "Unauthorized."
+          redirect_to edit_user_path(current_user)
+        end
+      elsif !params[:controller].camelcase.singularize.constantize.friendly.find(params[:id]).can_be_edited_by_user?(current_user)
         flash[:message] = "Unauthorized."
         redirect_to edit_user_path(current_user)
       end
