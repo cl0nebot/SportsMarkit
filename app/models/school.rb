@@ -53,10 +53,6 @@ class School < ActiveRecord::Base
     end
   end
 
-  def school_certifications
-    Certificate.where(user_id: coaches.pluck(:id))
-  end
-
   def self.claimable_schools
     where.not( id: Role.where(roleable_type: "School", status: "Active", role: ["Athletic Director", "School Manager"]).pluck(:roleable_id))
   end

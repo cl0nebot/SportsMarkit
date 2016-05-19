@@ -44,7 +44,6 @@ class SchoolsController < ApplicationController
     @admins = @object.admins
     @userless_admins = @object.userless_admins
     @facilities = @object.facilities
-    @certifications = @object.school_certifications
   end
 
   def edit
