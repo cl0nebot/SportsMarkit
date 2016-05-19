@@ -6,7 +6,7 @@
 		<div class="col-xs-9">
 			<span class="pull-right ion-checkmark h3 no-margin"></span>
 			<span class="bold fs_20 text-black"><%= type %></span>
-			<p class="fs_12 text-muted mb0">I manage sports teams</p>
+			<p class="fs_12 text-muted mb0"><%= Classification.description(type) %></p>
 		</div>
 	</div>
 <% end %>
