@@ -41,7 +41,15 @@
                   .col-md-12
                     .inputer
                       .input-wrapper
-                        = f.text_field :email, required: true, class: "form-control", placeholder: "name@account.com", 'data-email' => true
+                        = f.text_field :mobile_phone_number, class: "form-control", placeholder: "555-555-5555", id: "mobile_phone_number", required: true, "data-phone" => true, 'data-validation-remote'=> '/checkemail.json', 'data-remote-param' => :number
+                        .help-block.with-errors
+              .form-row.form-group
+                .row.example-row
+                  .col-md-12 Email
+                  .col-md-12
+                    .inputer
+                      .input-wrapper
+                        = f.email_field :email, class: "form-control", placeholder: "Email address", required: true, "data-email" => true, 'data-validation-remote'=> '/checkemail.json', 'data-remote-param' => :email
                         .help-block.with-errors
               .form-row.form-group
                 .row.example-row
