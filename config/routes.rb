@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'main#home'
+  root 'users#new'
 
   concern :signed_documentable do
     resources :signed_documents, only: %w[index]

@@ -1,5 +1,6 @@
 $("#user_id").append("<option value='<%= @child.id %>'><%= @child.full_name %></option>");
 $("#user_id").val("<%= @child.id %>");
 $("#user_id").selectpicker('refresh');
+$('#change-submitter-form').trigger('submit.rails');
 $("#signup-form")[0].reset();
 $("#toggle-new-child-form").click();
