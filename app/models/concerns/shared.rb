@@ -43,15 +43,7 @@ module Shared
       name
     end
   end
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
   def general_information_present?
     [number_of_students.present? , motto.present? , colors.present?, number_of_teams.present?, mascot.present?].include? true
   end

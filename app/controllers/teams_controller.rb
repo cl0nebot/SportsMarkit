@@ -29,7 +29,6 @@ class TeamsController < ApplicationController
       @team.teamable_type = @teamable.class.to_s if @teamable.present?
       if @team.save
         Role.create(roleable_id: @team.id, roleable_type: "Team", status: "Active", role: "Admin", user_id: current_user.id) unless current_user.admin?
-        [1,2,3].each { |i| Chatroom.create(team_id: @team.id, specific_id: i) }
         redirect_to @team
       else
         flash[:error] = "Team needs a name, sport, and a valid address."
