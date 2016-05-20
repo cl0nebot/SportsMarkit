@@ -15,49 +15,40 @@ module Access
     if self.instance_of?(Team)
       if self.teamable.present?
         supervisory_roles = ["Athletic Director", "League Manager", "Admin", "Club Director", "Club Manager", "School Manager"]
-        return true if Role.where(user_id: current_user.id, status: "Active", roleable_type: self.teamable.class.to_s, roleable_id: self.teamable.id, role: supervisory_roles).present?
+        Role.where(user_id: current_user.id, status: "Active", roleable_type: self.teamable.class.to_s, roleable_id: self.teamable.id, role: supervisory_roles).present?
       else
-        return true if Role.where(user_id: current_user.id, status: "Active", roleable_type: self.class.to_s, roleable_id: self.id, role:["Admin"]).present?
+        Role.where(user_id: current_user.id, status: "Active", roleable_type: self.class.to_s, roleable_id: self.id, role:["Admin"]).present?
       end
-      return false
     end
   end
   
   def league_can_be_edited_by_user?(current_user)
     if self.instance_of?(League)
-      return true if Role.where(user_id: current_user.id, status: "Active", roleable_type: self.class.to_s, roleable_id: self.id, role: ["League Manager", "League Director"] ).present?
-      return false
+      Role.where(user_id: current_user.id, status: "Active", roleable_type: self.class.to_s, roleable_id: self.id, role: ["League Manager", "League Director"] ).present?
     end
   end
   
   def event_can_be_edited_by_user?(current_user)
     if self.instance_of?(Event)
-      return true if (self.user_id == current_user.id)
-      object = eventable_type.constantize.find(eventable_id)
-      return true if object.can_be_edited_by_user?(current_user)
-      return false
+      (self.user_id == current_user.id) || eventable_type.constantize.find(eventable_id).can_be_edited_by_user?(current_user)
     end
   end
   
   def user_can_be_edited_by_user?(current_user)
     if self.instance_of?(User)
-      return true if (self.id == current_user.id)
-      #return true if TODO add parent
-      return false
+      id == current_user.id
     end
   end
   
   def school_can_be_edited_by_user?(current_user)
     if self.instance_of?(School)
-      return true if Role.where(user_id: current_user.id, status: "Active", roleable_type: self.class.to_s, roleable_id: self.id, role: ["Athletic Director", "School Manager"] ).present?
-      return false
+      Role.where(user_id: current_user.id, status: "Active", roleable_type: self.class.to_s, roleable_id: self.id, role: ["Athletic Director", "School Manager"] ).present?
     end
   end
   
   def club_can_be_edited_by_user?(current_user)
     if self.instance_of?(Club)
-      return true if Role.where(user_id: current_user.id, status: "Active", roleable_type: self.class.to_s, roleable_id: self.id, role: ["Club Director", "Club Manager"] ).present?
-      return false
+      Role.where(user_id: current_user.id, status: "Active", roleable_type: self.class.to_s, roleable_id: self.id, role: ["Club Director", "Club Manager"] ).present?
     end
   end
   
@@ -65,10 +56,8 @@ module Access
     if self.instance_of?(Facility)
       return true if Role.where(user_id: current_user.id, status: "Active", roleable_type: self.class.to_s, roleable_id: self.id, role: ["Facility Manager"]).present?
       if facility_owner_id.present?
-        return true if (facility_owner_type == "User" && facility_owner_id == current_user.id)
-        return true if facility_owner_type.constantize.find(facility_owner_id).can_be_edited_by_user?(current_user)
+        return (facility_owner_type == "User" && facility_owner_id == current_user.id) || facility_owner_type.constantize.find(facility_owner_id).can_be_edited_by_user?(current_user)
       end
-      return false
     end
   end
 end
