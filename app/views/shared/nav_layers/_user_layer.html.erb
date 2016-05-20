@@ -1,3 +1,41 @@
+<script src="//js.pusher.com/2.2/pusher.min.js"></script>
+<script>
+  var pusher = new Pusher('<%=ENV["PUSHER_KEY"]%>'); // uses your APP KEY
+  var user_id = <%=current_user.id%>;
+  // $('#chat-message-form')[0].reset()
+
+</script>
+
+<% current_user.team_roles.each do |role| %>
+    <script>
+      pusher.subscribe("chat-<%= role.chatroom.id %>").bind('message-push', function (data) {
+        // $("#message-<%#= @team.last_chat_stream_message_id %>").empty();
+        // 	$("#message-<%#= @team.last_chat_stream_message_id %>").append("<%#= j render 'message', message: Message.where(chatroom_id: @team.id).last.beginning_of_stream %>")
+        if ($("#messages-for-chat").data('room') != <%= role.chatroom.id %>){return false}
+
+        if (data.user_id == user_id) {
+          data.current_user = true;
+        }
+        else{
+          data.current_user = false;
+        }
+        if (data.user_id != $('.message-wrap:last').data('id')){
+          data.begin_stream = true;
+        }else{
+          data.begin_stream = false;
+        }
+        $("#messages-for-chat").append(JST['chat/message'](data));
+        $('#messages-for-chat').scrollTop($('#messages-for-chat')[0].scrollHeight);
+
+      });
+    </script>
+<% end %>
+
+
+  <div id="pusher">
+
+  </div>
+
 <div class="user-layer">
   <ul class="nav nav-tabs nav-justified" role="tablist">
     <li class="active">
@@ -18,6 +56,29 @@
           
 
         <ul class="list-material has-hidden">
+          <li class="has-action-left has-action-right"></li>
+
+          <% current_user.team_roles.each do |role| %>
+            <li class="has-action-left has-action-right">
+              <div class="list-action-left">
+                <img src="<%= image_path("placeholders/user.jpg") %>" class="face-radius" alt="">
+              </div>
+              <div class="list-content" id="chatroom-label-<%= role.chatroom.id %>">
+                <% if role.chatroom.id == current_user.chatroom_ids.first %>
+                  <%= render 'shared/nav_layers/room',chatroom: role.chatroom %>
+                <% else %>
+                  <%= render 'shared/nav_layers/chatroom',chatroom: role.chatroom %>
+                <% end %>
+              </div>
+
+              <div class="list-action-right">
+                <!-- <span class="top">15 min</span>
+                <i class="ion-android-done bottom"></i> -->
+              </div>
+
+            </li>
+          <% end %>
+
            <li class="has-action-left has-action-right has-long-story">
             <a href="#" class="hidden"><i class="ion-android-delete"></i></a>
             <a href="<%= users_path %>" class="visible">
@@ -105,7 +166,7 @@
                 <img src="<%= image_path("placeholders/basketball-court.jpg") %>" class="face-radius" alt="">
               </div>
               <div class="list-content">
-                <h4 class"mb0">Facilities</h4>
+                <h4 class="mb0">Facilities</h4>
               </div>
               <div class="list-action-right">
                 <span class="top">
@@ -120,9 +181,18 @@
         <div class="col-md-8">
         <div class="message-send-container" id="scroll">
 
-         
+          <% if current_user.team_roles.present? %>
+            <div class="messages" id="messages-for-chat" data-room="<%=current_user.chatroom.id%>">
+              <%= render 'shared/nav_layers/messages', messages: Message.where(chatroom_id: current_user.chatroom.id) %>
+            </div>
+            <!--.messages-->
 
-        </div>
+
+            <div class="send-message" id="form-for-chat">
+              <%= render 'shared/nav_layers/form', chatroom_id: current_user.chatroom.id %>
+            </div>
+          <% end %>
+          </div>
         <!--.message-send-container-->
       </div>
       <!--.col-->

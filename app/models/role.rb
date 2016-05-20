@@ -15,7 +15,7 @@ class Role < ActiveRecord::Base
     end
   end
 
-  ["Athlete", "Coach", "Team Manager", "Admin", "Trainer", "Athletic Director", "Guardian", "School Manager", "Athletic Director", "Club Director", "League Manager", "Facility Manager"].each do |type|
+    ["Athlete", "Coach", "Team Manager", "Admin", "Trainer", "Athletic Director", "Guardian", "School Manager", "Athletic Director", "Club Director", "League Manager", "Facility Manager"].each do |type|
 
     formatted_type = type.gsub(" ", "_").downcase
 
@@ -26,6 +26,14 @@ class Role < ActiveRecord::Base
     define_singleton_method "pending_#{formatted_type.pluralize}" do
       where(status: "Pending", role: type)
     end
+
+    define_method "#{formatted_type}?" do
+      role == type
+    end
+  end
+
+  def chatroom
+    roleable.chatrooms.where(role_type: role).first
   end
 
   def self.staff_roles
