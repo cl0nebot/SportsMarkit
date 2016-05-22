@@ -3,7 +3,7 @@ class RegistrationsController < ApplicationController
   before_action :load_master, only: [:change_submitter], :if => :current_user?
   before_action :load_object, only: [:new, :register, :registrant, :index, :pay_manual]
   before_action :load_registrants, only: [:index, :pay_manual]
- # before_filter :load_and_restrict_registration, only: [:new]
+  before_filter :load_and_restrict_registration, only: [:new]
 
   def index
   end
@@ -15,11 +15,11 @@ class RegistrationsController < ApplicationController
 
   def load_and_restrict_registration
     @form = @object.forms.where(master: true).first
-    restrictor = Restrictors::Registration.call(form: @form, preview: params[:preview], launch: params[:launch])
-    if restrictor.failure?
-      flash[:error] = restrictor.error
-      redirect_to_back(url_for(@object))
-    end
+    # restrictor = Restrictors::Registration.call(form: @form, preview: params[:preview], launch: params[:launch])
+#     if restrictor.failure?
+#       flash[:error] = restrictor.error
+#       redirect_to_back(url_for(@object))
+#     end
   end
 
   def register
