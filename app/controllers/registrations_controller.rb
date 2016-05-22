@@ -3,7 +3,7 @@ class RegistrationsController < ApplicationController
   before_action :load_master, only: [:change_submitter], :if => :current_user?
   before_action :load_object, only: [:new, :register, :registrant, :index, :pay_manual]
   before_action :load_registrants, only: [:index, :pay_manual]
-  before_filter :load_and_restrict_registration, only: [:new]
+ # before_filter :load_and_restrict_registration, only: [:new]
 
   def index
   end
