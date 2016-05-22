@@ -1,5 +1,5 @@
 #login-user-on-registration-form.modal.scale.fade.slide-up.disable-scroll aria-hidden="true" data-backdrop="static" data-keyboard="false" role="dialog" tabindex="-1"
-  = form_tag sessions_path, data: { toggle: 'validator', disable: false } do |f|
+  = form_tag sessions_path(registration: true), data: { toggle: 'validator', disable: false } do |f|
     .modal-dialog
       .modal-content
         .modal-header
