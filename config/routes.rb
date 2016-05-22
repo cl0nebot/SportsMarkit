@@ -42,8 +42,8 @@ Rails.application.routes.draw do
   get "send_certification_reminder" => "notifications#send_certification_reminder", as: :notification_text
 
   get "testsetup" => "setup#testsetup", as: :test_setup
-  get "/users/:id/setup" => "setup#setup", as: :user_setup
-  get "/users/:id/overview" => "setup#overview", as: :user_overview
+  get "/users/:user_id/setup" => "setup#setup", as: :user_setup
+  get "/users/:user_id/overview" => "setup#overview", as: :user_overview
   patch "/user/:id/athlete_setup" => "setup#athlete_setup", as: :athlete_setup
   patch "/user/:id/coach_setup" => "setup#coach_setup", as: :coach_setup
   patch "/user/:id/athletic_director_setup" => "setup#athletic_director_setup", as: :athletic_director_setup

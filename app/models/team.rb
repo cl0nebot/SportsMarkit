@@ -31,7 +31,7 @@ class Team < ActiveRecord::Base
   has_many :leagues, through: :team_leagues
   
   before_update :update_slug
-  
+  after_create :create_all_chatrooms
   has_many :documents, as: :documentable, dependent: :destroy
 
   def use_for_slug
@@ -127,4 +127,9 @@ class Team < ActiveRecord::Base
     end
   end
 
+  def create_all_chatrooms
+    self.class.role_types.each do|role_type|
+      chatrooms.create(role_type: role_type)
+    end
+  end
 end

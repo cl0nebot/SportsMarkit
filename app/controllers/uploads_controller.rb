@@ -16,7 +16,7 @@ class UploadsController < ApplicationController
 
     if @import.failure?
       if @import.error_xls
-        redirect_to :back, flash: { alert: @import.errors, file_with_errors_path: file.path }
+        redirect_to :back, flash: { alert: @import.errors, file_with_errors_path: @import.error_xls }
       end
     else
       redirect_to :back, notice: 'Uploaded'

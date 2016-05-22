@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
 
   has_many :roles, dependent: :destroy
+  has_many :team_roles, -> { where roleable_type: "Team" }, class_name: :Role
 
   # user profile
   has_one :profile, dependent: :destroy
@@ -400,42 +401,11 @@ class User < ActiveRecord::Base
   end
 
   def chatroom_ids
-    array = []
-    rels = relationships.where.not(id: nil).each do |rel|
-      rel.team.chatrooms.each do |chatroom|
-        if rel.athlete? && chatroom.specific_id == 1
-          array << chatroom.id
-        end
-
-        if rel.coach? && chatroom.specific_id == 2
-          array << chatroom.id
-        end
-
-        if parent_relationship_with_team?(chatroom.team) && chatroom.specific_id == 3
-          array << chatroom.id
-        end
-      end
-    end
-    array
+    Chatroom.where(team_id: Team.where(id: team_roles.pluck(:roleable_id))).pluck(:id)
   end
 
   def chatroom
-    if relationships.where(accepted: true).present?
-      rel = relationships.first
-      rel.team.chatrooms.each do |chatroom|
-        if rel.athlete? && chatroom.specific_id == 1
-          return chatroom.id
-        end
-
-        if rel.coach? && chatroom.specific_id == 2
-          return chatroom.id
-        end
-
-        if parent_relationship_with_team?(chatroom.team) && chatroom.specific_id == 3
-          return chatroom.id
-        end
-      end
-    end
+    team_roles.first.chatroom
   end
 
   def chatroom_group

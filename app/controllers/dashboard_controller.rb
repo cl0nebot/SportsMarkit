@@ -1,4 +1,6 @@
 class DashboardController < ApplicationController
+  before_action :authenticate_user!
+  before_action :correct_user!
   before_action :find_object
   
   def index

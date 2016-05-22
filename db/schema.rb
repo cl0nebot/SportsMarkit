@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511140458) do
+ActiveRecord::Schema.define(version: 20160519195922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,10 +124,12 @@ ActiveRecord::Schema.define(version: 20160511140458) do
 
   create_table "chatrooms", force: true do |t|
     t.integer  "team_id"
-    t.integer  "specific_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "role_type"
   end
+
+  add_index "chatrooms", ["role_type"], name: "index_chatrooms_on_role_type", using: :btree
 
   create_table "classifications", force: true do |t|
     t.integer  "user_id"
@@ -332,8 +334,8 @@ ActiveRecord::Schema.define(version: 20160511140458) do
     t.datetime "updated_at"
     t.json     "data"
     t.string   "object"
-    t.json     "user_data",              default: {}
     t.boolean  "notify_creator"
+    t.json     "user_data",              default: {}
     t.integer  "payment_type",           default: 0
     t.string   "name"
     t.date     "start_date"

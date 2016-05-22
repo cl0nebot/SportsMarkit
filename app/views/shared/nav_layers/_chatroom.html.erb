@@ -1,5 +1,4 @@
-<% room_type = if chatroom.specific_id == 1 then "Athletes" elsif chatroom.specific_id == 2 then "Coaches" elsif chatroom.specific_id == 3 then "Parents" end %>
-<span class="title"><%= link_to "#{chatroom.team.proper_name} - #{room_type}", chatroom_messages_path(chatroom_id: chatroom.id), remote: true %></span>
+<span class="title"><%= link_to "#{chatroom.team.proper_name} - #{chatroom.role_type}", chatroom_messages_path(chatroom_id: chatroom.id), remote: true %></span>
 
 
 
