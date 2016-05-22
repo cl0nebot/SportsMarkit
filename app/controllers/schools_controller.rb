@@ -37,6 +37,7 @@ class SchoolsController < ApplicationController
 
   def show
     @object = @school
+    @school.coaches.includes(:certificates)
     @teams = @object.teams
     shared_variables
     @manager_and_trainers = @object.manager_and_trainers
