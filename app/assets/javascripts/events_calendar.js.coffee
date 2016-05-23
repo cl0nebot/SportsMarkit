@@ -25,16 +25,21 @@ $ ->
             url = $(this).data("href")
             auth_token = $('meta[name=csrf-token]').attr('content')
             $.get "#{url}&authenticity_token=#{auth_token}", (response)=>
-              $(@).parent().find('a').removeAttr('disabled')
-              $(@).attr('disabled', 'disabled')
-              id = parseInt(response.id)
-              gon.visiting_ids.yes = _.without(gon.visiting_ids.yes, id)
-              gon.visiting_ids.no = _.without(gon.visiting_ids.no, id)
-              gon.visiting_ids.maybe = _.without(gon.visiting_ids.maybe, id)
-              gon.visiting_ids[response.type].push(id)
-              icon = switch response.type
-                when 'yes' then 'ion-checkmark-circled text-green'
-                when 'no' then 'ion-close-circled text-danger'
-                else 'ion-minus-circled text-amber'
-              $("[data-event-id=#{id}] i").attr('class', icon)
+              if response.status is 'payment_required'
+                $('#payment-modal').find('.event-name').text(response.event_name)
+                $('#payment-modal').find('.event-link').attr('href', response.link)
+                $('#payment-modal > #payment-required-modal').modal('show')
+              else
+                $(@).parent().find('a').removeAttr('disabled')
+                $(@).attr('disabled', 'disabled')
+                id = parseInt(response.id)
+                gon.visiting_ids.yes = _.without(gon.visiting_ids.yes, id)
+                gon.visiting_ids.no = _.without(gon.visiting_ids.no, id)
+                gon.visiting_ids.maybe = _.without(gon.visiting_ids.maybe, id)
+                gon.visiting_ids[response.type].push(id)
+                icon = switch response.type
+                  when 'yes' then 'ion-checkmark-circled text-green'
+                  when 'no' then 'ion-close-circled text-danger'
+                  else 'ion-minus-circled text-amber'
+                $("[data-event-id=#{id}] i").attr('class', icon)
         , 500

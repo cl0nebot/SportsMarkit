@@ -90,6 +90,9 @@ div.pt60
                   .checkboxer.form-inline
                     = f.check_box :private, id: "private"
                     label for="private"  Private?
+                  .checkboxer.form-inline
+                    = f.check_box :payment_required, id: "payment_required"
+                    label for="payment_required"  Payment required
             br
             .row.example-row
               .col-md-12

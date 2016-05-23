@@ -68,6 +68,6 @@ class EventsService
     @params.require(:event).permit(:user_id, :eventable_id, :eventable_type, :file,
                                   :opponent_id, :opponent_type, :event_type, :title, :starts_at, :ends_at,
                                   :all_day, :description, :private, :created_by, :reservation, :repeat_type,
-                                  :repeat_until, facility_ids: [])
+                                  :repeat_until, :payment_required, facility_ids: [])
   end
 end

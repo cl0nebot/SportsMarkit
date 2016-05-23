@@ -485,6 +485,10 @@ class User < ActiveRecord::Base
     attendees.where(event_id: event.id, yes: true).present?
   end
 
+  def attend_event!(event)
+    attendees.where(event_id: event.id).first_or_create.update(yes: true, maybe: false, no: false)
+  end
+
   def maybe_attend_event?(event)
     attendees.where(event_id: event.id, maybe: true).present?
   end
@@ -530,5 +534,7 @@ class User < ActiveRecord::Base
     Form.where(submitter_id: id).where.not(formable: nil)
   end
 
+  def paid_for_event?
 
+  end
 end

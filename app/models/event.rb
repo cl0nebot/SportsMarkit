@@ -19,10 +19,15 @@ class Event < ActiveRecord::Base
   has_many :connects, as: :ownerable, dependent: :destroy
   has_many :child_events, class_name: "Event", foreign_key: :parent_id
   has_many :attendees, dependent: :destroy
+  has_many :forms, as: :formable, dependent: :destroy
 
   friendly_id :use_for_slug, use: [:slugged, :finders]
 
   enum repeat_type: { single: 0, every_day: 1, every_week: 2, every_month: 3 }
+
+  def name
+    title
+  end
 
   def link_to_google
     uri = Addressable::URI.parse("https://calendar.google.com/calendar/render")

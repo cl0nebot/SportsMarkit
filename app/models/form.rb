@@ -18,6 +18,7 @@ class Form < ActiveRecord::Base
     update(paid: true, payment_type: payment_type)
     track_payment
     send_registration_emails
+    submittable.attend_event!(formable) if formable_type == "Event"
   end
 
   def track_payment

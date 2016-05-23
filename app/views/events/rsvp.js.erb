@@ -1,11 +1,11 @@
 <% if params[:page] == "show" %>
 	$("#social-buttons").html("<%= j render 'events/rsvp_buttons', event: @event %>")
 	$('#yes').empty()
-	$('#yes').append("<%= j render 'events/rsvp_list', people: @attendees, group: 'Attending' %>")
+	$('#yes').append("<%= j render 'events/rsvp_list', people: @rspv_service.attendees, group: 'Attending' %>")
 	$('#maybe').empty()
-	$('#maybe').append("<%= j render 'events/rsvp_list', people: @maybes, group: 'Possibly Attending' %>")
+	$('#maybe').append("<%= j render 'events/rsvp_list', people: @rspv_service.maybes, group: 'Possibly Attending' %>")
 	$('#no').empty()
-	$('#no').append("<%= j render 'events/rsvp_list', people: @nos, group: 'Not Attending' %>")
+	$('#no').append("<%= j render 'events/rsvp_list', people: @rspv_service.nos, group: 'Not Attending' %>")
 <% elsif params[:page] == "index" %>
   $('#rsvp-for-event-<%= params[:event_id]%>').empty()
   $('#rsvp-for-event-<%= params[:event_id]%>').append("<%= j render 'event', event: @event %>")
