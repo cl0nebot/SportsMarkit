@@ -15,8 +15,9 @@ class SessionsController < ApplicationController
     user = User.where(mobile_phone_number: params[:identifier]).first unless params[:identifier].include?("@")
     if user && user.authenticate(params[:password])
       cookies.permanent[:authentication_token] = user.authentication_token
-      redirect_to :back and return if !!(request.referer =~ /(registrations\/new)$/)
-      if user.email.blank? and user.mobile_phone_number.present?
+      if params[:registration]
+        redirect_to :back
+      elsif user.email.blank? and user.mobile_phone_number.present?
         redirect_to user_email_path(user)
       else
         if user.signin_count < 1 or user.classifications.blank?

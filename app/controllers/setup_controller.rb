@@ -1,4 +1,6 @@
 class SetupController < ApplicationController
+  before_action :authenticate_user!
+  before_action :correct_user!
   before_action :find_user, except: [:test_setup, :delete_role, :add_role, :create_object]
   
   def setup
@@ -51,7 +53,7 @@ class SetupController < ApplicationController
   protected
   
   def find_user
-    @user = User.friendly.find(params[:id])
+    @user = User.friendly.find(params[:user_id])
   end
   
   def team_params

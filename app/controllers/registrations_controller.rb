@@ -16,11 +16,11 @@ class RegistrationsController < ApplicationController
 
   def load_and_restrict_registration
     @form = @object.forms.where(master: true).first
-    restrictor = Restrictors::Registration.call(form: @form, preview: params[:preview], launch: params[:launch])
-    if restrictor.failure?
-      flash[:error] = restrictor.error
-      redirect_to_back(url_for(@object))
-    end
+    # restrictor = Restrictors::Registration.call(form: @form, preview: params[:preview], launch: params[:launch])
+#     if restrictor.failure?
+#       flash[:error] = restrictor.error
+#       redirect_to_back(url_for(@object))
+#     end
   end
 
   def register
