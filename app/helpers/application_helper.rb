@@ -495,4 +495,8 @@ module ApplicationHelper
   end  
   
 
+  def event_warning_class(e)
+    return unless e.payment_required?
+    e.has_prepared_form? ? '' : 'warning'
+  end
 end

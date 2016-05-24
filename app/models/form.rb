@@ -10,6 +10,10 @@ class Form < ActiveRecord::Base
 
   attr_accessor :stripe_token
 
+  def self.master
+    where(master: true).first
+  end
+
   def registrant
     submittable
   end

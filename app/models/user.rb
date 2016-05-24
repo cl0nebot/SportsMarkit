@@ -534,7 +534,4 @@ class User < ActiveRecord::Base
     Form.where(submitter_id: id).where.not(formable: nil)
   end
 
-  def paid_for_event?
-
-  end
 end

@@ -25,6 +25,14 @@ class Event < ActiveRecord::Base
 
   enum repeat_type: { single: 0, every_day: 1, every_week: 2, every_month: 3 }
 
+  def master_form
+    @master_form ||= forms.master
+  end
+
+  def has_prepared_form?
+    master_form.present? && master_form.options.present?
+  end
+
   def name
     title
   end
