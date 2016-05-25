@@ -36,4 +36,8 @@
   </div>
 </div>
 
-
+<% if params[:manage_relationships] %>
+  <script type="text/javascript">
+    $('#manage-relationships').modal('show')
+  </script>
+<% end %>

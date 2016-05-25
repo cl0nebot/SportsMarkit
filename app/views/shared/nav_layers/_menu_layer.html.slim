@@ -1,0 +1,134 @@
+.menu-layer
+  - if current_user
+    ul
+      li
+        a href="javascript:;"
+          i.ion-person.mr5
+          | Profile
+        ul.child-menu
+          li
+            = link_to user_path(current_user) do
+              i.ion-person.mr5
+              | View Profile
+          li
+            = link_to edit_user_path(current_user) do
+              i.ion-gear-b.mr5
+              | Edit Profile
+          li
+            = link_to edit_user_path(current_user, anchor: 'tab_media') do
+              i.ion-gear-b.mr5
+              | Manage media
+
+      li
+        a href="javascript:;"
+          i.ion-person.mr5
+          | Dashboard
+        ul.child-menu
+          li
+            = link_to user_dashboard_index_path(current_user) do
+              i.ion-person.mr5
+              | View Dashboard
+      li
+        a href="javascript:;"
+          i.ion-person.mr5
+          | My Events
+        ul.child-menu
+          li
+            = link_to user_events_path(current_user) do
+              i.ion-person.mr5
+              | View Events
+      - if current_user.roles.any?
+        li
+          a href="javascript:;"
+            i.ion-flag.mr5
+            | My Teams
+          ul.child-menu
+            - current_user.all_teams.each do |team|
+              li
+                = link_to team_path(team.friendly_id) do
+                  i.ion-flag.mr5
+                  = "#{team.proper_name}"
+      - if current_user.all_schools.any?
+        li
+          a href="javascript:;"
+            i.ion-university.mr5
+            | My Schools
+          ul.child-menu
+            - current_user.all_schools.each do |school|
+              li
+                = link_to school_path(school) do
+                  i.ion-university.mr5
+                  = school.name
+              - if school.can_be_edited_by_user?(current_user)
+                li
+                  = link_to edit_school_path(school) do
+                    i.ion-gear-b.mr5
+                    = "Edit #{school.name}"
+      - if current_user.all_clubs.any?
+        li
+          a href="javascript:;"
+            i.ion-university.mr5
+            | My Clubs
+          ul.child-menu
+            - current_user.all_clubs.each do |club|
+              li
+                = link_to club_path(club) do
+                  i.ion-university.mr5
+                  = club.name
+              - if club.can_be_edited_by_user?(current_user)
+                li
+                  = link_to edit_club_path(club) do
+                    i.ion-gear-b.mr5
+                    = "Edit #{club.name}"
+      - if current_user.leagues.any?
+        li
+          a href="javascript:;"
+            i.ion-university.mr5
+            | My Leagues
+          ul.child-menu
+            - current_user.leagues.each do |league|
+              li
+                = link_to league_path(league) do
+                  i.ion-university.mr5
+                  = league.name
+              - if league.can_be_edited_by_user?(current_user)
+                li
+                  = link_to edit_league_path(league) do
+                    i.ion-gear-b.mr5
+                    = "Edit #{league.name}"
+      li
+        a href="javascript:;"
+          i.ion-university.mr5
+          | Manage
+        ul.child-menu
+          li
+            = link_to user_dashboard_index_path(user_id: current_user.id, manage_relationships: true) do
+              i.ion-gear-b.mr5
+              | Manage All Relationships
+          - ["Athlete", "Student Athlete", "Coach", "Guardian", "Athletic Director", "Club Director", "School Manager", "Team Manager"].each do |classification|
+            - if current_user.classifications.any?{|user_classification| user_classification.classification == classification}
+              li
+                = link_to user_path(current_user) do
+                  i.ion-gear-b.mr5
+                  | Create team (#{classification})
+      li
+        a href="javascript:;"
+          i.ion-university.mr5
+          | Administrative
+        ul.child-menu
+          li
+            = link_to user_signed_documents_path(current_user) do
+              i.ion-gear-b.mr5
+              | View Signed Documents
+          li
+            = link_to user_registrations_path(current_user) do
+              i.ion-gear-b.mr5
+              | My Registrations
+      li
+        - if current_user
+          = link_to session_path(current_user.id), method: :delete do
+            | Logout
+            i.ion-power.m-l-5
+  - else
+    ul
+      = link_to "Signup", signup_path

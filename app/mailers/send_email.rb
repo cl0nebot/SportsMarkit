@@ -1,8 +1,8 @@
 class SendEmail < ActionMailer::Base
-  def new_registration(user, form)
-    @user = user
+  def new_registration(receiver, form)
+    @user = form.submittable
     @form = form
-    mail(from: "donotreply@sportsmarkit.com", to: @user.email, subject: "New Registration")
+    mail(from: "donotreply@sportsmarkit.com", to: receiver.email, subject: "New Registration")
   end
 
   def certificate_expiration(user, message="")

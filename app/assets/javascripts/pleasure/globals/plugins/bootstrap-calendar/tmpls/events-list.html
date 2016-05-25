@@ -3,7 +3,6 @@
 	<ul class="unstyled list-unstyled">
 		<% _.each(events, function(event) { %>
 			<li>
-        <% debugger %>
         <% if($.inArray(event.id, gon.visiting_ids.yes) >= 0){
           disabled = 'disabled="disabled"'
         }else{

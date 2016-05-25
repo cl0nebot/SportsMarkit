@@ -23,6 +23,10 @@
     </div>
   </div>
   <div class="row">
-    <%= render @upcoming_events %>
+    <% @upcoming_events.each do |event| %>
+      <div id="rsvp-for-event-<%= event.id %>">
+        <%= render event %>
+      </div>
+    <% end %>
   </div>
 </div>

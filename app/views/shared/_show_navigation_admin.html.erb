@@ -1,31 +1,33 @@
 <div class="header-tabs scrollable-tabs sticky thin">
-	<ul class="nav nav-tabs tabs-active-text-white tabs-active-border-blue" id="nav-tabs">
-		<li>
-            <%= link_to @object, class: "btn-ripple" do %>
-		      Profile
-            <% end %>
-		</li>
-        <% if false %>
-		<li>
-		  <a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Roster</a>
-		</li>
+  <ul class="nav nav-tabs tabs-active-text-white tabs-active-border-blue" id="nav-tabs">
+    <li>
+      <%= link_to @object, class: "btn-ripple" do %>
+        Profile
+      <% end %>
+    </li>
+    <% if false %>
+      <li>
+        <a href="#calendar-tab" data-toggle="tab" class="btn-ripple">Roster</a>
+      </li>
+    <% end %>
+    <li>
+      <% unless @object.is_a?(Event) %>
+        <%= link_to eval("#{@object.class.to_s.underscore.downcase}_signed_documents_path(@object)") do %>
+          Signed Documents
         <% end %>
-		<li>
-          <%= link_to eval("#{@object.class.to_s.underscore.downcase}_signed_documents_path(@object)") do %>
-		    Signed Documents
-          <% end %>
-		</li>
-        <% unless @object.instance_of? User %>
-		<li>
-          <%= link_to eval("#{@object.class.to_s.underscore.downcase}_documents_path(@object)") do %>
-		    Documents
-          <% end %>
-		</li>
+      <% end %>
+    </li>
+    <% unless @object.is_a?(User) || @object.is_a?(Event) %>
+      <li>
+        <%= link_to eval("#{@object.class.to_s.underscore.downcase}_documents_path(@object)") do %>
+          Documents
         <% end %>
-		<li>
-          <%= link_to eval("#{@object.class.to_s.underscore.downcase}_registrations_path(@object)") do %>
-		    Registrations
-          <% end %>
-		</li>
-	</ul>
+      </li>
+    <% end %>
+    <li>
+      <%= link_to eval("#{@object.class.to_s.underscore.downcase}_registrations_path(@object)") do %>
+        Registrations
+      <% end %>
+    </li>
+  </ul>
 </div>

@@ -243,6 +243,7 @@
     })).then(function () {
       self.toggleSubmit()
       if (self.$btn.hasClass('disabled')) self.focusError()
+      if (self.hasErrors() && self.$element.data('notify') != null) window.notifyError('Form is invalid, please check all tabs')
     })
 
     return this

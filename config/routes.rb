@@ -111,6 +111,16 @@ Rails.application.routes.draw do
   resources :certificates
   resources :media
   resources :events do
+    resources :registrations do
+      get :register
+      get :registrant
+    end
+    resources :forms do
+      resources :options
+      collection do
+        post :create_or_update_form
+      end
+    end
     resources :photos
     resources :invites
     resources :event_schedules do

@@ -18,7 +18,11 @@ class EventsController < ApplicationController
   def create
     @event = EventsService.new(@object, params).create
     if @event.persisted?
-      redirect_to @event
+      if @event.payment_required?
+        redirect_to new_event_form_path(@event)
+      else
+        redirect_to @event
+      end
     else
       render "new"
     end
@@ -170,17 +174,19 @@ class EventsController < ApplicationController
   def rsvp
     @event = Event.find(params[:event_id])
     @user = current_user
-    boolean = params[:rsvp]
-    @rsvp = Attendee.find_or_initialize_by(event_id: @event.id, user_id: @user.id)
-    @rsvp.update_attributes(yes: nil, maybe: nil, no: nil)
-    @rsvp.update_attributes(boolean.to_sym => true)
-    @attendees = @event.attendees.where(yes: true)
-    @maybes = @event.attendees.where(maybe: true)
-    @nos = @event.attendees.where(no: true)
-    respond_to do |format|
-      format.html{redirect_to :back}
-      format.js
-      format.json { render json: { status: :ok, id: params[:event_id], type: params[:rsvp] } }
+    @rspv_service = RsvpService.new(@user, @event, params)
+    if @rspv_service.need_to_pay?
+      respond_to do |format|
+        format.html{ redirect_to @rspv_service.redirect_url }
+        format.js{ render 'payment_required' }
+        format.json { render json: { status: :payment_required, link: @rspv_service.redirect_url, event_name: @rspv_service.event_name } }
+      end
+    else
+      respond_to do |format|
+        format.html{ redirect_to :back }
+        format.js
+        format.json { render json: { status: :ok, id: params[:event_id], type: params[:rsvp] } }
+      end
     end
   end
 
@@ -190,7 +196,7 @@ class EventsController < ApplicationController
     params.require(:event).permit(:user_id, :eventable_id, :eventable_type, :file,
                                   :opponent_id, :opponent_type, :event_type, :title, :starts_at, :ends_at,
                                   :all_day, :description, :private, :created_by, :reservation, :repeat_type,
-                                  :registration_required, :repeat_until, facility_ids: [])
+                                  :repeat_until, :payment_required, facility_ids: [])
   end
 
   def find_object

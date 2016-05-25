@@ -6,6 +6,7 @@ class RegistrationsController < ApplicationController
   before_filter :load_and_restrict_registration, only: [:new]
 
   def index
+    redirect_to_back and return unless @object.can_be_edited_by_user?(current_user)
   end
 
   def new

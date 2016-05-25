@@ -1,0 +1,148 @@
+br/
+.row
+  .col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
+    .panel.box-shadow-ccc
+      .panel-header.bg-cyan
+        br/
+        h5.text-right.text-white.semi-bold
+          | Add or Create a New Facility
+          i.ion-plus-circled.margin-right-10.margin-left-10.text-white
+        hr.margin-top-0/
+      = form_for Facility.new, html: { id: 'new-facility-form', data: { toggle: "validator", disable: false } } do |f|
+        .panel-body.padding-right-40.padding-left-40 style=("border-bottom: 1px solid #ddd;")
+          .row
+            .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.col-sm-12
+              .row.text-center
+                .col-md-12
+                  h3.semi-bold.text-primary Setup a new facility
+                  h4 What type of facility?
+              .row.margin-bottom-0
+                .col-lg-6.col-lg-offset-3.col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.well.form-group
+                  = f.collection_select :facility_type, FacilityType.pluck(:facility_type), :to_s, :to_s, { include_blank: false }, { multiple: false, "data-live-search" => true, "data-width"=> "100%", class: "selecter bg-white margin-bottom-0", required: true }
+                  .help-block.with-errors
+        .panel-body.padding-right-40.padding-left-40 style=("border-bottom: 1px solid #e5e5e5;")
+          .panel-body.padding-right-40.padding-left-40
+            h5.semi-bold.text-muted.text-center Simply complete the form to create a new facility.
+            br/
+            br/
+            h4.text-blue.semi-bold
+              i.ion-ios-location.margin-right-10
+              | General Info
+            br/
+            .row.example-row
+              .col-md-12
+                h4 Name
+              .col-md-12
+                .inputer
+                  .input-wrapper.form-group
+                    = f.text_field :name, class: "form-control", required: true
+                    .help-block.with-errors
+            .row.example-row
+              .col-md-12
+                h4 Accessibility
+              .col-md-12
+                .clearfix.margin-bottom-10
+                  .checkboxer.form-inline
+                    = f.check_box :is_private, id: "facility_private"
+                    label for="facility_private"  Private?
+                  .checkboxer.form-inline
+                    = f.check_box :publicly_visible, id: "facility_publicly_visible"
+                    label for="facility_publicly_visible"  Publicly Visible
+        = render 'shared/new_address', f: f, object: Facility.new, required: true, owner: nil
+        .panel-body.padding-right-40.padding-left-40 style=("border-bottom: 1px solid #e5e5e5;")
+          .panel-body.padding-right-40.padding-left-40
+            br/
+            h4.text-blue.semi-bold
+              i.ion-email.margin-right-10
+              | Contact Information
+            br/
+            .row.example-row
+              .col-md-12
+                h4 Website
+              .col-md-12
+                .inputer
+                  .input-wrapper.form-group
+                    = f.text_field :website, class: "form-control", required: true, type: "url"
+                    .help-block.with-errors
+            .row.example-row
+              .col-md-12
+                h4 Email
+              .col-md-12
+                .inputer
+                  .input-wrapper.form-group
+                    = f.text_field :email, class: "form-control", required: true, type: "email"
+                    .help-block.with-errors
+            .row.example-row
+              .col-md-12
+                h4 Phone
+              .col-md-12
+                .inputer
+                  .input-wrapper.form-group
+                    = f.text_field :phone_number, class: "form-control", required: true, "data-phone" => true
+                    .help-block.with-errors
+        .panel-body.padding-right-40.padding-left-40 style=("border-bottom: 1px solid #e5e5e5;")
+          .panel-body.padding-right-40.padding-left-40
+            br/
+            h4.text-blue.semi-bold
+              i.ion-email.margin-right-10
+              | Social Media
+            br/
+            .row.example-row
+              .col-md-12
+                h4 Facebook
+              .col-md-12
+                .inputer
+                  .input-wrapper
+                    = f.text_field :facebook, class: "form-control"
+            .row.example-row
+              .col-md-12
+                h4 Twitter
+              .col-md-12
+                .inputer
+                  .input-wrapper
+                    = f.text_field :twitter, class: "form-control"
+            .row.example-row
+              .col-md-12
+                h4 LinkedIn
+              .col-md-12
+                .inputer
+                  .input-wrapper
+                    = f.text_field :linkedin, class: "form-control"
+            .row.example-row
+              .col-md-12
+                h4 Youtube
+              .col-md-12
+                .inputer
+                  .input-wrapper
+                    = f.text_field :youtube, class: "form-control"
+            .row.example-row
+              .col-md-12
+                h4 Pinterest
+              .col-md-12
+                .inputer
+                  .input-wrapper
+                    = f.text_field :pinterest, class: "form-control"
+            .row.example-row
+              .col-md-12
+                h4 Instagram
+              .col-md-12
+                .inputer
+                  .input-wrapper
+                    = f.text_field :instagram, class: "form-control"
+        .panel-body.padding-right-40.padding-left-40.bg-cyan
+          .row.example-row.margin-bottom-0
+            .col-md-12.text-center
+              h3.text-white.margin-bottom-0 Have and Questions?
+              p.text-white.semi-bold
+                | Please check out ours
+                a.text-white href="#"
+                  u Facility FAQ.
+        - if @object.new_record?
+          = f.hidden_field :facility_owner_type, value: @owner_type
+          = f.hidden_field :facility_owner_id,  value: @owner_id
+        .form-buttons.no-margin
+          .row
+            .col-lg-8.col-lg-offset-2
+              br/
+              = f.submit "Awesome. Let's create a facility!", class: "btn btn-blue btn-lg btn-block btn-ripple"
+              br/

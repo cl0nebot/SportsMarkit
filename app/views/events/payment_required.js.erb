@@ -1,0 +1,2 @@
+$('#dynamic-modal').html('<%= j(render "payment_required_modal", event_name: @rspv_service.event_name, url: @rspv_service.redirect_url) %>')
+$('#dynamic-modal > #payment-required-modal').modal('show');

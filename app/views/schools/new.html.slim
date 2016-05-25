@@ -1,0 +1,48 @@
+.row
+  .col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
+    .panel.box-shadow-ccc
+      .panel-header.bg-cyan
+        br/
+        h5.text-right.text-white.semi-bold
+          | Add or Create a New School
+          i.ion-plus-circled.margin-right-10.margin-left-10.text-white
+        hr.margin-top-0/
+      = form_for School.new, html: { id: 'new-school-form', data: { toggle: 'validator', disable: false }} do |f|
+        .panel-body.padding-right-40.padding-left-40 style=("border-bottom: 1px solid #ddd;")
+          .row
+            .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.col-sm-12
+              .row.text-center
+                .col-md-12
+                  h3.semi-bold.text-primary Setup a new school
+                  h4 What type of school?
+              .row.example-row.form-group
+                .col-lg-6.col-lg-offset-3.col-md-10.col-md-offset-1.col-sm-12.well.margin-bottom-0
+                  = f.select :classification, [ 'College', 'High School', 'Middle School', 'Elementary'], {}, { class: 'selecter bg-white margin-bottom-0', prompt: 'select level', required: 'true', data: { live_search: 'true', width: '100%' }}
+                  .help-block.with-errors
+                .col-lg-6.col-lg-offset-3.col-md-10.col-md-offset-1.col-sm-12.well.margin-bottom-0.form-group
+                  = f.select :category, [ 'Public', 'Private', 'Charter'], {}, { class: 'selecter bg-white margin-bottom-0', prompt: 'select level', required: true, data: { live_search: 'true', width: '100%' }}
+                  .help-block.with-errors
+        .panel-body.padding-right-40.padding-left-40 style=("border-bottom: 1px solid #e5e5e5;")
+          .panel-body.padding-right-40.padding-left-40
+            h5.semi-bold.text-muted.text-center Simply fill out all of the information below to create a new school.
+            br/
+            br/
+            h4.text-blue.semi-bold
+              i.ion-ios-location.margin-right-10
+              | General Info
+            br/
+            .row.example-row
+              .col-md-12
+                h4 Name
+              .col-md-12
+                .inputer
+                  .input-wrapper.form-group
+                    = f.text_field :name, class: "form-control", required: true
+                    .help-block.with-errors
+        = render 'shared/new_address', f: f, object: School.new, required: true, owner: nil
+        .form-buttons.no-margin
+          .row
+            .col-lg-8.col-lg-offset-2
+              br/
+              = f.submit "Awesome. Let's create a school!", class: "btn btn-blue btn-lg btn-block btn-ripple"
+              br/
