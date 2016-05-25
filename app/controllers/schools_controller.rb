@@ -1,7 +1,7 @@
 class SchoolsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :correct_user!, only: [:edit, :destroy]
-  before_action :find_school, except: [:index, :new, :create, :plan, :update]
+  before_action :find_school, only: [:edit, :show, :destroy]
 
   def index
     if stale?(:etag => ["schools-index", "v0"], :last_modified => School.maximum(:updated_at))
@@ -37,6 +37,7 @@ class SchoolsController < ApplicationController
 
   def show
     @object = @school
+    @school.coaches.includes(:certificates)
     @teams = @object.teams
     shared_variables
     @manager_and_trainers = @object.manager_and_trainers
@@ -44,7 +45,6 @@ class SchoolsController < ApplicationController
     @admins = @object.admins
     @userless_admins = @object.userless_admins
     @facilities = @object.facilities
-    @certifications = @object.school_certifications
   end
 
   def edit
