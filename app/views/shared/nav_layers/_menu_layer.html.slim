@@ -14,7 +14,6 @@
 						<i class="ion-gear-b mr5"></i> Edit Profile
 					<% end %>
 				</li>
-				<li><%#= link_to "Users Index", users_path %></li>
 			</ul>
 		</li>
         
@@ -38,7 +37,6 @@
 						<i class="ion-person mr5"></i> View Events
 					<% end %>
 				</li>
-				<li><%#= link_to "Users Index", users_path %></li>
 			</ul>
 		</li>
 
@@ -46,12 +44,7 @@
 		<li>
 			<a href="javascript:;"><i class="ion-flag mr5"></i> My Teams</a>
 			<ul class="child-menu">
-				<!-- <li><%#= link_to "Team New", new_team_path%></li> -->
-				<!-- <li>
-					<a href="#" data-toggle="modal" data-target="#panel-new-team">
-					New Team Panel Form</a>
-				</li> -->
-				
+
 					<% current_user.all_teams.each do |team| %>
 					<li>
 						<%= link_to team_path(team.friendly_id) do %>
@@ -67,7 +60,6 @@
 						<% end %>
 					<% end %>
 				
-				<li><%#= link_to "Teams Index", teams_path(Team.first)%></li>
 			</ul>
 		</li>
 		<% end %>
@@ -90,24 +82,6 @@
 				    </li>
 				  <% end %>
 				<% end %>
-				
-					<%#= link_to "School New", new_school_path %>
-				
-				<!-- <li>
-					<a href="#" data-toggle="modal" data-target="#panel-new-school">
-					New School Panel Form</a>
-				</li> -->
-				<%# if School.any? %>
-					<li>
-						<%#= link_to "School Edit", edit_school_path(School.first)%>
-					</li>
-					<li>
-						<%#= link_to "School Profile", school_path(School.first)%>
-					</li>
-				<%# end %>
-				<li>
-					<%#= link_to "Schools Index", schools_path %>
-				</li>
 			</ul>
 		</li>
 		<% end %>
@@ -130,24 +104,6 @@
  				    </li>
  				  <% end %>
  				<% end %>
-				
- 					<%#= link_to "School New", new_school_path %>
-				
- 				<!-- <li>
- 					<a href="#" data-toggle="modal" data-target="#panel-new-school">
- 					New School Panel Form</a>
- 				</li> -->
- 				<%# if School.any? %>
- 					<li>
- 						<%#= link_to "School Edit", edit_school_path(School.first)%>
- 					</li>
- 					<li>
- 						<%#= link_to "School Profile", school_path(School.first)%>
- 					</li>
- 				<%# end %>
- 				<li>
- 					<%#= link_to "Schools Index", schools_path %>
- 				</li>
  			</ul>
  		</li>
  		<% end %>
@@ -170,78 +126,16 @@
  				    </li>
  				  <% end %>
  				<% end %>
-				
- 					<%#= link_to "School New", new_school_path %>
-				
- 				<!-- <li>
- 					<a href="#" data-toggle="modal" data-target="#panel-new-school">
- 					New School Panel Form</a>
- 				</li> -->
- 				<%# if School.any? %>
  					<li>
- 						<%#= link_to "School Edit", edit_school_path(School.first)%>
  					</li>
  					<li>
- 						<%#= link_to "School Profile", school_path(School.first)%>
  					</li>
- 				<%# end %>
  				<li>
- 					<%#= link_to "Schools Index", schools_path %>
  				</li>
  			</ul>
  		</li>
  		<% end %>
-
-
-		<!-- <li>
-			<a href="javascript:;">Facility</a>
-			<ul class="child-menu">
-				<li>
-					<%#= link_to "Facility New", new_facility_path %>
-				</li>
-				<li>
-					<a href="#" data-toggle="modal" data-target="#panel-new-facility">
-					New Facility Panel Form </a>
-				</li>
-				<%# if Facility.any? %>
-					<li>
-						<%#= link_to "Facility Edit", edit_facility_path(Facility.first)%>
-					</li>
-					<li>
-						<%#= link_to "Facility Profile", facility_path(Facility.first)%>
-					</li>
-				<%# end %>
-				<li>
-					<%#= link_to "Facilities Index", facilities_path %>
-				</li>
-			</ul>
-		</li> -->
-
-
-		<!-- <li>
-			<a href="javascript:;">League</a>
-			<ul class="child-menu">
-				<li>
-					<%#= link_to "League New", new_league_path %>
-				</li>
-				<li>
-					<a href="#" data-toggle="modal" data-target="#panel-new-league">
-					New League Panel Form</a>
-				</li>
-				<%# if League.any? %>
-					<li><%#= link_to "League Edit", edit_league_path(League.first)%></li>
-					<li><%#= link_to "League Profile", league_path(League.first)%></li>
-				<%# end %>
-				<li>
-					<%#= link_to "Leagues Index", leagues_path %>
-				</li>
-			</ul>
-		</li> -->
-			
-			<li>
-				<%#= link_to session_path(current_user.id), method: :delete do %>
-					<!-- Logout &#32;&#32;<i class="ion-power m-l-5"></i> -->
-				<%# end %>
+    <li>
 				<% if current_user %>
 				<%= link_to session_path(current_user.id), method: :delete do %>
 					Logout &#32;&#32;<i class="ion-power m-l-5"></i>
@@ -258,5 +152,5 @@
 	</ul>
 	
 	<% end %>
-</div><!--.menu-layer-->
+</div>
 
