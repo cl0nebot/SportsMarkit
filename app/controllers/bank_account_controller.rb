@@ -1,5 +1,6 @@
 class BankAccountController < ApplicationController
   before_action :authenticate_user!
+  before_action :correct_user!
   before_action :find_bankable
 
   def index

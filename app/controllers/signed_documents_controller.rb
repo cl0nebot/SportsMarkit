@@ -1,6 +1,6 @@
 class SignedDocumentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authenticate_admin!
+  before_action :correct_user!
   before_action :find_documentable
   before_action :find_document, only: %w[new create]
 

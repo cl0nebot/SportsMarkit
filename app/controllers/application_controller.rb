@@ -51,24 +51,22 @@ class ApplicationController < ActionController::Base
 
   def correct_user!
     authenticate_user!
-    true
-    # if current_user
-    #   access = []
-    #   access << false  if (User.friendly.find(params[:user_id]).can_be_edited_by_user?(current_user) == false) if params['user_id'].present?
-    #   access << false  if (Team.friendly.find(params[:team_id]).can_be_edited_by_user?(current_user) == false) if params['team_id'].present?
-    #   access << false  if (School.friendly.find(params[:school_id]).can_be_edited_by_user?(current_user) == false) if params['school_id'].present?
-    #   access << false  if (Facility.friendly.find(params[:facility_id]).can_be_edited_by_user?(current_user) == false) if params['facility_id'].present?
-    #   access << false  if (League.friendly.find(params[:league_id]).can_be_edited_by_user?(current_user) == false) if params['league_id'].present?
-    #   access << false  if (Club.friendly.find(params[:club_id]).can_be_edited_by_user?(current_user) == false) if params['club_id'].present?
-    #   if access.present?
-    #     flash[:message] = "Unauthorized."
-    #     redirect_to edit_user_path(current_user)
-    #   elsif !params[:controller].camelcase.singularize.constantize.friendly.find(params[:id]).can_be_edited_by_user?(current_user)
-    #     flash[:message] = "Unauthorized."
-    #     redirect_to edit_user_path(current_user)
-    #   end
-    # end
+    if ["teams", "schools", "users", "facilities", "leagues", "clubs"].include? params[:controller]
+      unless params[:controller].camelcase.singularize.constantize.friendly.find(params[:id]).can_be_edited_by_user?(current_user)
+        flash[:message] = "Unauthorized."
+        redirect_to edit_user_path(current_user)
+      end
+    else
+      param = params.keys.find{|key| key =~ /(\w+)_id/}
+      @object = $1.capitalize.constantize.find(params[param])
+      unless @object.can_be_edited_by_user?(current_user)
+        flash[:message] = "Unauthorized."
+        redirect_to edit_user_path(current_user)
+      end
+    end  
   end
+  
+  
 
   def authenticate_pending_athletic_director!
     authenticate_user!

@@ -1,4 +1,7 @@
 class OptionsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :correct_user!
+  
   def index
     @form = Form.find(params[:form_id])
     @option = Option.new
