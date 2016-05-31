@@ -9,8 +9,9 @@
             <ol class="breadcrumb">
                 <li><a href="/"><i class="ion-home"></i></a></li>
                 <li><%= link_to klass.pluralize, send("#{klass.pluralize}_path") %></li>
-                <li><%= link_to "Dashboard", "#" %></li>
-                <li><%= link_to "Edit", "#", class: "active" %></li>
+                <li><%= link_to @object.name, @object %></li>
+                <li><%= link_to "Dashboard", "#", class: "active" %></li>
+                
             </ol>
         </div>
     </div>
