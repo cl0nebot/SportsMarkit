@@ -184,7 +184,8 @@
         <!--.col-->
         <div class="col-md-8">
         <div class="message-send-container" id="scroll">
-
+          
+          <% if false %>
           <% if current_user.team_roles.present? %>
             <div class="messages" id="messages-for-chat" data-room="<%=current_user.chatroom.id%>">
               <%= render 'shared/nav_layers/messages', messages: Message.where(chatroom_id: current_user.chatroom.id) %>
@@ -195,6 +196,7 @@
             <div class="send-message" id="form-for-chat">
               <%= render 'shared/nav_layers/form', chatroom_id: current_user.chatroom.id %>
             </div>
+          <% end %>
           <% end %>
           </div>
         <!--.message-send-container-->
