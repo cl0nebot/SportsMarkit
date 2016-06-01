@@ -6,6 +6,7 @@
 
 </script>
 
+<% if false %>
 <% current_user.team_roles.each do |role| %>
     <script>
       pusher.subscribe("chat-<%= role.chatroom.id %>").bind('message-push', function (data) {
@@ -29,6 +30,7 @@
 
       });
     </script>
+<% end %>
 <% end %>
 
 
@@ -58,6 +60,7 @@
         <ul class="list-material has-hidden">
           <li class="has-action-left has-action-right"></li>
 
+          <% if false %>
           <% current_user.team_roles.each do |role| %>
             <li class="has-action-left has-action-right">
               <div class="list-action-left">
@@ -77,6 +80,7 @@
               </div>
 
             </li>
+          <% end %>
           <% end %>
 
            <li class="has-action-left has-action-right has-long-story">

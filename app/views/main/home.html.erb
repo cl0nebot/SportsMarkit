@@ -12,11 +12,10 @@
 			-->
 			<div class="animated-selector">
 				<ul class="navigation">
-					<li class="active" data-anchor="slide1" data-nav-link>Schools</li>
-					<li data-anchor="slide2" data-nav-link>Clubs</li>
-					<li data-anchor="slide3" data-nav-link>Leagues</li>
-					<li data-anchor="slide4" data-nav-link>Teams</li>
-					<li data-anchor="slide5" data-nav-link>Parents</li>
+					<li class="active" href="#schools" tabindex="-1" data-toggle="tab">Schools</li>
+					<li href="#teams" tabindex="-1" data-toggle="tab">Teams & Coaches</li>
+					<li href="#clubs" tabindex="-1" data-toggle="tab">Clubs & Leagues</li>
+					<li href="#parents" tabindex="-1" data-toggle="tab">Parents & Athletes</a></li>
 				</ul>
 				<div class="selector"></div>
 			</div><!--.animated-selector-->
@@ -51,474 +50,1873 @@
 		</div><!--.container-->
 	</div><!--.header-->
 
-	<!--
-	* Each slide divs can be combined with these classes
+	<div class="tab-content no-padding">
+		
+		<!-- SCHOOL TAB -->
+		<div class="tab-pane active fade in" id="schools">
+			<!--
+			* Each slide divs can be combined with these classes
 
-	** Material colors: such as bg-pink, bg-indigo, bg-teal etc.
-	** bg-image: you just need to write inline css style in order to path to image.
-	** bg-image-with-shadow: same for bg-image class but in this time background-gradient floats the image.
-	** bg-pattern: same for the bg-image but in this time the pattern will be repeated for background.
+			** Material colors: such as bg-pink, bg-indigo, bg-teal etc.
+			** bg-image: you just need to write inline css style in order to path to image.
+			** bg-image-with-shadow: same for bg-image class but in this time background-gradient floats the image.
+			** bg-pattern: same for the bg-image but in this time the pattern will be repeated for background.
 
-	* data-nav="remove" attribute hides the active navigation border when this slide in viewport.
-	-->
-	<div class="slide home-hero bg-image" data-nav="remove" style="background-image: url('http://littlesportscoaching.co.uk/sites/default/files/course/jt.jpg');">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-9">
-					<h1 class="h0 text-white text-light-shadow">
-						THE <span class="highlight ls1">EASIEST</span> WAY TO
-						<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">MANAGE</span><br>
-						SCHOOL ATHLETIC PROGRAMS.
-					</h1>
-					<p class="lead text-white">Faster. Cheaper. Easier.</p>
-					<button class="btn btn-white margin-right-10">
-						<span class="bold text-muted no-letter-spacing">Create a Free Account</span>
-					</button>
-					<button class="btn btn-primary">
-						<span class="bold">Watch a Video</span>
-					</button>
-					
-				</div><!--.col-->
-			</div><!--.row-->
-
-		</div><!--.container-->
-		<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
-	</div><!--.slide-hero-->
-
-	<div class="slide" data-nav="slide1">
-		<div class="container">
-			<div class="row">
-				
-				<div class="col-sm-6 pull-right">
-						<div class="panel-body">
-							<h4 class="highlight ws2 semi-bold margin-bottom-5">
-								<i class="material-icons margin-right-10">&#xE80C;</i> SCHOOLS
-							</h4>
-							<!-- <h3 class="text-black ws2 margin-top-0">TAKE YOUR SCHOOL DIGITAL</h3> -->
-							<p class="lead">Give your sports administrators full access to the most powerful team management platform online.</p>
-							<div class="row">
-								<div class="col-sm-6">
-									<ul class="semi-bold text-muted h6 no-margin">
-										<li>Manage all team sports</li>
-										<li>Mass text-messaging (SMS)</li>
-										<li>Setup Automatic Notifications</li>
-										<li>Manage sports facilities</li>
-										<li>Reduce paperwork to zero</li>
-									</ul>
-								</div>
-								<div class="col-sm-6">
-									<ul class="semi-bold text-muted h6 no-margin">
-										<li>Track compliance and data</li>
-										<li>Easy registration process</li>
-										<li>Collect payments</li>
-										<li>Manage schedules</li>
-										<li>Real-time updates</li>
-									</ul>
-								</div>
-
-							</div>
-						</div>
-				</div><!--.col-->
-				<div class="col-sm-6">
+			* data-nav="remove" attribute hides the active navigation border when this slide in viewport.
+			-->
+			<div class="slide home-hero bg-image" data-nav="remove" style="background-image: url('http://littlesportscoaching.co.uk/sites/default/files/course/jt.jpg');">
+				<div class="container">
 					<div class="row">
-						<div class="col-xs-6">
-							<%= image_tag("screens/setup.png", alt: "", class: "img-responsive thumbnail") %>
-						</div>
-						<div class="col-xs-6">
-							<%= image_tag("screens/teams.png", alt: "", class: "img-responsive thumbnail") %>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-6">
-							<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
-						</div>
-						<div class="col-xs-6">
-							<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
-						</div>
-					</div>
+						<div class="col-md-9">
+							<h1 class="h0 text-white text-light-shadow">
+								THE <span class="highlight ls1">EASIEST</span> WAY TO
+								<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">MANAGE</span><br>
+								SCHOOL ATHLETIC PROGRAMS.
+							</h1>
+							<p class="lead text-white"> 
+								The ultimate easy to use all-in-one school <br/> sports program management tool.
+							</p>
+							<button class="btn btn-white margin-right-10">
+								<span class="bold text-muted no-letter-spacing">Create a Free Account</span>
+							</button>
+							<button class="btn btn-primary">
+								<span class="bold">Watch a Video</span>
+							</button>
+							
+						</div><!--.col-->
+					</div><!--.row-->
 
 				</div><!--.container-->
+				<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
+			</div><!--.slide-hero-->
+
+			<div class="slide" data-nav="slide1">
+				<div class="container">
+					<div class="row">
+						
+						<div class="col-sm-12 pull-right">
+								<div class="panel-body">
+									<h4 class="highlight ws2 semi-bold margin-bottom-5">
+										<i class="material-icons margin-right-10">&#xE80C;</i> SCHOOLS
+									</h4>
+									<!-- <h3 class="text-black ws2 margin-top-0">TAKE YOUR SCHOOL DIGITAL</h3> -->
+									<p class="lead"> We deliver easy to use online tools to effectively manage,  school sports seasons and teams. </p>
+									<div class="row">
+										<div class="col-sm-6">
+											<ul class="semi-bold text-muted h6 no-margin">
+												<li>Manage all team sports</li>
+												<li>Mass text-messaging (SMS)</li>
+												<li>Setup Automatic Notifications</li>
+												<li>Manage sports facilities</li>
+												<li>Reduce paperwork to zero</li>
+											</ul>
+										</div>
+										<div class="col-sm-6">
+											<ul class="semi-bold text-muted h6 no-margin">
+												<li>Track compliance and data</li>
+												<li>Easy registration process</li>
+												<li>Collect payments</li>
+												<li>Manage schedules</li>
+												<li>Real-time updates</li>
+											</ul>
+										</div>
+
+									</div>
+								</div>
+						</div><!--.col-->
+						<div class="col-sm-12">
+							<div class="row">
+								<div class="col-xs-4 col-md-3">
+									<%= image_tag("screens/school-profile.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+								<div class="col-xs-4 col-md-3">
+									<%= image_tag("screens/teams.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-4 col-md-3">
+									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+								<div class="col-xs-4 col-md-3">
+									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+							</div>
+
+						</div><!--.container-->
+					</div><!--.slide-->
+				</div><!--.slide-->
+			</div>
+
+			<div class="slide bg-image" data-nav="remove" style="background-image: url('<%= image_path("placeholders/athlete_bg.png") %>'); background-size: cover;">
+				<div class="container z1 text-center">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="h0 text-white text-light-shadow">
+								GET YOUR TEAM ONLINE IN <span class="highlight ls1">MINUTES</span>
+							</h1>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+						</div><!--.col-->
+					</div><!--.row-->
+				</div><!--.container-->
+				<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
 			</div><!--.slide-->
-		</div><!--.slide-->
+
+
+			<div class="slide" data-nav="slide2">
+
+				<div class="slide-image-vertical hide-on-mobile" data-bottom-top="top:-200px" data-center-bottom="top:100px"><img src="../../assets/one-page-parallax/img/bg-plans.jpg" alt=""></div><!--.slide-image-->
+
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-6 pull-left">
+							<div class="">
+								<div class="panel-body">
+									<h4 class="highlight ws2 semi-bold margin-bottom-5">
+										<i class="material-icons margin-right-10">&#xE7EF;</i> CLUBS AND LEAGUES
+									</h4>
+									<!-- <h3 class="text-black ws2 margin-top-0">TAKE YOUR SCHOOL DIGITAL</h3> -->
+									<p class="lead">We provide scheduling, communication, registration, team websites and more so you can save time and your sanity.</p>
+									<div class="row">
+										<div class="col-sm-6">
+											<ul class="semi-bold text-muted h6 no-margin">
+												<li>Get setup in minutes</li>
+												<li>Text message notifications</li>
+												<li>Online calendar</li>
+												<li>Collect payments</li>
+												<li>Manage schedules</li>
+											</ul>
+										</div>
+										<div class="col-sm-6">
+											<ul class="semi-bold text-muted h6 no-margin">
+												<li>Get setup in minutes</li>
+												<li>Text message notifications</li>
+												<li>Online calendar</li>
+												<li>Collect payments</li>
+												<li>Manage schedules</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div><!--.col-->
+						</div><!--.row-->
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-xs-6">
+									<%= image_tag("screens/setup.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+								<div class="col-xs-6">
+									<%= image_tag("screens/teams.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-6">
+									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+								<div class="col-xs-6">
+									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+							</div>
+						</div>
+					</div><!--.row-->
+				</div><!--.container-->
+			</div><!--.slide-->
+
+			<div class="slide bg-image" data-nav="remove" style="background-image: url('http://www.olgchs.org/uploaded/Athletics/Soccer-girls/2014_G_FR_Socc_WEB.jpg'); background-size: cover;">
+				<div class="container z1 text-center">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="h0 text-white text-light-shadow">
+								GET YOUR TEAM ONLINE IN <span class="highlight ls1">MINUTES</span>
+							</h1>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+						</div><!--.col-->
+					</div><!--.row-->
+				</div><!--.container-->
+				<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
+			</div><!--.slide-->
+
+			<div class="slide" data-nav="slide4" style="background: #fefefe;">
+				<div class="container">
+
+					<h1 class="text-center">
+						GET STARTED FOR <span class="highlight ls1"><u>FREE</u></span>
+					</h1>
+					<p class="text-center lead">
+						The <span class="bold text-primary">ultimate, easy-to-use, all-in-one</span> team management and engagement tool.
+					</p>
+
+					<div class="row pricing-table">
+						<table class="table table-condensed table-hover table-striped">
+							<thead>
+								<tr class="transparent">
+									<th></th>
+									<th></th>
+									<th></th>
+									<th width="20%" class="active box-shadow" style="border-radius: 6px 6px 0 0 ;">
+										<span class="pack">Popular</span>
+									</th>
+									<th></th>
+								</tr>
+								<tr>
+									<th></th>
+									<th  width="20%" class="box-shadow">
+										<span class="pack">Schools</span>
+										<span class="price-container">
+											<h3 class="no-margin text-white">FREE</h3>
+											Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+										</span>
+									</th>
+									<th  width="20%" class="box-shadow">
+										<span class="pack">Clubs</span>
+										<span class="price-container">
+											<h3 class="no-margin text-white">FREE</h3>
+											Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+										</span>
+									</th>
+									<th width="20%" class="active">
+										<p class="padding-top-40 no-margin">
+											<span class="pack">Leagues</span>
+										</p>
+										<span class="price-container">
+											<h3 class="no-margin">FREE</h3>
+											Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+										</span>
+									</th>
+									<th  width="20%" class="box-shadow">
+										<span class="pack">Athletes</span>
+										<span class="price-container">
+											<h3 class="no-margin text-white">FREE</h3>
+											Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+										</span>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="categories">Roster</td>
+									<td>1 GB</td>
+									<td>1 GB</td>
+									<td class="active">2 GB</td>
+									<td>5 GB</td>
+								</tr>
+								<tr>
+									<td class="categories">Schedule</td>
+									<td>1 Core</td>
+									<td>1 GB</td>
+									<td class="active">2 Core</td>
+									<td>4 Core</td>
+								</tr>
+								<tr>
+									<td class="categories">Email Reminders</td>
+									<td>150 GB</td>
+									<td>1 GB</td>
+									<td class="active">200 GB</td>
+									<td>250 GB</td>
+								</tr>
+								<tr>
+									<td class="categories">Team Fansite</td>
+									<td>5 TB</td>
+									<td>1 GB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Text Messaging</td>
+									<td>1 GB</td>
+									<td><i class="fa fa-times"></i></td>
+									<td class="active"><i class="fa fa-check"></i></td>
+									<td><i class="fa fa-check"></i></td>
+								</tr>
+								<tr>
+									<td class="categories">Availability</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Payment Tracking</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Online Collections</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Refreshments</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Track Anything</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Priority Email Support</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">No Web Banner Ads</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Weather Forecasts</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Statistics</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Custom Domain Name</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Customized Team Logo</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Customized Team Colors</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Customized Player Fields</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Customized Player Fields</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+
+								<tr>
+									<td class="categories">SSL</td>
+									<td>1 GB</td>
+									<td><i class="fa fa-times"></i></td>
+									<td class="active"><i class="fa fa-times"></i></td>
+									<td><i class="fa fa-check"></i></td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th></th>
+									<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
+									<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
+									<th class="active">
+										<p class="paddingp-bottom-60 padding-top-40">
+											<a href="#" class="btn btn-block btn-primary">Order Now</a>
+										</p>
+									</th>
+									<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
+								</tr>
+							</tfoot>
+						</table>
+					</div><!--.row-->
+				</div><!--.container-->
+			</div><!--.slide-->
+
+			<div class="slide" data-nav="slide5">
+				<div class="container">
+					<h3 class="text-black text-center">CONTACT</h3>
+					<p class="caption text-center">We will be glad if you write us.</p>
+					<div class="row">
+						<div class="col-md-6 col-xs-12">
+							<div class="form-group">
+								<div class="inputer inputer-teal floating-label">
+									<div class="input-wrapper">
+										<input type="text" name="" class="form-control">
+										<label>First name</label>
+									</div><!--.input-wrapper-->
+								</div><!--.inputer-->
+							</div><!--.form-group-->
+						</div><!--.col-->
+						<div class="col-md-6 col-xs-12">
+							<div class="form-group">
+								<div class="inputer inputer-teal floating-label">
+									<div class="input-wrapper">
+										<input type="text" name="" class="form-control">
+										<label>Last name</label>
+									</div><!--.input-wrapper-->
+								</div><!--.inputer-->
+							</div><!--.form-group-->
+						</div><!--.col-->
+					</div><!--.row-->
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<div class="inputer inputer-teal floating-label">
+									<div class="input-wrapper">
+										<textarea class="form-control js-auto-size" rows="1"></textarea>
+										<label>Your message</label>
+									</div>
+								</div>
+							</div><!--.form-group-->
+						</div><!--.col-->
+					</div><!--.row-->
+
+					<div class="row">
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-teal pull-right">SEND</button>
+						</div><!--.col-->
+					</div><!--.row-->
+
+				</div><!--.container-->
+
+			</div><!--.slide-->
+		</div>
+
+		<!-- TEAM AND COACHES -->
+		<div class="tab-pane fade" id="teams">
+			<!--
+			* Each slide divs can be combined with these classes
+
+			** Material colors: such as bg-pink, bg-indigo, bg-teal etc.
+			** bg-image: you just need to write inline css style in order to path to image.
+			** bg-image-with-shadow: same for bg-image class but in this time background-gradient floats the image.
+			** bg-pattern: same for the bg-image but in this time the pattern will be repeated for background.
+
+			* data-nav="remove" attribute hides the active navigation border when this slide in viewport.
+			-->
+			<div class="slide home-hero bg-image" data-nav="remove" style="background-image: url('http://littlesportscoaching.co.uk/sites/default/files/course/jt.jpg');">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-9">
+							<h1 class="h0 text-white text-light-shadow">
+								THE <span class="highlight ls1">EASIEST</span> WAY TO
+								<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">MANAGE</span><br>
+								SCHOOL ATHLETIC PROGRAMS.
+							</h1>
+							<p class="lead text-white"> 
+								The ultimate easy to use all-in-one school <br/> sports program management tool.
+							</p>
+							<button class="btn btn-white margin-right-10">
+								<span class="bold text-muted no-letter-spacing">Create a Free Account</span>
+							</button>
+							<button class="btn btn-primary">
+								<span class="bold">Watch a Video</span>
+							</button>
+							
+						</div><!--.col-->
+					</div><!--.row-->
+
+				</div><!--.container-->
+				<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
+			</div><!--.slide-hero-->
+
+			<div class="slide" data-nav="slide1">
+				<div class="container">
+					<div class="row">
+						
+						<div class="col-sm-6 pull-right">
+								<div class="panel-body">
+									<h4 class="highlight ws2 semi-bold margin-bottom-5">
+										<i class="material-icons margin-right-10">&#xE80C;</i> SCHOOLS
+									</h4>
+									<!-- <h3 class="text-black ws2 margin-top-0">TAKE YOUR SCHOOL DIGITAL</h3> -->
+									<p class="lead"> Manage, communicate and engage your sports ecosystem: keep track of and interact with your student athletes, parents, scouts, and sports fans through the online team profile. Create events, share links, communicate with parents, and post verified stats.  You can even manage and promote your team’s brand by adding video, photos and articles about your team and players.  
+									</p>
+									<div class="row">
+										<div class="col-sm-6">
+											<ul class="semi-bold text-muted h6 no-margin">
+												<li>Manage all team sports</li>
+												<li>Mass text-messaging (SMS)</li>
+												<li>Setup Automatic Notifications</li>
+												<li>Manage sports facilities</li>
+												<li>Reduce paperwork to zero</li>
+											</ul>
+										</div>
+										<div class="col-sm-6">
+											<ul class="semi-bold text-muted h6 no-margin">
+												<li>Track compliance and data</li>
+												<li>Easy registration process</li>
+												<li>Collect payments</li>
+												<li>Manage schedules</li>
+												<li>Real-time updates</li>
+											</ul>
+										</div>
+
+									</div>
+								</div>
+						</div><!--.col-->
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-xs-6">
+									<%= image_tag("screens/setup.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+								<div class="col-xs-6">
+									<%= image_tag("screens/teams.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-6">
+									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+								<div class="col-xs-6">
+									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+							</div>
+
+						</div><!--.container-->
+					</div><!--.slide-->
+				</div><!--.slide-->
+			</div>
+
+			<div class="slide bg-image" data-nav="remove" style="background-image: url('<%= image_path("placeholders/athlete_bg.png") %>'); background-size: cover;">
+				<div class="container z1 text-center">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="h0 text-white text-light-shadow">
+								GET YOUR TEAM ONLINE IN <span class="highlight ls1">MINUTES</span>
+							</h1>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+						</div><!--.col-->
+					</div><!--.row-->
+				</div><!--.container-->
+				<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
+			</div><!--.slide-->
+
+
+			<div class="slide" data-nav="slide2">
+
+				<div class="slide-image-vertical hide-on-mobile" data-bottom-top="top:-200px" data-center-bottom="top:100px"><img src="../../assets/one-page-parallax/img/bg-plans.jpg" alt=""></div><!--.slide-image-->
+
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-6 pull-left">
+							<div class="">
+								<div class="panel-body">
+									<h4 class="highlight ws2 semi-bold margin-bottom-5">
+										<i class="material-icons margin-right-10">&#xE7EF;</i> CLUBS AND LEAGUES
+									</h4>
+									<!-- <h3 class="text-black ws2 margin-top-0">TAKE YOUR SCHOOL DIGITAL</h3> -->
+									<p class="lead">We provide scheduling, communication, registration, team websites and more so you can save time and your sanity.</p>
+									<div class="row">
+										<div class="col-sm-6">
+											<ul class="semi-bold text-muted h6 no-margin">
+												<li>Get setup in minutes</li>
+												<li>Text message notifications</li>
+												<li>Online calendar</li>
+												<li>Collect payments</li>
+												<li>Manage schedules</li>
+											</ul>
+										</div>
+										<div class="col-sm-6">
+											<ul class="semi-bold text-muted h6 no-margin">
+												<li>Get setup in minutes</li>
+												<li>Text message notifications</li>
+												<li>Online calendar</li>
+												<li>Collect payments</li>
+												<li>Manage schedules</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div><!--.col-->
+						</div><!--.row-->
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-xs-6">
+									<%= image_tag("screens/setup.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+								<div class="col-xs-6">
+									<%= image_tag("screens/teams.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-6">
+									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+								<div class="col-xs-6">
+									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+							</div>
+						</div>
+					</div><!--.row-->
+				</div><!--.container-->
+			</div><!--.slide-->
+
+			<div class="slide bg-image" data-nav="remove" style="background-image: url('http://www.olgchs.org/uploaded/Athletics/Soccer-girls/2014_G_FR_Socc_WEB.jpg'); background-size: cover;">
+				<div class="container z1 text-center">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="h0 text-white text-light-shadow">
+								GET YOUR TEAM ONLINE IN <span class="highlight ls1">MINUTES</span>
+							</h1>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+						</div><!--.col-->
+					</div><!--.row-->
+				</div><!--.container-->
+				<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
+			</div><!--.slide-->
+
+			<div class="slide" data-nav="slide4" style="background: #fefefe;">
+				<div class="container">
+
+					<h1 class="text-center">
+						GET STARTED FOR <span class="highlight ls1"><u>FREE</u></span>
+					</h1>
+					<p class="text-center lead">
+						The <span class="bold text-primary">ultimate, easy-to-use, all-in-one</span> team management and engagement tool.
+					</p>
+
+					<div class="row pricing-table">
+						<table class="table table-condensed table-hover table-striped">
+							<thead>
+								<tr class="transparent">
+									<th></th>
+									<th></th>
+									<th></th>
+									<th width="20%" class="active box-shadow" style="border-radius: 6px 6px 0 0 ;">
+										<span class="pack">Popular</span>
+									</th>
+									<th></th>
+								</tr>
+								<tr>
+									<th></th>
+									<th  width="20%" class="box-shadow">
+										<span class="pack">Schools</span>
+										<span class="price-container">
+											<h3 class="no-margin text-white">FREE</h3>
+											Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+										</span>
+									</th>
+									<th  width="20%" class="box-shadow">
+										<span class="pack">Clubs</span>
+										<span class="price-container">
+											<h3 class="no-margin text-white">FREE</h3>
+											Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+										</span>
+									</th>
+									<th width="20%" class="active">
+										<p class="padding-top-40 no-margin">
+											<span class="pack">Leagues</span>
+										</p>
+										<span class="price-container">
+											<h3 class="no-margin">FREE</h3>
+											Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+										</span>
+									</th>
+									<th  width="20%" class="box-shadow">
+										<span class="pack">Athletes</span>
+										<span class="price-container">
+											<h3 class="no-margin text-white">FREE</h3>
+											Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+										</span>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="categories">Roster</td>
+									<td>1 GB</td>
+									<td>1 GB</td>
+									<td class="active">2 GB</td>
+									<td>5 GB</td>
+								</tr>
+								<tr>
+									<td class="categories">Schedule</td>
+									<td>1 Core</td>
+									<td>1 GB</td>
+									<td class="active">2 Core</td>
+									<td>4 Core</td>
+								</tr>
+								<tr>
+									<td class="categories">Email Reminders</td>
+									<td>150 GB</td>
+									<td>1 GB</td>
+									<td class="active">200 GB</td>
+									<td>250 GB</td>
+								</tr>
+								<tr>
+									<td class="categories">Team Fansite</td>
+									<td>5 TB</td>
+									<td>1 GB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Text Messaging</td>
+									<td>1 GB</td>
+									<td><i class="fa fa-times"></i></td>
+									<td class="active"><i class="fa fa-check"></i></td>
+									<td><i class="fa fa-check"></i></td>
+								</tr>
+								<tr>
+									<td class="categories">Availability</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Payment Tracking</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Online Collections</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Refreshments</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Track Anything</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Priority Email Support</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">No Web Banner Ads</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Weather Forecasts</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Statistics</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Custom Domain Name</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Customized Team Logo</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Customized Team Colors</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Customized Player Fields</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Customized Player Fields</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+
+								<tr>
+									<td class="categories">SSL</td>
+									<td>1 GB</td>
+									<td><i class="fa fa-times"></i></td>
+									<td class="active"><i class="fa fa-times"></i></td>
+									<td><i class="fa fa-check"></i></td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th></th>
+									<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
+									<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
+									<th class="active">
+										<p class="paddingp-bottom-60 padding-top-40">
+											<a href="#" class="btn btn-block btn-primary">Order Now</a>
+										</p>
+									</th>
+									<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
+								</tr>
+							</tfoot>
+						</table>
+					</div><!--.row-->
+				</div><!--.container-->
+			</div><!--.slide-->
+
+			<div class="slide" data-nav="slide5">
+				<div class="container">
+					<h3 class="text-black text-center">CONTACT</h3>
+					<p class="caption text-center">We will be glad if you write us.</p>
+					<div class="row">
+						<div class="col-md-6 col-xs-12">
+							<div class="form-group">
+								<div class="inputer inputer-teal floating-label">
+									<div class="input-wrapper">
+										<input type="text" name="" class="form-control">
+										<label>First name</label>
+									</div><!--.input-wrapper-->
+								</div><!--.inputer-->
+							</div><!--.form-group-->
+						</div><!--.col-->
+						<div class="col-md-6 col-xs-12">
+							<div class="form-group">
+								<div class="inputer inputer-teal floating-label">
+									<div class="input-wrapper">
+										<input type="text" name="" class="form-control">
+										<label>Last name</label>
+									</div><!--.input-wrapper-->
+								</div><!--.inputer-->
+							</div><!--.form-group-->
+						</div><!--.col-->
+					</div><!--.row-->
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<div class="inputer inputer-teal floating-label">
+									<div class="input-wrapper">
+										<textarea class="form-control js-auto-size" rows="1"></textarea>
+										<label>Your message</label>
+									</div>
+								</div>
+							</div><!--.form-group-->
+						</div><!--.col-->
+					</div><!--.row-->
+
+					<div class="row">
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-teal pull-right">SEND</button>
+						</div><!--.col-->
+					</div><!--.row-->
+
+				</div><!--.container-->
+
+			</div><!--.slide-->
+		</div>
+
+		<!-- Clubs & Leagues -->
+		<div class="tab-pane fade" id="clubs">
+			<!--
+			* Each slide divs can be combined with these classes
+
+			** Material colors: such as bg-pink, bg-indigo, bg-teal etc.
+			** bg-image: you just need to write inline css style in order to path to image.
+			** bg-image-with-shadow: same for bg-image class but in this time background-gradient floats the image.
+			** bg-pattern: same for the bg-image but in this time the pattern will be repeated for background.
+
+			* data-nav="remove" attribute hides the active navigation border when this slide in viewport.
+			-->
+			<div class="slide home-hero bg-image" data-nav="remove" style="background-image: url('http://littlesportscoaching.co.uk/sites/default/files/course/jt.jpg');">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-9">
+							<h1 class="h0 text-white text-light-shadow">
+								THE <span class="highlight ls1">EASIEST</span> WAY TO
+								<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">MANAGE</span><br>
+								SCHOOL ATHLETIC PROGRAMS.
+							</h1>
+							<p class="lead text-white"> 
+								The ultimate easy to use all-in-one school <br/> sports program management tool.
+							</p>
+							<button class="btn btn-white margin-right-10">
+								<span class="bold text-muted no-letter-spacing">Create a Free Account</span>
+							</button>
+							<button class="btn btn-primary">
+								<span class="bold">Watch a Video</span>
+							</button>
+							
+						</div><!--.col-->
+					</div><!--.row-->
+
+				</div><!--.container-->
+				<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
+			</div><!--.slide-hero-->
+
+			<div class="slide" data-nav="slide1">
+				<div class="container">
+					<div class="row">
+						
+						<div class="col-sm-6 pull-right">
+								<div class="panel-body">
+									<h4 class="highlight ws2 semi-bold margin-bottom-5">
+										<i class="material-icons margin-right-10">&#xE80C;</i> SCHOOLS
+									</h4>
+									<!-- <h3 class="text-black ws2 margin-top-0">TAKE YOUR SCHOOL DIGITAL</h3> -->
+									<p class="lead"> We deliver easy to use online tools to effectively manage,  school sports seasons and teams.</p>
+									<div class="row">
+										<div class="col-sm-6">
+											<ul class="semi-bold text-muted h6 no-margin">
+												<li>Manage all team sports</li>
+												<li>Mass text-messaging (SMS)</li>
+												<li>Setup Automatic Notifications</li>
+												<li>Manage sports facilities</li>
+												<li>Reduce paperwork to zero</li>
+											</ul>
+										</div>
+										<div class="col-sm-6">
+											<ul class="semi-bold text-muted h6 no-margin">
+												<li>Track compliance and data</li>
+												<li>Easy registration process</li>
+												<li>Collect payments</li>
+												<li>Manage schedules</li>
+												<li>Real-time updates</li>
+											</ul>
+										</div>
+
+									</div>
+								</div>
+						</div><!--.col-->
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-xs-6">
+									<%= image_tag("screens/setup.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+								<div class="col-xs-6">
+									<%= image_tag("screens/teams.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-6">
+									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+								<div class="col-xs-6">
+									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+							</div>
+
+						</div><!--.container-->
+					</div><!--.slide-->
+				</div><!--.slide-->
+			</div>
+
+			<div class="slide bg-image" data-nav="remove" style="background-image: url('<%= image_path("placeholders/athlete_bg.png") %>'); background-size: cover;">
+				<div class="container z1 text-center">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="h0 text-white text-light-shadow">
+								GET YOUR TEAM ONLINE IN <span class="highlight ls1">MINUTES</span>
+							</h1>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+						</div><!--.col-->
+					</div><!--.row-->
+				</div><!--.container-->
+				<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
+			</div><!--.slide-->
+
+
+			<div class="slide" data-nav="slide2">
+
+				<div class="slide-image-vertical hide-on-mobile" data-bottom-top="top:-200px" data-center-bottom="top:100px"><img src="../../assets/one-page-parallax/img/bg-plans.jpg" alt=""></div><!--.slide-image-->
+
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-6 pull-left">
+							<div class="">
+								<div class="panel-body">
+									<h4 class="highlight ws2 semi-bold margin-bottom-5">
+										<i class="material-icons margin-right-10">&#xE7EF;</i> CLUBS AND LEAGUES
+									</h4>
+									<!-- <h3 class="text-black ws2 margin-top-0">TAKE YOUR SCHOOL DIGITAL</h3> -->
+									<p class="lead">We provide scheduling, communication, registration, team websites and more so you can save time and your sanity.</p>
+									<div class="row">
+										<div class="col-sm-6">
+											<ul class="semi-bold text-muted h6 no-margin">
+												<li>Get setup in minutes</li>
+												<li>Text message notifications</li>
+												<li>Online calendar</li>
+												<li>Collect payments</li>
+												<li>Manage schedules</li>
+											</ul>
+										</div>
+										<div class="col-sm-6">
+											<ul class="semi-bold text-muted h6 no-margin">
+												<li>Get setup in minutes</li>
+												<li>Text message notifications</li>
+												<li>Online calendar</li>
+												<li>Collect payments</li>
+												<li>Manage schedules</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div><!--.col-->
+						</div><!--.row-->
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-xs-6">
+									<%= image_tag("screens/setup.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+								<div class="col-xs-6">
+									<%= image_tag("screens/teams.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-6">
+									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+								<div class="col-xs-6">
+									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+							</div>
+						</div>
+					</div><!--.row-->
+				</div><!--.container-->
+			</div><!--.slide-->
+
+			<div class="slide bg-image" data-nav="remove" style="background-image: url('http://www.olgchs.org/uploaded/Athletics/Soccer-girls/2014_G_FR_Socc_WEB.jpg'); background-size: cover;">
+				<div class="container z1 text-center">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="h0 text-white text-light-shadow">
+								GET YOUR TEAM ONLINE IN <span class="highlight ls1">MINUTES</span>
+							</h1>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+						</div><!--.col-->
+					</div><!--.row-->
+				</div><!--.container-->
+				<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
+			</div><!--.slide-->
+
+			<div class="slide" data-nav="slide4" style="background: #fefefe;">
+				<div class="container">
+
+					<h1 class="text-center">
+						GET STARTED FOR <span class="highlight ls1"><u>FREE</u></span>
+					</h1>
+					<p class="text-center lead">
+						The <span class="bold text-primary">ultimate, easy-to-use, all-in-one</span> team management and engagement tool.
+					</p>
+
+					<div class="row pricing-table">
+						<table class="table table-condensed table-hover table-striped">
+							<thead>
+								<tr class="transparent">
+									<th></th>
+									<th></th>
+									<th></th>
+									<th width="20%" class="active box-shadow" style="border-radius: 6px 6px 0 0 ;">
+										<span class="pack">Popular</span>
+									</th>
+									<th></th>
+								</tr>
+								<tr>
+									<th></th>
+									<th  width="20%" class="box-shadow">
+										<span class="pack">Schools</span>
+										<span class="price-container">
+											<h3 class="no-margin text-white">FREE</h3>
+											Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+										</span>
+									</th>
+									<th  width="20%" class="box-shadow">
+										<span class="pack">Clubs</span>
+										<span class="price-container">
+											<h3 class="no-margin text-white">FREE</h3>
+											Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+										</span>
+									</th>
+									<th width="20%" class="active">
+										<p class="padding-top-40 no-margin">
+											<span class="pack">Leagues</span>
+										</p>
+										<span class="price-container">
+											<h3 class="no-margin">FREE</h3>
+											Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+										</span>
+									</th>
+									<th  width="20%" class="box-shadow">
+										<span class="pack">Athletes</span>
+										<span class="price-container">
+											<h3 class="no-margin text-white">FREE</h3>
+											Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+										</span>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="categories">Roster</td>
+									<td>1 GB</td>
+									<td>1 GB</td>
+									<td class="active">2 GB</td>
+									<td>5 GB</td>
+								</tr>
+								<tr>
+									<td class="categories">Schedule</td>
+									<td>1 Core</td>
+									<td>1 GB</td>
+									<td class="active">2 Core</td>
+									<td>4 Core</td>
+								</tr>
+								<tr>
+									<td class="categories">Email Reminders</td>
+									<td>150 GB</td>
+									<td>1 GB</td>
+									<td class="active">200 GB</td>
+									<td>250 GB</td>
+								</tr>
+								<tr>
+									<td class="categories">Team Fansite</td>
+									<td>5 TB</td>
+									<td>1 GB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Text Messaging</td>
+									<td>1 GB</td>
+									<td><i class="fa fa-times"></i></td>
+									<td class="active"><i class="fa fa-check"></i></td>
+									<td><i class="fa fa-check"></i></td>
+								</tr>
+								<tr>
+									<td class="categories">Availability</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Payment Tracking</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Online Collections</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Refreshments</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Track Anything</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Priority Email Support</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">No Web Banner Ads</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Weather Forecasts</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Statistics</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Custom Domain Name</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Customized Team Logo</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Customized Team Colors</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Customized Player Fields</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Customized Player Fields</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+
+								<tr>
+									<td class="categories">SSL</td>
+									<td>1 GB</td>
+									<td><i class="fa fa-times"></i></td>
+									<td class="active"><i class="fa fa-times"></i></td>
+									<td><i class="fa fa-check"></i></td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th></th>
+									<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
+									<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
+									<th class="active">
+										<p class="paddingp-bottom-60 padding-top-40">
+											<a href="#" class="btn btn-block btn-primary">Order Now</a>
+										</p>
+									</th>
+									<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
+								</tr>
+							</tfoot>
+						</table>
+					</div><!--.row-->
+				</div><!--.container-->
+			</div><!--.slide-->
+
+			<div class="slide" data-nav="slide5">
+				<div class="container">
+					<h3 class="text-black text-center">CONTACT</h3>
+					<p class="caption text-center">We will be glad if you write us.</p>
+					<div class="row">
+						<div class="col-md-6 col-xs-12">
+							<div class="form-group">
+								<div class="inputer inputer-teal floating-label">
+									<div class="input-wrapper">
+										<input type="text" name="" class="form-control">
+										<label>First name</label>
+									</div><!--.input-wrapper-->
+								</div><!--.inputer-->
+							</div><!--.form-group-->
+						</div><!--.col-->
+						<div class="col-md-6 col-xs-12">
+							<div class="form-group">
+								<div class="inputer inputer-teal floating-label">
+									<div class="input-wrapper">
+										<input type="text" name="" class="form-control">
+										<label>Last name</label>
+									</div><!--.input-wrapper-->
+								</div><!--.inputer-->
+							</div><!--.form-group-->
+						</div><!--.col-->
+					</div><!--.row-->
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<div class="inputer inputer-teal floating-label">
+									<div class="input-wrapper">
+										<textarea class="form-control js-auto-size" rows="1"></textarea>
+										<label>Your message</label>
+									</div>
+								</div>
+							</div><!--.form-group-->
+						</div><!--.col-->
+					</div><!--.row-->
+
+					<div class="row">
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-teal pull-right">SEND</button>
+						</div><!--.col-->
+					</div><!--.row-->
+
+				</div><!--.container-->
+
+			</div><!--.slide-->
+		</div>
+
+		<!-- Clubs & Leagues -->
+		<div class="tab-pane fade" id="parents">
+			<!--
+			* Each slide divs can be combined with these classes
+
+			** Material colors: such as bg-pink, bg-indigo, bg-teal etc.
+			** bg-image: you just need to write inline css style in order to path to image.
+			** bg-image-with-shadow: same for bg-image class but in this time background-gradient floats the image.
+			** bg-pattern: same for the bg-image but in this time the pattern will be repeated for background.
+
+			* data-nav="remove" attribute hides the active navigation border when this slide in viewport.
+			-->
+			<div class="slide home-hero bg-image" data-nav="remove" style="background-image: url('http://littlesportscoaching.co.uk/sites/default/files/course/jt.jpg');">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-9">
+							<h1 class="h0 text-white text-light-shadow">
+								THE <span class="highlight ls1">EASIEST</span> WAY TO
+								<span data-typer-targets="UNIQUE, ADVANCED, ESSENTIAL">MANAGE</span><br>
+								SCHOOL ATHLETIC PROGRAMS.
+							</h1>
+							<p class="lead text-white"> 
+								The ultimate easy to use all-in-one school <br/> sports program management tool.
+							</p>
+							<button class="btn btn-white margin-right-10">
+								<span class="bold text-muted no-letter-spacing">Create a Free Account</span>
+							</button>
+							<button class="btn btn-primary">
+								<span class="bold">Watch a Video</span>
+							</button>
+							
+						</div><!--.col-->
+					</div><!--.row-->
+
+				</div><!--.container-->
+				<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
+			</div><!--.slide-hero-->
+
+			<div class="slide" data-nav="slide1">
+				<div class="container">
+					<div class="row">
+						
+						<div class="col-sm-6 pull-right">
+								<div class="panel-body">
+									<h4 class="highlight ws2 semi-bold margin-bottom-5">
+										<i class="material-icons margin-right-10">&#xE80C;</i> SCHOOLS
+									</h4>
+									<!-- <h3 class="text-black ws2 margin-top-0">TAKE YOUR SCHOOL DIGITAL</h3> -->
+									<p class="lead"> We deliver easy to use online tools to effectively manage,  school sports seasons and teams.</p>
+									<div class="row">
+										<div class="col-sm-6">
+											<ul class="semi-bold text-muted h6 no-margin">
+												<li>Manage all team sports</li>
+												<li>Mass text-messaging (SMS)</li>
+												<li>Setup Automatic Notifications</li>
+												<li>Manage sports facilities</li>
+												<li>Reduce paperwork to zero</li>
+											</ul>
+										</div>
+										<div class="col-sm-6">
+											<ul class="semi-bold text-muted h6 no-margin">
+												<li>Track compliance and data</li>
+												<li>Easy registration process</li>
+												<li>Collect payments</li>
+												<li>Manage schedules</li>
+												<li>Real-time updates</li>
+											</ul>
+										</div>
+
+									</div>
+								</div>
+						</div><!--.col-->
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-xs-6">
+									<%= image_tag("screens/setup.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+								<div class="col-xs-6">
+									<%= image_tag("screens/teams.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-6">
+									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+								<div class="col-xs-6">
+									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+							</div>
+
+						</div><!--.container-->
+					</div><!--.slide-->
+				</div><!--.slide-->
+			</div>
+
+			<div class="slide bg-image" data-nav="remove" style="background-image: url('<%= image_path("placeholders/athlete_bg.png") %>'); background-size: cover;">
+				<div class="container z1 text-center">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="h0 text-white text-light-shadow">
+								GET YOUR TEAM ONLINE IN <span class="highlight ls1">MINUTES</span>
+							</h1>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+						</div><!--.col-->
+					</div><!--.row-->
+				</div><!--.container-->
+				<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
+			</div><!--.slide-->
+
+
+			<div class="slide" data-nav="slide2">
+
+				<div class="slide-image-vertical hide-on-mobile" data-bottom-top="top:-200px" data-center-bottom="top:100px"><img src="../../assets/one-page-parallax/img/bg-plans.jpg" alt=""></div><!--.slide-image-->
+
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-6 pull-left">
+							<div class="">
+								<div class="panel-body">
+									<h4 class="highlight ws2 semi-bold margin-bottom-5">
+										<i class="material-icons margin-right-10">&#xE7EF;</i> CLUBS AND LEAGUES
+									</h4>
+									<!-- <h3 class="text-black ws2 margin-top-0">TAKE YOUR SCHOOL DIGITAL</h3> -->
+									<p class="lead">We provide scheduling, communication, registration, team websites and more so you can save time and your sanity.</p>
+									<div class="row">
+										<div class="col-sm-6">
+											<ul class="semi-bold text-muted h6 no-margin">
+												<li>Get setup in minutes</li>
+												<li>Text message notifications</li>
+												<li>Online calendar</li>
+												<li>Collect payments</li>
+												<li>Manage schedules</li>
+											</ul>
+										</div>
+										<div class="col-sm-6">
+											<ul class="semi-bold text-muted h6 no-margin">
+												<li>Get setup in minutes</li>
+												<li>Text message notifications</li>
+												<li>Online calendar</li>
+												<li>Collect payments</li>
+												<li>Manage schedules</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div><!--.col-->
+						</div><!--.row-->
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-xs-6">
+									<%= image_tag("screens/setup.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+								<div class="col-xs-6">
+									<%= image_tag("screens/teams.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-6">
+									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+								<div class="col-xs-6">
+									<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
+								</div>
+							</div>
+						</div>
+					</div><!--.row-->
+				</div><!--.container-->
+			</div><!--.slide-->
+
+			<div class="slide bg-image" data-nav="remove" style="background-image: url('http://www.olgchs.org/uploaded/Athletics/Soccer-girls/2014_G_FR_Socc_WEB.jpg'); background-size: cover;">
+				<div class="container z1 text-center">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="h0 text-white text-light-shadow">
+								GET YOUR TEAM ONLINE IN <span class="highlight ls1">MINUTES</span>
+							</h1>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+						</div><!--.col-->
+					</div><!--.row-->
+				</div><!--.container-->
+				<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
+			</div><!--.slide-->
+
+			<div class="slide" data-nav="slide4" style="background: #fefefe;">
+				<div class="container">
+
+					<h1 class="text-center">
+						GET STARTED FOR <span class="highlight ls1"><u>FREE</u></span>
+					</h1>
+					<p class="text-center lead">
+						The <span class="bold text-primary">ultimate, easy-to-use, all-in-one</span> team management and engagement tool.
+					</p>
+
+					<div class="row pricing-table">
+						<table class="table table-condensed table-hover table-striped">
+							<thead>
+								<tr class="transparent">
+									<th></th>
+									<th></th>
+									<th></th>
+									<th width="20%" class="active box-shadow" style="border-radius: 6px 6px 0 0 ;">
+										<span class="pack">Popular</span>
+									</th>
+									<th></th>
+								</tr>
+								<tr>
+									<th></th>
+									<th  width="20%" class="box-shadow">
+										<span class="pack">Schools</span>
+										<span class="price-container">
+											<h3 class="no-margin text-white">FREE</h3>
+											Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+										</span>
+									</th>
+									<th  width="20%" class="box-shadow">
+										<span class="pack">Clubs</span>
+										<span class="price-container">
+											<h3 class="no-margin text-white">FREE</h3>
+											Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+										</span>
+									</th>
+									<th width="20%" class="active">
+										<p class="padding-top-40 no-margin">
+											<span class="pack">Leagues</span>
+										</p>
+										<span class="price-container">
+											<h3 class="no-margin">FREE</h3>
+											Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+										</span>
+									</th>
+									<th  width="20%" class="box-shadow">
+										<span class="pack">Athletes</span>
+										<span class="price-container">
+											<h3 class="no-margin text-white">FREE</h3>
+											Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
+										</span>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="categories">Roster</td>
+									<td>1 GB</td>
+									<td>1 GB</td>
+									<td class="active">2 GB</td>
+									<td>5 GB</td>
+								</tr>
+								<tr>
+									<td class="categories">Schedule</td>
+									<td>1 Core</td>
+									<td>1 GB</td>
+									<td class="active">2 Core</td>
+									<td>4 Core</td>
+								</tr>
+								<tr>
+									<td class="categories">Email Reminders</td>
+									<td>150 GB</td>
+									<td>1 GB</td>
+									<td class="active">200 GB</td>
+									<td>250 GB</td>
+								</tr>
+								<tr>
+									<td class="categories">Team Fansite</td>
+									<td>5 TB</td>
+									<td>1 GB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Text Messaging</td>
+									<td>1 GB</td>
+									<td><i class="fa fa-times"></i></td>
+									<td class="active"><i class="fa fa-check"></i></td>
+									<td><i class="fa fa-check"></i></td>
+								</tr>
+								<tr>
+									<td class="categories">Availability</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Payment Tracking</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Online Collections</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Refreshments</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Track Anything</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Priority Email Support</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">No Web Banner Ads</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Weather Forecasts</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Statistics</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Custom Domain Name</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Customized Team Logo</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Customized Team Colors</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Customized Player Fields</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+								<tr>
+									<td class="categories">Customized Player Fields</td>
+									<td>1 GB</td>
+									<td>5 TB</td>
+									<td class="active">10 TB</td>
+									<td>20 TB</td>
+								</tr>
+
+								<tr>
+									<td class="categories">SSL</td>
+									<td>1 GB</td>
+									<td><i class="fa fa-times"></i></td>
+									<td class="active"><i class="fa fa-times"></i></td>
+									<td><i class="fa fa-check"></i></td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th></th>
+									<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
+									<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
+									<th class="active">
+										<p class="paddingp-bottom-60 padding-top-40">
+											<a href="#" class="btn btn-block btn-primary">Order Now</a>
+										</p>
+									</th>
+									<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
+								</tr>
+							</tfoot>
+						</table>
+					</div><!--.row-->
+				</div><!--.container-->
+			</div><!--.slide-->
+
+			<div class="slide" data-nav="slide5">
+				<div class="container">
+					<h3 class="text-black text-center">CONTACT</h3>
+					<p class="caption text-center">We will be glad if you write us.</p>
+					<div class="row">
+						<div class="col-md-6 col-xs-12">
+							<div class="form-group">
+								<div class="inputer inputer-teal floating-label">
+									<div class="input-wrapper">
+										<input type="text" name="" class="form-control">
+										<label>First name</label>
+									</div><!--.input-wrapper-->
+								</div><!--.inputer-->
+							</div><!--.form-group-->
+						</div><!--.col-->
+						<div class="col-md-6 col-xs-12">
+							<div class="form-group">
+								<div class="inputer inputer-teal floating-label">
+									<div class="input-wrapper">
+										<input type="text" name="" class="form-control">
+										<label>Last name</label>
+									</div><!--.input-wrapper-->
+								</div><!--.inputer-->
+							</div><!--.form-group-->
+						</div><!--.col-->
+					</div><!--.row-->
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<div class="inputer inputer-teal floating-label">
+									<div class="input-wrapper">
+										<textarea class="form-control js-auto-size" rows="1"></textarea>
+										<label>Your message</label>
+									</div>
+								</div>
+							</div><!--.form-group-->
+						</div><!--.col-->
+					</div><!--.row-->
+
+					<div class="row">
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-teal pull-right">SEND</button>
+						</div><!--.col-->
+					</div><!--.row-->
+
+				</div><!--.container-->
+
+			</div><!--.slide-->
+		</div>
+
 	</div>
 
-	<div class="slide bg-image" data-nav="remove" style="background-image: url('<%= image_path("placeholders/athlete_bg.png") %>'); background-size: cover;">
-		<div class="container z1 text-center">
-			<div class="row">
-				<div class="col-md-12">
-					<h1 class="h0 text-white text-light-shadow">
-						GET YOUR TEAM ONLINE IN <span class="highlight ls1">MINUTES</span>
-					</h1>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-				</div><!--.col-->
-			</div><!--.row-->
-		</div><!--.container-->
-		<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
-	</div><!--.slide-->
+		<div class="footer bg-black">
+			<div class="container">
 
+				<ul class="social-list">
+					<li><a href="javascript:;" class="facebook"><i class="ion-social-facebook"></i></a></li>
+					<li><a href="javascript:;" class="twitter"><i class="ion-social-twitter"></i></a></li>
+					<li><a href="javascript:;" class="pinterest"><i class="ion-social-github"></i></a></li>
+				</ul>
 
-	<div class="slide" data-nav="slide2">
+				<div class="copyright v-text">TEAMFOX &copy; 2015</div>
 
-		<div class="slide-image-vertical hide-on-mobile" data-bottom-top="top:-200px" data-center-bottom="top:100px"><img src="../../assets/one-page-parallax/img/bg-plans.jpg" alt=""></div><!--.slide-image-->
-
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 pull-left">
-					<div class="">
-						<div class="panel-body">
-							<h4 class="highlight ws2 semi-bold margin-bottom-5">
-								<i class="material-icons margin-right-10">&#xE7EF;</i> CLUBS AND LEAGUES
-							</h4>
-							<!-- <h3 class="text-black ws2 margin-top-0">TAKE YOUR SCHOOL DIGITAL</h3> -->
-							<p class="lead">We provide scheduling, communication, registration, team websites and more so you can save time and your sanity.</p>
-							<div class="row">
-								<div class="col-sm-6">
-									<ul class="semi-bold text-muted h6 no-margin">
-										<li>Get setup in minutes</li>
-										<li>Text message notifications</li>
-										<li>Online calendar</li>
-										<li>Collect payments</li>
-										<li>Manage schedules</li>
-									</ul>
-								</div>
-								<div class="col-sm-6">
-									<ul class="semi-bold text-muted h6 no-margin">
-										<li>Get setup in minutes</li>
-										<li>Text message notifications</li>
-										<li>Online calendar</li>
-										<li>Collect payments</li>
-										<li>Manage schedules</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div><!--.col-->
-				</div><!--.row-->
-				<div class="col-sm-6">
-					<div class="row">
-						<div class="col-xs-6">
-							<%= image_tag("screens/setup.png", alt: "", class: "img-responsive thumbnail") %>
-						</div>
-						<div class="col-xs-6">
-							<%= image_tag("screens/teams.png", alt: "", class: "img-responsive thumbnail") %>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-6">
-							<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
-						</div>
-						<div class="col-xs-6">
-							<%= image_tag("screens/people.png", alt: "", class: "img-responsive thumbnail") %>
-						</div>
-					</div>
-				</div>
-			</div><!--.row-->
-		</div><!--.container-->
-	</div><!--.slide-->
-
-	<div class="slide bg-image" data-nav="remove" style="background-image: url('http://www.olgchs.org/uploaded/Athletics/Soccer-girls/2014_G_FR_Socc_WEB.jpg'); background-size: cover;">
-		<div class="container z1 text-center">
-			<div class="row">
-				<div class="col-md-12">
-					<h1 class="h0 text-white text-light-shadow">
-						GET YOUR TEAM ONLINE IN <span class="highlight ls1">MINUTES</span>
-					</h1>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-				</div><!--.col-->
-			</div><!--.row-->
-		</div><!--.container-->
-		<a class="btn btn-large btn-floating btn-indigo btn-next btn-next-center" data-anchor="slide1" data-nav-link><i class="ion-chevron-down"></i></a>
-	</div><!--.slide-->
-
-	<div class="slide" data-nav="slide4" style="background: #fefefe;">
-		<div class="container">
-
-			<h1 class="text-center">
-				GET STARTED FOR <span class="highlight ls1"><u>FREE</u></span>
-			</h1>
-			<p class="text-center lead">
-				The <span class="bold text-primary">ultimate, easy-to-use, all-in-one</span> team management and engagement tool.
-			</p>
-
-			<div class="row pricing-table">
-				<table class="table table-condensed table-hover table-striped">
-					<thead>
-						<tr class="transparent">
-							<th></th>
-							<th></th>
-							<th></th>
-							<th width="20%" class="active box-shadow" style="border-radius: 6px 6px 0 0 ;">
-								<span class="pack">Popular</span>
-							</th>
-							<th></th>
-						</tr>
-						<tr>
-							<th></th>
-							<th  width="20%" class="box-shadow">
-								<span class="pack">Schools</span>
-								<span class="price-container">
-									<h3 class="no-margin text-white">FREE</h3>
-									Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
-								</span>
-							</th>
-							<th  width="20%" class="box-shadow">
-								<span class="pack">Clubs</span>
-								<span class="price-container">
-									<h3 class="no-margin text-white">FREE</h3>
-									Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
-								</span>
-							</th>
-							<th width="20%" class="active">
-								<p class="padding-top-40 no-margin">
-									<span class="pack">Leagues</span>
-								</p>
-								<span class="price-container">
-									<h3 class="no-margin">FREE</h3>
-									Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
-								</span>
-							</th>
-							<th  width="20%" class="box-shadow">
-								<span class="pack">Athletes</span>
-								<span class="price-container">
-									<h3 class="no-margin text-white">FREE</h3>
-									Starts at <i class="currency">$</i><i class="price">9</i>/<i class="renewal">month*</i>
-								</span>
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="categories">Roster</td>
-							<td>1 GB</td>
-							<td>1 GB</td>
-							<td class="active">2 GB</td>
-							<td>5 GB</td>
-						</tr>
-						<tr>
-							<td class="categories">Schedule</td>
-							<td>1 Core</td>
-							<td>1 GB</td>
-							<td class="active">2 Core</td>
-							<td>4 Core</td>
-						</tr>
-						<tr>
-							<td class="categories">Email Reminders</td>
-							<td>150 GB</td>
-							<td>1 GB</td>
-							<td class="active">200 GB</td>
-							<td>250 GB</td>
-						</tr>
-						<tr>
-							<td class="categories">Team Fansite</td>
-							<td>5 TB</td>
-							<td>1 GB</td>
-							<td class="active">10 TB</td>
-							<td>20 TB</td>
-						</tr>
-						<tr>
-							<td class="categories">Text Messaging</td>
-							<td>1 GB</td>
-							<td><i class="fa fa-times"></i></td>
-							<td class="active"><i class="fa fa-check"></i></td>
-							<td><i class="fa fa-check"></i></td>
-						</tr>
-						<tr>
-							<td class="categories">Availability</td>
-							<td>1 GB</td>
-							<td>5 TB</td>
-							<td class="active">10 TB</td>
-							<td>20 TB</td>
-						</tr>
-						<tr>
-							<td class="categories">Payment Tracking</td>
-							<td>1 GB</td>
-							<td>5 TB</td>
-							<td class="active">10 TB</td>
-							<td>20 TB</td>
-						</tr>
-						<tr>
-							<td class="categories">Online Collections</td>
-							<td>1 GB</td>
-							<td>5 TB</td>
-							<td class="active">10 TB</td>
-							<td>20 TB</td>
-						</tr>
-						<tr>
-							<td class="categories">Refreshments</td>
-							<td>1 GB</td>
-							<td>5 TB</td>
-							<td class="active">10 TB</td>
-							<td>20 TB</td>
-						</tr>
-						<tr>
-							<td class="categories">Track Anything</td>
-							<td>1 GB</td>
-							<td>5 TB</td>
-							<td class="active">10 TB</td>
-							<td>20 TB</td>
-						</tr>
-						<tr>
-							<td class="categories">Priority Email Support</td>
-							<td>1 GB</td>
-							<td>5 TB</td>
-							<td class="active">10 TB</td>
-							<td>20 TB</td>
-						</tr>
-						<tr>
-							<td class="categories">No Web Banner Ads</td>
-							<td>1 GB</td>
-							<td>5 TB</td>
-							<td class="active">10 TB</td>
-							<td>20 TB</td>
-						</tr>
-						<tr>
-							<td class="categories">Weather Forecasts</td>
-							<td>1 GB</td>
-							<td>5 TB</td>
-							<td class="active">10 TB</td>
-							<td>20 TB</td>
-						</tr>
-						<tr>
-							<td class="categories">Statistics</td>
-							<td>1 GB</td>
-							<td>5 TB</td>
-							<td class="active">10 TB</td>
-							<td>20 TB</td>
-						</tr>
-						<tr>
-							<td class="categories">Custom Domain Name</td>
-							<td>1 GB</td>
-							<td>5 TB</td>
-							<td class="active">10 TB</td>
-							<td>20 TB</td>
-						</tr>
-						<tr>
-							<td class="categories">Customized Team Logo</td>
-							<td>1 GB</td>
-							<td>5 TB</td>
-							<td class="active">10 TB</td>
-							<td>20 TB</td>
-						</tr>
-						<tr>
-							<td class="categories">Customized Team Colors</td>
-							<td>1 GB</td>
-							<td>5 TB</td>
-							<td class="active">10 TB</td>
-							<td>20 TB</td>
-						</tr>
-						<tr>
-							<td class="categories">Customized Player Fields</td>
-							<td>1 GB</td>
-							<td>5 TB</td>
-							<td class="active">10 TB</td>
-							<td>20 TB</td>
-						</tr>
-						<tr>
-							<td class="categories">Customized Player Fields</td>
-							<td>1 GB</td>
-							<td>5 TB</td>
-							<td class="active">10 TB</td>
-							<td>20 TB</td>
-						</tr>
-
-						<tr>
-							<td class="categories">SSL</td>
-							<td>1 GB</td>
-							<td><i class="fa fa-times"></i></td>
-							<td class="active"><i class="fa fa-times"></i></td>
-							<td><i class="fa fa-check"></i></td>
-						</tr>
-					</tbody>
-					<tfoot>
-						<tr>
-							<th></th>
-							<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
-							<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
-							<th class="active">
-								<p class="paddingp-bottom-60 padding-top-40">
-									<a href="#" class="btn btn-block btn-primary">Order Now</a>
-								</p>
-							</th>
-							<th><a href="#" class="btn btn-block btn-primary">Order Now</a></th>
-						</tr>
-					</tfoot>
-				</table>
-			</div><!--.row-->
-		</div><!--.container-->
-	</div><!--.slide-->
-
-	<div class="slide" data-nav="slide5">
-		<div class="container">
-			<h3 class="text-black text-center">CONTACT</h3>
-			<p class="caption text-center">We will be glad if you write us.</p>
-			<div class="row">
-				<div class="col-md-6 col-xs-12">
-					<div class="form-group">
-						<div class="inputer inputer-teal floating-label">
-							<div class="input-wrapper">
-								<input type="text" name="" class="form-control">
-								<label>First name</label>
-							</div><!--.input-wrapper-->
-						</div><!--.inputer-->
-					</div><!--.form-group-->
-				</div><!--.col-->
-				<div class="col-md-6 col-xs-12">
-					<div class="form-group">
-						<div class="inputer inputer-teal floating-label">
-							<div class="input-wrapper">
-								<input type="text" name="" class="form-control">
-								<label>Last name</label>
-							</div><!--.input-wrapper-->
-						</div><!--.inputer-->
-					</div><!--.form-group-->
-				</div><!--.col-->
-			</div><!--.row-->
-
-			<div class="row">
-				<div class="col-md-12">
-					<div class="form-group">
-						<div class="inputer inputer-teal floating-label">
-							<div class="input-wrapper">
-								<textarea class="form-control js-auto-size" rows="1"></textarea>
-								<label>Your message</label>
-							</div>
-						</div>
-					</div><!--.form-group-->
-				</div><!--.col-->
-			</div><!--.row-->
-
-			<div class="row">
-				<div class="col-md-12">
-					<button type="submit" class="btn btn-teal pull-right">SEND</button>
-				</div><!--.col-->
-			</div><!--.row-->
-
-		</div><!--.container-->
-
-	</div><!--.slide-->
-
-	<div class="footer bg-black">
-		<div class="container">
-
-			<ul class="social-list">
-				<li><a href="javascript:;" class="facebook"><i class="ion-social-facebook"></i></a></li>
-				<li><a href="javascript:;" class="twitter"><i class="ion-social-twitter"></i></a></li>
-				<li><a href="javascript:;" class="pinterest"><i class="ion-social-github"></i></a></li>
-			</ul>
-
-			<div class="copyright v-text">TEAMFOX &copy; 2015</div>
-
-		</div><!--.container-->
-	</div><!--.footer-->
+			</div><!--.container-->
+		</div><!--.footer-->
