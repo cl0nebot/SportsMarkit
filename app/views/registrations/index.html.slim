@@ -18,46 +18,46 @@
     .col-md-6.col-md-offset-3
       .panel.box-shadow-ccc
         .panel-body.pr50.pl50.pt50.pb50.labels-light.labels-16
-            - if @object.instance_of?(User)
-              h3
-                = @object.class.to_s
-                |  Registrations
-              p.text-muted.fs_16
-                | View the status of your registrations below.
-          
-              br
-              table.table
-                thead
-                  tr 
-                    th Object Name
-                    th Object Type
-                    th Selected Option
-                    th Price
-                    th Confirmation Code
-                tbody
-                - @object.all_registrations_as_submitter.each do |registration|
-                  tr 
-                    td 
-                      = registration.formable.name
-                    td
-                      = registration.formable_type
-                    td 
-                      = "Adult Registration"
-                    td
-                      = 55
-                    td
-                      = registration.confirmation
-                tfoot
-            - else
-              ul.nav.nav-tabs.fs_16.no-border.no-adding role="tablist"
-                li.active role="presentation"
-                  a aria-controls="home" data-toggle="tab" href="#all" role="tab" All
-                li role="presentation"
-                  a aria-controls="profile" data-toggle="tab" href="#paid" role="tab" Paid
-                li role="presentation"
-                  a aria-controls="messages" data-toggle="tab" href="#unpaid" role="tab" Unpaid
-                li role="presentation"
-                  a aria-controls="settings" data-toggle="tab" href="#roster" role="tab" Roster
+          - if @object.instance_of?(User)
+            h3
+              = @object.class.to_s
+              |  Registrations
+            p.text-muted.fs_16
+              | View the status of your registrations below.
+
+            br
+            table.table
+              thead
+                tr
+                  th Object Name
+                  th Object Type
+                  th Selected Option
+                  th Price
+                  th Confirmation Code
+              tbody
+              - @object.all_registrations_as_submitter.each do |registration|
+                tr
+                  td
+                    = registration.formable.name
+                  td
+                    = registration.formable_type
+                  td
+                    = registration.selected_option.try(:option).try(:name)
+                  td
+                    = registration.selected_option.try(:option).try(:price)
+                  td
+                    = registration.confirmation
+              tfoot
+          - else
+            ul.nav.nav-tabs.fs_16.no-border.no-adding role="tablist"
+              li.active role="presentation"
+                a aria-controls="home" data-toggle="tab" href="#all" role="tab" All
+              li role="presentation"
+                a aria-controls="profile" data-toggle="tab" href="#paid" role="tab" Paid
+              li role="presentation"
+                a aria-controls="messages" data-toggle="tab" href="#unpaid" role="tab" Unpaid
+              li role="presentation"
+                a aria-controls="settings" data-toggle="tab" href="#roster" role="tab" Roster
         .tab-content.no-border.no-padding
           - unless @object.instance_of?(User)
             = render "registrations/tabs"
