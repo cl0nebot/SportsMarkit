@@ -4,7 +4,8 @@ class EventsController < ApplicationController
 
   before_action :authenticate_user!, except: [:show]
   before_action :find_object, except: [:show, :destroy, :edit, :update, :index, :rsvp]
-
+  before_filter :correct_user!, only: [:new, :edit]
+  
   def index
     @events = Event.all
     @upcoming_events = @events.upcoming_events

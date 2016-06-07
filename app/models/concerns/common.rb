@@ -32,7 +32,7 @@ module Common
       if self.to_s == "League"
         ["League Manager"]
       elsif self.to_s == "Team"
-        ["Athlete", "Coach", "Trainer", "Team Manager", "Admin", "Parent"]
+        ["Guardian", "Athlete", "Coach", "Trainer", "Team Manager", "Admin", "Parent"]
       elsif self.to_s == "School"
         ["School Manager", "Athletic Director"]
       elsif self.to_s == "User"

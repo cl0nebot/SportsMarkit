@@ -1,5 +1,7 @@
 class PricingsController < ApplicationController
-  
+  before_filter :authenticate_user!
+  before_filter :authenticate_admin!
+
   def index
     @schools = School.all
     @teams = Team.without_schools
@@ -21,8 +23,8 @@ class PricingsController < ApplicationController
       format.js
     end
   end
-  
 
-  
-  
+  def authorize_access
+
+  end
 end

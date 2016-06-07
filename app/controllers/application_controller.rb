@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   #authentication
 
   def authenticate_admin!
-    redirect_to edit_user_path(current_user) unless current_user.admin?
+    redirect_to edit_user_path(current_user) unless current_user.try(:admin?)
   end
 
   def xeditable?
