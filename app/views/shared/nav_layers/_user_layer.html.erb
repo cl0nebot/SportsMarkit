@@ -1,12 +1,18 @@
+<% if false %>
 <script src="//js.pusher.com/2.2/pusher.min.js"></script>
 <script>
   var pusher = new Pusher('<%=ENV["PUSHER_KEY"]%>'); // uses your APP KEY
   var user_id = <%=current_user.id%>;
+  // $('#chat-message-form')[0].reset()
+
 </script>
 
+<% if false %>
 <% current_user.team_roles.each do |role| %>
     <script>
       pusher.subscribe("chat-<%= role.chatroom.id %>").bind('message-push', function (data) {
+        // $("#message-<%#= @team.last_chat_stream_message_id %>").empty();
+        // 	$("#message-<%#= @team.last_chat_stream_message_id %>").append("<%#= j render 'message', message: Message.where(chatroom_id: @team.id).last.beginning_of_stream %>")
         if ($("#messages-for-chat").data('room') != <%= role.chatroom.id %>){return false}
 
         if (data.user_id == user_id) {
@@ -25,6 +31,7 @@
 
       });
     </script>
+<% end %>
 <% end %>
 
 
@@ -54,6 +61,7 @@
         <ul class="list-material has-hidden">
           <li class="has-action-left has-action-right"></li>
 
+          <% if false %>
           <% current_user.team_roles.each do |role| %>
             <li class="has-action-left has-action-right">
               <div class="list-action-left">
@@ -73,6 +81,7 @@
               </div>
 
             </li>
+          <% end %>
           <% end %>
 
            <li class="has-action-left has-action-right has-long-story">
@@ -177,6 +186,7 @@
         <div class="col-md-8">
         <div class="message-send-container" id="scroll">
           
+          <% if false %>
           <% if current_user.team_roles.present? %>
             <div class="messages" id="messages-for-chat" data-room="<%=current_user.chatroom.id%>">
               <%= render 'shared/nav_layers/messages', messages: Message.where(chatroom_id: current_user.chatroom.id) %>
@@ -187,6 +197,7 @@
             <div class="send-message" id="form-for-chat">
               <%= render 'shared/nav_layers/form', chatroom_id: current_user.chatroom.id %>
             </div>
+          <% end %>
           <% end %>
           </div>
         <!--.message-send-container-->
@@ -350,3 +361,4 @@
   </div>
   <!--.row-->
 </div><!--.user-layer-->
+<% end %>
