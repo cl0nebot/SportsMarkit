@@ -79,7 +79,12 @@ class FormsController < ApplicationController
 
   def correct_user!
     authenticate_user!
-    @object = Form.where(formable_id: params[:formable_id], formable_type: params[:formable_type]).first.formable
+    param = params.keys.find{|key| key =~ /(\w+)_id/}
+    if param == 'formable_id'
+      @object = Form.where(formable_id: params[:formable_id], formable_type: params[:formable_type]).first.formable
+    else
+      @object = $1.capitalize.constantize.find(params[param])
+    end
     unless @object.can_be_edited_by_user?(current_user)
       flash[:message] = "Unauthorized."
       redirect_to edit_user_path(current_user)
