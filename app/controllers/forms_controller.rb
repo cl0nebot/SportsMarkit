@@ -81,7 +81,7 @@ class FormsController < ApplicationController
     authenticate_user!
     param = params.keys.find{|key| key =~ /(\w+)_id/}
     if param == 'formable_id'
-      @object = Form.where(formable_id: params[:formable_id], formable_type: params[:formable_type]).first.formable
+      @object = params[:formable_type].constantize.find(params[:formable_id])
     else
       @object = $1.capitalize.constantize.find(params[param])
     end
