@@ -16,10 +16,11 @@ module Access
   def can_be_edited_by_user?(current_user)
     return false if current_user.nil?
     return true if current_user.admin?
-    %w[user school team club facility league event].each do |object|
-      self.send("#{object}_can_be_edited_by_user?", current_user) == true ? (return true) : (return false)
+    if [User, Team, School, League, Event, Facility, Club].include? self.class
+      self.send("#{self.class.to_s.downcase}_can_be_edited_by_user?", current_user) == true ? (return true) : (return false)
+    else
+      return false
     end
-    return false
   end
 
   def team_can_be_edited_by_user?(current_user)

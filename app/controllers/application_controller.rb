@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
       end
     else
       param = params.keys.find{|key| key =~ /(\w+)_id/}
-      @object = $1.capitalize.constantize.find(params[param])
+      @object = $1.capitalize.constantize.friendly.find(params[param])
       unless @object.can_be_edited_by_user?(current_user)
         flash[:message] = "Unauthorized."
         redirect_to edit_user_path(current_user)
