@@ -27,4 +27,18 @@ class AnnouncementsController < ApplicationController
       :message, :sms, :email, :subject, sports: [], team_ids: [],
       specific_user_groups: [], default_user_groups: [])
   end
+
+  def correct_user!
+    authenticate_user!
+      param = params.keys.find{|key| key =~ /(\w+)_id/}
+      if param
+        @object = $1.capitalize.constantize.find(params[param])
+      else
+        @object = params[:announcement][:announceable_type].constantize.find(params[:announcement][:announceable_id])
+      end
+      unless @object.can_be_edited_by_user?(current_user)
+        flash[:message] = "Unauthorized."
+        redirect_to edit_user_path(current_user)
+      end
+  end
 end

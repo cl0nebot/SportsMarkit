@@ -38,6 +38,8 @@ class AnnouncementsService
   end
 
   def user_ids_by_default_group
+    return [] unless @params[:default_user_groups].present?
+    
     if @params[:default_user_groups].try(:include?, "All")
       roles = @announcementable.class.default_message_groups.collect { |r| r.gsub(" ", "_").downcase.singularize }
     else
@@ -54,7 +56,9 @@ class AnnouncementsService
   end
 
   def user_ids_by_custom_groups
-    if @params[:specific_user_groups].include? "All"
+    return [] unless @params[:specific_user_groups].present?
+
+    if @params[:specific_user_groups].try(:include?, "All")
       roles = @announcementable.class.custom_message_groups.collect { |r| r.gsub(" ", "_").downcase.pluralize }
     else
       roles = @params[:specific_user_groups].collect { |r| r.gsub(" ", "_").downcase.pluralize }.reject(&:blank?)

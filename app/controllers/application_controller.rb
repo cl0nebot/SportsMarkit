@@ -66,7 +66,6 @@ class ApplicationController < ActionController::Base
     end  
   end
   
-  
 
   def authenticate_pending_athletic_director!
     authenticate_user!
