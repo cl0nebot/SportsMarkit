@@ -4,7 +4,7 @@ class FormsController < ApplicationController
   before_filter :correct_user!, except: [:show]
 
   def new
-    @form = @object.forms.first_or_initialize
+    @form = @object.forms.where(master: true).first_or_initialize
     @style = "btn btn"
   end
 
