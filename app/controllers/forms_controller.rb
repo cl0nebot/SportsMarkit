@@ -1,7 +1,7 @@
 class FormsController < ApplicationController
   before_action :find_object, only: [:new, :edit]
   before_filter :authenticate_user!
-  before_filter :correct_user!
+  before_filter :correct_user!, except: [:show]
 
   def new
     @form = @object.forms.first_or_initialize
