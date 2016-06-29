@@ -38,17 +38,20 @@
         </ol>
       </div>
     </div>
-    <div class="header-tabs scrollable-tabs sticky">
+
+    <div class="header-tabs scrollable-tabs sticky pr30">
       <%= render 'shared/register_button' %>
       <% if @object.can_be_edited_by_user?(current_user) %>
-        <%= link_to edit_team_path(@team), class: "mt10 pull-right btn btn-primary button-striped button-full-striped btn-ripple mr20" do %>
-          <i class="ion-gear-b fs_16 mr5"></i> Edit Profile
+        <%= link_to edit_team_path(@team), class: "btn btn-floating btn-red btn-ripple mt5 pull-right mr10", title: "Edit Profile", :'data-toggle' => 'tooltip', :'data-placement' => 'left' do %>
+            <i class="material-icons">&#xE8B8;</i>
         <% end %>
       <% end %>
+      
+      <a href="/teams/<%= @object.slug %>/dashboard" class="btn btn-floating btn-cyan btn-ripple mt5 pull-right mr15" data-toggle="tooltip" data-placement="left" title="My Dashboard">
+        <i class="material-icons">&#xE871;</i>
+      </a>
+      <% end %>
       <%= render 'shared/view_announcement_button', object: @object %>
-      <div class="pull-right mr10 mt10" id="join-button">
-        <%= join_object_button(current_user, @object.class.to_s, @object.id) %>
-      </div>
       <%= render 'shared/show_navigations'%>
     </div>
   </div>
