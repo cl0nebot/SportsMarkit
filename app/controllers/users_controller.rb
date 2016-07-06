@@ -5,9 +5,9 @@ class UsersController < ApplicationController
   before_filter :redirect_current_user, only: :create
 
   def index
-    if stale?(:etag => ["users-index", "v0"], :last_modified => User.maximum(:updated_at))
+    # if stale?(:etag => ["users-index", "v0"], :last_modified => User.maximum(:updated_at))
       @users = User.includes(:profile, :user_profile_pictures).all
-    end
+    # end
   end
 
   def new
@@ -178,6 +178,22 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.json { render json: { error: error_message }, status: user_exists ? 422 : 200 }
+    end
+  end
+
+  def export
+    Axlsx::Package.new do |p|
+      p.workbook.add_worksheet(:name => "Export") do |sheet|
+        sheet.add_row %w(username email phone)
+        User.all.each do |user|
+          row = []
+          row << user.username
+          row << user.email
+          row << user.mobile_phone_number
+          sheet.add_row row
+        end
+      end
+      send_data p.to_stream.read, type: "application/xlsx", filename: "export.xlsx"
     end
   end
 

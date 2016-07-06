@@ -68,10 +68,22 @@
                 <span class="count"><%#= User.athletic_director_count %></span>
               </button>
             </li>
+            <% if current_user.admin? %>
+              <li>
+                <br>
+                <button class="btn btn-white b-rad-4 btn-sm btn-block">
+                  <%= link_to export_users_path do %>
+                    <span class="filter">Export</span>
+                  <% end %>
+                </button>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>
     </div>
+
+
     <div class="bg-muted col-md-10" style="background: #fff; margin-left: 0px; border-left: 1px solid #eee; padding: 20px 30px; min-height: 1000px;">
       <div class="row">
         <div class="col-md-6">

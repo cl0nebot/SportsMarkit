@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, concerns: [:signed_documentable] do
+    get :export, on: :collection
     resources :children
     resources :dashboard
     resources :registrations, only: [:index]
