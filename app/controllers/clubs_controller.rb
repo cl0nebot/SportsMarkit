@@ -54,7 +54,7 @@ class ClubsController < ApplicationController
   end
 
   def update
-    @object = Club.find_by_slug!(request.referrer.split("clubs/").last.split("/").first)
+    @object = Club.friendly.find(request.referrer.split("clubs/").last.split("/").first)
     @profile_picture =  ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s).last
     @profile_pictures = ProfilePicture.where(profile_picture_owner_id: @object.id, profile_picture_owner_type: @object.class.to_s)
     @videos = @object.medias.where(category: "Video")
@@ -72,7 +72,6 @@ class ClubsController < ApplicationController
         format.js
         format.json { respond_with_bip(@object) }
       end
-
     end
   end
 

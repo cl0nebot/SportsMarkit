@@ -1,3 +1,8 @@
 <% slug = "/clubs/#{@object.slug}/edit" %>
 history.replaceState("", "", "<%= slug %>");
 $('#content').html("<%= j render 'clubs/edit_form', object: @object, pictures: @pictures, videos: @videos, articles: @articles, address: @address %>")
+<% if @object.valid? %>
+  window.notifySuccess('Club updated');
+<% else %>
+  window.notifyError('Could not update');
+<% end %>
