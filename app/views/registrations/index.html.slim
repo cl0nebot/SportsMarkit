@@ -3,13 +3,13 @@
     .row
       .col-sm-6
         h1.capitalize.semi-bold
-          = @object.name 
+          = @object.name
           small  Manage Registrations
       .col-sm-6
         - if @object.can_be_edited_by_user?(current_user)
           a href=url_for([:edit, @object]) class="btn btn-floating btn-red btn-ripple pull-right mr10" title="Edit Profile" data-toggle="tooltip" data-placement="left"
             i.material-icons &#xE8B8;
-        a.btn.btn-floating.btn-cyan.btn-ripple.pull-right.mr15 data-placement="left" data-toggle="tooltip" href="#" title=("My Dashboard") 
+        a.btn.btn-floating.btn-cyan.btn-ripple.pull-right.mr15 data-placement="left" data-toggle="tooltip" href="#" title=("My Dashboard")
           i.material-icons &#xE871;
     = render "shared/show_navigation_admin"
   br/
@@ -34,6 +34,7 @@
                   th Selected Option
                   th Price
                   th Confirmation Code
+                  th Action
               tbody
               - @object.all_registrations_as_submitter.each do |registration|
                 tr
@@ -47,6 +48,8 @@
                     = registration.selected_option.try(:option).try(:price)
                   td
                     = registration.confirmation
+                  td
+                    = link_to " View Details", "/#{registration.formable_type.underscore.pluralize}/#{registration.formable.slug}/registrations/#{registration.id}/registrant"
               tfoot
           - else
             ul.nav.nav-tabs.fs_16.no-border.no-adding role="tablist"
