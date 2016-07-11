@@ -12,6 +12,7 @@ class Club < ActiveRecord::Base
 
   serialize :sports, Array
   has_many :roles, as: :roleable, dependent: :destroy
+  has_many :directors, through: :roles, source: :user
   has_many :userless_roles, as: :userless, dependent: :destroy
   has_many :facilities, as: :facility_owner
   has_many :events, as: :eventable

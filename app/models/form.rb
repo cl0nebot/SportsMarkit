@@ -40,6 +40,11 @@ class Form < ActiveRecord::Base
   def send_registration_emails
     master_form = Form.where(formable_type: formable_type, formable_id: formable_id, master: true).first_or_create
     SendEmail.new_registration(master_form.submitter, self).deliver if master_form.notify_creator
+    if master_form.formable.teamable_type == "Club"
+      master_form.formable.teamable.directors.each do |director|
+        SendEmail.new_registration(director, self).deliver
+      end
+    end
     SendEmail.new_registration(submittable, self).deliver if submittable.email.present?
   end
 
